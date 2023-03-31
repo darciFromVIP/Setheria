@@ -18,6 +18,7 @@ public class RecipeScriptable : ScriptableObject
     [HideInInspector] public bool freshlyUnlocked = false;
     public ItemScriptable requiredStructure;
     public float craftingDuration;
+    public int xpGranted;
     public int tier;
     public ItemScriptable recipeItem;
     public List<ItemScriptable> requiredItems = new();

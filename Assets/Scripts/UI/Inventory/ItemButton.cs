@@ -51,14 +51,15 @@ public class ItemButton : Button
                         item.EquipItem(this.item);
                         this.item.transform.SetParent(this.item.parentAfterDrag);
                         this.item.transform.position = this.item.parentAfterDrag.position;
-                        FindObjectOfType<Tooltip>().Hide();
+                        FindObjectOfType<Tooltip>(true).Hide();
+                        break;
                     }
                 }
             }
             else if (item.transform.parent.TryGetComponent(out CharacterGearSlot gearSlot))
             {
                 item.UnequipItem();
-                FindObjectOfType<Tooltip>().Hide();
+                FindObjectOfType<Tooltip>(true).Hide();
             }
         }
     }

@@ -8,6 +8,7 @@ public class LootableObject : NetworkBehaviour, IInteractable
 {
     public float lootDuration;
     public float refreshDuration;
+    public int xpGranted;
     public int maxCharges;
     private int currentCharges;
     public bool oneTimeLoot = true;
@@ -77,6 +78,7 @@ public class LootableObject : NetworkBehaviour, IInteractable
             FindObjectOfType<SystemMessages>().AddMessage("This object has already been harvested!");
             return;
         }
+        interactingPlayer.GetComponent<PlayerCharacter>().AddXp(xpGranted);
         GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>(true), interactingPlayer.transform.position);
         CmdSetInteractingPlayer(null);
         currentCharges--;

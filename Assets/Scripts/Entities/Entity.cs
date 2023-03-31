@@ -120,6 +120,10 @@ public class Entity : NetworkBehaviour
                 buffInstance = new BManaRegen(buff.value, this);
                 break;
             case BuffType.InventorySlots:
+                if (isServer)
+                    Debug.Log("Server");
+                else
+                    Debug.Log("Client");
                 buffInstance = new BInventorySlots(buff.value, FindObjectOfType<InventoryManager>());
                 break;
             case BuffType.Power:
@@ -147,8 +151,12 @@ public class Entity : NetworkBehaviour
         }
         if (buffInstance != null)
         {
-            var effectInstance = Instantiate(vfxDatabase.GetVFXByName(buff.buffName), transform);
-            buffInstance.effect = effectInstance;
+            var vfx = vfxDatabase.GetVFXByName(buff.buffName);
+            if (vfx)
+            {
+                var effectInstance = Instantiate(vfxDatabase.GetVFXByName(buff.buffName), transform);
+                buffInstance.effect = effectInstance;
+            }
             buffs.Add(buffInstance);
             if (buff.duration > 0)
                 StartCoroutine(buffInstance.TimedBuff(buff.duration));

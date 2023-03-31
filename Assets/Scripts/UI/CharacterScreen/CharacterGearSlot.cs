@@ -44,6 +44,7 @@ public class CharacterGearSlot : MonoBehaviour, IDropHandler
         }
         foreach (var item in inventoryItem.item.passiveBuffs)
         {
+            Debug.Log("Calling CmdAddBuff");
             player.CmdAddBuff(item);
         }
     }

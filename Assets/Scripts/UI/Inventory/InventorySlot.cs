@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
-    public Sprite lockSprite;
+    public Sprite freeSprite, lockSprite;
     public bool isFree = false;
     public void ToggleSlotAvailability(bool value)
     {
         isFree = value;
         if (isFree)
-            GetComponent<Image>().sprite = null;
+            GetComponent<Image>().sprite = freeSprite;
         else
             GetComponent<Image>().sprite = lockSprite;
     }
