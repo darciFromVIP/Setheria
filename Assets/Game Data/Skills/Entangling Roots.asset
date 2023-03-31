@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0aba134766a2ad43aa892d3fee24343, type: 3}
+  m_Name: Entangling Roots
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 0672104aca1241d44aab0e0e6d1d72b3, type: 3}
+  cooldown: 15
+  manaCost: 50
+  description: 
+  range: 7
+  baseDuration: 8
+  baseDamage: 10
+  damageScalingStat: 12
+  damageScalingValue: 0.1
+  stunBuff: {fileID: 11400000, guid: feb651365e827b240b996ede8f4d879b, type: 2}
+  damageBuff: {fileID: 11400000, guid: 2dce1bb7a56eb244eac501f7ef02dee1, type: 2}
+  projectile: {fileID: 6622377285814243879, guid: 431de6386af26904a8035b9a94d81393,
+    type: 3}

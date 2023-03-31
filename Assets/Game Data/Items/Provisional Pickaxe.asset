@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
+  m_Name: Provisional Pickaxe
+  m_EditorClassIdentifier: 
+  description: "Helpful instrument used to mining.\n -durability\n__________________________________\nEquipable,
+    Pickaxe"
+  grade: 0
+  itemType: 12
+  sprite: {fileID: 21300000, guid: dccf5053d37504c49b993b8fc0bd4359, type: 3}
+  stackable: 1
+  usage: []
+  usageCooldown: 0
+  cooldownGroup: 0
+  passiveBuffs: []
+  value: 1
+  destroyItemOnUse: 0
+  resourceCost: 0
+  knowledgeCost: 0
+  unlocked: 1
+  Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []

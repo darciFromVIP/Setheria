@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
+  m_Name: Wooden Staff
+  m_EditorClassIdentifier: 
+  description: 'Hand-made wooden weapon, useful in battle.
+
+    __________________________________
+
+    +0,1<sprite=9>
+
+    +3<sprite=3>
+
+    __________________________________
+
+    Equipable,
+    Weapon'
+  grade: 0
+  itemType: 6
+  sprite: {fileID: 21300000, guid: 58582ebd565c5364e9ceeb31a4c0833e, type: 3}
+  stackable: 0
+  usage: []
+  usageCooldown: 0
+  cooldownGroup: 0
+  passiveBuffs:
+  - {fileID: 11400000, guid: e646fa2c3ed655d42b9eba5cb4d55606, type: 2}
+  - {fileID: 11400000, guid: 8d476df06e4e7a34ba013fa258bf1ecb, type: 2}
+  value: 0
+  destroyItemOnUse: 0
+  resourceCost: 0
+  knowledgeCost: 0
+  unlocked: 1
+  Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
