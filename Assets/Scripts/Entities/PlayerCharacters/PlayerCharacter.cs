@@ -248,7 +248,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             level++;
             maxXp = (int)(BaseMaxXpValue * level * MaxXpMultiplier);
             Level_Up.Invoke(level);
-            ChangeAttributePoints(1);
+            ChangeAttributePoints(2);
             FindObjectOfType<FloatingText>().SpawnFloatingText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
         }
         Xp_Changed.Invoke(xp, maxXp);
