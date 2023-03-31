@@ -5,7 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 7238720859854677413}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 07b9ec5b933706b4585259ca5df2511a,
@@ -89,7 +89,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 527e5fe31aabce64aaf1c3d8f6b0a977, type: 2}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07b9ec5b933706b4585259ca5df2511a, type: 3}
 --- !u!4 &7443773922523901074 stripped
 Transform:
@@ -102,9 +104,14 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: xpGranted
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: lootDuration
@@ -247,11 +254,13 @@ PrefabInstance:
       value: Heartstone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7443773922523901074}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f87e8e15654f0d1439fa30e59ccad342, type: 3}
 --- !u!4 &7238720859854677413 stripped
 Transform:
