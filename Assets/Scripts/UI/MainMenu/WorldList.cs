@@ -1,0 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.IO;
+using TMPro;
+[System.Serializable]
+public class WorldList : MonoBehaviour
+{
+    [SerializeField] private TMP_InputField worldNameInput;
+    [SerializeField] private TMP_InputField worldSeedInput;
+
+    [SerializeField] private GameObject worldElementPrefab;
+
+    private void OnEnable()
+    {
+        LoadWorlds();
+    }
+    [ContextMenu("Load Worlds")]
+    public void LoadWorlds()
+    {
+        foreach (var item in transform.GetComponentsInChildren<WorldElement>())
+        {
+            Destroy(item.gameObject);
+        }
+        var saveload = FindObjectOfType<SaveLoadSystem>();
+        Directory.CreateDirectory(saveload.dataDirPath);
+        var info = new DirectoryInfo(saveload.dataDirPath);
+        var fileInfo = info.GetDirectories();
+        foreach (var item in fileInfo)
+        {
+            var obj = Instantiate(worldElementPrefab, transform);
+            var files = item.GetFiles("*.WorldData", SearchOption.TopDirectoryOnly);
+            foreach (var item2 in files)
+            {
+                Debug.Log(item2);
+            }
+            if (files.Length > 0)
+            {
+                var worldData = saveload.LoadFileWorld(files[0].ToString());
+                obj.GetComponent<WorldElement>().UpdateElement(worldData.worldSaveData.worldName, worldData.worldSaveData.worldSeed, files[0].ToString());
+            }
+        }
+    }
+    
+    public void CreateWorld()
+    {
+        if (worldSeedInput.text == "")
+            worldSeedInput.text = Random.Range(0, 2147483647).ToString();
+        if (worldNameInput.text == "")
+            worldNameInput.text = "New World";
+        long seed = long.Parse(worldSeedInput.text);
+        if (seed > 2147483646)
+            seed = 2147483646;
+        if (seed < 0)
+            seed = 0;
+        var saveload = FindObjectOfType<SaveLoadSystem>();
+        saveload.SaveFileWorld(new SaveDataWorldServer(worldNameInput.text, (int)seed), true);
+        List<SaveDataPlayer> newPlayerData = new();
+        for (int j = 0; j < System.Enum.GetValues(typeof(Hero)).Length; j++)
+        {
+            newPlayerData.Add(new SaveDataPlayer((Hero)j));
+        }
+        saveload.SaveNewPlayerFile(newPlayerData, worldNameInput.text);
+        worldSeedInput.text = "";
+        worldNameInput.text = "";
+    }
+}

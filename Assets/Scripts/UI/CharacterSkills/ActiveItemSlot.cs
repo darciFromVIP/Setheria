@@ -1,0 +1,128 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using TMPro;
+public class ActiveItemSlot : MonoBehaviour, IDropHandler
+{
+    public KeyCode hotkey;
+    public Sprite lockSprite;
+    public Sprite emptySprite;
+    public bool isFree = false;
+    public Image image;
+    public TextMeshProUGUI stackText, cooldownText;
+    public Slider cooldownSlider;
+
+    private InventoryItem reference;
+    private TooltipTrigger tooltip;
+    private void Start()
+    {
+        tooltip = GetComponent<TooltipTrigger>();
+        if (!isFree)
+        {
+            image.sprite = lockSprite;
+            SetLockedSlotTooltip();
+        }
+        else
+            SetEmptySlotTooltip();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(hotkey))
+        {
+            UseItem();
+        }
+    }
+    public void ToggleSlotAvailability(bool value)
+    {
+        isFree = value;
+        if (isFree)
+        {
+            image.sprite = emptySprite;
+            SetEmptySlotTooltip();
+        }
+        else
+        {
+            image.sprite = lockSprite;
+            SetLockedSlotTooltip();
+        }
+    }
+    public void OnDrop(PointerEventData eventData)
+    {
+        if (isFree)
+        {
+            var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+            if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot)
+                || (inventoryItem.parentAfterDrag.TryGetComponent(out InventorySlot inventorySlot) && inventoryItem.item.itemType == ItemType.None))
+            {
+                if (inventoryItem.item.usage.Count > 0)
+                    Initialize(inventoryItem);
+            }
+        }
+    }
+    public void Initialize(InventoryItem item)
+    {
+        reference = item;
+        image.sprite = item.item.sprite;
+        if (item.item.stackable)
+            stackText.text = item.stacks.ToString();
+        else
+            stackText.text = "";
+        item.Item_Destroyed.AddListener(Destroy);
+        item.Stacks_Changed.AddListener(ChangeStacks);
+        item.Cooldown_Changed.AddListener(UpdateCooldown);
+        tooltip.SetText(item.item.name, item.item.description, item.item.sprite);
+    }
+    private void Destroy()
+    {
+        reference = null;
+        image.sprite = emptySprite;
+        stackText.text = "";
+        SetEmptySlotTooltip();
+        UpdateCooldown(0);
+    }
+    private void SetEmptySlotTooltip()
+    {
+        tooltip.SetText("Empty Slot (" + hotkey.ToString()[hotkey.ToString().Length - 1] + ")",
+            "This is a slot for an active item. Drag any item that can be activated from your inventory or equipped gear to this slot and use " + hotkey + " to activate it.",
+            image.sprite);
+    }
+    private void SetLockedSlotTooltip()
+    {
+        tooltip.SetText("Locked Slot (" + hotkey.ToString()[hotkey.ToString().Length - 1] + ")",
+            "This is a locked slot for an active item. You have to find a special item which can unlock it.",
+            image.sprite);
+    }
+    private void ChangeStacks(int stacks)
+    {
+        stackText.text = stacks.ToString();
+    }
+    public void UseItem()
+    {
+        if (reference)
+        {
+            reference.UseItem();
+        }
+    }
+    private void UpdateCooldown(float cd)
+    {
+        if (!reference)
+            cd = 0;
+        if (cd > 0)
+        {
+            if (!cooldownSlider.gameObject.activeSelf)
+                cooldownSlider.maxValue = cd;
+            cooldownSlider.gameObject.SetActive(true);
+            cooldownSlider.value = cd;
+            if (cd >= 1)
+                cooldownText.text = ((int)cd).ToString();
+            else
+                cooldownText.text = cd.ToString("F1");
+        }
+        else
+        {
+            cooldownSlider.gameObject.SetActive(false);
+        }
+    }
+}

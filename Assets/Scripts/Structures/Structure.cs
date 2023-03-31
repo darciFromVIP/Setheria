@@ -1,0 +1,56 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Mirror;
+public abstract class Structure : Entity, ISaveable, IInteractable
+{
+    public ItemScriptable structureItem;
+    public List<StructureOption> structureOptions;
+    public EntityDatabase entityDatabase;
+    public Transform unitSpawnPoint;
+    public StructureScriptable structureData;
+
+    protected override void Start()
+    {
+        base.Start();
+        structureData.Structure_Built.Invoke();
+    }
+    private void OnMouseOver()
+    {
+        hudCircle.gameObject.SetActive(true);
+    }
+    private void OnMouseExit()
+    {
+        hudCircle.gameObject.SetActive(false);
+    }
+    public virtual void LoadState(SaveDataWorldObject state)
+    {
+        transform.position = new Vector3(state.positionX, state.positionY, state.positionZ);
+    }
+    public virtual SaveDataWorldObject SaveState()
+    {
+        return new SaveDataWorldObject
+        {
+            name = structureItem.name,
+            positionX = transform.position.x,
+            positionY = transform.position.y,
+            positionZ = transform.position.z
+        };
+    }
+
+    public void Interact(PlayerCharacter player = null)
+    {
+        FindObjectOfType<StructureScreen>().Open(this);
+        FindObjectOfType<StructureScreenHPBar>(true).AddListenerToHpEvents(GetComponent<HasHealth>());
+    }
+    public void SpawnUnit(string unitName)
+    {
+        CmdSpawnUnit(unitName);
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdSpawnUnit(string unitName)
+    {
+        var temp = Instantiate(entityDatabase.GetEntityByName(unitName).gameObject, unitSpawnPoint.position, unitSpawnPoint.rotation);
+        NetworkServer.Spawn(temp);
+    }
+}

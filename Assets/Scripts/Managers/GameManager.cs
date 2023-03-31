@@ -1,0 +1,121 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Mirror;
+using TMPro;
+using UnityEngine.Events;
+public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
+{
+    public TextMeshProUGUI resourcesText, knowledgeText;
+    [SyncVar(hook = nameof(ResourceHook))]
+    private int resources = 0;
+    [SyncVar(hook = nameof(KnowledgeHook))]
+    private int knowledge = 0;
+
+    public UnityEvent<float> Healing_Potions_Cooldown = new();
+    public UnityEvent<float> Mana_Potions_Cooldown = new();
+
+    public PlayerCharacter localPlayerCharacter;
+    public void SetLocalPlayerCharacter(PlayerCharacter player)
+    {
+        localPlayerCharacter = player;
+    }
+    public void SaveAndExitToMainMenu()
+    {
+        FindObjectOfType<SaveLoadSystem>().Save();
+        SceneManager.LoadSceneAsync("Main Menu", LoadSceneMode.Single);
+    }
+    void ResourceHook(int oldValue, int newValue)
+    {
+        resourcesText.text = newValue.ToString();
+    }
+    void KnowledgeHook(int oldValue, int newValue)
+    {
+        knowledgeText.text = newValue.ToString();
+    }
+    public void ChangeResources(int value)
+    {
+        CmdChangeResources(value);
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdChangeResources(int value)
+    {
+        resources += value;
+        if (resources < 0)
+            resources = 0;
+    }
+    public void ChangeKnowledge(int value)
+    {
+        CmdChangeKnowledge(value);
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdChangeKnowledge(int value)
+    {
+        knowledge += value;
+        if (knowledge < 0)
+            knowledge = 0;
+    }
+    public bool TestSubtractResources(int value)
+    {
+        if (resources - value < 0)
+            return false;
+        else
+            return true;
+    }
+    public bool TestSubtractKnowledge(int value)
+    {
+        if (knowledge - value < 0)
+            return false;
+        else
+            return true;
+    }
+    public void StartCooldown(CooldownGroup group, float cd)
+    {
+        switch (group)
+        {
+            case CooldownGroup.HealingPotions:
+                StartCoroutine(CooldownCoroHealingPotions(cd));
+                break;
+            case CooldownGroup.ManaPotions:
+                StartCoroutine(CooldownCoroManaPotions(cd));
+                break;
+            default:
+                break;
+        }
+    }
+    public void StartIndependentCooldown(UnityAction<float> updateFunc, float cd)
+    {
+        StartCoroutine(StartCooldown(updateFunc, cd));
+    }
+    private IEnumerator StartCooldown(UnityAction<float> updateFunc, float cd)
+    {
+        float timer = cd;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            updateFunc.Invoke(timer);
+            yield return null;
+        }
+    }
+    private IEnumerator CooldownCoroHealingPotions(float cd)
+    {
+        float timer = cd;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            Healing_Potions_Cooldown.Invoke(timer);
+            yield return null;
+        }
+    }
+    private IEnumerator CooldownCoroManaPotions(float cd)
+    {
+        float timer = cd;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            Mana_Potions_Cooldown.Invoke(timer);
+            yield return null;
+        }
+    }
+}

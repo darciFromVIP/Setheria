@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ShopScreen : MonoBehaviour
+{
+    public GameObject window;
+    public Transform shopItemList;
+    public ShopItem shopItemPrefab;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+            ToggleWindow(false);
+    }
+    public void ShowScreen(List<ItemRecipeInfo> items)
+    {
+        ToggleWindow(true);
+        foreach (var item in shopItemList.GetComponentsInChildren<ShopItem>())
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (var item in items)
+        {
+            var shopItem = Instantiate(shopItemPrefab, shopItemList);
+            shopItem.Initialize(item);
+        }
+    }
+    public void CheckAvailability()
+    {
+        foreach (var item in shopItemList.GetComponentsInChildren<ShopItem>())
+        {
+            item.CheckAvailability(FindObjectOfType<GameManager>());
+        }
+    }
+    public void ToggleWindow(bool value)
+    {
+        if (value)
+        {
+            window.SetActive(true);
+        }
+        else
+        {
+            window.SetActive(false);
+        }
+    }
+}
