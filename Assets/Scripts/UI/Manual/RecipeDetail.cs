@@ -127,7 +127,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         var tempItem = new ItemRecipeInfo() { itemData = currentOpenedRecipe.resultItem.itemData, stacks = currentOpenedRecipe.resultItem.stacks * amount };
         inventory.AddItem(tempItem);
         UpdateCurrentDetails();
-        localPlayer.GetComponent<PlayerCharacter>().AddXp(currentOpenedRecipe.xpGranted);
+        localPlayer.GetComponent<PlayerCharacter>().AddXp(currentOpenedRecipe.xpGranted * amount);
         localPlayer.Work_Finished.RemoveListener(FinishCrafting);
     }
 
