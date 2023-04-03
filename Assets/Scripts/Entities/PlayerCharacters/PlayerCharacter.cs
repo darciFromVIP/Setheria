@@ -317,6 +317,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void ChangeHunger(int amount)
     {
         hunger += amount;
+        if (amount > 0)
+            FindObjectOfType<FloatingText>().SpawnFloatingText("+" + amount + " Hunger", transform.position, FloatingTextType.Hunger);
         Hunger_Changed.Invoke();
     }
     public void ChangeStat(PlayerStat playerStat, float modifier)
@@ -363,6 +365,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 break;
             case PlayerStat.AttributePoint:
                 ChangeAttributePoints((int)modifier);
+                break;
+            case PlayerStat.MovementSpeed:
+                GetComponent<CanMove>().ChangeBonusMovementSpeed(modifier);
                 break;
             default:
                 break;

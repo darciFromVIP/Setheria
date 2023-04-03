@@ -8,6 +8,7 @@ public class SEntanglingRoots : Skill
     public float range;
     public float baseDuration;
     public float baseDamage;
+    private float finalDamage;
     public PlayerStat damageScalingStat;
     public float damageScalingValue;
     public BuffScriptable stunBuff;
@@ -27,6 +28,8 @@ public class SEntanglingRoots : Skill
 
     public override void StopExecute()
     {
+        castingEntity.GetComponent<PlayerController>().Enemy_Left_Clicked.RemoveListener(MoveWithinRange);
+        castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
     }
     private void MoveWithinRange(EnemyCharacter enemy)
     {
@@ -48,6 +51,7 @@ public class SEntanglingRoots : Skill
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         if (castingEntity.isOwned)
         {
+            castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
             castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
             castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
         }
@@ -81,6 +85,11 @@ public class SEntanglingRoots : Skill
     }
     public override void UpdateDescription()
     {
+        finalDamage = baseDamage + GetScalingStatValue(damageScalingStat) * damageScalingValue;
+        description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
+            + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nSummons roots from the ground to entangle a target enemy, inflicting Bleed (reduces "
+            + GetTextIconByStat(PlayerStat.HealthRegen) + " by <color=orange>" + finalDamage.ToString("F2") + "</color> (" + baseDamage + " + " + (int)(damageScalingValue * 100) + "% " + GetTextIconByStat(damageScalingStat) +
+            ")) and Rooted (stuns the target). Lasts " + stunBuff.duration + " seconds.";
         base.UpdateDescription();
     }
 }

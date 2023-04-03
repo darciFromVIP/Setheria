@@ -9,6 +9,8 @@ using UnityEngine.Events;
 public class CanMove : NetworkBehaviour
 {
     [HideInInspector] public NavMeshAgent agent;
+    public float baseMovementSpeed;
+    private float bonusMovementSpeed = 1;
     private Entity entity;
     private Animator animator;
 
@@ -20,6 +22,7 @@ public class CanMove : NetworkBehaviour
     {
         entity = GetComponent<Entity>();
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = baseMovementSpeed;
         animator = GetComponentInChildren<Animator>();
         if (TryGetComponent(out Character character))
         {
@@ -65,7 +68,35 @@ public class CanMove : NetworkBehaviour
     }
     public void StopAgent()
     {
+        Debug.Log("Agent Stopped");
         agent.isStopped = true;
+    }
+    public void SetBaseMovementSpeed(float value)
+    {
+        baseMovementSpeed = value;
+        UpdateMovementSpeed();
+    }
+    public void SetBonusMovementSpeed(float value)
+    {
+        bonusMovementSpeed = value;
+        UpdateMovementSpeed();
+    }
+    public void ChangeBaseMovementSpeed(float value)
+    {
+        baseMovementSpeed += value;
+        UpdateMovementSpeed();
+    }
+    public void ChangeBonusMovementSpeed(float value)
+    {
+        bonusMovementSpeed += value;
+        UpdateMovementSpeed();
+    }
+    private void UpdateMovementSpeed()
+    {
+        float finalSpeed = baseMovementSpeed * bonusMovementSpeed;
+        if (finalSpeed <= 0.1f)
+            finalSpeed = 0.1f;
+        agent.speed = finalSpeed;
     }
     public bool HasReachedDestination()
     {

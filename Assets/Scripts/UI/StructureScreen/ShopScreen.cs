@@ -29,7 +29,10 @@ public class ShopScreen : MonoBehaviour
     {
         foreach (var item in shopItemList.GetComponentsInChildren<ShopItem>())
         {
-            item.CheckAvailability(FindObjectOfType<GameManager>());
+            if (item.itemIcon.item.unlocked)
+                item.CheckAvailability(FindObjectOfType<GameManager>());
+            else
+                item.purchaseBTN.interactable = false;
         }
     }
     public void ToggleWindow(bool value)

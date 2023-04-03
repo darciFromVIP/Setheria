@@ -208,3 +208,17 @@ public class BStun : Buff
         targetEntity.CmdUnstunEntity();
     }
 }
+public class BSpeed : Buff
+{
+    public BSpeed(float value, Entity targetEntity)
+    {
+        buffType = BuffType.MovementSpeed;
+        this.value = value;
+        this.targetEntity = targetEntity;
+        targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(value);
+    }
+    public override void BuffExpired()
+    {
+        targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(-value);
+    }
+}

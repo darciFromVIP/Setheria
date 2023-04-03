@@ -146,6 +146,9 @@ public class Entity : NetworkBehaviour
             case BuffType.AttackRange:
                 buffInstance = new BAttackRange(buff.value, this);
                 break;
+            case BuffType.MovementSpeed:
+                buffInstance = new BSpeed(buff.value, this);
+                break;
             default:
                 break;
         }

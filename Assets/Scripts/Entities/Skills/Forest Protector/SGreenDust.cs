@@ -91,7 +91,7 @@ public class SGreenDust : Skill
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1") 
             + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nSprays magical green dust to a target area, dealing <color=orange>" + finalDamage
             + "</color> damage " + "(" + baseDamage + " + " + (int)(damageScalingValue * 100) + "% " + GetTextIconByStat(damageScalingStat) + ")"
-            + " to enemies as well as healing allies hit for <color=orange>" + finalHeal
+            + " to enemies as well as healing allies hit (except self) for <color=orange>" + finalHeal
             + "</color> (" + baseHeal + " + " + (int)(healScalingValue * 100) + "% " + GetTextIconByStat(healScalingStat) + ")";
         base.UpdateDescription();
     }

@@ -35,7 +35,12 @@ public class SPhotosynthesis : Skill
 
     public override void UpdateDescription()
     {
-        description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1") + "\nCreates a random plant in front of Nirri.";
+        description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
+            + "\nCreates a random plant in front of Nirri. Available plants:\n";
+        foreach (var item in possiblePlants)
+        {
+            description += "- " + item.name + "\n";
+        }
         base.UpdateDescription();
     }
 }

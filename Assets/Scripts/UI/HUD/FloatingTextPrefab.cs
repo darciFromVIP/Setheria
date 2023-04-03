@@ -33,6 +33,9 @@ public class FloatingTextPrefab : MonoBehaviour
             case FloatingTextType.Experience:
                 textMesh.color = new Color(0.7086645f, 0.4858491f, 1, 1);
                 break;
+            case FloatingTextType.Hunger:
+                textMesh.color = new Color(1, 0.5f, 0, 1);
+                break;
             default:
                 break;
         }
