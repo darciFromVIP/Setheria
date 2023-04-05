@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3884119795246261585}
   - component: {fileID: 3884119795245131665}
   - component: {fileID: -2685183428372785915}
-  m_Layer: 0
+  - component: {fileID: 8716829099193823349}
+  m_Layer: 8
   m_Name: Forest Pine Tree v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,9 +93,30 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3884119795242940753}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.82
   m_Height: 6.41
   m_Direction: 1
   m_Center: {x: 0, y: 1.83, z: 0}
+--- !u!114 &8716829099193823349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884119795242940753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8df05deefdf6094982b674e91534d81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

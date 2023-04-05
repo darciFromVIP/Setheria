@@ -15,6 +15,8 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     private Vector3 followOffset;
     private PlayerCharacter localPlayerCharacter;
     [SerializeField] private bool cameraMouseControl = true;
+    private List<InCameraWay> objectsInTheWay = new();
+    private List<InCameraWay> objectsAlreadyTurnedOff = new();
 
     public Collider camBounds;
 
@@ -51,6 +53,35 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     void Update()
     {
+        //Turn Off Objects near the Camera
+        objectsInTheWay.Clear();
+        //foreach (var item in Physics.CapsuleCastAll(cam.transform.position + cam.transform.right * 0.2f, cam.transform.position - cam.transform.right * 0.2f, 3, localPlayerCharacter.transform.position - cam.transform.position, 30))
+        foreach (var item in Physics.RaycastAll(cam.transform.position, localPlayerCharacter.transform.position - cam.transform.position, 30))
+        {
+            if (item.collider.TryGetComponent(out InCameraWay obstacle))
+            {
+                if (!objectsInTheWay.Contains(obstacle))
+                    objectsInTheWay.Add(obstacle);
+            }
+        }
+        foreach (var item in objectsInTheWay)
+        {
+            if (!objectsAlreadyTurnedOff.Contains(item))
+            {
+                item.TurnOff();
+                objectsAlreadyTurnedOff.Add(item);
+            }    
+        }
+        for (int i = 0; i < objectsAlreadyTurnedOff.Count; i++)
+        {
+            if (!objectsInTheWay.Contains(objectsAlreadyTurnedOff[i]))
+            {
+                objectsAlreadyTurnedOff[i].TurnOn();
+                objectsAlreadyTurnedOff.Remove(objectsAlreadyTurnedOff[i]);
+            }
+        }
+
+
         Vector3 rottarget = transform.rotation.eulerAngles;
         Vector3 pos = transform.position;
 
@@ -93,10 +124,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
             pos = new Vector3(localPlayerCharacter.transform.position.x, transform.position.y, localPlayerCharacter.transform.position.z);
         }
 
-        
         float playerHeight = transform.position.y;
-        /*if (gameManager.GetSelectedCharacter())
-            playerHeight = gameManager.GetSelectedCharacter().instance.transform.position.y;*/
         //float groundLevel = Terrain.activeTerrain.SampleHeight(pos);  //Height based on Terrain
         
         Vector3 zoomDir = followOffset.normalized;
