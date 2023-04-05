@@ -78,14 +78,14 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
             pos = Vector3.MoveTowards(pos, pos - transform.right, Time.deltaTime * cameraSpeed);
         }
 
-        if (Input.GetKey(KeyCode.PageUp))
+        if (Input.GetKey(KeyCode.Mouse2) && Input.GetAxis("Mouse X") > 0)
         {
-            rottarget.y += cameraRotationSpeed * Time.deltaTime;
+            rottarget.y += cameraRotationSpeed * Mathf.Abs(Input.GetAxis("Mouse X"));
         }
 
-        if (Input.GetKey(KeyCode.PageDown))
-        {  
-            rottarget.y -= cameraRotationSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.Mouse2) && Input.GetAxis("Mouse X") < 0)
+        {
+            rottarget.y -= cameraRotationSpeed * Mathf.Abs(Input.GetAxis("Mouse X"));
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

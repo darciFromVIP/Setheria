@@ -21,6 +21,7 @@ public class CanPickup : MonoBehaviour
         {
             if (originDest != canMoveComp.agent.destination)
             {
+                itemToPickup = null;
                 yield break;
             }
             if (canMoveComp.HasReachedDestination())
@@ -31,5 +32,6 @@ public class CanPickup : MonoBehaviour
         FindObjectOfType<InventoryManager>(true).AddItem(itemToPickup);
         FindObjectOfType<TooltipWorld>(true).Hide();
         itemToPickup.DestroyItem();
+        itemToPickup = null;
     }
 }

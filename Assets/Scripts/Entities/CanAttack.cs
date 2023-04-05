@@ -213,7 +213,7 @@ public class CanAttack : NetworkBehaviour
     public void TargetAcquired(NetworkIdentity target)
     {
         enemyTarget = target.GetComponent<HasHealth>();
-        enemyTarget.On_Death.AddListener(TargetLost);
+        enemyTarget.On_Death.AddListener(CmdTargetLost);
         Target_Acquired.Invoke(target);
         moveComp.agent.stoppingDistance = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2 - attackRange;
     }     

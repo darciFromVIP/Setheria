@@ -8,9 +8,9 @@ public class ConsoleToGUI : MonoBehaviour
     string filename = "";
     bool doShow = false;
     int kChars = 700;
-    void OnEnable() { Application.logMessageReceived += Log; }
-    void OnDisable() { Application.logMessageReceived -= Log; }
     void Update() { if (Input.GetKeyDown(KeyCode.Semicolon)) { doShow = !doShow; } }
+    /*void OnEnable() { Application.logMessageReceived += Log; }
+    void OnDisable() { Application.logMessageReceived -= Log; }
     public void Log(string logString, string stackTrace, LogType type)
     {
         // for onscreen...
@@ -28,7 +28,7 @@ public class ConsoleToGUI : MonoBehaviour
         }
         try { System.IO.File.AppendAllText(filename, logString + "\n"); }
         catch { }
-    }
+    }*/
 
     void OnGUI()
     {
