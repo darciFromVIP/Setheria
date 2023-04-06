@@ -6,7 +6,7 @@ public class SPhotosynthesis : Skill
 {
     public List<Item> possiblePlants = new();
 
-    public override void Execute(Entity self)
+    public override void Execute(Character self)
     {
         base.Execute(self);
         castingEntity = self;
@@ -23,7 +23,7 @@ public class SPhotosynthesis : Skill
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveListener(Cast);
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.None);
     }
-    public override void ExecuteOnStart(Entity self)
+    public override void ExecuteOnStart(Character self)
     {
 
     }

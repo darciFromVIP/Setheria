@@ -15,8 +15,8 @@ public class HasAggro : NetworkBehaviour
     private void Start()
     {
         StartCoroutine(CheckForTargets());
-        enemyLayers = GetComponent<Entity>().enemyLayers;
-        allyLayers = GetComponent<Entity>().allyLayers;
+        enemyLayers = GetComponent<Character>().enemyLayers;
+        allyLayers = GetComponent<Character>().allyLayers;
     }
 
     private IEnumerator CheckForTargets()

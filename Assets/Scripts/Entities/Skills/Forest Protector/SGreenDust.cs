@@ -19,13 +19,13 @@ public class SGreenDust : Skill
     public Projectile healingProjectile;
 
     private Vector3 actualPoint;
-    public override void Execute(Entity self)
+    public override void Execute(Character self)
     {
         base.Execute(self);
         self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCast);
         self.GetComponent<PlayerController>().ChangeCastingState(CastingState.BothExceptSelf);
     }
-    public override void ExecuteOnStart(Entity self)
+    public override void ExecuteOnStart(Character self)
     {
         
     }

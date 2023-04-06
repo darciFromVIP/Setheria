@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Skill : ScriptableObject
 {
-    protected Entity castingEntity;
+    protected Character castingEntity;
     [Header("General Settings")]
     public Sprite icon;
     public float cooldown;
     public int manaCost;
     [Header("Specific Settings")]
     [HideInInspector] public string description;
-    public virtual void ExecuteOnStart(Entity self)
+    public virtual void ExecuteOnStart(Character self)
     {
 
     }
-    public virtual void Execute(Entity self)
+    public virtual void Execute(Character self)
     {
         castingEntity = self;
         PlayerController player = castingEntity.GetComponent<PlayerController>();
@@ -33,7 +33,7 @@ public class Skill : ScriptableObject
     {
         (castingEntity as PlayerCharacter).Skills_Changed.Invoke(castingEntity.skills);
     }
-    public void SetCastingEntity(Entity self)
+    public void SetCastingEntity(Character self)
     {
         castingEntity = self;
         UpdateDescription();

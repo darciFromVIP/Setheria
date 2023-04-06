@@ -69,7 +69,7 @@ public class StructureOptionUI : MonoBehaviour
                 player1.Work_Finished.AddListener(CookFish);
                 break;
             case StructureAction.OpenInventory:
-
+                FindObjectOfType<StashInventory>(true).OpenStash();
                 break;
             default:
                 break;

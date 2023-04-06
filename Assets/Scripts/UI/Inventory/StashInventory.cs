@@ -1,14 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Mirror;
 public class StashInventory : MonoBehaviour
 {
     public List<InventorySlot> inventorySlots = new();
+    public GameObject window;
 
     public InventoryItem inventoryItemPrefab;
 
     public ItemScriptableDatabase itemDatabase;
+    private void Start()
+    {
+        CloseStash();
+    }
+    public void OpenStash()
+    {
+        window.SetActive(true);
+    }
+    public void CloseStash()
+    {
+        window.SetActive(false);
+    }
     public void InitializeInventory()
     {
         foreach (var item in GetComponentsInChildren<InventorySlot>(true))
@@ -41,7 +54,6 @@ public class StashInventory : MonoBehaviour
             if (slot.transform.childCount == 0 && slot.isFree)
             {
                 SpawnNewItem(item, stacks, slot);
-                item.Item_Acquired.Invoke();
                 return true;
             }
         }

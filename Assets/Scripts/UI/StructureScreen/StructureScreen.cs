@@ -12,6 +12,10 @@ public class StructureScreen : MonoBehaviour
     public Transform structureOptionsList;
     public StructureOptionUI structureOptionPrefab;
     public Structure currentStructure;
+    private void Start()
+    {
+        Close();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Escape))

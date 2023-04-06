@@ -7,7 +7,7 @@ public abstract class Buff
     public BuffType buffType;
     public float value;
     public float durationTimer;
-    public Entity targetEntity;
+    public Character targetEntity;
     public GameObject effect;
     public abstract void BuffExpired();
     public virtual IEnumerator TimedBuff(float duration)
@@ -24,7 +24,7 @@ public abstract class Buff
 }
 public class BMaxHealth : Buff
 {
-    public BMaxHealth(float value, Entity targetEntity)
+    public BMaxHealth(float value, Character targetEntity)
     {
         buffType = BuffType.MaxHealth;
         this.value = value;
@@ -38,7 +38,7 @@ public class BMaxHealth : Buff
 }
 public class BMaxMana : Buff
 {
-    public BMaxMana(float value, Entity targetEntity)
+    public BMaxMana(float value, Character targetEntity)
     {
         buffType = BuffType.MaxMana;
         this.value = value;
@@ -52,7 +52,7 @@ public class BMaxMana : Buff
 }
 public class BManaRegen : Buff
 {
-    public BManaRegen(float value, Entity targetEntity)
+    public BManaRegen(float value, Character targetEntity)
     {
         buffType = BuffType.ManaRegen;
         this.value = value;
@@ -66,7 +66,7 @@ public class BManaRegen : Buff
 }
 public class BBleed : Buff
 {
-    public BBleed(float value, Entity targetEntity)
+    public BBleed(float value, Character targetEntity)
     {
         buffType = BuffType.Bleed;
         this.value = value;
@@ -80,7 +80,7 @@ public class BBleed : Buff
 }
 public class BRegen : Buff
 {
-    public BRegen(float value, Entity targetEntity)
+    public BRegen(float value, Character targetEntity)
     {
         buffType = BuffType.Regen;
         this.value = value;
@@ -113,7 +113,7 @@ public class BInventorySlots : Buff
 }
 public class BPower : Buff
 {
-    public BPower(float value, Entity targetEntity)
+    public BPower(float value, Character targetEntity)
     {
         buffType = BuffType.Power;
         this.value = value;
@@ -127,7 +127,7 @@ public class BPower : Buff
 }
 public class BCriticalChance : Buff
 {
-    public BCriticalChance(float value, Entity targetEntity)
+    public BCriticalChance(float value, Character targetEntity)
     {
         buffType = BuffType.CriticalChance;
         this.value = value;
@@ -141,7 +141,7 @@ public class BCriticalChance : Buff
 }
 public class BCriticalDamage : Buff
 {
-    public BCriticalDamage(float value, Entity targetEntity)
+    public BCriticalDamage(float value, Character targetEntity)
     {
         buffType = BuffType.CriticalDamage;
         this.value = value;
@@ -155,7 +155,7 @@ public class BCriticalDamage : Buff
 }
 public class BAttackSpeed : Buff
 {
-    public BAttackSpeed(float value, Entity targetEntity)
+    public BAttackSpeed(float value, Character targetEntity)
     {
         buffType = BuffType.AttackSpeed;
         this.value = value;
@@ -169,7 +169,7 @@ public class BAttackSpeed : Buff
 }
 public class BAttackRange : Buff
 {
-    public BAttackRange(float value, Entity targetEntity)
+    public BAttackRange(float value, Character targetEntity)
     {
         buffType = BuffType.AttackRange;
         this.value = value;
@@ -183,7 +183,7 @@ public class BAttackRange : Buff
 }
 public class BArmor : Buff
 {
-    public BArmor(float value, Entity targetEntity)
+    public BArmor(float value, Character targetEntity)
     {
         buffType = BuffType.Armor;
         this.value = value;
@@ -197,20 +197,20 @@ public class BArmor : Buff
 }
 public class BStun : Buff
 {
-    public BStun(Entity targetEntity)
+    public BStun(Character targetEntity)
     {
         buffType = BuffType.Stun;
         this.targetEntity = targetEntity;
-        targetEntity.CmdStunEntity();
+        targetEntity.CmdStunCharacter();
     }
     public override void BuffExpired()
     {
-        targetEntity.CmdUnstunEntity();
+        targetEntity.CmdUnstunCharacter();
     }
 }
 public class BSpeed : Buff
 {
-    public BSpeed(float value, Entity targetEntity)
+    public BSpeed(float value, Character targetEntity)
     {
         buffType = BuffType.MovementSpeed;
         this.value = value;

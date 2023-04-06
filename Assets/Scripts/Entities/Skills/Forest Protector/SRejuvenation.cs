@@ -12,14 +12,14 @@ public class SRejuvenation : Skill
     public BuffScriptable buff;
     private PlayerCharacter ally;
     public Projectile projectile;
-    public override void Execute(Entity self)
+    public override void Execute(Character self)
     {
         base.Execute(self);
         self.GetComponent<PlayerController>().Ally_Left_Clicked.AddListener(MoveWithinRange);
         self.GetComponent<PlayerController>().ChangeCastingState(CastingState.AllyOnly);
     }
 
-    public override void ExecuteOnStart(Entity self)
+    public override void ExecuteOnStart(Character self)
     {
 
     }

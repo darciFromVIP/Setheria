@@ -8,6 +8,14 @@ public class Character : Entity
     [SerializeField] protected float baseRotateSpeed;
     protected Transform rotateTarget;
 
+    protected List<Buff> buffs = new();
+    public List<Skill> skills = new();
+    public LayerMask enemyLayers;
+    public LayerMask allyLayers;
+    public VFXDatabase vfxDatabase;
+
+    [HideInInspector] public UnityEvent Stun_Begin = new();
+    [HideInInspector] public UnityEvent Stun_End = new();
     [HideInInspector] public UnityEvent Stop_Acting = new();
 
     protected int animHash_Skill1 = Animator.StringToHash("Skill1");
@@ -23,6 +31,13 @@ public class Character : Entity
         {
             attackComp.Target_Acquired.AddListener(RotateTargetAcquired);
             attackComp.Target_Lost.AddListener(RotateTargetLost);
+        }
+        if (isOwned)
+        {
+            foreach (var item in skills)
+            {
+                item.ExecuteOnStart(this);
+            }
         }
     }
     protected void Update()
@@ -88,5 +103,147 @@ public class Character : Entity
     private void StopActing()
     {
         Stop_Acting.Invoke();
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdAddBuff(BuffScriptable buff, NetworkConnectionToClient conn = null)
+    {
+        if (buff.buffType != BuffType.InventorySlots)
+            RpcAddBuff(buff);
+        else
+            SingleClientAddBuff(conn, buff);
+
+    }
+    [TargetRpc]
+    public void SingleClientAddBuff(NetworkConnection conn, BuffScriptable buff)
+    {
+        AddBuff(buff);
+    }
+    [ClientRpc]
+    public void RpcAddBuff(BuffScriptable buff)
+    {
+        AddBuff(buff);
+    }
+    protected virtual void AddBuff(BuffScriptable buff)
+    {
+        Buff buffInstance = null;
+        switch (buff.buffType)
+        {
+            case BuffType.Bleed:
+                buffInstance = new BBleed(buff.value, this);
+                break;
+            case BuffType.Slow:
+                break;
+            case BuffType.Stun:
+                buffInstance = new BStun(this);
+                break;
+            case BuffType.Regen:
+                buffInstance = new BRegen(buff.value, this);
+                break;
+            case BuffType.MaxHealth:
+                buffInstance = new BMaxHealth(buff.value, this);
+                break;
+            case BuffType.MaxMana:
+                buffInstance = new BMaxMana(buff.value, this);
+                break;
+            case BuffType.Fear:
+                break;
+            case BuffType.ManaRegen:
+                buffInstance = new BManaRegen(buff.value, this);
+                break;
+            case BuffType.InventorySlots:
+                buffInstance = new BInventorySlots(buff.value, FindObjectOfType<InventoryManager>());
+                break;
+            case BuffType.Power:
+                buffInstance = new BPower(buff.value, this);
+                break;
+            case BuffType.CriticalChance:
+                buffInstance = new BCriticalChance(buff.value, this);
+                break;
+            case BuffType.CriticalDamage:
+                buffInstance = new BCriticalDamage(buff.value, this);
+                break;
+            case BuffType.AttackSpeed:
+                buffInstance = new BAttackSpeed(buff.value, this);
+                break;
+            case BuffType.CooldownReduction:
+                break;
+            case BuffType.Armor:
+                buffInstance = new BArmor(buff.value, this);
+                break;
+            case BuffType.AttackRange:
+                buffInstance = new BAttackRange(buff.value, this);
+                break;
+            case BuffType.MovementSpeed:
+                buffInstance = new BSpeed(buff.value, this);
+                break;
+            default:
+                break;
+        }
+        if (buffInstance != null)
+        {
+            var vfx = vfxDatabase.GetVFXByName(buff.buffName);
+            if (vfx)
+            {
+                var effectInstance = Instantiate(vfxDatabase.GetVFXByName(buff.buffName), transform);
+                buffInstance.effect = effectInstance;
+            }
+            buffs.Add(buffInstance);
+            if (buff.duration > 0)
+                StartCoroutine(buffInstance.TimedBuff(buff.duration));
+        }
+    }
+    public void BuffExpired(GameObject effect)
+    {
+        foreach (var item in effect.GetComponentsInChildren<ParticleSystem>())
+        {
+            item.Stop();
+        }
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdRemoveBuff(BuffScriptable buff)
+    {
+        RpcRemoveBuff(buff);
+    }
+    [ClientRpc]
+    public void RpcRemoveBuff(BuffScriptable buff)
+    {
+        List<Buff> temp = new();
+        buffs.CopyTo(temp);
+        foreach (var item in temp)
+        {
+            if (item.value == buff.value && item.buffType == buff.buffType)
+            {
+                item.BuffExpired();
+                buffs.Remove(item);
+            }
+        }
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdStunCharacter()
+    {
+        RpcStunCharacter();
+    }
+    [ClientRpc]
+    public void RpcStunCharacter()
+    {
+        StunCharacter();
+    }
+    public void StunCharacter()
+    {
+        Stun_Begin.Invoke();
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdUnstunCharacter()
+    {
+        RpcUnstunCharacter();
+    }
+    [ClientRpc]
+    public void RpcUnstunCharacter()
+    {
+        UnstunCharacter();
+    }
+    public void UnstunCharacter()
+    {
+        Stun_End.Invoke();
     }
 }

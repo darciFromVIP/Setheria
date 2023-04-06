@@ -15,14 +15,14 @@ public class SEntanglingRoots : Skill
     public BuffScriptable damageBuff;
     private EnemyCharacter enemy;
     public Projectile projectile;
-    public override void Execute(Entity self)
+    public override void Execute(Character self)
     {
         base.Execute(self);
         self.GetComponent<PlayerController>().Enemy_Left_Clicked.AddListener(MoveWithinRange);
         self.GetComponent<PlayerController>().ChangeCastingState(CastingState.EnemyOnly);
     }
 
-    public override void ExecuteOnStart(Entity self)
+    public override void ExecuteOnStart(Character self)
     {
     }
 

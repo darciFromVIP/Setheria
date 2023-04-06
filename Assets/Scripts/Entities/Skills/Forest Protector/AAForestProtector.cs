@@ -4,11 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skills/Forest Protector/Auto Attack")]
 public class AAForestProtector : Skill
 {
-    public override void Execute(Entity self)
+    public override void Execute(Character self)
     {
     }
 
-    public override void ExecuteOnStart(Entity self)
+    public override void ExecuteOnStart(Character self)
     {
     }
 

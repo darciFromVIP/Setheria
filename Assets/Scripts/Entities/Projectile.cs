@@ -175,9 +175,9 @@ public class Projectile : NetworkBehaviour
                     foreach (var item in entities)
                     {
                         if (isServer)
-                            item.GetComponent<Entity>().RpcAddBuff(data.buff);
+                            item.GetComponent<Character>().RpcAddBuff(data.buff);
                         else
-                            item.GetComponent<Entity>().CmdAddBuff(data.buff);
+                            item.GetComponent<Character>().CmdAddBuff(data.buff);
                     }
                     break;
                 default:

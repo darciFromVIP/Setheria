@@ -53,6 +53,8 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     void Update()
     {
+        if (!localPlayerCharacter)
+            return;
         //Turn Off Objects near the Camera
         objectsInTheWay.Clear();
         //foreach (var item in Physics.CapsuleCastAll(cam.transform.position + cam.transform.right * 0.2f, cam.transform.position - cam.transform.right * 0.2f, 3, localPlayerCharacter.transform.position - cam.transform.position, 30))

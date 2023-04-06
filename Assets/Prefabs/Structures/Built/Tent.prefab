@@ -177,20 +177,19 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  skills: []
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  allyLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  vfxDatabase: {fileID: 0}
-  hudCircle: {fileID: 0}
+  hudCircle: {fileID: 2338083707241930460}
   structureItem: {fileID: 11400000, guid: 78040a27ee4f73448bd276c0b0c7d992, type: 2}
-  structureOptions: []
+  structureOptions:
+  - {fileID: 11400000, guid: e5501258a7d76524a83c23b0b69574d0, type: 2}
   entityDatabase: {fileID: 0}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
+--- !u!1 &2338083707241930460 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3570985794274343471, guid: cf1fd752683bedf41b6bd4eae6622612,
+    type: 3}
+  m_PrefabInstance: {fileID: 1295974661304657139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4915988604612018700 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
