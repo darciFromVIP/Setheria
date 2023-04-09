@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
+  m_Name: Everstone
+  m_EditorClassIdentifier: 
+  recipeCategory: 2
+  resultItem:
+    itemData: {fileID: 11400000, guid: 4e126d5b58ba5994db9d43b3f9e7d506, type: 2}
+    stacks: 1
+  componentItems:
+  - itemData: {fileID: 11400000, guid: c71fe4510bdeb4542bea85166544c79b, type: 2}
+    stacks: 2
+  - itemData: {fileID: 11400000, guid: 1f1b11d515ab05048a319301ae769ca5, type: 2}
+    stacks: 1
+  resourceCost: 10
+  unlocked: 0
+  visible: 0
+  freshlyUnlocked: 0
+  requiredStructure: {fileID: 0}
+  craftingDuration: 5
+  xpGranted: 30
+  tier: 1
+  recipeItem: {fileID: 11400000, guid: 305cb2f612c77c246854db78df968cb7, type: 2}
+  requiredItems: []
+  requiredStructures: []
