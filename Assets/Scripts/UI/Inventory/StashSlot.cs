@@ -34,7 +34,7 @@ public class StashSlot : NetworkBehaviour, IDropHandler
     [Command(requiresAuthority = false)]
     private void CmdSpawnItemOnThisSlot(string itemName, int stacks)
     {
-        var newItem = Instantiate(inventoryItemPrefab, transform);
+        var newItem = Instantiate(inventoryItemPrefab, transform.position, Quaternion.identity, transform);
         NetworkServer.Spawn(newItem.gameObject);
         RpcUpdateNewItem(newItem.GetComponent<NetworkIdentity>(), itemName, stacks);
     }
