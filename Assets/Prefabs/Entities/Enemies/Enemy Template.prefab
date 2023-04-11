@@ -335,6 +335,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  hudCircle: {fileID: 0}
+  baseRotateSpeed: 5
+  level: 1
   skills: []
   enemyLayers:
     serializedVersion: 2
@@ -343,12 +346,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
-  hudCircle: {fileID: 0}
-  baseRotateSpeed: 5
+  buffDatabase: {fileID: 11400000, guid: 96ab774cc8ae8814c8a735af9af2ddaa, type: 2}
+  Stun_Begin:
+    m_PersistentCalls:
+      m_Calls: []
+  Stun_End:
+    m_PersistentCalls:
+      m_Calls: []
   Stop_Acting:
     m_PersistentCalls:
       m_Calls: []
-  level: 1
   xpGranted: 50
   xpReceiverMask:
     serializedVersion: 2

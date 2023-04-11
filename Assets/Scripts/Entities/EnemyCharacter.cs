@@ -4,7 +4,6 @@ using UnityEngine;
 using Mirror;
 public class EnemyCharacter : Character, ISaveable
 {
-    public int level;
     [SerializeField] private int xpGranted;
     [SerializeField] private LayerMask xpReceiverMask;
     [Tooltip("After chasing a player beyond this range, the enemy returns to its camp ignoring the player.")]

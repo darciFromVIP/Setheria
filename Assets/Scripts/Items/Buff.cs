@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 public abstract class Buff
 {
     public BuffType buffType;
@@ -9,17 +9,22 @@ public abstract class Buff
     public float durationTimer;
     public Character targetEntity;
     public GameObject effect;
+
+    public UnityEvent Buff_Expired = new();
+
     public abstract void BuffExpired();
     public virtual IEnumerator TimedBuff(float duration)
     {
-        var timer = duration;
-        while (timer > 0)
+        durationTimer = duration;
+        while (durationTimer > 0)
         {
-            timer -= Time.deltaTime;
+            durationTimer -= Time.deltaTime;
             yield return null;
         }
+        Buff_Expired.Invoke();
         targetEntity.BuffExpired(effect);
         BuffExpired();
+        targetEntity.buffs.Remove(this);
     }
 }
 public class BMaxHealth : Buff

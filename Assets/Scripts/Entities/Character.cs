@@ -6,13 +6,16 @@ using UnityEngine.Events;
 public class Character : Entity
 {
     [SerializeField] protected float baseRotateSpeed;
+    [SyncVar]
+    public int level;
     protected Transform rotateTarget;
 
-    protected List<Buff> buffs = new();
+    [HideInInspector] public List<Buff> buffs = new();
     public List<Skill> skills = new();
     public LayerMask enemyLayers;
     public LayerMask allyLayers;
     public VFXDatabase vfxDatabase;
+    public BuffDatabase buffDatabase;
 
     [HideInInspector] public UnityEvent Stun_Begin = new();
     [HideInInspector] public UnityEvent Stun_End = new();
@@ -39,6 +42,16 @@ public class Character : Entity
                 item.ExecuteOnStart(this);
             }
         }
+    }
+    private void OnMouseEnter()
+    {
+        if (!isOwned)
+            FindObjectOfType<CharacterHoverDetail>().Show(this, false);
+    }
+    private void OnMouseExit()
+    {
+        if (!isOwned)
+            FindObjectOfType<CharacterHoverDetail>().Hide(false);
     }
     protected void Update()
     {
@@ -105,31 +118,37 @@ public class Character : Entity
         Stop_Acting.Invoke();
     }
     [Command(requiresAuthority = false)]
-    public void CmdAddBuff(BuffScriptable buff, NetworkConnectionToClient conn = null)
+    public void CmdAddBuff(string buff, NetworkConnectionToClient conn = null)
     {
-        if (buff.buffType != BuffType.InventorySlots)
-            RpcAddBuff(buff);
-        else
-            SingleClientAddBuff(conn, buff);
-
+        var buffScriptable = buffDatabase.GetBuffByName(buff);
+        if (buffScriptable)
+        {
+            if (buffDatabase.GetBuffByName(buff).buffType != BuffType.InventorySlots)
+                RpcAddBuff(buff);
+            else
+                SingleClientAddBuff(conn, buff);
+        }
     }
     [TargetRpc]
-    public void SingleClientAddBuff(NetworkConnection conn, BuffScriptable buff)
+    public void SingleClientAddBuff(NetworkConnection conn, string buff)
     {
         AddBuff(buff);
     }
     [ClientRpc]
-    public void RpcAddBuff(BuffScriptable buff)
+    public void RpcAddBuff(string buff)
     {
         AddBuff(buff);
     }
-    protected virtual void AddBuff(BuffScriptable buff)
+    protected virtual void AddBuff(string buff)
     {
         Buff buffInstance = null;
-        switch (buff.buffType)
+        var buffScriptable = buffDatabase.GetBuffByName(buff);
+        if (!buffScriptable)
+            return;
+        switch (buffScriptable.buffType)
         {
             case BuffType.Bleed:
-                buffInstance = new BBleed(buff.value, this);
+                buffInstance = new BBleed(buffScriptable.value, this);
                 break;
             case BuffType.Slow:
                 break;
@@ -137,59 +156,63 @@ public class Character : Entity
                 buffInstance = new BStun(this);
                 break;
             case BuffType.Regen:
-                buffInstance = new BRegen(buff.value, this);
+                buffInstance = new BRegen(buffScriptable.value, this);
                 break;
             case BuffType.MaxHealth:
-                buffInstance = new BMaxHealth(buff.value, this);
+                buffInstance = new BMaxHealth(buffScriptable.value, this);
                 break;
             case BuffType.MaxMana:
-                buffInstance = new BMaxMana(buff.value, this);
+                buffInstance = new BMaxMana(buffScriptable.value, this);
                 break;
             case BuffType.Fear:
                 break;
             case BuffType.ManaRegen:
-                buffInstance = new BManaRegen(buff.value, this);
+                buffInstance = new BManaRegen(buffScriptable.value, this);
                 break;
             case BuffType.InventorySlots:
-                buffInstance = new BInventorySlots(buff.value, FindObjectOfType<InventoryManager>());
+                buffInstance = new BInventorySlots(buffScriptable.value, FindObjectOfType<InventoryManager>());
                 break;
             case BuffType.Power:
-                buffInstance = new BPower(buff.value, this);
+                buffInstance = new BPower(buffScriptable.value, this);
                 break;
             case BuffType.CriticalChance:
-                buffInstance = new BCriticalChance(buff.value, this);
+                buffInstance = new BCriticalChance(buffScriptable.value, this);
                 break;
             case BuffType.CriticalDamage:
-                buffInstance = new BCriticalDamage(buff.value, this);
+                buffInstance = new BCriticalDamage(buffScriptable.value, this);
                 break;
             case BuffType.AttackSpeed:
-                buffInstance = new BAttackSpeed(buff.value, this);
+                buffInstance = new BAttackSpeed(buffScriptable.value, this);
                 break;
             case BuffType.CooldownReduction:
                 break;
             case BuffType.Armor:
-                buffInstance = new BArmor(buff.value, this);
+                buffInstance = new BArmor(buffScriptable.value, this);
                 break;
             case BuffType.AttackRange:
-                buffInstance = new BAttackRange(buff.value, this);
+                buffInstance = new BAttackRange(buffScriptable.value, this);
                 break;
             case BuffType.MovementSpeed:
-                buffInstance = new BSpeed(buff.value, this);
+                buffInstance = new BSpeed(buffScriptable.value, this);
                 break;
             default:
                 break;
         }
         if (buffInstance != null)
         {
-            var vfx = vfxDatabase.GetVFXByName(buff.buffName);
+            var vfx = vfxDatabase.GetVFXByName(buffScriptable.buffName);
             if (vfx)
             {
-                var effectInstance = Instantiate(vfxDatabase.GetVFXByName(buff.buffName), transform);
+                var effectInstance = Instantiate(vfxDatabase.GetVFXByName(buffScriptable.buffName), transform);
                 buffInstance.effect = effectInstance;
             }
             buffs.Add(buffInstance);
-            if (buff.duration > 0)
-                StartCoroutine(buffInstance.TimedBuff(buff.duration));
+            if (this is PlayerCharacter && isOwned)
+            {
+                FindObjectOfType<BuffList>().AddBuff(buffScriptable, buffInstance);
+            }
+            if (buffScriptable.duration > 0)
+                StartCoroutine(buffInstance.TimedBuff(buffScriptable.duration));
         }
     }
     public void BuffExpired(GameObject effect)

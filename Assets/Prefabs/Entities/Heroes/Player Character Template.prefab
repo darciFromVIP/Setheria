@@ -107,20 +107,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 1
+  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
+  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
   m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 1
 --- !u!1001 &2534839889757735899
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 506284326684931349, guid: 36b01e57100ea254d9149e8306d6dd8f,
@@ -390,6 +393,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7082070339115388359, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
@@ -399,6 +403,35 @@ PrefabInstance:
         type: 3}
       insertIndex: 2
       addedObject: {fileID: 308187606635863293}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8852833878189955586}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6483757213030810733}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1079782665581126284}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2198463869629705408}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3209436481170234466}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5796838637901551782}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7927363649668692289}
   m_SourcePrefab: {fileID: 100100000, guid: 36b01e57100ea254d9149e8306d6dd8f, type: 3}
 --- !u!1 &4712205572119561755 stripped
 GameObject:
@@ -519,6 +552,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  hudCircle: {fileID: 0}
+  baseRotateSpeed: 10
+  level: 0
   skills: []
   enemyLayers:
     serializedVersion: 2
@@ -527,14 +563,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
-  hudCircle: {fileID: 0}
-  baseRotateSpeed: 10
+  buffDatabase: {fileID: 11400000, guid: 96ab774cc8ae8814c8a735af9af2ddaa, type: 2}
+  Stun_Begin:
+    m_PersistentCalls:
+      m_Calls: []
+  Stun_End:
+    m_PersistentCalls:
+      m_Calls: []
   Stop_Acting:
     m_PersistentCalls:
       m_Calls: []
   heroName: 
   hero: 0
-  level: 0
   hunger: 0
   maxHunger: 0
   isLoaded: 0
@@ -624,7 +664,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 4712205572119561756}
     m_Modifications:
     - target: {fileID: 7084820106457233391, guid: b6c155e3b035d7c4a87cf2dd66678c93,
@@ -748,7 +788,9 @@ PrefabInstance:
       value: WorkProgressBarPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c155e3b035d7c4a87cf2dd66678c93, type: 3}
 --- !u!224 &2800312429841082480 stripped
 RectTransform:

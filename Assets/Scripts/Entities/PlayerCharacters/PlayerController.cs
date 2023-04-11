@@ -200,6 +200,18 @@ public class PlayerController : NetworkBehaviour
                     }
                 }
             }
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (hit.collider.TryGetComponent(out Character character))
+                {
+                    if (character.TryGetComponent(out HasHealth hp))
+                    {
+                        FindObjectOfType<CharacterHoverDetail>().Show(character, true);
+                    }
+                }
+                else
+                    FindObjectOfType<CharacterHoverDetail>().Hide(true);
+            }
         }
         
         if (state != PlayerState.None)

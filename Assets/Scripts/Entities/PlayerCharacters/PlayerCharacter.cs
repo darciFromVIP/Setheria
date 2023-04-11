@@ -22,10 +22,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
 {
     public string heroName;
     public Hero hero;
-    [SyncVar]                                                                               //We need SyncVars to sync data from server to client when the client connects
-    public int level;
     [SyncVar]
-    private int xp;
+    private int xp;                                             //We need SyncVars to sync data from server to client when the client connects
     [SyncVar]
     private int maxXp;
     private int attributePoints = 0;
@@ -409,7 +407,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         }
         return true;
     }
-    protected override void AddBuff(BuffScriptable buff)
+    protected override void AddBuff(string buff)
     {
         base.AddBuff(buff);
         UpdateSkills();
