@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0345b34eca3faad499132b42223de7eb, type: 3}
+  m_Name: Open Box
+  m_EditorClassIdentifier: 
+  Action_Finished:
+    m_PersistentCalls:
+      m_Calls: []
+  toolType: 11
+  requiredLevel: 1
+  itemDropsTable:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
+        stacks: 1
+      chance: 50
+    - item:
+        itemData: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
+        stacks: 2
+      chance: 10
+    - item:
+        itemData: {fileID: 11400000, guid: 77ee74d9a32ed344bbfa8696f6b1a5c3, type: 2}
+        stacks: 1
+      chance: 20
+    - item:
+        itemData: {fileID: 11400000, guid: dbec0b67dd7f0a14ca35cd98cb1dc026, type: 2}
+        stacks: 2
+      chance: 20
