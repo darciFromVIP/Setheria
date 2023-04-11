@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
+  m_Name: Silver Ring
+  m_EditorClassIdentifier: 
+  recipeCategory: 4
+  resultItem:
+    itemData: {fileID: 11400000, guid: d89e8b634bd4d1a4ba1c1d1ff63dc80b, type: 2}
+    stacks: 1
+  componentItems:
+  - itemData: {fileID: 11400000, guid: 5c95c23be9cdcce47b94e68d336f6568, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
+    stacks: 2
+  resourceCost: 5
+  unlocked: 1
+  visible: 1
+  freshlyUnlocked: 1
+  requiredStructure: {fileID: 0}
+  craftingDuration: 2
+  xpGranted: 15
+  tier: 0
+  recipeItem: {fileID: 0}
+  requiredItems:
+  - {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
+  requiredStructures: []
