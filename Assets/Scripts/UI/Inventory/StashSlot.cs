@@ -57,6 +57,7 @@ public class StashSlot : NetworkBehaviour, IDropHandler
     {
         RpcDeleteItemOnClients();
     }
+    [ClientRpc]
     private void RpcDeleteItemOnClients()
     {
         var item = GetComponentInChildren<InventoryItem>();
