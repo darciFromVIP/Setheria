@@ -27,9 +27,19 @@ public class StashSlot : NetworkBehaviour, IDropHandler
             {
                 return;
             }
-            CmdSpawnItemOnThisSlot(inventoryItem.item.name, inventoryItem.stacks);
+            StartCoroutine(DelayedCmd(inventoryItem.item.name, inventoryItem.stacks));
             inventoryItem.DestroyItem();
         }
+    }
+    private IEnumerator DelayedCmd(string itemName, int stacks)
+    {
+        float time = 1;
+        while (time > 0)
+        {
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        CmdSpawnItemOnThisSlot(itemName, stacks);
     }
     [Command(requiresAuthority = false)]
     private void CmdSpawnItemOnThisSlot(string itemName, int stacks)
