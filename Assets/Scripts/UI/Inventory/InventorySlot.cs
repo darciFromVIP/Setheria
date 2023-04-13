@@ -36,6 +36,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                     player.CmdRemoveBuff(item);
                 }
             }
+            if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
+            {
+                stashSlot.CmdDeleteItemOnClients();
+            }
             inventoryItem.parentAfterDrag = transform;
         }
     }

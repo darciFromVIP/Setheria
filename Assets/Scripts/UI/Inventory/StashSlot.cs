@@ -44,14 +44,23 @@ public class StashSlot : NetworkBehaviour, IDropHandler
     [Command(requiresAuthority = false)]
     private void CmdSpawnItemOnThisSlot(string itemName, int stacks)
     {
-        var newItem = Instantiate(inventoryItemPrefab, transform);
-        Debug.Log(newItem.name);
-        NetworkServer.Spawn(newItem.gameObject);
-        RpcUpdateNewItem(newItem.GetComponent<NetworkIdentity>(), itemName, stacks);
+        RpcUpdateNewItem(itemName, stacks);
     }
     [ClientRpc]
-    private void RpcUpdateNewItem(NetworkIdentity item, string itemName, int stacks)
+    private void RpcUpdateNewItem(string itemName, int stacks)
     {
-        item.GetComponent<InventoryItem>().InitializeItem(itemDatabase.GetItemByName(itemName), stacks);
+        var newItem = Instantiate(inventoryItemPrefab, transform);
+        newItem.GetComponent<InventoryItem>().InitializeItem(itemDatabase.GetItemByName(itemName), stacks);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdDeleteItemOnClients()
+    {
+        RpcDeleteItemOnClients();
+    }
+    private void RpcDeleteItemOnClients()
+    {
+        var item = GetComponentInChildren<InventoryItem>();
+        if (item)
+            Destroy(item.gameObject);
     }
 }
