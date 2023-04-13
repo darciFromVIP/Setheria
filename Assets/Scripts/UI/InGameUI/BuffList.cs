@@ -6,9 +6,9 @@ public class BuffList : MonoBehaviour
 {
     public BuffUI buffPrefab;
 
-    public void AddBuff(BuffScriptable buff, Buff buffInstance)
+    public void AddBuff(string buffName, Buff buffInstance)
     {
         BuffUI buffUiInstance = Instantiate(buffPrefab, transform);
-        buffUiInstance.Initialize(buff, buffInstance);
+        buffUiInstance.Initialize(buffName, buffInstance);
     }
 }

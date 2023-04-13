@@ -12,6 +12,7 @@ public class CharacterHoverDetail : MonoBehaviour
     public GameObject window;
     public TextMeshProUGUI characterName, hpPercentage, characterLevel, hpText, mpText;
     public Slider hpSlider, mpSlider;
+    public BuffListTarget buffList;
 
     public void Show(Character character, bool targetedCharacter)
     {
@@ -46,6 +47,7 @@ public class CharacterHoverDetail : MonoBehaviour
             hp.Health_Changed.RemoveListener(UpdateHealth);
         if (lastUpdatedCharacter.TryGetComponent(out HasMana mp))
             mp.Mana_Changed.RemoveListener(UpdateMana);
+        lastUpdatedCharacter.Buff_Added.RemoveListener(AddBuffToList);
     }
     public void UpdateDetail()
     {
@@ -72,6 +74,20 @@ public class CharacterHoverDetail : MonoBehaviour
             characterMpComp.Mana_Changed.AddListener(UpdateMana);
         }
         characterLevel.text = "Lv" + lastUpdatedCharacter.level.ToString();
+        lastUpdatedCharacter.Buff_Added.RemoveListener(AddBuffToList);
+        lastUpdatedCharacter.Buff_Added.AddListener(AddBuffToList);
+        foreach (var item in buffList.GetComponentsInChildren<BuffUI>())
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (var item in lastUpdatedCharacter.buffs)
+        {
+            buffList.AddBuff(item.name, item);
+        }
+    }
+    private void AddBuffToList(string buffName, Buff buffInstance)
+    {
+        buffList.AddBuff(buffName, buffInstance);
     }
     private void UpdateHealth(float hp, float maxHp)
     {

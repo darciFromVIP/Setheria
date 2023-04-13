@@ -11,6 +11,7 @@ public class BuffUI : MonoBehaviour
     private TextMeshProUGUI durationText;
     private Slider slider;
     private Buff currentBuffInstance;
+    public BuffDatabase buffDatabase;
 
     private void Awake()
     {
@@ -31,8 +32,9 @@ public class BuffUI : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    public void Initialize(BuffScriptable buff, Buff buffInstance)
+    public void Initialize(string buffName, Buff buffInstance)
     {
+        var buff = buffDatabase.GetBuffByName(buffName);
         image.sprite = buff.sprite;
         tooltipTrigger.SetText(buff.name, buff.description, buff.sprite);
         currentBuffInstance = buffInstance;

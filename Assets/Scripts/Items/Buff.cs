@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public abstract class Buff
 {
+    public string name;
     public BuffType buffType;
     public float value;
     public float durationTimer;

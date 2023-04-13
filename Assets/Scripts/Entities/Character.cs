@@ -20,6 +20,7 @@ public class Character : Entity
     [HideInInspector] public UnityEvent Stun_Begin = new();
     [HideInInspector] public UnityEvent Stun_End = new();
     [HideInInspector] public UnityEvent Stop_Acting = new();
+    [HideInInspector] public UnityEvent<string, Buff> Buff_Added = new();
 
     protected int animHash_Skill1 = Animator.StringToHash("Skill1");
     protected int animHash_Skill2 = Animator.StringToHash("Skill2");
@@ -200,6 +201,7 @@ public class Character : Entity
         }
         if (buffInstance != null)
         {
+            buffInstance.name = buffScriptable.name;
             var vfx = vfxDatabase.GetVFXByName(buffScriptable.buffName);
             if (vfx)
             {
@@ -207,9 +209,10 @@ public class Character : Entity
                 buffInstance.effect = effectInstance;
             }
             buffs.Add(buffInstance);
+            Buff_Added.Invoke(buffScriptable.name, buffInstance);
             if (this is PlayerCharacter && isOwned)
             {
-                FindObjectOfType<BuffList>().AddBuff(buffScriptable, buffInstance);
+                FindObjectOfType<BuffListHero>().AddBuff(buffScriptable.name, buffInstance);
             }
             if (buffScriptable.duration > 0)
                 StartCoroutine(buffInstance.TimedBuff(buffScriptable.duration));
