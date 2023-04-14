@@ -10,7 +10,7 @@ public class Recipe : MonoBehaviour, IPointerEnterHandler
     public RecipeScriptable recipeData;
     public TextMeshProUGUI text;
     public bool openedInStructure = false;
-    public GameObject newItemNotif;
+    public GameObject newItemNotif, craftableNotif;
 
     private void Start()
     {
@@ -28,6 +28,10 @@ public class Recipe : MonoBehaviour, IPointerEnterHandler
     public void ToggleNewItemNotif(bool value)
     {
         newItemNotif.SetActive(value);
+    }
+    public void ToggleCraftableNotif(bool value)
+    {
+        craftableNotif.SetActive(value);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

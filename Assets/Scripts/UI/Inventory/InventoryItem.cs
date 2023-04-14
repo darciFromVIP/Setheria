@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 using Mirror;
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IDropHandler
 {
     public Image image, border;
     public TextMeshProUGUI stackText, cooldownText;
@@ -242,6 +242,28 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             foreach (var item in item.passiveBuffs)
             {
                 player.CmdRemoveBuff(item);
+            }
+        }
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+        if (inventoryItem)
+        {
+            if (inventoryItem.item == item && item.stackable)
+            {
+                if (transform.parent.TryGetComponent(out StashSlot parentSlot))
+                {
+                    parentSlot.CmdChangeStacks(inventoryItem.stacks);
+                }
+                else
+                    ChangeStacks(inventoryItem.stacks);
+                if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
+                {
+                    stashSlot.CmdDeleteItemOnClients();
+                }
+                inventoryItem.DestroyItem();
             }
         }
     }

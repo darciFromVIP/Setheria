@@ -55,4 +55,16 @@ public class StashSlot : NetworkBehaviour, IDropHandler
         if (item)
             Destroy(item.gameObject);
     }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeStacks(int stacks)
+    {
+        RpcChangeStacks(stacks);
+    }
+    [ClientRpc]
+    private void RpcChangeStacks(int stacks)
+    {
+        var item = GetComponentInChildren<InventoryItem>();
+        if (item)
+            item.ChangeStacks(stacks);
+    }
 }

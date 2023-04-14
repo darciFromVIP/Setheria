@@ -60,8 +60,11 @@ public class MyNetworkManager : NetworkManager
     private IEnumerator SwitchScenes()
     {
         var load = SceneManager.LoadSceneAsync("Game", LoadSceneMode.Additive);
+        FindObjectOfType<LoadingScreen>().LoadAsyncOperation("Loading User Interface...", load);
         while (!load.isDone)
+        {
             yield return null;
+        }
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Game"));
         var unload = SceneManager.UnloadSceneAsync("Main Menu");
         while (!unload.isDone)

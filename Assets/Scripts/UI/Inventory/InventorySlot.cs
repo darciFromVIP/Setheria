@@ -20,27 +20,30 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         if (transform.childCount == 0 && isFree)
         {
             var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
-            if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
+            if (inventoryItem)
             {
-                var player = FindObjectOfType<GameManager>().localPlayerCharacter;
-                foreach (var item in inventoryItem.item.passiveBuffs)
+                if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
                 {
-                    if (item.buffType == BuffType.InventorySlots)
+                    var player = FindObjectOfType<GameManager>().localPlayerCharacter;
+                    foreach (var item in inventoryItem.item.passiveBuffs)
                     {
-                        if (!FindObjectOfType<InventoryManager>(true).TestReduceInventory((int)item.value))
-                            return;
+                        if (item.buffType == BuffType.InventorySlots)
+                        {
+                            if (!FindObjectOfType<InventoryManager>(true).TestReduceInventory((int)item.value))
+                                return;
+                        }
+                    }
+                    foreach (var item in inventoryItem.item.passiveBuffs)
+                    {
+                        player.CmdRemoveBuff(item);
                     }
                 }
-                foreach (var item in inventoryItem.item.passiveBuffs)
+                if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
                 {
-                    player.CmdRemoveBuff(item);
+                    stashSlot.CmdDeleteItemOnClients();
                 }
+                inventoryItem.parentAfterDrag = transform;
             }
-            if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
-            {
-                stashSlot.CmdDeleteItemOnClients();
-            }
-            inventoryItem.parentAfterDrag = transform;
         }
     }
 }

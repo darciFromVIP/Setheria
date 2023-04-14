@@ -36,8 +36,11 @@ public class WorldGenerator : MonoBehaviour
             while (biomeCopy[random] == null);
 
             var operation = SceneManager.LoadSceneAsync(biomeCopy[random], LoadSceneMode.Additive);
+            FindObjectOfType<LoadingScreen>().LoadAsyncOperation("Loading Terrain...", operation);
             while (!operation.isDone)
+            {
                 yield return null;
+            }
             biomeCopy[random] = null;
         }
         for (int i = 1; i < 2; i++)                         // i < 5 for 4 biomes
