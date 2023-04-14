@@ -210,7 +210,7 @@ public class Character : Entity
             }
             buffs.Add(buffInstance);
             Buff_Added.Invoke(buffScriptable.name, buffInstance);
-            if (this is PlayerCharacter && isOwned)
+            if (this is PlayerCharacter && isOwned && buffScriptable.sprite != null)
             {
                 FindObjectOfType<BuffListHero>().AddBuff(buffScriptable.name, buffInstance);
             }
