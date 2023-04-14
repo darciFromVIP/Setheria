@@ -43,7 +43,7 @@ public class CanDropItem : NetworkBehaviour
             }
         }
     }
-    public void SpawnItemsInInventory(InventoryManager inventoryManager, Vector3 playerPosition)
+    public void SpawnItemsInInventory(InventoryManager inventoryManager)
     {
         int random;
         int temp;

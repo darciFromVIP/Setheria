@@ -54,9 +54,9 @@ public class SaveDataPlayer
                 baseManaRegen = 0.25f;
                 power = 20;
                 criticalChance = 0;
-                criticalDamage = 0;
+                criticalDamage = 50;
                 attackSpeed = 2f;
-                attackRange = 2;
+                attackRange = 1;
                 armor = 0;
                 cooldownReduction = 0;
                 break;
@@ -70,7 +70,7 @@ public class SaveDataPlayer
                 baseManaRegen = 0.6f;
                 power = 15;
                 criticalChance = 0;
-                criticalDamage = 0;
+                criticalDamage = 50;
                 attackSpeed = 2.5f;
                 attackRange = 7;
                 armor = 0;

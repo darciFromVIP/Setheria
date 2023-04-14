@@ -91,8 +91,14 @@ public class CanAttack : NetworkBehaviour
         
         if (enemyTarget && canAct)
         {
-            if (Vector3.Distance(transform.position, enemyTarget.transform.position) <= attackRange + moveComp.agent.stoppingDistance)
+            if (enemyTarget.GetComponent<HasHealth>().GetHealth() <= 0)
             {
+                TargetLost();
+                return;
+            }
+            if (Vector3.Distance(transform.position, enemyTarget.transform.position) <= (attackRange > moveComp.agent.stoppingDistance ? attackRange : moveComp.agent.stoppingDistance))
+            {
+                moveComp.Stop();
                 if (attackSpeedTimer <= 0)
                 {
                     if (netAnim)
@@ -215,7 +221,11 @@ public class CanAttack : NetworkBehaviour
         enemyTarget = target.GetComponent<HasHealth>();
         enemyTarget.On_Death.AddListener(CmdTargetLost);
         Target_Acquired.Invoke(target);
-        moveComp.agent.stoppingDistance = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2 - attackRange;
+        float temp = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;
+        if (temp > attackRange)
+            moveComp.agent.stoppingDistance = temp;
+        else
+            moveComp.agent.stoppingDistance = attackRange;
     }     
     [Command(requiresAuthority = false)]
     public void CmdTargetLost()
