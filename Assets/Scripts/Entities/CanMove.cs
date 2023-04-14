@@ -64,7 +64,8 @@ public class CanMove : NetworkBehaviour
     }
     public void ResumeAgent()
     {
-        agent.isStopped = false;
+        if (agent.enabled)
+            agent.isStopped = false;
     }
     public void StopAgent()
     {

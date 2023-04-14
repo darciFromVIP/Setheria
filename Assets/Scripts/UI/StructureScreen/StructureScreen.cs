@@ -43,5 +43,6 @@ public class StructureScreen : MonoBehaviour
         window.SetActive(false);
         GetComponentInChildren<ShopScreen>(true).ToggleWindow(false);
         GetComponentInChildren<ResearchScreen>(true).ToggleWindow(false);
+        GetComponentInChildren<StashInventory>(true).CloseStash();
     }
 }

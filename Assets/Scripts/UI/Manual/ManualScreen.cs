@@ -88,22 +88,42 @@ public class ManualScreen : MonoBehaviour
     private void SetRecipeData(List<RecipeScriptable> recipes, bool openedInStructure)
     {
         List<RecipeScriptable> nonVisible = new();
-        foreach (var item in recipes)
+        foreach (var recipe in recipes)
         {
-            if (!item.visible)
+            if (!recipe.visible)
             {
-                nonVisible.Add(item);
+                nonVisible.Add(recipe);
             }
             else
             {
-                var recipe = Instantiate(recipePrefab, recipeList.transform);
-                recipe.recipeData = item;
-                recipe.UpdateText(item.name, openedInStructure);
-                if (item.freshlyUnlocked)
+                var tempRecipe = Instantiate(recipePrefab, recipeList.transform);
+                tempRecipe.recipeData = recipe;
+                tempRecipe.UpdateText(recipe.name, openedInStructure);
+                if (recipe.freshlyUnlocked)
                 {
-                    recipe.ToggleNewItemNotif(true);
-                    item.freshlyUnlocked = false;
+                    tempRecipe.ToggleNewItemNotif(true);
+                    recipe.freshlyUnlocked = false;
                 }
+
+                tempRecipe.ToggleCraftableNotif(false);
+                var currentPlayerItems = FindObjectOfType<InventoryManager>().GetAllItems();
+                int matchedCriteria = 0;
+                for (int i = 0; i < recipe.componentItems.Count; i++)
+                {
+                    foreach (var playerItem in currentPlayerItems)
+                    {
+                        if (playerItem.item == recipe.componentItems[i].itemData)
+                        {
+                            if (playerItem.stacks >= recipe.componentItems[i].stacks)
+                            {
+                                matchedCriteria++;
+                            }
+                            break;
+                        }
+                    }
+                }
+                if (matchedCriteria >= recipe.componentItems.Count)
+                    tempRecipe.ToggleCraftableNotif(true);
             }
         }
         foreach (var item in nonVisible)

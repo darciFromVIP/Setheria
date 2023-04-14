@@ -76,6 +76,7 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
                         temp.transform.SetParent(null);
                         Destroy(temp.gameObject);
                     }
+                    break;
                 }
             }
         }
