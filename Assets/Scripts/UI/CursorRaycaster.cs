@@ -55,7 +55,8 @@ public class CursorRaycaster : NetworkBehaviour
             else if (player.state != PlayerState.Busy && player.state != PlayerState.Casting
                 && (hit.collider.TryGetComponent(out LootableObject lootable)
                 || hit.collider.TryGetComponent(out Item item)
-                || hit.collider.TryGetComponent(out Structure structure)))
+                || hit.collider.TryGetComponent(out Structure structure)
+                || hit.collider.TryGetComponent(out TreasureChest treasureChest)))
                 cursor.SetInteractionCursor();
             else if ((hit.collider.gameObject.layer == 0 && player.state != PlayerState.Busy) || hit.collider.TryGetComponent(out PlayerCharacter playerChar))
                 cursor.SetBaseCursor();

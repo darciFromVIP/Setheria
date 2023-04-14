@@ -7,6 +7,7 @@ public class CanBuild : NetworkBehaviour
 {
     private PlayerController playerController;
     private CanMove moveComp;
+    public BuildStructure buildStructureAction;
 
     public StructureDatabase structureDatabase;
 
@@ -44,8 +45,10 @@ public class CanBuild : NetworkBehaviour
                         playerController.ChangeState(PlayerState.None);
                         break;
                     }
-                    if (Input.GetKeyDown(KeyCode.Mouse1))
+                    if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Escape))
                     {
+                        if (buildStructureAction)
+                            buildStructureAction.StopExecute(this);
                         Destroy(ghost.gameObject);
                         playerController.ChangeState(PlayerState.None);
                         break;

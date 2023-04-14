@@ -16,10 +16,14 @@ public class BuildStructure : ActionTemplate
     public override void Execute()
     {
         CanBuild temp = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<CanBuild>();
+        temp.buildStructureAction = this;
         temp.Structure_Built.AddListener(ActionFinished);
         temp.BeginBuildingStructure(this);
     }
-
+    public void StopExecute(CanBuild canBuildComp)
+    {
+        canBuildComp.Structure_Built.RemoveListener(ActionFinished);
+    }
     public override bool TestExecute()
     {
         return true;
