@@ -40,6 +40,14 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         mpText.text = (int)currentMana + "/" + (int)maxMana;
         mpSlider.maxValue = maxMana;
         mpSlider.value = currentMana;
+        var player = playerController.GetComponent<PlayerCharacter>();
+        for (int i = 0; i < skills.Count; i++)
+        {
+            if (currentMana < player.skills[i].manaCost)
+                skills[i].color = new Color(0.3f, 0.3f, 0.3f);
+            else 
+                skills[i].color = new Color(1f, 1f, 1f);
+        }
     }
     private void UpdateXP(int currentXp, int maxXp)
     {
@@ -173,5 +181,25 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
             yield return null;
         }
         cdRSlider.gameObject.SetActive(false);
+    }
+    public void CastD()
+    {
+        playerController.CmdExecuteSkill1();
+    }
+    public void CastQ()
+    {
+        playerController.CmdExecuteSkill2();
+    }
+    public void CastW()
+    {
+        playerController.CmdExecuteSkill3();
+    }
+    public void CastE()
+    {
+        playerController.CmdExecuteSkill4();
+    }
+    public void CastR()
+    {
+        playerController.CmdExecuteSkill5();
     }
 }

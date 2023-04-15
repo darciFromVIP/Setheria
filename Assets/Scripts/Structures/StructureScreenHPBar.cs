@@ -7,9 +7,13 @@ public class StructureScreenHPBar : MonoBehaviour
 {
     public Slider hpBar;
     public TextMeshProUGUI hpText;
+    private HasHealth currentStructure;
     public void AddListenerToHpEvents(HasHealth hp)
     {
-        hp.Health_Changed.AddListener(UpdateHP);
+        if (currentStructure)
+            currentStructure.Health_Changed.RemoveListener(UpdateHP);
+        currentStructure = hp;
+        currentStructure.Health_Changed.AddListener(UpdateHP);
         UpdateHP(hp.GetHealth(), hp.GetBaseMaxHealth());
     }
     private void UpdateHP(float currentHP, float maxHP)

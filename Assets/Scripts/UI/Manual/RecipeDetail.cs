@@ -9,7 +9,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     public TextMeshProUGUI resultItemNameText, resourceCostText, structureRequirement;
     public Transform resultItemParent, components;
     public Button craftBtn;
-    public GameObject amountUI;
+    public GameObject amountUI, blockingUI;
     public TMP_InputField amountInput;
 
     private int amount = 1;
@@ -111,6 +111,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     {
         if (localPlayer.state == PlayerState.None)
         {
+            blockingUI.SetActive(true);
             localPlayer.CmdStartWorking(currentOpenedRecipe.craftingDuration * amount);
             localPlayer.Work_Finished.AddListener(FinishCrafting);
         }
@@ -126,9 +127,11 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         FindObjectOfType<GameManager>().ChangeResources(-currentOpenedRecipe.resourceCost * amount);
         var tempItem = new ItemRecipeInfo() { itemData = currentOpenedRecipe.resultItem.itemData, stacks = currentOpenedRecipe.resultItem.stacks * amount };
         inventory.AddItem(tempItem);
+        GetComponentInParent<ManualScreen>().UpdateCurrentCategory();   
         UpdateCurrentDetails();
         localPlayer.GetComponent<PlayerCharacter>().AddXp(currentOpenedRecipe.xpGranted * amount);
         localPlayer.Work_Finished.RemoveListener(FinishCrafting);
+        blockingUI.SetActive(false);
     }
 
     public void SetLocalPlayerCharacter(PlayerCharacter player)

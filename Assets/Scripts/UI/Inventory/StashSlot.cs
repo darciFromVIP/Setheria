@@ -65,6 +65,6 @@ public class StashSlot : NetworkBehaviour, IDropHandler
     {
         var item = GetComponentInChildren<InventoryItem>();
         if (item)
-            item.ChangeStacks(stacks);
+            item.ChangeStacks(stacks, false);
     }
 }

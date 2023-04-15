@@ -14,6 +14,8 @@ public class CanMove : NetworkBehaviour
     private Entity entity;
     private Animator animator;
 
+    private bool stunned;
+
     protected int animHash_Walk = Animator.StringToHash("Walk");
     protected int animHash_Run = Animator.StringToHash("Run");
 
@@ -27,8 +29,8 @@ public class CanMove : NetworkBehaviour
         if (TryGetComponent(out Character character))
         {
             character.Stop_Acting.AddListener(StopAgent);
-            character.Stun_Begin.AddListener(StopAgent);
-            character.Stun_End.AddListener(ResumeAgent);
+            character.Stun_Begin.AddListener(StunBegin);
+            character.Stun_End.AddListener(StunEnd);
         }
         if (TryGetComponent(out CanAttack attack))
         {
@@ -64,13 +66,22 @@ public class CanMove : NetworkBehaviour
     }
     public void ResumeAgent()
     {
-        if (agent.enabled)
+        if (agent.enabled && !stunned)
             agent.isStopped = false;
     }
     public void StopAgent()
     {
-        Debug.Log("Agent Stopped");
         agent.isStopped = true;
+    }
+    private void StunBegin()
+    {
+        stunned = true;
+        StopAgent();
+    }
+    private void StunEnd()
+    {
+        stunned = false;
+        ResumeAgent();
     }
     public void SetBaseMovementSpeed(float value)
     {

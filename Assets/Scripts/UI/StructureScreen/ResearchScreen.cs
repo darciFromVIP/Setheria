@@ -8,6 +8,7 @@ public class ResearchScreen : MonoBehaviour
     public Button researchBTN;
     private List<ResearchRecipe> recipes = new();
     private int currentTier = 1;
+    private bool allResearchesDone;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -26,7 +27,7 @@ public class ResearchScreen : MonoBehaviour
         if (value)
         {
             UpdateRecipes();
-            researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20);
+            researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && !allResearchesDone;
         }
     }
     public void UpdateRecipes()
@@ -42,21 +43,23 @@ public class ResearchScreen : MonoBehaviour
         do
         {
             result = recipes[Random.Range(0, recipes.Count)];
-        } while (result.recipe.tier != currentTier || result.recipe.unlocked == true);
+        } while (result.recipe.tier != currentTier || result.recipe.unlocked);
 
         FindObjectOfType<InventoryManager>(true).AddItem(result.recipe.recipeItem, 1);
         FindObjectOfType<GameManager>().ChangeKnowledge(-currentTier * 20);
-        recipes.Remove(result);
         bool stayInCurrentTier = false;
+        allResearchesDone = true;
         foreach (var item in recipes)
         {
-            if (item.recipe.tier == currentTier)
+            if (!item.recipe.unlocked)
+                allResearchesDone = false;
+            if (item.recipe.tier == currentTier && !item.recipe.unlocked)
                 stayInCurrentTier = true;
         }
         if (!stayInCurrentTier)
         {
             currentTier++;
         }
-        researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && recipes.Count > 0;
+        researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && recipes.Count > 0 && !allResearchesDone;
     }
 }

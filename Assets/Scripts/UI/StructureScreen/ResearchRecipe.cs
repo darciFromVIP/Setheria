@@ -13,11 +13,13 @@ public class ResearchRecipe : MonoBehaviour
     {
         if (recipe.unlocked)
         {
+            Debug.Log("Recipe Unlocked");
             image.sprite = recipe.resultItem.itemData.sprite;
             tooltip.SetText(recipe.name, recipe.resultItem.itemData.description, recipe.resultItem.itemData.sprite);
         }
         else
         {
+            Debug.Log("Recipe Locked");
             image.sprite = hiddenRecipeSprite;
             tooltip.SetText("Hidden Recipe", "This recipe is still hidden. Press 'Research' to attempt to unlock it.", hiddenRecipeSprite);
         }

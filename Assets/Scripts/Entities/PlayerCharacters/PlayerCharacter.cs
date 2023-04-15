@@ -316,7 +316,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         hunger += amount;
         if (amount > 0)
-            FindObjectOfType<FloatingText>().SpawnFloatingText("+" + amount + " Hunger", transform.position, FloatingTextType.Hunger);
+            FindObjectOfType<FloatingText>().SpawnFloatingText("+" + amount + " Food", transform.position, FloatingTextType.Hunger);
         Hunger_Changed.Invoke();
     }
     public void ChangeStat(PlayerStat playerStat, float modifier)

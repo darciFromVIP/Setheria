@@ -216,19 +216,38 @@ public class PlayerController : NetworkBehaviour
         
         if (state != PlayerState.None)
             return;
-        if (Input.GetKeyDown(KeyCode.D) && cooldownD <= 0 && manaComp.GetMana() >= playerCharacter.skills[1].manaCost)
-            CmdExecuteSkill1();
-        if (Input.GetKeyDown(KeyCode.Q) && cooldownQ <= 0 && manaComp.GetMana() >= playerCharacter.skills[2].manaCost)
-            CmdExecuteSkill2();
-        if (Input.GetKeyDown(KeyCode.W) && cooldownW <= 0 && manaComp.GetMana() >= playerCharacter.skills[3].manaCost)
-            CmdExecuteSkill3();
-        if (Input.GetKeyDown(KeyCode.E) && cooldownE <= 0 && manaComp.GetMana() >= playerCharacter.skills[4].manaCost)
-            CmdExecuteSkill4();
-        if (Input.GetKeyDown(KeyCode.R) && cooldownR <= 0 && manaComp.GetMana() >= playerCharacter.skills[5].manaCost)
-            CmdExecuteSkill5();
+        if (Input.GetKeyDown(KeyCode.D) && cooldownD <= 0)
+            if (manaComp.GetMana() >= playerCharacter.skills[1].manaCost)
+                CmdExecuteSkill1();
+            else
+                SendMessageNotEnoughMana();
+        if (Input.GetKeyDown(KeyCode.Q) && cooldownQ <= 0)
+            if (manaComp.GetMana() >= playerCharacter.skills[2].manaCost)
+                CmdExecuteSkill2();
+            else
+                SendMessageNotEnoughMana();
+        if (Input.GetKeyDown(KeyCode.W) && cooldownW <= 0)
+            if (manaComp.GetMana() >= playerCharacter.skills[3].manaCost)
+                CmdExecuteSkill3();
+            else
+                SendMessageNotEnoughMana();
+        if (Input.GetKeyDown(KeyCode.E) && cooldownE <= 0)
+            if (manaComp.GetMana() >= playerCharacter.skills[4].manaCost)
+                CmdExecuteSkill4();
+            else
+                SendMessageNotEnoughMana();
+        if (Input.GetKeyDown(KeyCode.R) && cooldownR <= 0)
+            if (manaComp.GetMana() >= playerCharacter.skills[5].manaCost)
+                CmdExecuteSkill5();
+            else
+                SendMessageNotEnoughMana();
+    }
+    private void SendMessageNotEnoughMana()
+    {
+        FindObjectOfType<SystemMessages>().AddMessage("Not enough Mana!");
     }
     [Command]
-    private void CmdExecuteSkill1()
+    public void CmdExecuteSkill1()
     {
         RpcExecuteSkill1();
     }
@@ -238,7 +257,7 @@ public class PlayerController : NetworkBehaviour
         playerCharacter.skills[1].Execute(playerCharacter);
     }
     [Command]
-    private void CmdExecuteSkill2()
+    public void CmdExecuteSkill2()
     {
         RpcExecuteSkill2();
     }
@@ -248,7 +267,7 @@ public class PlayerController : NetworkBehaviour
         playerCharacter.skills[2].Execute(playerCharacter);
     }
     [Command]
-    private void CmdExecuteSkill3()
+    public void CmdExecuteSkill3()
     {
         RpcExecuteSkill3();
     }
@@ -258,7 +277,7 @@ public class PlayerController : NetworkBehaviour
         playerCharacter.skills[3].Execute(playerCharacter);
     }
     [Command]
-    private void CmdExecuteSkill4()
+    public void CmdExecuteSkill4()
     {
         RpcExecuteSkill4();
     }
@@ -268,7 +287,7 @@ public class PlayerController : NetworkBehaviour
         playerCharacter.skills[4].Execute(playerCharacter);
     }
     [Command]
-    private void CmdExecuteSkill5()
+    public void CmdExecuteSkill5()
     {
         RpcExecuteSkill5();
     }

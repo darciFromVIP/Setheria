@@ -15,6 +15,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public LayerMask itemDropMask;
     public ItemGradeDatabase gradeDatabase;
     public Sprite lockedSprite;
+    private RectTransform rect;
     private bool draggable = true;
     public bool usable = true;
 
@@ -29,6 +30,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         stacks = 0;
     }
+    private void Awake()
+    {
+        rect = GetComponent<RectTransform>();
+    }
     public void InitializeItem(Item item)
     {
         InitializeItem(item.itemData, item.stacks);
@@ -39,10 +44,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (item.unlocked || ignoreLockedItem)
         {
             image.sprite = item.sprite;
-            if (item.stackable)
-            {
-                ChangeStacks(stacks);
-            }
+            ChangeStacks(stacks);
             GetComponent<TooltipTrigger>().SetText(item.name, item.description, item.sprite);
         }
         else
@@ -94,16 +96,25 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         GetComponent<TooltipTrigger>().SetText(item.name, item.description, item.sprite);
         newItemNotification.SetActive(false);
     }
-    public void ChangeStacks(int stacks)
+    public void ChangeStacks(int stacks, bool withNotification = true)
     {
-        if (stacks > 0)
+        if (stacks > 0 && withNotification)
             newItemNotification.SetActive(true);
         this.stacks += stacks;
         Stacks_Changed.Invoke(this.stacks);
-        stackText.text = this.stacks.ToString();
-        stackText.gameObject.SetActive(true);
+        if (item.stackable)
+        {
+            stackText.text = this.stacks.ToString();
+            stackText.gameObject.SetActive(true);
+        }
         if (this.stacks <= 0)
+        {
+            if (item.itemType == ItemType.HandicraftTool || item.itemType == ItemType.FishingTool || item.itemType == ItemType.HandicraftTool || item.itemType == ItemType.MiningTool)
+            {
+                FindObjectOfType<SystemMessages>().AddMessage("Your " + item.itemType + " just broke!");
+            }
             DestroyItem();
+        }
     }
     public void UseItem()
     {
@@ -189,7 +200,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnDrag(PointerEventData eventData)
     {
         if (draggable)
-            transform.position = Input.mousePosition;
+            rect.anchoredPosition += eventData.delta;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -258,7 +269,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     parentSlot.CmdChangeStacks(inventoryItem.stacks);
                 }
                 else
-                    ChangeStacks(inventoryItem.stacks);
+                    ChangeStacks(inventoryItem.stacks, false);
                 if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
                 {
                     stashSlot.CmdDeleteItemOnClients();
