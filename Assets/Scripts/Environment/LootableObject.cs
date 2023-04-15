@@ -79,7 +79,7 @@ public class LootableObject : NetworkBehaviour, IInteractable
             return;
         }
         interactingPlayer.GetComponent<PlayerCharacter>().AddXp(xpGranted);
-        GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>(true), interactingPlayer.transform.position);
+        GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>(true));
         CmdSetInteractingPlayer(null);
         currentCharges--;
         FindObjectOfType<CharacterScreen>(true).ReduceToolDurability(toolRequirement, -1);

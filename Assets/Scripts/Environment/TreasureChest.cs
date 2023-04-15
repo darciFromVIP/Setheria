@@ -19,7 +19,7 @@ public class TreasureChest : NetworkBehaviour
             FindObjectOfType<SystemMessages>().AddMessage("This Chest has already been looted!");
             return;
         }
-        GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>(), turnInComp.player.transform.position);
+        GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>());
         turnInComp.enabled = false;
         ChestLooted();
     }
