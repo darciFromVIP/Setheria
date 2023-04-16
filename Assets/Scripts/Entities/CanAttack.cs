@@ -12,7 +12,9 @@ public class CanAttack : NetworkBehaviour
     [SyncVar] [SerializeField] private float power;
     [SyncVar] [SerializeField] private float criticalChance = 0f;
     [SyncVar] [SerializeField] private float criticalDamage = 0f;
-    [SyncVar] [SerializeField] private float attackSpeed;
+    [SyncVar] private float finalAttackSpeed;
+    [SyncVar] [SerializeField] private float baseAttackSpeed = 0;
+    [SyncVar] private float bonusAttackSpeed = 0;
     public float attackSpeedTimer = 0;
     [SyncVar] [SerializeField] private float attackRange;
     [SyncVar] [SerializeField] private float cooldownReduction = 0;
@@ -68,6 +70,10 @@ public class CanAttack : NetworkBehaviour
             character.Stun_Begin.AddListener(StopActing);
             character.Stun_End.AddListener(ResumeActing);
         }
+        if (TryGetComponent(out HasHealth hpComp))
+        {
+            hpComp.On_Death.AddListener(TargetLost);
+        }
         if (TryGetComponent(out PlayerController player))
         {
             player.Resume_Acting.AddListener(ResumeActing);
@@ -80,12 +86,13 @@ public class CanAttack : NetworkBehaviour
         }
         netAnim = GetComponent<NetworkAnimator>();
         entity = GetComponent<Character>();
+        SetBaseAttackSpeed(baseAttackSpeed);
     }
     private void Update()
     {
         if (!(isOwned || (entity is not PlayerCharacter && isServer)))
             return;
-        
+
         if (attackSpeedTimer > 0)
             attackSpeedTimer -= Time.deltaTime;
         
@@ -173,12 +180,12 @@ public class CanAttack : NetworkBehaviour
     }
     private void Attacked()
     {
-        attackSpeedTimer = 5 / attackSpeed;
+        attackSpeedTimer = 5 / finalAttackSpeed;
         Has_Attacked.Invoke();
     }
     public float GetAttackCooldown()
     {
-        return 5 / attackSpeed;
+        return 5 / finalAttackSpeed;
     }
     private void SpawnProjectile()
     {
@@ -219,6 +226,7 @@ public class CanAttack : NetworkBehaviour
     public void TargetAcquired(NetworkIdentity target)
     {
         enemyTarget = target.GetComponent<HasHealth>();
+        enemyTarget.Target_Received.Invoke(GetComponent<HasHealth>());
         enemyTarget.On_Death.AddListener(CmdTargetLost);
         Target_Acquired.Invoke(target);
         float temp = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;
@@ -244,7 +252,10 @@ public class CanAttack : NetworkBehaviour
             return;
         }
         if (enemyTarget)
+        {
             enemyTarget.On_Death.RemoveListener(TargetLost);
+            enemyTarget.Received_Target_Lost.Invoke(GetComponent<HasHealth>());
+        }
         enemyTarget = null;
         Target_Lost.Invoke();
         moveComp.agent.stoppingDistance = 0;
@@ -263,7 +274,7 @@ public class CanAttack : NetworkBehaviour
     }
     public float GetAttackSpeed()
     {
-        return attackSpeed;
+        return finalAttackSpeed;
     }
     public float GetAttackRange()
     {
@@ -336,24 +347,26 @@ public class CanAttack : NetworkBehaviour
         Critical_Damage_Changed.Invoke(criticalDamage);
     }
     [Command(requiresAuthority = false)]
-    public void CmdChangeAttackSpeed(float value)
+    public void CmdChangeBonusAttackSpeed(float value)
     {
-        RpcChangeAttackSpeed(value);
+        RpcChangeBonusAttackSpeed(value);
     }
     [ClientRpc]
-    public void RpcChangeAttackSpeed(float value)
+    public void RpcChangeBonusAttackSpeed(float value)
     {
-        ChangeAttackSpeed(value);
+        ChangeBonusAttackSpeed(value);
     }
-    public void ChangeAttackSpeed(float value)
+    public void ChangeBonusAttackSpeed(float value)
     {
-        attackSpeed += value;
-        Attack_Speed_Changed.Invoke(attackSpeed);
+        bonusAttackSpeed += value;
+        finalAttackSpeed = baseAttackSpeed * (1 + bonusAttackSpeed);
+        Attack_Speed_Changed.Invoke(finalAttackSpeed);
     }
-    public void SetAttackSpeed(float value)
+    public void SetBaseAttackSpeed(float value)
     {
-        attackSpeed = value;
-        Attack_Speed_Changed.Invoke(attackSpeed);
+        baseAttackSpeed = value;
+        finalAttackSpeed = baseAttackSpeed * (1 + bonusAttackSpeed);
+        Attack_Speed_Changed.Invoke(finalAttackSpeed);
     }
     [Command(requiresAuthority = false)]
     public void CmdChangeAttackRange(float value)

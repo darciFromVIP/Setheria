@@ -10,7 +10,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     private float cameraSpeed = 25;
     private float cameraRotationSpeed = 25;
     private float cameraZoomMin = 10;
-    private float cameraZoomMax = 50;
+    private float cameraZoomMax = 30;
     private int borderThickness = 5;
     private Vector3 followOffset;
     private PlayerCharacter localPlayerCharacter;

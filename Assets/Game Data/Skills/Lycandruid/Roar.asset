@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d09247ffe35ef4ba3dcdfdeaa2a7b1, type: 3}
+  m_Name: Roar
+  m_EditorClassIdentifier: 
+  icon: {fileID: 622328056, guid: bb107fdeac0009f4b9688309ab6c77f4, type: 3}
+  cooldown: 14
+  manaCost: 20
+  description: '<sprite=10>14,0 <sprite=4>20
+
+    Unleashes a deep roar, inflicting
+    Slow (reduces  by <color=orange>21%</color> (20% + 1% )) and Shaken (reduces
+    <sprite=9> by <color=orange>11%</color> (10% + 1% )) to all enemies around Wolferius.
+    Lasts 8 seconds.'
+  range: 3
+  baseDuration: 8
+  movementBaseReduction: 0.2
+  movementReductionScalingStat: 19
+  movementReductionScalingValue: 0.01
+  attackSpeedBaseReduction: 0.1
+  attackSpeedReductionScalingStat: 19
+  attackSpeedReductionScalingValue: 0.01
+  movementReductionBuff: {fileID: 11400000, guid: 7846a3326221ab645932197e523ba61b,
+    type: 2}
+  attackSpeedReductionBuff: {fileID: 11400000, guid: 79eb8409df60cb742ac4efb4e826c1f5,
+    type: 2}
+  projectile: {fileID: 4533246921958147235, guid: 79bd197935df4384c9f8e2f43d8cc2e3,
+    type: 3}

@@ -26,12 +26,10 @@ public class Entity : NetworkBehaviour
     private void OnMouseOver()
     {
         hudCircle.SetActive(true);
-        Debug.Log("Entered");
     }
     private void OnMouseExit()
     {
         hudCircle.SetActive(false);
-        Debug.Log("Exited");
     }
 
     [Command(requiresAuthority = false)]

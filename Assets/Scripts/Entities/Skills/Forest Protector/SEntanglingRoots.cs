@@ -58,6 +58,9 @@ public class SEntanglingRoots : Skill
     }
     private void Cast()
     {
+        damageBuff.value = finalDamage;
+        damageBuff.duration = baseDuration;
+        stunBuff.duration = baseDuration;
         var proj = Instantiate(projectile, castingEntity.GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -86,6 +89,7 @@ public class SEntanglingRoots : Skill
     public override void UpdateDescription()
     {
         finalDamage = baseDamage + GetScalingStatValue(damageScalingStat) * damageScalingValue;
+        stunBuff.duration = baseDuration;
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
             + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nSummons roots from the ground to entangle a target enemy, inflicting Bleed (reduces "
             + GetTextIconByStat(PlayerStat.HealthRegen) + " by <color=orange>" + finalDamage.ToString("F2") + "</color> (" + baseDamage + " + " + (int)(damageScalingValue * 100) + "% " + GetTextIconByStat(damageScalingStat) +

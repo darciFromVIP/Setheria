@@ -31,7 +31,10 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public UnityEvent<float> Armor_Changed = new();
     [System.NonSerialized]
     public UnityEvent On_Death = new();
-
+    [System.NonSerialized]
+    public UnityEvent<HasHealth> Target_Received = new();
+    [System.NonSerialized]
+    public UnityEvent<HasHealth> Received_Target_Lost = new();
     private void Start()
     {
         health = maxHealth;
@@ -105,7 +108,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         }
         float finalDmg = damage;
         if (!ignoreArmor)
-            finalDmg = (damage * (1 - (armor / 100)));
+            finalDmg = damage * (1 - (armor / 100));
 
         health -= finalDmg;
         FindObjectOfType<FloatingText>().SpawnFloatingText("-" + finalDmg.ToString(), transform.position + Vector3.up, FloatingTextType.Damage);
@@ -144,6 +147,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public void ChangeBonusMaxHealth(float amount)
     {
         bonusMaxHealth += amount;
+        if (amount > 0)
+            health += amount;
         UpdateMaxHealth();
     }
     private void UpdateMaxHealth()

@@ -272,6 +272,11 @@ PrefabInstance:
       propertyPath: m_BaseOffset
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7082070339115388358, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      propertyPath: baseMovementSpeed
+      value: 3.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7082070339115388359, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       propertyPath: m_RootOrder
@@ -521,6 +526,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  buildStructureAction: {fileID: 0}
   structureDatabase: {fileID: 11400000, guid: 02f6ebc48dc21124fac33be4d8b5fa97, type: 2}
   Structure_Built:
     m_PersistentCalls:
@@ -571,6 +577,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Stop_Acting:
+    m_PersistentCalls:
+      m_Calls: []
+  Buff_Added:
     m_PersistentCalls:
       m_Calls: []
   heroName: 

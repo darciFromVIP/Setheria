@@ -105,10 +105,14 @@ public class CanMove : NetworkBehaviour
     }
     private void UpdateMovementSpeed()
     {
+        agent.speed = GetFinalMovementSpeed();
+    }
+    public float GetFinalMovementSpeed()
+    {
         float finalSpeed = baseMovementSpeed * bonusMovementSpeed;
         if (finalSpeed <= 0.1f)
             finalSpeed = 0.1f;
-        agent.speed = finalSpeed;
+        return finalSpeed;
     }
     public bool HasReachedDestination()
     {

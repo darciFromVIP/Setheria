@@ -152,6 +152,7 @@ public class Character : Entity
                 buffInstance = new BBleed(buffScriptable.value, this);
                 break;
             case BuffType.Slow:
+                buffInstance = new BSlow(buffScriptable.value, this);
                 break;
             case BuffType.Stun:
                 buffInstance = new BStun(this);
@@ -186,6 +187,7 @@ public class Character : Entity
                 buffInstance = new BAttackSpeed(buffScriptable.value, this);
                 break;
             case BuffType.CooldownReduction:
+                buffInstance = new BCooldownReduction(buffScriptable.value, this);
                 break;
             case BuffType.Armor:
                 buffInstance = new BArmor(buffScriptable.value, this);
@@ -193,7 +195,7 @@ public class Character : Entity
             case BuffType.AttackRange:
                 buffInstance = new BAttackRange(buffScriptable.value, this);
                 break;
-            case BuffType.MovementSpeed:
+            case BuffType.Speed:
                 buffInstance = new BSpeed(buffScriptable.value, this);
                 break;
             default:
@@ -220,9 +222,12 @@ public class Character : Entity
     }
     public void BuffExpired(GameObject effect)
     {
-        foreach (var item in effect.GetComponentsInChildren<ParticleSystem>())
+        if (effect)
         {
-            item.Stop();
+            foreach (var item in effect.GetComponentsInChildren<ParticleSystem>())
+            {
+                item.Stop();
+            }
         }
     }
     [Command(requiresAuthority = false)]

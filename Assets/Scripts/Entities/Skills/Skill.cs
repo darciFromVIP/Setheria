@@ -68,6 +68,10 @@ public class Skill : ScriptableObject
                 return castingEntity.GetComponent<HasHealth>().GetArmor();
             case PlayerStat.CooldownReduction:
                 return castingEntity.GetComponent<CanAttack>().GetCooldownReduction();
+            case PlayerStat.MovementSpeed:
+                return castingEntity.GetComponent<CanMove>().GetFinalMovementSpeed();
+            case PlayerStat.Level:
+                return castingEntity.level;
             default:
                 return 0;
         }

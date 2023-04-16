@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386e53c27cb693a429eb310ec628d03b, type: 3}
+  m_Name: Wild Rage
+  m_EditorClassIdentifier: 
+  icon: {fileID: -763726889, guid: bb107fdeac0009f4b9688309ab6c77f4, type: 3}
+  cooldown: 120
+  manaCost: 0
+  description: '<sprite=10>120,0 <sprite=4>0
+
+    Wolferius enters enraged state,
+    granting himself Fortitude (increases <sprite=5> by <color=orange>140</color>
+    (100 + 10% <sprite=5>)) and Haste (increases <sprite=10> by <color=orange>8000%</color>).
+    Lasts 15 seconds.'
+  baseDuration: 15
+  maxHPBase: 100
+  maxHPScalingStat: 1
+  maxHPScalingValue: 0.1
+  cooldownReductionBase: 80
+  maxHPBuff: {fileID: 11400000, guid: 5c9f2aba87bb3314d95fd6c07f00be54, type: 2}
+  cooldownReductionBuff: {fileID: 11400000, guid: 8c93730d1e1ae1b4d919fa1017f25f86,
+    type: 2}
+  projectile: {fileID: 4533246921958147235, guid: 79bd197935df4384c9f8e2f43d8cc2e3,
+    type: 3}

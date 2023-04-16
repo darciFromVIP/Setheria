@@ -56,7 +56,7 @@ public class SaveDataPlayer
                 criticalChance = 0;
                 criticalDamage = 50;
                 attackSpeed = 2f;
-                attackRange = 1;
+                attackRange = 1.5f;
                 armor = 0;
                 cooldownReduction = 0;
                 break;

@@ -169,7 +169,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 attackComp.SetPower(item.power);
                 attackComp.SetCriticalChance(item.criticalChance);
                 attackComp.SetCriticalDamage(item.criticalDamage);
-                attackComp.SetAttackSpeed(item.attackSpeed);
+                attackComp.SetBaseAttackSpeed(item.attackSpeed);
                 attackComp.SetAttackRange(item.attackRange);
                 healthComp.SetArmor(item.armor);
                 attackComp.SetCooldownReduction(item.cooldownReduction);
@@ -429,7 +429,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         attMaxHealth += value;
         ChangeAttributePoints(-value);
-        healthComp.ChangeBonusMaxHealth(value * 5);
+        healthComp.ChangeBonusMaxHealth(value * 10);
     }
     public void AddHealthRegenAttribute(int value)
     {
@@ -447,7 +447,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         attMaxMana += value;
         ChangeAttributePoints(-value);
-        manaComp.CmdChangeBonusMaxMana(value * 5);
+        manaComp.CmdChangeBonusMaxMana(value * 10);
     }
     public void AddManaRegenAttribute(int value)
     {
@@ -477,7 +477,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         attAttackSpeed += value;
         ChangeAttributePoints(-value);
-        attackComp.CmdChangeAttackSpeed(value * 0.05f);
+        attackComp.CmdChangeBonusAttackSpeed(value * 0.03f);
     }
     public void AddCooldownReductionAttribute(int value)
     {

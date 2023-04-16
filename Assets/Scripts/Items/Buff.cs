@@ -166,11 +166,11 @@ public class BAttackSpeed : Buff
         buffType = BuffType.AttackSpeed;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<CanAttack>().ChangeAttackSpeed(value);
+        targetEntity.GetComponent<CanAttack>().ChangeBonusAttackSpeed(value);
     }
     public override void BuffExpired()
     {
-        targetEntity.GetComponent<CanAttack>().ChangeAttackSpeed(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeBonusAttackSpeed(-value);
     }
 }
 public class BAttackRange : Buff
@@ -218,7 +218,7 @@ public class BSpeed : Buff
 {
     public BSpeed(float value, Character targetEntity)
     {
-        buffType = BuffType.MovementSpeed;
+        buffType = BuffType.Speed;
         this.value = value;
         this.targetEntity = targetEntity;
         targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(value);
@@ -226,5 +226,33 @@ public class BSpeed : Buff
     public override void BuffExpired()
     {
         targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(-value);
+    }
+}
+public class BSlow : Buff
+{
+    public BSlow(float value, Character targetEntity)
+    {
+        buffType = BuffType.Speed;
+        this.value = value;
+        this.targetEntity = targetEntity;
+        targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(-value);
+    }
+    public override void BuffExpired()
+    {
+        targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(value);
+    }
+}
+public class BCooldownReduction : Buff
+{
+    public BCooldownReduction(float value, Character targetEntity)
+    {
+        buffType = BuffType.CooldownReduction;
+        this.value = value;
+        this.targetEntity = targetEntity;
+        targetEntity.GetComponent<CanAttack>().ChangeCooldownReduction(value);
+    }
+    public override void BuffExpired()
+    {
+        targetEntity.GetComponent<CanAttack>().ChangeCooldownReduction(-value);
     }
 }

@@ -345,31 +345,31 @@ public class PlayerController : NetworkBehaviour
     }
     public void StartCooldownD()
     {
-        cooldownD = playerCharacter.skills[1].cooldown;
+        cooldownD = playerCharacter.skills[1].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_D_Started.Invoke();
         Resume_Acting.Invoke();
     }
     public void StartCooldownQ()
     {
-        cooldownQ = playerCharacter.skills[2].cooldown;
+        cooldownQ = playerCharacter.skills[2].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_Q_Started.Invoke();
         Resume_Acting.Invoke();
     }
     public void StartCooldownW()
     {
-        cooldownW = playerCharacter.skills[3].cooldown;
+        cooldownW = playerCharacter.skills[3].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_W_Started.Invoke();
         Resume_Acting.Invoke();
     }
     public void StartCooldownE()
     {
-        cooldownE = playerCharacter.skills[4].cooldown;
+        cooldownE = playerCharacter.skills[4].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_E_Started.Invoke();
         Resume_Acting.Invoke();
     }
     public void StartCooldownR()
     {
-        cooldownR = playerCharacter.skills[5].cooldown;
+        cooldownR = playerCharacter.skills[5].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_R_Started.Invoke();
         Resume_Acting.Invoke();
     }
