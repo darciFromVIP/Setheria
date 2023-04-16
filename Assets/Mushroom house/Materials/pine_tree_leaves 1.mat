@@ -8,13 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: pine_tree_leaves 1
-  m_Shader: {fileID: 4800000, guid: 75edfb654a3748849a48a4ad8e10fbcb, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: a2a194983362469468c876fedec61b9e,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ALPHATEST_ON
-  - _EMISSION
+  m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -69,6 +68,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _NormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -89,6 +92,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - WindSpeedFloat1: 1
@@ -97,6 +112,7 @@ Material:
     - _Amplitude: 5
     - _AmplitudeOffset: 1
     - _BendSpeed: 0
+    - _Blend_STR_TEST: 47.78
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
@@ -113,6 +129,8 @@ Material:
     - _NormalMapStrength: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _ShadowStrength: 0
     - _Smoothness: 0
     - _SrcBlend: 1
@@ -125,7 +143,9 @@ Material:
     - _ZWrite: 1
     - _float: 297
     m_Colors:
+    - _Blend_Strenght: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.57634294, g: 0.754717, b: 0.4521182, a: 1}
+    - _Direction: {r: 20, g: 20, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorUI: {r: 1, g: 1, b: 1, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
@@ -133,6 +153,7 @@ Material:
     - _NoiseTextureTilling2: {r: 1, g: 1, b: 1, a: 1}
     - _Shadowcolor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Speed: {r: 0.4, g: 0, b: 0, a: 0}
     - _WindDirection: {r: 1.86, g: 1.53, b: 0.9, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &96945018473596974
@@ -147,4 +168,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 6
+  version: 7

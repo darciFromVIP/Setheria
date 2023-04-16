@@ -13,10 +13,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ALPHAPREMULTIPLY_ON
-  - _SURFACE_TYPE_TRANSPARENT
-  - _WIND
+  m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -40,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: b36b9191f90717443a0bd2ee85327b89, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5f55473b029c7234ea198b0c6db9b459, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -79,7 +76,7 @@ Material:
     - _BendSpeed: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _Blend_STR_TEST: 8.6
+    - _Blend_STR_TEST: 30
     - _CastShadows: 1
     - _Cull: 2
     - _DefaultBending: 0
@@ -106,13 +103,14 @@ Material:
     - _ZWriteControl: 0
     - _float: 0
     m_Colors:
-    - _Blend_Strenght: {r: 164.4, g: 186.8, b: 0, a: 0}
+    - _Blend_Strenght: {r: 0.96, g: 2.76, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 0}
-    - _Direction: {r: 95.3, g: 82.6, b: -78.1, a: 0}
+    - _Direction: {r: 5.5, g: 4.15, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _NoisePannerSpeed: {r: 0.05, g: 0.03, b: 0, a: 0}
     - _NoiseTextureTilling2: {r: 1, g: 1, b: 1, a: 1}
     - _Shadowcolor: {r: 0, g: 0, b: 0, a: 0}
+    - _Speed: {r: 0, g: 0, b: 0, a: 0}
     - _WindDirection: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5474398987511489719
