@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: VegetationPlants
+  m_Shader: {fileID: -6465566751694194690, guid: a2a194983362469468c876fedec61b9e,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHAPREMULTIPLY_ON
+  - _SURFACE_TYPE_TRANSPARENT
+  - _WIND
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2457
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - NoiseTextureFloat1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: 5f55473b029c7234ea198b0c6db9b459, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BendingNoise:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: b36b9191f90717443a0bd2ee85327b89, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_328c0172397d4fda9bd44c29171b412c_Out_0:
+        m_Texture: {fileID: 2800000, guid: 3cbd96fc4cd512544a85af37dbd652fa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - WindSpeedFloat1: 0.5
+    - WindTurbulence: 0.5
+    - _AlphaClip: 0
+    - _AlphaCutoff: 0.5
+    - _AlphaToMask: 0
+    - _Amplitude: 1.5
+    - _AmplitudeOffset: 2
+    - _BendSpeed: 1
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _Blend_STR_TEST: 8.6
+    - _CastShadows: 1
+    - _Cull: 2
+    - _DefaultBending: 0
+    - _DstBlend: 10
+    - _Frequency: 1.11
+    - _FrequencyOffset: 0
+    - _MaxHeight: 10
+    - _Metallic: 0
+    - _NormalMapStrength: 1
+    - _QueueControl: 0
+    - _QueueOffset: 7
+    - _ReceiveShadows: 1
+    - _ShadowStrength: 0
+    - _Smoothness: 0
+    - _SrcBlend: 1
+    - _Surface: 1
+    - _Wind: 1
+    - _WindOffset: 20
+    - _WindStrength: 0.5
+    - _WindStrength1: 0.5
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
+    - _float: 0
+    m_Colors:
+    - _Blend_Strenght: {r: 164.4, g: 186.8, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Direction: {r: 95.3, g: 82.6, b: -78.1, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _NoisePannerSpeed: {r: 0.05, g: 0.03, b: 0, a: 0}
+    - _NoiseTextureTilling2: {r: 1, g: 1, b: 1, a: 1}
+    - _Shadowcolor: {r: 0, g: 0, b: 0, a: 0}
+    - _WindDirection: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!114 &5474398987511489719
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
