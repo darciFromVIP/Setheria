@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.AI;
 using UnityEngine.Events;
-public class Entity : NetworkBehaviour
+public class Entity : NetworkBehaviour, IUsesAnimator
 {
     protected NetworkAnimator animator;
 
@@ -57,5 +57,10 @@ public class Entity : NetworkBehaviour
         }
         else
             gameObject.SetActive(false);
+    }
+
+    public void SetNewAnimator(Animator animator)
+    {
+        this.animator.animator = animator;
     }
 }

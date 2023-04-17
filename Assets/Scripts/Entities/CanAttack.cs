@@ -7,7 +7,7 @@ public enum AttackType
 {
     Melee, Ranged
 }
-public class CanAttack : NetworkBehaviour
+public class CanAttack : NetworkBehaviour, IUsesAnimator
 {
     [SyncVar] [SerializeField] private float power;
     [SyncVar] [SerializeField] private float criticalChance = 0f;
@@ -411,5 +411,10 @@ public class CanAttack : NetworkBehaviour
     public float GetCooldownReductionModifier()
     {
         return 1 - (cooldownReduction / 100);
+    }
+
+    public void SetNewAnimator(Animator animator)
+    {
+        netAnim.animator = animator;
     }
 }

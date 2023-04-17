@@ -6,7 +6,7 @@ using Mirror;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(NetworkTransform))]
-public class CanMove : NetworkBehaviour
+public class CanMove : NetworkBehaviour, IUsesAnimator
 {
     [HideInInspector] public NavMeshAgent agent;
     public float baseMovementSpeed;
@@ -25,7 +25,8 @@ public class CanMove : NetworkBehaviour
         entity = GetComponent<Entity>();
         agent = GetComponent<NavMeshAgent>();
         agent.speed = baseMovementSpeed;
-        animator = GetComponentInChildren<Animator>();
+        if (!animator)
+            animator = GetComponentInChildren<Animator>();
         if (TryGetComponent(out Character character))
         {
             character.Stop_Acting.AddListener(StopAgent);
@@ -140,5 +141,10 @@ public class CanMove : NetworkBehaviour
         Stop();
         Moved_Within_Range.Invoke();
         Moved_Within_Range.RemoveAllListeners();
+    }
+
+    public void SetNewAnimator(Animator animator)
+    {
+        this.animator = animator;
     }
 }

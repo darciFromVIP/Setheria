@@ -84,11 +84,13 @@ public class SSwipe : Skill
     {
         finalDamage = baseDamage + GetScalingStatValue(damageScalingStat) * damageScalingValue;
         finalBleedDamage = bleedBaseDamage + GetScalingStatValue(bleedDamageScalingStat) * bleedDamageScalingValue;
+        bleedingBuff.duration = baseDuration;
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
             + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nSwipes forward with both claws, dealing <color=orange>" + finalDamage
             + "</color> damage " + "(" + baseDamage + " + " + (int)(damageScalingValue * 100) + "% " + GetTextIconByStat(damageScalingStat) + ")"
             + " to all enemies hit as well as applying Bleed reducing " + GetTextIconByStat(PlayerStat.HealthRegen) + " by <color=orange>"
-            + finalBleedDamage + "</color> (" + bleedBaseDamage + " + " + (int)(bleedDamageScalingValue * 100) + "% " + GetTextIconByStat(bleedDamageScalingStat) + ")";
+            + finalBleedDamage + "</color> (" + bleedBaseDamage + " + " + (int)(bleedDamageScalingValue * 100) + "% " + GetTextIconByStat(bleedDamageScalingStat) + ")." +
+            " Lasts " + bleedingBuff.duration + " seconds.";
         base.UpdateDescription();
     }
 }

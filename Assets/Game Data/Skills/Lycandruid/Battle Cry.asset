@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900cceb4f3cfb6c4d9d120cd42247995, type: 3}
+  m_Name: Battle Cry
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  cooldown: 15
+  manaCost: 50
+  description: 
+  range: 7
+  baseDuration: 8
+  movementBase: 0.2
+  movementScalingStat: 19
+  movementScalingValue: 0.01
+  attackSpeedBase: 0.1
+  attackSpeedScalingStat: 19
+  attackSpeedScalingValue: 0.01
+  movementBuff: {fileID: 11400000, guid: 5df86fd4f783e854e9bb477a01b0240e, type: 2}
+  attackSpeedBuff: {fileID: 11400000, guid: f011d6df9966c184cbcb1b085c976b54, type: 2}
+  projectile: {fileID: 4533246921958147235, guid: 79bd197935df4384c9f8e2f43d8cc2e3,
+    type: 3}

@@ -277,4 +277,12 @@ public class Character : Entity
     {
         Stun_End.Invoke();
     }
+    public void UpdateSkills()
+    {
+        foreach (var item in skills)
+        {
+            item.SetCastingEntity(this);
+            item.UpdateDescription();
+        }
+    }
 }

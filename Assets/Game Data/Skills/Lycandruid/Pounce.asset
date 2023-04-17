@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4616cb791f9d7c45bb90160fa9bdd68, type: 3}
+  m_Name: Pounce
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  cooldown: 10
+  manaCost: 50
+  description: 
+  baseDamage: 30
+  damageScalingStat: 12
+  damageScalingValue: 0.4
+  baseDuration: 3
+  range: 10
+  projectile: {fileID: 4533246921958147235, guid: 79bd197935df4384c9f8e2f43d8cc2e3,
+    type: 3}
+  stunBuff: {fileID: 11400000, guid: ebc87f7f3d86da2459df2442f3efa6cb, type: 2}
