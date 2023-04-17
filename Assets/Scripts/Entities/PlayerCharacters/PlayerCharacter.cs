@@ -497,4 +497,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         returnPoint = transform.position;
     }
+    public void Recall()
+    {
+        moveComp.agent.Warp(returnPoint);
+    }
 }

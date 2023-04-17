@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Everstone
   m_EditorClassIdentifier: 
-  description: 'This stone is used to teleport to the base. Every Stone can be linked
-    with one Central Building. Link to another will cancel the current connection.
+  description: 'This stone is used to teleport to the base. Your character can be
+    linked with one Central Building. Linking to another will cancel the current
+    connection.
 
     __________________________________
 
-    Actively
-    Item'
+    Actively Item'
   grade: 2
   itemType: 0
   sprite: {fileID: 21300000, guid: 0842a51fdf48d794c8aeee44ba50a13a, type: 3}
   stackable: 0
-  usage: []
+  usage:
+  - {fileID: 11400000, guid: d90ef98f3972a6c42805a95d416f7856, type: 2}
   usageCooldown: 320
   cooldownGroup: 0
   passiveBuffs: []
