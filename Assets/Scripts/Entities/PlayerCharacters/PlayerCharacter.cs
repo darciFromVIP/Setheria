@@ -31,6 +31,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public int maxHunger;
     private float hungerInterval;
     private float hungerTimer = 0;
+    private Vector3 returnPoint;
 
     private int attMaxHealth = 0;
     private int attHealthRegen = 0;
@@ -491,5 +492,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             item.UpdateDescription();
         }
+    }
+    public void SetReturnPoint()
+    {
+        returnPoint = transform.position;
     }
 }

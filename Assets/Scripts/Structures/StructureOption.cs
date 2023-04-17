@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum StructureAction
 {
-    None, Craft, Shop, Upgrade, Destroy, TurnInResourcesAndKnowledge, Research, CookFish, OpenInventory
+    None, Craft, Shop, Upgrade, Destroy, TurnInResourcesAndKnowledge, Research, CookFish, OpenInventory, SetReturnPoint
 }
 [CreateAssetMenu(menuName = "Structure Option")]
 public class StructureOption : ScriptableObject

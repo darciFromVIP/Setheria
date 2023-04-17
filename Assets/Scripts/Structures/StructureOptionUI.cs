@@ -71,6 +71,11 @@ public class StructureOptionUI : MonoBehaviour
             case StructureAction.OpenInventory:
                 FindObjectOfType<StashInventory>(true).OpenStash();
                 break;
+            case StructureAction.SetReturnPoint:
+                var player2 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
+                player2.CmdStartWorking(3);
+                player2.Work_Finished.AddListener(SetReturnPoint);
+                break;
             default:
                 break;
         }
@@ -107,5 +112,10 @@ public class StructureOptionUI : MonoBehaviour
             inventory.AddItem(new SaveDataItem() { name = "Cooked Fish", stacks = item.stacks });
             inventory.RemoveItem(new ItemRecipeInfo() { itemData = item.item, stacks = item.stacks });
         }
+    }
+    private void SetReturnPoint()
+    {
+        FindObjectOfType<GameManager>().localPlayerCharacter.SetReturnPoint();
+        FindObjectOfType<SystemMessages>().AddMessage("Return Point Successfully Set!");
     }
 }
