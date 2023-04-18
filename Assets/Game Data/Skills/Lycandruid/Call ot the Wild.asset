@@ -13,6 +13,17 @@ MonoBehaviour:
   m_Name: Call ot the Wild
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
-  cooldown: 0
-  manaCost: 0
-  description: 
+  cooldown: 120
+  manaCost: 70
+  description: '<sprite=10>120,0 <sprite=4>70
+
+    Wolferius unleashes a resonating
+    howl to call his pack. Summons 5 wolves to aid him in battle. Each wolf has <color=orange>1100</color>
+    (500% + 30% <sprite=3>) power and lasts for30 seconds.'
+  timedLife: 30
+  basePower: 5
+  powerScalingStat: 12
+  powerScalingValue: 0.2
+  baseNumberOfWolves: 5
+  wolfPrefab: {fileID: 7590977108257662739, guid: 91dd119c45fad48478a8878f92fd2b98,
+    type: 3}

@@ -6,9 +6,15 @@ public class SDefensiveStance : Skill
 {
     private HasHealth selfCharacter;
     private List<HasHealth> aggroedEnemies = new();
+    private bool enabled = true;
+    private void OnValidate()
+    {
+        aggroedEnemies.Clear();
+    }
     public override void Execute(Character self)
     {
         castingEntity = self;
+        TogglePassive(false);
         castingEntity.GetComponent<Shapeshifter>().CmdShapeshift(false);
         castingEntity.GetComponent<PlayerController>().StartCooldownD();
     }
@@ -24,6 +30,8 @@ public class SDefensiveStance : Skill
         if (!aggroedEnemies.Contains(enemy))
         {
             aggroedEnemies.Add(enemy);
+            if (!enabled)
+                return;
             selfCharacter.ChangeArmor(1);
         }
     }
@@ -32,7 +40,27 @@ public class SDefensiveStance : Skill
         if (aggroedEnemies.Contains(enemy))
         {
             aggroedEnemies.Remove(enemy);
+            if (!enabled)
+                return;
             selfCharacter.ChangeArmor(-1);
+        }
+    }
+    public void TogglePassive(bool value)
+    {
+        enabled = value;
+        if (value)
+        {
+            foreach (var item in aggroedEnemies)
+            {
+                selfCharacter.ChangeArmor(1);
+            }
+        }
+        else
+        {
+            foreach (var item in aggroedEnemies)
+            {
+                selfCharacter.ChangeArmor(-1);
+            }
         }
     }
     public override void UpdateDescription()

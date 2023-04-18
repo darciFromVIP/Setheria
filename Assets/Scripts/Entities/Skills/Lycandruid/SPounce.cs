@@ -93,7 +93,7 @@ public class SPounce : Skill
         });
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         player.GetComponent<HasMana>().SpendMana(manaCost);
-        player.StartCooldownQ();
+        player.StartCooldownW();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);
         player.ChangeCastingState(CastingState.None);

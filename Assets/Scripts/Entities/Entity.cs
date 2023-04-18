@@ -11,6 +11,7 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     protected int animHash_Death = Animator.StringToHash("Death");
 
     public GameObject hudCircle;
+    public VFXDatabase vfxDatabase;
     protected virtual void Start()
     {
         if (TryGetComponent(out HasHealth hp))
@@ -62,5 +63,18 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     public void SetNewAnimator(Animator animator)
     {
         this.animator.animator = animator;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdSpawnVfx(string name)
+    {
+        RpcSpawnVfx(name);
+    }
+    private void RpcSpawnVfx(string name)
+    {
+        SpawnVfx(name);
+    }
+    private void SpawnVfx(string name)
+    {
+        Instantiate(vfxDatabase.GetVFXByName(name), transform);
     }
 }

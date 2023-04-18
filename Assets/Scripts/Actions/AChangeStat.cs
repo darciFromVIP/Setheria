@@ -10,6 +10,7 @@ public class AChangeStat : ActionTemplate
 {
     public PlayerStat stat;
     public float amount;
+    public GameObject vfx;
     public override void ActionFinished()
     {
         
@@ -19,7 +20,9 @@ public class AChangeStat : ActionTemplate
     {
         if (TestExecute())
         {
-            FindObjectOfType<GameManager>().localPlayerCharacter.ChangeStat(stat, amount);
+            var player = FindObjectOfType<GameManager>().localPlayerCharacter;
+            player.ChangeStat(stat, amount);
+            player.CmdSpawnVfx(vfx.name);
             Action_Finished.Invoke();
         }
         else

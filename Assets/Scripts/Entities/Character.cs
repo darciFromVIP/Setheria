@@ -14,7 +14,6 @@ public class Character : Entity
     public List<Skill> skills = new();
     public LayerMask enemyLayers;
     public LayerMask allyLayers;
-    public VFXDatabase vfxDatabase;
     public BuffDatabase buffDatabase;
 
     [HideInInspector] public UnityEvent Stun_Begin = new();

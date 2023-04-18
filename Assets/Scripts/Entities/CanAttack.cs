@@ -168,12 +168,14 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (random < criticalChance)
             modifier = 1 + criticalDamage;
         Resume_Acting.Invoke();
-        enemyTarget.GetComponent<HasHealth>().TakeDamage(power * modifier, false, GetComponent<NetworkIdentity>());
+        if (enemyTarget)
+            enemyTarget.GetComponent<HasHealth>().TakeDamage(power * modifier, false, GetComponent<NetworkIdentity>());
         Attacked();
     }
     public void RangedAttack()                          //This reacts to animations, that are run on both the server and client
     {
-        SpawnProjectile();
+        if (enemyTarget)
+            SpawnProjectile();
         Resume_Acting.Invoke();
         Attacked();
         ResumeActing();
@@ -226,7 +228,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     public void TargetAcquired(NetworkIdentity target)
     {
         enemyTarget = target.GetComponent<HasHealth>();
-        enemyTarget.Target_Received.Invoke(GetComponent<HasHealth>());
+        if (TryGetComponent(out HasHealth hp))
+            enemyTarget.Target_Received.Invoke(hp);
         enemyTarget.On_Death.AddListener(CmdTargetLost);
         Target_Acquired.Invoke(target);
         float temp = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;

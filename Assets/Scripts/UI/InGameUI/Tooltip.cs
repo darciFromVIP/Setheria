@@ -30,6 +30,10 @@ public class Tooltip : MonoBehaviour
         headerText.text = header;
         contentText.text = content;
         spriteImage.sprite = sprite;
+        if (sprite == null)
+            spriteImage.gameObject.SetActive(false);
+        else
+            spriteImage.gameObject.SetActive(true);
 
         int headerLength = headerText.text.Length;
         int contentLength = contentText.text.Length;

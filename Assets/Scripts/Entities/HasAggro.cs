@@ -7,6 +7,7 @@ public class HasAggro : NetworkBehaviour
 {
     [SerializeField] private float aggroRange;
     [SerializeField] private float allyHelpRange;
+    public bool shouldCallForHelp = true;
     private LayerMask enemyLayers;
     private LayerMask allyLayers;
 
@@ -43,14 +44,21 @@ public class HasAggro : NetworkBehaviour
                 }
                 if (resultTarget)
                 {
-                    Collider[] allies = new Collider[10];
-                    Physics.OverlapSphereNonAlloc(transform.position, allyHelpRange, allies, allyLayers);
-                    foreach (var item in allies)
+                    if (shouldCallForHelp)
                     {
-                        if (item)
+                        Collider[] allies = new Collider[10];
+                        Physics.OverlapSphereNonAlloc(transform.position, allyHelpRange, allies, allyLayers);
+                        foreach (var item in allies)
                         {
-                            item.GetComponent<HasAggro>().Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
+                            if (item)
+                            {
+                                item.GetComponent<HasAggro>().Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
+                            }
                         }
+                    }
+                    else
+                    {
+                        Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
                     }
                 }
             }

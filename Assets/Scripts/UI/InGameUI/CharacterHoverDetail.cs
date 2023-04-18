@@ -60,20 +60,36 @@ public class CharacterHoverDetail : MonoBehaviour
         var characterMpComp = lastUpdatedCharacter.GetComponent<HasMana>();
         if (characterHpComp)
         {
+            hpSlider.gameObject.SetActive(true);
+            hpPercentage.gameObject.SetActive(true);
             hpPercentage.text = (characterHpComp.GetHealth() / characterHpComp.GetFinalMaxHealth() * 100).ToString("F0") + "%";
             hpText.text = characterHpComp.GetHealth().ToString("F0") + "/" + characterHpComp.GetFinalMaxHealth().ToString("F0");
             hpSlider.maxValue = characterHpComp.GetFinalMaxHealth();
             hpSlider.value = characterHpComp.GetHealth();
             characterHpComp.Health_Changed.AddListener(UpdateHealth);
         }
+        else
+        {
+            hpPercentage.gameObject.SetActive(false);
+            hpSlider.gameObject.SetActive(false);
+        }
         if (characterMpComp)
         {
+            mpSlider.gameObject.SetActive(true);
             mpText.text = characterMpComp.GetMana().ToString("F0") + "/" + characterMpComp.GetFinalMaxMana().ToString("F0");
             mpSlider.maxValue = characterMpComp.GetFinalMaxMana();
             mpSlider.value = characterMpComp.GetMana();
             characterMpComp.Mana_Changed.AddListener(UpdateMana);
         }
-        characterLevel.text = "Lv" + lastUpdatedCharacter.level.ToString();
+        else
+            mpSlider.gameObject.SetActive(false);
+        if (lastUpdatedCharacter.level == 0)
+            characterLevel.gameObject.SetActive(false);
+        else
+        {
+            characterLevel.gameObject.SetActive(true);
+            characterLevel.text = "Lv" + lastUpdatedCharacter.level.ToString();
+        }
         lastUpdatedCharacter.Buff_Added.RemoveListener(AddBuffToList);
         lastUpdatedCharacter.Buff_Added.AddListener(AddBuffToList);
         foreach (var item in buffList.GetComponentsInChildren<BuffUI>())

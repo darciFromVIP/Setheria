@@ -58,7 +58,9 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     public void MoveTo(Vector3 destination)
     {
         if (agent)
+        {
             agent.destination = destination;
+        }
     }
     public void Stop()
     {
