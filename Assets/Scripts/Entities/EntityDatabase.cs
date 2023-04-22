@@ -22,7 +22,7 @@ public class EntityDatabase : ScriptableObject
     {
         List<Entity> temp = new();
         temp.Clear();
-        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Prefabs/Entities/Ships", "Assets/Prefabs/Entities/Pets" });
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Prefabs/Entities/Ships", "Assets/Prefabs/Entities/Pets", "Assets/Prefabs/Entities/Enemies/Enemy Units" });
         foreach (string SOName in assetNames)
         {
             var SOpath = AssetDatabase.GUIDToAssetPath(SOName);

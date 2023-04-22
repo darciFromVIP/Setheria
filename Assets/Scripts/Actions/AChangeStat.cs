@@ -22,7 +22,8 @@ public class AChangeStat : ActionTemplate
         {
             var player = FindObjectOfType<GameManager>().localPlayerCharacter;
             player.ChangeStat(stat, amount);
-            player.CmdSpawnVfx(vfx.name);
+            if (vfx)
+                player.CmdSpawnVfx(vfx.name);
             Action_Finished.Invoke();
         }
         else

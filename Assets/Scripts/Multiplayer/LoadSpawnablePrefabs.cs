@@ -15,7 +15,7 @@ public class LoadSpawnablePrefabs : MonoBehaviour
     {
         List<GameObject> tempEvents = new();
         tempEvents.Clear();
-        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Prefabs/Entities/Heroes", "Assets/Prefabs/Entities/Enemies", "Assets/Prefabs/Entities/Projectiles",
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Prefabs/Entities/Heroes", "Assets/Prefabs/Entities/Enemies/Enemy Units", "Assets/Prefabs/Entities/Projectiles",
         "Assets/Prefabs/Items", "Assets/Prefabs/Structures/Built", "Assets/Prefabs/Entities/Ships", "Assets/Prefabs/UI", "Assets/Graphics/VFX/Database", "Assets/Prefabs/Entities/Pets" });
         foreach (string SOName in assetNames)
         {
