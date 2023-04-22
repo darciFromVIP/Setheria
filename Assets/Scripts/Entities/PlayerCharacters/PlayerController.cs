@@ -216,35 +216,73 @@ public class PlayerController : NetworkBehaviour
         
         if (state != PlayerState.None)
             return;
-        if (Input.GetKeyDown(KeyCode.D) && cooldownD <= 0)
-            if (manaComp.GetMana() >= playerCharacter.skills[1].manaCost)
-                CmdExecuteSkill1();
+        if (Input.GetKeyDown(KeyCode.D))
+            if (playerCharacter.skills[1].unlocked)
+                if (cooldownD <= 0)
+                    if (manaComp.GetMana() >= playerCharacter.skills[1].manaCost)
+                        CmdExecuteSkill1();
+                    else
+                        SendMessageNotEnoughMana();
+                else
+                    SendMessageSkillNotReady();
             else
-                SendMessageNotEnoughMana();
-        if (Input.GetKeyDown(KeyCode.Q) && cooldownQ <= 0)
-            if (manaComp.GetMana() >= playerCharacter.skills[2].manaCost)
-                CmdExecuteSkill2();
+                SendMessageSkillNotUnlocked();
+        if (Input.GetKeyDown(KeyCode.Q))
+            if (playerCharacter.skills[2].unlocked)
+                if (cooldownQ <= 0)
+                    if (manaComp.GetMana() >= playerCharacter.skills[2].manaCost)
+                        CmdExecuteSkill2();
+                    else
+                        SendMessageNotEnoughMana();
+                else
+                    SendMessageSkillNotReady();
             else
-                SendMessageNotEnoughMana();
-        if (Input.GetKeyDown(KeyCode.W) && cooldownW <= 0)
-            if (manaComp.GetMana() >= playerCharacter.skills[3].manaCost)
-                CmdExecuteSkill3();
+                SendMessageSkillNotUnlocked();
+        if (Input.GetKeyDown(KeyCode.W))
+            if (playerCharacter.skills[3].unlocked)
+                if (cooldownW <= 0)
+                    if (manaComp.GetMana() >= playerCharacter.skills[3].manaCost)
+                        CmdExecuteSkill3();
+                    else
+                        SendMessageNotEnoughMana();
+                else
+                    SendMessageSkillNotReady();
             else
-                SendMessageNotEnoughMana();
-        if (Input.GetKeyDown(KeyCode.E) && cooldownE <= 0)
-            if (manaComp.GetMana() >= playerCharacter.skills[4].manaCost)
-                CmdExecuteSkill4();
+                SendMessageSkillNotUnlocked();
+        if (Input.GetKeyDown(KeyCode.E))
+            if (playerCharacter.skills[4].unlocked)
+                if (cooldownE <= 0)
+                    if (manaComp.GetMana() >= playerCharacter.skills[4].manaCost)
+                        CmdExecuteSkill4();
+                    else
+                        SendMessageNotEnoughMana();
+                else
+                    SendMessageSkillNotReady();
             else
-                SendMessageNotEnoughMana();
-        if (Input.GetKeyDown(KeyCode.R) && cooldownR <= 0)
-            if (manaComp.GetMana() >= playerCharacter.skills[5].manaCost)
-                CmdExecuteSkill5();
+                SendMessageSkillNotUnlocked();
+        if (Input.GetKeyDown(KeyCode.R))
+            if (playerCharacter.skills[5].unlocked)
+                if (cooldownR <= 0)
+                    if (manaComp.GetMana() >= playerCharacter.skills[5].manaCost)
+                        CmdExecuteSkill5();
+                    else
+                        SendMessageNotEnoughMana();
+                else
+                    SendMessageSkillNotReady();
             else
-                SendMessageNotEnoughMana();
+                SendMessageSkillNotUnlocked();
     }
     private void SendMessageNotEnoughMana()
     {
         FindObjectOfType<SystemMessages>().AddMessage("Not enough Mana!");
+    }
+    private void SendMessageSkillNotReady()
+    {
+        FindObjectOfType<SystemMessages>().AddMessage("This skill is not ready yet!");
+    }
+    private void SendMessageSkillNotUnlocked()
+    {
+        FindObjectOfType<SystemMessages>().AddMessage("This skill is not unlocked yet!");
     }
     [Command]
     public void CmdExecuteSkill1()

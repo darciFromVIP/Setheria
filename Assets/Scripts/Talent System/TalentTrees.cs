@@ -1,0 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public class TalentTrees
+{
+    public List<TalentTree> talentTrees = new();
+    public int talentPoints = 1;
+
+    public bool IsTalentUnlocked(TalentScriptable talent, byte level)
+    {
+        if (talent == null)
+            return true;
+        foreach (var item in talentTrees)
+        {
+            foreach (var item2 in item.talents)
+            {
+                if (item2.talentType == talent.talentType)
+                {
+                    if (item2.currentLevel >= level)
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
+    public void UnlockTalent(TalentScriptable talent)
+    {
+        if (talentPoints <= 0)
+            return;
+        foreach (var item in talentTrees)
+        {
+            foreach (var item2 in item.talents)
+            {
+                if (item2.talentType == talent.talentType)
+                {
+                    item2.IncreaseCurrentLevel();
+                    ChangeTalentPoints(-1);
+                }
+            }
+        }
+    }
+    public void ChangeTalentPoints(int value)
+    {
+        talentPoints += value;
+    }
+}

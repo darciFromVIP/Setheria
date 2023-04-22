@@ -38,6 +38,7 @@ public class SaveDataPlayer
     public float attackRange;
     public float armor;
     public float cooldownReduction;
+    public List<TalentTree> talentTrees = new();
 
     public SaveDataPlayer() { }
     public SaveDataPlayer(Hero hero)

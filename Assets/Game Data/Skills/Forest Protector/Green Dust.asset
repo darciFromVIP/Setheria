@@ -20,6 +20,9 @@ MonoBehaviour:
     Sprays magical green dust to a target area, dealing
     <color=orange>47,5</color> damage (40 + 50% <sprite=3>) to enemies as well as
     healing allies hit for <color=orange>45</color> (30 + 5% <sprite=4>)'
+  requiredTalent: {fileID: 11400000, guid: b3dc2812c1d588344a5b9a2470ffc84c, type: 2}
+  requiredTalentLevel: 1
+  unlocked: 1
   baseDamage: 40
   damageScalingStat: 12
   damageScalingValue: 0.5

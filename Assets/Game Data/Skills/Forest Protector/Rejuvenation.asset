@@ -20,6 +20,9 @@ MonoBehaviour:
     Blesses target ally with restorative nature magic,
     increasing their <sprite=1> by <color=orange>25</color> (5 + 10% <sprite=4>)
     for 10,0 seconds.'
+  requiredTalent: {fileID: 11400000, guid: 0565b487720aae84d9a569db35b1630b, type: 2}
+  requiredTalentLevel: 1
+  unlocked: 1
   range: 10
   baseDuration: 10
   baseHeal: 5

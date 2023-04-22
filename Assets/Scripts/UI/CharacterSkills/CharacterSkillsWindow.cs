@@ -65,6 +65,8 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             skills[i].sprite = playerSkills[i].icon;
             skills[i].GetComponent<TooltipTrigger>().SetText(playerSkills[i].name, playerSkills[i].description, playerSkills[i].icon);
+            if (skills[i].TryGetComponent(out Button btn))
+                btn.interactable = playerSkills[i].unlocked;
         }
     }
     private void StartCooldownA()

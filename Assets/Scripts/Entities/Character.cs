@@ -281,7 +281,6 @@ public class Character : Entity
         foreach (var item in skills)
         {
             item.SetCastingEntity(this);
-            item.UpdateDescription();
         }
     }
 }

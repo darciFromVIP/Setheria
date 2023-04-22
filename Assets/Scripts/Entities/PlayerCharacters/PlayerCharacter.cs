@@ -44,6 +44,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     private int attAttackSpeed = 0;
     private int attCooldownReduction = 0;
 
+    public TalentTreesReference refTalentTrees;
+    [HideInInspector] public TalentTrees talentTrees = new();
+
     private const float MaxXpMultiplier = 1.2f;
     private const int BaseMaxXpValue = 100;
 
@@ -137,7 +140,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             if (item.hero == hero)
             {
-
                 if (item.positionX == 0 && item.positionY == 0 && item.positionZ == 0)
                     GetComponent<NetworkTransform>().CmdTeleport(FindObjectOfType<WorldGenerator>().globalStartingPoint.position);
                 else
@@ -174,6 +176,20 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 attackComp.SetAttackRange(item.attackRange);
                 healthComp.SetArmor(item.armor);
                 attackComp.SetCooldownReduction(item.cooldownReduction);
+                if (isOwned)
+                {
+                    if (item.talentTrees.Count > 0)
+                    {
+                        talentTrees.talentTrees = item.talentTrees;
+                    }
+                    else
+                    {
+                        foreach (var item2 in refTalentTrees.talentTrees)
+                        {
+                            talentTrees.talentTrees.Add(new TalentTree(item2.treeType, item2.talents));
+                        }
+                    }
+                }
             }
         }
         if (isOwned)
@@ -226,7 +242,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             attackSpeed = attackComp.GetAttackSpeed(),
             attackRange = attackComp.GetAttackRange(),
             armor = healthComp.GetArmor(),
-            cooldownReduction = attackComp.GetCooldownReduction()
+            cooldownReduction = attackComp.GetCooldownReduction(),
+            talentTrees = talentTrees.talentTrees
         };
     }
     public PlayerCharacter GetLocalPlayerCharacter()
@@ -247,6 +264,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             level++;
             maxXp = (int)(BaseMaxXpValue * level * MaxXpMultiplier);
             Level_Up.Invoke(level);
+            talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);
             FindObjectOfType<FloatingText>().SpawnFloatingText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
         }
@@ -486,19 +504,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         ChangeAttributePoints(-value);
         attackComp.CmdChangeCooldownReduction(0.5f);
     }
-    public void UpdateSkills()
-    {
-        foreach (var item in skills)
-        {
-            item.UpdateDescription();
-        }
-    }
     public void SetReturnPoint()
     {
         returnPoint = transform.position;
     }
     public void Recall()
     {
-        moveComp.agent.Warp(returnPoint);
+        GetComponent<NetworkTransform>().CmdTeleport(returnPoint);
     }
 }

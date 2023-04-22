@@ -14,7 +14,6 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
     public Slider xpSlider;
     public Transform modelPoint;
     public HeroModelDatabase modelDatabase;
-    public GameObject dayNightSphere;
     public List<Button> attributeButtons;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
@@ -51,13 +50,11 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
     public void ToggleWindow()
     {
         FindObjectOfType<Tooltip>(true).Hide();
-        dayNightSphere.SetActive(window.activeSelf);
         window.SetActive(!window.activeSelf);
     }
     public void HideWindow()
     {
         FindObjectOfType<Tooltip>(true).Hide();
-        dayNightSphere.SetActive(true);
         window.SetActive(false);
     }
     private void UpdateXp(int currentXp, int maxXp)

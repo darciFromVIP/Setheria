@@ -11,6 +11,9 @@ public class Skill : ScriptableObject
     public int manaCost;
     [Header("Specific Settings")]
     [HideInInspector] public string description;
+    public TalentScriptable requiredTalent;
+    public byte requiredTalentLevel;
+    [HideInInspector] public bool unlocked = true;
     public virtual void ExecuteOnStart(Character self)
     {
 
@@ -31,6 +34,8 @@ public class Skill : ScriptableObject
     }
     public virtual void UpdateDescription()
     {
+        if (requiredTalent != null)
+            unlocked = (castingEntity as PlayerCharacter).talentTrees.IsTalentUnlocked(requiredTalent, requiredTalentLevel);
         (castingEntity as PlayerCharacter).Skills_Changed.Invoke(castingEntity.skills);
     }
     public void SetCastingEntity(Character self)
