@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4616cb791f9d7c45bb90160fa9bdd68, type: 3}
   m_Name: Pounce
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 42a82716fea4ffd4199048d0fe76def0, type: 3}
   cooldown: 10
   manaCost: 50
-  description: 
+  description: '<sprite=10>2,0 <sprite=4>50
+
+    Pounces to the enemy target, dealing
+    <color=orange>38</color> damage (30 + 40% <sprite=3>) and stunning it for 3 seconds.'
   baseDamage: 30
   damageScalingStat: 12
   damageScalingValue: 0.4

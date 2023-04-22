@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fafc83f23a264e4480ebcc3ef10e5c6, type: 3}
   m_Name: Bite
   m_EditorClassIdentifier: 
-  icon: {fileID: 1801863815, guid: bb107fdeac0009f4b9688309ab6c77f4, type: 3}
+  icon: {fileID: 21300000, guid: e8886bc29853e84448cf82de5e905760, type: 3}
   cooldown: 8
   manaCost: 40
-  description: 
+  description: '<sprite=10>1,6 <sprite=4>40
+
+    Bites the enemy target, dealing
+    <color=orange>50</color> damage (40 + 50% <sprite=3>) and healing self by <color=orange>37</color>
+    (10 + 5% <sprite=5>).'
   baseDamage: 40
   damageScalingStat: 12
   damageScalingValue: 0.5
