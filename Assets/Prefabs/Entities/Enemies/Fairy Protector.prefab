@@ -59,7 +59,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100116, guid: c3b68bdc51549c94b901881e33c43c96,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5875920089838661572}
   m_SourcePrefab: {fileID: 100100000, guid: c3b68bdc51549c94b901881e33c43c96, type: 3}
 --- !u!4 &5663749567987428859 stripped
 Transform:
@@ -67,6 +71,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5663749567987824399}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5663749567987724315 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100116, guid: c3b68bdc51549c94b901881e33c43c96,
+    type: 3}
+  m_PrefabInstance: {fileID: 5663749567987824399}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5875920089838661572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663749567987724315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2548a9c5830ee43970166dba0cbd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill1_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill2_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill3_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill4_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill5_Casted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &7837743079496281630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,6 +131,16 @@ PrefabInstance:
         type: 3}
       propertyPath: xpGranted
       value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 97580777487625474, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 97580777487625474, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 693041487305289382, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -195,6 +242,22 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHealth
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 6494381524655264961, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 8328686456913717237, guid: 057540268fd1edc42b0173efc4193593,
+        type: 3}
+    - target: {fileID: 8490842044111690782, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490842044111690782, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

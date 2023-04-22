@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -856169895584738773, guid: 5d7b1a318204ce646aca98854ff7f545,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 82973ffc8e7795d429f48f482fcfa2f8, type: 2}
     - target: {fileID: 919132149155446097, guid: 5d7b1a318204ce646aca98854ff7f545,
         type: 3}
       propertyPath: m_Name
@@ -71,8 +76,69 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d7b1a318204ce646aca98854ff7f545,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7375092754241013597}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d7b1a318204ce646aca98854ff7f545,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3991728804599915906}
   m_SourcePrefab: {fileID: 100100000, guid: 5d7b1a318204ce646aca98854ff7f545, type: 3}
+--- !u!1 &6087332147242891201 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d7b1a318204ce646aca98854ff7f545,
+    type: 3}
+  m_PrefabInstance: {fileID: 6393956451587934864}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7375092754241013597
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6087332147242891201}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: b9d71afdc3019174ab033c9c5c5496dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &3991728804599915906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6087332147242891201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2548a9c5830ee43970166dba0cbd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill1_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill2_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill3_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill4_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill5_Casted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &6859365933598256507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d7b1a318204ce646aca98854ff7f545,
@@ -182,6 +248,11 @@ PrefabInstance:
       propertyPath: itemDropsTable.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6494381524655264961, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 7375092754241013597}
     - target: {fileID: 8490842044111690782, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_AnchorMax.x

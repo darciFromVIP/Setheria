@@ -1969,7 +1969,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400116}
   - component: {fileID: 14300000}
-  - component: {fileID: 11100000}
+  - component: {fileID: 7358983955660058881}
   m_Layer: 0
   m_Name: HuaYao_03
   m_TagString: Untagged
@@ -2020,27 +2020,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1.1, z: 0}
---- !u!111 &11100000
-Animation:
+--- !u!95 &7358983955660058881
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100116}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 2e6a794b99f7ebc4b83fe8b4ad59fad5, type: 3}
-  - {fileID: 7400000, guid: bcac86237a3bdfd4196b3ace9e0afea5, type: 3}
-  - {fileID: 7400000, guid: 8c93064592c526c4299671c4202846dd, type: 3}
-  - {fileID: 7400000, guid: bb79d1d84e8eb5c47936598a6161d0d9, type: 3}
-  - {fileID: 7400000, guid: ca8b82d2ea5097645b6f835971237811, type: 3}
-  - {fileID: 7400000, guid: ee1260ce51284984daef2174f923b024, type: 3}
-  - {fileID: 7400000, guid: d3b0fd919cb7d524f87018d72b39a6fe, type: 3}
-  - {fileID: 7400000, guid: f7644b25e8190c34d80c298fae576835, type: 3}
-  - {fileID: 7400000, guid: d07964a1bd0b65d4ba50e8ad6284f520, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: ab5a841ed3a12384e914b435a5929ecb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
