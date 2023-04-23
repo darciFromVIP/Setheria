@@ -21,6 +21,9 @@ MonoBehaviour:
     Slow (reduces  by <color=orange>21%</color> (20% + 1% )) and Shaken (reduces
     <sprite=9> by <color=orange>11%</color> (10% + 1% )) to all enemies around Wolferius.
     Lasts 8 seconds.'
+  requiredTalent: {fileID: 11400000, guid: 832a64175df6f1a4a815eecb74813275, type: 2}
+  requiredTalentLevel: 1
+  unlocked: 1
   range: 3
   baseDuration: 8
   movementBaseReduction: 0.2

@@ -15,6 +15,8 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
     public Transform modelPoint;
     public HeroModelDatabase modelDatabase;
     public List<Button> attributeButtons;
+
+    public GameObject currentOpenedWindow;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         playerCharacter = player;
@@ -180,5 +182,13 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
                 item.ChangeStacks(value);
             }
         }
+    }
+    public void OpenAnotherWindow(GameObject window)
+    {
+        if (currentOpenedWindow)
+            currentOpenedWindow.SetActive(false);
+        window.SetActive(true);
+        currentOpenedWindow = window;
+        GetComponent<TalentScreen>().UpdateTalents();
     }
 }

@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class TalentScreen : MonoBehaviour, NeedsLocalPlayerCharacter
 {
     public GameObject window;
     public List<GameObject> combatTalentTrees = new();
+    public TextMeshProUGUI availablePoints, spentPoints;
     private List<TalentButton> talentButtons = new();
 
+    public GameObject currentOpenedWindow;
+    private TalentTreeType currentOpenedTree = TalentTreeType.Combat;
+
     private PlayerCharacter localPlayer;
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            window.SetActive(!window.activeSelf);
-            UpdateTalents();
-        }
-    }
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         localPlayer = player;
@@ -32,11 +29,16 @@ public class TalentScreen : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             foreach (var item2 in localPlayer.talentTrees.talentTrees)
             {
+                if (item2.talentTreeType == currentOpenedTree)
+                {
+                    availablePoints.text = "Available Talent Points: " + localPlayer.talentTrees.talentPoints;
+                    spentPoints.text = "Spent Talent Points: " + item2.talentPointsSpent;
+                }
                 foreach (var item3 in item2.talents)
                 {
                     if (item3.talentType == item.talent.talentType)
                     {
-                        item.UpdateButton(item3, localPlayer.talentTrees);
+                        item.UpdateButton(item3, localPlayer.talentTrees, item2);
                     }
                 }
             }
@@ -46,6 +48,14 @@ public class TalentScreen : MonoBehaviour, NeedsLocalPlayerCharacter
     {
         localPlayer.talentTrees.UnlockTalent(talent);
         localPlayer.UpdateSkills();
+        UpdateTalents();
+    }
+    public void OpenAnotherWindow(GameObject window, TalentTreeType treeType)
+    {
+        if (currentOpenedWindow)
+            currentOpenedWindow.SetActive(false);
+        window.SetActive(true);
+        currentOpenedWindow = window;
         UpdateTalents();
     }
 }

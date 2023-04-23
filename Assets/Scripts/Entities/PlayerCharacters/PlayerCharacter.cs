@@ -178,9 +178,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 attackComp.SetCooldownReduction(item.cooldownReduction);
                 if (isOwned)
                 {
-                    if (item.talentTrees.Count > 0)
+                    if (item.talentTrees != null)
                     {
-                        talentTrees.talentTrees = item.talentTrees;
+                        talentTrees = item.talentTrees;
                     }
                     else
                     {
@@ -243,7 +243,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             attackRange = attackComp.GetAttackRange(),
             armor = healthComp.GetArmor(),
             cooldownReduction = attackComp.GetCooldownReduction(),
-            talentTrees = talentTrees.talentTrees
+            talentTrees = talentTrees
         };
     }
     public PlayerCharacter GetLocalPlayerCharacter()

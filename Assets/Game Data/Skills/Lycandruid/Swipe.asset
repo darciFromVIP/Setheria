@@ -21,6 +21,9 @@ MonoBehaviour:
     dealing <color=orange>32</color> damage (20 + 60% <sprite=3>) to all enemies
     hit as well as applying Bleed reducing <sprite=1> by <color=orange>4</color>
     (1 + 15% <sprite=3>)'
+  requiredTalent: {fileID: 11400000, guid: 03b919a7586550f4b959036a1ce5a2bb, type: 2}
+  requiredTalentLevel: 1
+  unlocked: 1
   baseDuration: 4
   baseDamage: 20
   damageScalingStat: 12

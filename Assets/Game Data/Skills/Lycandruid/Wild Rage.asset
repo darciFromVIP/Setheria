@@ -21,6 +21,9 @@ MonoBehaviour:
     granting himself Fortitude (increases <sprite=5> by <color=orange>154</color>
     (100 + 10% <sprite=5>)) and Haste (increases <sprite=10> by <color=orange>80%</color>).
     Lasts 15 seconds.'
+  requiredTalent: {fileID: 11400000, guid: 118531a6c55a5cb4c91ba11e63ee2064, type: 2}
+  requiredTalentLevel: 1
+  unlocked: 1
   baseDuration: 15
   maxHPBase: 100
   maxHPScalingStat: 1

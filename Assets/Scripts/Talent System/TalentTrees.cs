@@ -37,6 +37,7 @@ public class TalentTrees
                 {
                     item2.IncreaseCurrentLevel();
                     ChangeTalentPoints(-1);
+                    item.ChangeTalentPointsSpent(1);
                 }
             }
         }

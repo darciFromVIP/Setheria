@@ -19,6 +19,9 @@ MonoBehaviour:
 
     Pounces to the enemy target, dealing
     <color=orange>38</color> damage (30 + 40% <sprite=3>) and stunning it for 3 seconds.'
+  requiredTalent: {fileID: 11400000, guid: 17e715774e5b0cf48ac683a727f6d0b5, type: 2}
+  requiredTalentLevel: 1
+  unlocked: 1
   baseDamage: 30
   damageScalingStat: 12
   damageScalingValue: 0.4

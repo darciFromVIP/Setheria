@@ -20,6 +20,9 @@ MonoBehaviour:
     Bites the enemy target, dealing
     <color=orange>50</color> damage (40 + 50% <sprite=3>) and healing self by <color=orange>37</color>
     (10 + 5% <sprite=5>).'
+  requiredTalent: {fileID: 11400000, guid: 03b919a7586550f4b959036a1ce5a2bb, type: 2}
+  requiredTalentLevel: 1
+  unlocked: 1
   baseDamage: 40
   damageScalingStat: 12
   damageScalingValue: 0.5

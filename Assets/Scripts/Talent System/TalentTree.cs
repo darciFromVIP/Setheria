@@ -4,14 +4,14 @@ using UnityEngine;
 
 public enum TalentTreeType
 {
-    CombatForestProtector, CombatLycandruid
+    Combat
 }
 [System.Serializable]
 public class TalentTree
 {
     public TalentTreeType talentTreeType;
     public List<Talent> talents = new();
-
+    public int talentPointsSpent;
     public TalentTree() { }
     public TalentTree(TalentTreeType treeType, List<TalentScriptable> talents)
     {
@@ -20,5 +20,9 @@ public class TalentTree
         {
             this.talents.Add(new Talent(item.talentType));
         }
+    }
+    public void ChangeTalentPointsSpent(int value)
+    {
+        talentPointsSpent += value;
     }
 }
