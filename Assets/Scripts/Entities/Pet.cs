@@ -4,14 +4,16 @@ using UnityEngine;
 using Mirror;
 public class Pet : NetworkBehaviour
 {
-    private CanHavePets petOwner;
+    public CanHavePets petOwner;
     public GameObject despawnVfx;
     
     public void StartTimedLife(float time, CanHavePets owner)
     {
         petOwner = owner;
         StartCoroutine(TimedLife(time));
-        StartCoroutine(MovementOrder());
+        if (TryGetComponent(out CanMove canMove))
+            if (canMove.baseMovementSpeed > 0)
+                StartCoroutine(MovementOrder());
     }
     private IEnumerator TimedLife(float time)
     {
@@ -21,9 +23,14 @@ public class Pet : NetworkBehaviour
             timedLife -= Time.deltaTime;
             yield return null;
         }
-        RpcPlayDespawnVFX();
-        PlayDespawnVFX();
-        petOwner.DespawnPet(GetComponent<Entity>());
+        if (despawnVfx)
+        {
+            RpcPlayDespawnVFX();
+            PlayDespawnVFX();
+            petOwner.DespawnPet(GetComponent<Entity>(), false);
+        }
+        else
+            petOwner.DespawnPet(GetComponent<Entity>(), true);
     }
     private IEnumerator MovementOrder()
     {

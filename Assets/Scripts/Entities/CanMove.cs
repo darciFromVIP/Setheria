@@ -45,7 +45,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     }
     private void Update()
     {
-        if (!(isOwned || (entity is not PlayerCharacter && isServer)))
+        if (!(isOwned || (entity is not PlayerCharacter && isServer)) || baseMovementSpeed == 0)
             return;
         if (animator)
         {

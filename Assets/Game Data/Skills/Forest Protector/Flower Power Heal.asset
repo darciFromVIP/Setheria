@@ -9,11 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
-  m_Name: TFlowerPower
+  m_Script: {fileID: 11500000, guid: a01f24371b082624390000f417897f96, type: 3}
+  m_Name: Flower Power Heal
   m_EditorClassIdentifier: 
-  talentType: 4
-  maxLevel: 1
+  icon: {fileID: 0}
+  cooldown: 9
+  manaCost: 0
+  description: 
   requiredTalent: {fileID: 0}
   requiredTalentLevel: 0
-  requiredTalentPointsSpent: 0
+  unlocked: 1
+  range: 5
+  heal: 0
+  projectile: {fileID: 4533246921958147235, guid: 79bd197935df4384c9f8e2f43d8cc2e3,
+    type: 3}

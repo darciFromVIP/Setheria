@@ -207,11 +207,11 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             targetedEntity = enemyTarget,
         });
     }
-    private void StopActing()
+    public void StopActing()
     {
         canAct = false;
     }
-    private void ResumeActing()
+    public void ResumeActing()
     {
         canAct = true;
     }
@@ -228,15 +228,25 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     public void TargetAcquired(NetworkIdentity target)
     {
         enemyTarget = target.GetComponent<HasHealth>();
-        if (TryGetComponent(out HasHealth hp))
-            enemyTarget.Target_Received.Invoke(hp);
-        enemyTarget.On_Death.AddListener(CmdTargetLost);
-        Target_Acquired.Invoke(target);
-        float temp = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;
-        if (temp > attackRange)
-            moveComp.agent.stoppingDistance = temp;
-        else
-            moveComp.agent.stoppingDistance = attackRange;
+        if (!enemyTarget)
+            if (target.TryGetComponent(out Pet pet))
+                enemyTarget = pet.petOwner.GetComponent<HasHealth>();
+
+        if (enemyTarget)
+        {
+            if (TryGetComponent(out HasHealth hp))
+                enemyTarget.Target_Received.Invoke(hp);
+            enemyTarget.On_Death.AddListener(CmdTargetLost);
+            Target_Acquired.Invoke(target);
+            float temp = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;
+            if (moveComp)
+            {
+                if (temp > attackRange)
+                    moveComp.agent.stoppingDistance = temp;
+                else
+                    moveComp.agent.stoppingDistance = attackRange;
+            }
+        }
     }     
     [Command(requiresAuthority = false)]
     public void CmdTargetLost()
@@ -261,7 +271,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         }
         enemyTarget = null;
         Target_Lost.Invoke();
-        moveComp.agent.stoppingDistance = 0;
+        if (moveComp)
+            moveComp.agent.stoppingDistance = 0;
     }
     public float GetPower()
     {

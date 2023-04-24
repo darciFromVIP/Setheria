@@ -16,10 +16,13 @@ public class CanHavePets : NetworkBehaviour
         pet.GetComponent<Pet>().StartTimedLife(time, this);
         NetworkServer.Spawn(pet.gameObject);
     }
-    public void DespawnPet(Entity pet)
+    public void DespawnPet(Entity pet, bool deathAnimation)
     {
         spawnedPets.Remove(pet);
-        NetworkServer.Destroy(pet.gameObject);
+        if (deathAnimation)
+            pet.RpcOnDeath();
+        else
+            NetworkServer.Destroy(pet.gameObject);
     }
     
 }

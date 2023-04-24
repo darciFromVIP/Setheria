@@ -34,13 +34,13 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     }
 
     [Command(requiresAuthority = false)]
-    protected virtual void CmdOnDeath()
+    public virtual void CmdOnDeath()
     {
         RpcOnDeath();
         OnDeath();
     }
     [ClientRpc]
-    protected virtual void RpcOnDeath()
+    public virtual void RpcOnDeath()
     {
         OnDeath();
     }
@@ -48,18 +48,34 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     {
         if (animator)
         {
-            animator.SetTrigger(animHash_Death);
+            foreach (var item in GetComponentsInChildren<Animator>())
+            {
+                item.SetTrigger(animHash_Death);
+            }
             foreach (var item in GetComponentsInChildren<MonoBehaviour>())
             {
                 item.enabled = false;
             }
             GetComponent<Collider>().enabled = false;
             GetComponent<NavMeshAgent>().enabled = false;
+            StartCoroutine(CorpseDecay());
         }
         else
             gameObject.SetActive(false);
     }
-
+    private IEnumerator CorpseDecay()
+    {
+        yield return new WaitForSeconds(30);
+        float time = 3;
+        while (time > 0)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + Vector3.down, Time.deltaTime);
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        if (isServer)
+            NetworkServer.Destroy(gameObject);
+    }
     public void SetNewAnimator(Animator animator)
     {
         this.animator.animator = animator;
