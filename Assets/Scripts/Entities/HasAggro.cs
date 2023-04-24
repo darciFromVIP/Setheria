@@ -8,6 +8,7 @@ public class HasAggro : NetworkBehaviour
     [SerializeField] private float aggroRange;
     [SerializeField] private float allyHelpRange;
     public bool shouldCallForHelp = true;
+    public EnemyType enemyType;
     private LayerMask enemyLayers;
     private LayerMask allyLayers;
 
@@ -37,8 +38,21 @@ public class HasAggro : NetworkBehaviour
                         var currentDistance = Vector3.Distance(transform.position, item.transform.position);
                         if (currentDistance < distance)
                         {
-                            distance = currentDistance;
-                            resultTarget = item;
+                            var ignore = item.GetComponentInChildren<IgnoredByEnemies>();
+                            if (ignore)
+                            {
+                                if (!ignore.ignoredEnemies.Contains(enemyType))
+                                {
+                                    distance = currentDistance;
+                                    resultTarget = item;
+                                }
+                            }
+                            else
+                            {
+                                distance = currentDistance;
+                                resultTarget = item;
+                            }
+                           
                         }
                     }
                 }

@@ -11,7 +11,7 @@ public class TalentScreen : MonoBehaviour, NeedsLocalPlayerCharacter
     private List<TalentButton> talentButtons = new();
 
     public GameObject currentOpenedWindow;
-    private TalentTreeType currentOpenedTree = TalentTreeType.Combat;
+    private TalentTreeType currentOpenedTree = TalentTreeType.Special;
 
     private PlayerCharacter localPlayer;
     public void SetLocalPlayerCharacter(PlayerCharacter player)

@@ -20,6 +20,7 @@ public class SFlowerPowerHeal : Skill
     }
     private void Cast()
     {
+        castingEntity.GetComponent<CharacterVFXReference>().skill1.SetActive(true);
         var proj = Instantiate(projectile, castingEntity.transform.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {

@@ -7,6 +7,7 @@ public class SkillCastController : MonoBehaviour
     private Character self;
     private int currentIndex = 0;
     private bool isCasting = false;
+    private bool hasTarget = false;
     private void Start()
     {
         GetComponent<CanAttack>().Target_Acquired.AddListener(StartCasting);
@@ -16,6 +17,7 @@ public class SkillCastController : MonoBehaviour
     }
     private void StartCasting(NetworkIdentity enemy)
     {
+        hasTarget = true;
         if (!isCasting)
         {
             currentIndex = 0;
@@ -24,8 +26,17 @@ public class SkillCastController : MonoBehaviour
     }
     private void StopCasting()
     {
-        StopCoroutine("Casting");
-        isCasting = false;
+        hasTarget = false;
+        StartCoroutine(DelayedStopCasting());
+    }
+    private IEnumerator DelayedStopCasting()
+    {
+        yield return new WaitForSeconds(1);
+        if (!hasTarget)
+        {
+            StopCoroutine("Casting");
+            isCasting = false;
+        }
     }
     private IEnumerator Casting()
     {

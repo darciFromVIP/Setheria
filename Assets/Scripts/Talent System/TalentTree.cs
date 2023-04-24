@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TalentTreeType
 {
-    Combat
+    Special
 }
 [System.Serializable]
 public class TalentTree

@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978b298fd45ff4e4d80fc59293eb43b1, type: 3}
   m_Name: Defensive Stance
   m_EditorClassIdentifier: 
-  icon: {fileID: -1011997451, guid: bb107fdeac0009f4b9688309ab6c77f4, type: 3}
+  icon: {fileID: 21300000, guid: 16b874deb65a977418b22b6d36f44f8a, type: 3}
   cooldown: 5
   manaCost: 0
-  description: 
+  description: '<sprite=10>1,0 <sprite=4>0
+
+    Passive: Wolferius gains 1 <sprite=0>
+    per enemy targeting him.
+
+
+    Active: Shapeshifts into a wolf.'
+  requiredTalent: {fileID: 0}
+  requiredTalentLevel: 0
+  unlocked: 1

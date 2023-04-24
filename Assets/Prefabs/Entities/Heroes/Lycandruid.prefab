@@ -6226,6 +6226,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6918512781932175055}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5d7b1a318204ce646aca98854ff7f545,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1752874550915486789}
   m_SourcePrefab: {fileID: 100100000, guid: 5d7b1a318204ce646aca98854ff7f545, type: 3}
 --- !u!1 &7251908345471198749 stripped
 GameObject:
@@ -6280,6 +6284,19 @@ MonoBehaviour:
   Skill5_Casted:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1752874550915486789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251908345471198749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66d128eb21817c4fa69f2c1c5dc772e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoredEnemies: 01000000
 --- !u!4 &8063735382307519655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d7b1a318204ce646aca98854ff7f545,
