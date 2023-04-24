@@ -10,6 +10,8 @@ public class Entity : NetworkBehaviour, IUsesAnimator
 
     protected int animHash_Death = Animator.StringToHash("Death");
 
+    public UnityEvent On_Death = new();
+
     public GameObject hudCircle;
     public VFXDatabase vfxDatabase;
     protected virtual void Start()
@@ -62,6 +64,7 @@ public class Entity : NetworkBehaviour, IUsesAnimator
         }
         else
             gameObject.SetActive(false);
+        On_Death.Invoke();
     }
     private IEnumerator CorpseDecay()
     {

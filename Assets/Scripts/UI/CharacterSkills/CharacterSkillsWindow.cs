@@ -10,6 +10,7 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     public Slider cdASlider, cdDSlider, cdQSlider, cdWSlider, cdESlider, cdRSlider;
     public TextMeshProUGUI textCdA, textCdD, textCdQ, textCdW, textCdE, textCdR;
     public List<Image> skills = new();
+    public Sprite lockedSkill;
 
     private PlayerController playerController;
 
@@ -63,8 +64,16 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     {
         for (int i = 0; i < skills.Count; i++)
         {
-            skills[i].sprite = playerSkills[i].icon;
-            skills[i].GetComponent<TooltipTrigger>().SetText(playerSkills[i].name, playerSkills[i].description, playerSkills[i].icon);
+            if (playerSkills[i].unlocked)
+            {
+                skills[i].sprite = playerSkills[i].icon;
+                skills[i].GetComponent<TooltipTrigger>().SetText(playerSkills[i].name, playerSkills[i].description, playerSkills[i].icon);
+            }
+            else
+            {
+                skills[i].sprite = lockedSkill;
+                skills[i].GetComponent<TooltipTrigger>().SetText("Locked Skill", "Unlock this skill by selecting its corresponding talent in the Combat talent tree.", lockedSkill);
+            }
             if (skills[i].TryGetComponent(out Button btn))
                 btn.interactable = playerSkills[i].unlocked;
         }

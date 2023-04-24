@@ -11,6 +11,7 @@ public class SkillCastController : MonoBehaviour
     {
         GetComponent<CanAttack>().Target_Acquired.AddListener(StartCasting);
         GetComponent<CanAttack>().Target_Lost.AddListener(StopCasting);
+        GetComponent<Entity>().On_Death.AddListener(StopCasting);
         self = GetComponent<Character>();
     }
     private void StartCasting(NetworkIdentity enemy)

@@ -17,19 +17,20 @@ MonoBehaviour:
   manaCost: 100
   description: '<sprite=10>60,0 <sprite=4>100
 
-    Sprays magical green dust to a
-    target area, dealing <color=orange>0</color> damage (0 + 0% ) to enemies as well
-    as healing allies hit (except self) for <color=orange>0</color> (0 + 0% )'
+    Makes Alkestia grow on the target
+    point. She attacks nearby enemies, dealing <color=orange>27,5</color> damage
+    (20 + 50% <sprite=3>) and occasionaly heals nearby allies for <color=orange>33</color>
+    (30 + 0% <sprite=4>). Lasts 30 seconds.'
   requiredTalent: {fileID: 11400000, guid: dfd1f2784883f3e46813332bfab47580, type: 2}
   requiredTalentLevel: 1
   unlocked: 1
-  timedLife: 20
+  timedLife: 30
   baseDamage: 20
   damageScalingStat: 12
   damageScalingValue: 0.5
-  baseHeal: 30
+  baseHeal: 10
   healScalingStat: 4
-  healScalingValue: 0.01
+  healScalingValue: 0.1
   range: 7
   flowerPrefab: {fileID: 7590977108257662739, guid: 617b512be43215445b3fc5bc772b1bd7,
     type: 3}

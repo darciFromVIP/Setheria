@@ -39,7 +39,10 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
         manaComp.Mana_Changed.AddListener(UpdateMana);
         manaComp.Mana_Regen_Changed.AddListener(UpdateManaRegen);
     }
-
+    private void Start()
+    {
+        HideWindow();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
