@@ -6,6 +6,10 @@ public class SUppercut : Skill
 {
     public float range;
     public float baseDuration;
+    public float baseDamage;
+    public PlayerStat damageScalingStat;
+    public float damageScalingValue;
+    private float damageFinal;
     public float armorBaseReduction;
     private float armorFinalReduction;
     public PlayerStat armorReductionScalingStat;
@@ -83,6 +87,16 @@ public class SUppercut : Skill
             buff = damageReductionBuff,
             targetedEntity = enemy.GetComponent<HasHealth>()
         });
+        var proj3 = Instantiate(projectile, castingEntity.transform.position, Quaternion.identity);
+        proj3.InitializeProjectile(new ProjectileData()
+        {
+            projectileTravel = ProjectileTravelType.Instant,
+            projectileImpact = ProjectileImpactType.Single,
+            impactEffect = ProjectileImpactEffect.Damage,
+            effectValue = damageFinal,
+            targetedEntity = enemy.GetComponent<HasHealth>(),
+            owner = castingEntity
+        });
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         player.GetComponent<HasMana>().SpendMana(manaCost);
         player.StartCooldownW();
@@ -92,11 +106,13 @@ public class SUppercut : Skill
     }
     public override void UpdateDescription()
     {
+        damageFinal = baseDamage + (GetScalingStatValue(damageScalingStat) * damageScalingValue);
         armorFinalReduction = (armorBaseReduction + GetScalingStatValue(armorReductionScalingStat) * armorReductionScalingValue) * -1;
         damageFinalReduction = (damageBaseReduction + GetScalingStatValue(damageReductionScalingStat) * damageReductionScalingValue) * -1;
         armorReductionBuff.duration = baseDuration;
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
-            + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nPerforms an uppercut, which applies Cripple (reduces "
+            + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nPerforms an uppercut, which deals <color=orange>" + damageFinal + "</color> damage ("
+            + baseDamage + " + " + (damageScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(damageScalingStat) + ") and applies Cripple (reduces "
             + GetTextIconByStat(PlayerStat.Power) + " by <color=orange>" + (damageFinalReduction * -1).ToString("F2") + "</color> (" + damageBaseReduction + " + "
             + (int)(damageReductionScalingValue * 100) + "% " + GetTextIconByStat(damageReductionScalingStat) +
             ")) and Sunder (reduces " + GetTextIconByStat(PlayerStat.Armor) + " by <color=orange>" + (armorFinalReduction * -1).ToString("F2") + "</color> ("
