@@ -227,6 +227,10 @@ public class Character : Entity
             {
                 item.Stop();
             }
+            if (effect.TryGetComponent(out Animator animator))
+            {
+                animator.SetTrigger("Death");
+            }
         }
     }
     [Command(requiresAuthority = false)]

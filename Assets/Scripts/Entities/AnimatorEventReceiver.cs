@@ -44,4 +44,8 @@ public class AnimatorEventReceiver : MonoBehaviour
     {
         Skill5_Casted.Invoke();
     }
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
 }

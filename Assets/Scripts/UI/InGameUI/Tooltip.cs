@@ -20,9 +20,8 @@ public class Tooltip : MonoBehaviour
     {
         Vector2 position = Input.mousePosition;
         float pivotX = position.x < Screen.width / 2 ? 0 : 1;
-        float pivotY = position.y < Screen.height / 2 ? 0 : 1;
 
-        rectTransform.pivot = new Vector2(pivotX, pivotY);
+        rectTransform.pivot = new Vector2(pivotX, 0);
         transform.position = position;
     }
     public void Show(string header, string content, Sprite sprite)
