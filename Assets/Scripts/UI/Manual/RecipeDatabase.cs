@@ -42,6 +42,11 @@ public class RecipeDatabase : ScriptableObject
         }
         foreach (var item in tempRecipes)
         {
+            if (item.name != "Tent")
+            {
+                item.unlocked = false;
+                item.visible = false;
+            }
             allRecipes.Add(item);
             switch (item.recipeCategory)
             {
