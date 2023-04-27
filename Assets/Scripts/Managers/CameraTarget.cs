@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
 {
     private float cameraSpeed = 25;
-    private float cameraRotationSpeed = 25;
+    private float cameraRotationSpeed = 8;
     private float cameraZoomMin = 10;
     private float cameraZoomMax = 30;
     private int borderThickness = 5;
@@ -25,7 +25,6 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     private void Awake()
     {
         followOffset = cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
-        Teleport(FindObjectOfType<WorldGenerator>().globalStartingPoint);
     }
     private void Start()
     {
@@ -38,6 +37,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
             if (item.name == "CameraZoom")
                 item.onValueChanged.AddListener(CameraZoomChanged);
         }
+        Teleport(FindObjectOfType<WorldGenerator>().globalStartingPoint);
     }
     private void CameraSpeedChanged(float value)
     {

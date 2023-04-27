@@ -140,10 +140,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             if (item.hero == hero)
             {
+                moveComp.StopAgent();
                 if (item.positionX == 0 && item.positionY == 0 && item.positionZ == 0)
                     GetComponent<NetworkTransform>().CmdTeleport(FindObjectOfType<WorldGenerator>().globalStartingPoint.position);
                 else
                     GetComponent<NetworkTransform>().CmdTeleport(new Vector3(item.positionX, item.positionY, item.positionZ));
+                moveComp.ResumeAgent();
                 transform.rotation = new Quaternion(item.rotationX, item.rotationY, item.rotationZ, item.rotationW);
                 heroName = item.name;
                 level = item.level;
@@ -510,6 +512,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     public void Recall()
     {
+        moveComp.StopAgent();
         GetComponent<NetworkTransform>().CmdTeleport(returnPoint);
+        moveComp.ResumeAgent();
     }
 }
