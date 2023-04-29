@@ -515,5 +515,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         moveComp.StopAgent();
         GetComponent<NetworkTransform>().CmdTeleport(returnPoint);
         moveComp.ResumeAgent();
+        moveComp.Stop();
     }
 }

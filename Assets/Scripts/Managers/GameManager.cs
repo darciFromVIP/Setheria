@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using Mirror;
 using TMPro;
 using UnityEngine.Events;
+using Steamworks;
 public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
 {
     public TextMeshProUGUI resourcesText, knowledgeText;
@@ -117,5 +118,9 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
             Mana_Potions_Cooldown.Invoke(timer);
             yield return null;
         }
+    }
+    public void InviteAFriend()
+    {
+        SteamFriends.ActivateGameOverlay("friends");
     }
 }

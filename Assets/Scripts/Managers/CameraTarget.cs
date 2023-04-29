@@ -17,6 +17,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     [SerializeField] private bool cameraMouseControl = true;
     private List<InCameraWay> objectsInTheWay = new();
     private List<InCameraWay> objectsAlreadyTurnedOff = new();
+    private bool isFollowing = false;
 
     public Collider camBounds;
 
@@ -122,6 +123,10 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isFollowing = !isFollowing;
+        }
+        if (isFollowing)
         {
             pos = new Vector3(localPlayerCharacter.transform.position.x, transform.position.y, localPlayerCharacter.transform.position.z);
         }

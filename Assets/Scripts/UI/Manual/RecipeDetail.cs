@@ -127,7 +127,8 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         FindObjectOfType<GameManager>().ChangeResources(-currentOpenedRecipe.resourceCost * amount);
         var tempItem = new ItemRecipeInfo() { itemData = currentOpenedRecipe.resultItem.itemData, stacks = currentOpenedRecipe.resultItem.stacks * amount };
         inventory.AddItem(tempItem);
-        GetComponentInParent<ManualScreen>().UpdateCurrentCategory();   
+        if (!openedInStructure)
+            GetComponentInParent<ManualScreen>().UpdateCurrentCategory();
         UpdateCurrentDetails();
         localPlayer.GetComponent<PlayerCharacter>().AddXp(currentOpenedRecipe.xpGranted * amount);
         localPlayer.Work_Finished.RemoveListener(FinishCrafting);

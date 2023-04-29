@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using TMPro;
 public class DayNightCycle : MonoBehaviour
 {
     public GameObject sphere;
     public Light directionalLight;
     public Volume volume;
+    public TextMeshProUGUI daysAliveText;
     public List<PostProcessingDataScriptable> data = new();
 
+    private int daysAlive = 0;
     private float timer = 0;
     private float progressPercentage = 0;
     private int currentIndex = 0;
@@ -36,6 +39,9 @@ public class DayNightCycle : MonoBehaviour
             {
                 currentIndex = 0;
                 timer = 0;
+                daysAlive++;
+                daysAliveText.text = "Day " + daysAlive;
+                daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
             }
             else
                 currentIndex++;

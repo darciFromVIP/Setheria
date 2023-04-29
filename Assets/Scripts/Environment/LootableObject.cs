@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
+using TMPro;
 
 public class LootableObject : NetworkBehaviour, IInteractable
 {
@@ -24,6 +25,7 @@ public class LootableObject : NetworkBehaviour, IInteractable
     private TooltipTriggerWorld tooltip;
 
     public Slider refreshProgressBar;
+    public TextMeshProUGUI remainingChargesText;
 
     private void Start()
     {
@@ -83,8 +85,11 @@ public class LootableObject : NetworkBehaviour, IInteractable
         CmdSetInteractingPlayer(null);
         currentCharges--;
         FindObjectOfType<CharacterScreen>(true).ReduceToolDurability(toolRequirement, -1);
+        remainingChargesText.gameObject.SetActive(true);
+        remainingChargesText.text = currentCharges + "/" + maxCharges;
         if (currentCharges <= 0)
         {
+            remainingChargesText.gameObject.SetActive(false);
             CmdUpdateLootability(false);
             if (!oneTimeLoot)
                 CmdStartRefreshTimer();
@@ -138,7 +143,7 @@ public class LootableObject : NetworkBehaviour, IInteractable
 
     private IEnumerator StartRefreshTimer()
     {
-        refreshProgressBar.GetComponentInParent<Canvas>(true).gameObject.SetActive(true);
+        refreshProgressBar.gameObject.SetActive(true);
         refreshProgressBar.maxValue = refreshDuration;
         float timer = refreshDuration;
         while (timer > 0)
@@ -148,7 +153,7 @@ public class LootableObject : NetworkBehaviour, IInteractable
             yield return null;
         }
         CmdUpdateLootability(true);
-        refreshProgressBar.GetComponentInParent<Canvas>().gameObject.SetActive(false);
+        refreshProgressBar.gameObject.SetActive(false);
         currentCharges = maxCharges;
     }
 }
