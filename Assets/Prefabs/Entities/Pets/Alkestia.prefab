@@ -10972,6 +10972,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5973066566595933207}
+    - targetCorrespondingSourceObject: {fileID: 237806135351412532, guid: 5ae93da07d471b54a9b55bd3c5a3449a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1806975711752146148}
   m_SourcePrefab: {fileID: 100100000, guid: 5ae93da07d471b54a9b55bd3c5a3449a, type: 3}
 --- !u!4 &6230602716759643960 stripped
 Transform:
@@ -11014,3 +11018,23 @@ MonoBehaviour:
   skill3: {fileID: 0}
   skill4: {fileID: 0}
   skill5: {fileID: 0}
+--- !u!95 &1806975711752146148
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230602716759643967}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6c9d531cd5f14794b96985f3cff0cf15, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
