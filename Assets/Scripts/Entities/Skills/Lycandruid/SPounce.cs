@@ -62,7 +62,7 @@ public class SPounce : Skill
         float minDistance = moveComp.agent.stoppingDistance + castingEntity.GetComponent<CanAttack>().GetAttackRange();
         while (Vector3.Distance(castingEntity.transform.position, enemy.transform.position) > minDistance)
         {
-            castingEntity.transform.position = Vector3.MoveTowards(castingEntity.transform.position, enemy.transform.position, Time.deltaTime * 15);
+            castingEntity.transform.position = Vector3.MoveTowards(castingEntity.transform.position, enemy.transform.position, Time.deltaTime * 25);
             yield return null;
         }
         moveComp.agent.enabled = true;
@@ -94,7 +94,7 @@ public class SPounce : Skill
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         player.GetComponent<HasMana>().SpendMana(manaCost);
         player.StartCooldownW();
-        player.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
+        player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);
         player.ChangeCastingState(CastingState.None);
     }
