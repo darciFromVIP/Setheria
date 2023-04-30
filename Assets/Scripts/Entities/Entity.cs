@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 public class Entity : NetworkBehaviour, IUsesAnimator
 {
-    protected NetworkAnimator animator;
+    public NetworkAnimator animator;
 
     protected int animHash_Death = Animator.StringToHash("Death");
 
