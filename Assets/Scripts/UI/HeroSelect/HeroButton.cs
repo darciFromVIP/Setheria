@@ -37,6 +37,7 @@ public class HeroButton : MonoBehaviour, NeedsLocalPlayer
     private void HeroSelected()
     {
         heroSelect.SpawnPlayer(hero);
+        FindObjectOfType<HeroIcon>().SetHeroIcon(hero);
     }
 
     public void SetLocalPlayer(ClientObject player)
