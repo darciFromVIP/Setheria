@@ -17,6 +17,7 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
     public List<Button> attributeButtons;
 
     public GameObject currentOpenedWindow;
+    private SettingsManager settingsManager;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         playerCharacter = player;
@@ -42,10 +43,11 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
     private void Start()
     {
         HideWindow();
+        settingsManager = FindObjectOfType<SettingsManager>();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(settingsManager.settings.characterScreen))
         {
             ToggleWindow();
         }

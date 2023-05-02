@@ -23,12 +23,14 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
 
     public CinemachineVirtualCamera cam;
 
+    private SettingsManager settingsManager;
     private void Awake()
     {
         followOffset = cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
     }
     private void Start()
     {
+        settingsManager = FindObjectOfType<SettingsManager>();
         foreach (var item in FindObjectsOfType<Slider>(true))
         {
             if (item.name == "CameraMoveSpeed")
@@ -122,7 +124,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
             rottarget.y -= cameraRotationSpeed * Mathf.Abs(Input.GetAxis("Mouse X"));
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(settingsManager.settings.cameraLock))
         {
             isFollowing = !isFollowing;
         }

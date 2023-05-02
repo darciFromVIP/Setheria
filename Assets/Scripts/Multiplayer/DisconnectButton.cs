@@ -14,7 +14,7 @@ public class DisconnectButton : MonoBehaviour, NeedsLocalPlayer
     {
         localPlayer = player;
     }
-    private void Disconnect()
+    public void Disconnect()
     {
         localPlayer.DisconnectFromServer();
     }

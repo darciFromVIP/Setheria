@@ -5,14 +5,16 @@ using UnityEngine;
 public class InventoryScreen : MonoBehaviour
 {
     public GameObject window;
+    private SettingsManager settingsManager;
 
     private void Start()
     {
         GetComponentInChildren<InventoryManager>(true).InitializeInventory();
+        settingsManager = FindObjectOfType<SettingsManager>();
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(settingsManager.settings.inventory))
         {
             ToggleWindow();
         }

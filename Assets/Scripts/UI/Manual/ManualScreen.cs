@@ -10,15 +10,17 @@ public class ManualScreen : MonoBehaviour
     public Recipe recipePrefab;
 
     private RecipeCategory currentOpenedCategory;
+    private SettingsManager settingsManager;
 
     public RecipeDatabase recipeDatabase;
     private void Awake()
     {
         manualScreen.SetActive(false);
+        settingsManager = FindObjectOfType<SettingsManager>();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(settingsManager.settings.manual))
         {
             ToggleWindow();
         }

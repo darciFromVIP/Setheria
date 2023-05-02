@@ -144,7 +144,18 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
         Moved_Within_Range.Invoke();
         Moved_Within_Range.RemoveAllListeners();
     }
-
+    public void FollowTarget(Transform target)
+    {
+        StartCoroutine(FollowTargetCoro(target));
+    }
+    private IEnumerator FollowTargetCoro(Transform target)
+    {
+        while (Vector3.Distance(transform.position, target.position) > 1)
+        {
+            MoveTo(target.position);
+            yield return null;
+        }
+    }
     public void SetNewAnimator(Animator animator)
     {
         this.animator = animator;

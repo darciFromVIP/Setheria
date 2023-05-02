@@ -27,6 +27,7 @@ public class PlayerController : NetworkBehaviour
     public LayerMask movementLayerMask;
     public LayerMask spellCastingLayerMask;
     private GameObject clickEffect;
+    private SettingsManager settingsManager;
 
     public float cooldownD;
     public float cooldownQ;
@@ -60,6 +61,7 @@ public class PlayerController : NetworkBehaviour
         playerCharacter.Stun_End.AddListener(ChangeStateToNone);
         manaComp = GetComponent<HasMana>();
         clickEffect = FindObjectOfType<ClickEffect>().gameObject;
+        settingsManager = FindObjectOfType<SettingsManager>();
     }
     private void Update()
     {
@@ -161,7 +163,7 @@ public class PlayerController : NetworkBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, movementLayerMask))
         {
             
-            if (Input.GetKey(KeyCode.Mouse1))                                       // This could potentially ruin some interactions by overriding Move order
+            if (Input.GetKey(settingsManager.settings.move))                     // This could potentially ruin some interactions by overriding Move order
             {
                 if (hit.collider.gameObject.layer == 0)                         // Default Layer
                 {
@@ -169,20 +171,23 @@ public class PlayerController : NetworkBehaviour
                     attackComp.TargetLost();
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(settingsManager.settings.move))
             {
                 if (hit.collider.gameObject.layer == 0)
                 {
                     clickEffect.transform.position = hit.point;
                     clickEffect.GetComponent<ParticleSystem>().Play();
                 }
-                if (hit.collider.TryGetComponent(out EnemyCharacter enemy))
-                {
-                    Enemy_Clicked.Invoke(enemy.GetComponent<NetworkIdentity>());
-                }
                 if (state == PlayerState.Working)
                 {
                     ChangeState(PlayerState.None);
+                }
+            }
+            if (Input.GetKeyDown(settingsManager.settings.interact))
+            {
+                if (hit.collider.TryGetComponent(out EnemyCharacter enemy))
+                {
+                    Enemy_Clicked.Invoke(enemy.GetComponent<NetworkIdentity>());
                 }
                 if (hit.collider.TryGetComponent(out Item item))
                 {
@@ -196,11 +201,12 @@ public class PlayerController : NetworkBehaviour
                         StartCoroutine(GoToInteract(hit.collider, interactable));
                     if (hit.collider.TryGetComponent(out Ship ship))
                     {
-                        ship.GetComponent<CanMove>().MoveTo(transform.position);
+                        if (Vector3.Distance(transform.position, ship.transform.position) < 10)
+                            ship.GetComponent<CanMove>().MoveTo(transform.position);
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(settingsManager.settings.target))
             {
                 if (hit.collider.TryGetComponent(out Character character))
                 {
@@ -216,7 +222,7 @@ public class PlayerController : NetworkBehaviour
         
         if (state != PlayerState.None)
             return;
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(settingsManager.settings.passiveSkill))
             if (playerCharacter.skills[1].unlocked)
                 if (cooldownD <= 0)
                     if (manaComp.GetMana() >= playerCharacter.skills[1].manaCost)
@@ -227,7 +233,7 @@ public class PlayerController : NetworkBehaviour
                     SendMessageSkillNotReady();
             else
                 SendMessageSkillNotUnlocked();
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(settingsManager.settings.skill1))
             if (playerCharacter.skills[2].unlocked)
                 if (cooldownQ <= 0)
                     if (manaComp.GetMana() >= playerCharacter.skills[2].manaCost)
@@ -238,7 +244,7 @@ public class PlayerController : NetworkBehaviour
                     SendMessageSkillNotReady();
             else
                 SendMessageSkillNotUnlocked();
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(settingsManager.settings.skill2))
             if (playerCharacter.skills[3].unlocked)
                 if (cooldownW <= 0)
                     if (manaComp.GetMana() >= playerCharacter.skills[3].manaCost)
@@ -249,7 +255,7 @@ public class PlayerController : NetworkBehaviour
                     SendMessageSkillNotReady();
             else
                 SendMessageSkillNotUnlocked();
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(settingsManager.settings.skill3))
             if (playerCharacter.skills[4].unlocked)
                 if (cooldownE <= 0)
                     if (manaComp.GetMana() >= playerCharacter.skills[4].manaCost)
@@ -260,7 +266,7 @@ public class PlayerController : NetworkBehaviour
                     SendMessageSkillNotReady();
             else
                 SendMessageSkillNotUnlocked();
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(settingsManager.settings.skill4))
             if (playerCharacter.skills[5].unlocked)
                 if (cooldownR <= 0)
                     if (manaComp.GetMana() >= playerCharacter.skills[5].manaCost)
