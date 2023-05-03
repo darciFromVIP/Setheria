@@ -66,7 +66,7 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     private void UpdateXp(int currentXp, int maxXp)
     {
-        xpText.text = currentXp.ToString() + "/" + maxXp.ToString();
+        xpText.text = "<sprite=14>" + currentXp.ToString() + "/" + maxXp.ToString();
         xpSlider.maxValue = maxXp;
         xpSlider.value = currentXp;
     }

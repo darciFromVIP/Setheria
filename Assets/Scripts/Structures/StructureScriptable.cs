@@ -5,5 +5,5 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Structure")]
 public class StructureScriptable : ScriptableObject
 {
-    public UnityEvent Structure_Built = new();
+    public UnityEvent<StructureScriptable> Structure_Built = new();
 }

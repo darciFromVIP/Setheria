@@ -15,6 +15,6 @@ public class HungerUI : MonoBehaviour, NeedsLocalPlayerCharacter
 
     private void UpdateUI()
     {
-        hungerText.text = player.hunger + "/" + player.maxHunger;
+        hungerText.text = "<sprite=12>" + player.hunger + "/" + player.maxHunger;
     }
 }

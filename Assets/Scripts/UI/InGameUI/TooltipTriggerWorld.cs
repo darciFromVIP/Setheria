@@ -6,6 +6,8 @@ using FoW;
 public class TooltipTriggerWorld : MonoBehaviour
 {
     public string objectName;
+    public string keybindLabel;
+    public KeybindType keybindType;
     private void OnMouseEnter()
     {
         if (FogOfWarTeam.GetTeam(0).GetFogValue(transform.position) >= 255 / 1.2f)
@@ -16,7 +18,7 @@ public class TooltipTriggerWorld : MonoBehaviour
         EventSystem.current.RaycastAll(eventData, results);
         if (results.Count > 0)
             return;
-        FindObjectOfType<TooltipWorld>(true).Show(objectName);
+        FindObjectOfType<TooltipWorld>(true).Show(objectName, keybindType, keybindLabel);
     }
     private void OnMouseExit()
     {

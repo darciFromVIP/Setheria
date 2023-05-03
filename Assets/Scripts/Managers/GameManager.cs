@@ -29,11 +29,11 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     }
     void ResourceHook(int oldValue, int newValue)
     {
-        resourcesText.text = newValue.ToString();
+        resourcesText.text = "<sprite=15>" + newValue.ToString();
     }
     void KnowledgeHook(int oldValue, int newValue)
     {
-        knowledgeText.text = newValue.ToString();
+        knowledgeText.text = "<sprite=11>" + newValue.ToString();
     }
     public void ChangeResources(int value)
     {

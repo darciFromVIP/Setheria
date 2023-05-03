@@ -5,10 +5,11 @@ using TMPro;
 using UnityEngine.UI;
 public class Tooltip : MonoBehaviour
 {
-    public Image spriteImage;
-    public TextMeshProUGUI headerText, contentText;
+    public Image spriteImage, keybindImage;
+    public TextMeshProUGUI headerText, contentText, keybindLabel, keybindText;
     public LayoutElement layoutElement;
     public int characterWrapLimit;
+    public GameObject keybindObject;
 
     private RectTransform rectTransform;
     private void Awake()
@@ -25,11 +26,21 @@ public class Tooltip : MonoBehaviour
         rectTransform.pivot = new Vector2(pivotX, pivotY);
         transform.position = position;
     }
-    public void Show(string header, string content, Sprite sprite)
+    public void Show(string header, string content, Sprite sprite, KeybindType keybindType, string keybindLabel)
     {
         headerText.text = header;
         contentText.text = content;
         spriteImage.sprite = sprite;
+        if (keybindType != KeybindType.None)
+        {
+            keybindObject.SetActive(true);
+            var keybindData = FindObjectOfType<SettingsManager>().GetDataByKeybindType(keybindType);
+            keybindImage.sprite = keybindData.sprite;
+            this.keybindLabel.text = keybindLabel;
+            keybindText.text = keybindData.text;
+        }
+        else
+            keybindObject.SetActive(false);
         if (sprite == null)
             spriteImage.gameObject.SetActive(false);
         else

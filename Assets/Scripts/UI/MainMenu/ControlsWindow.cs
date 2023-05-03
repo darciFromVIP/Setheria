@@ -24,32 +24,7 @@ public class ControlsWindow : MonoBehaviour
     {
         foreach (var item in keybinds)
         {
-            switch (item.keybindType)
-            {
-                case KeybindType.Move:
-                    item.UpdateKeybind(settingsManager.GetMoveData());
-                    break;
-                case KeybindType.Target:
-                    item.UpdateKeybind(settingsManager.GetTargetData());
-                    break;
-                case KeybindType.Interact:
-                    item.UpdateKeybind(settingsManager.GetInteractData());
-                    break;
-                case KeybindType.CharacterScreen:
-                    item.UpdateKeybind(settingsManager.GetCharacterData());
-                    break;
-                case KeybindType.Manual:
-                    item.UpdateKeybind(settingsManager.GetManualData());
-                    break;
-                case KeybindType.Inventory:
-                    item.UpdateKeybind(settingsManager.GetInventoryData());
-                    break;
-                case KeybindType.CameraLock:
-                    item.UpdateKeybind(settingsManager.GetCameraLockData());
-                    break;
-                default:
-                    break;
-            }
+            item.UpdateKeybind(settingsManager.GetDataByKeybindType(item.keybindType));
         }
     }
 }

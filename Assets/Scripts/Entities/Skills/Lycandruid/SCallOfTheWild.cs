@@ -40,8 +40,8 @@ public class SCallOfTheWild : Skill
         finalPower = basePower + (GetScalingStatValue(powerScalingStat) * powerScalingValue);
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
             + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nWolferius unleashes a resonating howl to call his pack. Summons " + baseNumberOfWolves +
-            " wolves to aid him in battle. Each wolf has <color=orange>" + (finalPower * 100).ToString("F0") + "</color> (" + (basePower * 100).ToString("F0") + "% + "
-            + (powerScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(powerScalingStat) + ") power and lasts for" + timedLife + " seconds.";
+            " wolves to aid him in battle. Each wolf has <color=orange>" + finalPower.ToString("F0") + "</color> (" + basePower.ToString("F0") + " + "
+            + (powerScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(powerScalingStat) + ") power and lasts for " + timedLife + " seconds.";
         base.UpdateDescription();
     }
 }

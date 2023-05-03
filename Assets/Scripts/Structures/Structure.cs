@@ -13,7 +13,8 @@ public abstract class Structure : Entity, ISaveable, IInteractable
     protected override void Start()
     {
         base.Start();
-        structureData.Structure_Built.Invoke();
+        structureData.Structure_Built.Invoke(structureData);
+        GetComponent<TooltipTriggerWorld>().objectName = structureData.name;
     }
     private void OnMouseOver()
     {

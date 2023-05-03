@@ -23,27 +23,46 @@ public class RecipeScriptable : ScriptableObject
     public ItemScriptable recipeItem;
     public List<ItemScriptable> requiredItems = new();
     public List<StructureScriptable> requiredStructures = new();
+    private List<ItemScriptable> requiredItemsTemp = new();
+    private List<StructureScriptable> requiredStructuresTemp = new();
 
-    private int incompleteRequirements;
 
     private void OnEnable()
     {
-        incompleteRequirements = 0;
+        requiredItemsTemp.Clear();
+        requiredStructuresTemp.Clear();
         foreach (var item in requiredItems)
         {
-            incompleteRequirements++;
             item.Item_Acquired.AddListener(ReduceRequirement);
+            requiredItemsTemp.Add(item);
         }
         foreach (var item in requiredStructures)
         {
-            incompleteRequirements++;
             item.Structure_Built.AddListener(ReduceRequirement);
+            requiredStructuresTemp.Add(item);
         }
     }
-    private void ReduceRequirement()
+    private void ReduceRequirement(StructureScriptable structureBuilt)
     {
-        incompleteRequirements--;
-        if (incompleteRequirements <= 0)
+        foreach (var item in requiredStructuresTemp)
+        {
+            if (item == structureBuilt)
+                requiredStructuresTemp.Remove(item);
+        }
+        CheckRecipeAvailability();
+    }
+    private void ReduceRequirement(ItemScriptable itemAcquired)
+    {
+        foreach (var item in requiredItemsTemp)
+        {
+            if (item == itemAcquired)
+                requiredItemsTemp.Remove(item);
+        }
+        CheckRecipeAvailability();   
+    }
+    private void CheckRecipeAvailability()
+    {
+        if (requiredItemsTemp.Count <= 0 && requiredStructuresTemp.Count <= 0)
         {
             UnlockRecipe();
         }

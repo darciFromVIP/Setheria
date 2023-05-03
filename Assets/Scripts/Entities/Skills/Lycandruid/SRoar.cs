@@ -68,9 +68,9 @@ public class SRoar : Skill
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
             + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nUnleashes a deep roar, inflicting Slow (reduces "
             + GetTextIconByStat(PlayerStat.MovementSpeed) + " by <color=orange>" + (movementFinalReduction * 100).ToString("F0") + "%</color> (" + (movementBaseReduction * 100).ToString("F0") + "% + "
-            + (movementReductionScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(movementReductionScalingStat) + ")) and Shaken (reduces " 
+            + (movementReductionScalingValue * 100).ToString("F0") + "*" + GetTextIconByStat(movementReductionScalingStat) + ")) and Shaken (reduces " 
             + GetTextIconByStat(PlayerStat.AttackSpeed) + " by <color=orange>" + (attackSpeedFinalReduction * -100).ToString("F0") + "%</color> (" + (attackSpeedBaseReduction * 100).ToString("F0")
-            + "% + " + (attackSpeedReductionScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(attackSpeedReductionScalingStat) + ")) to all enemies around Wolferius." +
+            + "% + " + (attackSpeedReductionScalingValue * 100).ToString("F0") + "*" + GetTextIconByStat(attackSpeedReductionScalingStat) + ")) to all enemies around Wolferius." +
             " Lasts " + movementReductionBuff.duration + " seconds.";
         base.UpdateDescription();
     }

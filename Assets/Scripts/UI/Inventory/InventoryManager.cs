@@ -42,7 +42,7 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
             if (slot.transform.childCount == 0 && slot.isFree)
             {
                 SpawnNewItem(item, stacks, slot);
-                item.Item_Acquired.Invoke();
+                item.Item_Acquired.Invoke(item);
                 return true;
             }
         }

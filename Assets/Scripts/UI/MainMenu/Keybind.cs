@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public enum KeybindType
 {
-    Move, Target, Interact, CharacterScreen, Manual, Inventory, CameraLock, PassiveSkill, Skill1, Skill2, Skill3, Skill4
+    None, Move, Target, Interact, CharacterScreen, Manual, Inventory, CameraLock, PassiveSkill, Skill1, Skill2, Skill3, Skill4 
 }
 public class Keybind : MonoBehaviour
 {
@@ -49,6 +49,21 @@ public class Keybind : MonoBehaviour
                 break;
             case KeybindType.CameraLock:
                 settingsManager.Key_Pressed.AddListener(settingsManager.ChangeCameraLockKey);
+                break;
+            case KeybindType.PassiveSkill:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangePassiveSkillKey);
+                break;
+            case KeybindType.Skill1:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeSkill1Key);
+                break;
+            case KeybindType.Skill2:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeSkill2Key);
+                break;
+            case KeybindType.Skill3:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeSkill3Key);
+                break;
+            case KeybindType.Skill4:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeSkill4Key);
                 break;
             default:
                 break;

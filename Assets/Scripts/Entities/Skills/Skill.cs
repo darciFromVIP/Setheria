@@ -107,6 +107,20 @@ public class Skill : ScriptableObject
                 return "<sprite=0>";
             case PlayerStat.CooldownReduction:
                 return "<sprite=10>";
+            case PlayerStat.Hunger:
+                return "<sprite=12>";
+            case PlayerStat.MaxHunger:
+                return "<sprite=12>";
+            case PlayerStat.Resources:
+                return "<sprite=15>";
+            case PlayerStat.Knowledge:
+                return "<sprite=11>";
+            case PlayerStat.AttributePoint:
+                return "<sprite=2>";
+            case PlayerStat.MovementSpeed:
+                return "<sprite=16>";
+            case PlayerStat.Level:
+                return "<sprite=13>";
             default:
                 return "";
         }

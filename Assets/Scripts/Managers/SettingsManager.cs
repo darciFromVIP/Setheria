@@ -452,53 +452,40 @@ public class SettingsManager : MonoBehaviour
         }
         return result;
     }
-    public KeyData GetMoveData()
+    public KeyData GetDataByKeybindType(KeybindType type)
     {
-        return GetDataByKey(settings.move);
-    }
-    public KeyData GetTargetData()
-    {
-        return GetDataByKey(settings.target);
-    }
-    public KeyData GetInteractData()
-    {
-        return GetDataByKey(settings.interact);
-    }
-    public KeyData GetCharacterData()
-    {
-        return GetDataByKey(settings.characterScreen);
-    }
-    public KeyData GetManualData()
-    {
-        return GetDataByKey(settings.manual);
-    }
-    public KeyData GetInventoryData()
-    {
-        return GetDataByKey(settings.inventory);
-    }
-    public KeyData GetCameraLockData()
-    {
-        return GetDataByKey(settings.cameraLock);
-    }
-    public KeyData GetPassiveSkillData()
-    {
-        return GetDataByKey(settings.passiveSkill);
-    }
-    public KeyData GetSkill1Data()
-    {
-        return GetDataByKey(settings.skill1);
-    }
-    public KeyData GetSkill2Data()
-    {
-        return GetDataByKey(settings.skill2);
-    }
-    public KeyData GetSkill3Data()
-    {
-        return GetDataByKey(settings.skill3);
-    }
-    public KeyData GetSkill4Data()
-    {
-        return GetDataByKey(settings.skill4);
+        switch (type)
+        {
+            case KeybindType.Move:
+                return GetDataByKey(settings.move);
+            case KeybindType.Target:
+                return GetDataByKey(settings.target);
+            case KeybindType.Interact:
+                return GetDataByKey(settings.interact);
+            case KeybindType.CharacterScreen:
+                return GetDataByKey(settings.characterScreen);
+            case KeybindType.Manual:
+                return GetDataByKey(settings.manual);
+            case KeybindType.Inventory:
+                return GetDataByKey(settings.inventory);
+            case KeybindType.CameraLock:
+                return GetDataByKey(settings.cameraLock);
+            case KeybindType.PassiveSkill:
+                return GetDataByKey(settings.passiveSkill);
+            case KeybindType.Skill1:
+                return GetDataByKey(settings.skill1);
+            case KeybindType.Skill2:
+                return GetDataByKey(settings.skill2);
+            case KeybindType.Skill3:
+                return GetDataByKey(settings.skill3);
+            case KeybindType.Skill4:
+                return GetDataByKey(settings.skill4);
+            case KeybindType.None:
+                break;
+            default:
+                break;
+        }
+        return new KeyData();
     }
     public void ChangeMoveKey(KeyCode key)
     {

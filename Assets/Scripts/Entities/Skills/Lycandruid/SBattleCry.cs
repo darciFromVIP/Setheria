@@ -70,9 +70,9 @@ public class SBattleCry : Skill
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
             + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nWolferius howls, granting himself and nearby allies Speed (increases "
             + GetTextIconByStat(PlayerStat.MovementSpeed) + " by <color=orange>" + (movementFinal * 100).ToString("F0") + "%</color> (" + (movementBase * 100).ToString("F0") + "% + "
-            + (movementScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(movementScalingStat) + ")) and Energized (increases " 
+            + (movementScalingValue * 100).ToString("F0") + "*" + GetTextIconByStat(movementScalingStat) + ")) and Energized (increases " 
             + GetTextIconByStat(PlayerStat.AttackSpeed) + " by <color=orange>" + (attackSpeedFinal * 100).ToString("F0") + "%</color> (" + (attackSpeedBase * 100).ToString("F0")
-            + "% + " + (attackSpeedScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(attackSpeedScalingStat) + "))." +
+            + "% + " + (attackSpeedScalingValue * 100).ToString("F0") + "*" + GetTextIconByStat(attackSpeedScalingStat) + "))." +
             " Lasts " + movementBuff.duration + " seconds.";
         base.UpdateDescription();
     }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5303725996307361695}
   - component: {fileID: 292767816343054753}
   - component: {fileID: 6537390957117573919}
+  - component: {fileID: 350703895045296973}
   m_Layer: 11
   m_Name: Structure Template
   m_TagString: Untagged
@@ -159,6 +160,21 @@ MonoBehaviour:
   multithreading: 0
   cellBased: 0
   snapToPixelCenter: 0
+--- !u!114 &350703895045296973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051560462495816291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a50c3f47602b0b34a853482d9d5e8851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: 
+  keybindLabel: interact
+  keybindType: 3
 --- !u!1 &3570985794274343471
 GameObject:
   m_ObjectHideFlags: 0

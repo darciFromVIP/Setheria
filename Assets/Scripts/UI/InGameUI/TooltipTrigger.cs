@@ -8,6 +8,8 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [TextArea(3, 3)]
     public string content;
     public Sprite sprite;
+    public string keybindLabel;
+    public KeybindType keybindType;
     public void SetText(string header, string content, Sprite sprite)
     {
         this.header = header;
@@ -16,7 +18,7 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        FindObjectOfType<Tooltip>(true).Show(header, content, sprite);
+        FindObjectOfType<Tooltip>(true).Show(header, content, sprite, keybindType, keybindLabel);
     }
 
     public void OnPointerExit(PointerEventData eventData)
