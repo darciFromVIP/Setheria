@@ -9,6 +9,7 @@ public abstract class Structure : Entity, ISaveable, IInteractable
     public EntityDatabase entityDatabase;
     public Transform unitSpawnPoint;
     public StructureScriptable structureData;
+    public int demolishCost;
 
     protected override void Start()
     {
@@ -53,5 +54,10 @@ public abstract class Structure : Entity, ISaveable, IInteractable
     {
         var temp = Instantiate(entityDatabase.GetEntityByName(unitName).gameObject, unitSpawnPoint.position, unitSpawnPoint.rotation);
         NetworkServer.Spawn(temp);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdDemolishStructure()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 }

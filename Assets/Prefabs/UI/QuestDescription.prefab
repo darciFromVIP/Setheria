@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Reward: <sprite=11>300 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dd797337fcc517b48ae92fc31554de14, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: dd797337fcc517b48ae92fc31554de14, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -146,6 +146,8 @@ GameObject:
   - component: {fileID: 3882078741589890906}
   - component: {fileID: 7375954419943744757}
   - component: {fileID: 2452630793351783327}
+  - component: {fileID: 468034894454557649}
+  - component: {fileID: 1098825267952726305}
   m_Layer: 5
   m_Name: QuestDescription
   m_TagString: Untagged
@@ -214,9 +216,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea85948cf6c953b47921bb9c08763e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questData: {fileID: 0}
   label: {fileID: 4713662788146792539}
   objectives: {fileID: 4791464584161181587}
   rewards: {fileID: 1881992775759774080}
+--- !u!222 &468034894454557649
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4424989375138743788}
+  m_CullTransparentMesh: 1
+--- !u!114 &1098825267952726305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4424989375138743788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: c6fcff85727147c448f522ddf9e7cfb3, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6963648592358628069
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,9 +465,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Be (un)welcome, stranger.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 311b7bc32ebdd494da18c68ccce02315, type: 2}
-  m_sharedMaterial: {fileID: -4730685459035731124, guid: 311b7bc32ebdd494da18c68ccce02315,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4103fae66dd792c4985ee2570046f642, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 4103fae66dd792c4985ee2570046f642, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

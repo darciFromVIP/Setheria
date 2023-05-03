@@ -43,13 +43,15 @@ public class Character : Entity
             }
         }
     }
-    private void OnMouseEnter()
+    protected override void OnMouseEnter()
     {
+        base.OnMouseEnter();
         if (!isOwned)
             FindObjectOfType<CharacterHoverDetail>().Show(this, false);
     }
-    private void OnMouseExit()
+    protected override void OnMouseExit()
     {
+        base.OnMouseExit();
         if (!isOwned)
             FindObjectOfType<CharacterHoverDetail>().Hide(false);
     }

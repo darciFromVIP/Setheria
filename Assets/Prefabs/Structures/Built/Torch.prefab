@@ -448,20 +448,19 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  skills: []
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  allyLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  vfxDatabase: {fileID: 0}
+  animator: {fileID: 0}
+  On_Death:
+    m_PersistentCalls:
+      m_Calls: []
   hudCircle: {fileID: 0}
+  vfxDatabase: {fileID: 0}
   structureItem: {fileID: 11400000, guid: 084e2b6017fd1f94695aa56411411b3c, type: 2}
-  structureOptions: []
+  structureOptions:
+  - {fileID: 11400000, guid: c60c51bea0c77c64799aa8ff424b70fb, type: 2}
   entityDatabase: {fileID: 0}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 767815694d8d48f4985a4746894968ff, type: 2}
+  demolishCost: 5
 --- !u!4 &6350557599784444269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,

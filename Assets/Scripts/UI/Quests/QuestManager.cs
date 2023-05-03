@@ -60,4 +60,9 @@ public class QuestManager : NetworkBehaviour
     {
         questlines.Remove(questline);
     }
+    public void NewQuestline(QuestlineScriptable questline)
+    {
+        questlines.Add(questline);
+        NewQuest(questline.quests[questline.currentQuestIndex]);
+    }
 }

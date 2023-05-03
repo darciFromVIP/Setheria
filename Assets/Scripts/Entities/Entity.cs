@@ -26,11 +26,14 @@ public class Entity : NetworkBehaviour, IUsesAnimator
         animator = GetComponent<NetworkAnimator>();
         hudCircle = transform.Find("HUDCircle").gameObject;
     }
-    private void OnMouseOver()
+    protected virtual void OnMouseEnter()
+    {
+    }
+    protected virtual void OnMouseOver()
     {
         hudCircle.SetActive(true);
     }
-    private void OnMouseExit()
+    protected virtual void OnMouseExit()
     {
         hudCircle.SetActive(false);
     }

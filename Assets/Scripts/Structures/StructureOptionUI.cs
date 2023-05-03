@@ -11,7 +11,11 @@ public class StructureOptionUI : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(OnClickEvent);
         GetComponent<Image>().sprite = icon;
-        GetComponent<TooltipTrigger>().SetText(structureOption.name, structureOption.description, icon);
+        var structure = GetComponentInParent<StructureScreen>().currentStructure;
+        string description = structureOption.description;
+        if (structure.demolishCost > 0 && structureOption.structureAction == StructureAction.Demolish)
+            description += "\n\nDemolish Cost: " + structure.demolishCost + "<sprite=15>";
+        GetComponent<TooltipTrigger>().SetText(structureOption.name, description, icon);
         if (structureOption.structureAction == StructureAction.None)
             GetComponent<TooltipTrigger>().enabled = false;
         this.structureOption = structureOption;
@@ -30,7 +34,18 @@ public class StructureOptionUI : MonoBehaviour
                 break;
             case StructureAction.Upgrade:
                 break;
-            case StructureAction.Destroy:
+            case StructureAction.Demolish:
+                var gameManager = FindObjectOfType<GameManager>();
+                var structure = GetComponentInParent<StructureScreen>().currentStructure;
+                if (gameManager.TestSubtractResources(structure.demolishCost))
+                {
+                    gameManager.ChangeResources(-structure.demolishCost);
+                    FindObjectOfType<InventoryManager>().AddItem(structure.structureItem, 1);
+                    structure.CmdDemolishStructure();
+                    GetComponentInParent<StructureScreen>().Close();
+                }
+                else
+                    FindObjectOfType<SystemMessages>().AddMessage("You don't have enough Resources!");
                 break;
             case StructureAction.TurnInResourcesAndKnowledge:
                 var items = FindObjectOfType<InventoryManager>().GetAllItems();
