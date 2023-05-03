@@ -35,4 +35,5 @@ public class ItemScriptable : ScriptableObject
     public bool unlocked = true;
 
     public UnityEvent<ItemScriptable> Item_Acquired = new();
+    public UnityEvent<ItemScriptable, int> Item_Stacks_Acquired = new();
 }

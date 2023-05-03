@@ -23,9 +23,8 @@ public class RecipeScriptable : ScriptableObject
     public ItemScriptable recipeItem;
     public List<ItemScriptable> requiredItems = new();
     public List<StructureScriptable> requiredStructures = new();
-    private List<ItemScriptable> requiredItemsTemp = new();
-    private List<StructureScriptable> requiredStructuresTemp = new();
-
+    private Dictionary<ItemScriptable, bool> requiredItemsTemp = new();
+    private Dictionary<StructureScriptable, bool> requiredStructuresTemp = new();
 
     private void OnEnable()
     {
@@ -34,38 +33,37 @@ public class RecipeScriptable : ScriptableObject
         foreach (var item in requiredItems)
         {
             item.Item_Acquired.AddListener(ReduceRequirement);
-            requiredItemsTemp.Add(item);
+            requiredItemsTemp.Add(item, false);
         }
         foreach (var item in requiredStructures)
         {
             item.Structure_Built.AddListener(ReduceRequirement);
-            requiredStructuresTemp.Add(item);
+            requiredStructuresTemp.Add(item, false);
         }
     }
     private void ReduceRequirement(StructureScriptable structureBuilt)
     {
-        foreach (var item in requiredStructuresTemp)
-        {
-            if (item == structureBuilt)
-                requiredStructuresTemp.Remove(item);
-        }
+        requiredStructuresTemp[structureBuilt] = true;
         CheckRecipeAvailability();
     }
     private void ReduceRequirement(ItemScriptable itemAcquired)
     {
-        foreach (var item in requiredItemsTemp)
-        {
-            if (item == itemAcquired)
-                requiredItemsTemp.Remove(item);
-        }
+        requiredItemsTemp[itemAcquired] = true;
         CheckRecipeAvailability();   
     }
     private void CheckRecipeAvailability()
     {
-        if (requiredItemsTemp.Count <= 0 && requiredStructuresTemp.Count <= 0)
+        foreach (var item in requiredItemsTemp)
         {
-            UnlockRecipe();
+            if (item.Value == false)
+                return;
         }
+        foreach (var item in requiredStructuresTemp)
+        {
+            if (item.Value == false)
+                return;
+        }
+        UnlockRecipe();
     }
     public void UnlockRecipe()
     {

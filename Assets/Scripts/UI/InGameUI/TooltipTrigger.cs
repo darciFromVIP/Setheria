@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string header;
@@ -10,6 +13,16 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public Sprite sprite;
     public string keybindLabel;
     public KeybindType keybindType;
+    public Image keyImage;
+    public TextMeshProUGUI keyText;
+    private void Start()
+    {
+        var data = FindObjectOfType<SettingsManager>().GetDataByKeybindType(keybindType);
+        if (keyImage)
+            keyImage.sprite = data.sprite;
+        if (keyText)
+            keyText.text = data.text;
+    }
     public void SetText(string header, string content, Sprite sprite)
     {
         this.header = header;

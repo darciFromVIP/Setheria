@@ -32,6 +32,7 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
                     if (slot.GetComponentInChildren<InventoryItem>().item == item)
                     {
                         slot.GetComponentInChildren<InventoryItem>().ChangeStacks(stacks);
+                        item.Item_Stacks_Acquired.Invoke(item, stacks);
                         return true;
                     }
                 }
@@ -43,6 +44,7 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
             {
                 SpawnNewItem(item, stacks, slot);
                 item.Item_Acquired.Invoke(item);
+                item.Item_Stacks_Acquired.Invoke(item, stacks);
                 return true;
             }
         }
