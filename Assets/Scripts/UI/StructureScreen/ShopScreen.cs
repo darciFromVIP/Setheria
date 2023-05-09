@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopScreen : MonoBehaviour
+public class ShopScreen : MonoBehaviour, WindowedUI
 {
     public GameObject window;
     public Transform shopItemList;
@@ -25,16 +25,6 @@ public class ShopScreen : MonoBehaviour
             shopItem.Initialize(item);
         }
     }
-    public void CheckAvailability()
-    {
-        foreach (var item in shopItemList.GetComponentsInChildren<ShopItem>())
-        {
-            if (item.itemIcon.item.unlocked)
-                item.CheckAvailability(FindObjectOfType<GameManager>());
-            else
-                item.purchaseBTN.interactable = false;
-        }
-    }
     public void ToggleWindow(bool value)
     {
         if (value)
@@ -44,6 +34,30 @@ public class ShopScreen : MonoBehaviour
         else
         {
             window.SetActive(false);
+        }
+    }
+    public void ShowWindow()
+    {
+        ToggleWindow(true);
+    }
+
+    public void HideWindow()
+    {
+        ToggleWindow(false);
+    }
+
+    public bool IsActive()
+    {
+        return window.activeSelf;
+    }
+    public void CheckAvailability()
+    {
+        foreach (var item in shopItemList.GetComponentsInChildren<ShopItem>())
+        {
+            if (item.itemIcon.item.unlocked)
+                item.CheckAvailability(FindObjectOfType<GameManager>());
+            else
+                item.purchaseBTN.interactable = false;
         }
     }
 }

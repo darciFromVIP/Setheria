@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
+public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter, WindowedUI
 {
     public GameObject window;
 
@@ -51,8 +51,6 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             ToggleWindow();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-            HideWindow();
     }
     public void ToggleWindow()
     {
@@ -63,6 +61,16 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
     {
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(false);
+    }
+    public void ShowWindow()
+    {
+        FindObjectOfType<Tooltip>(true).Hide();
+        window.SetActive(true);
+    }
+
+    public bool IsActive()
+    {
+        return window.activeSelf;
     }
     private void UpdateXp(int currentXp, int maxXp)
     {
@@ -196,4 +204,5 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter
         currentOpenedWindow = window;
         GetComponent<TalentScreen>().UpdateTalents();
     }
+
 }

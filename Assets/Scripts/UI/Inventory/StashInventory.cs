@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-public class StashInventory : MonoBehaviour
+public class StashInventory : MonoBehaviour, WindowedUI
 {
     public List<InventorySlot> inventorySlots = new();
     public GameObject window;
@@ -12,13 +12,13 @@ public class StashInventory : MonoBehaviour
     public ItemScriptableDatabase itemDatabase;
     private void Start()
     {
-        CloseStash();
+        HideWindow();
     }
-    public void OpenStash()
+    public void ShowWindow()
     {
         window.SetActive(true);
     }
-    public void CloseStash()
+    public void HideWindow()
     {
         window.SetActive(false);
     }
@@ -160,5 +160,10 @@ public class StashInventory : MonoBehaviour
         }
         FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
         return null;
+    }
+
+    public bool IsActive()
+    {
+        return window.activeSelf;
     }
 }

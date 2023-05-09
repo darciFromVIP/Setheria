@@ -42,7 +42,7 @@ public class StructureOptionUI : MonoBehaviour
                     gameManager.ChangeResources(-structure.demolishCost);
                     FindObjectOfType<InventoryManager>().AddItem(structure.structureItem, 1);
                     structure.CmdDemolishStructure();
-                    GetComponentInParent<StructureScreen>().Close();
+                    GetComponentInParent<StructureScreen>().HideWindow();
                 }
                 else
                     FindObjectOfType<SystemMessages>().AddMessage("You don't have enough Resources!");
@@ -84,7 +84,7 @@ public class StructureOptionUI : MonoBehaviour
                 player1.Work_Finished.AddListener(CookFish);
                 break;
             case StructureAction.OpenInventory:
-                FindObjectOfType<StashInventory>(true).OpenStash();
+                FindObjectOfType<StashInventory>(true).ShowWindow();
                 break;
             case StructureAction.SetReturnPoint:
                 var player2 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class ResearchScreen : MonoBehaviour
+public class ResearchScreen : MonoBehaviour, WindowedUI
 {
     public GameObject window;
     public Button researchBTN;
@@ -29,6 +29,20 @@ public class ResearchScreen : MonoBehaviour
             UpdateRecipes();
             researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && !allResearchesDone;
         }
+    }
+    public void ShowWindow()
+    {
+        ToggleWindow(true);
+    }
+
+    public void HideWindow()
+    {
+        ToggleWindow(false);
+    }
+
+    public bool IsActive()
+    {
+        return window.activeSelf;
     }
     public void UpdateRecipes()
     {

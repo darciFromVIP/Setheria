@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class StructureScreen : MonoBehaviour
+public class StructureScreen : MonoBehaviour, WindowedUI
 {
     public GameObject window;
     public TextMeshProUGUI structureName;
@@ -14,12 +14,12 @@ public class StructureScreen : MonoBehaviour
     public Structure currentStructure;
     private void Start()
     {
-        Close();
+        HideWindow();
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Escape))
-            Close();
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+            HideWindow();
     }
     public void Open(Structure structure)
     {
@@ -38,11 +38,21 @@ public class StructureScreen : MonoBehaviour
         }
         window.SetActive(true);
     }
-    public void Close()
+    public void HideWindow()
     {
         window.SetActive(false);
         GetComponentInChildren<ShopScreen>(true).ToggleWindow(false);
         GetComponentInChildren<ResearchScreen>(true).ToggleWindow(false);
-        GetComponentInChildren<StashInventory>(true).CloseStash();
+        GetComponentInChildren<StashInventory>(true).HideWindow();
+    }
+
+    public void ShowWindow()
+    {
+        window.SetActive(true);
+    }
+
+    public bool IsActive()
+    {
+        return window.activeSelf;
     }
 }

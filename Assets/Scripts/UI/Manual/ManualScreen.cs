@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class ManualScreen : MonoBehaviour
+public class ManualScreen : MonoBehaviour, WindowedUI
 {
     public GameObject manualScreen;
     public GameObject recipeList;
@@ -24,10 +24,8 @@ public class ManualScreen : MonoBehaviour
         {
             ToggleWindow();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-            HideWindow();
     }
-    private void HideWindow()
+    public void HideWindow()
     {
         if (manualScreen.activeSelf)
         {
@@ -52,6 +50,15 @@ public class ManualScreen : MonoBehaviour
         recipeCategories.SetActive(true);
         FindObjectOfType<Tooltip>(true).Hide();
         FindObjectOfType<TooltipWorld>(true).Hide();
+    }
+    public void ShowWindow()
+    {
+        ToggleWindow();
+    }
+
+    public bool IsActive()
+    {
+        return manualScreen.activeSelf;
     }
     private void ClearRecipeList()
     {
