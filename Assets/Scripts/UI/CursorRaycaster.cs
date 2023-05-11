@@ -45,6 +45,7 @@ public class CursorRaycaster : NetworkBehaviour
                 cursor.SetCastingCursor();
             else if (hit.collider.TryGetComponent(out NavMeshModifierVolume navmesh) && player.state != PlayerState.Busy)       // Display Base Cursor on Shallow Water
             {
+                Debug.Log("Hit Water");
                 RaycastHit hit1;
                 Ray ray1 = new Ray(hit.point, Vector3.down);
                 if (Physics.Raycast(ray1, out hit1, 3))

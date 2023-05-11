@@ -56,7 +56,7 @@ public class SaveDataPlayer
                 power = 20;
                 criticalChance = 0;
                 criticalDamage = 50;
-                attackSpeed = 2.5f;
+                attackSpeed = 4f;
                 attackRange = 1.5f;
                 armor = 0;
                 cooldownReduction = 0;
@@ -72,7 +72,7 @@ public class SaveDataPlayer
                 power = 15;
                 criticalChance = 0;
                 criticalDamage = 50;
-                attackSpeed = 3f;
+                attackSpeed = 4f;
                 attackRange = 7;
                 armor = 0;
                 cooldownReduction = 0;
