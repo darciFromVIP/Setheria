@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 0.23
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 133347283e115d147a5fcce7f47a538f, type: 2}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 786989259}
-  m_IndirectSpecularColor: {r: 0.38808215, g: 0.727803, b: 0.732499, a: 1}
+  m_IndirectSpecularColor: {r: 0.18029216, g: 0.22572468, b: 0.30692875, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3780,7 +3780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
@@ -7900,7 +7900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
+  m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
@@ -13895,21 +13895,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &580119755
-Transform:
+--- !u!224 &580119755
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 580119754}
   m_LocalRotation: {x: 0.04991225, y: 0.80596155, z: -0.03921946, w: -0.5885546}
-  m_LocalPosition: {x: 934.2, y: 877.6, z: 65.5}
-  m_LocalScale: {x: 127.80087, y: 127.800896, z: 127.800896}
+  m_LocalPosition: {x: 0, y: 0, z: 61.7}
+  m_LocalScale: {x: 125.068695, y: 125.06872, z: 125.068726}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1518130171}
+  m_Father: {fileID: 1456535681}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0.256, y: 252.294, z: 7.274}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1.2, y: -18.2}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &580119757
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34568,6 +34573,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 580119755}
   - {fileID: 895901134}
   - {fileID: 505433499}
   - {fileID: 534435430}
@@ -35835,7 +35841,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 786989257}
-  - {fileID: 580119755}
   - {fileID: 1874820133}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -40082,7 +40087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroIcons:
-  - {fileID: 21300000, guid: c450bcaf7c121a1479418c40ed31630d, type: 3}
+  - {fileID: 21300000, guid: 3d6694917caa1de4b9f4db2f1fdef971, type: 3}
   - {fileID: 21300000, guid: c450bcaf7c121a1479418c40ed31630d, type: 3}
 --- !u!114 &1688486279
 MonoBehaviour:

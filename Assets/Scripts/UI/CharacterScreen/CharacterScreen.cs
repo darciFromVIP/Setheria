@@ -56,6 +56,7 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter, Windowe
     {
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(!window.activeSelf);
+        GetComponentInChildren<TalentScreen>(true).UpdateTalents();
     }
     public void HideWindow()
     {

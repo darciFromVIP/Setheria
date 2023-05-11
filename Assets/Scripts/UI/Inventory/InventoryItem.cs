@@ -194,13 +194,15 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             image.raycastTarget = false;
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
+            rect.anchorMin = new Vector2(0, 0);
+            rect.anchorMax = new Vector2(0, 0);
         }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         if (draggable)
-            rect.anchoredPosition += eventData.delta;
+            rect.anchoredPosition = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
