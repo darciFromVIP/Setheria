@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6494381524655264961, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 9115114351651751315}
     - target: {fileID: 8490842044111690782, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -172,11 +177,54 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1721587517403622, guid: c6295e3ac14276d44a00c6e1c7860934,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3786002379965816607}
   m_SourcePrefab: {fileID: 100100000, guid: c6295e3ac14276d44a00c6e1c7860934, type: 3}
+--- !u!95 &9115114351651751315 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95894034666125936, guid: c6295e3ac14276d44a00c6e1c7860934,
+    type: 3}
+  m_PrefabInstance: {fileID: 9163641242311917539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9161761272564958671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4176489301195308, guid: c6295e3ac14276d44a00c6e1c7860934,
     type: 3}
   m_PrefabInstance: {fileID: 9163641242311917539}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9164217138711514629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1721587517403622, guid: c6295e3ac14276d44a00c6e1c7860934,
+    type: 3}
+  m_PrefabInstance: {fileID: 9163641242311917539}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3786002379965816607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9164217138711514629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2548a9c5830ee43970166dba0cbd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill1_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill2_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill3_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill4_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill5_Casted:
+    m_PersistentCalls:
+      m_Calls: []
