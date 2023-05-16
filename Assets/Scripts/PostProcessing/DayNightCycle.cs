@@ -45,6 +45,10 @@ public class DayNightCycle : MonoBehaviour
             }
             else
                 currentIndex++;
+            if (currentIndex == 0)
+                FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Day);
+            else if (currentIndex == 2)
+                FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Night);
 
             if (volume.profile.TryGet(out Tonemapping tonemapping))
             {

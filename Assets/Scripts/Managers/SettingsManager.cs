@@ -14,6 +14,7 @@ public struct KeyData
 public class Settings
 {
     public KeyCode move, target, interact, characterScreen, manual, inventory, cameraLock, passiveSkill, skill1, skill2, skill3, skill4;
+    public float masterVolume, musicVolume, ambienceVolume, SFXVolume;
     public Settings()
     {
         move = KeyCode.Mouse1;
@@ -552,5 +553,25 @@ public class SettingsManager : MonoBehaviour
         Key_Pressed.RemoveAllListeners();
         FindObjectOfType<ControlsWindow>().UpdateKeybinds();
         SaveFile();
+    }
+    public void ChangeMasterVolume(float value)
+    {
+        settings.masterVolume = value;
+        FindObjectOfType<AudioManager>().masterBus.setVolume(value);
+    }
+    public void ChangeMusicVolume(float value)
+    {
+        settings.musicVolume = value;
+        FindObjectOfType<AudioManager>().musicBus.setVolume(value);
+    }
+    public void ChangeAmbienceVolume(float value)
+    {
+        settings.ambienceVolume = value;
+        FindObjectOfType<AudioManager>().ambienceBus.setVolume(value);
+    }
+    public void ChangeSFXVolume(float value)
+    {
+        settings.SFXVolume = value;
+        FindObjectOfType<AudioManager>().sfxBus.setVolume(value);
     }
 }

@@ -4,20 +4,44 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using UnityEngine.SceneManagement;
+public enum AmbienceParameter
+{
+    Day, Night
+}
 public class AudioManager : MonoBehaviour
 {
+    public Bus masterBus, musicBus, ambienceBus, sfxBus;
     public FMODEventsScriptable fmodEventsDatabase;
+
+    private EventInstance currentAmbienceInstance;
 
     private List<EventInstance> eventInstances = new();
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += CleanUp;
+        masterBus = RuntimeManager.GetBus("bus:/");
+        musicBus = RuntimeManager.GetBus("bus:/Music");
+        ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
+        sfxBus = RuntimeManager.GetBus("bus:/SFX");
     }
 
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
         RuntimeManager.PlayOneShot(sound, worldPos);
+    }
+    public void PlayAmbience(EventReference ambience)
+    {
+        if (currentAmbienceInstance.isValid())
+        {
+            currentAmbienceInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
+        currentAmbienceInstance = RuntimeManager.CreateInstance(ambience);
+        currentAmbienceInstance.start();
+    }
+    public void ChangeAmbienceParameter(AmbienceParameter parameter)
+    {
+        currentAmbienceInstance.setParameterByName("DayAndNight", (float)parameter);
     }
     public void UIHover()
     {

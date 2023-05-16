@@ -1709,6 +1709,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08751b74e7c3404991f44e480e70a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterVolume: 0
+  musicVolume: 0
+  ambienceVolume: 0
+  SFXVolume: 0
   fmodEventsDatabase: {fileID: 11400000, guid: 4043a4e6298e7054db0caada6f3bb6fb, type: 2}
 --- !u!4 &904791223
 Transform:
@@ -4721,7 +4725,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8725165437399073057, guid: 04d9bd04e5a79be458ddb8b26ea3e761, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
