@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
-
+using FMODUnity;
+using FMOD;
+using FMODUnityResonance;
 public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
 {
     private float cameraSpeed = 25;

@@ -7,10 +7,10 @@ public class ButtonSound : MonoBehaviour, IPointerEnterHandler
 {
     public void OnPointerEnter(PointerEventData eventData)
     {
-        FindObjectOfType<SoundManager>().UIHover();
+        FindObjectOfType<AudioManager>().UIHover();
     }
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(FindObjectOfType<SoundManager>().Click);
+        GetComponent<Button>().onClick.AddListener(FindObjectOfType<AudioManager>().UIClick);
     }
 }
