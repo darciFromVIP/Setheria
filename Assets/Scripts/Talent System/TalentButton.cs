@@ -6,14 +6,11 @@ using TMPro;
 public class TalentButton : MonoBehaviour
 {
     public TalentScriptable talent;
-    private Image image;
-    private TextMeshProUGUI levelText;
-    private Button btn;
+    [SerializeField] private Image image;
+    [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private Button btn;
     private void Awake()
     {
-        btn = GetComponent<Button>();
-        image = GetComponent<Image>();
-        levelText = GetComponentInChildren<TextMeshProUGUI>();
         btn.onClick.AddListener(UnlockTalent);
     }
     public void UpdateButton(Talent currentTalent, TalentTrees playerTalentTrees, TalentTree talentTree)

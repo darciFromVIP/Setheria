@@ -5,20 +5,38 @@ using UnityEngine.UI;
 public class StructureOptionUI : MonoBehaviour
 {
     private StructureOption structureOption;
+    private Structure currentStructure;
+    public Slider cooldownSlider;
 
     private List<InventoryItem> selectedItems = new();
     public void Initialize(Sprite icon, StructureOption structureOption)
     {
         GetComponent<Button>().onClick.AddListener(OnClickEvent);
         GetComponent<Image>().sprite = icon;
-        var structure = GetComponentInParent<StructureScreen>().currentStructure;
+        currentStructure = GetComponentInParent<StructureScreen>().currentStructure;
         string description = structureOption.description;
-        if (structure.demolishCost > 0 && structureOption.structureAction == StructureAction.Demolish)
-            description += "\n\nDemolish Cost: " + structure.demolishCost + "<sprite=15>";
+        if (currentStructure.demolishCost > 0 && structureOption.structureAction == StructureAction.Demolish)
+            description += "\n\nDemolish Cost: " + currentStructure.demolishCost + "<sprite=15>";
         GetComponent<TooltipTrigger>().SetText(structureOption.name, description, icon);
         if (structureOption.structureAction == StructureAction.None)
             GetComponent<TooltipTrigger>().enabled = false;
         this.structureOption = structureOption;
+    }
+    private void Update()
+    {
+        if (currentStructure)
+        {
+            if (currentStructure is Well)
+            {
+                cooldownSlider.gameObject.SetActive(true);
+                cooldownSlider.maxValue = (currentStructure as Well).waterCooldown;
+                cooldownSlider.value = (currentStructure as Well).GetWaterTimer();
+            }
+            else
+                cooldownSlider.gameObject.SetActive(false);
+        }
+        else
+            cooldownSlider.gameObject.SetActive(false);
     }
     public void OnClickEvent()
     {
@@ -59,6 +77,7 @@ public class StructureOptionUI : MonoBehaviour
                 }
                 var player = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
                 player.CmdStartWorking(selectedItems.Count * 2);
+                player.Work_Finished.RemoveListener(TurnInItems);
                 player.Work_Finished.AddListener(TurnInItems);
                 break;
             case StructureAction.Research:
@@ -81,6 +100,7 @@ public class StructureOptionUI : MonoBehaviour
                     count += item.stacks;
                 }
                 player1.CmdStartWorking(count);
+                player1.Work_Finished.RemoveListener(CookFish);
                 player1.Work_Finished.AddListener(CookFish);
                 break;
             case StructureAction.OpenInventory:
@@ -89,7 +109,19 @@ public class StructureOptionUI : MonoBehaviour
             case StructureAction.SetReturnPoint:
                 var player2 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
                 player2.CmdStartWorking(3);
+                player2.Work_Finished.RemoveListener(SetReturnPoint);
                 player2.Work_Finished.AddListener(SetReturnPoint);
+                break;
+            case StructureAction.DrawWater:
+                if ((currentStructure as Well).GetWaterTimer() > 0)
+                    FindObjectOfType<SystemMessages>().AddMessage("There is no water in the Well!");
+                else
+                {
+                    var player3 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
+                    player3.CmdStartWorking(2);
+                    player3.Work_Finished.RemoveListener(DrawWater);
+                    player3.Work_Finished.AddListener(DrawWater);
+                }
                 break;
             default:
                 break;
@@ -132,5 +164,11 @@ public class StructureOptionUI : MonoBehaviour
     {
         FindObjectOfType<GameManager>().localPlayerCharacter.SetReturnPoint();
         FindObjectOfType<SystemMessages>().AddMessage("Return Point Successfully Set!");
+    }
+    private void DrawWater()
+    {
+        (currentStructure as Well).CmdStartWaterCooldown();
+        FindObjectOfType<InventoryManager>().AddItem(new ItemRecipeInfo { itemData = (currentStructure as Well).waterItem, stacks = 1 });
+
     }
 }

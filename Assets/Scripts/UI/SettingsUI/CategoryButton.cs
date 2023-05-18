@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class CharacterScreenCategory : MonoBehaviour
+public class CategoryButton : MonoBehaviour
 {
     public GameObject window;
     private void Awake()
@@ -12,6 +12,6 @@ public class CharacterScreenCategory : MonoBehaviour
 
     private void CategoryClicked()
     {
-        GetComponentInParent<CharacterScreen>().OpenAnotherWindow(window);
+        GetComponentInParent<WindowWithCategories>().OpenAnotherWindow(window);
     }
 }

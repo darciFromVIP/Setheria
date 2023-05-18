@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class TalentScreen : MonoBehaviour, NeedsLocalPlayerCharacter
+public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
 {
-    public GameObject window;
     public List<GameObject> combatTalentTrees = new();
     public TextMeshProUGUI availablePoints, spentPoints;
     private List<TalentButton> talentButtons = new();
 
-    public GameObject currentOpenedWindow;
     private TalentTreeType currentOpenedTree = TalentTreeType.Special;
 
     private PlayerCharacter localPlayer;
@@ -50,12 +48,9 @@ public class TalentScreen : MonoBehaviour, NeedsLocalPlayerCharacter
         localPlayer.UpdateSkills();
         UpdateTalents();
     }
-    public void OpenAnotherWindow(GameObject window, TalentTreeType treeType)
+    public override void OpenAnotherWindow(GameObject window)
     {
-        if (currentOpenedWindow)
-            currentOpenedWindow.SetActive(false);
-        window.SetActive(true);
-        currentOpenedWindow = window;
+        base.OpenAnotherWindow(window);
         UpdateTalents();
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter, WindowedUI
+public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, WindowedUI
 {
     public GameObject window;
 
@@ -16,7 +16,6 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter, Windowe
     public HeroModelDatabase modelDatabase;
     public List<Button> attributeButtons;
 
-    public GameObject currentOpenedWindow;
     private SettingsManager settingsManager;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
@@ -197,13 +196,9 @@ public class CharacterScreen : MonoBehaviour, NeedsLocalPlayerCharacter, Windowe
             }
         }
     }
-    public void OpenAnotherWindow(GameObject window)
+    public override void OpenAnotherWindow(GameObject window)
     {
-        if (currentOpenedWindow)
-            currentOpenedWindow.SetActive(false);
-        window.SetActive(true);
-        currentOpenedWindow = window;
-        GetComponent<TalentScreen>().UpdateTalents();
+        base.OpenAnotherWindow(window);
+        GetComponentInChildren<TalentScreen>(true).UpdateTalents();
     }
-
 }

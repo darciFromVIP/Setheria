@@ -65,4 +65,20 @@ public class AudioManager : MonoBehaviour
             item.release();
         }
     }
+    public void ChangeMasterVolume(float value)
+    {
+        masterBus.setVolume(value);
+    }
+    public void ChangeMusicVolume(float value)
+    {
+        musicBus.setVolume(value);
+    }
+    public void ChangeAmbienceVolume(float value)
+    {
+        ambienceBus.setVolume(value);
+    }
+    public void ChangeSFXVolume(float value)
+    {
+        sfxBus.setVolume(value);
+    }
 }

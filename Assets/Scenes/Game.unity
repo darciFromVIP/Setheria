@@ -4606,7 +4606,7 @@ GameObject:
   - component: {fileID: 214578352}
   - component: {fileID: 214578351}
   - component: {fileID: 214578350}
-  - component: {fileID: 214578349}
+  - component: {fileID: 214578353}
   m_Layer: 5
   m_Name: AlchemyTalents
   m_TagString: Untagged
@@ -4635,20 +4635,6 @@ RectTransform:
   m_AnchoredPosition: {x: 675, y: -23.324}
   m_SizeDelta: {x: 450, y: 46.648}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &214578349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214578347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c48216ea14c303a46ac31fe5a7051a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  window: {fileID: 1994488372}
-  treeType: 0
 --- !u!114 &214578350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4731,6 +4717,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 214578347}
   m_CullTransparentMesh: 1
+--- !u!114 &214578353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214578347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a17fb2e006d0b41bba168aa041cf8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 1994488372}
 --- !u!1 &225952825
 GameObject:
   m_ObjectHideFlags: 0
@@ -5347,6 +5346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 252485886}
+  - component: {fileID: 252485887}
   m_Layer: 5
   m_Name: TalentWindow
   m_TagString: Untagged
@@ -5378,6 +5378,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &252485887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252485885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 342e3bbb24328fb428f3c91ba93ad052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatTalentTrees:
+  - {fileID: 1235161514}
+  - {fileID: 1114573728}
+  availablePoints: {fileID: 1870280581}
+  spentPoints: {fileID: 1141945640}
 --- !u!1 &252506499
 GameObject:
   m_ObjectHideFlags: 0
@@ -7041,7 +7058,7 @@ GameObject:
   - component: {fileID: 291480247}
   - component: {fileID: 291480246}
   - component: {fileID: 291480245}
-  - component: {fileID: 291480244}
+  - component: {fileID: 291480248}
   m_Layer: 5
   m_Name: TalentsBTN
   m_TagString: Untagged
@@ -7070,19 +7087,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 246.6451, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &291480244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291480242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6fc0480fc57344ea153fa2f4e5abd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  window: {fileID: 252485885}
 --- !u!114 &291480245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7165,6 +7169,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291480242}
   m_CullTransparentMesh: 1
+--- !u!114 &291480248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291480242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a17fb2e006d0b41bba168aa041cf8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 252485885}
 --- !u!1001 &292643096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8542,7 +8559,7 @@ GameObject:
   - component: {fileID: 338075352}
   - component: {fileID: 338075351}
   - component: {fileID: 338075350}
-  - component: {fileID: 338075349}
+  - component: {fileID: 338075353}
   m_Layer: 5
   m_Name: CombatTalents
   m_TagString: Untagged
@@ -8571,20 +8588,6 @@ RectTransform:
   m_AnchoredPosition: {x: 450, y: -34.76855}
   m_SizeDelta: {x: 250, y: 49.5371}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &338075349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338075347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c48216ea14c303a46ac31fe5a7051a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  window: {fileID: 1994488372}
-  treeType: 0
 --- !u!114 &338075350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8667,6 +8670,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 338075347}
   m_CullTransparentMesh: 1
+--- !u!114 &338075353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338075347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a17fb2e006d0b41bba168aa041cf8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 1994488372}
 --- !u!1 &344618938
 GameObject:
   m_ObjectHideFlags: 0
@@ -30910,7 +30926,7 @@ GameObject:
   - component: {fileID: 1309974218}
   - component: {fileID: 1309974217}
   - component: {fileID: 1309974216}
-  - component: {fileID: 1309974215}
+  - component: {fileID: 1309974219}
   m_Layer: 5
   m_Name: CharacterStatsBTN
   m_TagString: Untagged
@@ -30939,19 +30955,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 246.6451, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1309974215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309974213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6fc0480fc57344ea153fa2f4e5abd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  window: {fileID: 1433921301}
 --- !u!114 &1309974216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31034,6 +31037,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309974213}
   m_CullTransparentMesh: 1
+--- !u!114 &1309974219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309974213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a17fb2e006d0b41bba168aa041cf8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  window: {fileID: 1433921301}
 --- !u!1 &1311550775
 GameObject:
   m_ObjectHideFlags: 0
@@ -32237,7 +32253,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1359814174}
   - component: {fileID: 1359814175}
-  - component: {fileID: 1359814176}
   m_Layer: 5
   m_Name: CharacterScreen
   m_TagString: Untagged
@@ -32307,26 +32322,6 @@ MonoBehaviour:
   - {fileID: 149241162}
   - {fileID: 611927907}
   - {fileID: 69708224}
-  currentOpenedWindow: {fileID: 1433921301}
---- !u!114 &1359814176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359814173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 342e3bbb24328fb428f3c91ba93ad052, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  window: {fileID: 252485885}
-  combatTalentTrees:
-  - {fileID: 1235161514}
-  - {fileID: 1114573728}
-  availablePoints: {fileID: 1870280581}
-  spentPoints: {fileID: 1141945640}
-  currentOpenedWindow: {fileID: 1994488372}
 --- !u!1001 &1362330084
 PrefabInstance:
   m_ObjectHideFlags: 0

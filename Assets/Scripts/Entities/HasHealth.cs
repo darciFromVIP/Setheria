@@ -51,7 +51,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
                 healthRegenTimer = 0;
                 if (healthRegen > 0)
                     RpcHealDamage(healthRegen, true);
-                else
+                else if (healthRegen < 0)
                     RpcTakeDamage(-healthRegen, true, GetComponent<NetworkIdentity>());
             }
         }

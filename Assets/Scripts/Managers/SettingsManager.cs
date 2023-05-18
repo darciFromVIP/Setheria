@@ -29,13 +29,17 @@ public class Settings
         skill2 = KeyCode.W;
         skill3 = KeyCode.E;
         skill4 = KeyCode.R;
+        masterVolume = 1.0f;
+        musicVolume = 1.0f;
+        ambienceVolume = 1.0f;
+        SFXVolume = 1.0f;
     }
 }
 public class SettingsManager : MonoBehaviour
 {
     private string fullPath;
 
-    public Settings settings = new();
+    public Settings settings;
 
     public Sprite key, space, enter, mouseLeft, mouseWheel, mouseRight;
 
@@ -43,6 +47,7 @@ public class SettingsManager : MonoBehaviour
 
     private void Awake()
     {
+        settings = new();
         DontDestroyOnLoad(gameObject);
         fullPath = Application.persistentDataPath + "/User/Settings";
         var temp = LoadFile();
@@ -50,7 +55,10 @@ public class SettingsManager : MonoBehaviour
             SaveFile();
         else
             settings = temp;
-        Debug.Log(settings.move);
+        ChangeMasterVolume(settings.masterVolume);
+        ChangeMusicVolume(settings.musicVolume);
+        ChangeAmbienceVolume(settings.ambienceVolume);
+        ChangeSFXVolume(settings.SFXVolume);
     }
     public void SaveFile()
     {
@@ -488,6 +496,25 @@ public class SettingsManager : MonoBehaviour
         }
         return new KeyData();
     }
+    public float GetDataByAudioSlider(AudioSliderType type)
+    {
+        switch (type)
+        {
+            case AudioSliderType.None:
+                break;
+            case AudioSliderType.MasterVolume:
+                return settings.masterVolume;
+            case AudioSliderType.MusicVolume:
+                return settings.musicVolume;
+            case AudioSliderType.AmbienceVolume:
+                return settings.ambienceVolume;
+            case AudioSliderType.SFXVolume:
+                return settings.SFXVolume;
+            default:
+                break;
+        }
+        return 1;
+    }
     public void ChangeMoveKey(KeyCode key)
     {
         settings.move = key;
@@ -554,24 +581,32 @@ public class SettingsManager : MonoBehaviour
         FindObjectOfType<ControlsWindow>().UpdateKeybinds();
         SaveFile();
     }
+    private void VolumeChanged()
+    {
+        SaveFile();
+    }
     public void ChangeMasterVolume(float value)
     {
         settings.masterVolume = value;
-        FindObjectOfType<AudioManager>().masterBus.setVolume(value);
+        FindObjectOfType<AudioManager>().ChangeMasterVolume(value);
+        VolumeChanged();
     }
     public void ChangeMusicVolume(float value)
     {
         settings.musicVolume = value;
-        FindObjectOfType<AudioManager>().musicBus.setVolume(value);
+        FindObjectOfType<AudioManager>().ChangeMusicVolume(value);
+        VolumeChanged();
     }
     public void ChangeAmbienceVolume(float value)
     {
         settings.ambienceVolume = value;
-        FindObjectOfType<AudioManager>().ambienceBus.setVolume(value);
+        FindObjectOfType<AudioManager>().ChangeAmbienceVolume(value);
+        VolumeChanged();
     }
     public void ChangeSFXVolume(float value)
     {
         settings.SFXVolume = value;
-        FindObjectOfType<AudioManager>().sfxBus.setVolume(value);
+        FindObjectOfType<AudioManager>().ChangeSFXVolume(value);
+        VolumeChanged();
     }
 }

@@ -425,6 +425,7 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     public void RpcStartWorking(float duration)
     {
+        StopAllCoroutines();
         StartCoroutine(Working(duration));
     }
     private IEnumerator Working(float duration)
