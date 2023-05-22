@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using FMODUnity;
 public enum ProjectileTravelType
 {
     Skillshot, EntityTargeted, TerrainTargeted, Instant
@@ -36,6 +37,8 @@ public struct ProjectileData
 public class Projectile : NetworkBehaviour
 {
     private ProjectileData data;
+    public EventReference launchSound;
+    public EventReference impactSound;
     public GameObject impactParticlePrefab;
     private void OnTriggerEnter(Collider other)
     {
@@ -48,6 +51,8 @@ public class Projectile : NetworkBehaviour
     }
     public void InitializeProjectile(ProjectileData data)
     {
+        if (!launchSound.IsNull)
+            FindObjectOfType<AudioManager>().PlayOneShot(launchSound, transform.position);
         this.data = data;
         switch (data.projectileTravel)
         {
@@ -110,6 +115,8 @@ public class Projectile : NetworkBehaviour
     }
     private void ProjectileImpact()
     {
+        if (!launchSound.IsNull)
+            FindObjectOfType<AudioManager>().PlayOneShot(impactSound, transform.position);
         var targets = new List<HasHealth>();
         switch (data.projectileImpact)
         {

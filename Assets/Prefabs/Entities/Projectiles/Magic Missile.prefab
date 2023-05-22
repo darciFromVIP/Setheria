@@ -5,7 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 97263202190292962, guid: 4f07efc4bf2aa05458dee4247fda801c,
@@ -88,17 +88,69 @@ PrefabInstance:
       propertyPath: particle
       value: 
       objectReference: {fileID: 2623588163955708991}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
+      propertyPath: impactSound.Path
+      value: event:/World Sounds/Heroes/Magic Missile Impact
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
+      propertyPath: launchSound.Path
+      value: event:/World Sounds/Heroes/Magic Missile Launch
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
+      propertyPath: impactSound.Guid.Data1
+      value: -1201091031
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
+      propertyPath: impactSound.Guid.Data2
+      value: 1076501431
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
+      propertyPath: impactSound.Guid.Data3
+      value: 443065731
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
+      propertyPath: impactSound.Guid.Data4
+      value: 1822977652
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
+      propertyPath: launchSound.Guid.Data1
+      value: -79211558
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
+      propertyPath: launchSound.Guid.Data2
+      value: 1276454554
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
+      propertyPath: launchSound.Guid.Data3
+      value: 1688051616
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
+      propertyPath: launchSound.Guid.Data4
+      value: -350902827
+      objectReference: {fileID: 0}
     - target: {fileID: 8894939111482317175, guid: 4f07efc4bf2aa05458dee4247fda801c,
         type: 3}
       propertyPath: m_Name
       value: Magic Missile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6497167626357436195, guid: 4f07efc4bf2aa05458dee4247fda801c,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 663510462558111989}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f07efc4bf2aa05458dee4247fda801c, type: 3}
 --- !u!4 &6767727470484651633 stripped
 Transform:
@@ -111,7 +163,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 6767727470484651633}
     m_Modifications:
     - target: {fileID: 4057708669165901010, guid: 9a91f05e70ed6354b814e51ab861a452,
@@ -215,7 +267,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a91f05e70ed6354b814e51ab861a452, type: 3}
 --- !u!4 &663510462558111989 stripped
 Transform:

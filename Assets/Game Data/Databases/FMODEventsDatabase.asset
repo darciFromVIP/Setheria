@@ -12,13 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d5593987c706c49b9f66d7939cafff, type: 3}
   m_Name: FMODEventsDatabase
   m_EditorClassIdentifier: 
-  dayNightAmbience:
+  DayStart:
     Guid:
-      Data1: -2060260983
-      Data2: 1224335922
-      Data3: 106758837
-      Data4: -1589298403
-    Path: event:/Ambience/Forest Ambience
+      Data1: 222644806
+      Data2: 1077070594
+      Data3: -95465077
+      Data4: -733573807
+    Path: event:/UI Sounds/Day Start
+  NightStart:
+    Guid:
+      Data1: -315795589
+      Data2: 1216565878
+      Data3: 518414246
+      Data4: 878520706
+    Path: event:/UI Sounds/Night Start
+  ManualOpen:
+    Guid:
+      Data1: -334107796
+      Data2: 1252212964
+      Data3: -697623404
+      Data4: 1044964395
+    Path: event:/UI Sounds/Manual Open
   UIHover:
     Guid:
       Data1: -1380606375
@@ -33,3 +47,129 @@ MonoBehaviour:
       Data3: -170386794
       Data4: -684436232
     Path: event:/UI Sounds/Button Click
+  LevelUp:
+    Guid:
+      Data1: 1769499909
+      Data2: 1279700298
+      Data3: 229636486
+      Data4: -2083477186
+    Path: event:/World Sounds/Heroes/Level Up
+  ClawAttack:
+    Guid:
+      Data1: -1062768769
+      Data2: 1340815334
+      Data3: 81637782
+      Data4: -769198292
+    Path: event:/World Sounds/Heroes/Claw Attack
+  Swipe:
+    Guid:
+      Data1: -679834013
+      Data2: 1159120459
+      Data3: -1669722993
+      Data4: 120348677
+    Path: event:/World Sounds/Heroes/Swipe
+  Uppercut:
+    Guid:
+      Data1: 655541177
+      Data2: 1135365929
+      Data3: -932536185
+      Data4: 1450041123
+    Path: event:/World Sounds/Heroes/Uppercut
+  Roar:
+    Guid:
+      Data1: -982160784
+      Data2: 1126438465
+      Data3: -1222348920
+      Data4: -676342364
+    Path: event:/World Sounds/Heroes/Roar
+  WildRage:
+    Guid:
+      Data1: -1029299925
+      Data2: 1197181225
+      Data3: -1783036008
+      Data4: -1061109578
+    Path: event:/World Sounds/Heroes/Wild Rage
+  PawAttack:
+    Guid:
+      Data1: 378855455
+      Data2: 1270152280
+      Data3: 1211504776
+      Data4: 574477173
+    Path: event:/World Sounds/Heroes/Paw Attack
+  Bite:
+    Guid:
+      Data1: 1290689147
+      Data2: 1314892823
+      Data3: 1171351205
+      Data4: 1534915639
+    Path: event:/World Sounds/Heroes/Bite
+  PounceJump:
+    Guid:
+      Data1: -1584610125
+      Data2: 1156894250
+      Data3: 1352977057
+      Data4: 671716082
+    Path: event:/World Sounds/Heroes/Pounce Jump
+  PounceImpact:
+    Guid:
+      Data1: 934893821
+      Data2: 1085190056
+      Data3: 710173620
+      Data4: -1252370496
+    Path: event:/World Sounds/Heroes/Pounce Impact
+  Howl:
+    Guid:
+      Data1: 740545646
+      Data2: 1223753193
+      Data3: -1939287888
+      Data4: -1830421084
+    Path: event:/World Sounds/Heroes/Howl
+  CallOfTheWild:
+    Guid:
+      Data1: -1705696765
+      Data2: 1178121550
+      Data3: 1331400320
+      Data4: 988867393
+    Path: event:/World Sounds/Heroes/Call of the Wild
+  GreenDust:
+    Guid:
+      Data1: -1610638047
+      Data2: 1109440048
+      Data3: 2077585079
+      Data4: 846682261
+    Path: event:/World Sounds/Heroes/Green Dust
+  Rejuvenation:
+    Guid:
+      Data1: 1455776852
+      Data2: 1239297648
+      Data3: -2143081585
+      Data4: -1380730521
+    Path: event:/World Sounds/Heroes/Rejuvenation
+  EntanglingRoots:
+    Guid:
+      Data1: 794054483
+      Data2: 1190500934
+      Data3: -1097624403
+      Data4: 1338211184
+    Path: event:/World Sounds/Heroes/Entangling Roots
+  FlowerPowerCast:
+    Guid:
+      Data1: -1516075857
+      Data2: 1098473380
+      Data3: 71256998
+      Data4: 1918332182
+    Path: event:/World Sounds/Heroes/Flower Power Cast
+  FlowerPowerGrow:
+    Guid:
+      Data1: 1260092299
+      Data2: 1132658169
+      Data3: 1208276125
+      Data4: -2069796062
+    Path: event:/World Sounds/Heroes/Flower Power Grow
+  FlowerPowerHeal:
+    Guid:
+      Data1: -849127526
+      Data2: 1154902143
+      Data3: 360285086
+      Data4: 1396303505
+    Path: event:/World Sounds/Heroes/Flower Power Heal

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{00129d28-ebb6-46be-94cb-1c5b69db8a9f}">
+		<property name="name">
+			<value>Rejuvenation</value>
+		</property>
+		<relationship name="folder">
+			<destination>{700e240d-f966-4721-a622-bd1dd9fbb6af}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{24fc7839-3544-47d7-8ff6-86e8cac20c63}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{24fc7839-3544-47d7-8ff6-86e8cac20c63}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Begin</value>
+			<value>Loop</value>
+			<value>End</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
