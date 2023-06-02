@@ -51,6 +51,10 @@ public class AudioManager : MonoBehaviour
     {
         PlayOneShot(fmodEventsDatabase.UIClick, transform.position);
     }
+    public void ManualOpen()
+    {
+        PlayOneShot(fmodEventsDatabase.ManualOpen, default);
+    }
     public EventInstance CreateEventInstance(EventReference eventReference)
     {
         EventInstance instance = RuntimeManager.CreateInstance(eventReference);

@@ -31,7 +31,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         {
             FindObjectOfType<Tooltip>(true).Hide();
             FindObjectOfType<TooltipWorld>(true).Hide();
-            FindObjectOfType<SoundManager>().ManualOpen();
+            FindObjectOfType<AudioManager>().ManualOpen();
         }
         manualScreen.SetActive(false);
     }
@@ -43,7 +43,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
             recipeDetail.UpdateCurrentDetails();
             UpdateCurrentCategory();
         }
-        FindObjectOfType<SoundManager>().ManualOpen();
+        FindObjectOfType<AudioManager>().ManualOpen();
         manualScreen.SetActive(!manualScreen.activeSelf);
         if (!recipeCategories.activeSelf)
             ClearRecipeList();
