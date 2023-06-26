@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 75edfb654a3748849a48a4ad8e10fbcb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _WIND
   m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -72,7 +73,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 81b6e7b9c2fe26f46aaadbccd6accd95, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -105,45 +106,45 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - WindSpeedFloat1: 1
-    - WindTurbulence: 0.989
-    - _AlphaCutoff: 0.1
-    - _Amplitude: 5
-    - _AmplitudeOffset: 1
-    - _BendSpeed: 0
+    - WindSpeedFloat1: 0.05
+    - WindTurbulence: 0.01
+    - _AlphaCutoff: 0.44
+    - _Amplitude: 0.1
+    - _AmplitudeOffset: 0
+    - _BendSpeed: 1.2
     - _Blend_STR_TEST: 39.77
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DefaultBending: 1
+    - _DefaultBending: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissionScaleUI: 0
-    - _Frequency: 100
+    - _Frequency: 1
     - _FrequencyOffset: 6.73
     - _Glossiness: 0.5
     - _MaxHeight: 2000
-    - _Metallic: 0
+    - _Metallic: 0.24
     - _Mode: 1
-    - _NormalMapStrength: 0
+    - _NormalMapStrength: 1.8
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ShadowStrength: 0
-    - _Smoothness: 0
+    - _Smoothness: 0.05
     - _SrcBlend: 1
     - _UVSec: 0
-    - _Wind: 0
-    - _WindOffset: 115
+    - _Wind: 1
+    - _WindOffset: 164
     - _WindQuality: 0
-    - _WindStrength: 0.93
-    - _WindStrength1: 0
+    - _WindStrength: 0
+    - _WindStrength1: 0.3
     - _ZWrite: 1
-    - _float: 297
+    - _float: 288
     m_Colors:
     - _Blend_Strenght: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 0.57634294, g: 0.754717, b: 0.4521182, a: 1}
+    - _Color: {r: 0.21982914, g: 0.61357355, b: 0.7169812, a: 1}
     - _Direction: {r: 20, g: 20, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorUI: {r: 1, g: 1, b: 1, a: 1}
@@ -153,7 +154,7 @@ Material:
     - _Shadowcolor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
     - _Speed: {r: 0.4, g: 0, b: 0, a: 0}
-    - _WindDirection: {r: 1.86, g: 1.53, b: 0.9, a: 0}
+    - _WindDirection: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &96945018473596974
 MonoBehaviour:
