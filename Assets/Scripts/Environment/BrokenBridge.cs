@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BrokenBridge : MonoBehaviour
 {
@@ -16,5 +17,6 @@ public class BrokenBridge : MonoBehaviour
         brokenModel.SetActive(false);
         repairedModel.SetActive(true);
         Destroy(GetComponent<TurnInItemsInteractable>());
+        GetComponent<NavMeshObstacle>().enabled = false;
     }
 }
