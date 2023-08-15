@@ -17,14 +17,6 @@ public abstract class Structure : Entity, ISaveable, IInteractable
         structureData.Structure_Built.Invoke(structureData);
         GetComponent<TooltipTriggerWorld>().objectName = structureData.name;
     }
-    private void OnMouseOver()
-    {
-        hudCircle.gameObject.SetActive(true);
-    }
-    private void OnMouseExit()
-    {
-        hudCircle.gameObject.SetActive(false);
-    }
     public virtual void LoadState(SaveDataWorldObject state)
     {
         transform.position = new Vector3(state.positionX, state.positionY, state.positionZ);
