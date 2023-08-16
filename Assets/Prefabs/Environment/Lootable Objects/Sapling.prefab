@@ -21,7 +21,7 @@ PrefabInstance:
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: lootableName
-      value: Sapling
+      value: Sapling (0)
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -118,6 +118,32 @@ PrefabInstance:
       propertyPath: _assetId
       value: 2266534992
       objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].chance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].item.stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].item.itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: dbec0b67dd7f0a14ca35cd98cb1dc026,
+        type: 2}
     - target: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Name
@@ -224,7 +250,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2363217863737794058, guid: af8afaf82433c6947b0e1b23484c7d6f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8653118629879104351}
   m_SourcePrefab: {fileID: 100100000, guid: af8afaf82433c6947b0e1b23484c7d6f, type: 3}
 --- !u!4 &377031543023265916 stripped
 Transform:
@@ -232,3 +262,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3367420094316965068}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1040521301241148102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2363217863737794058, guid: af8afaf82433c6947b0e1b23484c7d6f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3367420094316965068}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8653118629879104351
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040521301241148102}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 655712721924bcb47ab0bea1582fdf53, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
