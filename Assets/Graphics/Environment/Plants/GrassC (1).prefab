@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 419f2b72f0c939447a816ab8743b2a9a, type: 2}
+  - {fileID: 2100000, guid: e6d069aa2496e1e409c529a6941a4471, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8738442207491435578}
   - component: {fileID: 8904554838358090542}
+  - component: {fileID: 6133718672867346126}
   m_Layer: 0
   m_Name: GrassC (1)
   m_TagString: Untagged
@@ -115,7 +116,7 @@ Transform:
   - {fileID: 8738442206607781208}
   - {fileID: 6307282020824320559}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 10.181, z: 0}
 --- !u!205 &8904554838358090542
 LODGroup:
@@ -127,15 +128,57 @@ LODGroup:
   serializedVersion: 2
   m_LocalReferencePoint: {x: -0.00015184283, y: 0.13475962, z: 0.0017993301}
   m_Size: 0.47078156
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
+  m_FadeMode: 1
+  m_AnimateCrossFading: 1
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.033395946
+  - screenRelativeHeight: 0.39644808
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 8726477984523228244}
   m_Enabled: 1
+--- !u!23 &6133718672867346126
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739400689571092146}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &6307786509728206839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,6 +247,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23000012889816502, guid: acd0fc6e24fb9ef4aaf29a99fd289962,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e6d069aa2496e1e409c529a6941a4471, type: 2}
     - target: {fileID: 205000010129443532, guid: acd0fc6e24fb9ef4aaf29a99fd289962,
         type: 3}
       propertyPath: m_LODs.Array.data[0].screenRelativeHeight
