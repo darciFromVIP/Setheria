@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class BuffScriptable : ScriptableObject
     public BuffType buffType;
     public float value;
     public float duration;
+    public EventReference sound;
     private void OnEnable()
     {
         buffName = name;

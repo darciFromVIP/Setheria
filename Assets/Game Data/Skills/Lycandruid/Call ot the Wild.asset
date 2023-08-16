@@ -15,11 +15,18 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 5d3134d0f91811c4fae113daec4116bc, type: 3}
   cooldown: 120
   manaCost: 70
-  description: '<sprite=10>24,0 <sprite=4>70
+  sound:
+    Guid:
+      Data1: -1705696765
+      Data2: 1178121550
+      Data3: 1331400320
+      Data4: 988867393
+    Path: event:/World Sounds/Heroes/Call of the Wild
+  description: '<sprite=10>120,0 <sprite=4>70
 
     Wolferius unleashes a resonating
-    howl to call his pack. Summons 5 wolves to aid him in battle. Each wolf has <color=orange>900</color>
-    (500% + 20% <sprite=3>) power and lasts for30 seconds.'
+    howl to call his pack. Summons 5 wolves to aid him in battle. Each wolf has <color=orange>9</color>
+    (5 + 20% <sprite=3>) power and lasts for 30 seconds.'
   requiredTalent: {fileID: 11400000, guid: 118531a6c55a5cb4c91ba11e63ee2064, type: 2}
   requiredTalentLevel: 1
   unlocked: 1

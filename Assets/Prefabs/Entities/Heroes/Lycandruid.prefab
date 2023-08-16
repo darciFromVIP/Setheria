@@ -5066,6 +5066,31 @@ PrefabInstance:
       propertyPath: attackDamage
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 6894524307200065820, guid: 00c8698ced8ff66429e09ca3249b0642,
+        type: 3}
+      propertyPath: attackSound.Path
+      value: event:/World Sounds/Heroes/Claw Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894524307200065820, guid: 00c8698ced8ff66429e09ca3249b0642,
+        type: 3}
+      propertyPath: attackSound.Guid.Data1
+      value: -1062768769
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894524307200065820, guid: 00c8698ced8ff66429e09ca3249b0642,
+        type: 3}
+      propertyPath: attackSound.Guid.Data2
+      value: 1340815334
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894524307200065820, guid: 00c8698ced8ff66429e09ca3249b0642,
+        type: 3}
+      propertyPath: attackSound.Guid.Data3
+      value: 81637782
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894524307200065820, guid: 00c8698ced8ff66429e09ca3249b0642,
+        type: 3}
+      propertyPath: attackSound.Guid.Data4
+      value: -769198292
+      objectReference: {fileID: 0}
     - target: {fileID: 8608641707151967169, guid: 00c8698ced8ff66429e09ca3249b0642,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5144,6 +5169,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b555e99856e5c73419544f55d68614b3, type: 2}
   - {fileID: 11400000, guid: baa42571c2330674c83f0db9ba8aa37b, type: 2}
   shapeshiftVFX: {fileID: 2800186975608425852}
+  defaultAttackSound:
+    Guid:
+      Data1: -1062768769
+      Data2: 1340815334
+      Data3: 81637782
+      Data4: -769198292
+    Path: event:/World Sounds/Heroes/Claw Attack
+  shapeshiftedAttackSound:
+    Guid:
+      Data1: 378855455
+      Data2: 1270152280
+      Data3: 1211504776
+      Data4: 574477173
+    Path: event:/World Sounds/Heroes/Paw Attack
 --- !u!114 &1020434472001608854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5427,12 +5466,12 @@ PrefabInstance:
     - target: {fileID: -4232808284489069601, guid: 5190cc06afca3524faebce993738b565,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.03708312
+      value: 0.037083123
       objectReference: {fileID: 0}
     - target: {fileID: -4232808284489069601, guid: 5190cc06afca3524faebce993738b565,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0750646
+      value: -0.07506461
       objectReference: {fileID: 0}
     - target: {fileID: -4232808284489069601, guid: 5190cc06afca3524faebce993738b565,
         type: 3}
@@ -6038,6 +6077,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971812993450557241, guid: 5190cc06afca3524faebce993738b565,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.71827364
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971812993450557241, guid: 5190cc06afca3524faebce993738b565,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.67919946
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971812993450557241, guid: 5190cc06afca3524faebce993738b565,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.08014601
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971812993450557241, guid: 5190cc06afca3524faebce993738b565,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.12785803
       objectReference: {fileID: 0}
     - target: {fileID: 8971812993450557241, guid: 5190cc06afca3524faebce993738b565,
         type: 3}

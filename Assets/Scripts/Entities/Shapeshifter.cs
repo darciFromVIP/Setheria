@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using FMODUnity;
+
 public interface IUsesAnimator
 {
     public void SetNewAnimator(Animator animator);
@@ -11,6 +13,7 @@ public class Shapeshifter : NetworkBehaviour
     public Animator defaultModel, shapeshiftedModel;
     public List<Skill> defaultSkills, shapeshiftedSkills;
     public GameObject shapeshiftVFX;
+    public EventReference defaultAttackSound, shapeshiftedAttackSound;
 
     private void Start()
     {
@@ -34,6 +37,7 @@ public class Shapeshifter : NetworkBehaviour
             defaultModel.gameObject.SetActive(true);
             SetAnimator(defaultModel);
             GetComponent<Character>().skills = defaultSkills;
+            GetComponent<CanAttack>().attackSound = defaultAttackSound;
         }
         else
         {
@@ -41,6 +45,7 @@ public class Shapeshifter : NetworkBehaviour
             defaultModel.gameObject.SetActive(false);
             SetAnimator(shapeshiftedModel);
             GetComponent<Character>().skills = shapeshiftedSkills;
+            GetComponent<CanAttack>().attackSound = shapeshiftedAttackSound;
         }
         shapeshiftVFX.SetActive(true);
         if (isOwned)

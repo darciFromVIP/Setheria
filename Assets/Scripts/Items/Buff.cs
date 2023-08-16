@@ -1,3 +1,5 @@
+using FMOD;
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,15 +12,27 @@ public abstract class Buff
     public float durationTimer;
     public Character targetEntity;
     public GameObject effect;
+    public EventInstance sound;
 
     public UnityEvent Buff_Expired = new();
-
+    public virtual void SetSound(EventInstance soundInstance)
+    {
+        sound = soundInstance;
+        sound.start();
+    }
     public abstract void BuffExpired();
     public virtual IEnumerator TimedBuff(float duration)
     {
         durationTimer = duration;
         while (durationTimer > 0)
         {
+            sound.set3DAttributes(new ATTRIBUTES_3D
+            {
+                position = new VECTOR { x = targetEntity.transform.position.x, y = targetEntity.transform.position.y, z = targetEntity.transform.position.z },
+                forward = new VECTOR { x = targetEntity.transform.forward.x, y = targetEntity.transform.forward.y, z = targetEntity.transform.forward.z },
+                up = new VECTOR { x = targetEntity.transform.up.x, y = targetEntity.transform.up.y, z = targetEntity.transform.up.z },
+                velocity = new VECTOR { x = 0, y = 0, z = 0 }
+            });
             durationTimer -= Time.deltaTime;
             yield return null;
         }
@@ -95,6 +109,8 @@ public class BRegen : Buff
     }
     public override void BuffExpired()
     {
+        if (sound.isValid())
+            sound.setParameterByNameWithLabel("Rejuvenation", "End");
         targetEntity.GetComponent<HasHealth>().ChangeBonusHealthRegen(-value);
     }
 }

@@ -41,6 +41,17 @@ public class AudioManager : MonoBehaviour
     }
     public void ChangeAmbienceParameter(AmbienceParameter parameter)
     {
+        switch (parameter)
+        {
+            case AmbienceParameter.Day:
+                PlayOneShot(fmodEventsDatabase.DayStart, default);
+                break;
+            case AmbienceParameter.Night:
+                PlayOneShot(fmodEventsDatabase.NightStart, default);
+                break;
+            default:
+                break;
+        }
         currentAmbienceInstance.setParameterByName("DayAndNight", (float)parameter);
     }
     public void UIHover()
@@ -54,6 +65,58 @@ public class AudioManager : MonoBehaviour
     public void ManualOpen()
     {
         PlayOneShot(fmodEventsDatabase.ManualOpen, default);
+    }
+    public void ManualClose()
+    {
+        PlayOneShot(fmodEventsDatabase.ManualClose, default);
+    }
+    public void UIError()
+    {
+        PlayOneShot(fmodEventsDatabase.UIInvalid, default);
+    }
+    public void InventoryOpen()
+    {
+        PlayOneShot(fmodEventsDatabase.InventoryOpen, default);
+    }
+    public void InventoryClose()
+    {
+        PlayOneShot(fmodEventsDatabase.InventoryClose, default);
+    }
+    public void QuestAccepted()
+    {
+        PlayOneShot(fmodEventsDatabase.QuestAccepted, default);
+    }
+    public void QuestCompleted()
+    {
+        PlayOneShot(fmodEventsDatabase.QuestComplete, default);
+    }
+    public void ToolBreak()
+    {
+        PlayOneShot(fmodEventsDatabase.ToolBreak, default);
+    }
+    public void BuildingFinished(Vector3 worldPos)
+    {
+        PlayOneShot(fmodEventsDatabase.BuildingFinished, worldPos);
+    }
+    public void BuildingDestroyed(Vector3 worldPos)
+    {
+        PlayOneShot(fmodEventsDatabase.BuildingDestroyed, worldPos);
+    }
+    public void ChestOpen(Vector3 worldPos)
+    {
+        PlayOneShot(fmodEventsDatabase.ChestOpen, worldPos);
+    }
+    public void ItemPickUp(Vector3 worldPos)
+    {
+        PlayOneShot(fmodEventsDatabase.ItemPickUp, worldPos);
+    }
+    public void ResourcesCollected(Vector3 worldPos)
+    {
+        PlayOneShot(fmodEventsDatabase.ResourcesCollected, worldPos);
+    }
+    public void ItemCrafted(Vector3 worldPos)
+    {
+        PlayOneShot(fmodEventsDatabase.ItemCrafted, worldPos);
     }
     public EventInstance CreateEventInstance(EventReference eventReference)
     {

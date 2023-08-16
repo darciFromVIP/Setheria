@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class SFlowerPower : Skill
     public float range;
     public Character flowerPrefab;
     public SFlowerPowerHeal healingSkillRef;
+    public EventReference GrowSound;
 
     private Vector3 actualPoint;
     public override void Execute(Character self)
@@ -36,6 +38,7 @@ public class SFlowerPower : Skill
     }
     private void StartCast(Vector3 point)
     {
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         actualPoint = Vector3.MoveTowards(castingEntity.transform.position, point, range);
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
@@ -46,6 +49,7 @@ public class SFlowerPower : Skill
     private void Cast()
     {
         castingEntity.GetComponent<CanHavePets>().CmdSpawnPet(flowerPrefab.name, actualPoint, timedLife, finalDamage);
+        FindObjectOfType<AudioManager>().PlayOneShot(GrowSound, castingEntity.GetComponent<CanHavePets>().spawnedPets[0].transform.position);
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         player.GetComponent<HasMana>().SpendMana(manaCost);
         player.StartCooldownR();

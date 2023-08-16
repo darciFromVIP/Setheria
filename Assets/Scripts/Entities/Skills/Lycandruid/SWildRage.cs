@@ -19,6 +19,7 @@ public class SWildRage : Skill
         castingEntity = self;
         castingEntity.GetComponent<Character>().CastSkill5();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         if (castingEntity.isOwned)
             self.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.AddListener(Cast);
     }

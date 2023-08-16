@@ -109,9 +109,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
         if (this.stacks <= 0)
         {
-            if (item.itemType == ItemType.HandicraftTool || item.itemType == ItemType.FishingTool || item.itemType == ItemType.HandicraftTool || item.itemType == ItemType.MiningTool)
+            if (item.itemType == ItemType.HandicraftTool || item.itemType == ItemType.FishingTool || item.itemType == ItemType.HandicraftTool || item.itemType == ItemType.GatheringTool)
             {
                 FindObjectOfType<SystemMessages>().AddMessage("Your " + item.itemType + " just broke!");
+                FindObjectOfType<AudioManager>().ToolBreak();
             }
             DestroyItem();
         }

@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class SPounce : Skill
     public Projectile projectile;
     public BuffScriptable stunBuff;
     private EnemyCharacter enemy;
+    public EventReference PounceImpactSound;
 
     private Vector3 actualPoint;
     public override void Execute(Character self)
@@ -57,6 +59,7 @@ public class SPounce : Skill
     }
     private IEnumerator Jump()
     {
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         var moveComp = castingEntity.GetComponent<CanMove>();
         moveComp.agent.enabled = false;
         float minDistance = moveComp.agent.stoppingDistance + castingEntity.GetComponent<CanAttack>().GetAttackRange();
@@ -92,6 +95,7 @@ public class SPounce : Skill
             owner = castingEntity
         });
         PlayerController player = castingEntity.GetComponent<PlayerController>();
+        FindObjectOfType<AudioManager>().PlayOneShot(PounceImpactSound, castingEntity.transform.position);
         player.GetComponent<HasMana>().SpendMana(manaCost);
         player.StartCooldownW();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveListener(Cast);

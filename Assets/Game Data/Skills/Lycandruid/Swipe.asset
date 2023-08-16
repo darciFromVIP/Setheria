@@ -15,12 +15,19 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: c3604b0a41eaa1b46a149116e14d7359, type: 3}
   cooldown: 8
   manaCost: 30
+  sound:
+    Guid:
+      Data1: -679834013
+      Data2: 1159120459
+      Data3: -1669722993
+      Data4: 120348677
+    Path: event:/World Sounds/Heroes/Swipe
   description: '<sprite=10>8,0 <sprite=4>30
 
     Swipes forward with both claws,
     dealing <color=orange>32</color> damage (20 + 60% <sprite=3>) to all enemies
     hit as well as applying Bleed reducing <sprite=1> by <color=orange>4</color>
-    (1 + 15% <sprite=3>)'
+    (1 + 15% <sprite=3>). Lasts 4 seconds.'
   requiredTalent: {fileID: 11400000, guid: 03b919a7586550f4b959036a1ce5a2bb, type: 2}
   requiredTalentLevel: 1
   unlocked: 1

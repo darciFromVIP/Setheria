@@ -15,15 +15,22 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 9ca339e683d0b2f43989d82bc3d36dcc, type: 3}
   cooldown: 10
   manaCost: 20
+  sound:
+    Guid:
+      Data1: 655541177
+      Data2: 1135365929
+      Data3: -932536185
+      Data4: 1450041123
+    Path: event:/World Sounds/Heroes/Uppercut
   description: '<sprite=10>10,0 <sprite=4>20
 
-    Performs an uppercut, which applies
-    Cripple (reduces <sprite=3> by <color=orange>5,00</color> (1 + 20% <sprite=3>))
-    and Sunder (reduces <sprite=0> by <color=orange>10,00</color> (10 + 100% <sprite=0>)).
-    Lasts 8 seconds.'
+    Performs an uppercut, which deals
+    <color=orange>12</color> damage (10 + 10% <sprite=3>) and applies Cripple (reduces
+    <sprite=3> by <color=orange>5,00</color> (1 + 20% <sprite=3>)) and Sunder (reduces
+    <sprite=0> by <color=orange>11,00</color> (10 + 100% <sprite=0>)). Lasts 8 seconds.'
   requiredTalent: {fileID: 11400000, guid: 17e715774e5b0cf48ac683a727f6d0b5, type: 2}
   requiredTalentLevel: 1
-  unlocked: 1
+  unlocked: 0
   range: 2
   baseDuration: 8
   baseDamage: 10

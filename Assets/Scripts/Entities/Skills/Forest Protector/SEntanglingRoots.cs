@@ -80,6 +80,7 @@ public class SEntanglingRoots : Skill
             targetedEntity = enemy.GetComponent<HasHealth>()
         });
         PlayerController player = castingEntity.GetComponent<PlayerController>();
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, enemy.transform.position);
         player.GetComponent<HasMana>().SpendMana(manaCost);
         player.StartCooldownE();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();

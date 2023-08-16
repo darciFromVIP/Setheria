@@ -15,15 +15,22 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 274d5abf3038dc54eb4b4ba0a292f806, type: 3}
   cooldown: 14
   manaCost: 20
+  sound:
+    Guid:
+      Data1: -982160784
+      Data2: 1126438465
+      Data3: -1222348920
+      Data4: -676342364
+    Path: event:/World Sounds/Heroes/Roar
   description: '<sprite=10>14,0 <sprite=4>20
 
     Unleashes a deep roar, inflicting
-    Slow (reduces  by <color=orange>21%</color> (20% + 1% )) and Shaken (reduces
-    <sprite=9> by <color=orange>11%</color> (10% + 1% )) to all enemies around Wolferius.
-    Lasts 8 seconds.'
+    Slow (reduces <sprite=16> by <color=orange>21%</color> (20% + 1*<sprite=13>))
+    and Shaken (reduces <sprite=9> by <color=orange>11%</color> (10% + 1*<sprite=13>))
+    to all enemies around Wolferius. Lasts 8 seconds.'
   requiredTalent: {fileID: 11400000, guid: 832a64175df6f1a4a815eecb74813275, type: 2}
   requiredTalentLevel: 1
-  unlocked: 1
+  unlocked: 0
   range: 3
   baseDuration: 8
   movementBaseReduction: 0.2

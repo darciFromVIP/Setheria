@@ -22,6 +22,10 @@ public class InventoryScreen : MonoBehaviour
     public void ToggleWindow()
     {
         window.SetActive(!window.activeSelf);
+        if (window.activeSelf)
+            FindObjectOfType<AudioManager>().InventoryOpen();
+        else
+            FindObjectOfType<AudioManager>().InventoryClose();
         FindObjectOfType<Tooltip>(true).Hide();
     }
 }

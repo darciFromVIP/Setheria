@@ -130,6 +130,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         if (!openedInStructure)
             GetComponentInParent<ManualScreen>().UpdateCurrentCategory();
         UpdateCurrentDetails();
+        FindObjectOfType<AudioManager>().ItemCrafted(localPlayer.transform.position);
         localPlayer.GetComponent<PlayerCharacter>().AddXp(currentOpenedRecipe.xpGranted * amount);
         localPlayer.Work_Finished.RemoveListener(FinishCrafting);
         blockingUI.SetActive(false);

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class QuestlineScriptable : ScriptableObject
 {
     public int currentQuestIndex = 0;
-    public List<QuestScriptable> quests;
+    public List<QuestScriptable> quests = new();
 
     [HideInInspector] public UnityEvent<QuestScriptable> Quest_Complete = new();
     [HideInInspector] public UnityEvent<QuestScriptable> New_Quest = new();

@@ -15,6 +15,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 8b0cbfd1379f29546b97e3a895b82c10, type: 3}
   cooldown: 60
   manaCost: 0
+  sound:
+    Guid:
+      Data1: -1610638047
+      Data2: 1109440048
+      Data3: 2077585079
+      Data4: 846682261
+    Path: event:/World Sounds/Heroes/Green Dust
   description: '<sprite=10>60,0
 
     Creates a random plant in front of Nirri. Available
@@ -27,6 +34,9 @@ MonoBehaviour:
     - Wooden Stick
 
 '
+  requiredTalent: {fileID: 0}
+  requiredTalentLevel: 0
+  unlocked: 1
   possiblePlants:
   - {fileID: 4556740460697440243, guid: 44083246ac0d54447a5019924e49255b, type: 3}
   - {fileID: 5047187466362657880, guid: c218bfc5b001f244899f8a2167095a06, type: 3}

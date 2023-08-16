@@ -38,7 +38,7 @@ public class ItemButton : Button
     {
         if (item.item.itemType == ItemType.ArchaeologyTool || item.item.itemType == ItemType.Backpack || item.item.itemType == ItemType.Bracelet || item.item.itemType == ItemType.Chest
            || item.item.itemType == ItemType.Feet || item.item.itemType == ItemType.FishingTool || item.item.itemType == ItemType.HandicraftTool
-           || item.item.itemType == ItemType.Hands || item.item.itemType == ItemType.Head || item.item.itemType == ItemType.Legs || item.item.itemType == ItemType.MiningTool
+           || item.item.itemType == ItemType.Hands || item.item.itemType == ItemType.Head || item.item.itemType == ItemType.Legs || item.item.itemType == ItemType.GatheringTool
            || item.item.itemType == ItemType.Necklace || item.item.itemType == ItemType.Ring || item.item.itemType == ItemType.Weapon)
         {
             if (item.transform.parent.TryGetComponent(out InventorySlot slot))

@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class Skill : ScriptableObject
     public Sprite icon;
     public float cooldown;
     public int manaCost;
+    public EventReference sound;
     [Header("Specific Settings")]
     [HideInInspector] public string description;
     public TalentScriptable requiredTalent;

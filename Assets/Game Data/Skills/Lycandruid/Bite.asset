@@ -15,10 +15,17 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: e8886bc29853e84448cf82de5e905760, type: 3}
   cooldown: 8
   manaCost: 40
-  description: '<sprite=10>1,6 <sprite=4>40
+  sound:
+    Guid:
+      Data1: 1290689147
+      Data2: 1314892823
+      Data3: 1171351205
+      Data4: 1534915639
+    Path: event:/World Sounds/Heroes/Bite
+  description: '<sprite=10>8,0 <sprite=4>40
 
     Bites the enemy target, dealing
-    <color=orange>50</color> damage (40 + 50% <sprite=3>) and healing self by <color=orange>37</color>
+    <color=orange>50</color> damage (40 + 50% <sprite=3>) and healing self by <color=orange>30</color>
     (10 + 5% <sprite=5>).'
   requiredTalent: {fileID: 11400000, guid: 03b919a7586550f4b959036a1ce5a2bb, type: 2}
   requiredTalentLevel: 1

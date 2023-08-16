@@ -8,7 +8,7 @@ public enum ItemGrade
 }
 public enum ItemType
 {
-    None, Head, Chest, Hands, Legs, Feet, Weapon, Backpack, Necklace, Ring, Bracelet, HandicraftTool, MiningTool, ArchaeologyTool, FishingTool, Resources, Knowledge, Unit, Fish
+    None, Head, Chest, Hands, Legs, Feet, Weapon, Backpack, Necklace, Ring, Bracelet, HandicraftTool, GatheringTool, ArchaeologyTool, FishingTool, Resources, Knowledge, Unit, Fish
 }
 public enum CooldownGroup
 {

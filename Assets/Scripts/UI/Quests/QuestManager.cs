@@ -25,6 +25,7 @@ public class QuestManager : NetworkBehaviour
         quest.SetQuestActive(true);
         var questInstance = Instantiate(questDescriptionPrefab, contentUI);
         questInstance.Initialize(quest);
+        FindObjectOfType<AudioManager>().QuestAccepted();
     }
     private void QuestComplete(QuestScriptable quest)
     {
@@ -55,6 +56,7 @@ public class QuestManager : NetworkBehaviour
                 break;
             }
         }
+        FindObjectOfType<AudioManager>().QuestCompleted();
     }
     private void QuestlineComplete(QuestlineScriptable questline)
     {

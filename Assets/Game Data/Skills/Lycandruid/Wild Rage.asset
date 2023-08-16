@@ -15,15 +15,22 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 9a8d59be2835e984496d3e0f7ff16d5b, type: 3}
   cooldown: 120
   manaCost: 0
-  description: '<sprite=10>24,0 <sprite=4>0
+  sound:
+    Guid:
+      Data1: -1029299925
+      Data2: 1197181225
+      Data3: -1783036008
+      Data4: -1061109578
+    Path: event:/World Sounds/Heroes/Wild Rage
+  description: '<sprite=10>120,0 <sprite=4>0
 
     Wolferius enters enraged state,
-    granting himself Fortitude (increases <sprite=5> by <color=orange>154</color>
+    granting himself Fortitude (increases <sprite=5> by <color=orange>140</color>
     (100 + 10% <sprite=5>)) and Haste (increases <sprite=10> by <color=orange>80%</color>).
     Lasts 15 seconds.'
   requiredTalent: {fileID: 11400000, guid: 118531a6c55a5cb4c91ba11e63ee2064, type: 2}
   requiredTalentLevel: 1
-  unlocked: 1
+  unlocked: 0
   baseDuration: 15
   maxHPBase: 100
   maxHPScalingStat: 1

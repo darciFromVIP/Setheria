@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 786989259}
-  m_IndirectSpecularColor: {r: 0.18029244, g: 0.22572494, b: 0.30692977, a: 1}
+  m_IndirectSpecularColor: {r: 0.18029216, g: 0.22572468, b: 0.30692875, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -679,7 +679,7 @@ PrefabInstance:
     - target: {fileID: 9161690028175925861, guid: 131b13dcf32cc30448b18070743142b0,
         type: 3}
       propertyPath: m_Name
-      value: Char Slot Pickaxe
+      value: Char Slot Gathering Tool
       objectReference: {fileID: 0}
     - target: {fileID: 9161690028175925883, guid: 131b13dcf32cc30448b18070743142b0,
         type: 3}
@@ -740,7 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a674062d00c18479f34c51f6194994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  header: Pickaxe
+  header: Gathering Tool
   content: 
   sprite: {fileID: 0}
   keybindLabel: 
@@ -5985,10 +5985,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 403766177}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1715646557}
+        m_TargetAssemblyTypeName: ManualScreen, Assembly-CSharp
+        m_MethodName: HideWindow
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -19012,7 +19012,7 @@ PrefabInstance:
     - target: {fileID: 9161690028175925861, guid: 131b13dcf32cc30448b18070743142b0,
         type: 3}
       propertyPath: m_Name
-      value: Char Slot Tools
+      value: Char Slot Handicraft Tool
       objectReference: {fileID: 0}
     - target: {fileID: 9161690028175925883, guid: 131b13dcf32cc30448b18070743142b0,
         type: 3}
@@ -29709,7 +29709,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262146511}
   m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: 36.666763, y: 66.66666, z: -38.33353}
+  m_LocalPosition: {x: 36.666763, y: 66.666664, z: -38.33353}
   m_LocalScale: {x: 3.3333323, y: 3.3333328, z: 3.3333328}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50161,7 +50161,7 @@ GameObject:
   - component: {fileID: 1066648936776913975}
   - component: {fileID: 1066648936776913974}
   m_Layer: 5
-  m_Name: Char Slot Tools
+  m_Name: Char Slot Handicraft Tool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50806,7 +50806,7 @@ GameObject:
   - component: {fileID: 5529895301127828179}
   - component: {fileID: 5529895301127828178}
   m_Layer: 5
-  m_Name: Char Slot Pickaxe
+  m_Name: Char Slot Gathering Tool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

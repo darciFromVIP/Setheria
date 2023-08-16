@@ -15,7 +15,14 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 42a82716fea4ffd4199048d0fe76def0, type: 3}
   cooldown: 10
   manaCost: 50
-  description: '<sprite=10>2,0 <sprite=4>50
+  sound:
+    Guid:
+      Data1: -1584610125
+      Data2: 1156894250
+      Data3: 1352977057
+      Data4: 671716082
+    Path: event:/World Sounds/Heroes/Pounce Jump
+  description: '<sprite=10>10,0 <sprite=4>50
 
     Pounces to the enemy target, dealing
     <color=orange>38</color> damage (30 + 40% <sprite=3>) and stunning it for 3 seconds.'
@@ -30,3 +37,10 @@ MonoBehaviour:
   projectile: {fileID: 4533246921958147235, guid: 79bd197935df4384c9f8e2f43d8cc2e3,
     type: 3}
   stunBuff: {fileID: 11400000, guid: ebc87f7f3d86da2459df2442f3efa6cb, type: 2}
+  PounceImpactSound:
+    Guid:
+      Data1: 934893821
+      Data2: 1085190056
+      Data3: 710173620
+      Data4: -1252370496
+    Path: event:/World Sounds/Heroes/Pounce Impact

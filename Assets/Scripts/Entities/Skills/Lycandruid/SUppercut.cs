@@ -54,6 +54,7 @@ public class SUppercut : Skill
     }
     private void StartCasting()
     {
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         castingEntity.GetComponent<Character>().CastSkill3();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         if (castingEntity.isOwned)

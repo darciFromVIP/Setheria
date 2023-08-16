@@ -15,15 +15,22 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: ebb309885ddc4724fa302c4f2d4b911c, type: 3}
   cooldown: 15
   manaCost: 40
-  description: '<sprite=10>3,0 <sprite=4>40
+  sound:
+    Guid:
+      Data1: 740545646
+      Data2: 1223753193
+      Data3: -1939287888
+      Data4: -1830421084
+    Path: event:/World Sounds/Heroes/Howl
+  description: '<sprite=10>15,0 <sprite=4>40
 
     Wolferius howls, granting himself
-    and nearby allies Speed (increases  by <color=orange>21%</color> (20% + 1% ))
-    and Energized (increases <sprite=9> by <color=orange>11%</color> (10% + 1% )).
-    Lasts 8 seconds.'
+    and nearby allies Speed (increases <sprite=16> by <color=orange>21%</color> (20%
+    + 1*<sprite=13>)) and Energized (increases <sprite=9> by <color=orange>11%</color>
+    (10% + 1*<sprite=13>)). Lasts 8 seconds.'
   requiredTalent: {fileID: 11400000, guid: 832a64175df6f1a4a815eecb74813275, type: 2}
   requiredTalentLevel: 1
-  unlocked: 1
+  unlocked: 0
   range: 7
   baseDuration: 8
   movementBase: 0.2

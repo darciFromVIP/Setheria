@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Mirror;
+using FMODUnity;
+
 public enum AttackType
 {
     Melee, Ranged
@@ -28,6 +30,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private CanMove moveComp;
     private NetworkAnimator netAnim;
     private Entity entity;
+
+    public EventReference attackSound;
 
     [System.NonSerialized]
     public UnityEvent<NetworkIdentity> Target_Acquired = new();
@@ -163,6 +167,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     public void MeleeAttack()                           //This reacts to animations, that are run on both the server and client
     {
         ResumeActing();
+        if (!attackSound.IsNull)
+            FindObjectOfType<AudioManager>().PlayOneShot(attackSound, transform.position);
         float modifier = 1;
         var random = Random.Range(0f, 100f);
         if (random < criticalChance)

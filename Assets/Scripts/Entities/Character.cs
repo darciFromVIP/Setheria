@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
+using FMOD;
+
 public class Character : Entity
 {
     [SerializeField] protected float baseRotateSpeed;
@@ -202,6 +204,9 @@ public class Character : Entity
             default:
                 break;
         }
+        if (!buffScriptable.sound.IsNull)
+            buffInstance.SetSound(FindObjectOfType<AudioManager>().CreateEventInstance(buffScriptable.sound));
+
         if (buffInstance != null)
         {
             buffInstance.name = buffScriptable.name;

@@ -5,9 +5,11 @@ using TMPro;
 public class SystemMessages : MonoBehaviour
 {
     public TextMeshProUGUI message;
+
     public void AddMessage(string msg)
     {
         StartCoroutine(AddMessageCoro(msg));
+        FindObjectOfType<AudioManager>().UIError();
     }
     private IEnumerator AddMessageCoro(string msg)
     {

@@ -15,6 +15,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 486375454cb9293429d3aa0b823104af, type: 3}
   cooldown: 60
   manaCost: 100
+  sound:
+    Guid:
+      Data1: -1516075857
+      Data2: 1098473380
+      Data3: 71256998
+      Data4: 1918332182
+    Path: event:/World Sounds/Heroes/Flower Power Cast
   description: '<sprite=10>60,0 <sprite=4>100
 
     Makes Alkestia grow on the target
@@ -35,3 +42,10 @@ MonoBehaviour:
   flowerPrefab: {fileID: 7590977108257662739, guid: 617b512be43215445b3fc5bc772b1bd7,
     type: 3}
   healingSkillRef: {fileID: 11400000, guid: 1e817d9ebcf86aa488abc40ac8cfca43, type: 2}
+  GrowSound:
+    Guid:
+      Data1: 1260092299
+      Data2: 1132658169
+      Data3: 1208276125
+      Data4: -2069796062
+    Path: event:/World Sounds/Heroes/Flower Power Grow

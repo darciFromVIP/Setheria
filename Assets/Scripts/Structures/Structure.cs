@@ -15,6 +15,7 @@ public abstract class Structure : Entity, ISaveable, IInteractable
     {
         base.Start();
         structureData.Structure_Built.Invoke(structureData);
+        FindObjectOfType<AudioManager>().BuildingFinished(transform.position);
         GetComponent<TooltipTriggerWorld>().objectName = structureData.name;
     }
     public virtual void LoadState(SaveDataWorldObject state)
@@ -50,6 +51,12 @@ public abstract class Structure : Entity, ISaveable, IInteractable
     [Command(requiresAuthority = false)]
     public void CmdDemolishStructure()
     {
+        RpcDemolishStructure();
         NetworkServer.Destroy(gameObject);
+    }
+    [ClientRpc]
+    private void RpcDemolishStructure()
+    {
+        FindObjectOfType<AudioManager>().BuildingDestroyed(transform.position);
     }
 }

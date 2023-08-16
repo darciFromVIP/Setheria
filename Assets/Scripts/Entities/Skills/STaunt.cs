@@ -11,6 +11,7 @@ public class STaunt : Skill
         castingEntity = self;
         castingEntity.GetComponent<Character>().CastSkill1();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         if (castingEntity.isOwned)
             self.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
     }

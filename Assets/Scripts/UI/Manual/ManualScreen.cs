@@ -31,7 +31,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         {
             FindObjectOfType<Tooltip>(true).Hide();
             FindObjectOfType<TooltipWorld>(true).Hide();
-            FindObjectOfType<AudioManager>().ManualOpen();
+            FindObjectOfType<AudioManager>().ManualClose();
         }
         manualScreen.SetActive(false);
     }
@@ -39,11 +39,13 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     {
         if (!manualScreen.activeSelf)
         {
+            FindObjectOfType<AudioManager>().ManualOpen();
             var recipeDetail = FindObjectOfType<RecipeDetail>(true);
             recipeDetail.UpdateCurrentDetails();
             UpdateCurrentCategory();
         }
-        FindObjectOfType<AudioManager>().ManualOpen();
+        else
+            FindObjectOfType<AudioManager>().ManualClose();
         manualScreen.SetActive(!manualScreen.activeSelf);
         if (!recipeCategories.activeSelf)
             ClearRecipeList();

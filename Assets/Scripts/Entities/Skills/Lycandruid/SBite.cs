@@ -44,6 +44,7 @@ public class SBite : Skill
     }
     private void StartCasting()
     {
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         castingEntity.GetComponent<Character>().CastSkill2();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         if (castingEntity.isOwned)

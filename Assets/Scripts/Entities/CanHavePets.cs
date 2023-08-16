@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 public class CanHavePets : NetworkBehaviour
 {
-    private List<Entity> spawnedPets = new();
+    public List<Entity> spawnedPets = new();
     public EntityDatabase entityDatabase;
 
     [Command(requiresAuthority = false)]

@@ -8,6 +8,7 @@ public class SOneWithNature : Skill
     public override void Execute(Character self)
     {
         castingEntity = self;
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         (castingEntity.GetComponent<Shapeshifter>().defaultSkills[1] as SDefensiveStance).TogglePassive(true);
         castingEntity.GetComponent<Shapeshifter>().CmdShapeshift(true);
         castingEntity.GetComponent<PlayerController>().StartCooldownD();
