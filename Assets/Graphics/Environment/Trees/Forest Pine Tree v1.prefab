@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3884119795245131665}
   - component: {fileID: -2685183428372785915}
   - component: {fileID: 8716829099193823349}
+  - component: {fileID: 4591999640321841911}
   m_Layer: 8
   m_Name: Forest Pine Tree v1
   m_TagString: Untagged
@@ -120,3 +121,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8df05deefdf6094982b674e91534d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &4591999640321841911
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884119795242940753}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f8761936189d239458e7b53dbe86f11a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

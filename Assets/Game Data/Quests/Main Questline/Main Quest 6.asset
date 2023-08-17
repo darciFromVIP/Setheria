@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 6
   m_EditorClassIdentifier: 
-  label: Advance your technologies.
-  requiredItems: []
-  requiredStructures:
-  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  label: Make some basic tools.
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: a5bfeb1a16d7d7f44b1fd295472414a6, type: 2}
+    stacks: 1
+  requiredStructures: []
   rewards:
-  - rewardType: 0
-    rewardAmount: 10
-  - rewardType: 1
-    rewardAmount: 10
+  - rewardType: 2
+    rewardAmount: 15
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

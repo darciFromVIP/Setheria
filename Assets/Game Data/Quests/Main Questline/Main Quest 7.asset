@@ -12,17 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 7
   m_EditorClassIdentifier: 
-  label: Go fishing!
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: 49126c5c93a8e1e45862dd970191cbb3, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 1049245756b3f4841b1f04cffb6c0df6, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 5f3f3076da053a94a8f6ef7d3936ae85, type: 2}
-    stacks: 1
-  requiredStructures: []
+  label: Advance your technologies.
+  requiredItems: []
+  requiredStructures:
+  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
   rewards:
-  - rewardType: 2
+  - rewardType: 0
+    rewardAmount: 10
+  - rewardType: 1
     rewardAmount: 10
   Quest_Complete:
     m_PersistentCalls:
