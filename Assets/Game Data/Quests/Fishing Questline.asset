@@ -9,21 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Main Quest 6
+  m_Script: {fileID: 11500000, guid: 926dd4e73341e454c8b3f18c628c191c, type: 3}
+  m_Name: Fishing Questline
   m_EditorClassIdentifier: 
-  label: Advance your technologies.
-  requiredItems: []
-  requiredStructures:
-  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
-  rewards:
-  - rewardType: 0
-    rewardAmount: 10
-  - rewardType: 1
-    rewardAmount: 10
+  currentQuestIndex: 0
+  quests:
+  - {fileID: 11400000, guid: bfbb18838f2acff4297d0c763daeb20a, type: 2}
+  - {fileID: 11400000, guid: 84b497da1da1183449c16747d5cd377c, type: 2}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []
-  Quest_Updated:
+  New_Quest:
+    m_PersistentCalls:
+      m_Calls: []
+  Questline_Complete:
     m_PersistentCalls:
       m_Calls: []

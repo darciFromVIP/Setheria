@@ -46,6 +46,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
 
     public TalentTreesReference refTalentTrees;
     [HideInInspector] public TalentTrees talentTrees = new();
+    public Professions professions;
 
     private const float MaxXpMultiplier = 1.2f;
     private const int BaseMaxXpValue = 100;
@@ -75,6 +76,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         moveComp = GetComponent<CanMove>();
         attackComp = GetComponent<CanAttack>();
         playerController = GetComponent<PlayerController>();
+        professions = new Professions(this);
     }
     private IEnumerator UpdatePlayer()
     {
@@ -191,6 +193,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                             talentTrees.talentTrees.Add(new TalentTree(item2.treeType, item2.talents));
                         }
                     }
+                    if (item.professions != null)
+                        professions = item.professions;
                 }
             }
         }
@@ -245,7 +249,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             attackRange = attackComp.GetAttackRange(),
             armor = healthComp.GetArmor(),
             cooldownReduction = attackComp.GetCooldownReduction(),
-            talentTrees = talentTrees
+            talentTrees = talentTrees,
+            professions = professions
         };
     }
     public PlayerCharacter GetLocalPlayerCharacter()

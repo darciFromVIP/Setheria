@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 3
   m_EditorClassIdentifier: 
-  label: Establish a base.
+  label: A light in the dark.
   requiredItems: []
   requiredStructures:
-  - {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
+  - {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}
   rewards:
-  - rewardType: 1
-    rewardAmount: 5
+  - rewardType: 2
+    rewardAmount: 10
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

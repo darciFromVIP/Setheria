@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 5
   m_EditorClassIdentifier: 
-  label: Don't starve!
+  label: Make some basic tools.
   requiredItems:
-  - itemData: {fileID: 11400000, guid: 294bbf2a06d985842802a3842f31fe4b, type: 2}
-    stacks: 2
+  - itemData: {fileID: 11400000, guid: a5bfeb1a16d7d7f44b1fd295472414a6, type: 2}
+    stacks: 1
   requiredStructures: []
   rewards:
   - rewardType: 2
-    rewardAmount: 10
+    rewardAmount: 15
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

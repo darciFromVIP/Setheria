@@ -39,6 +39,7 @@ public class SaveDataPlayer
     public float armor;
     public float cooldownReduction;
     public TalentTrees talentTrees;
+    public Professions professions;
 
     public SaveDataPlayer() { }
     public SaveDataPlayer(Hero hero)

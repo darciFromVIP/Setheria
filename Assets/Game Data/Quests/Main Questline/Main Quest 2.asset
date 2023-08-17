@@ -12,22 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 2
   m_EditorClassIdentifier: 
-  label: Find and collect materials to build a Tent
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 20c0f74954bf1054f835b3019722c099, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: dbec0b67dd7f0a14ca35cd98cb1dc026, type: 2}
-    stacks: 2
-  - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
-    stacks: 2
-  - itemData: {fileID: 11400000, guid: dbec0b67dd7f0a14ca35cd98cb1dc026, type: 2}
-    stacks: 1
-  requiredStructures: []
+  label: Establish a base.
+  requiredItems: []
+  requiredStructures:
+  - {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
   rewards:
-  - rewardType: 2
-    rewardAmount: 15
+  - rewardType: 1
+    rewardAmount: 5
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

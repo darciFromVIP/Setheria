@@ -12,18 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 8
   m_EditorClassIdentifier: 
-  label: Find some resources and knowledge.
+  label: Increase your survivability.
   requiredItems:
-  - itemData: {fileID: 11400000, guid: 092818e9ed8f26946865a62521ee1263, type: 2}
+  - itemData: {fileID: 11400000, guid: c24df273115bd324c9052ab14ba4c576, type: 2}
     stacks: 1
-  - itemData: {fileID: 11400000, guid: 413daef5bb9d75f4fb4a0ddf31764871, type: 2}
+  - itemData: {fileID: 11400000, guid: 259866ad2fbffe245b24c7bae99eea3e, type: 2}
+    stacks: 2
+  - itemData: {fileID: 11400000, guid: 58f80bf90a34df540a593a32c63665ae, type: 2}
     stacks: 1
-  - itemData: {fileID: 11400000, guid: 8b8309f0d9762af4ca4a413da72b998d, type: 2}
+  - itemData: {fileID: 11400000, guid: 131260af6be2fd74c99807c53399b443, type: 2}
     stacks: 1
   requiredStructures: []
   rewards:
+  - rewardType: 0
+    rewardAmount: 10
   - rewardType: 2
-    rewardAmount: 25
+    rewardAmount: 10
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []
