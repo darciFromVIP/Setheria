@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public enum QuestRewardType
 {
-    Resources, Knowledge, XP
+    Resources, Knowledge, XP, GatheringXP, AlchemyXP, CookingXP, FishingXP
 }
 [System.Serializable]
 public struct QuestReward
@@ -123,6 +123,18 @@ public class QuestScriptable : ScriptableObject
                     break;
                 case QuestRewardType.XP:
                     result += "<sprite=14>";
+                    break;
+                case QuestRewardType.GatheringXP:
+                    result += "Gathering +";
+                    break;
+                case QuestRewardType.AlchemyXP:
+                    result += "Alchemy +";
+                    break;
+                case QuestRewardType.CookingXP:
+                    result += "Cooking +";
+                    break;
+                case QuestRewardType.FishingXP:
+                    result += "Fishing +";
                     break;
                 default:
                     break;

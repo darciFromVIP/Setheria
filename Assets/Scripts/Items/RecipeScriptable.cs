@@ -25,6 +25,8 @@ public class RecipeScriptable : ScriptableObject
     public List<StructureScriptable> requiredStructures = new();
     private Dictionary<ItemScriptable, bool> requiredItemsTemp = new();
     private Dictionary<StructureScriptable, bool> requiredStructuresTemp = new();
+    public TalentTreeType requiredProfession;
+    public int requiredProfessionExperience;
 
     private void OnEnable()
     {

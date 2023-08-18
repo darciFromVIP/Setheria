@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Unlock Gathering Quest
   m_EditorClassIdentifier: 
-  label: Be (un)welcome, stranger. Try to survive.(reward Gatherunlock)
+  label: Be (un)welcome, stranger. Try to survive.
   requiredItems:
   - itemData: {fileID: 11400000, guid: eed769246a0eca54dbd15b977acd3832, type: 2}
     stacks: 1
   requiredStructures: []
-  rewards: []
+  rewards:
+  - rewardType: 3
+    rewardAmount: 1
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

@@ -5,6 +5,8 @@ using Mirror;
 using Steamworks;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI;
+
 [System.Serializable]
 public enum Hero
 {
@@ -276,6 +278,28 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             FindObjectOfType<FloatingText>().SpawnFloatingText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
         }
         Xp_Changed.Invoke(xp, maxXp);
+    }
+    public void SpawnProfessionFloatingText(TalentTreeType profType, int amount)
+    {
+        FloatingTextType type = FloatingTextType.Gathering;
+        switch (profType)
+        {
+            case TalentTreeType.Gathering:
+                type = FloatingTextType.Gathering;
+                break;
+            case TalentTreeType.Cooking:
+                type = FloatingTextType.Cooking;
+                break;
+            case TalentTreeType.Alchemy:
+                type = FloatingTextType.Alchemy;
+                break;
+            case TalentTreeType.Fishing:
+                type = FloatingTextType.Fishing;
+                break;
+            default:
+                break;
+        }
+        FindObjectOfType<FloatingText>().SpawnFloatingText(profType.ToString() + " +" + amount.ToString(), transform.position, type);
     }
     public void ChangeAttributePoints(int value)
     {

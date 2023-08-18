@@ -6,7 +6,7 @@ using TMPro;
 public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
 {
     public InventoryItem inventoryItemPrefab;
-    public TextMeshProUGUI resultItemNameText, resourceCostText, structureRequirement;
+    public TextMeshProUGUI resultItemNameText, resourceCostText, structureRequirement, professionRequirement;
     public Transform resultItemParent, components;
     public Button craftBtn;
     public GameObject amountUI, blockingUI;
@@ -29,7 +29,8 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     public void UpdateDetails(RecipeScriptable recipeData, bool openedInStructure, int amount = 1)
     {
-        ClearDetails();        
+        ClearDetails();
+        var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         this.amount = amount;
         amountInput.text = amount.ToString();
         if (recipeData.resultItem.itemData.stackable)
@@ -54,6 +55,11 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         currentOpenedRecipe = recipeData;
         resultItemNameText.text = recipeData.resultItem.itemData.name;
         structureRequirement.text = "Structure: " + (recipeData.requiredStructure == null ? "None" : recipeData.requiredStructure.name);
+        if (recipeData.requiredProfession == TalentTreeType.Special)
+            professionRequirement.text = "";
+        else
+            professionRequirement.text = recipeData.requiredProfession.ToString() + ": " + player.professions.GetProfessionExperience(recipeData.requiredProfession) + "/" + recipeData.requiredProfessionExperience;
+        craftBtn.interactable = player.professions.GetProfessionExperience(recipeData.requiredProfession) >= recipeData.requiredProfessionExperience;
 
         var resultItem = Instantiate(inventoryItemPrefab, resultItemParent);
         resultItem.stackText.text = (recipeData.resultItem.stacks * amount).ToString();

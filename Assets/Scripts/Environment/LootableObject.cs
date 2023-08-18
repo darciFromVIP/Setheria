@@ -17,6 +17,8 @@ public class LootableObject : NetworkBehaviour, IInteractable
     public bool lootable = true;
     public ItemType toolRequirement;
     public int toolLevelRequirement;
+    public TalentTreeType professionRequired;
+    public int professionExperienceRequired;
 
     public string lootableName;
     public string unlootableName;
@@ -50,6 +52,41 @@ public class LootableObject : NetworkBehaviour, IInteractable
             FindObjectOfType<SystemMessages>().AddMessage("You need to equip a " + toolRequirement.ToString() + " of level " + toolLevelRequirement + " to harvest this!");
             return;
         }
+        switch (professionRequired)
+        {
+            case TalentTreeType.Special:
+                break;
+            case TalentTreeType.Gathering:
+                if (player.professions.gathering < professionExperienceRequired)
+                {
+                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this!");
+                    return;
+                }
+                break;
+            case TalentTreeType.Cooking:
+                if (player.professions.cooking < professionExperienceRequired)
+                {
+                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this!");
+                    return;
+                }
+                break;
+            case TalentTreeType.Alchemy:
+                if (player.professions.alchemy < professionExperienceRequired)
+                {
+                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this!");
+                    return;
+                }
+                break;
+            case TalentTreeType.Fishing:
+                if (player.professions.fishing < professionExperienceRequired)
+                {
+                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this!");
+                    return;
+                }
+                break;
+            default:
+                break;
+        }
         CmdSetInteractingPlayer(player.GetComponent<PlayerController>());
         interactingPlayer = player.GetComponent<PlayerController>();
         interactingPlayer.CmdStartWorking(lootDuration);
@@ -81,6 +118,23 @@ public class LootableObject : NetworkBehaviour, IInteractable
             return;
         }
         interactingPlayer.GetComponent<PlayerCharacter>().AddXp(xpGranted);
+        switch (professionRequired)
+        {
+            case TalentTreeType.Gathering:
+                interactingPlayer.GetComponent<PlayerCharacter>().professions.AddGathering(1);
+                break;
+            case TalentTreeType.Cooking:
+                interactingPlayer.GetComponent<PlayerCharacter>().professions.AddCooking(1);
+                break;
+            case TalentTreeType.Alchemy:
+                interactingPlayer.GetComponent<PlayerCharacter>().professions.AddAlchemy(1);
+                break;
+            case TalentTreeType.Fishing:
+                interactingPlayer.GetComponent<PlayerCharacter>().professions.AddFishing(1);
+                break;
+            default:
+                break;
+        }
         GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>(true));
         CmdSetInteractingPlayer(null);
         currentCharges--;

@@ -36,6 +36,18 @@ public class FloatingTextPrefab : MonoBehaviour
             case FloatingTextType.Hunger:
                 textMesh.color = new Color(1, 0.5f, 0, 1);
                 break;
+            case FloatingTextType.Gathering:
+                textMesh.color = Color.green;
+                break;
+            case FloatingTextType.Fishing:
+                textMesh.color = Color.blue;
+                break;
+            case FloatingTextType.Cooking:
+                textMesh.color = Color.red;
+                break;
+            case FloatingTextType.Alchemy:
+                textMesh.color = Color.magenta;
+                break;
             default:
                 break;
         }

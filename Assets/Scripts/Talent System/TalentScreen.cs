@@ -11,11 +11,12 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
 
     private TalentTreeType currentOpenedTree = TalentTreeType.Special;
 
-    private PlayerCharacter localPlayer;
+    public PlayerCharacter localPlayer;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         localPlayer = player;
-        combatTalentTrees[(int)player.hero].SetActive(true);
+        if (combatTalentTrees.Count > 0)
+            combatTalentTrees[(int)player.hero].SetActive(true);
         foreach (var item in GetComponentsInChildren<TalentButton>(true))
         {
             talentButtons.Add(item);
@@ -52,5 +53,28 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
     {
         base.OpenAnotherWindow(window);
         UpdateTalents();
+    }
+    public void ChangeCurrentOpenedTalentTree(TalentTreeType type)
+    {
+        currentOpenedTree = type;
+    }
+    public bool CanUpgradeThisTree(TalentTreeType type)
+    {
+        switch (type)
+        {
+            case TalentTreeType.Special:
+                break;
+            case TalentTreeType.Gathering:
+                return localPlayer.professions.gathering == localPlayer.professions.maxGathering;
+            case TalentTreeType.Cooking:
+                return localPlayer.professions.cooking == localPlayer.professions.maxCooking;
+            case TalentTreeType.Alchemy:
+                return localPlayer.professions.alchemy == localPlayer.professions.maxAlchemy;
+            case TalentTreeType.Fishing:
+                return localPlayer.professions.fishing == localPlayer.professions.maxFishing;
+            default:
+                break;
+        }
+        return false;
     }
 }

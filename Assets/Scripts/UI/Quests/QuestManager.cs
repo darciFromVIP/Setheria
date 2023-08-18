@@ -44,6 +44,18 @@ public class QuestManager : NetworkBehaviour
                 case QuestRewardType.XP:
                     FindObjectOfType<GameManager>().localPlayerCharacter.AddXp(item.rewardAmount);
                     break;
+                case QuestRewardType.GatheringXP:
+                    FindObjectOfType<GameManager>().localPlayerCharacter.professions.AddGathering(item.rewardAmount);
+                    break;
+                case QuestRewardType.AlchemyXP:
+                    FindObjectOfType<GameManager>().localPlayerCharacter.professions.AddAlchemy(item.rewardAmount);
+                    break;
+                case QuestRewardType.CookingXP:
+                    FindObjectOfType<GameManager>().localPlayerCharacter.professions.AddCooking(item.rewardAmount);
+                    break;
+                case QuestRewardType.FishingXP:
+                    FindObjectOfType<GameManager>().localPlayerCharacter.professions.AddFishing(item.rewardAmount);
+                    break;
                 default:
                     break;
             }
