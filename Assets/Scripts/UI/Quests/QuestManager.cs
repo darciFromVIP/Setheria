@@ -2,7 +2,6 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class QuestManager : NetworkBehaviour
 {
@@ -14,8 +13,8 @@ public class QuestManager : NetworkBehaviour
     {
         foreach (var item in questlines)
         {
-            item.Quest_Complete.AddListener(QuestComplete);
-            item.Questline_Complete.AddListener(QuestlineComplete);
+            item.Quest_Complete.AddListener(CmdQuestComplete);
+            item.Questline_Complete.AddListener(CmdQuestlineComplete);
             item.New_Quest.AddListener(NewQuest);
             NewQuest(item.quests[item.currentQuestIndex]);
         }
@@ -27,8 +26,25 @@ public class QuestManager : NetworkBehaviour
         questInstance.Initialize(quest);
         FindObjectOfType<AudioManager>().QuestAccepted();
     }
-    private void QuestComplete(QuestScriptable quest)
+    [Command]
+    private void CmdQuestComplete(string questName)
     {
+        RpcQuestComplete(questName);
+    }
+    [ClientRpc]
+    private void RpcQuestComplete(string questName)
+    {
+        QuestScriptable quest = null;
+        foreach (var item in questlines)
+        {
+            foreach (var item2 in item.quests)
+            {
+                if (item2.name == questName)
+                    quest = item2;
+            }
+        }
+        if (quest == null)
+            return;
         foreach (var item in quest.rewards)
         {
             switch (item.rewardType)
@@ -70,9 +86,19 @@ public class QuestManager : NetworkBehaviour
         }
         FindObjectOfType<AudioManager>().QuestCompleted();
     }
-    private void QuestlineComplete(QuestlineScriptable questline)
+    [Command]
+    private void CmdQuestlineComplete(string questlineName)
     {
-        questlines.Remove(questline);
+        RpcQuestlineComplete(questlineName);
+    }
+    [ClientRpc]
+    private void RpcQuestlineComplete(string questlineName)
+    {
+        foreach (var item in questlines)
+        {
+            if (item.name == questlineName)
+                questlines.Remove(item);
+        }
     }
     public void NewQuestline(QuestlineScriptable questline)
     {

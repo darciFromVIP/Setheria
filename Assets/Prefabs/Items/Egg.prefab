@@ -107,6 +107,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2147243026206446150, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: b53abc5e132b0964385430ca5ff001c0,
+        type: 2}
     - target: {fileID: 2537869770871532638, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
       propertyPath: m_RootOrder
@@ -182,13 +188,19 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.104
       objectReference: {fileID: 0}
+    - target: {fileID: 8564286959713456084, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: objectName
+      value: Egg
+      objectReference: {fileID: 0}
     - target: {fileID: 8649152927276343529, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8649152927276343529, guid: d42cc2249f7425d44b8e4823b3453df6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2537869770871532638, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
