@@ -6,7 +6,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 using Mirror;
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IDropHandler
+
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IDropHandler, IPointerDownHandler
 {
     public Image image, border;
     public TextMeshProUGUI stackText, cooldownText;
@@ -22,6 +23,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public ItemScriptable item;
     [HideInInspector] public int stacks = 0;
+    private StashInventory stashInventoryParent;
+    private InventoryManager inventoryManagerParent;
+    private StashInventory stashInventory;
+    private InventoryManager inventoryManager;
 
     public UnityEvent Item_Destroyed = new();
     public UnityEvent<int> Stacks_Changed = new();
@@ -33,6 +38,18 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private void Awake()
     {
         rect = GetComponent<RectTransform>();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            stashInventoryParent = null;
+            inventoryManagerParent = null;
+            stashInventoryParent = GetComponentInParent<StashInventory>();
+            inventoryManagerParent = GetComponentInParent<InventoryManager>();
+            stashInventory = FindObjectOfType<StashInventory>();
+            inventoryManager = FindObjectOfType<InventoryManager>(true);
+        }
     }
     public void InitializeItem(Item item)
     {
@@ -116,6 +133,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
             DestroyItem();
         }
+        else if (stacks < 0)
+            item.Item_Stacks_Lost.Invoke(item, stacks);
     }
     public void UseItem()
     {
@@ -162,7 +181,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void DestroyItem()
     {
         transform.SetParent(null);                      // Destroy executes after current Update loop, too late for certain functions (with crafting)
-        FindObjectOfType<Tooltip>(true).Hide();
+        item.Item_Stacks_Lost.Invoke(item, stacks);
         Item_Destroyed.Invoke();
         Destroy(gameObject);
     }
@@ -190,6 +209,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (Input.GetKey(KeyCode.LeftShift))
+            return;
         if (draggable)
         {
             image.raycastTarget = false;
@@ -202,12 +223,16 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (Input.GetKey(KeyCode.LeftShift))
+            return;
         if (draggable)
             rect.anchoredPosition = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (Input.GetKey(KeyCode.LeftShift))
+            return;
         if (draggable)
         {
             image.raycastTarget = true;
@@ -237,6 +262,29 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnPointerEnter(PointerEventData eventData)
     {
         newItemNotification.SetActive(false);
+        QuickItemTransfer();
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        QuickItemTransfer();
+    }
+    private void QuickItemTransfer()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Mouse0))
+        {
+            if (inventoryManagerParent && stashInventory)                       // To Stash
+            {
+                stashInventory.AddItem(item, stacks);
+                DestroyItem();
+            }
+            else if (stashInventoryParent && inventoryManager)                  // To Inventory
+            {
+                if (!inventoryManager.GetFreeSlot())
+                    return;
+                inventoryManager.AddItem(item, stacks);
+                GetComponentInParent<StashSlot>().CmdDeleteItemOnClients();
+            }
+        }
     }
     public void UnequipItem()
     {

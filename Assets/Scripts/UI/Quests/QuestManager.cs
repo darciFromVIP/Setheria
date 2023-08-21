@@ -24,9 +24,8 @@ public class QuestManager : NetworkBehaviour
         quest.SetQuestActive(true);
         var questInstance = Instantiate(questDescriptionPrefab, contentUI);
         questInstance.Initialize(quest);
-        FindObjectOfType<AudioManager>().QuestAccepted();
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     private void CmdQuestComplete(string questName)
     {
         RpcQuestComplete(questName);
@@ -80,13 +79,12 @@ public class QuestManager : NetworkBehaviour
         {
             if (item.questData == quest)
             {
-                Destroy(item.gameObject);
+                item.QuestCompleted();
                 break;
             }
         }
-        FindObjectOfType<AudioManager>().QuestCompleted();
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     private void CmdQuestlineComplete(string questlineName)
     {
         RpcQuestlineComplete(questlineName);

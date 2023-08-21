@@ -13,8 +13,8 @@ public class QuestlineScriptable : ScriptableObject
     [HideInInspector] public UnityEvent<string> Questline_Complete = new();
     private void OnEnable()
     {
-        quests[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
         currentQuestIndex = 0;
+        quests[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
     }
     private void QuestComplete()
     {

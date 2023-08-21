@@ -73,10 +73,12 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
                 {
                     if (temp.item.stackable)
                     {
+                        itemToDestroy.itemData.Item_Stacks_Lost.Invoke(itemToDestroy.itemData, itemToDestroy.stacks);
                         temp.ChangeStacks(-itemToDestroy.stacks);
                     }
                     else
                     {
+                        itemToDestroy.itemData.Item_Stacks_Lost.Invoke(itemToDestroy.itemData, 1);
                         temp.transform.SetParent(null);
                         Destroy(temp.gameObject);
                     }

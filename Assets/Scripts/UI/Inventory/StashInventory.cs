@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 public class StashInventory : MonoBehaviour, WindowedUI
 {
-    public List<InventorySlot> inventorySlots = new();
+    public List<StashSlot> stashSlots = new();
     public GameObject window;
 
     public InventoryItem inventoryItemPrefab;
@@ -12,6 +12,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     public ItemScriptableDatabase itemDatabase;
     private void Start()
     {
+        InitializeInventory();
         HideWindow();
     }
     public void ShowWindow()
@@ -24,9 +25,9 @@ public class StashInventory : MonoBehaviour, WindowedUI
     }
     public void InitializeInventory()
     {
-        foreach (var item in GetComponentsInChildren<InventorySlot>(true))
+        foreach (var item in GetComponentsInChildren<StashSlot>(true))
         {
-            inventorySlots.Add(item);
+            stashSlots.Add(item);
         }
     }
     public bool AddItem(Item item)
@@ -37,23 +38,23 @@ public class StashInventory : MonoBehaviour, WindowedUI
     {
         if (item.stackable)
         {
-            foreach (var slot in inventorySlots)
+            foreach (var slot in stashSlots)
             {
                 if (slot.transform.childCount > 0)
                 {
                     if (slot.GetComponentInChildren<InventoryItem>().item == item)
                     {
-                        slot.GetComponentInChildren<InventoryItem>().ChangeStacks(stacks);
+                        slot.CmdChangeStacks(stacks);
                         return true;
                     }
                 }
             }
         }
-        foreach (var slot in inventorySlots)
+        foreach (var slot in stashSlots)
         {
             if (slot.transform.childCount == 0 && slot.isFree)
             {
-                SpawnNewItem(item, stacks, slot);
+                slot.CmdSpawnItemOnThisSlot(item.name, stacks);
                 return true;
             }
         }
@@ -70,7 +71,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     }
     public void RemoveItem(ItemRecipeInfo itemToDestroy)
     {
-        foreach (var item in inventorySlots)
+        foreach (var item in stashSlots)
         {
             if (item.transform.childCount > 0)
             {
@@ -104,7 +105,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     public List<InventoryItem> GetAllItems()
     {
         List<InventoryItem> result = new();
-        foreach (var item in inventorySlots)
+        foreach (var item in stashSlots)
         {
             if (item.transform.childCount > 0)
                 result.Add(item.GetComponentInChildren<InventoryItem>());
@@ -113,7 +114,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     }
     public void ExtendInventory(int value)
     {
-        foreach (var item in inventorySlots)
+        foreach (var item in stashSlots)
         {
             if (!item.isFree)
             {
@@ -126,9 +127,9 @@ public class StashInventory : MonoBehaviour, WindowedUI
     }
     public bool TestReduceInventory(int value)
     {
-        for (int i = inventorySlots.Count - 1; i >= 0; i--)
+        for (int i = stashSlots.Count - 1; i >= 0; i--)
         {
-            if (inventorySlots[i].isFree && inventorySlots[i].transform.childCount == 0)
+            if (stashSlots[i].isFree && stashSlots[i].transform.childCount == 0)
                 value--;
         }
         if (value <= 0)
@@ -138,11 +139,11 @@ public class StashInventory : MonoBehaviour, WindowedUI
     }
     public void ReduceInventory(int value)
     {
-        for (int i = inventorySlots.Count - 1; i >= 0; i--)
+        for (int i = stashSlots.Count - 1; i >= 0; i--)
         {
-            if (inventorySlots[i].isFree && inventorySlots[i].transform.childCount == 0)
+            if (stashSlots[i].isFree && stashSlots[i].transform.childCount == 0)
             {
-                inventorySlots[i].ToggleSlotAvailability(false);
+                stashSlots[i].ToggleSlotAvailability(false);
                 value--;
                 if (value <= 0)
                     break;
@@ -151,7 +152,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     }
     public Transform GetFreeSlot()
     {
-        foreach (var slot in inventorySlots)
+        foreach (var slot in stashSlots)
         {
             if (slot.transform.childCount == 0 && slot.isFree)
             {

@@ -35,6 +35,7 @@ public class QuestScriptable : ScriptableObject
             foreach (var item in requiredItems)
             {
                 item.itemData.Item_Stacks_Acquired.AddListener(ReduceRequirement);
+                item.itemData.Item_Stacks_Lost.AddListener(AddRequirement);
                 requiredItemsDic.Add(item.itemData, 0);
             }
             foreach (var item in requiredStructures)
@@ -63,6 +64,13 @@ public class QuestScriptable : ScriptableObject
     private void ReduceRequirement(ItemScriptable itemAcquired, int stacks)
     {
         requiredItemsDic[itemAcquired] += stacks;
+        CheckQuestCompletion();
+    }
+    private void AddRequirement(ItemScriptable itemLost, int stacks)
+    {
+        requiredItemsDic[itemLost] -= stacks;
+        if (requiredItemsDic[itemLost] < 0)
+            requiredItemsDic[itemLost] = 0;
         CheckQuestCompletion();
     }
     private void CheckQuestCompletion()

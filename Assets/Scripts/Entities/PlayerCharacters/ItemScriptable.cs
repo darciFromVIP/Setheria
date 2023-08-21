@@ -36,4 +36,5 @@ public class ItemScriptable : ScriptableObject
 
     public UnityEvent<ItemScriptable> Item_Acquired = new();
     public UnityEvent<ItemScriptable, int> Item_Stacks_Acquired = new();
+    public UnityEvent<ItemScriptable, int> Item_Stacks_Lost = new();
 }

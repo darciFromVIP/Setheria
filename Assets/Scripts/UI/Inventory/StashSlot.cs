@@ -23,17 +23,16 @@ public class StashSlot : NetworkBehaviour, IDropHandler
         if (transform.childCount == 0 && isFree)
         {
             var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
-            if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
-            {
+            if (!inventoryItem)
                 return;
-            }
+            else if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
+                return;
             CmdSpawnItemOnThisSlot(inventoryItem.item.name, inventoryItem.stacks);
             inventoryItem.DestroyItem();
         }
     }
-
     [Command(requiresAuthority = false)]
-    private void CmdSpawnItemOnThisSlot(string itemName, int stacks)
+    public void CmdSpawnItemOnThisSlot(string itemName, int stacks)
     {
         RpcUpdateNewItem(itemName, stacks);
     }

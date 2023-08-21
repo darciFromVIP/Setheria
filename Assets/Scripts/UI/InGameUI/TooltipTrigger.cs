@@ -23,6 +23,12 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         if (keyText)
             keyText.text = data.text;
     }
+    private void OnDestroy()
+    {
+        var tooltip = FindObjectOfType<Tooltip>(true);
+        if (tooltip)
+            tooltip.Hide();
+    }
     public void SetText(string header, string content, Sprite sprite)
     {
         this.header = header;
