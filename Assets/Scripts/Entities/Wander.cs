@@ -12,6 +12,7 @@ public class Wander : MonoBehaviour
     {
         moveComp = GetComponent<CanMove>();
         startingPosition = transform.position;
+        GetComponent<Entity>().On_Death.AddListener(StopWander);
         StartCoroutine(StartWander());
     }
     private IEnumerator StartWander()
@@ -24,5 +25,9 @@ public class Wander : MonoBehaviour
         }
         moveComp.MoveTo(new Vector3(startingPosition.x + Random.Range(-wanderRange, wanderRange), startingPosition.y, startingPosition.z + Random.Range(-wanderRange, wanderRange)));
         StartCoroutine(StartWander());
+    }
+    private void StopWander()
+    {
+        StopAllCoroutines();
     }
 }

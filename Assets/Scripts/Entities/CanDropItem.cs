@@ -38,7 +38,22 @@ public class CanDropItem : NetworkBehaviour
                 temp += item2.chance;
                 if (random >= temp - item2.chance && random < temp)
                 {
-                    SpawnItem(new SaveDataItem { name = item2.item.itemData.name, stacks = item2.item.stacks }, transform.position);
+                    Vector3 finalPos = transform.position;
+                    while (true)
+                    {
+                        Vector3 pos = transform.position + new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2));
+                        RaycastHit hit;
+                        if (Physics.Raycast(new Ray(pos + Vector3.up, Vector3.down), out hit, 3, LayerMask.GetMask("Default", "Water")))
+                        {
+                            pos = hit.point;
+                        }
+                        if (Mathf.Abs(finalPos.y - pos.y) < 1)
+                        {
+                            finalPos = pos;
+                            break;
+                        }
+                    }
+                    SpawnItem(new SaveDataItem { name = item2.item.itemData.name, stacks = item2.item.stacks }, finalPos);
                 }
             }
         }
@@ -64,14 +79,9 @@ public class CanDropItem : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void SpawnItem(SaveDataItem item, Vector3 position)
     {
-        RaycastHit hit;
-        Ray ray = new Ray(position, Vector3.down);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Default", "Water")))
-        {
-            var newItem = Instantiate(itemDatabase.GetItemByName(item.name), hit.point, Quaternion.identity);
-            NetworkServer.Spawn(newItem.gameObject);
-            RpcUpdateCreatedItem(newItem.GetComponent<NetworkIdentity>(), item.stacks);
-        }
+        var newItem = Instantiate(itemDatabase.GetItemByName(item.name), position, Quaternion.identity);
+        NetworkServer.Spawn(newItem.gameObject);
+        RpcUpdateCreatedItem(newItem.GetComponent<NetworkIdentity>(), item.stacks);
     }
     [ClientRpc]
     private void RpcUpdateCreatedItem(NetworkIdentity item, int stacks)
