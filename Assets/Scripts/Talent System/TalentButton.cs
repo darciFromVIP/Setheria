@@ -12,6 +12,7 @@ public class TalentButton : MonoBehaviour
     private void Awake()
     {
         btn.onClick.AddListener(UnlockTalent);
+        GetComponent<TooltipTrigger>().SetText(talent.label, talent.description, image.sprite);
     }
     public void UpdateButton(Talent currentTalent, TalentTrees playerTalentTrees, TalentTree talentTree)
     {

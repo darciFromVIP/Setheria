@@ -14,4 +14,7 @@ public class TalentScriptable : ScriptableObject
     public TalentScriptable requiredTalent;
     public byte requiredTalentLevel;
     public byte requiredTalentPointsSpent;
+    public string label;
+    [TextArea(10, 10)]
+    public string description;
 }

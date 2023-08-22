@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 2972677662651400024}
   - component: {fileID: 2972677662651400025}
   - component: {fileID: 2972677662651400022}
+  - component: {fileID: 4097210473681286295}
   m_Layer: 5
   m_Name: TalentButton
   m_TagString: Untagged
@@ -274,3 +275,22 @@ MonoBehaviour:
   image: {fileID: 2972677662651400024}
   levelText: {fileID: 548984474351221485}
   btn: {fileID: 2972677662651400025}
+--- !u!114 &4097210473681286295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972677662651400020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a674062d00c18479f34c51f6194994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: 
+  content: 
+  sprite: {fileID: 0}
+  keybindLabel: 
+  keybindType: 0
+  keyImage: {fileID: 0}
+  keyText: {fileID: 0}
