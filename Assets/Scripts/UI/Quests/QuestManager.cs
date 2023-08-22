@@ -15,12 +15,27 @@ public class QuestManager : NetworkBehaviour
         {
             item.Quest_Complete.AddListener(CmdQuestComplete);
             item.Questline_Complete.AddListener(CmdQuestlineComplete);
-            item.New_Quest.AddListener(NewQuest);
-            NewQuest(item.quests[item.currentQuestIndex]);
+            item.New_Quest.AddListener(CmdNewQuest);
+            CmdNewQuest(item.quests[item.currentQuestIndex].name);
         }
     }
-    private void NewQuest(QuestScriptable quest)
+    [Command(requiresAuthority = false)] 
+    private void CmdNewQuest(string questName)
     {
+        RpcNewQuest(questName);
+    }
+    [ClientRpc]
+    private void RpcNewQuest(string questName)
+    {
+        QuestScriptable quest = null;
+        foreach (var item in questlines)
+        {
+            foreach (var item2 in item.quests)
+            {
+                if (item2.name == questName)
+                    quest = item2;
+            }
+        }
         quest.SetQuestActive(true);
         var questInstance = Instantiate(questDescriptionPrefab, contentUI);
         questInstance.Initialize(quest);
@@ -104,6 +119,6 @@ public class QuestManager : NetworkBehaviour
     public void NewQuestline(QuestlineScriptable questline)
     {
         questlines.Add(questline);
-        NewQuest(questline.quests[questline.currentQuestIndex]);
+        CmdNewQuest(questline.quests[questline.currentQuestIndex].name);
     }
 }

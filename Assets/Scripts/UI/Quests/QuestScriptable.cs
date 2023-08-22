@@ -49,6 +49,7 @@ public class QuestScriptable : ScriptableObject
             foreach (var item in requiredItems)
             {
                 item.itemData.Item_Stacks_Acquired.RemoveListener(ReduceRequirement);
+                item.itemData.Item_Stacks_Lost.RemoveListener(AddRequirement);
             }
             foreach (var item in requiredStructures)
             {

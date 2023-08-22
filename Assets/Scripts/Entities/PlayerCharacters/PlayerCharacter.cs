@@ -197,6 +197,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     }
                     if (item.professions != null)
                         professions = item.professions;
+                    professions.player = this;
                 }
             }
         }

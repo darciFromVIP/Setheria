@@ -9,7 +9,7 @@ public class QuestlineScriptable : ScriptableObject
     public List<QuestScriptable> quests = new();
 
     [HideInInspector] public UnityEvent<string> Quest_Complete = new();
-    [HideInInspector] public UnityEvent<QuestScriptable> New_Quest = new();
+    [HideInInspector] public UnityEvent<string> New_Quest = new();
     [HideInInspector] public UnityEvent<string> Questline_Complete = new();
     private void OnEnable()
     {
@@ -26,7 +26,7 @@ public class QuestlineScriptable : ScriptableObject
         else
         {
             quests[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
-            New_Quest.Invoke(quests[currentQuestIndex]);
+            New_Quest.Invoke(quests[currentQuestIndex].name);
         }
     }
 }
