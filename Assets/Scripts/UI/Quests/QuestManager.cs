@@ -92,11 +92,14 @@ public class QuestManager : NetworkBehaviour
     [ClientRpc]
     private void RpcQuestlineComplete(string questlineName)
     {
+        QuestlineScriptable temp = null;
         foreach (var item in questlines)
         {
             if (item.name == questlineName)
-                questlines.Remove(item);
+                temp = item;
         }
+        if (temp is not null)
+            questlines.Remove(temp);
     }
     public void NewQuestline(QuestlineScriptable questline)
     {
