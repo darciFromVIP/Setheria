@@ -8,6 +8,7 @@ public class QuestManager : NetworkBehaviour
     public List<QuestlineScriptable> questlines = new();
     public Transform contentUI;
     public QuestDescription questDescriptionPrefab;
+    public QuestlineDatabase questlineDatabase;
 
     private void Start()
     {
@@ -26,6 +27,10 @@ public class QuestManager : NetworkBehaviour
     }
     [ClientRpc]
     private void RpcNewQuest(string questName)
+    {
+        NewQuest(questName);
+    }
+    private void NewQuest(string questName)
     {
         QuestScriptable quest = null;
         foreach (var item in questlines)
@@ -116,9 +121,20 @@ public class QuestManager : NetworkBehaviour
         if (temp is not null)
             questlines.Remove(temp);
     }
-    public void NewQuestline(QuestlineScriptable questline)
+    [Command(requiresAuthority = false)]
+    public void CmdNewQuestline(string questlineName)
     {
+        RpcNewQuestline(questlineName);
+    }
+    [ClientRpc]
+    private void RpcNewQuestline(string questlineName)
+    {
+        NewQuestline(questlineName);
+    }
+    public void NewQuestline(string questlineName)
+    {
+        QuestlineScriptable questline = questlineDatabase.GetQuestlineByName(questlineName);
         questlines.Add(questline);
-        CmdNewQuest(questline.quests[questline.currentQuestIndex].name);
+        NewQuest(questline.quests[questline.currentQuestIndex].name);
     }
 }

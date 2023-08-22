@@ -5,11 +5,15 @@ using UnityEngine;
 public class QuestTrigger : MonoBehaviour
 {
     public QuestlineScriptable questlineTriggered;
+    public bool giveQuestlineToAllPlayers = true;
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out PlayerCharacter player))
         {
-            FindObjectOfType<QuestManager>().NewQuestline(questlineTriggered);
+            if (giveQuestlineToAllPlayers)
+                FindObjectOfType<QuestManager>().CmdNewQuestline(questlineTriggered.name);
+            else
+                FindObjectOfType<QuestManager>().NewQuestline(questlineTriggered.name);
             Destroy(gameObject);
         }
     }
