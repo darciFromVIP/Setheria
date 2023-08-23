@@ -27,9 +27,10 @@ public class Wander : MonoBehaviour
     private IEnumerator StartWander()
     {
         float wanderTimer = wanderInterval;
-        while (wanderTimer > 0 && !paused)
+        while (wanderTimer > 0)
         {
-            wanderTimer -= Time.deltaTime;
+            if (!paused)
+                wanderTimer -= Time.deltaTime;
             yield return null;
         }
         moveComp.MoveTo(new Vector3(startingPosition.x + Random.Range(-wanderRange, wanderRange), startingPosition.y, startingPosition.z + Random.Range(-wanderRange, wanderRange)));
