@@ -19,6 +19,7 @@ public class LootableObject : NetworkBehaviour, IInteractable
     public int toolLevelRequirement;
     public TalentTreeType professionRequired;
     public int professionExperienceRequired;
+    public GameObject effectToHide;
 
     public string lootableName;
     public string unlootableName;
@@ -179,6 +180,7 @@ public class LootableObject : NetworkBehaviour, IInteractable
     private void RpcUpdateLootability(bool value)
     {
         lootable = value;
+        effectToHide.SetActive(lootable);
         if (value)
             tooltip.objectName = lootableName;
         else

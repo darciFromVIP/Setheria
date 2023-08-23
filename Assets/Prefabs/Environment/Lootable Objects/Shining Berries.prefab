@@ -428,6 +428,12 @@ PrefabInstance:
       addedObject: {fileID: 5122527780485478646}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b46344c8183999644b38ae37a7077b00, type: 3}
+--- !u!1 &1594344697226997532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 976365683102791067, guid: b46344c8183999644b38ae37a7077b00,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994249542119660167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6681688749788872032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5122527780174866407, guid: b46344c8183999644b38ae37a7077b00,
@@ -452,6 +458,11 @@ PrefabInstance:
       propertyPath: oneTimeLoot
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: effectToHide
+      value: 
+      objectReference: {fileID: 1594344697226997532}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: lootDuration
@@ -485,7 +496,7 @@ PrefabInstance:
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_RootOrder
-      value: 646
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -622,7 +633,7 @@ PrefabInstance:
     - target: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Name
-      value: Shining Berries (1)
+      value: Shining Berries
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
