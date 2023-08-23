@@ -34,7 +34,7 @@ public class ItemScriptable : ScriptableObject
     public int knowledgeCost;
     public bool unlocked = true;
 
-    public UnityEvent<ItemScriptable> Item_Acquired = new();
-    public UnityEvent<ItemScriptable, int> Item_Stacks_Acquired = new();
-    public UnityEvent<ItemScriptable, int> Item_Stacks_Lost = new();
+    [HideInInspector] public UnityEvent<ItemScriptable> Item_Acquired = new();
+    [HideInInspector] public UnityEvent<ItemScriptable, int> Item_Stacks_Acquired = new();
+    [HideInInspector] public UnityEvent<ItemScriptable, int> Item_Stacks_Lost = new();
 }

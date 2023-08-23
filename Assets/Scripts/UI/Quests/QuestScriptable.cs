@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.Events;
 public enum QuestRewardType
 {
-    Resources, Knowledge, XP, GatheringXP, AlchemyXP, CookingXP, FishingXP
+    Resources, Knowledge, XP, Item
 }
 [System.Serializable]
 public struct QuestReward
 {
     public QuestRewardType rewardType;
     public int rewardAmount;
+    public ItemScriptable itemReward;
 }
 [CreateAssetMenu(menuName = "Quest System/Quest")]
 public class QuestScriptable : ScriptableObject
@@ -133,17 +134,8 @@ public class QuestScriptable : ScriptableObject
                 case QuestRewardType.XP:
                     result += "<sprite=14>";
                     break;
-                case QuestRewardType.GatheringXP:
-                    result += "Gathering +";
-                    break;
-                case QuestRewardType.AlchemyXP:
-                    result += "Alchemy +";
-                    break;
-                case QuestRewardType.CookingXP:
-                    result += "Cooking +";
-                    break;
-                case QuestRewardType.FishingXP:
-                    result += "Fishing +";
+                case QuestRewardType.Item:
+                    result += item.itemReward.name + " x";
                     break;
                 default:
                     break;
