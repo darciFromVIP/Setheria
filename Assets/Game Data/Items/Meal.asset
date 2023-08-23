@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Book of Cooking
+  m_Name: Meal
   m_EditorClassIdentifier: 
-  description: This book teaches you basics of Cooking.
-  grade: 0
+  description: Warm tasted meat meal. Restores +15 Food.
+  grade: 1
   itemType: 0
-  sprite: {fileID: 21300000, guid: b5f4b4f65ee4dab4eb97df0eb0302e23, type: 3}
-  stackable: 0
+  sprite: {fileID: 21300000, guid: 08ee1d4b4dd94db4ab38877c0b6c6246, type: 3}
+  stackable: 1
   usage:
-  - {fileID: 11400000, guid: a2605548749336a4198e7667167dacd1, type: 2}
-  usageCooldown: 0
+  - {fileID: 11400000, guid: a4907513d044f3f4492811ad4ca7b5aa, type: 2}
+  usageCooldown: 5
   cooldownGroup: 0
   passiveBuffs: []
   value: 0
-  destroyItemOnUse: 1
+  destroyItemOnUse: 0
   resourceCost: 0
-  knowledgeCost: 10
+  knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
     m_PersistentCalls:
