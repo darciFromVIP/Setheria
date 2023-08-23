@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 6
   m_EditorClassIdentifier: 
-  label: Advance your technologies.
-  requiredItems: []
-  requiredStructures:
-  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  label: Don't starve!
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: 294bbf2a06d985842802a3842f31fe4b, type: 2}
+    stacks: 2
+  requiredStructures: []
   rewards:
-  - rewardType: 0
-    rewardAmount: 10
-  - rewardType: 1
+  - rewardType: 2
     rewardAmount: 10
   Quest_Complete:
     m_PersistentCalls:
