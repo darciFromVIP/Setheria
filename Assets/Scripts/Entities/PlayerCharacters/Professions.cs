@@ -11,9 +11,9 @@ public class Professions
     private int gatheringMilestone, alchemyMilestone, cookingMilestone, fishingMilestone;
     private List<int> largeProfMilestones;
 
-    public PlayerCharacter player;
+    [NonSerialized] public PlayerCharacter player;
 
-    public Professions() { }
+    public Professions() {}
 
     public Professions(PlayerCharacter player)
     {
