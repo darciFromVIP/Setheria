@@ -2,24 +2,15 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class QuestManager : NetworkBehaviour
 {
-    public List<QuestlineScriptable> questlines = new();
+    private List<QuestlineScriptable> questlines = new();
+    public List<QuestlineScriptable> beginnerQuestlines = new();
     public Transform contentUI;
     public QuestDescription questDescriptionPrefab;
     public QuestlineDatabase questlineDatabase;
-
-    private void Start()
-    {
-        foreach (var item in questlines)
-        {
-            item.Quest_Complete.AddListener(CmdQuestComplete);
-            item.Questline_Complete.AddListener(CmdQuestlineComplete);
-            item.New_Quest.AddListener(CmdNewQuest);
-            CmdNewQuest(item.quests[item.currentQuestIndex].name);
-        }
-    }
     [Command(requiresAuthority = false)] 
     private void CmdNewQuest(string questName)
     {
@@ -30,7 +21,7 @@ public class QuestManager : NetworkBehaviour
     {
         NewQuest(questName);
     }
-    private void NewQuest(string questName)
+    private QuestScriptable NewQuest(string questName)
     {
         QuestScriptable quest = null;
         foreach (var item in questlines)
@@ -44,6 +35,63 @@ public class QuestManager : NetworkBehaviour
         quest.SetQuestActive(true);
         var questInstance = Instantiate(questDescriptionPrefab, contentUI);
         questInstance.Initialize(quest);
+        return quest;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdReduceItemRequirement(string questName, string itemName, int stacks)
+    {
+        RpcReduceItemRequirement(questName, itemName, stacks);
+    }
+    [ClientRpc]
+    private void RpcReduceItemRequirement(string questName, string itemName, int stacks)
+    {
+        foreach (var item in questlines)
+        {
+            foreach (var item2 in item.quests)
+            {
+                if (item2.name == questName)
+                {
+                    item2.ReduceItemRequirement(itemName, stacks);
+                }
+            }
+        }
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdReduceStructureRequirement(string questName, string structureName)
+    {
+        RpcReduceStructureRequirement(questName, structureName);
+    }
+    [ClientRpc]
+    private void RpcReduceStructureRequirement(string questName, string structureName)
+    {
+        foreach (var item in questlines)
+        {
+            foreach (var item2 in item.quests)
+            {
+                if (item2.name == questName)
+                {
+                    item2.ReduceStructureRequirement(structureName);
+                }
+            }
+        }
+    }
+    public void CmdIncreaseItemRequirement(string questName, string itemName, int stacks)
+    {
+        RpcIncreaseItemRequirement(questName, itemName, stacks);
+    }
+    [ClientRpc]
+    private void RpcIncreaseItemRequirement(string questName, string itemName, int stacks)
+    {
+        foreach (var item in questlines)
+        {
+            foreach (var item2 in item.quests)
+            {
+                if (item2.name == questName)
+                {
+                    item2.IncreaseItemRequirement(itemName, stacks);
+                }
+            }
+        }
     }
     [Command(requiresAuthority = false)]
     private void CmdQuestComplete(string questName)
@@ -110,7 +158,15 @@ public class QuestManager : NetworkBehaviour
                 temp = item;
         }
         if (temp is not null)
+        {
+            if (isServer)
+            {
+                temp.Quest_Complete.RemoveListener(RpcQuestComplete);
+                temp.Questline_Complete.RemoveListener(RpcQuestlineComplete);
+                temp.New_Quest.RemoveListener(RpcNewQuest);
+            }
             questlines.Remove(temp);
+        }
     }
     [Command(requiresAuthority = false)]
     public void CmdNewQuestline(string questlineName)
@@ -122,10 +178,77 @@ public class QuestManager : NetworkBehaviour
     {
         NewQuestline(questlineName);
     }
-    public void NewQuestline(string questlineName)
+    public QuestScriptable NewQuestline(string questlineName, int questIndex = 0)
     {
         QuestlineScriptable questline = questlineDatabase.GetQuestlineByName(questlineName);
         questlines.Add(questline);
-        NewQuest(questline.quests[questline.currentQuestIndex].name);
+        if (isServer)
+        {
+            questline.Quest_Complete.AddListener(RpcQuestComplete);
+            questline.Questline_Complete.AddListener(RpcQuestlineComplete);
+            questline.New_Quest.AddListener(RpcNewQuest);
+        }
+        return NewQuest(questline.quests[questIndex].name);
+    }
+    public List<QuestlineSaveable> SaveState()
+    {
+        List<QuestlineSaveable> result = new();
+        foreach (var item in questlines)
+        {
+            List<string> names = new();
+            List<int> values = new();
+            foreach (var item2 in item.quests[item.currentQuestIndex].requiredItemsDic)
+            {
+                names.Add(item2.Key.name);
+                values.Add(item2.Value);
+            }
+            foreach (var item2 in item.quests[item.currentQuestIndex].requiredStructuresDic)
+            {
+                names.Add(item2.Key.name);
+                values.Add(item2.Value ? 1 : 0);
+            }
+            result.Add(new QuestlineSaveable { questlineName = item.name, currentQuestIndex = item.currentQuestIndex, questRequirementsNames = names, questRequirementsValues = values });
+        }
+        return result;
+    }
+    public void LoadState(List<QuestlineSaveable> saveData)
+    {
+        if (saveData != null)
+        {
+            foreach (var item in saveData)
+            {
+                var quest = NewQuestline(item.questlineName, item.currentQuestIndex);
+                for (int i = 0; i < item.questRequirementsNames.Count; i++)
+                {
+                    foreach (var item3 in quest.requiredItemsDic)
+                    {
+                        if (item.questRequirementsNames[i] == item3.Key.name)
+                        {
+                            quest.requiredItemsDic[item3.Key] = item.questRequirementsValues[i];
+                        }
+                    }
+                    foreach (var item3 in quest.requiredStructuresDic)
+                    {
+                        if (item.questRequirementsNames[i] == item3.Key.name)
+                        {
+                            bool value;
+                            if (item.questRequirementsValues[i] == 0)
+                                value = false;
+                            else
+                                value = true;
+                            quest.requiredStructuresDic[item3.Key] = value;
+                        }
+                    }
+                }
+                quest.Quest_Updated.Invoke();
+            }
+        }
+        else
+        {
+            foreach (var item in beginnerQuestlines)
+            {
+                NewQuestline(item.name);
+            }
+        }
     }
 }

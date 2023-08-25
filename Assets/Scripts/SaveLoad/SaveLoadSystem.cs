@@ -203,6 +203,7 @@ public class SaveLoadSystem : MonoBehaviour
         state.worldSaveData.worldSeed = currentWorldDataServer.worldSaveData.worldSeed;
         state.worldSaveData.fogOfWar = new byte[FoW.FogOfWarTeam.GetTeam(0).mapResolution.x * FoW.FogOfWarTeam.GetTeam(0).mapResolution.y];
         FoW.FogOfWarTeam.GetTeam(0).GetTotalFogValues(ref state.worldSaveData.fogOfWar);
+        state.worldSaveData.questlines = FindObjectOfType<QuestManager>().SaveState();
         foreach (var item in FindObjectsOfType<SaveableBehaviour>())
         {
             state.worldObjects.Add(item.Id, item.SaveState());

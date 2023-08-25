@@ -253,7 +253,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             armor = healthComp.GetArmor(),
             cooldownReduction = attackComp.GetCooldownReduction(),
             talentTrees = talentTrees,
-            professions = professions
+            professions = professions,
         };
     }
     public PlayerCharacter GetLocalPlayerCharacter()

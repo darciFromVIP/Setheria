@@ -19,10 +19,12 @@ public class QuestScriptable : ScriptableObject
     private bool active;
     public string label;
     public List<ItemRecipeInfo> requiredItems = new();
-    private Dictionary<ItemScriptable, int> requiredItemsDic = new();
+    [HideInInspector] public Dictionary<ItemScriptable, int> requiredItemsDic = new();
     public List<StructureScriptable> requiredStructures = new();
-    private Dictionary<StructureScriptable, bool> requiredStructuresDic = new();
+    [HideInInspector] public Dictionary<StructureScriptable, bool> requiredStructuresDic = new();
     public List<QuestReward> rewards;
+
+    private QuestManager questManager;
 
     [HideInInspector] public UnityEvent Quest_Complete = new();
     [HideInInspector] public UnityEvent Quest_Updated = new();
@@ -33,15 +35,16 @@ public class QuestScriptable : ScriptableObject
         requiredStructuresDic.Clear();
         if (active)
         {
+            questManager = FindObjectOfType<QuestManager>();
             foreach (var item in requiredItems)
             {
-                item.itemData.Item_Stacks_Acquired.AddListener(ReduceRequirement);
-                item.itemData.Item_Stacks_Lost.AddListener(AddRequirement);
+                item.itemData.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
+                item.itemData.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
                 requiredItemsDic.Add(item.itemData, 0);
             }
             foreach (var item in requiredStructures)
             {
-                item.Structure_Built.AddListener(ReduceRequirement);
+                item.Structure_Built.AddListener(CmdReduceStructureRequirement);
                 requiredStructuresDic.Add(item, false);
             }
         }
@@ -49,31 +52,70 @@ public class QuestScriptable : ScriptableObject
         {
             foreach (var item in requiredItems)
             {
-                item.itemData.Item_Stacks_Acquired.RemoveListener(ReduceRequirement);
-                item.itemData.Item_Stacks_Lost.RemoveListener(AddRequirement);
+                item.itemData.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
+                item.itemData.Item_Stacks_Lost.RemoveListener(CmdIncreaseItemRequirement);
             }
             foreach (var item in requiredStructures)
             {
-                item.Structure_Built.RemoveListener(ReduceRequirement);
+                item.Structure_Built.RemoveListener(CmdReduceStructureRequirement);
             }
         }
     }
-    private void ReduceRequirement(StructureScriptable structureBuilt)
+    private void CmdReduceStructureRequirement(StructureScriptable structureBuilt)
     {
-        requiredStructuresDic[structureBuilt] = true;
-        CheckQuestCompletion();
+        questManager.CmdReduceStructureRequirement(name, structureBuilt.name);
     }
-    private void ReduceRequirement(ItemScriptable itemAcquired, int stacks)
+    private void CmdReduceItemRequirement(ItemScriptable itemAcquired, int stacks)
     {
-        requiredItemsDic[itemAcquired] += stacks;
-        CheckQuestCompletion();
+        questManager.CmdReduceItemRequirement(name, itemAcquired.name, stacks);
     }
-    private void AddRequirement(ItemScriptable itemLost, int stacks)
+    public void ReduceStructureRequirement(string structureName)
     {
-        requiredItemsDic[itemLost] -= stacks;
-        if (requiredItemsDic[itemLost] < 0)
-            requiredItemsDic[itemLost] = 0;
-        CheckQuestCompletion();
+        StructureScriptable structureBuilt = null;
+        foreach (var item in requiredStructures)
+        {
+            if (item.name == structureName)
+                structureBuilt = item;
+        }
+        if (structureBuilt != null)
+        {
+            requiredStructuresDic[structureBuilt] = true;
+            CheckQuestCompletion();
+        }
+    }
+    public void ReduceItemRequirement(string itemName, int stacks)
+    {
+        ItemScriptable itemAcquired = null;
+        foreach (var item in requiredItems)
+        {
+            if (item.itemData.name == itemName)
+                itemAcquired = item.itemData;
+        }
+        if (itemAcquired != null)
+        {
+            requiredItemsDic[itemAcquired] += stacks;
+            CheckQuestCompletion();
+        }
+    }
+    private void CmdIncreaseItemRequirement(ItemScriptable itemLost, int stacks)
+    {
+        questManager.CmdIncreaseItemRequirement(name, itemLost.name, stacks);
+    }
+    public void IncreaseItemRequirement(string itemName, int stacks)
+    {
+        ItemScriptable itemLost = null;
+        foreach (var item in requiredItems)
+        {
+            if (item.itemData.name == itemName)
+                itemLost = item.itemData;
+        }
+        if (itemLost != null)
+        {
+            requiredItemsDic[itemLost] -= stacks;
+            if (requiredItemsDic[itemLost] < 0)
+                requiredItemsDic[itemLost] = 0;
+            CheckQuestCompletion();
+        }
     }
     private void CheckQuestCompletion()
     {
