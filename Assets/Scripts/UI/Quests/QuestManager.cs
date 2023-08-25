@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -80,6 +81,7 @@ public class QuestManager : NetworkBehaviour
             }
         }
     }
+    [Command(requiresAuthority = false)]
     public void CmdIncreaseItemRequirement(string questName, string itemName, int stacks)
     {
         RpcIncreaseItemRequirement(questName, itemName, stacks);
@@ -225,14 +227,14 @@ public class QuestManager : NetworkBehaviour
                 var quest = NewQuestline(item.questlineName, item.currentQuestIndex);
                 for (int i = 0; i < item.questRequirementsNames.Count; i++)
                 {
-                    foreach (var item3 in quest.requiredItemsDic)
+                    foreach (var item3 in quest.requiredItemsDic.ToList())
                     {
                         if (item.questRequirementsNames[i] == item3.Key.name)
                         {
                             quest.requiredItemsDic[item3.Key] = item.questRequirementsValues[i];
                         }
                     }
-                    foreach (var item3 in quest.requiredStructuresDic)
+                    foreach (var item3 in quest.requiredStructuresDic.ToList())
                     {
                         if (item.questRequirementsNames[i] == item3.Key.name)
                         {
