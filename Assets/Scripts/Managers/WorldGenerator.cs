@@ -59,7 +59,14 @@ public class WorldGenerator : MonoBehaviour
         if (NetworkServer.active)
             LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
         FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
-        FindObjectOfType<QuestManager>().LoadState(state.questlines);
+        var game = SceneManager.GetSceneByName("Game");
+        foreach (var item in game.GetRootGameObjects())
+        {
+            if (item.TryGetComponent(out Canvas canvas))
+            {
+                canvas.GetComponentInChildren<QuestManager>().LoadState(state.questlines);
+            }
+        }
         Debug.Log("Scene Loaded");
     }
     private void LoadWorldObjects(Dictionary<string, Dictionary<string, SaveDataWorldObject>> worldObjects)
