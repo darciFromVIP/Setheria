@@ -11,6 +11,11 @@ public class QuestManager : NetworkBehaviour
     public Transform contentUI;
     public QuestDescription questDescriptionPrefab;
     public QuestlineDatabase questlineDatabase;
+    private void Start()
+    {
+        if (isClient)
+            LoadState(FindObjectOfType<WorldGenerator>().lastLoadedWorldState.questlines);
+    }
     [Command(requiresAuthority = false)] 
     private void CmdNewQuest(string questName)
     {

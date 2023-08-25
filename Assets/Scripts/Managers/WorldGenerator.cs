@@ -14,6 +14,8 @@ public class WorldGenerator : MonoBehaviour
 
     public ItemPrefabDatabase itemDatabase;
     public StructureDatabase structureDatabase;
+
+    public SaveDataWorld lastLoadedWorldState;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -24,6 +26,7 @@ public class WorldGenerator : MonoBehaviour
     }
     private IEnumerator CreateGameWorldCoro(SaveDataWorld state)
     {
+        lastLoadedWorldState = state;
         int random;
         UnityEngine.Random.InitState(state.worldSeed);
         List<Vector3> dic = new() { new Vector3(0, 0, 0), new Vector3(0, 0, 600), new Vector3(600, 0, 0), new Vector3(600, 0, 600) };
@@ -59,14 +62,6 @@ public class WorldGenerator : MonoBehaviour
         if (NetworkServer.active)
             LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
         FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
-        var game = SceneManager.GetSceneByName("Game");
-        foreach (var item in game.GetRootGameObjects())
-        {
-            if (item.TryGetComponent(out Canvas canvas))
-            {
-                canvas.GetComponentInChildren<QuestManager>().LoadState(state.questlines);
-            }
-        }
         Debug.Log("Scene Loaded");
     }
     private void LoadWorldObjects(Dictionary<string, Dictionary<string, SaveDataWorldObject>> worldObjects)
