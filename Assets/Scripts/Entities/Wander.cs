@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Wander : MonoBehaviour
 {
-    public float wanderInterval;
-    public float wanderRange;
+    public float wanderInterval = 5;
+    public float wanderRange = 10;
     private Vector3 startingPosition;
     private CanMove moveComp;
 

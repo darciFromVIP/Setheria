@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WindowWithCategories : MonoBehaviour
 {
-    protected GameObject currentOpenedWindow;
+    public GameObject currentOpenedWindow;
 
     public virtual void OpenAnotherWindow(GameObject window)
     {

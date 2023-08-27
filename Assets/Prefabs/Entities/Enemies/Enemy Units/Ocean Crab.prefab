@@ -68,11 +68,73 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 111839492020820454, guid: f0612f9ade4945544b78e7b155ade161, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1517330249523152, guid: f0612f9ade4945544b78e7b155ade161,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2383605131251574478}
+    - targetCorrespondingSourceObject: {fileID: 1517330249523152, guid: f0612f9ade4945544b78e7b155ade161,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 880722620276461685}
   m_SourcePrefab: {fileID: 100100000, guid: f0612f9ade4945544b78e7b155ade161, type: 3}
+--- !u!1 &2003194964150130338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1517330249523152, guid: f0612f9ade4945544b78e7b155ade161,
+    type: 3}
+  m_PrefabInstance: {fileID: 2002310953689057650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2383605131251574478
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003194964150130338}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 72e26b95434f30e4886bcd0382602f3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &880722620276461685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003194964150130338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2548a9c5830ee43970166dba0cbd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill1_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill2_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill3_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill4_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill5_Casted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &2006370286148631934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4974263707317260, guid: f0612f9ade4945544b78e7b155ade161,
@@ -355,8 +417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a430c874b3a042c40973ef85859a39ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderInterval: 0
-  wanderRange: 0
+  wanderInterval: 5
+  wanderRange: 10
 --- !u!4 &6840466792685511246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,

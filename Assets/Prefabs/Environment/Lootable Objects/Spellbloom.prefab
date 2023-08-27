@@ -14751,13 +14751,18 @@ PrefabInstance:
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: effectsToHide.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: effectsToHide.Array.data[0]
       value: 
       objectReference: {fileID: 7813415893450034781}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: effectsToHide.Array.data[1]
+      value: 
+      objectReference: {fileID: 7357561665033107934}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: professionExperienceRequired
@@ -14944,6 +14949,12 @@ PrefabInstance:
 --- !u!4 &7274732689297197124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
+    type: 3}
+  m_PrefabInstance: {fileID: 8250977206017008477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7357561665033107934 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1484520294091152003, guid: f87e8e15654f0d1439fa30e59ccad342,
     type: 3}
   m_PrefabInstance: {fileID: 8250977206017008477}
   m_PrefabAsset: {fileID: 0}
