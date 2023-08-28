@@ -15,6 +15,7 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     public Transform modelPoint;
     public HeroModelDatabase modelDatabase;
     public List<Button> attributeButtons;
+    public CharacterSkillsWindow characterSkills;
 
     private SettingsManager settingsManager;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
@@ -50,20 +51,28 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         {
             ToggleWindow();
         }
+        if (Input.GetKeyDown(settingsManager.settings.manual))
+            HideWindow();
     }
     public void ToggleWindow()
     {
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(!window.activeSelf);
+        if (window.activeSelf)
+            characterSkills.HideGraphics();
+        else
+            characterSkills.ShowGraphics();
         GetComponentInChildren<TalentScreen>(true).UpdateTalents();
     }
     public void HideWindow()
     {
+        characterSkills.ShowGraphics();
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(false);
     }
     public void ShowWindow()
     {
+        characterSkills.HideGraphics();
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(true);
     }

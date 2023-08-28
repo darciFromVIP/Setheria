@@ -8,6 +8,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     public GameObject recipeList;
     public GameObject recipeCategories;
     public Recipe recipePrefab;
+    public TooltipTrigger alchemyButton, fishingButton, cookingButton;
 
     private RecipeCategory currentOpenedCategory;
     private SettingsManager settingsManager;
@@ -188,5 +189,38 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         ClearRecipeList();
         SetRecipeData(recipeDatabase.cookingRecipes, false);
         currentOpenedCategory = RecipeCategory.Cooking;
+    }
+    public void UpdateCategoryButtons(Professions prof)
+    {
+        if (prof.alchemy <= 0)
+        {
+            alchemyButton.GetComponent<Button>().interactable = false;
+            alchemyButton.SetText("Alchemy (Locked)", "Unlock alchemy by using a Beginner's Guide to Alchemy first.");
+        }
+        else
+        {
+            alchemyButton.GetComponent<Button>().interactable = true;
+            alchemyButton.SetText("Alchemy", "");
+        }
+        if (prof.cooking <= 0)
+        {
+            cookingButton.GetComponent<Button>().interactable = false;
+            cookingButton.SetText("Cooking (Locked)", "Unlock cooking by using a Beginner's Guide to Cooking first.");
+        }
+        else
+        {
+            cookingButton.GetComponent<Button>().interactable = true;
+            cookingButton.SetText("Cooking", "");
+        }
+        if (prof.fishing <= 0)
+        {
+            fishingButton.GetComponent<Button>().interactable = false;
+            fishingButton.SetText("Fishing (Locked)", "Unlock fishing by using a Beginner's Guide to Fishing first.");
+        }
+        else
+        {
+            fishingButton.GetComponent<Button>().interactable = true;
+            fishingButton.SetText("Fishing", "");
+        }
     }
 }

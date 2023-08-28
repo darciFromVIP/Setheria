@@ -118,6 +118,78 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &8600738627487975601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7678497326847963214}
+  - component: {fileID: 5714365130642422487}
+  - component: {fileID: 7407839743097880360}
+  m_Layer: 1
+  m_Name: Aura
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7678497326847963214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8600738627487975601}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7750564979161755818}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5714365130642422487
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8600738627487975601}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7407839743097880360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8600738627487975601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5673cbc4a7c75894596393982456011f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  On_Trigger_Enter:
+    m_PersistentCalls:
+      m_Calls: []
+  On_Trigger_Exit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &614919328677031085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -611,6 +683,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5829274343421920979}
+    - targetCorrespondingSourceObject: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7678497326847963214}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -649,6 +725,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5352e1850e93754d84677bc4e0b7f1c, type: 2}
   - {fileID: 11400000, guid: eea06a2cbdea9ab41834a74c89351bbe, type: 2}
   - {fileID: 11400000, guid: c60c51bea0c77c64799aa8ff424b70fb, type: 2}
+  skills:
+  - {fileID: 11400000, guid: 383befa52648f48448e19d28fb3791cd, type: 2}
   entityDatabase: {fileID: 11400000, guid: 0272411464c49914aa52af49104af5e1, type: 2}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}

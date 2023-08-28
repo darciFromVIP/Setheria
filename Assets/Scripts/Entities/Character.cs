@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
-using FMOD;
 
 public class Character : Entity
 {
@@ -145,6 +144,17 @@ public class Character : Entity
     }
     protected virtual void AddBuff(string buff)
     {
+        if (isServer)
+            Debug.Log("Add Buff Is Server");
+        if (isClient)
+            Debug.Log("Add Buff Is Client");
+
+        foreach (var item in buffs)
+        {
+            Debug.Log(item.name);
+            if (item.name == buff)
+                return;
+        }
         Buff buffInstance = null;
         var buffScriptable = buffDatabase.GetBuffByName(buff);
         if (!buffScriptable)
@@ -241,13 +251,20 @@ public class Character : Entity
         }
     }
     [Command(requiresAuthority = false)]
-    public void CmdRemoveBuff(BuffScriptable buff)
+    public void CmdRemoveBuff(string buffName)
     {
-        RpcRemoveBuff(buff);
+        RpcRemoveBuff(buffName);
     }
     [ClientRpc]
-    public void RpcRemoveBuff(BuffScriptable buff)
+    public void RpcRemoveBuff(string buffName)
     {
+        if (isServer)
+            Debug.Log("Remove Buff Is Server");
+        if (isClient)
+            Debug.Log("Remove Buff Is Client");
+        var buff = buffDatabase.GetBuffByName(buffName);
+        if (buff == null)
+            return;
         List<Buff> temp = new();
         buffs.CopyTo(temp);
         foreach (var item in temp)

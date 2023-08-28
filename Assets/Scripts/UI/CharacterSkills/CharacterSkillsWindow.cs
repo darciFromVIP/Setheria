@@ -14,6 +14,20 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
 
     private PlayerController playerController;
 
+    public void HideGraphics()
+    {
+        foreach (var item in GetComponentsInChildren<Transform>(true))
+        {
+            item.gameObject.layer = 0;
+        }
+    }
+    public void ShowGraphics()
+    {
+        foreach (var item in GetComponentsInChildren<Transform>(true))
+        {
+            item.gameObject.layer = 5;
+        }
+    }
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         playerController = player.GetComponent<PlayerController>();

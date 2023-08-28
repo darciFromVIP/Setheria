@@ -20,6 +20,10 @@ public class Skill : ScriptableObject
     {
 
     }
+    public virtual void ExecuteOnStart(Structure self)
+    {
+
+    }
     public virtual void Execute(Character self)
     {
         castingEntity = self;

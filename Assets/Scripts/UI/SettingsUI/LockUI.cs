@@ -13,6 +13,10 @@ public class LockUI : MonoBehaviour
         img = GetComponent<Image>();
         btn = GetComponent<Button>();
         btn.onClick.AddListener(ButtonClicked);
+        foreach (var item in FindObjectsOfType<DraggableUI>(true))
+        {
+            item.isLocked = isLocked;
+        }
     }
     private void ButtonClicked()
     {

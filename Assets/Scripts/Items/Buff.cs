@@ -20,7 +20,12 @@ public abstract class Buff
         sound = soundInstance;
         sound.start();
     }
-    public abstract void BuffExpired();
+    public virtual void BuffExpired()
+    {
+        Buff_Expired.Invoke();
+        targetEntity.BuffExpired(effect);
+        targetEntity.buffs.Remove(this);
+    }
     public virtual IEnumerator TimedBuff(float duration)
     {
         durationTimer = duration;
@@ -36,10 +41,7 @@ public abstract class Buff
             durationTimer -= Time.deltaTime;
             yield return null;
         }
-        Buff_Expired.Invoke();
-        targetEntity.BuffExpired(effect);
         BuffExpired();
-        targetEntity.buffs.Remove(this);
     }
 }
 public class BMaxHealth : Buff
@@ -53,6 +55,7 @@ public class BMaxHealth : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<HasHealth>().ChangeBonusMaxHealth(-value);
     }
 }
@@ -67,6 +70,7 @@ public class BMaxMana : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<HasMana>().ChangeBonusMaxMana(-value);
     }
 }
@@ -81,6 +85,7 @@ public class BManaRegen : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<HasMana>().ChangeBaseManaRegen(-value);
     }
 }
@@ -95,6 +100,7 @@ public class BBleed : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<HasHealth>().ChangeBonusHealthRegen(value);
     }
 }
@@ -109,6 +115,7 @@ public class BRegen : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         if (sound.isValid())
             sound.setParameterByNameWithLabel("Rejuvenation", "End");
         targetEntity.GetComponent<HasHealth>().ChangeBonusHealthRegen(-value);
@@ -130,6 +137,7 @@ public class BInventorySlots : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetInventory.ReduceInventory((int)value);
     }
 }
@@ -144,6 +152,7 @@ public class BPower : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<CanAttack>().ChangePower(-value);
     }
 }
@@ -158,6 +167,7 @@ public class BCriticalChance : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<CanAttack>().ChangeCriticalChance(-value);
     }
 }
@@ -172,6 +182,7 @@ public class BCriticalDamage : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<CanAttack>().ChangeCriticalDamage(-value);
     }
 }
@@ -186,6 +197,7 @@ public class BAttackSpeed : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<CanAttack>().ChangeBonusAttackSpeed(-value);
     }
 }
@@ -200,6 +212,7 @@ public class BAttackRange : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<CanAttack>().ChangeAttackRange(-value);
     }
 }
@@ -214,6 +227,7 @@ public class BArmor : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<HasHealth>().ChangeArmor(-value);
     }
 }
@@ -227,6 +241,7 @@ public class BStun : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.CmdUnstunCharacter();
     }
 }
@@ -241,6 +256,7 @@ public class BSpeed : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(-value);
     }
 }
@@ -255,6 +271,7 @@ public class BSlow : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(value);
     }
 }
@@ -269,6 +286,7 @@ public class BCooldownReduction : Buff
     }
     public override void BuffExpired()
     {
+        base.BuffExpired();
         targetEntity.GetComponent<CanAttack>().ChangeCooldownReduction(-value);
     }
 }

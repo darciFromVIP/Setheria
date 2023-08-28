@@ -38,7 +38,7 @@ public class CharacterGearSlot : MonoBehaviour, IDropHandler
             unequippedItem.transform.SetParent(inventoryItem.parentAfterDrag);
             foreach (var item in unequippedItem.item.passiveBuffs)
             {
-                player.CmdRemoveBuff(item);
+                player.CmdRemoveBuff(item.name);
             }
             inventoryItem.parentAfterDrag = transform;
         }

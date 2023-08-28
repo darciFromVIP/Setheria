@@ -69,6 +69,8 @@ public class Professions
                     }
                 }
             }
+            if (alchemy == 1)
+                player.UpdateManualCategories();
         }
     }
     public void AddCooking(int amount)
@@ -88,6 +90,8 @@ public class Professions
                     }
                 }
             }
+            if (cooking == 1)
+                player.UpdateManualCategories();
         }
     }
     public void AddFishing(int amount)
@@ -107,6 +111,8 @@ public class Professions
                     }
                 }
             }
+            if (fishing == 1)
+                player.UpdateManualCategories();
         }
     }
     public int GetProfessionExperience(TalentTreeType prof)

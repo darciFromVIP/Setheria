@@ -303,7 +303,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
             foreach (var item in item.passiveBuffs)
             {
-                player.CmdRemoveBuff(item);
+                player.CmdRemoveBuff(item.name);
             }
         }
     }

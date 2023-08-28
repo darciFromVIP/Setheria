@@ -203,6 +203,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         }
         if (isOwned)
             UpdateSkills();
+        UpdateManualCategories();
         Debug.Log("Character Loaded!");
         isLoaded = true;
         Character_Loaded.Invoke(this);
@@ -546,5 +547,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         GetComponent<NetworkTransform>().CmdTeleport(returnPoint);
         moveComp.ResumeAgent();
         moveComp.Stop();
+    }
+    public void UpdateManualCategories()
+    {
+        FindObjectOfType<ManualScreen>().UpdateCategoryButtons(professions);
     }
 }

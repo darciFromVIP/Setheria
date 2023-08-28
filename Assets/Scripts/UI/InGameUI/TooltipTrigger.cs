@@ -35,6 +35,11 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         this.content = content;
         this.sprite = sprite;
     }
+    public void SetText(string header, string content)
+    {
+        this.header = header;
+        this.content = content;
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         FindObjectOfType<Tooltip>(true).Show(header, content, sprite, keybindType, keybindLabel);

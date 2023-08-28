@@ -6,6 +6,7 @@ public abstract class Structure : Entity, ISaveable, IInteractable
 {
     public ItemScriptable structureItem;
     public List<StructureOption> structureOptions;
+    public List<Skill> skills = new();
     public EntityDatabase entityDatabase;
     public Transform unitSpawnPoint;
     public StructureScriptable structureData;
@@ -17,6 +18,13 @@ public abstract class Structure : Entity, ISaveable, IInteractable
         structureData.Structure_Built.Invoke(structureData);
         FindObjectOfType<AudioManager>().BuildingFinished(transform.position);
         GetComponent<TooltipTriggerWorld>().objectName = structureData.name;
+        if (isServer)
+        {
+            foreach (var item in skills)
+            {
+                item.ExecuteOnStart(this);
+            }
+        }
     }
     public virtual void LoadState(SaveDataWorldObject state)
     {

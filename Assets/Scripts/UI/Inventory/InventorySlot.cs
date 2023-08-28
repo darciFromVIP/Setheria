@@ -35,7 +35,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                     }
                     foreach (var item in inventoryItem.item.passiveBuffs)
                     {
-                        player.CmdRemoveBuff(item);
+                        player.CmdRemoveBuff(item.name);
                     }
                 }
                 if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))

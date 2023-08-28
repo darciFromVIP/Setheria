@@ -40,5 +40,7 @@ public class BuffUI : MonoBehaviour
         currentBuffInstance = buffInstance;
         slider.maxValue = buff.duration;
         buffInstance.Buff_Expired.AddListener(BuffExpired);
+        if (buff.duration == 0)
+            durationText.gameObject.SetActive(false);
     }
 }
