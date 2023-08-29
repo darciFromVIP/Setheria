@@ -16,6 +16,8 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
 
     public UnityEvent<float> Healing_Potions_Cooldown = new();
     public UnityEvent<float> Mana_Potions_Cooldown = new();
+    public UnityEvent<int> Resources_Added = new();
+    public UnityEvent<int> Knowledge_Added = new();
 
     public PlayerCharacter localPlayerCharacter;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
@@ -30,10 +32,12 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     void ResourceHook(int oldValue, int newValue)
     {
         resourcesText.text = "<sprite=15>" + newValue.ToString();
+        Resources_Added.Invoke(newValue);
     }
     void KnowledgeHook(int oldValue, int newValue)
     {
         knowledgeText.text = "<sprite=11>" + newValue.ToString();
+        Knowledge_Added.Invoke(newValue);
     }
     public void ChangeResources(int value)
     {
@@ -70,6 +74,14 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
             return false;
         else
             return true;
+    }
+    public int GetResources()
+    {
+        return resources;
+    }
+    public int GetKnowledge()
+    {
+        return knowledge;
     }
     public void StartCooldown(CooldownGroup group, float cd)
     {

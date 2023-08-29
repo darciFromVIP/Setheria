@@ -132,4 +132,26 @@ public class Professions
         }
         return 0;
     }
+    public void AddAnyProfession(TalentTreeType prof, int amount)
+    {
+        switch (prof)
+        {
+            case TalentTreeType.Special:
+                break;
+            case TalentTreeType.Gathering:
+                AddGathering(amount);
+                break;
+            case TalentTreeType.Cooking:
+                AddCooking(amount);
+                break;
+            case TalentTreeType.Alchemy:
+                AddAlchemy(amount);
+                break;
+            case TalentTreeType.Fishing:
+                AddFishing(amount);
+                break;
+            default:
+                break;
+        }
+    }
 }

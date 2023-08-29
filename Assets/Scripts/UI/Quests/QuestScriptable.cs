@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
+
 public enum QuestRewardType
 {
     Resources, Knowledge, XP, Item
@@ -22,6 +24,10 @@ public class QuestScriptable : ScriptableObject
     [HideInInspector] public Dictionary<ItemScriptable, int> requiredItemsDic = new();
     public List<StructureScriptable> requiredStructures = new();
     [HideInInspector] public Dictionary<StructureScriptable, bool> requiredStructuresDic = new();
+    public int requiredResources;
+    [HideInInspector] public int currentResources;
+    public int requiredKnowledge;
+    [HideInInspector] public int currentKnowledge;
     public List<QuestReward> rewards;
 
     private QuestManager questManager;
@@ -33,8 +39,15 @@ public class QuestScriptable : ScriptableObject
         active = value;
         requiredItemsDic.Clear();
         requiredStructuresDic.Clear();
+        currentResources = 0;
+        currentKnowledge = 0;
         if (active)
         {
+            var gm = FindObjectOfType<GameManager>();
+            gm.Knowledge_Added.AddListener(ReduceKnowledgeRequirement);
+            gm.Resources_Added.AddListener(ReduceResourceRequirement);
+            currentResources = gm.GetResources();
+            currentKnowledge = gm.GetKnowledge();
             questManager = FindObjectOfType<QuestManager>();
             foreach (var item in requiredItems)
             {
@@ -50,6 +63,9 @@ public class QuestScriptable : ScriptableObject
         }
         else
         {
+            var gm = FindObjectOfType<GameManager>();
+            gm.Knowledge_Added.RemoveListener(ReduceKnowledgeRequirement);
+            gm.Resources_Added.RemoveListener(ReduceResourceRequirement);
             foreach (var item in requiredItems)
             {
                 item.itemData.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
@@ -117,6 +133,16 @@ public class QuestScriptable : ScriptableObject
             CheckQuestCompletion();
         }
     }
+    private void ReduceResourceRequirement(int amount)
+    {
+        currentResources += amount;
+        CheckQuestCompletion();
+    }
+    private void ReduceKnowledgeRequirement(int amount)
+    {
+        currentKnowledge += amount;
+        CheckQuestCompletion();
+    }
     private void CheckQuestCompletion()
     {
         Quest_Updated.Invoke();
@@ -130,6 +156,10 @@ public class QuestScriptable : ScriptableObject
             if (item.Value == false)
                 return;
         }
+        if (currentKnowledge < requiredKnowledge)
+            return;
+        if (currentResources < requiredResources)
+            return;
         QuestComplete();
     }
     public void QuestComplete()
@@ -155,6 +185,24 @@ public class QuestScriptable : ScriptableObject
             if (isCompleted)
                 result += "<s>";
             result += "Build a " + item.name + ".\n";
+            if (isCompleted)
+                result += "</s>";
+        }
+        if (requiredResources > 0)
+        {
+            bool isCompleted = currentResources >= requiredResources;
+            if (isCompleted)
+                result += "<s>";
+            result += "Gather Resources " + currentResources + "/" + requiredResources + "\n";
+            if (isCompleted)
+                result += "</s>";
+        }
+        if (requiredKnowledge > 0)
+        {
+            bool isCompleted = currentKnowledge >= requiredKnowledge;
+            if (isCompleted)
+                result += "<s>";
+            result += "Gather Knowledge " + currentKnowledge + "/" + requiredKnowledge + "\n";
             if (isCompleted)
                 result += "</s>";
         }

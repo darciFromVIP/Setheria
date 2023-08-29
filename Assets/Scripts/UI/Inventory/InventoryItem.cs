@@ -41,15 +41,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && IsPointerOverUIElement() && item.stackable)
-        {
-            if (stacks > 1)
-            {
-                int newStacks = stacks / 2;
-                ChangeStacks(-newStacks);
-                FindObjectOfType<InventoryManager>().AddItem(item, stacks, false);
-            }
-        }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             parentAfterDrag = transform.parent;
@@ -224,7 +215,16 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        QuickItemTransfer();
+        if (Input.GetKey(KeyCode.LeftControl) && item.stackable)
+        {
+            if (stacks > 1)
+            {
+                int newStacks = stacks / 2;
+                ChangeStacks(-newStacks);
+                FindObjectOfType<InventoryManager>().AddItem(item, newStacks, false);
+            }
+        }
+        else QuickItemTransfer();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -349,7 +349,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
         return false;
     }
-
 
     //Gets all event system raycast results of current mouse or touch position.
     static List<RaycastResult> GetEventSystemRaycastResults()
