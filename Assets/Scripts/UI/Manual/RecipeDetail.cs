@@ -120,7 +120,12 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
             blockingUI.SetActive(true);
             localPlayer.CmdStartWorking(currentOpenedRecipe.craftingDuration * amount);
             localPlayer.Work_Finished.AddListener(FinishCrafting);
+            localPlayer.Work_Cancelled.AddListener(CraftingCancelled);
         }
+    }
+    private void CraftingCancelled()
+    {
+        blockingUI.SetActive(false);
     }
     private void FinishCrafting()
     {

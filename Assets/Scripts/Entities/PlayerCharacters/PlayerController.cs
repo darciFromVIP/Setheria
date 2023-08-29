@@ -436,6 +436,7 @@ public class PlayerController : NetworkBehaviour
     }
     private IEnumerator Working(float duration)
     {
+        moveComp.Stop();
         ChangeState(PlayerState.Working);
         playerCharacter.animator.animator.SetBool("Interact", true);
         while (duration > 0)
@@ -456,6 +457,7 @@ public class PlayerController : NetworkBehaviour
         ChangeState(PlayerState.None);
         Work_Finished.Invoke();
         Work_Finished.RemoveAllListeners();
+        Work_Cancelled.RemoveAllListeners();
         playerCharacter.animator.animator.SetBool("Interact", false);
     }
 }
