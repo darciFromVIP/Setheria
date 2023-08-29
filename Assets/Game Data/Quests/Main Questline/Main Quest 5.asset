@@ -13,14 +13,24 @@ MonoBehaviour:
   m_Name: Main Quest 5
   m_EditorClassIdentifier: 
   label: Advance your technologies.
-  requiredItems: []
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: f09a58d2dbe31914aa4c64058f129ef1, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: dbec0b67dd7f0a14ca35cd98cb1dc026, type: 2}
+    stacks: 4
+  - itemData: {fileID: 11400000, guid: a8bc1728e509cca45bb7f5f95205187b, type: 2}
+    stacks: 3
+  - itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
+    stacks: 4
   requiredStructures:
   - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
   rewards:
   - rewardType: 0
     rewardAmount: 10
+    itemReward: {fileID: 0}
   - rewardType: 1
     rewardAmount: 10
+    itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

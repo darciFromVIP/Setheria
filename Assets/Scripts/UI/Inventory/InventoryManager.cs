@@ -17,13 +17,13 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
             inventorySlots.Add(item);
         }
     }
-    public bool AddItem(Item item)
+    public bool AddItem(Item item, bool stackable = true)
     {
-        return AddItem(item.itemData, item.stacks);
+        return AddItem(item.itemData, item.stacks, stackable);
     }
-    public bool AddItem(ItemScriptable item, int stacks)
+    public bool AddItem(ItemScriptable item, int stacks, bool stackable = true)
     {
-        if (item.stackable)
+        if (item.stackable && stackable)
         {
             foreach (var slot in inventorySlots)
             {
@@ -54,13 +54,13 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
         FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
         return false;
     }
-    public bool AddItem(ItemRecipeInfo itemData)
+    public bool AddItem(ItemRecipeInfo itemData, bool stackable = true)
     {
-        return AddItem(itemData.itemData, itemData.stacks);
+        return AddItem(itemData.itemData, itemData.stacks, stackable);
     }
-    public bool AddItem(SaveDataItem itemData)
+    public bool AddItem(SaveDataItem itemData, bool stackable = true)
     {
-        return AddItem(itemDatabase.GetItemByName(itemData.name), itemData.stacks);
+        return AddItem(itemDatabase.GetItemByName(itemData.name), itemData.stacks, stackable);
     }
     public void RemoveItem(ItemRecipeInfo itemToDestroy)
     {

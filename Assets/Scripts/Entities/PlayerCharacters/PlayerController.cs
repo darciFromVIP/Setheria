@@ -4,6 +4,8 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
 using FoW;
+using UnityEngine.EventSystems;
+
 public enum PlayerState
 {
     None, Busy, Casting, Working
@@ -158,6 +160,10 @@ public class PlayerController : NetworkBehaviour
     {
         if (state != PlayerState.None && state != PlayerState.Working)
             return;
+
+        if (EventSystem.current.IsPointerOverGameObject())              // Is mouse over UI?
+            return;
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, movementLayerMask))

@@ -41,8 +41,18 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse1) && MouseOverUI() && item.stackable)
+        {
+            if (stacks > 1)
+            {
+                int newStacks = stacks / 2;
+                ChangeStacks(-newStacks);
+                FindObjectOfType<InventoryManager>().AddItem(item, stacks, false);
+            }
+        }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            parentAfterDrag = transform.parent;
             stashInventoryParent = null;
             inventoryManagerParent = null;
             stashInventoryParent = GetComponentInParent<StashInventory>();
@@ -207,10 +217,22 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
         Cooldown_Changed.Invoke(cd);
     }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        newItemNotification.SetActive(false);
+        QuickItemTransfer();
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        QuickItemTransfer();
+    }
+    private bool MouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (Input.GetKey(KeyCode.LeftShift))
-            return;
         if (draggable)
         {
             image.raycastTarget = false;
@@ -223,16 +245,12 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (Input.GetKey(KeyCode.LeftShift))
-            return;
         if (draggable)
             rect.anchoredPosition = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (Input.GetKey(KeyCode.LeftShift))
-            return;
         if (draggable)
         {
             image.raycastTarget = true;
@@ -257,16 +275,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 }
             }
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        newItemNotification.SetActive(false);
-        QuickItemTransfer();
-    }
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        QuickItemTransfer();
     }
     private void QuickItemTransfer()
     {
