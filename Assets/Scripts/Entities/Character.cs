@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
+using UnityEngine.ProBuilder.Shapes;
 
 public class Character : Entity
 {
@@ -126,7 +127,7 @@ public class Character : Entity
         var buffScriptable = buffDatabase.GetBuffByName(buff);
         if (buffScriptable)
         {
-            if (buffDatabase.GetBuffByName(buff).buffType != BuffType.InventorySlots)
+            if (buffScriptable.buffType != BuffType.InventorySlots)
                 RpcAddBuff(buff);
             else
                 SingleClientAddBuff(conn, buff);
@@ -144,21 +145,15 @@ public class Character : Entity
     }
     protected virtual void AddBuff(string buff)
     {
-        if (isServer)
-            Debug.Log("Add Buff Is Server");
-        if (isClient)
-            Debug.Log("Add Buff Is Client");
-
-        foreach (var item in buffs)
-        {
-            Debug.Log(item.name);
-            if (item.name == buff)
-                return;
-        }
         Buff buffInstance = null;
         var buffScriptable = buffDatabase.GetBuffByName(buff);
         if (!buffScriptable)
             return;
+        foreach (var item in buffs)
+        {
+            if (item.name == buff && !buffScriptable.stackable)
+                return;
+        }
         switch (buffScriptable.buffType)
         {
             case BuffType.Bleed:
@@ -251,12 +246,28 @@ public class Character : Entity
         }
     }
     [Command(requiresAuthority = false)]
-    public void CmdRemoveBuff(string buffName)
+    public void CmdRemoveBuff(string buffName, NetworkConnectionToClient conn = null)
     {
-        RpcRemoveBuff(buffName);
+        var buffScriptable = buffDatabase.GetBuffByName(buffName);
+        if (buffScriptable)
+        {
+            if (buffScriptable.buffType != BuffType.InventorySlots)
+                RpcRemoveBuff(buffName);
+            else
+                SingleClientRemoveBuff(conn, buffName);
+        }
     }
     [ClientRpc]
     public void RpcRemoveBuff(string buffName)
+    {
+        RemoveBuff(buffName);
+    }
+    [TargetRpc]
+    public void SingleClientRemoveBuff(NetworkConnection conn, string buffName)
+    {
+        RemoveBuff(buffName);
+    }
+    private void RemoveBuff(string buffName)
     {
         if (isServer)
             Debug.Log("Remove Buff Is Server");
@@ -273,6 +284,7 @@ public class Character : Entity
             {
                 item.BuffExpired();
                 buffs.Remove(item);
+                break;
             }
         }
     }

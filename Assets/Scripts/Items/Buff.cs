@@ -23,8 +23,11 @@ public abstract class Buff
     public virtual void BuffExpired()
     {
         Buff_Expired.Invoke();
-        targetEntity.BuffExpired(effect);
-        targetEntity.buffs.Remove(this);
+        if (targetEntity)
+        {
+            targetEntity.BuffExpired(effect);
+            targetEntity.buffs.Remove(this);
+        }
     }
     public virtual IEnumerator TimedBuff(float duration)
     {

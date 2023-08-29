@@ -17,6 +17,7 @@ public class BuffScriptable : ScriptableObject
     public BuffType buffType;
     public float value;
     public float duration;
+    public bool stackable;
     public EventReference sound;
     private void OnEnable()
     {

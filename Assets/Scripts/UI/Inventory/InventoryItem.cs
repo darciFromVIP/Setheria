@@ -41,7 +41,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && MouseOverUI() && item.stackable)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && IsPointerOverUIElement() && item.stackable)
         {
             if (stacks > 1)
             {
@@ -226,10 +226,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         QuickItemTransfer();
     }
-    private bool MouseOverUI()
-    {
-        return EventSystem.current.IsPointerOverGameObject();
-    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -336,5 +332,32 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 inventoryItem.DestroyItem();
             }
         }
+    }
+    //Returns 'true' if we touched or hovering on Unity UI element.
+    public bool IsPointerOverUIElement()
+    {
+        return IsPointerOverUIElement(GetEventSystemRaycastResults());
+    }
+    //Returns 'true' if we touched or hovering on Unity UI element.
+    private bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults)
+    {
+        for (int index = 0; index < eventSystemRaysastResults.Count; index++)
+        {
+            RaycastResult curRaysastResult = eventSystemRaysastResults[index];
+            if (curRaysastResult.gameObject == gameObject)
+                return true;
+        }
+        return false;
+    }
+
+
+    //Gets all event system raycast results of current mouse or touch position.
+    static List<RaycastResult> GetEventSystemRaycastResults()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raysastResults);
+        return raysastResults;
     }
 }
