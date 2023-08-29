@@ -19,7 +19,7 @@ MonoBehaviour:
     Structure'
   grade: 0
   itemType: 0
-  sprite: {fileID: 21300000, guid: 07e0b4d3074eb104f8ef138a6f42addc, type: 3}
+  sprite: {fileID: 21300000, guid: c11e8a150de2fcc40b6dfbc138facd18, type: 3}
   stackable: 0
   usage:
   - {fileID: 11400000, guid: f6f1878d6a1c61849818a2fd64a9c4aa, type: 2}
@@ -32,5 +32,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []
