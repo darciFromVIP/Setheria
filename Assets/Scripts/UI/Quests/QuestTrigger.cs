@@ -10,11 +10,15 @@ public class QuestTrigger : MonoBehaviour
     {
         if (other.TryGetComponent(out PlayerCharacter player))
         {
-            if (giveQuestlineToAllPlayers)
-                FindObjectOfType<QuestManager>().CmdNewQuestline(questlineTriggered.name);
-            else
-                FindObjectOfType<QuestManager>().NewQuestline(questlineTriggered.name);
-            Destroy(gameObject);
+            if (player.isClient)
+            {
+                if (giveQuestlineToAllPlayers)
+                    FindObjectOfType<QuestManager>().CmdNewQuestline(questlineTriggered.name);
+                else
+                    FindObjectOfType<QuestManager>().NewQuestline(questlineTriggered.name);
+                enabled = false;
+                Destroy(gameObject);
+            }
         }
     }
 }
