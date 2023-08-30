@@ -32,12 +32,10 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     void ResourceHook(int oldValue, int newValue)
     {
         resourcesText.text = "<sprite=15>" + newValue.ToString();
-        Resources_Added.Invoke(newValue);
     }
     void KnowledgeHook(int oldValue, int newValue)
     {
         knowledgeText.text = "<sprite=11>" + newValue.ToString();
-        Knowledge_Added.Invoke(newValue);
     }
     public void ChangeResources(int value)
     {
@@ -47,6 +45,7 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     private void CmdChangeResources(int value)
     {
         resources += value;
+        Resources_Added.Invoke(value);
         if (resources < 0)
             resources = 0;
     }
@@ -58,6 +57,7 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     private void CmdChangeKnowledge(int value)
     {
         knowledge += value;
+        Knowledge_Added.Invoke(value);
         if (knowledge < 0)
             knowledge = 0;
     }

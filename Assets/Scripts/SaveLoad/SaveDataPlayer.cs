@@ -54,7 +54,7 @@ public class SaveDataPlayer
                 mana = 200;
                 baseMaxMana = 200;
                 baseManaRegen = 0.25f;
-                power = 20;
+                power = 15;
                 criticalChance = 0;
                 criticalDamage = 50;
                 attackSpeed = 4f;
@@ -70,7 +70,7 @@ public class SaveDataPlayer
                 mana = 300;
                 baseMaxMana = 300;
                 baseManaRegen = 0.6f;
-                power = 15;
+                power = 10;
                 criticalChance = 0;
                 criticalDamage = 50;
                 attackSpeed = 4f;

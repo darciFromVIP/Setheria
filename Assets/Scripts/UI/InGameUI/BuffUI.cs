@@ -35,7 +35,10 @@ public class BuffUI : MonoBehaviour
     public void Initialize(string buffName, Buff buffInstance)
     {
         var buff = buffDatabase.GetBuffByName(buffName);
-        image.sprite = buff.sprite;
+        if (buff.sprite != null)
+            image.sprite = buff.sprite;
+        else
+            Destroy(gameObject);
         tooltipTrigger.SetText(buff.name, buff.description, buff.sprite);
         currentBuffInstance = buffInstance;
         slider.maxValue = buff.duration;

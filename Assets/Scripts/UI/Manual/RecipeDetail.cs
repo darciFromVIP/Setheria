@@ -143,7 +143,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         UpdateCurrentDetails();
         FindObjectOfType<AudioManager>().ItemCrafted(localPlayer.transform.position);
         localPlayer.GetComponent<PlayerCharacter>().AddXp(currentOpenedRecipe.xpGranted * amount);
-        localPlayer.GetComponent<PlayerCharacter>().professions.AddAnyProfession(currentOpenedRecipe.requiredProfession, 1);
+        localPlayer.GetComponent<PlayerCharacter>().professions.AddAnyProfession(currentOpenedRecipe.requiredProfession, amount);
         localPlayer.Work_Finished.RemoveListener(FinishCrafting);
         blockingUI.SetActive(false);
     }

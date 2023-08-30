@@ -155,8 +155,10 @@ public class StructureOptionUI : MonoBehaviour
     private void CookFish()
     {
         var inventory = FindObjectOfType<InventoryManager>();
+        var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         foreach (var item in selectedItems)
         {
+            player.professions.AddCooking(1);
             inventory.AddItem(new SaveDataItem() { name = "Cooked Fish", stacks = item.stacks });
             inventory.RemoveItem(new ItemRecipeInfo() { itemData = item.item, stacks = item.stacks });
         }
