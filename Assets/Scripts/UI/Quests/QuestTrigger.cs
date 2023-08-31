@@ -11,7 +11,7 @@ public class QuestTrigger : NetworkBehaviour
     {
         if (other.TryGetComponent(out PlayerCharacter player))
         {
-            if (player.isClient && isOwned)
+            if (player.isClient && player.isOwned)
             {
                 Debug.Log("Entered");
                 if (giveQuestlineToAllPlayers)
