@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 75edfb654a3748849a48a4ad8e10fbcb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _WIND
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -88,7 +89,7 @@ Material:
     - WindSpeedFloat1: 0.19
     - WindTurbulence: 0.29
     - _AlphaCutoff: 0.643
-    - _Amplitude: 2
+    - _Amplitude: 0.01
     - _AmplitudeOffset: 2
     - _BendSpeed: 1
     - _BumpScale: 1
@@ -99,36 +100,36 @@ Material:
     - _Float1: 183
     - _Flutter: 0
     - _FlutterStrength: 0
-    - _Frequency: 3
+    - _Frequency: 1
     - _FrequencyOffset: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaxHeight: 10
+    - _MaxHeight: 45
     - _Metallic: 0.188
     - _Mode: 0
     - _NormalMapStrength: 1.19
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Phase: 1
-    - _ShadowStrength: 0.684
+    - _ShadowStrength: 0.413
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _Wind: 0
+    - _Wind: 1
     - _WindOffset: 0
     - _WindStrength: 0.1
-    - _WindStrength1: 0.55
+    - _WindStrength1: 0.399
     - _ZWrite: 1
     - __dirty: 0
     - _float: 0
     m_Colors:
-    - _Color: {r: 0.37404004, g: 0.6886792, b: 0.3216002, a: 1}
+    - _Color: {r: 0.7310389, g: 0.9433962, b: 0.6897472, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _NoisePannerSpeed: {r: 0.05, g: 0.03, b: 0, a: 0}
-    - _NoiseTextureTilling2: {r: 1, g: 1, b: 1, a: 1}
-    - _Shadowcolor: {r: 0, g: 0, b: 0, a: 0}
+    - _NoisePannerSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _NoiseTextureTilling2: {r: 0, g: 0, b: 0, a: 0}
+    - _Shadowcolor: {r: 0.20225169, g: 0.4245283, b: 0.23519304, a: 0}
     - _WindDirection: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
