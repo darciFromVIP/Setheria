@@ -5,7 +5,7 @@ using Mirror;
 public class Ship : Character, IInteractable
 {
     public int crewCapacity = 1;
-    private List<PlayerCharacter> crew = new();
+    public List<PlayerCharacter> crew = new();
 
     private ShipController shipController;
     protected override void Start()
@@ -34,6 +34,7 @@ public class Ship : Character, IInteractable
         }
         player.BoardShip();
         player.transform.SetParent(transform);
+        player.transform.position = transform.position + Vector3.up;
         crew.Add(player);
         shipController.enabled = true;
     }

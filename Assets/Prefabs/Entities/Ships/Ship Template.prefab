@@ -5,7 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 2913504394842974162}
     m_Modifications:
     - target: {fileID: 845702416364463671, guid: 5a2a2ba95570a6545b0faedc7a293dc1,
@@ -184,7 +184,9 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a2a2ba95570a6545b0faedc7a293dc1, type: 3}
 --- !u!224 &8628975865110424825 stripped
 RectTransform:
@@ -197,7 +199,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2367397655041227014, guid: 36b01e57100ea254d9149e8306d6dd8f,
@@ -343,11 +345,29 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8972237152418319047, guid: 36b01e57100ea254d9149e8306d6dd8f, type: 3}
     - {fileID: 1094240375776113113, guid: 36b01e57100ea254d9149e8306d6dd8f, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7082070339115388359, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8628975865110424825}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2380303804440321083}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3105462913361158021}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6821252863347827180}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8065220989339300529}
   m_SourcePrefab: {fileID: 100100000, guid: 36b01e57100ea254d9149e8306d6dd8f, type: 3}
 --- !u!4 &2913504394842974162 stripped
 Transform:
@@ -413,7 +433,8 @@ MonoBehaviour:
   syncInterval: 0.1
   shipMask:
     serializedVersion: 2
-    m_Bits: 1041
+    m_Bits: 1169
+  settingsManager: {fileID: 0}
 --- !u!114 &6821252863347827180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +462,14 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  animator: {fileID: 0}
+  On_Death:
+    m_PersistentCalls:
+      m_Calls: []
+  hudCircle: {fileID: 0}
+  vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
+  baseRotateSpeed: 1
+  level: 0
   skills: []
   enemyLayers:
     serializedVersion: 2
@@ -448,10 +477,18 @@ MonoBehaviour:
   allyLayers:
     serializedVersion: 2
     m_Bits: 0
-  vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
-  hudCircle: {fileID: 0}
-  baseRotateSpeed: 1
+  buffDatabase: {fileID: 0}
+  Stun_Begin:
+    m_PersistentCalls:
+      m_Calls: []
+  Stun_End:
+    m_PersistentCalls:
+      m_Calls: []
   Stop_Acting:
     m_PersistentCalls:
       m_Calls: []
+  Buff_Added:
+    m_PersistentCalls:
+      m_Calls: []
   crewCapacity: 1
+  crew: []

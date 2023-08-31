@@ -454,7 +454,10 @@ public class PlayerController : NetworkBehaviour
             Working_Event.Invoke(duration);
             yield return null;
         }
-        ChangeState(PlayerState.None);
+        if (moveComp.agent.enabled)
+            ChangeState(PlayerState.None);
+        else
+            ChangeState(PlayerState.Busy);
         Work_Finished.Invoke();
         Work_Finished.RemoveAllListeners();
         Work_Cancelled.RemoveAllListeners();

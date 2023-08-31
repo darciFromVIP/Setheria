@@ -10,20 +10,34 @@ public class ShipController : NetworkBehaviour
     private CanPickup pickupComp;
     private Ship shipComp;
     public LayerMask shipMask;
+    public SettingsManager settingsManager;
+    private List<Collider> collidingColliders = new();
+
     private void Start()
     {
         pickupComp = GetComponent<CanPickup>();
         moveComp = GetComponent<CanMove>();
         shipComp = GetComponent<Ship>();
+        settingsManager = FindObjectOfType<SettingsManager>();
+        collidingColliders.Clear();
     }
     private void Update()
     {
         if (isOwned)
             InputHandle();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        collidingColliders.Add(other);
+        Debug.Log(other.name);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        collidingColliders.Remove(other);
+    }
     private void InputHandle()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(settingsManager.settings.move))
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -38,6 +52,13 @@ public class ShipController : NetworkBehaviour
                 if (hit.collider is TerrainCollider)
                 {
                     StartCoroutine(GoToUnload(hit.point));
+                }
+                if (hit.collider.TryGetComponent(out IInteractable interactable))
+                {
+                    if (hit.collider.TryGetComponent(out SchoolOfFish fishing))
+                        StartCoroutine(GoToInteract(fishing.interactionCollider, interactable));
+                    else
+                        StartCoroutine(GoToInteract(hit.collider, interactable));
                 }
             }
         }
@@ -58,5 +79,32 @@ public class ShipController : NetworkBehaviour
         }
         moveComp.Stop();
         shipComp.UnloadCrew(moveComp.agent.destination);
+    }
+    private IEnumerator GoToInteract(Collider collider, IInteractable interactable)
+    {
+        moveComp.MoveTo(collider.transform.position);
+        var originDest = moveComp.agent.destination;
+        while (true)
+        {
+            Debug.Log(originDest);
+            Debug.Log(moveComp.agent.destination);
+            if (Vector3.Distance(originDest, moveComp.agent.destination) > 2.5f)
+            {
+                yield break;
+            }
+            Debug.Log("Going to Interact");
+            if (ContainsCollider(collider) || moveComp.HasReachedDestination())
+                break;
+            yield return null;
+        }
+        moveComp.Stop();
+        Debug.Log("Interacting");
+        interactable.Interact(shipComp.crew[0]);
+    }
+    private bool ContainsCollider(Collider colliderToCompare)
+    {
+        if (collidingColliders.Contains(colliderToCompare))
+            Debug.Log("Contains collider");
+        return collidingColliders.Contains(colliderToCompare);
     }
 }

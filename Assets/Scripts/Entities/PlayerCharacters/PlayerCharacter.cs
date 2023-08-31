@@ -69,6 +69,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     private CanMove moveComp;
     private CanAttack attackComp;
     private PlayerController playerController;
+    [SerializeField] private GameObject spotlight;
 
     protected override void Start()
     {
@@ -466,16 +467,28 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     public void BoardShip()
     {
-        transform.localScale = Vector3.zero;
+        foreach (var item in GetComponentsInChildren<MeshRenderer>())
+        {
+            item.enabled = false;
+        }
+        GetComponentInChildren<SkinnedMeshRenderer>(true).enabled = false;
+        GetComponentInChildren<EntityStatusBar>(true).gameObject.SetActive(false);
         moveComp.agent.enabled = false;
         playerController.ChangeState(PlayerState.Busy);
+        spotlight.SetActive(false);
     }
     public void UnboardShip(Vector3 position)
     {
-        transform.localScale = Vector3.one;
+        foreach (var item in GetComponentsInChildren<MeshRenderer>())
+        {
+            item.enabled = true;
+        }
+        GetComponentInChildren<SkinnedMeshRenderer>(true).enabled = true;
+        GetComponentInChildren<EntityStatusBar>(true).gameObject.SetActive(true);
         transform.position = position;
         moveComp.agent.enabled = true;
         playerController.ChangeState(PlayerState.None);
+        spotlight.SetActive(true);
     }
     public void AddMaxHealthAttribute(int value)
     {
