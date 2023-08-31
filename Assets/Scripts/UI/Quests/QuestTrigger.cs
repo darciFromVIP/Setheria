@@ -1,8 +1,9 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestTrigger : MonoBehaviour
+public class QuestTrigger : NetworkBehaviour
 {
     public QuestlineScriptable questlineTriggered;
     public bool giveQuestlineToAllPlayers = true;
@@ -10,15 +11,20 @@ public class QuestTrigger : MonoBehaviour
     {
         if (other.TryGetComponent(out PlayerCharacter player))
         {
-            if (player.isClient)
+            if (player.isClient && isOwned)
             {
+                Debug.Log("Entered");
                 if (giveQuestlineToAllPlayers)
                     FindObjectOfType<QuestManager>().CmdNewQuestline(questlineTriggered.name);
                 else
                     FindObjectOfType<QuestManager>().NewQuestline(questlineTriggered.name);
-                enabled = false;
-                Destroy(gameObject);
+                DestroyObject();
             }
         }
+    }
+    [Command(requiresAuthority = false)]
+    private void DestroyObject()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 }
