@@ -215,7 +215,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (Input.GetKey(KeyCode.LeftControl) && item.stackable)
+        if (Input.GetKey(KeyCode.LeftControl) && item.stackable && !Input.GetKey(KeyCode.LeftShift))
         {
             if (stacks > 1)
             {
