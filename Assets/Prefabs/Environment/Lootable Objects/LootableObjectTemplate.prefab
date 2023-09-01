@@ -579,6 +579,8 @@ GameObject:
   - component: {fileID: 635349289380901275}
   - component: {fileID: 7929684349248396451}
   - component: {fileID: 396763906757269663}
+  - component: {fileID: 5651557035686662384}
+  - component: {fileID: 3848471240220150972}
   m_Layer: 7
   m_Name: LootableObjectTemplate
   m_TagString: Untagged
@@ -721,6 +723,36 @@ MonoBehaviour:
   objectName: 
   keybindLabel: Interact
   keybindType: 3
+--- !u!114 &5651557035686662384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945454117786027965}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &3848471240220150972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945454117786027965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4952b1cd3072cb74aaae8152957f973f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7891646781873149403
 PrefabInstance:
   m_ObjectHideFlags: 0

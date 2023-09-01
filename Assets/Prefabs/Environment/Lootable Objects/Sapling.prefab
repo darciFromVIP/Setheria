@@ -180,7 +180,7 @@ PrefabInstance:
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_RootOrder
-      value: 56
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -352,12 +352,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3,
         type: 2}
+    - target: {fileID: 8929349934978510982, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 1.04
+      objectReference: {fileID: 0}
     - target: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Name
       value: Sapling
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5651557035686662384, guid: f87e8e15654f0d1439fa30e59ccad342, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
@@ -471,6 +477,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1576856837917296030}
+    - targetCorrespondingSourceObject: {fileID: 2363217863737794058, guid: af8afaf82433c6947b0e1b23484c7d6f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6663303629007979705}
   m_SourcePrefab: {fileID: 100100000, guid: af8afaf82433c6947b0e1b23484c7d6f, type: 3}
 --- !u!4 &377031543023265916 stripped
 Transform:
@@ -516,6 +526,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68581d5f1ee9e314db146941ca19e150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6663303629007979705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040521301241148102}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &7753609363377632314
 PrefabInstance:
   m_ObjectHideFlags: 0
