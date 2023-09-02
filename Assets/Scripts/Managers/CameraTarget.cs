@@ -26,12 +26,9 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     public CinemachineVirtualCamera cam;
 
     private SettingsManager settingsManager;
-    private void Awake()
-    {
-        followOffset = cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
-    }
     private void Start()
     {
+        followOffset = cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
         settingsManager = FindObjectOfType<SettingsManager>();
         foreach (var item in FindObjectsOfType<Slider>(true))
         {
@@ -133,6 +130,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
         if (isFollowing)
         {
             pos = new Vector3(localPlayerCharacter.transform.position.x, transform.position.y, localPlayerCharacter.transform.position.z);
+            cam.transform.LookAt(localPlayerCharacter.transform);
         }
 
         float playerHeight = transform.position.y;
