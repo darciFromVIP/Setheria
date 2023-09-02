@@ -171,7 +171,7 @@ public class PlayerController : NetworkBehaviour
             
             if (Input.GetKey(settingsManager.settings.move))                     // This could potentially ruin some interactions by overriding Move order
             {
-                if (hit.collider.gameObject.layer == 0)                         // Default Layer
+                if (hit.collider.CompareTag("Ground"))                         
                 {
                     moveComp.MoveTo(hit.point);
                     attackComp.TargetLost();
@@ -179,7 +179,7 @@ public class PlayerController : NetworkBehaviour
             }
             if (Input.GetKeyDown(settingsManager.settings.move))
             {
-                if (hit.collider.gameObject.layer == 0)
+                if (hit.collider.CompareTag("Ground"))                         
                 {
                     clickEffect.transform.position = hit.point;
                     clickEffect.GetComponent<ParticleSystem>().Play();
