@@ -12,7 +12,14 @@ public class TalentButton : MonoBehaviour
     private void Awake()
     {
         btn.onClick.AddListener(UnlockTalent);
-        GetComponent<TooltipTrigger>().SetText(talent.label, talent.description, image.sprite);
+        string talentDescription = talent.description;
+        if (talent.requiredTalent || talent.requiredTalentPointsSpent > 0)
+            talentDescription += "\n\n";
+        if (talent.requiredTalent)
+            talentDescription += "Required Talent: " + talent.requiredTalent.name + " of level " + talent.requiredTalentLevel;
+        if (talent.requiredTalentPointsSpent > 0)
+            talentDescription += "Required Talent Points spent: " + talent.requiredTalentPointsSpent;
+        GetComponent<TooltipTrigger>().SetText(talent.label, talentDescription, image.sprite);
     }
     public void UpdateButton(Talent currentTalent, TalentTrees playerTalentTrees, TalentTree talentTree)
     {

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Clipper
   m_EditorClassIdentifier: 
-  description: "A basic ship.\n\n - Movement Speed:\n - Health:\n - Ability to loot
-    shipwrecks.\n - 1 Hero slot"
+  description: "A basic ship.\n\n - Movement Speed: 3\n - Health: 100\n - Ability
+    to loot shipwrecks.\n - 1 Hero slot"
   grade: 0
   itemType: 17
   sprite: {fileID: 21300000, guid: bcdb78f5e64750b418a174bccdd27dc8, type: 3}
@@ -28,5 +28,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

@@ -2,14 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+public enum MsgType
+{
+    Error, Notice, Positive
+}
 public class SystemMessages : MonoBehaviour
 {
     public TextMeshProUGUI message;
 
-    public void AddMessage(string msg)
+    public void AddMessage(string msg, MsgType msgType = MsgType.Error)
     {
+        StopAllCoroutines();
+        switch (msgType)
+        {
+            case MsgType.Error:
+                message.color = Color.red;
+                FindObjectOfType<AudioManager>().UIError();
+                break;
+            case MsgType.Notice:
+                message.color = Color.white; 
+                FindObjectOfType<AudioManager>().QuestAccepted();
+                break;
+            case MsgType.Positive:
+                message.color = Color.green;
+                break;
+            default:
+                break;
+        }
         StartCoroutine(AddMessageCoro(msg));
-        FindObjectOfType<AudioManager>().UIError();
     }
     private IEnumerator AddMessageCoro(string msg)
     {
