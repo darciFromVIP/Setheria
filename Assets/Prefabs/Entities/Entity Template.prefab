@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3678164197958677912}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.28427485, y: -0.6474473, z: 0.64744705, w: 0.28427485}
   m_LocalPosition: {x: -0, y: 0.454, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7082070339115388359}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 132.59}
 --- !u!114 &5197279019718663856
 MonoBehaviour:
@@ -88,6 +88,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7082070339115388352}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -96,7 +97,6 @@ Transform:
   - {fileID: 3380534928163043288}
   - {fileID: 5520711907254279831}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &7082070339115388354
 CapsuleCollider:
@@ -141,7 +141,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
 --- !u!114 &6670118888599522238
 MonoBehaviour:
@@ -270,6 +270,13 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   projectileLaunchPoint: {fileID: 0}
   enemyTarget: {fileID: 0}
+  attackSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   Stop_Acting:
     m_PersistentCalls:
       m_Calls: []

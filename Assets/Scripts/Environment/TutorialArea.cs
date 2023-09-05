@@ -11,9 +11,12 @@ public class TutorialArea : MonoBehaviour
     {
         if (other.TryGetComponent(out PlayerCharacter character))
         {
-            var key = FindObjectOfType<SettingsManager>().GetDataByKeybindType(keybind);
-            FindObjectOfType<SystemMessages>().AddMessage(textBeforeKey + key.text + textAfterKey, MsgType.Notice);
-            Destroy(gameObject);
+            if (character.isOwned)
+            {
+                var key = FindObjectOfType<SettingsManager>().GetDataByKeybindType(keybind);
+                FindObjectOfType<SystemMessages>().AddMessage(textBeforeKey + key.text + textAfterKey, MsgType.Notice);
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 public enum RecipeCategory
 {
     Survival, Structures, Alchemy, Fishing, Armorsmithing, Cooking
@@ -27,6 +29,8 @@ public class RecipeScriptable : ScriptableObject
     private Dictionary<StructureScriptable, bool> requiredStructuresTemp = new();
     public TalentTreeType requiredProfession;
     public int requiredProfessionExperience;
+
+    public UnityEvent Recipe_Unlocked;
 
     private void OnEnable()
     {
@@ -72,5 +76,6 @@ public class RecipeScriptable : ScriptableObject
         unlocked = true;
         visible = true;
         freshlyUnlocked = true;
+        Recipe_Unlocked.Invoke();
     }
 }

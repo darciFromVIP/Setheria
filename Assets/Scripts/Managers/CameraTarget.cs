@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
-using FMODUnity;
-using FMOD;
-using FMODUnityResonance;
+using UnityEditor;
+
 public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
 {
     private float cameraSpeed = 25;
@@ -20,6 +19,9 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     private List<InCameraWay> objectsInTheWay = new();
     private List<InCameraWay> objectsAlreadyTurnedOff = new();
     private bool isFollowing = false;
+    private bool isKeyPressed = false;
+    private float cooldownTime = 0.2f; // Adjust this value as needed
+    private float lastKeyPressTime = 0f;
 
     public Collider camBounds;
 
@@ -85,7 +87,6 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
             }
         }
 
-
         Vector3 rottarget = transform.rotation.eulerAngles;
         Vector3 pos = transform.position;
 
@@ -123,14 +124,35 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
             rottarget.y -= cameraRotationSpeed * Mathf.Abs(Input.GetAxis("Mouse X"));
         }
 
-        if (Input.GetKeyDown(settingsManager.settings.cameraLock))
+        if (Time.time - lastKeyPressTime >= cooldownTime)
         {
-            isFollowing = !isFollowing;
+            if (Input.GetKeyDown(settingsManager.settings.cameraLock))
+            {
+                isKeyPressed = true;
+                lastKeyPressTime = Time.time;
+
+                isFollowing = !isFollowing;
+                if (isFollowing)
+                {
+                    StartCoroutine(DelayedDamping());
+                }
+                else
+                {
+                    StopAllCoroutines();
+                    cam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
+                    cam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
+                    cam.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 1;
+                }
+            }
         }
+        if (isKeyPressed && !Input.GetKey(settingsManager.settings.cameraLock))
+        {
+            isKeyPressed = false;
+        }
+
         if (isFollowing)
         {
             pos = new Vector3(localPlayerCharacter.transform.position.x, transform.position.y, localPlayerCharacter.transform.position.z);
-            cam.transform.LookAt(localPlayerCharacter.transform);
         }
 
         float playerHeight = transform.position.y;
@@ -156,7 +178,19 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
         else
             followOffset = cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
     }
-
+    private IEnumerator DelayedDamping()
+    {
+        cam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
+        cam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
+        cam.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
+        float time = 1;
+        while (time > 0)
+        {
+            cam.transform.LookAt(localPlayerCharacter.transform);
+            time -= Time.deltaTime;
+            yield return null;
+        }
+    }
     public void Teleport(Transform dest)
     {
         transform.position = dest.position;

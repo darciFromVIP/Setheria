@@ -19,6 +19,7 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
         foreach (var item in GetComponentsInChildren<ResearchRecipe>(true))
         {
             recipes.Add(item);
+            item.recipe.Recipe_Unlocked.AddListener(UpdateRecipes);
         }
     }
     public void ToggleWindow(bool value)
@@ -46,21 +47,25 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
     }
     public void UpdateRecipes()
     {
+        CheckTier();
         foreach (var item in recipes)
         {
             item.UpdateRecipe();
         }
     }
     public void UnlockRandomRecipe()
-    {
+    {  
         ResearchRecipe result;
         do
         {
             result = recipes[Random.Range(0, recipes.Count)];
         } while (result.recipe.tier != currentTier || result.recipe.unlocked);
-
         FindObjectOfType<InventoryManager>(true).AddItem(result.recipe.recipeItem, 1);
         FindObjectOfType<GameManager>().ChangeKnowledge(-currentTier * 20);
+        researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && recipes.Count > 0 && !allResearchesDone;
+    }
+    public void CheckTier()
+    {
         bool stayInCurrentTier = false;
         allResearchesDone = true;
         foreach (var item in recipes)
@@ -70,10 +75,11 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
             if (item.recipe.tier == currentTier && !item.recipe.unlocked)
                 stayInCurrentTier = true;
         }
+        if (allResearchesDone)
+            researchBTN.interactable = false;
         if (!stayInCurrentTier)
         {
             currentTier++;
         }
-        researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && recipes.Count > 0 && !allResearchesDone;
     }
 }

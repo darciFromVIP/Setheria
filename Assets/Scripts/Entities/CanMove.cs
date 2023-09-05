@@ -47,6 +47,8 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     {
         if (!(isOwned || (entity is not PlayerCharacter && isServer)) || baseMovementSpeed == 0)
             return;
+        if (entity is PlayerCharacter)
+            Debug.Log(agent.destination);
         if (animator)
         {
             if (agent.velocity.magnitude > 0.1f)

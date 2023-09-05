@@ -140,11 +140,11 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         inventory.AddItem(tempItem);
         if (!openedInStructure)
             GetComponentInParent<ManualScreen>().UpdateCurrentCategory();
-        UpdateCurrentDetails();
         FindObjectOfType<AudioManager>().ItemCrafted(localPlayer.transform.position);
         localPlayer.GetComponent<PlayerCharacter>().AddXp(currentOpenedRecipe.xpGranted * amount);
         localPlayer.GetComponent<PlayerCharacter>().professions.AddAnyProfession(currentOpenedRecipe.requiredProfession, amount);
         localPlayer.Work_Finished.RemoveListener(FinishCrafting);
+        UpdateCurrentDetails();
         blockingUI.SetActive(false);
     }
 
@@ -166,7 +166,6 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
             amount = 1;
         if (amount > 99)
             amount = 99;
-        Debug.Log(amount);
         UpdateDetails(currentOpenedRecipe, openedInStructure, amount);
     }
     public void ChangeAmount(string value)

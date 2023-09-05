@@ -147,6 +147,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3570985794274343471, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3640024642524204718, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -422,6 +427,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47f1f64da8f1c2241907ff64422726b8, type: 2}
   - {fileID: 11400000, guid: 9f050df7932b8274ba7259e62054bca3, type: 2}
   - {fileID: 11400000, guid: c60c51bea0c77c64799aa8ff424b70fb, type: 2}
+  skills: []
   entityDatabase: {fileID: 0}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
