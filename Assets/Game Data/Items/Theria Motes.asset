@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Theria
+  m_Name: Theria Motes
   m_EditorClassIdentifier: 
-  description: 'Used in Armory.
-
-'
-  grade: 0
+  description: Mysterious motes of energy of unknown origin. Perhaps it is connected
+    to the energy of this world?
+  grade: 2
   itemType: 0
-  sprite: {fileID: 21300000, guid: 184253804b7cc4f4685577636d2bcc56, type: 3}
+  sprite: {fileID: 21300000, guid: e2c298caad776684ab043ade25d0dd69, type: 3}
   stackable: 1
   usage: []
   usageCooldown: 0
@@ -29,5 +28,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []
