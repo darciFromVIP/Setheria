@@ -103,6 +103,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2229150244544064768, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3257176271980756987, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: _assetId
@@ -193,7 +198,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8929349934978510982, guid: f87e8e15654f0d1439fa30e59ccad342, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1484520294091152003, guid: f87e8e15654f0d1439fa30e59ccad342, type: 3}
+    - {fileID: 2229150244544064768, guid: f87e8e15654f0d1439fa30e59ccad342, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -368,6 +375,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7609851912756909425
 MonoBehaviour:
   m_ObjectHideFlags: 0
