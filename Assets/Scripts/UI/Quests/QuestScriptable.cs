@@ -21,9 +21,9 @@ public class QuestScriptable : ScriptableObject
     private bool active;
     public string label;
     public List<ItemRecipeInfo> requiredItems = new();
-    [HideInInspector] public Dictionary<ItemScriptable, int> requiredItemsDic = new();
+    [HideInInspector] public Dictionary<string, int> requiredItemsDic = new();
     public List<StructureScriptable> requiredStructures = new();
-    [HideInInspector] public Dictionary<StructureScriptable, bool> requiredStructuresDic = new();
+    [HideInInspector] public Dictionary<string, bool> requiredStructuresDic = new();
     public int requiredResources;
     [HideInInspector] public int currentResources;
     public int requiredKnowledge;
@@ -53,12 +53,13 @@ public class QuestScriptable : ScriptableObject
             {
                 item.itemData.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
                 item.itemData.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
-                requiredItemsDic.Add(item.itemData, 0);
+                requiredItemsDic.Add(item.itemData.name, 0);
+                Debug.Log(item.itemData.name);
             }
             foreach (var item in requiredStructures)
             {
                 item.Structure_Built.AddListener(CmdReduceStructureRequirement);
-                requiredStructuresDic.Add(item, false);
+                requiredStructuresDic.Add(item.name, false);
             }
         }
         else
@@ -95,7 +96,7 @@ public class QuestScriptable : ScriptableObject
         }
         if (structureBuilt != null)
         {
-            requiredStructuresDic[structureBuilt] = true;
+            requiredStructuresDic[structureBuilt.name] = true;
             CheckQuestCompletion();
         }
     }
@@ -109,7 +110,7 @@ public class QuestScriptable : ScriptableObject
         }
         if (itemAcquired != null)
         {
-            requiredItemsDic[itemAcquired] += stacks;
+            requiredItemsDic[itemAcquired.name] += stacks;
             CheckQuestCompletion();
         }
     }
@@ -127,9 +128,9 @@ public class QuestScriptable : ScriptableObject
         }
         if (itemLost != null)
         {
-            requiredItemsDic[itemLost] -= stacks;
-            if (requiredItemsDic[itemLost] < 0)
-                requiredItemsDic[itemLost] = 0;
+            requiredItemsDic[itemLost.name] -= stacks;
+            if (requiredItemsDic[itemLost.name] < 0)
+                requiredItemsDic[itemLost.name] = 0;
             CheckQuestCompletion();
         }
     }
@@ -148,7 +149,7 @@ public class QuestScriptable : ScriptableObject
         Quest_Updated.Invoke();
         foreach (var item in requiredItems)
         {
-            if (requiredItemsDic[item.itemData] < item.stacks)
+            if (requiredItemsDic[item.itemData.name] < item.stacks)
                 return;
         }
         foreach (var item in requiredStructuresDic)
@@ -172,16 +173,16 @@ public class QuestScriptable : ScriptableObject
         string result = "";
         foreach (var item in requiredItems)
         {
-            bool isCompleted = requiredItemsDic[item.itemData] >= item.stacks;
+            bool isCompleted = requiredItemsDic[item.itemData.name] >= item.stacks;
             if (isCompleted)
                 result += "<s>";
-            result += "Collect " + item.itemData.name + " " + requiredItemsDic[item.itemData] + "/" + item.stacks + "\n";
+            result += "Collect " + item.itemData.name + " " + requiredItemsDic[item.itemData.name] + "/" + item.stacks + "\n";
             if (isCompleted)
                 result += "</s>";
         }
         foreach (var item in requiredStructures)
         {
-            bool isCompleted = requiredStructuresDic[item] == true;
+            bool isCompleted = requiredStructuresDic[item.name] == true;
             if (isCompleted)
                 result += "<s>";
             result += "Build a " + item.name + ".\n";

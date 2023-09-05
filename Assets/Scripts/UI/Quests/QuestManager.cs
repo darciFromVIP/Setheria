@@ -206,12 +206,12 @@ public class QuestManager : NetworkBehaviour
             List<int> values = new();
             foreach (var item2 in item.quests[item.currentQuestIndex].requiredItemsDic)
             {
-                names.Add(item2.Key.name);
+                names.Add(item2.Key);
                 values.Add(item2.Value);
             }
             foreach (var item2 in item.quests[item.currentQuestIndex].requiredStructuresDic)
             {
-                names.Add(item2.Key.name);
+                names.Add(item2.Key);
                 values.Add(item2.Value ? 1 : 0);
             }
             result.Add(new QuestlineSaveable { questlineName = item.name, currentQuestIndex = item.currentQuestIndex, questRequirementsNames = names, questRequirementsValues = values });
@@ -229,14 +229,14 @@ public class QuestManager : NetworkBehaviour
                 {
                     foreach (var item3 in quest.requiredItemsDic.ToList())
                     {
-                        if (item.questRequirementsNames[i] == item3.Key.name)
+                        if (item.questRequirementsNames[i] == item3.Key)
                         {
                             quest.requiredItemsDic[item3.Key] = item.questRequirementsValues[i];
                         }
                     }
                     foreach (var item3 in quest.requiredStructuresDic.ToList())
                     {
-                        if (item.questRequirementsNames[i] == item3.Key.name)
+                        if (item.questRequirementsNames[i] == item3.Key)
                         {
                             bool value;
                             if (item.questRequirementsValues[i] == 0)
