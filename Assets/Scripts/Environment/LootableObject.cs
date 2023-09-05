@@ -20,6 +20,7 @@ public class LootableObject : NetworkBehaviour, IInteractable
     public TalentTreeType professionRequired;
     public int professionExperienceRequired;
     public List<GameObject> effectsToHide = new();
+    public Animator anim;
 
     public string lootableName;
     public string unlootableName;
@@ -160,7 +161,6 @@ public class LootableObject : NetworkBehaviour, IInteractable
     [ClientRpc]
     private void RpcDestroyObject()
     {
-        var anim = GetComponentInChildren<Animator>();
         if (anim)
             anim.SetTrigger("Destroy");
         else

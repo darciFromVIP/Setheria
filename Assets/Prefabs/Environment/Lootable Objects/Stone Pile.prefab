@@ -219,6 +219,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 5061174571956206694}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
       propertyPath: xpGranted
       value: 20
       objectReference: {fileID: 0}
@@ -1687,6 +1692,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5193271578524282976
 MonoBehaviour:
   m_ObjectHideFlags: 0
