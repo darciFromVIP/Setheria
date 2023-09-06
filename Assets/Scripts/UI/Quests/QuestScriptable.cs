@@ -110,6 +110,11 @@ public class QuestScriptable : ScriptableObject
         }
         if (itemAcquired != null)
         {
+            Debug.Log("Requirements in Dictionary:");
+            foreach (var item in requiredItemsDic)
+            {
+                Debug.Log(item.Key + " : " + item.Value);
+            }
             requiredItemsDic[itemAcquired.name] += stacks;
             CheckQuestCompletion();
         }
