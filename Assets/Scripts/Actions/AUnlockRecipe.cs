@@ -13,11 +13,7 @@ public class AUnlockRecipe : ActionTemplate
 
     public override void Execute()
     {
-        unlockedRecipe.UnlockRecipe();
-        foreach (var item in unlockedItems)
-        {
-            item.unlocked = true;
-        }
+        FindObjectOfType<GameManager>().CmdUnlockRecipe(unlockedRecipe.name);
         FindObjectOfType<ManualScreen>().UpdateCurrentCategory();
         Action_Finished.Invoke();
     }

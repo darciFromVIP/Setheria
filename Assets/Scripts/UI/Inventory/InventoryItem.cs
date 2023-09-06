@@ -135,7 +135,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             DestroyItem();
         }
         else if (stacks < 0)
-            item.Item_Stacks_Lost.Invoke(item, stacks);
+            item.Item_Stacks_Lost.Invoke(item, -stacks);
     }
     public void UseItem()
     {

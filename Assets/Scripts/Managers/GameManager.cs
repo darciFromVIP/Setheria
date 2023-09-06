@@ -19,6 +19,7 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     public UnityEvent<int> Resources_Added = new();
     public UnityEvent<int> Knowledge_Added = new();
 
+    public RecipeDatabase recipeDatabase;
     public PlayerCharacter localPlayerCharacter;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
@@ -134,5 +135,20 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     public void InviteAFriend()
     {
         SteamFriends.ActivateGameOverlay("friends");
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdUnlockRecipe(string recipeName)
+    {
+        RpcUnlockRecipe(recipeName);
+    }
+    [ClientRpc]
+    private void RpcUnlockRecipe(string recipeName)
+    {
+        var recipe = recipeDatabase.GetRecipeByName(recipeName);
+        recipe.UnlockRecipe();
+        foreach (var item in recipe.componentItems)
+        {
+            item.itemData.unlocked = true;
+        }
     }
 }
