@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4038656602646670}
-  - component: {fileID: -7079781346870862177}
   - component: {fileID: 1594046502555722917}
   m_Layer: 0
   m_Name: RunePillar 1
@@ -35,29 +34,6 @@ Transform:
   - {fileID: 5709040800229044127}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 1.91, y: 143.898, z: -1.12}
---- !u!136 &-7079781346870862177
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1742858173413876}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.17
-  m_Height: 5.45
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.94, z: 0}
 --- !u!95 &1594046502555722917
 Animator:
   serializedVersion: 5
@@ -264,39 +240,8 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 767855014777144658, guid: f57c7553d3e08b344b5d9fc058020524, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8316823297637578971, guid: f57c7553d3e08b344b5d9fc058020524,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3747519709903652986}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f57c7553d3e08b344b5d9fc058020524, type: 3}
---- !u!1 &1141638279265476130 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8316823297637578971, guid: f57c7553d3e08b344b5d9fc058020524,
-    type: 3}
-  m_PrefabInstance: {fileID: 8988238515669706489}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &3747519709903652986
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141638279265476130}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b863656959db26d44812f46b3c505987, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &5709040800229044127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3712713297513351526, guid: f57c7553d3e08b344b5d9fc058020524,
