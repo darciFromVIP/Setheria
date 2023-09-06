@@ -15,6 +15,7 @@ public class TurnInItemsInteractable : MonoBehaviour, IInteractable
 
     public UnityEvent Items_Turned_In = new();
 
+    public Animator animator;
     public PlayerController player;
     private void Update()
     {
@@ -66,6 +67,8 @@ public class TurnInItemsInteractable : MonoBehaviour, IInteractable
         {
             inventory.RemoveItem(item);
         }
+        if (animator)
+            animator.SetTrigger("ItemTurnedIn");
         Items_Turned_In.Invoke();
     }
 }

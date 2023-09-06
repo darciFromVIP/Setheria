@@ -56,7 +56,7 @@ public class SRoar : Skill
             aoeRadius = range
         });
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().SpendMana(manaCost);
+        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
         player.StartCooldownE();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);

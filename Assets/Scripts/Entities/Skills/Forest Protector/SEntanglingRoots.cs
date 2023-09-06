@@ -81,7 +81,7 @@ public class SEntanglingRoots : Skill
         });
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         FindObjectOfType<AudioManager>().PlayOneShot(sound, enemy.transform.position);
-        player.GetComponent<HasMana>().SpendMana(manaCost);
+        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
         player.StartCooldownE();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);

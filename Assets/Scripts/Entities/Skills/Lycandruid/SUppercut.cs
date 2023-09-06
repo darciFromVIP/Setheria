@@ -99,7 +99,7 @@ public class SUppercut : Skill
             owner = castingEntity
         });
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().SpendMana(manaCost);
+        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
         player.StartCooldownW();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);

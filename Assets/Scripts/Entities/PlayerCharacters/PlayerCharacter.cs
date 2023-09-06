@@ -268,7 +268,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void AddXp(int value)
     {
         xp += value;
-        FindObjectOfType<FloatingText>().SpawnFloatingText("+" + value.ToString() + " EXP", transform.position + Vector3.up, FloatingTextType.Experience);
+        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + value.ToString() + " EXP", transform.position + Vector3.up, FloatingTextType.Experience);
 
         if (xp >= maxXp)
         {
@@ -278,7 +278,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             Level_Up.Invoke(level);
             talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);
-            FindObjectOfType<FloatingText>().SpawnFloatingText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
+            FindObjectOfType<FloatingText>().CmdSpawnFloatingText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
         }
         Xp_Changed.Invoke(xp, maxXp);
     }
@@ -302,7 +302,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             default:
                 break;
         }
-        FindObjectOfType<FloatingText>().SpawnFloatingText(profType.ToString() + " +" + amount.ToString(), transform.position, type);
+        FindObjectOfType<FloatingText>().CmdSpawnFloatingText(profType.ToString() + " +" + amount.ToString(), transform.position, type);
     }
     public void ChangeAttributePoints(int value)
     {
@@ -369,7 +369,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         hunger += amount;
         if (amount > 0)
-            FindObjectOfType<FloatingText>().SpawnFloatingText("+" + amount + " Food", transform.position, FloatingTextType.Hunger);
+            FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + amount + " Food", transform.position, FloatingTextType.Hunger);
         Hunger_Changed.Invoke();
     }
     public void ChangeStat(PlayerStat playerStat, float modifier)

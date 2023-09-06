@@ -18,6 +18,11 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.minScalar
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 934998142301197047, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2147243026206446150, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
       propertyPath: itemData
@@ -122,14 +127,20 @@ PrefabInstance:
     - target: {fileID: 6361332323702092673, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.664
+      value: 2.188
       objectReference: {fileID: 0}
     - target: {fileID: 6361332323702092673, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8564286959713456084, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: objectName
+      value: Theria Motes
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4675472209878277033, guid: d42cc2249f7425d44b8e4823b3453df6, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7018353183010684853, guid: d42cc2249f7425d44b8e4823b3453df6, type: 3}
     - {fileID: 3619581042453076046, guid: d42cc2249f7425d44b8e4823b3453df6, type: 3}

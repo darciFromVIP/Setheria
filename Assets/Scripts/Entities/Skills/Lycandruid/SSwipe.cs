@@ -74,7 +74,7 @@ public class SSwipe : Skill
             owner = castingEntity
         });
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().SpendMana(manaCost);
+        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
         player.StartCooldownQ();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);

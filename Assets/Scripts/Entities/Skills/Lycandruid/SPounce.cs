@@ -96,7 +96,7 @@ public class SPounce : Skill
         });
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         FindObjectOfType<AudioManager>().PlayOneShot(PounceImpactSound, castingEntity.transform.position);
-        player.GetComponent<HasMana>().SpendMana(manaCost);
+        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
         player.StartCooldownW();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);

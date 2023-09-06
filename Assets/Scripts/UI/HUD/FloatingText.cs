@@ -13,10 +13,10 @@ public class FloatingText : NetworkBehaviour
 {
     public FloatingTextPrefab textPrefab;
 
-    public void SpawnFloatingText(string msg, Vector3 position, FloatingTextType type)
+    [Command(requiresAuthority = false)]
+    public void CmdSpawnFloatingText(string msg, Vector3 position, FloatingTextType type)
     {
-        if (isServer)
-            SpawnText(msg, position, type);
+        SpawnText(msg, position, type);
     }
     private void SpawnText(string msg, Vector3 position, FloatingTextType type)
     {

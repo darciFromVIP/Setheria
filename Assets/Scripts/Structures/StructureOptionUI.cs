@@ -148,8 +148,8 @@ public class StructureOptionUI : MonoBehaviour
             inventory.RemoveItem(new ItemRecipeInfo() { itemData = item.item, stacks = 1 });
         }
         FindObjectOfType<AudioManager>().ResourcesCollected(GetComponentInParent<StructureScreen>().currentStructure.transform.position);
-        FindObjectOfType<FloatingText>().SpawnFloatingText("+ " + resources.ToString() + " Resources", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up, FloatingTextType.Resources);
-        FindObjectOfType<FloatingText>().SpawnFloatingText("+ " + knowledge.ToString() + " Knowledge", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up * 1.5f, FloatingTextType.Knowledge);
+        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + resources.ToString() + " Resources", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up, FloatingTextType.Resources);
+        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + knowledge.ToString() + " Knowledge", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up * 1.5f, FloatingTextType.Knowledge);
 
     }
     private void CookFish()
