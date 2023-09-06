@@ -53,7 +53,7 @@ public class HasMana : NetworkBehaviour
             mana = maxMana;
         Mana_Changed.Invoke(mana, maxMana);
     }
-    [Command]
+    [Command (requiresAuthority = false)]
     public void CmdSpendMana(float amount)
     {
         RpcSpendMana(amount);
