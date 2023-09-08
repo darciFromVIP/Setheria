@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.Progress;
 
 public enum QuestRewardType
 {
-    Resources, Knowledge, XP, Item
+    Resources, Knowledge, XP, Item, Unknown
 }
 [System.Serializable]
 public struct QuestReward
@@ -18,7 +17,7 @@ public struct QuestReward
 [CreateAssetMenu(menuName = "Quest System/Quest")]
 public class QuestScriptable : ScriptableObject
 {
-    private bool active;
+    public bool active;
     public string label;
     public List<ItemRecipeInfo> requiredItems = new();
     [HideInInspector] public Dictionary<string, int> requiredItemsDic = new();
@@ -28,6 +27,10 @@ public class QuestScriptable : ScriptableObject
     [HideInInspector] public int currentResources;
     public int requiredKnowledge;
     [HideInInspector] public int currentKnowledge;
+    public int requiredCustom1;
+    [HideInInspector] public int currentCustom1;
+    public string custom1Requirement;
+
     public List<QuestReward> rewards;
 
     private QuestManager questManager;
@@ -41,6 +44,7 @@ public class QuestScriptable : ScriptableObject
         requiredStructuresDic.Clear();
         currentResources = 0;
         currentKnowledge = 0;
+        currentCustom1 = 0;
         if (active)
         {
             var gm = FindObjectOfType<GameManager>();
@@ -54,7 +58,6 @@ public class QuestScriptable : ScriptableObject
                 item.itemData.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
                 item.itemData.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
                 requiredItemsDic.Add(item.itemData.name, 0);
-                Debug.Log(item.itemData.name);
             }
             foreach (var item in requiredStructures)
             {
@@ -149,6 +152,16 @@ public class QuestScriptable : ScriptableObject
         currentKnowledge += amount;
         CheckQuestCompletion();
     }
+    public void ReduceCustom1Requirement(int amount)
+    {
+        currentCustom1 += amount;
+        CheckQuestCompletion();
+    }
+    public void AddCustom1Requirement(int amount)
+    {
+        currentCustom1 -= amount;
+        CheckQuestCompletion();
+    }
     private void CheckQuestCompletion()
     {
         Quest_Updated.Invoke();
@@ -165,6 +178,8 @@ public class QuestScriptable : ScriptableObject
         if (currentKnowledge < requiredKnowledge)
             return;
         if (currentResources < requiredResources)
+            return;
+        if (currentCustom1 < requiredCustom1)
             return;
         QuestComplete();
     }
@@ -212,6 +227,15 @@ public class QuestScriptable : ScriptableObject
             if (isCompleted)
                 result += "</s>";
         }
+        if (requiredCustom1 > 0)
+        {
+            bool isCompleted = currentCustom1 >= requiredCustom1;
+            if (isCompleted)
+                result += "<s>";
+            result += custom1Requirement + currentCustom1 + "/" + requiredCustom1 + "\n";
+            if (isCompleted)
+                result += "</s>";
+        }
         return result;
     }
     public string GetRewardsText()
@@ -233,12 +257,18 @@ public class QuestScriptable : ScriptableObject
                 case QuestRewardType.Item:
                     result += item.itemReward.name + " x";
                     break;
+                case QuestRewardType.Unknown:
+                    result += "Unknown";
+                    break;
                 default:
                     break;
             }
-            result += item.rewardAmount;
-            if (rewards.IndexOf(item) != rewards.Count - 1)
-                result += ", ";
+            if (item.rewardType != QuestRewardType.Unknown)
+            {
+                result += item.rewardAmount;
+                if (rewards.IndexOf(item) != rewards.Count - 1)
+                    result += ", ";
+            }
         }
         return result;
     }

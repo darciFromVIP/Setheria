@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-public class TurnInItemsInteractable : MonoBehaviour, IInteractable
+using Mirror;
+
+public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
 {
     public List<ItemRecipeInfo> requiredItems;
     public float workDuration;
@@ -22,7 +24,7 @@ public class TurnInItemsInteractable : MonoBehaviour, IInteractable
         if (Input.GetKeyDown(KeyCode.Mouse1))
             tooltipUI.SetActive(false);
     }
-    public void Interact(PlayerCharacter player)
+    public virtual void Interact(PlayerCharacter player)
     {
         this.player = player.GetComponent<PlayerController>();
         foreach (var item in requiredItemsParent.GetComponentsInChildren<InventoryItem>())
