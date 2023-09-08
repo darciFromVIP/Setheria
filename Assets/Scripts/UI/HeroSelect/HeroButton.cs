@@ -14,6 +14,11 @@ public class HeroButton : MonoBehaviour, NeedsLocalPlayer
         GetComponent<Button>().onClick.AddListener(HeroSelected);
         heroSelect = GetComponentInParent<HeroSelect>();
         heroDescription = FindObjectOfType<HeroDescription>(true);
+        foreach (var item in FindObjectsOfType<PlayerCharacter>())
+        {
+            if (item.hero == hero)
+                GetComponent<Button>().interactable = false;
+        }
     }
     public void OnMouseOver()
     {
