@@ -89,7 +89,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             if (hungerTimer >= hungerInterval)
             {
                 hungerTimer = 0;
-                ChangeHunger(-1);
+                ChangeHunger(-1, false);
             }
             else if (hunger <= 0 && hungerTimer >= 4)
             {
@@ -165,7 +165,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     manager.AddItem(item2);
                 }
                 maxHunger = item.maxHunger;
-                ChangeHunger(item.hunger);
+                ChangeHunger(item.hunger, false);
                 hungerInterval = item.hungerInterval;
                 healthComp.SetBaseMaxHealth(item.baseMaxHealth);
                 healthComp.SetBonusMaxHealth(item.bonusMaxHealth);
@@ -265,10 +265,14 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         else
             return null;
     }
-    public void AddXp(int value)
+    public void AddXp(int value, bool showTextToOthers)
     {
         xp += value;
-        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + value.ToString() + " EXP", transform.position + Vector3.up, FloatingTextType.Experience);
+
+        if (showTextToOthers)
+            FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + value.ToString() + " EXP", transform.position + Vector3.up, FloatingTextType.Experience);
+        else
+            FindObjectOfType<FloatingText>().SpawnText("+" + value.ToString() + " EXP", transform.position + Vector3.up, FloatingTextType.Experience);
 
         if (xp >= maxXp)
         {
@@ -278,7 +282,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             Level_Up.Invoke(level);
             talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);
-            FindObjectOfType<FloatingText>().CmdSpawnFloatingText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
+            if (showTextToOthers)
+                FindObjectOfType<FloatingText>().CmdSpawnFloatingText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
+            else
+                FindObjectOfType<FloatingText>().SpawnText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
         }
         Xp_Changed.Invoke(xp, maxXp);
     }
@@ -365,11 +372,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         FindObjectOfType<InventoryManager>(true).AddItem(itemScriptableDatabase.GetItemByName(item), stacks);
     }
-    public void ChangeHunger(int amount)
+    public void ChangeHunger(int amount, bool showTextToOthers)
     {
         hunger += amount;
         if (amount > 0)
-            FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + amount + " Food", transform.position, FloatingTextType.Hunger);
+        {
+            if (showTextToOthers)
+                FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + amount + " Food", transform.position, FloatingTextType.Hunger);
+            else
+                FindObjectOfType<FloatingText>().SpawnText("+" + amount + " Food", transform.position, FloatingTextType.Hunger);
+        }
         Hunger_Changed.Invoke();
     }
     public void ChangeStat(PlayerStat playerStat, float modifier)
@@ -401,7 +413,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 manaComp.CmdChangeBonusManaRegen(modifier);
                 break;
             case PlayerStat.Hunger:
-                ChangeHunger((int)modifier);
+                ChangeHunger((int)modifier, true);
                 break;
             case PlayerStat.MaxHunger:
                 break;
