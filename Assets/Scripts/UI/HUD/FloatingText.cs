@@ -18,7 +18,7 @@ public class FloatingText : NetworkBehaviour
     {
         SpawnText(msg, position, type);
     }
-    private void SpawnText(string msg, Vector3 position, FloatingTextType type)
+    public void SpawnText(string msg, Vector3 position, FloatingTextType type)
     {
         var text = Instantiate(textPrefab, position, Quaternion.identity);
         NetworkServer.Spawn(text.gameObject);

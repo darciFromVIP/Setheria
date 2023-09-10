@@ -69,7 +69,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public void HealDamage(float heal, bool isRegen)
     {
         health += heal;
-        if (!isRegen)
+        if (!isRegen && isServer)
             FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + ((int)heal).ToString(), transform.position + Vector3.up, FloatingTextType.Healing);
         if (health > maxHealth)
             health = maxHealth;
@@ -111,7 +111,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
             finalDmg = damage * (1 - (armor / 100));
 
         health -= finalDmg;
-        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("-" + finalDmg.ToString(), transform.position + Vector3.up, FloatingTextType.Damage);
+        if (isServer)
+            FindObjectOfType<FloatingText>().SpawnText("-" + finalDmg.ToString(), transform.position + Vector3.up, FloatingTextType.Damage);
         if (health <= 0)
             OnDeath();
         Health_Changed.Invoke(health, maxHealth);
