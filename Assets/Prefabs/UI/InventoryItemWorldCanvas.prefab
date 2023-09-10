@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7431490243044067077}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -107,7 +106,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7431490243044067077}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -184,7 +182,6 @@ RectTransform:
   - {fileID: 684188418229245399}
   - {fileID: 4809722813120449561}
   m_Father: {fileID: 7431490243044067077}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -280,7 +277,6 @@ RectTransform:
   - {fileID: 4690838148422944543}
   - {fileID: 4964383151910167186}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -417,6 +413,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a674062d00c18479f34c51f6194994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  header: 
+  content: 
+  sprite: {fileID: 0}
+  keybindLabel: 
+  keybindType: 0
+  keyImage: {fileID: 0}
+  keyText: {fileID: 0}
 --- !u!1 &6142241701429435129
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +451,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4964383151910167186}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -524,7 +526,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7431490243044067077}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -623,7 +624,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 1.48, z: 0, w: 0}
+  m_margin: {x: 0, y: 1.48, z: 0.15, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -660,7 +661,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4964383151910167186}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
