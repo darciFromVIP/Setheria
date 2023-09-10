@@ -12,19 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 9
   m_EditorClassIdentifier: 
-  label: Awaken this place.
+  label: Find some resources and knowledge.
   requiredItems: []
   requiredStructures: []
-  requiredResources: 0
+  requiredResources: 75
   currentResources: 0
-  requiredKnowledge: 0
+  requiredKnowledge: 25
   currentKnowledge: 0
-  requiredCustom1: 5
-  currentCustom1: 0
-  custom1Requirement: 'Rune Pillars activated: '
   rewards:
-  - rewardType: 4
-    rewardAmount: 0
+  - rewardType: 2
+    rewardAmount: 25
     itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
