@@ -5,7 +5,6 @@ using Mirror;
 using Steamworks;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
-using static UnityEngine.Rendering.DebugUI;
 
 [System.Serializable]
 public enum Hero
@@ -80,6 +79,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         attackComp = GetComponent<CanAttack>();
         playerController = GetComponent<PlayerController>();
         professions = new Professions(this);
+        foreach (var item in FindObjectsOfType<HeroButton>(true))
+        {
+            if (item.hero == hero)
+                item.SetButtonInteractability(false);
+        }
     }
     private IEnumerator UpdatePlayer()
     {

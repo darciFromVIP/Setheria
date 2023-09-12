@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HeroButton : MonoBehaviour, NeedsLocalPlayer
 {
-    [SerializeField] private Hero hero;
+    public Hero hero;
     private HeroSelect heroSelect;
     private HeroDescription heroDescription;
     private bool isGettingData;
@@ -14,11 +14,6 @@ public class HeroButton : MonoBehaviour, NeedsLocalPlayer
         GetComponent<Button>().onClick.AddListener(HeroSelected);
         heroSelect = GetComponentInParent<HeroSelect>();
         heroDescription = FindObjectOfType<HeroDescription>(true);
-        foreach (var item in FindObjectsOfType<PlayerCharacter>())
-        {
-            if (item.hero == hero)
-                GetComponent<Button>().interactable = false;
-        }
     }
     public void OnMouseOver()
     {
@@ -48,5 +43,9 @@ public class HeroButton : MonoBehaviour, NeedsLocalPlayer
     public void SetLocalPlayer(ClientObject player)
     {
         localPlayer = player;
+    }
+    public void SetButtonInteractability(bool value)
+    {
+        GetComponent<Button>().interactable = value;
     }
 }
