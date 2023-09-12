@@ -17,6 +17,14 @@ public class LoadingScreen : MonoBehaviour
         loadingScreenImage.sprite = images[Random.Range(0, images.Count)];
         StartCoroutine(Loading(operation));
     }
+    public void LoadOperation(string text)
+    {
+        window.SetActive(true);
+        loadingText.text = text;
+        loadingScreenImage.sprite = images[Random.Range(0, images.Count)];
+        percentageProgress.text = "0%";
+        loadingSlider.value = 0;
+    }
     private IEnumerator Loading(AsyncOperation operation)
     {
         while (!operation.isDone)

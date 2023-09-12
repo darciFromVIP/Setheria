@@ -220,7 +220,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             if (stacks > 1)
             {
                 int newStacks = stacks / 2;
-                ChangeStacks(-newStacks);
+                if (transform.parent.TryGetComponent(out StashSlot slot))
+                    slot.CmdChangeStacks(-newStacks);
+                else
+                    ChangeStacks(-newStacks);
                 FindObjectOfType<InventoryManager>().AddItem(item, newStacks, false);
             }
         }

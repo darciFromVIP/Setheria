@@ -51,7 +51,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         currentPlayerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
 
         this.openedInStructure = openedInStructure;
-        craftBtn.interactable = recipeData.unlocked && (recipeData.requiredStructure == null ? !openedInStructure : openedInStructure);
+        bool craftableInStructure = recipeData.unlocked && (recipeData.requiredStructure == null ? !openedInStructure : openedInStructure);
         currentOpenedRecipe = recipeData;
         resultItemNameText.text = recipeData.resultItem.itemData.name;
         structureRequirement.text = "Structure: " + (recipeData.requiredStructure == null ? "None" : recipeData.requiredStructure.name);
@@ -59,7 +59,8 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
             professionRequirement.text = "";
         else
             professionRequirement.text = recipeData.requiredProfession.ToString() + ": " + player.professions.GetProfessionExperience(recipeData.requiredProfession) + "/" + recipeData.requiredProfessionExperience;
-        craftBtn.interactable = player.professions.GetProfessionExperience(recipeData.requiredProfession) >= recipeData.requiredProfessionExperience;
+        bool hasRequiredProfession = player.professions.GetProfessionExperience(recipeData.requiredProfession) >= recipeData.requiredProfessionExperience;
+        craftBtn.interactable = craftableInStructure && hasRequiredProfession;
 
         var resultItem = Instantiate(inventoryItemPrefab, resultItemParent);
         resultItem.stackText.text = (recipeData.resultItem.stacks * amount).ToString();
@@ -141,7 +142,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         if (!openedInStructure)
             GetComponentInParent<ManualScreen>().UpdateCurrentCategory();
         FindObjectOfType<AudioManager>().ItemCrafted(localPlayer.transform.position);
-        localPlayer.GetComponent<PlayerCharacter>().AddXp(currentOpenedRecipe.xpGranted * amount, true);
+        localPlayer.GetComponent<PlayerCharacter>().CmdAddXp(currentOpenedRecipe.xpGranted * amount);
         localPlayer.GetComponent<PlayerCharacter>().professions.AddAnyProfession(currentOpenedRecipe.requiredProfession, amount);
         localPlayer.Work_Finished.RemoveListener(FinishCrafting);
         UpdateCurrentDetails();

@@ -172,7 +172,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         float modifier = 1;
         var random = Random.Range(0f, 100f);
         if (random < criticalChance)
-            modifier = 1 + criticalDamage;
+            modifier = 1 + (criticalDamage / 100);
         Resume_Acting.Invoke();
         if (enemyTarget)
             enemyTarget.GetComponent<HasHealth>().TakeDamage(power * modifier, false, GetComponent<NetworkIdentity>());
@@ -200,7 +200,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         float modifier = 1;
         var random = Random.Range(0f, 100f);
         if (random < criticalChance)
-            modifier = 1 + criticalDamage;
+            modifier = 1 + (criticalDamage / 100);
         GameObject projectile = Instantiate(projectilePrefab.gameObject, projectileLaunchPoint.position, Quaternion.identity);
         projectile.GetComponent<Projectile>().InitializeProjectile(new ProjectileData() 
         { 

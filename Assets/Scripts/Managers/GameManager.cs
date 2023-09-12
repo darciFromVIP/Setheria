@@ -46,9 +46,14 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     private void CmdChangeResources(int value)
     {
         resources += value;
-        Resources_Added.Invoke(value);
         if (resources < 0)
             resources = 0;
+        RpcChangeResources(value);
+    }
+    [ClientRpc]
+    private void RpcChangeResources(int value)
+    {
+        Resources_Added.Invoke(value);
     }
     public void ChangeKnowledge(int value)
     {
@@ -58,9 +63,14 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     private void CmdChangeKnowledge(int value)
     {
         knowledge += value;
-        Knowledge_Added.Invoke(value);
         if (knowledge < 0)
             knowledge = 0;
+        RpcChangeKnowledge(value);
+    }
+    [ClientRpc]
+    private void RpcChangeKnowledge(int value)
+    {
+        Knowledge_Added.Invoke(value);
     }
     public bool TestSubtractResources(int value)
     {

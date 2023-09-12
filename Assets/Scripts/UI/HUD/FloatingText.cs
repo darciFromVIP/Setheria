@@ -16,15 +16,20 @@ public class FloatingText : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CmdSpawnFloatingText(string msg, Vector3 position, FloatingTextType type)
     {
-        SpawnText(msg, position, type);
+        var text = Instantiate(textPrefab, position, Quaternion.identity);
+        NetworkServer.Spawn(text.gameObject);
+        RpcSetup(text.GetComponent<NetworkIdentity>(), msg, type);
     }
     public void SpawnText(string msg, Vector3 position, FloatingTextType type)
     {
         var text = Instantiate(textPrefab, position, Quaternion.identity);
-        NetworkServer.Spawn(text.gameObject);
         Setup(text.GetComponent<NetworkIdentity>(), msg, type);
     }
     [ClientRpc]
+    private void RpcSetup(NetworkIdentity text, string msg, FloatingTextType type)
+    {
+        text.GetComponent<FloatingTextPrefab>().SetUp(msg, type);
+    }
     private void Setup(NetworkIdentity text, string msg, FloatingTextType type)
     {
         text.GetComponent<FloatingTextPrefab>().SetUp(msg, type);

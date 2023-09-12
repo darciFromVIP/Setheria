@@ -265,14 +265,20 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         else
             return null;
     }
-    public void AddXp(int value, bool showTextToOthers)
+    [Command(requiresAuthority = false)]
+    public void CmdAddXp(int value)
+    {
+        RpcAddXp(value);
+    }
+    [ClientRpc]
+    public void RpcAddXp(int value)
+    {
+        AddXp(value);
+    }
+    public void AddXp(int value)
     {
         xp += value;
-
-        if (showTextToOthers)
-            FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + value.ToString() + " EXP", transform.position + Vector3.up, FloatingTextType.Experience);
-        else
-            FindObjectOfType<FloatingText>().SpawnText("+" + value.ToString() + " EXP", transform.position + Vector3.up, FloatingTextType.Experience);
+        FindObjectOfType<FloatingText>().SpawnText("+" + value.ToString() + " EXP", transform.position + Vector3.up, FloatingTextType.Experience);
 
         if (xp >= maxXp)
         {
@@ -282,14 +288,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             Level_Up.Invoke(level);
             talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);
-            if (showTextToOthers)
-                FindObjectOfType<FloatingText>().CmdSpawnFloatingText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
-            else
-                FindObjectOfType<FloatingText>().SpawnText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
+            FindObjectOfType<FloatingText>().SpawnText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
         }
         Xp_Changed.Invoke(xp, maxXp);
-    }
-    public void SpawnProfessionFloatingText(TalentTreeType profType, int amount)
+    }    
+    public void SpawnProfessionFloatingText(TalentTreeType profType, int amount, int currentProf, int maxProf)
     {
         FloatingTextType type = FloatingTextType.Gathering;
         switch (profType)
@@ -309,7 +312,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             default:
                 break;
         }
-        FindObjectOfType<FloatingText>().CmdSpawnFloatingText(profType.ToString() + " +" + amount.ToString(), transform.position, type);
+        FindObjectOfType<FloatingText>().CmdSpawnFloatingText(profType.ToString() + ": " + currentProf + "/" + maxProf + " (+" + amount + ")", transform.position, type);
     }
     public void ChangeAttributePoints(int value)
     {
@@ -506,13 +509,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         attMaxHealth += value;
         ChangeAttributePoints(-value);
-        healthComp.ChangeBonusMaxHealth(value * 10);
+        healthComp.ChangeBonusMaxHealth(value * 15);
     }
     public void AddHealthRegenAttribute(int value)
     {
         attHealthRegen += value;
         ChangeAttributePoints(-value);
-        healthComp.ChangeBonusHealthRegen(value * 0.05f);
+        healthComp.ChangeBonusHealthRegen(value * 0.1f);
     }
     public void AddArmorAttribute(int value)
     {
@@ -524,13 +527,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         attMaxMana += value;
         ChangeAttributePoints(-value);
-        manaComp.CmdChangeBonusMaxMana(value * 10);
+        manaComp.CmdChangeBonusMaxMana(value * 15);
     }
     public void AddManaRegenAttribute(int value)
     {
         attManaRegen += value;
         ChangeAttributePoints(-value);
-        manaComp.CmdChangeBonusManaRegen(value * 0.05f);
+        manaComp.CmdChangeBonusManaRegen(value * 0.1f);
     }
     public void AddPowerAttribute(int value)
     {
@@ -560,7 +563,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         attCooldownReduction += value;
         ChangeAttributePoints(-value);
-        attackComp.CmdChangeCooldownReduction(0.5f);
+        attackComp.CmdChangeCooldownReduction(1f);
     }
     public void SetReturnPoint()
     {

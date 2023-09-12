@@ -58,6 +58,7 @@ public class SteamLobby : MonoBehaviour
     }
     private void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t callback)
     {
+        FindObjectOfType<LoadingScreen>().LoadOperation("Connecting...");
         SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
     }
     private void OnLobbyEntered(LobbyEnter_t callback)
@@ -65,7 +66,8 @@ public class SteamLobby : MonoBehaviour
         if (NetworkServer.active)
             return;
         string hostAddress = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), HostAddressKey);
-        
+        FindObjectOfType<LoadingScreen>().LoadOperation("Connecting...");
+
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
     }

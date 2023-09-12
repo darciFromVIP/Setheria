@@ -38,7 +38,7 @@ public class Professions
         if (gathering < maxGathering)
         {
             gathering += amount;
-            player.SpawnProfessionFloatingText(TalentTreeType.Gathering, amount);
+            player.SpawnProfessionFloatingText(TalentTreeType.Gathering, amount, gathering, maxGathering);
             if (gathering % gatheringMilestone > 0)
             {
                 player.talentTrees.ChangeTalentPoints(gathering % gatheringMilestone);
@@ -57,7 +57,7 @@ public class Professions
         if (alchemy < maxAlchemy)
         {
             alchemy += amount;
-            player.SpawnProfessionFloatingText(TalentTreeType.Alchemy, amount);
+            player.SpawnProfessionFloatingText(TalentTreeType.Alchemy, amount, alchemy, maxAlchemy);
             if (alchemy % alchemyMilestone > 0)
             {
                 player.talentTrees.ChangeTalentPoints(alchemy % alchemyMilestone);
@@ -78,7 +78,7 @@ public class Professions
         if (cooking < maxCooking)
         {
             cooking += amount;
-            player.SpawnProfessionFloatingText(TalentTreeType.Cooking, amount);
+            player.SpawnProfessionFloatingText(TalentTreeType.Cooking, amount, cooking, maxCooking);
             if (cooking % cookingMilestone > 0)
             {
                 player.talentTrees.ChangeTalentPoints(cooking % cookingMilestone);
@@ -99,7 +99,7 @@ public class Professions
         if (fishing < maxFishing)
         {
             fishing += amount;
-            player.SpawnProfessionFloatingText(TalentTreeType.Fishing, amount);
+            player.SpawnProfessionFloatingText(TalentTreeType.Fishing, amount, fishing, maxFishing);
             if (fishing % fishingMilestone > 0)
             {
                 player.talentTrees.ChangeTalentPoints(fishing % fishingMilestone);

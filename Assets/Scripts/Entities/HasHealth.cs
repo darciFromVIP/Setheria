@@ -148,8 +148,6 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public void ChangeBonusMaxHealth(float amount)
     {
         bonusMaxHealth += amount;
-        if (amount > 0)
-            health += amount;
         UpdateMaxHealth();
     }
     private void UpdateMaxHealth()

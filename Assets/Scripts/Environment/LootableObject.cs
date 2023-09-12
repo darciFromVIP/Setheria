@@ -119,7 +119,7 @@ public class LootableObject : NetworkBehaviour, IInteractable
             FindObjectOfType<SystemMessages>().AddMessage("This object has already been harvested!");
             return;
         }
-        interactingPlayer.GetComponent<PlayerCharacter>().AddXp(xpGranted, true);
+        interactingPlayer.GetComponent<PlayerCharacter>().CmdAddXp(xpGranted);
         switch (professionRequired)
         {
             case TalentTreeType.Gathering:
