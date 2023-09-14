@@ -17,20 +17,33 @@ public struct QuestReward
 [CreateAssetMenu(menuName = "Quest System/Quest")]
 public class QuestScriptable : ScriptableObject
 {
-    public bool active;
+    [HideInInspector] public bool active;
+    [Tooltip("Name of the quest - this will be displayed in the game.")]
     public string label;
+    [Tooltip("List of required items.")]
     public List<ItemRecipeInfo> requiredItems = new();
     [HideInInspector] public Dictionary<string, int> requiredItemsDic = new();
+    [Tooltip("Any item of this type will count towards the count.")]
+    public ItemType requiredItemType;
+    [Tooltip("The count of required items of the same type.")]
+    public int requiredItemTypeAmount;
+    private int currentItemTypeAmount;
+    private List<string> validItemTypeNames;
+    [Tooltip("Structures required to be built.")]
     public List<StructureScriptable> requiredStructures = new();
     [HideInInspector] public Dictionary<string, bool> requiredStructuresDic = new();
+    [Tooltip("Required resources to be collected.")]
     public int requiredResources;
     [HideInInspector] public int currentResources;
+    [Tooltip("Required knowledge to be collected.")]
     public int requiredKnowledge;
     [HideInInspector] public int currentKnowledge;
+    [Tooltip("Required custom value to be acquired by means coded specifically. Do not fill this unless you know what interacts with this.")]
     public int requiredCustom1;
     [HideInInspector] public int currentCustom1;
     public string custom1Requirement;
 
+    [Tooltip("Quest rewards. Always fill only one reward per list element.")]
     public List<QuestReward> rewards;
 
     private QuestManager questManager;
@@ -42,6 +55,7 @@ public class QuestScriptable : ScriptableObject
         active = value;
         requiredItemsDic.Clear();
         requiredStructuresDic.Clear();
+        validItemTypeNames.Clear();
         currentResources = 0;
         currentKnowledge = 0;
         currentCustom1 = 0;
@@ -52,6 +66,7 @@ public class QuestScriptable : ScriptableObject
             gm.Resources_Added.AddListener(ReduceResourceRequirement);
             currentResources = gm.GetResources();
             currentKnowledge = gm.GetKnowledge();
+            currentItemTypeAmount = 0;
             questManager = FindObjectOfType<QuestManager>();
             foreach (var item in requiredItems)
             {
@@ -63,6 +78,15 @@ public class QuestScriptable : ScriptableObject
             {
                 item.Structure_Built.AddListener(CmdReduceStructureRequirement);
                 requiredStructuresDic.Add(item.name, false);
+            }
+            foreach (var item in questManager.itemDatabase.items)
+            {
+                if (item.itemType == requiredItemType)
+                {
+                    item.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
+                    item.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
+                    validItemTypeNames.Add(item.name);
+                }
             }
         }
         else
@@ -113,12 +137,12 @@ public class QuestScriptable : ScriptableObject
         }
         if (itemAcquired != null)
         {
-            Debug.Log("Requirements in Dictionary:");
-            foreach (var item in requiredItemsDic)
-            {
-                Debug.Log(item.Key + " : " + item.Value);
-            }
             requiredItemsDic[itemAcquired.name] += stacks;
+            CheckQuestCompletion();
+        }
+        else if (validItemTypeNames.Contains(itemName))
+        {
+            currentItemTypeAmount += stacks;
             CheckQuestCompletion();
         }
     }
@@ -139,6 +163,11 @@ public class QuestScriptable : ScriptableObject
             requiredItemsDic[itemLost.name] -= stacks;
             if (requiredItemsDic[itemLost.name] < 0)
                 requiredItemsDic[itemLost.name] = 0;
+            CheckQuestCompletion();
+        }
+        else if (validItemTypeNames.Contains(itemName))
+        {
+            currentItemTypeAmount -= stacks;
             CheckQuestCompletion();
         }
     }
@@ -180,6 +209,8 @@ public class QuestScriptable : ScriptableObject
         if (currentResources < requiredResources)
             return;
         if (currentCustom1 < requiredCustom1)
+            return;
+        if (currentItemTypeAmount < requiredItemTypeAmount)
             return;
         QuestComplete();
     }

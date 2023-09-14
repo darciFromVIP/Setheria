@@ -12,16 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Fishing Q 2
   m_EditorClassIdentifier: 
+  active: 0
   label: Catch any Fish!
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: 1049245756b3f4841b1f04cffb6c0df6, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 5f3f3076da053a94a8f6ef7d3936ae85, type: 2}
-    stacks: 1
+  requiredItems: []
+  requiredItemType: 18
+  requiredItemTypeAmount: 2
   requiredStructures: []
+  requiredResources: 0
+  currentResources: 0
+  requiredKnowledge: 0
+  currentKnowledge: 0
+  requiredCustom1: 0
+  currentCustom1: 0
+  custom1Requirement: 
   rewards:
   - rewardType: 2
     rewardAmount: 10
+    itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

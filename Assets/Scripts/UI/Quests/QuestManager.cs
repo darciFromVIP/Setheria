@@ -12,6 +12,7 @@ public class QuestManager : NetworkBehaviour
     public Transform contentUI;
     public QuestDescription questDescriptionPrefab;
     public QuestlineDatabase questlineDatabase;
+    public ItemScriptableDatabase itemDatabase;
     private void Start()
     {
         if (isClient)
