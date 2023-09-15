@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 public enum QuestRewardType
 {
@@ -28,7 +29,7 @@ public class QuestScriptable : ScriptableObject
     [Tooltip("The count of required items of the same type.")]
     public int requiredItemTypeAmount;
     private int currentItemTypeAmount;
-    private List<string> validItemTypeNames;
+    private List<string> validItemTypeNames = new();
     [Tooltip("Structures required to be built.")]
     public List<StructureScriptable> requiredStructures = new();
     [HideInInspector] public Dictionary<string, bool> requiredStructuresDic = new();
@@ -228,6 +229,15 @@ public class QuestScriptable : ScriptableObject
             if (isCompleted)
                 result += "<s>";
             result += "Collect " + item.itemData.name + " " + requiredItemsDic[item.itemData.name] + "/" + item.stacks + "\n";
+            if (isCompleted)
+                result += "</s>";
+        }
+        if (requiredItemTypeAmount > 0)
+        {
+            bool isCompleted = currentItemTypeAmount >= requiredItemTypeAmount;
+            if (isCompleted)
+                result += "<s>";
+            result += "Collect any " + requiredItemType.ToString() + " " + currentItemTypeAmount + "/" + requiredItemTypeAmount + "\n";
             if (isCompleted)
                 result += "</s>";
         }
