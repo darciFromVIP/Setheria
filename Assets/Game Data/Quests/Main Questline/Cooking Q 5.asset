@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
+  m_Name: Cooking Q 5
+  m_EditorClassIdentifier: 
+  active: 0
+  label: Craft Mushroom Soup
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: f136de04df68e964cbd8994138a6a1ef, type: 2}
+    stacks: 1
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
+  requiredStructures:
+  - {fileID: 0}
+  requiredResources: 0
+  currentResources: 0
+  requiredKnowledge: 0
+  currentKnowledge: 0
+  requiredCustom1: 0
+  currentCustom1: 0
+  custom1Requirement: 
+  rewards:
+  - rewardType: 2
+    rewardAmount: 100
+    itemReward: {fileID: 0}
+  Quest_Complete:
+    m_PersistentCalls:
+      m_Calls: []
+  Quest_Updated:
+    m_PersistentCalls:
+      m_Calls: []
