@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 926dd4e73341e454c8b3f18c628c191c, type: 3}
+  m_Name: Alchemy Questline
+  m_EditorClassIdentifier: 
+  currentQuestIndex: 0
+  quests:
+  - {fileID: 11400000, guid: 594a83383a160394aae21461ed998567, type: 2}
+  - {fileID: 11400000, guid: b9388309c7aa97d409955cc7639b71d9, type: 2}
+  - {fileID: 11400000, guid: 60a4b7af7fc575d499f2abe2de3e4d2c, type: 2}
+  - {fileID: 11400000, guid: 501ba77a40fd42144872497fac1d4d5e, type: 2}
+  - {fileID: 11400000, guid: 49f2438d0f10c1541b853cd70e67089d, type: 2}
+  Quest_Complete:
+    m_PersistentCalls:
+      m_Calls: []
+  New_Quest:
+    m_PersistentCalls:
+      m_Calls: []
+  Questline_Complete:
+    m_PersistentCalls:
+      m_Calls: []

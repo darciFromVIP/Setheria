@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Fishing Q 2
+  m_Name: Alchemy Q 2
   m_EditorClassIdentifier: 
   active: 0
-  label: Catch any Fish!
-  requiredItems: []
-  requiredItemType: 18
-  requiredItemTypeAmount: 1
+  label: Create a component to craft gear.
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: 7587a223c3058a94cb69d1d3cbf1480b, type: 2}
+    stacks: 2
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
@@ -27,8 +29,8 @@ MonoBehaviour:
   custom1Requirement: 
   rewards:
   - rewardType: 2
-    rewardAmount: 10
-    itemReward: {fileID: 0}
+    rewardAmount: 20
+    itemReward: {fileID: 11400000, guid: 7587a223c3058a94cb69d1d3cbf1480b, type: 2}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

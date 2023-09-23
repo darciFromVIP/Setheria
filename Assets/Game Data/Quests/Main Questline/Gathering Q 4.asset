@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Fishing Q 2
+  m_Name: Gathering Q 4
   m_EditorClassIdentifier: 
   active: 0
-  label: Catch any Fish!
-  requiredItems: []
-  requiredItemType: 18
-  requiredItemTypeAmount: 1
+  label: Collect Silver Ore
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
+    stacks: 1
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
@@ -27,8 +29,8 @@ MonoBehaviour:
   custom1Requirement: 
   rewards:
   - rewardType: 2
-    rewardAmount: 10
-    itemReward: {fileID: 0}
+    rewardAmount: 20
+    itemReward: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Fishing Q 2
+  m_Name: Gather Q 1
   m_EditorClassIdentifier: 
   active: 0
-  label: Catch any Fish!
-  requiredItems: []
-  requiredItemType: 18
-  requiredItemTypeAmount: 1
+  label: Be (un)welcome, stranger. Try to survive.
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: eed769246a0eca54dbd15b977acd3832, type: 2}
+    stacks: 1
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
@@ -26,9 +28,9 @@ MonoBehaviour:
   currentCustom1: 0
   custom1Requirement: 
   rewards:
-  - rewardType: 2
-    rewardAmount: 10
-    itemReward: {fileID: 0}
+  - rewardType: 3
+    rewardAmount: 1
+    itemReward: {fileID: 11400000, guid: 56fa6d2db1b3b704babb25bf108d8dee, type: 2}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

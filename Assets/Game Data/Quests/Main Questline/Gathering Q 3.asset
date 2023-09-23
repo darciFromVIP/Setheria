@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Fishing Q 2
+  m_Name: Gathering Q 3
   m_EditorClassIdentifier: 
   active: 0
-  label: Catch any Fish!
-  requiredItems: []
-  requiredItemType: 18
-  requiredItemTypeAmount: 1
+  label: Find unknown plants.
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: c24df273115bd324c9052ab14ba4c576, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: a8bc1728e509cca45bb7f5f95205187b, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: 8196a9deb0b604443a71880fe0c85755, type: 2}
+    stacks: 1
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
@@ -27,7 +33,7 @@ MonoBehaviour:
   custom1Requirement: 
   rewards:
   - rewardType: 2
-    rewardAmount: 10
+    rewardAmount: 30
     itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

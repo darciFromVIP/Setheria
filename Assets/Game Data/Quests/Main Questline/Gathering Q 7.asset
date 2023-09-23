@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Fishing Q 2
+  m_Name: Gathering Q 7
   m_EditorClassIdentifier: 
   active: 0
-  label: Catch any Fish!
-  requiredItems: []
-  requiredItemType: 18
-  requiredItemTypeAmount: 1
+  label: Collect Pure crystal
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: bc713de8271117249a9f00941267a367, type: 2}
+    stacks: 1
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
@@ -27,7 +29,7 @@ MonoBehaviour:
   custom1Requirement: 
   rewards:
   - rewardType: 2
-    rewardAmount: 10
+    rewardAmount: 400
     itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
