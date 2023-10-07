@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Treasure Chest Questline
   m_EditorClassIdentifier: 
   currentQuestIndex: 0
-  quests:
-  - {fileID: 11400000, guid: 20d3fc79b6368f64395c1cf331d3ba4f, type: 2}
+  questList:
+    quests:
+    - {fileID: 11400000, guid: 20d3fc79b6368f64395c1cf331d3ba4f, type: 2}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class QuestlineScriptable : ScriptableObject
 {
     public int currentQuestIndex = 0;
-    public List<QuestScriptable> quests = new();
+    public QuestList questList = new();
 
     [HideInInspector] public UnityEvent<string> Quest_Complete = new();
     [HideInInspector] public UnityEvent<string> New_Quest = new();
@@ -14,19 +14,19 @@ public class QuestlineScriptable : ScriptableObject
     private void OnEnable()
     {
         currentQuestIndex = 0;
-        quests[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
+        questList.quests[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
     }
     private void QuestComplete()
     {
-        Quest_Complete.Invoke(quests[currentQuestIndex].name);
-        quests[currentQuestIndex].Quest_Complete.RemoveAllListeners();
+        Quest_Complete.Invoke(questList.quests[currentQuestIndex].name);
+        questList.quests[currentQuestIndex].Quest_Complete.RemoveAllListeners();
         currentQuestIndex++;
-        if (currentQuestIndex >= quests.Count)
+        if (currentQuestIndex >= questList.quests.Count)
             Questline_Complete.Invoke(name);
         else
         {
-            quests[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
-            New_Quest.Invoke(quests[currentQuestIndex].name);
+            questList.quests[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
+            New_Quest.Invoke(questList.quests[currentQuestIndex].name);
         }
     }
 }

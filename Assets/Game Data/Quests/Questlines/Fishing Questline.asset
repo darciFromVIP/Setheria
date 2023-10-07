@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Fishing Questline
   m_EditorClassIdentifier: 
   currentQuestIndex: 0
-  quests:
-  - {fileID: 11400000, guid: bfbb18838f2acff4297d0c763daeb20a, type: 2}
-  - {fileID: 11400000, guid: 84b497da1da1183449c16747d5cd377c, type: 2}
-  - {fileID: 11400000, guid: 58f10a1cc4bd6a14ead4a454d2a243b2, type: 2}
-  - {fileID: 11400000, guid: 54641f9d30c772046b22691ec06e2fba, type: 2}
-  - {fileID: 11400000, guid: 28a045fe19def764391e60e2aa2a0fd9, type: 2}
-  - {fileID: 11400000, guid: 5528109c064bb09409378e247493cf34, type: 2}
-  - {fileID: 11400000, guid: c676ce67e8998d34d90be7f8c306cada, type: 2}
-  - {fileID: 11400000, guid: 1d1720c58c3be134d8877b3366e3e26e, type: 2}
+  questList:
+    quests:
+    - {fileID: 11400000, guid: bfbb18838f2acff4297d0c763daeb20a, type: 2}
+    - {fileID: 11400000, guid: 84b497da1da1183449c16747d5cd377c, type: 2}
+    - {fileID: 11400000, guid: 58f10a1cc4bd6a14ead4a454d2a243b2, type: 2}
+    - {fileID: 11400000, guid: 54641f9d30c772046b22691ec06e2fba, type: 2}
+    - {fileID: 11400000, guid: 28a045fe19def764391e60e2aa2a0fd9, type: 2}
+    - {fileID: 11400000, guid: 5528109c064bb09409378e247493cf34, type: 2}
+    - {fileID: 11400000, guid: c676ce67e8998d34d90be7f8c306cada, type: 2}
+    - {fileID: 11400000, guid: 1d1720c58c3be134d8877b3366e3e26e, type: 2}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

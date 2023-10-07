@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: Cooking Questline 1
   m_EditorClassIdentifier: 
   currentQuestIndex: 0
-  quests:
-  - {fileID: 11400000, guid: 594a83383a160394aae21461ed998567, type: 2}
-  - {fileID: 11400000, guid: b9388309c7aa97d409955cc7639b71d9, type: 2}
-  - {fileID: 11400000, guid: 60a4b7af7fc575d499f2abe2de3e4d2c, type: 2}
-  - {fileID: 11400000, guid: 501ba77a40fd42144872497fac1d4d5e, type: 2}
-  - {fileID: 11400000, guid: 49f2438d0f10c1541b853cd70e67089d, type: 2}
+  questList:
+    quests:
+    - {fileID: 11400000, guid: 9c9331e1b3dc2e040a52016bb64211f9, type: 2}
+    - {fileID: 11400000, guid: a646bb796ddf94646b71532408a89479, type: 2}
+    - {fileID: 11400000, guid: a5f2509f09b80eb4fb5a3a91690a1bbd, type: 2}
+    - {fileID: 11400000, guid: 983922ed163377142b91c8f6198ea24e, type: 2}
+    - {fileID: 11400000, guid: dfe48ae85939b2640aed4ddceb44315f, type: 2}
+    - {fileID: 11400000, guid: 33ab04f6e5185104e90bcc12cc98c607, type: 2}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []
