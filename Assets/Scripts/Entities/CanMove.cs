@@ -49,17 +49,35 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             return;
         if (animator)
         {
-            if (agent.velocity.magnitude > 0.1f)
-                animator.SetBool(animHash_Run, true);
-            else
+            if (agent.velocity.magnitude < 0.1f)
+            {
                 animator.SetBool(animHash_Run, false);
+                animator.SetBool(animHash_Walk, false);
+            }
         }
     }
     public void MoveTo(Vector3 destination)
     {
         if (agent)
         {
-            agent.destination = destination;
+            NavMeshPath path = new();
+            NavMesh.CalculatePath(transform.position, destination, agent.areaMask, path);
+            agent.path = path;
+            StartCoroutine(DelayedAnimation());
+        }
+    }
+    private IEnumerator DelayedAnimation()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (agent.velocity.magnitude > 2.9f)
+        {
+            animator.SetBool(animHash_Run, true);
+            animator.SetBool(animHash_Walk, false);
+        }
+        else if (agent.velocity.magnitude > 0.1f)
+        {
+            animator.SetBool(animHash_Run, false);
+            animator.SetBool(animHash_Walk, true);
         }
     }
     public void Stop()

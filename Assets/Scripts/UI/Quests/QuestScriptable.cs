@@ -1,8 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.Progress;
 
 public enum QuestRewardType
 {
@@ -16,7 +16,7 @@ public struct QuestReward
     public ItemScriptable itemReward;
 }
 [CreateAssetMenu(menuName = "Quest System/Quest")]
-public class QuestScriptable : ScriptableObject
+public class QuestScriptable : ScriptableObject, IComparable
 {
     [HideInInspector] public bool active;
     [Tooltip("Name of the quest - this will be displayed in the game.")]
@@ -80,15 +80,16 @@ public class QuestScriptable : ScriptableObject
                 item.Structure_Built.AddListener(CmdReduceStructureRequirement);
                 requiredStructuresDic.Add(item.name, false);
             }
-            foreach (var item in questManager.itemDatabase.items)
-            {
-                if (item.itemType == requiredItemType)
+            if (requiredItemType != ItemType.None)
+                foreach (var item in questManager.itemDatabase.items)
                 {
-                    item.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
-                    item.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
-                    validItemTypeNames.Add(item.name);
+                    if (item.itemType == requiredItemType)
+                    {
+                        item.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
+                        item.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
+                        validItemTypeNames.Add(item.name);
+                    }
                 }
-            }
         }
         else
         {
@@ -138,8 +139,11 @@ public class QuestScriptable : ScriptableObject
         }
         if (itemAcquired != null)
         {
-            requiredItemsDic[itemAcquired.name] += stacks;
-            CheckQuestCompletion();
+            if (requiredItemsDic.ContainsKey(itemAcquired.name))
+            {
+                requiredItemsDic[itemAcquired.name] += stacks;
+                CheckQuestCompletion();
+            }
         }
         else if (validItemTypeNames.Contains(itemName))
         {
@@ -313,4 +317,55 @@ public class QuestScriptable : ScriptableObject
         }
         return result;
     }
+
+    public int CompareTo(object obj)
+    {
+        if (obj == null)
+        {
+            // If 'other' is null, then this object is greater.
+            return 1;
+        }
+
+        // Split the names into parts based on numbers.
+        string[] thisParts = SplitName(name);
+        string[] otherParts = SplitName(((QuestScriptable)obj).name);
+
+        // Compare each part of the names.
+        int minParts = Math.Min(thisParts.Length, otherParts.Length);
+        for (int i = 0; i < minParts; i++)
+        {
+            int thisPartNumber, otherPartNumber;
+            bool thisIsNumber = int.TryParse(thisParts[i], out thisPartNumber);
+            bool otherIsNumber = int.TryParse(otherParts[i], out otherPartNumber);
+
+            // If both parts are numbers, compare them as integers.
+            if (thisIsNumber && otherIsNumber)
+            {
+                int result = thisPartNumber.CompareTo(otherPartNumber);
+                if (result != 0)
+                {
+                    return result;
+                }
+            }
+            else
+            {
+                // If one part is a number and the other is not, compare them as strings.
+                int result = thisParts[i].CompareTo(otherParts[i]);
+                if (result != 0)
+                {
+                    return result;
+                }
+            }
+        }
+
+        // If all common parts are equal, the longer name is greater.
+        return thisParts.Length.CompareTo(otherParts.Length);
+    }
+
+    // Helper method to split the name into parts based on numbers.
+    private string[] SplitName(string name)
+    {
+        return System.Text.RegularExpressions.Regex.Split(name, "([0-9]+)");
+    }
 }
+
