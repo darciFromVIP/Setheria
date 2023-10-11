@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2498103282947838695}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.04, y: 0.522, z: 0.229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7750564979161755818}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &4826108862099614242
 Light:
@@ -143,13 +143,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8600738627487975601}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7750564979161755818}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &5714365130642422487
 SphereCollider:
@@ -693,6 +693,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 9099966723431080438}
   m_SourcePrefab: {fileID: 100100000, guid: cf1fd752683bedf41b6bd4eae6622612, type: 3}
+--- !u!1 &1136062562879204474 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3570985794274343471, guid: cf1fd752683bedf41b6bd4eae6622612,
+    type: 3}
+  m_PrefabInstance: {fileID: 4488587210391082581}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2464085923947891766 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
@@ -718,7 +724,7 @@ MonoBehaviour:
   On_Death:
     m_PersistentCalls:
       m_Calls: []
-  hudCircle: {fileID: 0}
+  hudCircle: {fileID: 1136062562879204474}
   vfxDatabase: {fileID: 0}
   structureItem: {fileID: 11400000, guid: c1c19e88d55514748b3a55507fbdc8c5, type: 2}
   structureOptions:

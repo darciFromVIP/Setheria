@@ -311,6 +311,8 @@ MonoBehaviour:
   syncInterval: 0.1
   aggroRange: 10
   allyHelpRange: 10
+  shouldCallForHelp: 1
+  enemyType: 0
 --- !u!114 &-4860879882820551187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +342,12 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
-  hudCircle: {fileID: 0}
+  animator: {fileID: 0}
+  On_Death:
+    m_PersistentCalls:
+      m_Calls: []
+  hudCircle: {fileID: 7351104516572008576}
+  vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
   baseRotateSpeed: 5
   level: 1
   skills: []
@@ -350,7 +357,6 @@ MonoBehaviour:
   allyLayers:
     serializedVersion: 2
     m_Bits: 64
-  vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
   buffDatabase: {fileID: 11400000, guid: 96ab774cc8ae8814c8a735af9af2ddaa, type: 2}
   Stun_Begin:
     m_PersistentCalls:
@@ -400,3 +406,9 @@ MonoBehaviour:
   itemDatabase: {fileID: 11400000, guid: 21c965b5672c11e48892e8a6384c3290, type: 2}
   itemDropsTable:
   - itemDropChances: []
+--- !u!1 &7351104516572008576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3678164197958677912, guid: 36b01e57100ea254d9149e8306d6dd8f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6129161896939070744}
+  m_PrefabAsset: {fileID: 0}

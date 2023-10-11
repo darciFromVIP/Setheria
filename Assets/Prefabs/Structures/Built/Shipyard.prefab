@@ -258,6 +258,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shipyard
       objectReference: {fileID: 0}
+    - target: {fileID: 3570985794274343471, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3640024642524204718, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -513,7 +518,7 @@ MonoBehaviour:
   On_Death:
     m_PersistentCalls:
       m_Calls: []
-  hudCircle: {fileID: 0}
+  hudCircle: {fileID: 2902131914836238994}
   vfxDatabase: {fileID: 0}
   structureItem: {fileID: 11400000, guid: 02e7c8f5c99a9c544a1c61188efb1387, type: 2}
   structureOptions:
@@ -545,6 +550,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.92, y: 1, z: 4.52}
   m_Center: {x: 1.21, y: 0, z: 0}
+--- !u!1 &2902131914836238994 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3570985794274343471, guid: cf1fd752683bedf41b6bd4eae6622612,
+    type: 3}
+  m_PrefabInstance: {fileID: 1857947263671949501}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5480285570539159106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,

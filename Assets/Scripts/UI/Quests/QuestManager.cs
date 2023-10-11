@@ -32,7 +32,7 @@ public class QuestManager : NetworkBehaviour
         QuestScriptable quest = null;
         foreach (var item in questlines)
         {
-            foreach (var item2 in item.questList.quests)
+            foreach (var item2 in item.questList)
             {
                 if (item2.name == questName)
                     quest = item2;
@@ -53,7 +53,7 @@ public class QuestManager : NetworkBehaviour
     {
         foreach (var item in questlines)
         {
-            foreach (var item2 in item.questList.quests)
+            foreach (var item2 in item.questList)
             {
                 if (item2.name == questName)
                 {
@@ -72,7 +72,7 @@ public class QuestManager : NetworkBehaviour
     {
         foreach (var item in questlines)
         {
-            foreach (var item2 in item.questList.quests)
+            foreach (var item2 in item.questList)
             {
                 if (item2.name == questName)
                 {
@@ -91,7 +91,7 @@ public class QuestManager : NetworkBehaviour
     {
         foreach (var item in questlines)
         {
-            foreach (var item2 in item.questList.quests)
+            foreach (var item2 in item.questList)
             {
                 if (item2.name == questName)
                 {
@@ -111,7 +111,7 @@ public class QuestManager : NetworkBehaviour
         QuestScriptable quest = null;
         foreach (var item in questlines)
         {
-            foreach (var item2 in item.questList.quests)
+            foreach (var item2 in item.questList)
             {
                 if (item2.name == questName)
                     quest = item2;
@@ -195,7 +195,7 @@ public class QuestManager : NetworkBehaviour
             questline.Questline_Complete.AddListener(RpcQuestlineComplete);
             questline.New_Quest.AddListener(RpcNewQuest);
         }
-        return NewQuest(questline.questList.quests[questIndex].name);
+        return NewQuest(questline.questList[questIndex].name);
     }
     public List<QuestlineSaveable> SaveState()
     {
@@ -204,12 +204,12 @@ public class QuestManager : NetworkBehaviour
         {
             List<string> names = new();
             List<int> values = new();
-            foreach (var item2 in item.questList.quests[item.currentQuestIndex].requiredItemsDic)
+            foreach (var item2 in item.questList[item.currentQuestIndex].requiredItemsDic)
             {
                 names.Add(item2.Key);
                 values.Add(item2.Value);
             }
-            foreach (var item2 in item.questList.quests[item.currentQuestIndex].requiredStructuresDic)
+            foreach (var item2 in item.questList[item.currentQuestIndex].requiredStructuresDic)
             {
                 names.Add(item2.Key);
                 values.Add(item2.Value ? 1 : 0);

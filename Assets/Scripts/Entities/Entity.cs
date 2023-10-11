@@ -24,7 +24,6 @@ public class Entity : NetworkBehaviour, IUsesAnimator
                 hp.On_Death.AddListener(CmdOnDeath);
         }
         animator = GetComponent<NetworkAnimator>();
-        hudCircle = transform.Find("HUDCircle").gameObject;
     }
     protected virtual void OnMouseEnter()
     {

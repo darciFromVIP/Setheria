@@ -443,6 +443,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7927363649668692289}
   m_SourcePrefab: {fileID: 100100000, guid: 36b01e57100ea254d9149e8306d6dd8f, type: 3}
+--- !u!1 &1163892065405435459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3678164197958677912, guid: 36b01e57100ea254d9149e8306d6dd8f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2534839889757735899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4712205572119561755 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
@@ -567,7 +573,7 @@ MonoBehaviour:
   On_Death:
     m_PersistentCalls:
       m_Calls: []
-  hudCircle: {fileID: 0}
+  hudCircle: {fileID: 1163892065405435459}
   vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
   baseRotateSpeed: 10
   level: 0

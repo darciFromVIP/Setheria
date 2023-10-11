@@ -47,14 +47,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     {
         if (!(isOwned || (entity is not PlayerCharacter && isServer)) || baseMovementSpeed == 0)
             return;
-        if (animator)
-        {
-            if (agent.velocity.magnitude < 0.1f)
-            {
-                animator.SetBool(animHash_Run, false);
-                animator.SetBool(animHash_Walk, false);
-            }
-        }
+        animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
     }
     public void MoveTo(Vector3 destination)
     {
@@ -62,23 +55,47 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
         {
             NavMeshPath path = new();
             NavMesh.CalculatePath(transform.position, destination, agent.areaMask, path);
-            agent.path = path;
-            StartCoroutine(DelayedAnimation());
+            if (path.status == NavMeshPathStatus.PathComplete)
+            {
+                agent.path = path;
+            }
+            else
+            {
+                Vector3 nearestPoint = destination;
+                for (int i = 0; i < path.corners.Length; i++)
+                {
+                    float distance = Vector3.Distance(transform.position, path.corners[i]);
+
+                    if (distance < Vector3.Distance(transform.position, nearestPoint))
+                    {
+                        nearestPoint = path.corners[i];
+                    }
+                }
+                agent.SetDestination(nearestPoint);
+            }
+            /*if (GetFinalMovementSpeed() >= 2.9f)
+            {
+                animator.SetBool(animHash_Run, true);
+                animator.SetBool(animHash_Walk, false);
+            }
+            else if (GetFinalMovementSpeed() >= 0.1f)
+            {
+                animator.SetBool(animHash_Run, false);
+                animator.SetBool(animHash_Walk, true);
+            }
+            StopCoroutine("CheckPathEnd");
+            StartCoroutine("CheckPathEnd");*/
         }
     }
-    private IEnumerator DelayedAnimation()
+    private IEnumerator CheckPathEnd()
     {
-        yield return new WaitForSeconds(0.1f);
-        if (agent.velocity.magnitude > 2.9f)
+        yield return new WaitForSeconds(1f);
+        while (Vector3.Distance(transform.position, agent.pathEndPosition) > 0.1f)
         {
-            animator.SetBool(animHash_Run, true);
-            animator.SetBool(animHash_Walk, false);
+            yield return null;
         }
-        else if (agent.velocity.magnitude > 0.1f)
-        {
-            animator.SetBool(animHash_Run, false);
-            animator.SetBool(animHash_Walk, true);
-        }
+        animator.SetBool(animHash_Run, false);
+        animator.SetBool(animHash_Walk, false);
     }
     public void Stop()
     {
