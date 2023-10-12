@@ -70,7 +70,10 @@ public class SaveLoadSystem : MonoBehaviour
             Debug.Log("Current players: " + SteamMatchmaking.GetNumLobbyMembers(SteamLobby.instance.currentLobbyID));
             for (int i = 0; i < SteamMatchmaking.GetNumLobbyMembers(SteamLobby.instance.currentLobbyID); i++)
             {
-                Debug.Log(playerStates[i].name + " belongs to " + SteamMatchmaking.GetLobbyMemberByIndex(SteamLobby.instance.currentLobbyID, i));
+                if (playerStates.Count > i)
+                {
+                    Debug.Log(playerStates[i].name + " belongs to " + SteamMatchmaking.GetLobbyMemberByIndex(SteamLobby.instance.currentLobbyID, i));
+                }
                 var fullPath = playerDirPath + SteamMatchmaking.GetLobbyMemberByIndex(SteamLobby.instance.currentLobbyID, i);
                 List<SaveDataPlayer> loadedPlayerData = new();
                 if (File.Exists(fullPath))
@@ -101,7 +104,7 @@ public class SaveLoadSystem : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.Log("Error occured while trying to save data to file: " + playerDirPath + "\n" + e);
+            Debug.LogError("Error occured while trying to save data to file: " + playerDirPath + "\n" + e);
         }
     }
     public void SaveNewPlayerFile(List<SaveDataPlayer> playerStates, string worldName)
@@ -122,7 +125,7 @@ public class SaveLoadSystem : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.Log("Error occured while trying to save data to file: " + playerDirPath + "\n" + e);
+            Debug.LogError("Error occured while trying to save data to file: " + playerDirPath + "\n" + e);
         }
     }
     public SaveDataWorldServer LoadFileWorld(string fileName)
@@ -146,7 +149,7 @@ public class SaveLoadSystem : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.Log("Error occured while trying to load data from file: " + fullPath + "\n" + e);
+                Debug.LogError("Error occured while trying to load data from file: " + fullPath + "\n" + e);
                 return new SaveDataWorldServer();
             }
         }
@@ -172,7 +175,7 @@ public class SaveLoadSystem : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.Log("Error occured while trying to load data from file: " + fullPath + "\n" + e);
+                Debug.LogError("Error occured while trying to load data from file: " + fullPath + "\n" + e);
                 return new List<SaveDataPlayer>();
             }
         }

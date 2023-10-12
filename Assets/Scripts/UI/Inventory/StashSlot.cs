@@ -10,6 +10,10 @@ public class StashSlot : NetworkBehaviour, IDropHandler
     public InventoryItem inventoryItemPrefab;
     public Sprite freeSprite, lockSprite;
     public bool isFree = false;
+
+    //A fix to the problem in build where this wasn't initialized due to the parent being inactive.
+    public NetworkBehaviour[] NetworkBehaviours { get; private set; } = new NetworkBehaviour[] { };    
+
     public void ToggleSlotAvailability(bool value)
     {
         isFree = value;

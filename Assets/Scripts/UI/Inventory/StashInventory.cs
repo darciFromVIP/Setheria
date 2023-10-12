@@ -12,6 +12,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     public ItemScriptableDatabase itemDatabase;
     private void Start()
     {
+        ShowWindow();
         InitializeInventory();
         HideWindow();
     }

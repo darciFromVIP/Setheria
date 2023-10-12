@@ -14,6 +14,7 @@ public class StructureScreen : MonoBehaviour, WindowedUI
     public Structure currentStructure;
     private void Start()
     {
+        ShowWindow();
         HideWindow();
     }
     private void Update()

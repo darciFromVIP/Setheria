@@ -9,7 +9,7 @@ public class ConsoleToGUI : MonoBehaviour
     bool doShow = false;
     int kChars = 700;
     void Update() { if (Input.GetKeyDown(KeyCode.Semicolon)) { doShow = !doShow; } }
-    /*void OnEnable() { Application.logMessageReceived += Log; }
+    void OnEnable() { Application.logMessageReceived += Log; }
     void OnDisable() { Application.logMessageReceived -= Log; }
     public void Log(string logString, string stackTrace, LogType type)
     {
@@ -28,7 +28,7 @@ public class ConsoleToGUI : MonoBehaviour
         }
         try { System.IO.File.AppendAllText(filename, logString + "\n"); }
         catch { }
-    }*/
+    }
 
     void OnGUI()
     {

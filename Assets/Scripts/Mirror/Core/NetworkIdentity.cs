@@ -185,7 +185,7 @@ namespace Mirror
         NetworkConnectionToClient _connectionToClient;
 
         // get all NetworkBehaviour components
-        public NetworkBehaviour[] NetworkBehaviours { get; private set; }
+        public NetworkBehaviour[] NetworkBehaviours { get; private set; } = new NetworkBehaviour[] { };
 
         // to save bandwidth, we send one 64 bit dirty mask
         // instead of 1 byte index per dirty component.

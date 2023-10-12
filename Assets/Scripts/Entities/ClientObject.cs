@@ -31,6 +31,16 @@ public class ClientObject : NetworkBehaviour, LocalPlayer
         {
             item.SetLocalPlayer(this);
         }
+        StartCoroutine(WaitUntilReady());
+    }
+    private IEnumerator WaitUntilReady()
+    {
+        Debug.Log("Client ready: " + NetworkClient.ready);
+        while (!NetworkClient.ready)
+        {
+            yield return null;
+        }
+        Debug.Log("Client ready: " + NetworkClient.ready);
         CmdGetSaveData(SteamUser.GetSteamID());
     }
     public void SpawnPlayer(Hero hero)

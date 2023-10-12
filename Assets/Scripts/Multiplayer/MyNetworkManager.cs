@@ -70,6 +70,12 @@ public class MyNetworkManager : NetworkManager
         while (!unload.isDone)
             yield return null;
         yield return null;
+        if (!NetworkClient.ready)
+            NetworkClient.Ready();
+        while (!NetworkClient.ready)
+        {
+            yield return null;
+        }
         NetworkClient.AddPlayer();
     }
 }
