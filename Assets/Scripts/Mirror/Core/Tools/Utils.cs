@@ -2,6 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Mirror
 {
@@ -130,7 +131,6 @@ namespace Mirror
         }
 
         // universal .spawned function
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static NetworkIdentity GetSpawnedInServerOrClient(uint netId)
         {
             // server / host mode: use the one from server.
@@ -165,6 +165,24 @@ namespace Mirror
             rect.y = Math.Min(rect.y, Screen.width - rect.height);
 
             return rect;
+        }
+
+        // create local connections pair and connect them
+        public static void CreateLocalConnections(
+            out LocalConnectionToClient connectionToClient,
+            out LocalConnectionToServer connectionToServer)
+        {
+            connectionToServer = new LocalConnectionToServer();
+            connectionToClient = new LocalConnectionToClient();
+            connectionToServer.connectionToClient = connectionToClient;
+            connectionToClient.connectionToServer = connectionToServer;
+        }
+
+        public static bool IsSceneActive(string scene)
+        {
+            Scene activeScene = SceneManager.GetActiveScene();
+            return activeScene.path == scene ||
+                   activeScene.name == scene;
         }
     }
 }
