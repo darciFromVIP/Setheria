@@ -25,6 +25,7 @@ public class DayNightCycle : MonoBehaviour
     }
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.L))
         {
             multiplier = 20;
@@ -33,6 +34,7 @@ public class DayNightCycle : MonoBehaviour
         {
             multiplier = 1;
         }
+#endif
         if (timer >= data[currentIndex].timeStamp)
         {
             if (currentIndex == maxIndex)

@@ -16,7 +16,8 @@ public class QuestlineScriptable : ScriptableObject
     private void OnEnable()
     {
 #if UNITY_EDITOR
-        LoadQuestsIntoQuestline();
+        if (questsPath != "")
+            LoadQuestsIntoQuestline();
 #endif
         currentQuestIndex = 0;
         questList[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
