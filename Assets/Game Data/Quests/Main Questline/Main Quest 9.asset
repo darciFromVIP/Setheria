@@ -12,16 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 9
   m_EditorClassIdentifier: 
-  label: Find some resources and knowledge.
+  active: 0
+  label: Explore the ocean!
   requiredItems: []
-  requiredStructures: []
-  requiredResources: 75
+  requiredStructures:
+  - {fileID: 11400000, guid: 382748be377ccbb4d8c79f98652e2ab5, type: 2}
+  requiredResources: 0
   currentResources: 0
-  requiredKnowledge: 25
+  requiredKnowledge: 0
   currentKnowledge: 0
+  requiredCustom1: 0
+  currentCustom1: 0
+  custom1Requirement: 
   rewards:
   - rewardType: 2
-    rewardAmount: 25
+    rewardAmount: 50
+    itemReward: {fileID: 0}
+  - rewardType: 1
+    rewardAmount: 10
     itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

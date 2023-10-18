@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Cooked Fish
   m_EditorClassIdentifier: 
-  description: 'Eating this restores +7 Food.
+  description: 'Eating this restores +5 Food.
 
     __________________________________
 
@@ -22,7 +22,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: dbd3931a67db3f24e873dab4a32ee35a, type: 3}
   stackable: 1
   usage:
-  - {fileID: 11400000, guid: a4907513d044f3f4492811ad4ca7b5aa, type: 2}
+  - {fileID: 11400000, guid: 5ea5dfd5ddb295c468b0c52e2047cf8e, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -32,5 +32,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

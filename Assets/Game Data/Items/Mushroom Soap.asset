@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Mushroom Soap
   m_EditorClassIdentifier: 
-  description: Warm tasted soap. Restores +7 Food.
+  description: Warm tasted soap. Restores +10 Food.
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 70cfc174df715ad419cc3cb6b4cac5ea, type: 3}
   stackable: 1
   usage:
-  - {fileID: 11400000, guid: a4907513d044f3f4492811ad4ca7b5aa, type: 2}
+  - {fileID: 11400000, guid: afeb861d222201b4fb706782d470cf41, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -31,5 +31,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

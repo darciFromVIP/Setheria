@@ -13,24 +13,22 @@ MonoBehaviour:
   m_Name: Main Quest 8
   m_EditorClassIdentifier: 
   active: 0
-  label: Gear up to fight the wild.
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: 4a8761a77d913674eabb93f747cf8960, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: e19bd74b50172ec44bc37ed61e28d720, type: 2}
-    stacks: 1
+  label: Find some resources and knowledge.
+  requiredItems: []
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures: []
-  requiredResources: 0
+  requiredResources: 75
   currentResources: 0
-  requiredKnowledge: 0
+  requiredKnowledge: 25
   currentKnowledge: 0
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
   rewards:
   - rewardType: 2
-    rewardAmount: 25
-    itemReward: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
+    rewardAmount: 30
+    itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

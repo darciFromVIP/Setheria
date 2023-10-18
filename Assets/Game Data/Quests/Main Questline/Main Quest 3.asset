@@ -12,13 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 3
   m_EditorClassIdentifier: 
+  active: 0
   label: A light in the dark.
   requiredItems: []
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures:
   - {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}
+  requiredResources: 0
+  currentResources: 0
+  requiredKnowledge: 0
+  currentKnowledge: 0
+  requiredCustom1: 0
+  currentCustom1: 0
+  custom1Requirement: 
   rewards:
-  - rewardType: 2
-    rewardAmount: 10
+  - rewardType: 3
+    rewardAmount: 1
+    itemReward: {fileID: 11400000, guid: 5cdb4fabc5262c745ad2f45108ef81b8, type: 2}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

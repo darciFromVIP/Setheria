@@ -10,23 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Main Quest 5 II
+  m_Name: Main Quest 5
   m_EditorClassIdentifier: 
-  label: Advance your technologies.
-  requiredItems: []
-  requiredStructures:
-  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  active: 0
+  label: Gear up to fight the wild.
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: 4a8761a77d913674eabb93f747cf8960, type: 2}
+    stacks: 1
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
+  requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
+  requiredCustom1: 0
+  currentCustom1: 0
+  custom1Requirement: 
   rewards:
-  - rewardType: 0
-    rewardAmount: 10
-    itemReward: {fileID: 0}
-  - rewardType: 1
-    rewardAmount: 10
-    itemReward: {fileID: 0}
+  - rewardType: 3
+    rewardAmount: 1
+    itemReward: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Mossilion
   m_EditorClassIdentifier: 
-  description: 'This smelly fish looking like moss could taste better baked.
+  description: 'This smelly fish looking like moss could taste better baked. This
+    fish have better quality to produce Fish Oil too.
 
-    Used
-    in Cooking.'
+    Used in Cooking.'
   grade: 0
   itemType: 18
   sprite: {fileID: 21300000, guid: 2fd56f04e5b70a0459ae729fffdc5f11, type: 3}
@@ -30,5 +30,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

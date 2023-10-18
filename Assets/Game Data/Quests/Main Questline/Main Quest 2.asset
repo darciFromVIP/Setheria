@@ -12,10 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 2
   m_EditorClassIdentifier: 
-  label: Establish a base.
+  active: 0
+  label: Open Manual by N and find recipe Tent in Construction. Craft it and build
+    it.
   requiredItems: []
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures:
   - {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
+  requiredResources: 0
+  currentResources: 0
+  requiredKnowledge: 0
+  currentKnowledge: 0
+  requiredCustom1: 0
+  currentCustom1: 0
+  custom1Requirement: 
   rewards:
   - rewardType: 1
     rewardAmount: 10

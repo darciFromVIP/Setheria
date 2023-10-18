@@ -10,16 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Treasure Chest Quest
+  m_Name: Main Quest 6 II
   m_EditorClassIdentifier: 
-  label: Strange Chest
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: e422741b5d6d345448e8ca6d5a17a6ac, type: 2}
-    stacks: 1
-  requiredStructures: []
+  label: Advance your technologies.
+  requiredItems: []
+  requiredStructures:
+  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  requiredResources: 0
+  currentResources: 0
+  requiredKnowledge: 0
+  currentKnowledge: 0
   rewards:
-  - rewardType: 2
-    rewardAmount: 20
+  - rewardType: 0
+    rewardAmount: 10
+    itemReward: {fileID: 0}
+  - rewardType: 1
+    rewardAmount: 10
+    itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

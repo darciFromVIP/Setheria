@@ -10,16 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Main Quest 7
+  m_Name: Treasure Chest Quest
   m_EditorClassIdentifier: 
-  label: Don't starve!
+  active: 0
+  label: Strange Chest
   requiredItems:
-  - itemData: {fileID: 11400000, guid: 294bbf2a06d985842802a3842f31fe4b, type: 2}
-    stacks: 2
+  - itemData: {fileID: 11400000, guid: e422741b5d6d345448e8ca6d5a17a6ac, type: 2}
+    stacks: 1
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures: []
+  requiredResources: 0
+  currentResources: 0
+  requiredKnowledge: 0
+  currentKnowledge: 0
+  requiredCustom1: 0
+  currentCustom1: 0
+  custom1Requirement: 
   rewards:
   - rewardType: 2
-    rewardAmount: 10
+    rewardAmount: 30
+    itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeCategory: 5
   resultItem:
-    itemData: {fileID: 11400000, guid: 294bbf2a06d985842802a3842f31fe4b, type: 2}
+    itemData: {fileID: 11400000, guid: 7e5b37dc3adbdec4087ecbea01fbd8de, type: 2}
     stacks: 1
   componentItems:
   - itemData: {fileID: 11400000, guid: 2946bbab13f844b4dbf19c1f5a1d6063, type: 2}
@@ -32,4 +32,7 @@ MonoBehaviour:
   requiredStructures:
   - {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}
   requiredProfession: 2
-  requiredProfessionExperience: 10
+  requiredProfessionExperience: 5
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []
