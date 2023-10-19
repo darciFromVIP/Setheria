@@ -21,7 +21,7 @@ public class ItemGradeDatabase : ScriptableObject
     {
         List<Sprite> tempEvents = new();
         tempEvents.Clear();
-        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Graphics/UI/Icons/Borders" });
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Game Data/UI/Icons/Borders" });
         foreach (string SOName in assetNames)
         {
             var SOpath = AssetDatabase.GUIDToAssetPath(SOName);

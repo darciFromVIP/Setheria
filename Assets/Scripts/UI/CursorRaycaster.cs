@@ -43,12 +43,11 @@ public class CursorRaycaster : NetworkBehaviour
             }
             else if (player.state == PlayerState.Casting)
                 cursor.SetCastingCursor();
-            else if (hit.collider.TryGetComponent(out NavMeshModifierVolume navmesh) && player.state != PlayerState.Busy)       // Display Base Cursor on Shallow Water
+            else if (hit.collider.CompareTag("Water") && player.state != PlayerState.Busy)       // Display Base Cursor on Shallow Water
             {
-                Debug.Log("Hit Water");
                 RaycastHit hit1;
                 Ray ray1 = new Ray(hit.point, Vector3.down);
-                if (Physics.Raycast(ray1, out hit1, 3))
+                if (Physics.Raycast(ray1, out hit1, 1))
                     cursor.SetBaseCursor();
                 else
                     cursor.SetInvalidCursor();
@@ -59,7 +58,7 @@ public class CursorRaycaster : NetworkBehaviour
                 || hit.collider.TryGetComponent(out Structure structure)
                 || hit.collider.TryGetComponent(out TreasureChest treasureChest)))
                 cursor.SetInteractionCursor();
-            else if ((hit.collider.gameObject.layer == 0 && player.state != PlayerState.Busy) || hit.collider.TryGetComponent(out PlayerCharacter playerChar))
+            else if ((hit.collider.gameObject.layer == 0 && player.state != PlayerState.Busy) || hit.collider.TryGetComponent(out PlayerCharacter playerChar) || !player.GetComponentInChildren<SkinnedMeshRenderer>().enabled)
                 cursor.SetBaseCursor();
             else
                 cursor.SetInvalidCursor();

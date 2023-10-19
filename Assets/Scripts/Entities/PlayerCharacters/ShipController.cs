@@ -12,6 +12,7 @@ public class ShipController : NetworkBehaviour
     public LayerMask shipMask;
     public SettingsManager settingsManager;
     private List<Collider> collidingColliders = new();
+    private GameObject clickEffect;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class ShipController : NetworkBehaviour
         shipComp = GetComponent<Ship>();
         settingsManager = FindObjectOfType<SettingsManager>();
         collidingColliders.Clear();
+        clickEffect = FindObjectOfType<ClickEffect>().gameObject;
     }
     private void Update()
     {
@@ -43,6 +45,8 @@ public class ShipController : NetworkBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, shipMask))
             {
+                clickEffect.transform.position = hit.point;
+                clickEffect.GetComponent<ParticleSystem>().Play();
                 moveComp.MoveTo(hit.point);
 
                 if (hit.collider.TryGetComponent(out Item item))

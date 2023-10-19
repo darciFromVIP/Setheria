@@ -22,7 +22,7 @@ public class VFXDatabase : ScriptableObject
     {
         List<GameObject> temp = new();
         temp.Clear();
-        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Graphics/VFX/Database" });
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Graphics Prefabs/VFX/Database" });
         foreach (string SOName in assetNames)
         {
             var SOpath = AssetDatabase.GUIDToAssetPath(SOName);

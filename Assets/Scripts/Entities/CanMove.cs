@@ -59,7 +59,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             {
                 agent.path = path;
             }
-            else
+            else if (path.status == NavMeshPathStatus.PathPartial)
             {
                 Vector3 nearestPoint = destination;
                 for (int i = 0; i < path.corners.Length; i++)
@@ -73,6 +73,9 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
                 }
                 agent.SetDestination(nearestPoint);
             }
+            else
+                agent.SetDestination(destination);
+
             /*if (GetFinalMovementSpeed() >= 2.9f)
             {
                 animator.SetBool(animHash_Run, true);

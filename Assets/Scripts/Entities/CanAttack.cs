@@ -22,6 +22,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     [SyncVar] [SerializeField] private float cooldownReduction = 0;
     [SyncVar] [SerializeField] private AttackType attackType;
     public bool canAct = true;
+    private bool isDelayingTargetLost = false;
 
     public GameObject projectilePrefab;
     public Transform projectileLaunchPoint;
@@ -99,8 +100,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
 
         if (attackSpeedTimer > 0)
             attackSpeedTimer -= Time.deltaTime;
-        
-        if (enemyTarget && canAct)
+
+        if (enemyTarget && canAct && !isDelayingTargetLost)
         {
             if (enemyTarget.GetComponent<HasHealth>().GetHealth() <= 0)
             {
@@ -114,8 +115,6 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                 {
                     if (netAnim)
                     {
-                        if (!isOwned)
-                            Stop_Acting.Invoke();
                         Attack();
                     }
                     else
@@ -166,23 +165,21 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void MeleeAttack()                           //This reacts to animations, that are run on both the server and client
     {
-        ResumeActing();
         if (!attackSound.IsNull)
             FindObjectOfType<AudioManager>().PlayOneShot(attackSound, transform.position);
         float modifier = 1;
         var random = Random.Range(0f, 100f);
         if (random < criticalChance)
             modifier = 1 + (criticalDamage / 100);
-        Resume_Acting.Invoke();
         if (enemyTarget)
             enemyTarget.GetComponent<HasHealth>().TakeDamage(power * modifier, false, GetComponent<NetworkIdentity>());
         Attacked();
+        ResumeActing();
     }
     public void RangedAttack()                          //This reacts to animations, that are run on both the server and client
     {
         if (enemyTarget)
             SpawnProjectile();
-        Resume_Acting.Invoke();
         Attacked();
         ResumeActing();
     }
@@ -215,10 +212,12 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void StopActing()
     {
+        Stop_Acting.Invoke();
         canAct = false;
     }
     public void ResumeActing()
     {
+        Resume_Acting.Invoke();
         canAct = true;
     }
     [Command(requiresAuthority = false)]
@@ -268,6 +267,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         if (!canAct)
         {
+            StopCoroutine("DelayedTargetLost");
+            StartCoroutine("DelayedTargetLost");
             return;
         }
         if (enemyTarget)
@@ -279,6 +280,14 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         Target_Lost.Invoke();
         if (moveComp)
             moveComp.agent.stoppingDistance = 0;
+    }
+    private IEnumerator DelayedTargetLost()
+    {
+        isDelayingTargetLost = true;
+        while (!canAct)
+            yield return null;
+        TargetLost();
+        isDelayingTargetLost = false;
     }
     public float GetPower()
     {

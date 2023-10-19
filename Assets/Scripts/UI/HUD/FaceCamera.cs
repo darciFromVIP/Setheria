@@ -9,7 +9,7 @@ public class FaceCamera : MonoBehaviour
     {
         toFaceCamera = GetComponent<Transform>();
     }
-    public void Update()
+    public void LateUpdate()
     {
         Camera camera = Camera.main;
         toFaceCamera.transform.LookAt(transform.position + camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
