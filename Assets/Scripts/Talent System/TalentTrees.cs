@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class TalentTrees
 {
     public List<TalentTree> talentTrees = new();
-    public int talentPoints = 0;
+    public int talentPoints;
     [NonSerialized] public UnityEvent<int> Talent_Points_Changed = new();
 
     public bool IsTalentUnlocked(TalentScriptable talent, byte level)

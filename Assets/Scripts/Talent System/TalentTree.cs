@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TalentTreeType
 {
-    Special, Gathering, Cooking, Alchemy, Fishing
+    Special, Gathering, Cooking, Alchemy, Fishing, Exploration
 }
 [System.Serializable]
 public class TalentTree

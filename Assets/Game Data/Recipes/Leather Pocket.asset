@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
   m_Name: Leather Pocket
   m_EditorClassIdentifier: 
-  recipeCategory: 0
+  recipeCategory: 6
   resultItem:
     itemData: {fileID: 11400000, guid: 38f96a6cf2f436645a65390d434e57f9, type: 2}
     stacks: 1
@@ -38,3 +38,8 @@ MonoBehaviour:
   recipeItem: {fileID: 11400000, guid: 7dd0e5f8c2cdc1f4b8d8249452044fe2, type: 2}
   requiredItems: []
   requiredStructures: []
+  requiredProfession: 5
+  requiredProfessionExperience: 20
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

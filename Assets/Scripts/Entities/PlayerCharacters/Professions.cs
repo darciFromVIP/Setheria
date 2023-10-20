@@ -6,9 +6,9 @@ using UnityEngine;
 [Serializable]
 public class Professions
 {
-    public int gathering, alchemy, cooking, fishing;
-    public int maxGathering, maxAlchemy, maxCooking, maxFishing;
-    private int gatheringMilestone, alchemyMilestone, cookingMilestone, fishingMilestone;
+    public int gathering, alchemy, cooking, fishing, exploration;
+    public int maxGathering, maxAlchemy, maxCooking, maxFishing, maxExploration;
+    private int gatheringMilestone, alchemyMilestone, cookingMilestone, fishingMilestone, explorationMilestone;
     private List<int> largeProfMilestones;
 
     [NonSerialized] public PlayerCharacter player;
@@ -21,14 +21,17 @@ public class Professions
         alchemy = 0;
         cooking = 0;
         fishing = 0;
+        exploration = 0;
         maxGathering = 50;
         maxAlchemy = 50;
         maxCooking = 50;
         maxFishing = 50;
+        maxExploration = 50;
         gatheringMilestone = 25;
         alchemyMilestone = 25;
         cookingMilestone = 25;
         fishingMilestone = 25;
+        explorationMilestone = 25;
         largeProfMilestones = new List<int> { 50, 75, 100 };
         this.player = player;
     }
@@ -115,6 +118,27 @@ public class Professions
                 player.UpdateManualCategories();
         }
     }
+    public void AddExploration(int amount)
+    {
+        if (exploration < maxExploration)
+        {
+            exploration += amount;
+            player.SpawnProfessionFloatingText(TalentTreeType.Exploration, amount, exploration, maxExploration);
+            if (exploration / explorationMilestone > 0)
+            {
+                player.talentTrees.ChangeTalentPoints(exploration / explorationMilestone);
+                foreach (var item in largeProfMilestones)
+                {
+                    if (explorationMilestone / item < 1)
+                    {
+                        explorationMilestone = item;
+                    }
+                }
+            }
+            if (exploration == 1)
+                player.UpdateManualCategories();
+        }
+    }
     public int GetProfessionExperience(TalentTreeType prof)
     {
         switch (prof)
@@ -127,6 +151,8 @@ public class Professions
                 return alchemy;
             case TalentTreeType.Fishing:
                 return fishing;
+            case TalentTreeType.Exploration:
+                return exploration;
             default:
                 break;
         }
@@ -149,6 +175,9 @@ public class Professions
                 break;
             case TalentTreeType.Fishing:
                 AddFishing(amount);
+                break;
+            case TalentTreeType.Exploration:
+                AddExploration(amount);
                 break;
             default:
                 break;

@@ -12,6 +12,7 @@ public class RecipeDatabase : ScriptableObject
     public List<RecipeScriptable> fishingRecipes;
     public List<RecipeScriptable> armoryRecipes;
     public List<RecipeScriptable> cookingRecipes;
+    public List<RecipeScriptable> explorationRecipes;
     public RecipeScriptable GetRecipeByName(string name)
     {
         return allRecipes.Find((x) => x.name == name);
@@ -31,6 +32,7 @@ public class RecipeDatabase : ScriptableObject
         fishingRecipes = new();
         armoryRecipes = new();
         cookingRecipes = new();
+        explorationRecipes = new();
         List<RecipeScriptable> tempRecipes = new();
         tempRecipes.Clear();
         string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Game Data/Recipes" });
@@ -67,6 +69,9 @@ public class RecipeDatabase : ScriptableObject
                     break;
                 case RecipeCategory.Cooking:
                     cookingRecipes.Add(item);
+                    break;
+                case RecipeCategory.Exploration:
+                    explorationRecipes.Add(item);
                     break;
                 default:
                     break;
