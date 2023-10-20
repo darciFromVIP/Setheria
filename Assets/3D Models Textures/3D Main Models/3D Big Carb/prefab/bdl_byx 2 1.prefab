@@ -2062,8 +2062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1394970462069277717}
-  - component: {fileID: -6042885572262946786}
-  - component: {fileID: -5046871856387335435}
+  - component: {fileID: -3216711981480955824}
   m_Layer: 0
   m_Name: bdl_byx 2 1
   m_TagString: Untagged
@@ -2088,54 +2087,40 @@ Transform:
   - {fileID: 5778998407129226313}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &-6042885572262946786
-Animator:
-  serializedVersion: 5
+--- !u!111 &-3216711981480955824
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216999625238889632}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 72e26b95434f30e4886bcd0382602f3a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-5046871856387335435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7216999625238889632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f2548a9c5830ee43970166dba0cbd08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Skill1_Casted:
-    m_PersistentCalls:
-      m_Calls: []
-  Skill2_Casted:
-    m_PersistentCalls:
-      m_Calls: []
-  Skill3_Casted:
-    m_PersistentCalls:
-      m_Calls: []
-  Skill4_Casted:
-    m_PersistentCalls:
-      m_Calls: []
-  Skill5_Casted:
-    m_PersistentCalls:
-      m_Calls: []
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4ba626b75c393e9488beb90f509d8fd4, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: 838bf47b40c16174a98ac6779c6ad805, type: 3}
+  - {fileID: 7400000, guid: d868bb4e32f3ca84c8a3f71b5df93925, type: 3}
+  - {fileID: 7400000, guid: 1e5e93f86901c4d43b5e0c7b8fb7ae18, type: 3}
+  - {fileID: 7400000, guid: e4fc6232c3eba734898d2bdddbb5f5cd, type: 3}
+  - {fileID: 7400000, guid: 70f71e074afd2b34ebb857b94ee6fd86, type: 3}
+  - {fileID: 7400000, guid: ecddcab1cd91b2f41a9034043632fdc7, type: 3}
+  - {fileID: 7400000, guid: 87f41313be70bad4496daf42a16b3ce8, type: 3}
+  - {fileID: 7400000, guid: 540dd342fe8c4df4aad8e16eabe87bbf, type: 3}
+  - {fileID: 7400000, guid: a9dc5f13af2b6b04390a9a2003f82c27, type: 3}
+  - {fileID: 7400000, guid: 358687353a6130242aadbe131c5c6f03, type: 3}
+  - {fileID: 7400000, guid: 3e9225eba8c23eb49bb380868cbb520e, type: 3}
+  - {fileID: 7400000, guid: 6e5edbff94729dc4f91341b75923ddd8, type: 3}
+  - {fileID: 7400000, guid: 1a3c6f95905940640b8b775a4e77ebcd, type: 3}
+  - {fileID: 7400000, guid: 071d3ab27d7957e4b8f1f46aaac73011, type: 3}
+  - {fileID: 7400000, guid: 0f06bb27f60fe294eb3e9c935935d364, type: 3}
+  - {fileID: 7400000, guid: 4ba626b75c393e9488beb90f509d8fd4, type: 3}
+  - {fileID: 7400000, guid: 043ad2b7687ca9146a458401a1877b75, type: 3}
+  - {fileID: 7400000, guid: 76cb6d0ad591db24eb111efce4cbbfa2, type: 3}
+  - {fileID: 7400000, guid: db376bfc8a11cbc40a232076f96b7ed4, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 1
 --- !u!1 &7396066197513238992
 GameObject:
   m_ObjectHideFlags: 0
