@@ -15,19 +15,79 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6734150159591962957, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
+      propertyPath: aggroRange
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -6734150159591962957, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: allyHelpRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -6734150159591962957, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
       propertyPath: BeastKilledEvent
       value: 
       objectReference: {fileID: 11400000, guid: f8e9bad0d67fb034d987c9fa8b4781f3,
         type: 2}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: level
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: xpGranted
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: campRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skills.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 693041487305289382, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: _assetId
       value: 1410016216
       objectReference: {fileID: 0}
+    - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: power
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: attackRange
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: criticalChance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: criticalDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: attackSpeedTimer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3983356041049155800, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_Name
       value: Giant Carb
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983356041049155806, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: baseMovementSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -78,6 +138,84 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].chance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[0].chance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[1].chance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].item.stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[0].item.stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[1].item.stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].item.itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 2946bbab13f844b4dbf19c1f5a1d6063,
+        type: 2}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[0].item.itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c95c23be9cdcce47b94e68d336f6568,
+        type: 2}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[1].item.itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b6b2baaf7bc5214bb5e5c0b82ae0e91,
+        type: 2}
+    - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: armor
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: maxHealth
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: healthRegen
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8927606564477260480, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
