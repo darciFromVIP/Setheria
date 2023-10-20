@@ -8,6 +8,52 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: xpGranted
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: oneTimeLoot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: lootableName
+      value: Gold Cymian (50)
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: unlootableName
+      value: Gold Cymian (Empty)
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: refreshDuration
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: professionRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: effectsToHide.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: effectsToHide.Array.data[0]
+      value: 
+      objectReference: {fileID: 976365683102791067, guid: 28ad545d07839c84a98a8140044968db,
+        type: 3}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: professionExperienceRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1472851974743405150, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Radius
@@ -68,6 +114,32 @@ PrefabInstance:
       propertyPath: _assetId
       value: 1893198455
       objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].chance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].item.stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].item.itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: f09a58d2dbe31914aa4c64058f129ef1,
+        type: 2}
     - target: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Name
