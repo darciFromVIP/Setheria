@@ -9,6 +9,8 @@ public class HasAggro : NetworkBehaviour
     [SerializeField] private float allyHelpRange;
     public bool shouldCallForHelp = true;
     public EnemyType enemyType;
+    [Tooltip("If this enemy is a Beast, assign this event. Otherwise leave blank.")]
+    public EventScriptable BeastKilledEvent;
     private LayerMask enemyLayers;
     private LayerMask allyLayers;
 
@@ -19,6 +21,8 @@ public class HasAggro : NetworkBehaviour
         StartCoroutine(CheckForTargets());
         enemyLayers = GetComponent<Character>().enemyLayers;
         allyLayers = GetComponent<Character>().allyLayers;
+        if (BeastKilledEvent)
+            GetComponent<HasHealth>().On_Death.AddListener(BeastKilledEventInvoke);
     }
 
     private IEnumerator CheckForTargets()
@@ -78,5 +82,9 @@ public class HasAggro : NetworkBehaviour
             }
             yield return new WaitForSeconds(1);
         }
+    }
+    private void BeastKilledEventInvoke()
+    {
+        BeastKilledEvent.theEvent.Invoke();
     }
 }

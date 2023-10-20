@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 6 I
   m_EditorClassIdentifier: 
+  active: 0
   label: Collect materials.
+  synchronizedQuest: 1
   requiredItems:
   - itemData: {fileID: 11400000, guid: f09a58d2dbe31914aa4c64058f129ef1, type: 2}
     stacks: 1
@@ -22,11 +24,17 @@ MonoBehaviour:
     stacks: 4
   - itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
     stacks: 3
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
+  requiredCustom1: 0
+  currentCustom1: 0
+  custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards: []
   Quest_Complete:
     m_PersistentCalls:
