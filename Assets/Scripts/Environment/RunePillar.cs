@@ -6,10 +6,11 @@ using UnityEngine;
 public class RunePillar : TurnInItemsInteractable
 {
     public QuestScriptable questToComplete;
+    public EventScriptable runePillarActivationEvent;
     protected override void ItemsTurnedIn()
     {
         base.ItemsTurnedIn();
-        CmdQuestProgress();
+        runePillarActivationEvent.theEvent.Invoke();
     }
     public override void Interact(PlayerCharacter player)
     {
@@ -20,15 +21,5 @@ public class RunePillar : TurnInItemsInteractable
         }
         else
             FindObjectOfType<SystemMessages>().AddMessage("The required quest is not active!");
-    }
-    [Command(requiresAuthority = false)]
-    private void CmdQuestProgress()
-    {
-        RpcQuestProgress();
-    }
-    [ClientRpc]
-    private void RpcQuestProgress()
-    {
-        questToComplete.ReduceCustom1Requirement(1);
     }
 }

@@ -21,6 +21,9 @@ public class StructureOptionUI : MonoBehaviour
         if (structureOption.structureAction == StructureAction.None)
             GetComponent<TooltipTrigger>().enabled = false;
         this.structureOption = structureOption;
+
+        if (FindObjectOfType<GameManager>().localPlayerCharacter.professions.GetProfessionExperience(structureOption.professionRequired) < structureOption.professionLevelRequired)
+            GetComponent<Button>().interactable = false;
     }
     private void Update()
     {

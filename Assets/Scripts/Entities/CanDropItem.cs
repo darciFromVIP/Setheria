@@ -18,6 +18,8 @@ public class CanDropItem : NetworkBehaviour
 {
     public ItemPrefabDatabase itemDatabase;
     public List<ItemDropChances> itemDropsTable;
+    [Tooltip("If this object drops any Fish, you have to assign this event. Otherwise, leave blank.")]
+    public EventScriptable fishingQuestEvent;
     private HasHealth hpComp;
     private void Start()
     {
@@ -72,6 +74,8 @@ public class CanDropItem : NetworkBehaviour
                 if (random >= temp - item2.chance && random < temp)
                 {
                     inventoryManager.AddItem(item2.item);
+                    if (item2.item.itemData.itemType == ItemType.Fish)
+                        fishingQuestEvent.theEvent.Invoke();
                 }
             }
         }

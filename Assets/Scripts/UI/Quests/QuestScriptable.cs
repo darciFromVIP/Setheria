@@ -21,6 +21,8 @@ public class QuestScriptable : ScriptableObject, IComparable
     [HideInInspector] public bool active;
     [Tooltip("Name of the quest - this will be displayed in the game.")]
     public string label;
+    [Tooltip("Does this quest progress across all players?")]
+    public bool synchronizedQuest = true;
     [Tooltip("List of required items.")]
     public List<ItemRecipeInfo> requiredItems = new();
     [HideInInspector] public Dictionary<string, int> requiredItemsDic = new();
@@ -42,7 +44,10 @@ public class QuestScriptable : ScriptableObject, IComparable
     [Tooltip("Required custom value to be acquired by means coded specifically. Do not fill this unless you know what interacts with this.")]
     public int requiredCustom1;
     [HideInInspector] public int currentCustom1;
+    [Tooltip("Text representation of the custom requirement (displayed in quest)")]
     public string custom1Requirement;
+    [Tooltip("Event to listen to such as Fishing Quest Event")]
+    public EventScriptable customEvent;
 
     [Tooltip("Quest rewards. Always fill only one reward per list element.")]
     public List<QuestReward> rewards;
@@ -63,57 +68,133 @@ public class QuestScriptable : ScriptableObject, IComparable
         if (active)
         {
             var gm = FindObjectOfType<GameManager>();
-            gm.Knowledge_Added.AddListener(ReduceKnowledgeRequirement);
-            gm.Resources_Added.AddListener(ReduceResourceRequirement);
-            currentResources = gm.GetResources();
-            currentKnowledge = gm.GetKnowledge();
-            currentItemTypeAmount = 0;
             questManager = FindObjectOfType<QuestManager>();
-            foreach (var item in requiredItems)
+
+            currentItemTypeAmount = 0;
+
+            if (synchronizedQuest)
             {
-                item.itemData.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
-                item.itemData.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
-                requiredItemsDic.Add(item.itemData.name, 0);
-            }
-            foreach (var item in requiredStructures)
-            {
-                item.Structure_Built.AddListener(CmdReduceStructureRequirement);
-                requiredStructuresDic.Add(item.name, false);
-            }
-            if (requiredItemType != ItemType.None)
-                foreach (var item in questManager.itemDatabase.items)
+                gm.Knowledge_Added.AddListener(ReduceKnowledgeRequirement);
+                gm.Resources_Added.AddListener(ReduceResourceRequirement);
+                if (customEvent)
+                    customEvent.theEvent.AddListener(CmdReduceCustom1Requirement);
+                foreach (var item in requiredItems)
                 {
-                    if (item.itemType == requiredItemType)
-                    {
-                        item.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
-                        item.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
-                        validItemTypeNames.Add(item.name);
-                    }
+                    item.itemData.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
+                    item.itemData.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
+                    requiredItemsDic.Add(item.itemData.name, 0);
                 }
+                foreach (var item in requiredStructures)
+                {
+                    item.Structure_Built.AddListener(CmdReduceStructureRequirement);
+                    requiredStructuresDic.Add(item.name, false);
+                }
+                if (requiredItemType != ItemType.None)
+                    foreach (var item in questManager.itemDatabase.items)
+                    {
+                        if (item.itemType == requiredItemType)
+                        {
+                            item.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
+                            item.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
+                            validItemTypeNames.Add(item.name);
+                        }
+                    }
+            }
+            else
+            {
+                if (customEvent)
+                    customEvent.theEvent.AddListener(ReduceCustom1Requirement);
+                foreach (var item in requiredItems)
+                {
+                    item.itemData.Item_Stacks_Acquired.AddListener(ReduceItemRequirement);
+                    item.itemData.Item_Stacks_Lost.AddListener(IncreaseItemRequirement);
+                    requiredItemsDic.Add(item.itemData.name, 0);
+                }
+                foreach (var item in requiredStructures)
+                {
+                    item.Structure_Built.AddListener(ReduceStructureRequirement);
+                    requiredStructuresDic.Add(item.name, false);
+                }
+                if (requiredItemType != ItemType.None)
+                    foreach (var item in questManager.itemDatabase.items)
+                    {
+                        if (item.itemType == requiredItemType)
+                        {
+                            item.Item_Stacks_Acquired.AddListener(ReduceItemRequirement);
+                            item.Item_Stacks_Lost.AddListener(IncreaseItemRequirement);
+                            validItemTypeNames.Add(item.name);
+                        }
+                    }
+            }
         }
         else
         {
             var gm = FindObjectOfType<GameManager>();
-            gm.Knowledge_Added.RemoveListener(ReduceKnowledgeRequirement);
-            gm.Resources_Added.RemoveListener(ReduceResourceRequirement);
-            foreach (var item in requiredItems)
+            if (synchronizedQuest)
             {
-                item.itemData.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
-                item.itemData.Item_Stacks_Lost.RemoveListener(CmdIncreaseItemRequirement);
+                gm.Knowledge_Added.RemoveListener(ReduceKnowledgeRequirement);
+                gm.Resources_Added.RemoveListener(ReduceResourceRequirement);
+                if (customEvent)
+                    customEvent.theEvent.RemoveListener(CmdReduceCustom1Requirement);
+                foreach (var item in requiredItems)
+                {
+                    item.itemData.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
+                    item.itemData.Item_Stacks_Lost.RemoveListener(CmdIncreaseItemRequirement);
+                }
+                foreach (var item in requiredStructures)
+                {
+                    item.Structure_Built.RemoveListener(CmdReduceStructureRequirement);
+                }
+                if (requiredItemType != ItemType.None)
+                    foreach (var item in questManager.itemDatabase.items)
+                    {
+                        if (item.itemType == requiredItemType)
+                        {
+                            item.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
+                            item.Item_Stacks_Lost.RemoveListener(CmdIncreaseItemRequirement);
+                        }
+                    }
             }
-            foreach (var item in requiredStructures)
+            else
             {
-                item.Structure_Built.RemoveListener(CmdReduceStructureRequirement);
+                if (customEvent)
+                    customEvent.theEvent.RemoveListener(ReduceCustom1Requirement);
+                foreach (var item in requiredItems)
+                {
+                    item.itemData.Item_Stacks_Acquired.RemoveListener(ReduceItemRequirement);
+                    item.itemData.Item_Stacks_Lost.RemoveListener(IncreaseItemRequirement);
+                }
+                foreach (var item in requiredStructures)
+                {
+                    item.Structure_Built.RemoveListener(ReduceStructureRequirement);
+                }
+                if (requiredItemType != ItemType.None)
+                    foreach (var item in questManager.itemDatabase.items)
+                    {
+                        if (item.itemType == requiredItemType)
+                        {
+                            item.Item_Stacks_Acquired.RemoveListener(ReduceItemRequirement);
+                            item.Item_Stacks_Lost.RemoveListener(IncreaseItemRequirement);
+                        }
+                    }
             }
         }
+    }
+    private void CmdReduceItemRequirement(ItemScriptable itemAcquired, int stacks)
+    {
+        questManager.CmdReduceItemRequirement(name, itemAcquired.name, stacks);
+    }
+    private void ReduceItemRequirement(ItemScriptable itemAcquired, int stacks)
+    {
+        questManager.ReduceItemRequirement(name, itemAcquired.name, stacks);
     }
     private void CmdReduceStructureRequirement(StructureScriptable structureBuilt)
     {
         questManager.CmdReduceStructureRequirement(name, structureBuilt.name);
     }
-    private void CmdReduceItemRequirement(ItemScriptable itemAcquired, int stacks)
+    public void ReduceStructureRequirement(StructureScriptable structureBuilt)
     {
-        questManager.CmdReduceItemRequirement(name, itemAcquired.name, stacks);
+        questManager.ReduceStructureRequirement(name, structureBuilt.name);
     }
     public void ReduceStructureRequirement(string structureName)
     {
@@ -155,6 +236,10 @@ public class QuestScriptable : ScriptableObject, IComparable
     {
         questManager.CmdIncreaseItemRequirement(name, itemLost.name, stacks);
     }
+    private void IncreaseItemRequirement(ItemScriptable itemLost, int stacks)
+    {
+        questManager.IncreaseItemRequirement(name, itemLost.name, stacks);
+    }
     public void IncreaseItemRequirement(string itemName, int stacks)
     {
         ItemScriptable itemLost = null;
@@ -185,6 +270,19 @@ public class QuestScriptable : ScriptableObject, IComparable
     {
         currentKnowledge += amount;
         CheckQuestCompletion();
+    }
+    private void CmdReduceCustom1Requirement()
+    {
+        questManager.CmdReduceCustom1Requirement(name, 1);
+    }
+    private void ReduceCustom1Requirement()
+    {
+        currentCustom1 += 1;
+        CheckQuestCompletion();
+    }
+    private void CmdReduceCustom1Requirement(int amount)
+    {
+        questManager.CmdReduceCustom1Requirement(name, amount);
     }
     public void ReduceCustom1Requirement(int amount)
     {

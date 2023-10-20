@@ -14,17 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Catch 100 fishes
+  synchronizedQuest: 0
   requiredItems: []
-  requiredItemType: 18
-  requiredItemTypeAmount: 100
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
+  requiredCustom1: 100
   currentCustom1: 0
-  custom1Requirement: 
+  custom1Requirement: 'Fish caught: '
+  customEvent: {fileID: 11400000, guid: 3fc6c6ec4fa97894e814e8186f21b4b2, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 500

@@ -23,6 +23,12 @@ PrefabInstance:
       propertyPath: allyHelpRange
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -6734150159591962957, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: BeastKilledEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: f8e9bad0d67fb034d987c9fa8b4781f3,
+        type: 2}
     - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: xpGranted
@@ -333,6 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wanderInterval: 7
   wanderRange: 10
+  rangeFromStart: 1
 --- !u!4 &2682782501743286165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,

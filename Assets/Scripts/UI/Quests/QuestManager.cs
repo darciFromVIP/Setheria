@@ -51,6 +51,10 @@ public class QuestManager : NetworkBehaviour
     [ClientRpc]
     private void RpcReduceItemRequirement(string questName, string itemName, int stacks)
     {
+        ReduceItemRequirement(questName, itemName, stacks);
+    }
+    public void ReduceItemRequirement(string questName, string itemName, int stacks)
+    {
         foreach (var item in questlines)
         {
             foreach (var item2 in item.questList)
@@ -69,6 +73,10 @@ public class QuestManager : NetworkBehaviour
     }
     [ClientRpc]
     private void RpcReduceStructureRequirement(string questName, string structureName)
+    {
+        ReduceStructureRequirement(questName, structureName);
+    }
+    public void ReduceStructureRequirement(string questName, string structureName)
     {
         foreach (var item in questlines)
         {
@@ -89,6 +97,10 @@ public class QuestManager : NetworkBehaviour
     [ClientRpc]
     private void RpcIncreaseItemRequirement(string questName, string itemName, int stacks)
     {
+        IncreaseItemRequirement(questName, itemName, stacks);
+    }
+    public void IncreaseItemRequirement(string questName, string itemName, int stacks)
+    {
         foreach (var item in questlines)
         {
             foreach (var item2 in item.questList)
@@ -96,6 +108,29 @@ public class QuestManager : NetworkBehaviour
                 if (item2.name == questName)
                 {
                     item2.IncreaseItemRequirement(itemName, stacks);
+                }
+            }
+        }
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdReduceCustom1Requirement(string questName, int amount)
+    {
+        RpcReduceCustom1Requirement(questName, amount);
+    }
+    [ClientRpc]
+    private void RpcReduceCustom1Requirement(string questName, int amount)
+    {
+        ReduceCustom1Requirement(questName, amount);
+    }
+    public void ReduceCustom1Requirement(string questName, int amount)
+    {
+        foreach (var item in questlines)
+        {
+            foreach (var item2 in item.questList)
+            {
+                if (item2.name == questName)
+                {
+                    item2.ReduceCustom1Requirement(amount);
                 }
             }
         }

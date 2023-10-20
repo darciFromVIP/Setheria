@@ -111,6 +111,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3424164063009273840, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2102914097594589861}
+    - target: {fileID: 3424164063009273840, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
       propertyPath: workDuration
       value: 2
       objectReference: {fileID: 0}
@@ -356,6 +361,7 @@ MonoBehaviour:
         itemData: {fileID: 11400000, guid: ae8a464113dcbb04799e77ea91c0cdc8, type: 2}
         stacks: 1
       chance: 100
+  fishingQuestEvent: {fileID: 0}
 --- !u!4 &5682573076324167240 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6707853813746013671, guid: d53377f057764634697b6d036b46f8ab,

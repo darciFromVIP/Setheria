@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Gear up to fight the wild.
+  synchronizedQuest: 1
   requiredItems:
   - itemData: {fileID: 11400000, guid: 4a8761a77d913674eabb93f747cf8960, type: 2}
     stacks: 1
@@ -27,6 +28,7 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 3
     rewardAmount: 1

@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Explore the ocean!
+  synchronizedQuest: 1
   requiredItems: []
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures:
   - {fileID: 11400000, guid: 382748be377ccbb4d8c79f98652e2ab5, type: 2}
   requiredResources: 0
@@ -24,6 +27,7 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
     rewardAmount: 50

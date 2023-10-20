@@ -14,17 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Kill Wild Beasts
+  synchronizedQuest: 0
   requiredItems: []
-  requiredItemType: 17
-  requiredItemTypeAmount: 1
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
+  requiredCustom1: 1
   currentCustom1: 0
-  custom1Requirement: 
+  custom1Requirement: 'Beasts killed: '
+  customEvent: {fileID: 11400000, guid: f8e9bad0d67fb034d987c9fa8b4781f3, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 20

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Cooking Q 2
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   label: Cook Fresh Meat.
+  synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: 294bbf2a06d985842802a3842f31fe4b, type: 2}
     stacks: 1
   requiredItemType: 0
   requiredItemTypeAmount: 0
-  requiredStructures:
-  - {fileID: 0}
+  requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
@@ -28,6 +28,7 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
     rewardAmount: 20

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Craft Meal
+  synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: 68275719217b1cc47b58767399476c34, type: 2}
     stacks: 1
   requiredItemType: 0
   requiredItemTypeAmount: 0
-  requiredStructures:
-  - {fileID: 0}
+  requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
@@ -28,6 +28,7 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
     rewardAmount: 100
