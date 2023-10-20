@@ -13,7 +13,6 @@ public class QuestTrigger : NetworkBehaviour
         {
             if (player.isClient && player.isOwned)
             {
-                Debug.Log("Entered");
                 if (giveQuestlineToAllPlayers)
                     FindObjectOfType<QuestManager>().CmdNewQuestline(questlineTriggered.name);
                 else

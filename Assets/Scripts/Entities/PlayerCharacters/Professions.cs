@@ -39,9 +39,9 @@ public class Professions
         {
             gathering += amount;
             player.SpawnProfessionFloatingText(TalentTreeType.Gathering, amount, gathering, maxGathering);
-            if (gathering % gatheringMilestone > 0)
+            if (gathering / gatheringMilestone > 0)
             {
-                player.talentTrees.ChangeTalentPoints(gathering % gatheringMilestone);
+                player.talentTrees.ChangeTalentPoints(gathering / gatheringMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (gatheringMilestone / item < 1)
@@ -58,9 +58,9 @@ public class Professions
         {
             alchemy += amount;
             player.SpawnProfessionFloatingText(TalentTreeType.Alchemy, amount, alchemy, maxAlchemy);
-            if (alchemy % alchemyMilestone > 0)
+            if (alchemy / alchemyMilestone > 0)
             {
-                player.talentTrees.ChangeTalentPoints(alchemy % alchemyMilestone);
+                player.talentTrees.ChangeTalentPoints(alchemy / alchemyMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (alchemyMilestone / item < 1)
@@ -79,9 +79,9 @@ public class Professions
         {
             cooking += amount;
             player.SpawnProfessionFloatingText(TalentTreeType.Cooking, amount, cooking, maxCooking);
-            if (cooking % cookingMilestone > 0)
+            if (cooking/ cookingMilestone > 0)
             {
-                player.talentTrees.ChangeTalentPoints(cooking % cookingMilestone);
+                player.talentTrees.ChangeTalentPoints(cooking / cookingMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (cookingMilestone / item < 1)
@@ -100,9 +100,9 @@ public class Professions
         {
             fishing += amount;
             player.SpawnProfessionFloatingText(TalentTreeType.Fishing, amount, fishing, maxFishing);
-            if (fishing % fishingMilestone > 0)
+            if (fishing / fishingMilestone > 0)
             {
-                player.talentTrees.ChangeTalentPoints(fishing % fishingMilestone);
+                player.talentTrees.ChangeTalentPoints(fishing / fishingMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (fishingMilestone / item < 1)

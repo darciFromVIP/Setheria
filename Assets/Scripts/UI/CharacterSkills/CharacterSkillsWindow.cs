@@ -11,6 +11,7 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     public TextMeshProUGUI textCdA, textCdD, textCdQ, textCdW, textCdE, textCdR;
     public List<Image> skills = new();
     public Sprite lockedSkill;
+    public AvailablePointsBTN attributePointsBTN, talentPointsBTN;
 
     private PlayerController playerController;
 
@@ -43,6 +44,8 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         playerController.Cooldown_W_Started.AddListener(StartCooldownW);
         playerController.Cooldown_E_Started.AddListener(StartCooldownE);
         playerController.Cooldown_R_Started.AddListener(StartCooldownR);
+        attributePointsBTN.Initialize(player);
+        talentPointsBTN.Initialize(player);
     }
     private void UpdateHealth(float currentHealth, float maxHealth)
     {

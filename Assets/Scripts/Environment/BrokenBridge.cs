@@ -16,7 +16,7 @@ public class BrokenBridge : MonoBehaviour
     {
         brokenModel.SetActive(false);
         repairedModel.SetActive(true);
-        Destroy(GetComponent<TurnInItemsInteractable>());
         GetComponent<NavMeshObstacle>().enabled = false;
+        Destroy(GetComponent<TurnInItemsInteractable>());
     }
 }

@@ -129,7 +129,7 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     }
     private void UpdateArmor(float value)
     {
-        armorText.text = value.ToString("F2");
+        armorText.text = value.ToString("F2") + "%";
     }
     private void UpdateAttributes(int value)
     {

@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class TalentTrees
 {
     public List<TalentTree> talentTrees = new();
-    public int talentPoints = 1;
+    public int talentPoints = 0;
+    [NonSerialized] public UnityEvent<int> Talent_Points_Changed = new();
 
     public bool IsTalentUnlocked(TalentScriptable talent, byte level)
     {
@@ -45,5 +48,6 @@ public class TalentTrees
     public void ChangeTalentPoints(int value)
     {
         talentPoints += value;
+        Talent_Points_Changed.Invoke(talentPoints);
     }
 }

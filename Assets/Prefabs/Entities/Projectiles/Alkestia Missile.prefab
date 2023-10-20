@@ -95,6 +95,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
         type: 3}
+      propertyPath: impactParticlePrefab
+      value: 
+      objectReference: {fileID: 4535006216103734310, guid: 0fa09b4ca62872046adb8f55fd9032c7,
+        type: 3}
+    - target: {fileID: 7551944087375355462, guid: 4f07efc4bf2aa05458dee4247fda801c,
+        type: 3}
       propertyPath: impactSound.Guid.Data1
       value: -1123625613
       objectReference: {fileID: 0}
@@ -166,6 +172,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base Attack Flower
       objectReference: {fileID: 0}
+    - target: {fileID: 1485117472237596766, guid: 796a230fa435323469ca70a01cc2951a,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485117472237596766, guid: 796a230fa435323469ca70a01cc2951a,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485117472237596766, guid: 796a230fa435323469ca70a01cc2951a,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485117472237596766, guid: 796a230fa435323469ca70a01cc2951a,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485117472237596766, guid: 796a230fa435323469ca70a01cc2951a,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.scalar
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4161795203600313492, guid: 796a230fa435323469ca70a01cc2951a,
         type: 3}
       propertyPath: m_RootOrder
@@ -220,6 +251,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733602756721603713, guid: 796a230fa435323469ca70a01cc2951a,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733602756721603713, guid: 796a230fa435323469ca70a01cc2951a,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733602756721603713, guid: 796a230fa435323469ca70a01cc2951a,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public enum AudioSliderType
@@ -10,6 +11,7 @@ public class AudioSlider : MonoBehaviour
 {
     public AudioSliderType audioSliderType;
     [SerializeField] private Slider slider;
+    [SerializeField] private TextMeshProUGUI percentageText;
     private SettingsManager settingsManager;
 
     private void Start()
@@ -20,6 +22,7 @@ public class AudioSlider : MonoBehaviour
     public void UpdateSlider(float value)
     {
         slider.value = value;
+        percentageText.text = (int)(value * 100) + "%";
     }
     private void ChangeVolume(float value)
     {
@@ -42,5 +45,6 @@ public class AudioSlider : MonoBehaviour
             default:
                 break;
         }
+        percentageText.text = (int)(value * 100) + "%";
     }
 }

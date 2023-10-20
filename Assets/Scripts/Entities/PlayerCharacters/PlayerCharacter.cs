@@ -5,6 +5,7 @@ using Mirror;
 using Steamworks;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using FMODUnity;
 
 [System.Serializable]
 public enum Hero
@@ -69,6 +70,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     private CanAttack attackComp;
     private PlayerController playerController;
     [SerializeField] private GameObject spotlight;
+    [SerializeField] private GameObject levelUpEffect;
+    public EventReference levelUpSound;
 
     protected override void Start()
     {
@@ -293,6 +296,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);
             FindObjectOfType<FloatingText>().SpawnText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
+            levelUpEffect.SetActive(true);
+            FindObjectOfType<AudioManager>().PlayOneShot(levelUpSound, transform.position);
         }
         Xp_Changed.Invoke(xp, maxXp);
     }    

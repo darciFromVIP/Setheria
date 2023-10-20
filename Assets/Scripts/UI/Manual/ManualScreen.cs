@@ -118,7 +118,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
                 }
 
                 tempRecipe.ToggleCraftableNotif(false);
-                var currentPlayerItems = FindObjectOfType<InventoryManager>().GetAllItems();
+                var currentPlayerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
                 int matchedCriteria = 0;
                 for (int i = 0; i < recipe.componentItems.Count; i++)
                 {

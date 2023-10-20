@@ -141,6 +141,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>().state != PlayerState.None)        //Already does something
             return;
+        if (Input.GetKey(KeyCode.LeftShift))
+            return;
         if (!usable)
             return;
         if (item.itemType != ItemType.None)
