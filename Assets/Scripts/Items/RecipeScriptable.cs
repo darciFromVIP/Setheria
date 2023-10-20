@@ -18,19 +18,23 @@ public class RecipeScriptable : ScriptableObject
     [Tooltip("Unlocked from previous playthrough but still not craftable unless unlocked again")]
     public bool visible = false;
     [HideInInspector] public bool freshlyUnlocked = false;
+    [Tooltip("The structure at which you have to craft this item.")]
     public ItemScriptable requiredStructure;
     public float craftingDuration;
     public int xpGranted;
     public int tier;
+    [Tooltip("An item which unlocks this recipe.")]
     public ItemScriptable recipeItem;
+    [Tooltip("The items which unlock this recipe upon acquisition.")]
     public List<ItemScriptable> requiredItems = new();
+    [Tooltip("The structures which unlock this recipe upon building.")]
     public List<StructureScriptable> requiredStructures = new();
     private Dictionary<ItemScriptable, bool> requiredItemsTemp = new();
     private Dictionary<StructureScriptable, bool> requiredStructuresTemp = new();
     public TalentTreeType requiredProfession;
     public int requiredProfessionExperience;
 
-    public UnityEvent Recipe_Unlocked;
+    [HideInInspector] public UnityEvent Recipe_Unlocked;
 
     private void OnEnable()
     {
