@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 1
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   label: Find and collect materials to build a Tent.
   synchronizedQuest: 1
   requiredItems:
@@ -37,7 +37,7 @@ MonoBehaviour:
   customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
-    rewardAmount: 15
+    rewardAmount: 70
     itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

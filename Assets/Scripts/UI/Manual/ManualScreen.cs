@@ -8,7 +8,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     public GameObject recipeList;
     public GameObject recipeCategories;
     public Recipe recipePrefab;
-    public TooltipTrigger alchemyButton, fishingButton, cookingButton;
+    public TooltipTrigger alchemyButton, fishingButton, cookingButton, explorationButton;
 
     private RecipeCategory currentOpenedCategory;
     private SettingsManager settingsManager;
@@ -92,6 +92,9 @@ public class ManualScreen : MonoBehaviour, WindowedUI
                 break;
             case RecipeCategory.Cooking:
                 LoadCookingRecipes();
+                break;
+            case RecipeCategory.Exploration:
+                LoadExplorationRecipes();
                 break;
             default:
                 break;
@@ -190,6 +193,12 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         SetRecipeData(recipeDatabase.cookingRecipes, false);
         currentOpenedCategory = RecipeCategory.Cooking;
     }
+    public void LoadExplorationRecipes()
+    {
+        ClearRecipeList();
+        SetRecipeData(recipeDatabase.cookingRecipes, false);
+        currentOpenedCategory = RecipeCategory.Exploration;
+    }
     public void UpdateCategoryButtons(Professions prof)
     {
         if (prof.alchemy <= 0)
@@ -221,6 +230,16 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         {
             fishingButton.GetComponent<Button>().interactable = true;
             fishingButton.SetText("Fishing", "");
+        }
+        if (prof.exploration <= 0)
+        {
+            explorationButton.GetComponent<Button>().interactable = false;
+            explorationButton.SetText("Exploration (Locked)", "Unlock exploration by using a Beginner's Guide to Exploration first.");
+        }
+        else
+        {
+            explorationButton.GetComponent<Button>().interactable = true;
+            explorationButton.SetText("Exploration", "");
         }
     }
 }
