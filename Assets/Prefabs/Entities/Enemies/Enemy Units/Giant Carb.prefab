@@ -107,22 +107,22 @@ PrefabInstance:
     - target: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.009650612
       objectReference: {fileID: 0}
     - target: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.99995345
       objectReference: {fileID: 0}
     - target: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -132,7 +132,7 @@ PrefabInstance:
     - target: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -178.894
       objectReference: {fileID: 0}
     - target: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -319,6 +319,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6283823370652587525}
+    - targetCorrespondingSourceObject: {fileID: 7216999625238889632, guid: 8bb24234d2c8762429cb3f2855bde117,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7696086911954071537}
   m_SourcePrefab: {fileID: 100100000, guid: 8bb24234d2c8762429cb3f2855bde117, type: 3}
 --- !u!1 &2399672331890192894 stripped
 GameObject:
@@ -347,6 +351,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7696086911954071537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2399672331890192894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2548a9c5830ee43970166dba0cbd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill1_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill2_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill3_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill4_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill5_Casted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &6210843839990952267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1394970462069277717, guid: 8bb24234d2c8762429cb3f2855bde117,
