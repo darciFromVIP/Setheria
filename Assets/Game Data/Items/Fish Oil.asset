@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Fish Oil
   m_EditorClassIdentifier: 
-  description: Used in crafting.
+  description: 'Used in crafting.
+
+    __________________________________
+
+    Fishing'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: e954724d0282fa84199a323e02f6ff09, type: 3}
@@ -27,5 +31,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

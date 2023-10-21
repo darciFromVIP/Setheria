@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Fresh Meat
   m_EditorClassIdentifier: 
-  description: Cook this at a Campfire to make it edible.
+  description: 'Cook this at a Campfire to make it edible.
+
+    __________________________________
+
+    Cooking'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 9a8852588947a1b40a786e2324d5cc08, type: 3}
@@ -26,3 +30,12 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
+    m_PersistentCalls:
+      m_Calls: []
