@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Be (un)welcome, stranger. Try to survive.
+  synchronizedQuest: 1
   requiredItems:
   - itemData: {fileID: 11400000, guid: eed769246a0eca54dbd15b977acd3832, type: 2}
     stacks: 1
@@ -27,10 +28,14 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 3
     rewardAmount: 1
     itemReward: {fileID: 11400000, guid: 56fa6d2db1b3b704babb25bf108d8dee, type: 2}
+  - rewardType: 2
+    rewardAmount: 15
+    itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

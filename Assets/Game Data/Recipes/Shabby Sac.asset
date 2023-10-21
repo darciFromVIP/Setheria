@@ -30,6 +30,12 @@ MonoBehaviour:
   xpGranted: 15
   tier: 0
   recipeItem: {fileID: 0}
-  requiredItems: []
+  requiredItems:
+  - {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
   requiredStructures:
-  - {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
+  - {fileID: 0}
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []
