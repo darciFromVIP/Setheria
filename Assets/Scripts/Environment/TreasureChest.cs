@@ -21,14 +21,18 @@ public class TreasureChest : NetworkBehaviour
         }
         FindObjectOfType<AudioManager>().ChestOpen(transform.position);
         GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>());
-        turnInComp.enabled = false;
-        ChestLooted();
+        CmdChestLooted();
     }
     [Command(requiresAuthority = false)]
-    private void ChestLooted()
+    private void CmdChestLooted()
+    {
+        RpcChestLooted();
+    }
+    [ClientRpc]
+    private void RpcChestLooted()
     {
         looted = true;
         GetComponent<TooltipTriggerWorld>().objectName = "Treasure Chest (Looted)";
-        turnInComp.enabled = false;
+        Destroy(turnInComp);
     }
 }

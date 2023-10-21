@@ -86,6 +86,13 @@ public class LootableObject : NetworkBehaviour, IInteractable
                     return;
                 }
                 break;
+            case TalentTreeType.Exploration:
+                if (player.professions.exploration < professionExperienceRequired)
+                {
+                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this!");
+                    return;
+                }
+                break;
             default:
                 break;
         }
@@ -133,6 +140,9 @@ public class LootableObject : NetworkBehaviour, IInteractable
                 break;
             case TalentTreeType.Fishing:
                 interactingPlayer.GetComponent<PlayerCharacter>().professions.AddFishing(1);
+                break;
+            case TalentTreeType.Exploration:
+                interactingPlayer.GetComponent<PlayerCharacter>().professions.AddExploration(1);
                 break;
             default:
                 break;
