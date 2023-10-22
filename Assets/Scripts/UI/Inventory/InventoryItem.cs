@@ -338,10 +338,16 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
             else
             {
+                var myParent = transform.parent;
                 var otherParent = inventoryItem.parentAfterDrag;
                 inventoryItem.parentAfterDrag = transform.parent;
                 transform.SetParent(otherParent);
                 transform.position = otherParent.transform.position;
+                if (myParent.TryGetComponent(out StashSlot stashSlot))
+                {
+                    stashSlot.CmdDeleteItemOnClients();
+                    stashSlot.CmdSpawnItemOnThisSlot(inventoryItem.item.name, inventoryItem.stacks);
+                }
             }
         }
     }
