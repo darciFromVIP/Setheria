@@ -53,10 +53,10 @@ public class StashInventory : MonoBehaviour, WindowedUI
         }
         foreach (var slot in stashSlots)
         {
-            if (slot.transform.childCount == 0 && slot.isFree)
+            if (slot.isFree && slot.isUnlocked)
             {
-                Debug.Log("Spawning on " + slot.name);
                 slot.CmdSpawnItemOnThisSlot(item.name, stacks);
+                slot.isFree = false;
                 return true;
             }
         }
@@ -88,6 +88,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
                     {
                         temp.transform.SetParent(null);
                         Destroy(temp.gameObject);
+                        item.isFree = true;
                     }
                 }
             }
@@ -118,7 +119,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     {
         foreach (var item in stashSlots)
         {
-            if (!item.isFree)
+            if (!item.isUnlocked)
             {
                 item.ToggleSlotAvailability(true);
                 value--;
@@ -131,7 +132,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     {
         for (int i = stashSlots.Count - 1; i >= 0; i--)
         {
-            if (stashSlots[i].isFree && stashSlots[i].transform.childCount == 0)
+            if (stashSlots[i].isUnlocked && stashSlots[i].transform.childCount == 0)
                 value--;
         }
         if (value <= 0)
@@ -143,7 +144,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     {
         for (int i = stashSlots.Count - 1; i >= 0; i--)
         {
-            if (stashSlots[i].isFree && stashSlots[i].transform.childCount == 0)
+            if (stashSlots[i].isUnlocked && stashSlots[i].transform.childCount == 0)
             {
                 stashSlots[i].ToggleSlotAvailability(false);
                 value--;
@@ -156,7 +157,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     {
         foreach (var slot in stashSlots)
         {
-            if (slot.transform.childCount == 0 && slot.isFree)
+            if (slot.isFree && slot.isUnlocked)
             {
                 return slot.transform;
             }

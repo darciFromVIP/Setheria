@@ -9,19 +9,19 @@ public class StashSlot : NetworkBehaviour, IDropHandler
     public ItemScriptableDatabase itemDatabase;
     public InventoryItem inventoryItemPrefab;
     public Sprite freeSprite, lockSprite;
-    public bool isFree = false;
-
+    public bool isUnlocked = false;
+    public bool isFree = true;
     public void ToggleSlotAvailability(bool value)
     {
-        isFree = value;
-        if (isFree)
+        isUnlocked = value;
+        if (isUnlocked)
             GetComponent<Image>().sprite = freeSprite;
         else
             GetComponent<Image>().sprite = lockSprite;
     }
     public void OnDrop(PointerEventData eventData)
     {
-        if (transform.childCount == 0 && isFree)
+        if (isFree && isUnlocked)
         {
             var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
             if (!inventoryItem)
@@ -38,13 +38,14 @@ public class StashSlot : NetworkBehaviour, IDropHandler
     [Command(requiresAuthority = false)]
     public void CmdSpawnItemOnThisSlot(string itemName, int stacks)
     {
-        RpcUpdateNewItem(itemName, stacks);
+        RpcSpawnNewItem(itemName, stacks);
     }
     [ClientRpc]
-    private void RpcUpdateNewItem(string itemName, int stacks)
+    private void RpcSpawnNewItem(string itemName, int stacks)
     {
         var newItem = Instantiate(inventoryItemPrefab, transform);
         newItem.GetComponent<InventoryItem>().InitializeItem(itemDatabase.GetItemByName(itemName), stacks);
+        isFree = false;
     }
     [Command(requiresAuthority = false)]
     public void CmdDeleteItemOnClients()
@@ -57,6 +58,7 @@ public class StashSlot : NetworkBehaviour, IDropHandler
         var item = GetComponentInChildren<InventoryItem>();
         if (item)
             Destroy(item.gameObject);
+        isFree = true;
     }
     [Command(requiresAuthority = false)]
     public void CmdChangeStacks(int stacks)

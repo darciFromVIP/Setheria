@@ -336,7 +336,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 }
                 inventoryItem.DestroyItem();
             }
-            else
+            else if (!Input.GetKey(KeyCode.LeftShift))
             {
                 var myParent = transform.parent;
                 var otherParent = inventoryItem.parentAfterDrag;
