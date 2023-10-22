@@ -54,6 +54,14 @@ public class LootableObject : NetworkBehaviour, IInteractable
             FindObjectOfType<SystemMessages>().AddMessage("You need to equip a " + toolRequirement.ToString() + " of level " + toolLevelRequirement + " to harvest this!");
             return;
         }
+        if (toolRequirement != ItemType.None && player.TryGetComponent(out Shapeshifter shapeshifter))
+        {
+            if (shapeshifter.shapeshiftedModel.gameObject.activeSelf)
+            {
+                FindObjectOfType<SystemMessages>().AddMessage("You can't harvest this in shapeshifted form!");
+                return;
+            }
+        }
         switch (professionRequired)
         {
             case TalentTreeType.Special:
