@@ -258,6 +258,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             transform.SetParent(parentAfterDrag);
             transform.position = parentAfterDrag.position;
 
+            if (parentAfterDrag.TryGetComponent(out StashSlot slot))
+                return;
+
             List<RaycastResult> results = new();
             EventSystem.current.RaycastAll(eventData, results);
             if (results.Count > 0)
