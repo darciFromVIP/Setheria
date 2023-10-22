@@ -55,6 +55,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
         {
             if (slot.transform.childCount == 0 && slot.isFree)
             {
+                Debug.Log("Spawning on " + slot.name);
                 slot.CmdSpawnItemOnThisSlot(item.name, stacks);
                 return true;
             }
