@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0345b34eca3faad499132b42223de7eb, type: 3}
+  m_Name: Sunken Box
+  m_EditorClassIdentifier: 
+  Action_Finished:
+    m_PersistentCalls:
+      m_Calls: []
+  toolType: 11
+  requiredLevel: 1
+  itemDropsTable:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: 09d0330c4cacef4498e20906c8d255d4, type: 2}
+        stacks: 1
+      chance: 40
+    - item:
+        itemData: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
+        stacks: 1
+      chance: 10
+    - item:
+        itemData: {fileID: 11400000, guid: 77ee74d9a32ed344bbfa8696f6b1a5c3, type: 2}
+        stacks: 1
+      chance: 20
+    - item:
+        itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
+        stacks: 4
+      chance: 20
+    - item:
+        itemData: {fileID: 11400000, guid: 092818e9ed8f26946865a62521ee1263, type: 2}
+        stacks: 1
+      chance: 10
