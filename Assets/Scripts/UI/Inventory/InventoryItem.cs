@@ -343,6 +343,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 inventoryItem.parentAfterDrag = transform.parent;
                 transform.SetParent(otherParent);
                 transform.position = otherParent.transform.position;
+                if (otherParent.TryGetComponent(out StashSlot slot))
+                {
+                    slot.CmdDeleteItemOnClients();
+                    slot.CmdSpawnItemOnThisSlot(item.name, stacks);
+                }
                 if (myParent.TryGetComponent(out StashSlot stashSlot))
                 {
                     stashSlot.CmdDeleteItemOnClients();
