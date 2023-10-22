@@ -18,7 +18,7 @@ MonoBehaviour:
     Used in crafting.'
   grade: 0
   itemType: 0
-  sprite: {fileID: 21300000, guid: 47d3bfa9acfffbe42b534227ac855553, type: 3}
+  sprite: {fileID: 21300000, guid: f4dc3833aff19ad4d8c571ed9ea9bf08, type: 3}
   stackable: 1
   usage: []
   usageCooldown: 0
@@ -30,5 +30,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []
