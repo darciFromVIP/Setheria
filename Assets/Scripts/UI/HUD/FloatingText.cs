@@ -6,7 +6,7 @@ using Mirror;
 
 public enum FloatingTextType
 {
-    Healing, Damage, Resources, Knowledge, Experience, Hunger, Gathering, Fishing, Cooking, Alchemy
+    Healing, Damage, Resources, Knowledge, Experience, Hunger, Gathering, Fishing, Cooking, Alchemy, Exploration
 }
 
 public class FloatingText : NetworkBehaviour

@@ -48,6 +48,9 @@ public class FloatingTextPrefab : MonoBehaviour
             case FloatingTextType.Alchemy:
                 textMesh.color = Color.magenta;
                 break;
+            case FloatingTextType.Exploration:
+                textMesh.color = Color.yellow;
+                break;
             default:
                 break;
         }

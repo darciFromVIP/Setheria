@@ -108,6 +108,20 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
         }
         return result;
     }
+    public InventoryItem GetItemOfName(string name)
+    {
+        InventoryItem result = null;
+        foreach (var item in inventorySlots)
+        {
+            if (item.transform.childCount > 0)
+            {
+                var temp = item.transform.GetChild(0).GetComponent<InventoryItem>();
+                if (temp.item.name == name)
+                    result = temp;
+            }
+        }
+        return result;
+    }
     public void ExtendInventory(int value)
     {
         foreach (var item in inventorySlots)

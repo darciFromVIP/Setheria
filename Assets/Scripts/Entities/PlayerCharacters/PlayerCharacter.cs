@@ -286,7 +286,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void AddXp(int value)
     {
         xp += value;
-        FindObjectOfType<FloatingText>().SpawnText("+" + value.ToString() + " EXP", transform.position + Vector3.up, FloatingTextType.Experience);
+        FindObjectOfType<FloatingText>().SpawnText("+" + value.ToString() + " EXP", transform.position + Vector3.up * 0.5f, FloatingTextType.Experience);
 
         if (xp >= maxXp)
         {
@@ -296,7 +296,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             Level_Up.Invoke(level);
             talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);
-            FindObjectOfType<FloatingText>().SpawnText("Level Up!", transform.position + Vector3.up * 2, FloatingTextType.Experience);
+            FindObjectOfType<FloatingText>().SpawnText("Level Up!", transform.position + Vector3.up * 1, FloatingTextType.Experience);
             levelUpEffect.SetActive(true);
             FindObjectOfType<AudioManager>().PlayOneShot(levelUpSound, transform.position);
         }
@@ -318,6 +318,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 break;
             case TalentTreeType.Fishing:
                 type = FloatingTextType.Fishing;
+                break;
+            case TalentTreeType.Exploration:
+                type = FloatingTextType.Exploration;
                 break;
             default:
                 break;
@@ -388,6 +391,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void ChangeHunger(int amount, bool showTextToOthers)
     {
         hunger += amount;
+        if ((hunger == 20 || hunger == 10) && amount < 0)
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("You are starving!");
+        }
         if (amount > 0)
         {
             if (showTextToOthers)

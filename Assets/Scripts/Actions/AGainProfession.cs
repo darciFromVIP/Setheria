@@ -31,6 +31,9 @@ public class AGainProfession : ActionTemplate
             case TalentTreeType.Fishing:
                 prof.AddFishing(amountGained);
                 break;
+            case TalentTreeType.Exploration:
+                prof.AddExploration(amountGained);
+                break;
             default:
                 break;
         }

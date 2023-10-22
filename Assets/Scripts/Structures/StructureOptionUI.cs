@@ -24,6 +24,8 @@ public class StructureOptionUI : MonoBehaviour
 
         if (FindObjectOfType<GameManager>().localPlayerCharacter.professions.GetProfessionExperience(structureOption.professionRequired) < structureOption.professionLevelRequired)
             GetComponent<Button>().interactable = false;
+        if (!FindObjectOfType<InventoryManager>().GetItemOfName("Everstone") && structureOption.structureAction == StructureAction.SetReturnPoint)
+            GetComponent<Button>().interactable = false;
     }
     private void Update()
     {
@@ -154,7 +156,7 @@ public class StructureOptionUI : MonoBehaviour
         }
         FindObjectOfType<AudioManager>().ResourcesCollected(GetComponentInParent<StructureScreen>().currentStructure.transform.position);
         FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + resources.ToString() + " Resources", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up, FloatingTextType.Resources);
-        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + knowledge.ToString() + " Knowledge", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up * 1.5f, FloatingTextType.Knowledge);
+        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + knowledge.ToString() + " Knowledge", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up * 0.5f, FloatingTextType.Knowledge);
 
     }
     private void CookFish()
@@ -171,7 +173,7 @@ public class StructureOptionUI : MonoBehaviour
     private void SetReturnPoint()
     {
         FindObjectOfType<GameManager>().localPlayerCharacter.SetReturnPoint();
-        FindObjectOfType<SystemMessages>().AddMessage("Return Point Successfully Set!");
+        FindObjectOfType<SystemMessages>().AddMessage("Return Point Successfully Set!", MsgType.Positive);
     }
     private void DrawWater()
     {

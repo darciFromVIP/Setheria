@@ -47,6 +47,13 @@ public class ProfessionWindow : MonoBehaviour
                     lockedImage.SetActive(false);
                 experienceText.text = talentScreen.localPlayer.professions.fishing.ToString() + "/" + talentScreen.localPlayer.professions.maxFishing;
                 break;
+            case TalentTreeType.Exploration:
+                if (talentScreen.localPlayer.professions.exploration == 0)
+                    lockedImage.SetActive(true);
+                else
+                    lockedImage.SetActive(false);
+                experienceText.text = talentScreen.localPlayer.professions.exploration.ToString() + "/" + talentScreen.localPlayer.professions.maxExploration;
+                break;
             default:
                 break;
         }

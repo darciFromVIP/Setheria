@@ -72,6 +72,8 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
                 return localPlayer.professions.alchemy == localPlayer.professions.maxAlchemy;
             case TalentTreeType.Fishing:
                 return localPlayer.professions.fishing == localPlayer.professions.maxFishing;
+            case TalentTreeType.Exploration:
+                return localPlayer.professions.exploration == localPlayer.professions.maxExploration;
             default:
                 break;
         }

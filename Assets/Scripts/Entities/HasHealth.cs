@@ -70,7 +70,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     {
         health += heal;
         if (!isRegen && isServer)
-            FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + ((int)heal).ToString(), transform.position + Vector3.up, FloatingTextType.Healing);
+            FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + ((int)heal).ToString(), transform.position, FloatingTextType.Healing);
         if (health > maxHealth)
             health = maxHealth;
         Health_Changed.Invoke(health, maxHealth);

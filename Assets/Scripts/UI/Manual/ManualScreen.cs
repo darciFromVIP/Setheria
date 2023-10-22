@@ -196,7 +196,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     public void LoadExplorationRecipes()
     {
         ClearRecipeList();
-        SetRecipeData(recipeDatabase.cookingRecipes, false);
+        SetRecipeData(recipeDatabase.explorationRecipes, false);
         currentOpenedCategory = RecipeCategory.Exploration;
     }
     public void UpdateCategoryButtons(Professions prof)
