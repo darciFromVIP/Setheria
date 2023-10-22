@@ -336,6 +336,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 }
                 inventoryItem.DestroyItem();
             }
+            else
+            {
+                var otherParent = inventoryItem.parentAfterDrag;
+                inventoryItem.parentAfterDrag = transform.parent;
+                transform.SetParent(otherParent);
+                transform.position = otherParent.transform.position;
+            }
         }
     }
     //Returns 'true' if we touched or hovering on Unity UI element.
