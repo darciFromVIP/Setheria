@@ -56,23 +56,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             NavMeshPath path = new();
             NavMesh.CalculatePath(transform.position, destination, agent.areaMask, path);
             if (path.status == NavMeshPathStatus.PathComplete)
-            {
                 agent.path = path;
-            }
-            else if (path.status == NavMeshPathStatus.PathPartial)
-            {
-                Vector3 nearestPoint = destination;
-                for (int i = 0; i < path.corners.Length; i++)
-                {
-                    float distance = Vector3.Distance(transform.position, path.corners[i]);
-
-                    if (distance < Vector3.Distance(transform.position, nearestPoint))
-                    {
-                        nearestPoint = path.corners[i];
-                    }
-                }
-                agent.SetDestination(nearestPoint);
-            }
             else
                 agent.SetDestination(destination);
 

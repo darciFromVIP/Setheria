@@ -43,6 +43,21 @@ public class ItemButton : Button
         {
             if (item.transform.parent.TryGetComponent(out InventorySlot slot))
             {
+                if (item.item.itemType == ItemType.Backpack)
+                {
+                    foreach (var item in FindObjectOfType<InventoryScreen>(true).GetComponentsInChildren<CharacterGearSlot>(true))
+                    {
+                        if (item.itemType == ItemType.Backpack && item.transform.childCount == 0)
+                        {
+                            this.item.parentAfterDrag = this.item.transform.parent;
+                            item.EquipItem(this.item);
+                            this.item.transform.SetParent(this.item.parentAfterDrag);
+                            this.item.transform.position = this.item.parentAfterDrag.position;
+                            FindObjectOfType<Tooltip>(true).Hide();
+                            break;
+                        }
+                    }
+                }
                 foreach (var item in FindObjectOfType<CharacterScreen>(true).GetComponentsInChildren<CharacterGearSlot>(true))
                 {
                     if (item.itemType == this.item.item.itemType)
