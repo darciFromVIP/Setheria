@@ -27,7 +27,11 @@ public class QuestManager : NetworkBehaviour
     {
         NewQuest(questName);
     }
-    private QuestScriptable NewQuest(string questName)
+    private void NewQuest(string questName)
+    {
+        NewQuestReturn(questName);
+    }
+    private QuestScriptable NewQuestReturn(string questName)
     {
         QuestScriptable quest = null;
         foreach (var item in questlines)
@@ -143,6 +147,10 @@ public class QuestManager : NetworkBehaviour
     [ClientRpc]
     private void RpcQuestComplete(string questName)
     {
+        QuestComplete(questName);
+    }
+    private void QuestComplete(string questName)
+    {
         QuestScriptable quest = null;
         foreach (var item in questlines)
         {
@@ -193,6 +201,10 @@ public class QuestManager : NetworkBehaviour
     [ClientRpc]
     private void RpcQuestlineComplete(string questlineName)
     {
+        QuestlineComplete(questlineName);
+    }
+    private void QuestlineComplete(string questlineName)
+    {
         QuestlineScriptable temp = null;
         foreach (var item in questlines)
         {
@@ -224,13 +236,23 @@ public class QuestManager : NetworkBehaviour
     {
         QuestlineScriptable questline = questlineDatabase.GetQuestlineByName(questlineName);
         questlines.Add(questline);
-        if (isServer)
+        if (questline.synchronized)
         {
-            questline.Quest_Complete.AddListener(RpcQuestComplete);
-            questline.Questline_Complete.AddListener(RpcQuestlineComplete);
-            questline.New_Quest.AddListener(RpcNewQuest);
+            if (isServer)
+            {
+                questline.Quest_Complete.AddListener(RpcQuestComplete);
+                questline.Questline_Complete.AddListener(RpcQuestlineComplete);
+                questline.New_Quest.AddListener(RpcNewQuest);
+            }
         }
-        return NewQuest(questline.questList[questIndex].name);
+        else
+        {
+            questline.Quest_Complete.AddListener(QuestComplete);
+            questline.Questline_Complete.AddListener(QuestlineComplete);
+            questline.New_Quest.AddListener(NewQuest);
+        }
+        
+        return NewQuestReturn(questline.questList[questIndex].name);
     }
     public List<QuestlineSaveable> SaveState()
     {

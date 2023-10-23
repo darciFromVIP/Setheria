@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class QuestlineScriptable : ScriptableObject
 {
     public int currentQuestIndex = 0;
+    public bool synchronized = false;
     public List<QuestScriptable> questList = new();
     public string questsPath;
 
