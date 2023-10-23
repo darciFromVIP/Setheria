@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Craft Healing Potion.
+  synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: 58f80bf90a34df540a593a32c63665ae, type: 2}
     stacks: 2
@@ -27,6 +28,7 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
     rewardAmount: 15

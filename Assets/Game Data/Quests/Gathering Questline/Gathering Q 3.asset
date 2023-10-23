@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Find unknown plants.
+  synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: c24df273115bd324c9052ab14ba4c576, type: 2}
     stacks: 1
@@ -31,6 +32,7 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
     rewardAmount: 30

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Find natural source of energy.
+  synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: 259866ad2fbffe245b24c7bae99eea3e, type: 2}
     stacks: 3
@@ -27,6 +28,7 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
     rewardAmount: 50

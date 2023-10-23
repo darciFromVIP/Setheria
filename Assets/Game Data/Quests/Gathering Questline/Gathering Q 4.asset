@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Collect Silver Ore
+  synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
     stacks: 1
@@ -27,6 +28,7 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
     rewardAmount: 20

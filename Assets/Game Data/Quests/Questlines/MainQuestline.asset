@@ -12,9 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926dd4e73341e454c8b3f18c628c191c, type: 3}
   m_Name: MainQuestline
   m_EditorClassIdentifier: 
-  currentQuestIndex: 0
+  currentQuestIndex: 9
   questList:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 0ef8594fd0b484b45a90638a8158988b, type: 2}
+  - {fileID: 11400000, guid: 3ae1c79c7b4e7e947942c7f4e77b174e, type: 2}
+  - {fileID: 11400000, guid: e642f63fce682834ea252044a1141a71, type: 2}
+  - {fileID: 11400000, guid: dc017bf8de7b06d43a9df71ef61b562a, type: 2}
+  - {fileID: 11400000, guid: 4fa8e13d0ba27d04f85ddd8a5e7a0e6b, type: 2}
+  - {fileID: 11400000, guid: c325d7af94776374592dc89bc2ba79bc, type: 2}
+  - {fileID: 11400000, guid: c1bb8ac5c0161a24a8a77c2de693d0f2, type: 2}
+  - {fileID: 11400000, guid: ed1dc866a88859b408af15bd30341201, type: 2}
+  - {fileID: 11400000, guid: e9ae0a28c5ef98949bddd173c04b4e4c, type: 2}
   questsPath: Assets/Game Data/Quests/Main Questline
   Quest_Complete:
     m_PersistentCalls:

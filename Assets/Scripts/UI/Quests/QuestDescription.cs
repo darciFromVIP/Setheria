@@ -38,8 +38,17 @@ public class QuestDescription : MonoBehaviour
     }
     public void UpdateUI()
     {
-        label.text = questData.label;
-        objectives.text = questData.GetObjectivesText();
-        rewards.text = questData.GetRewardsText();
+        if (questData.active)
+        {
+            label.text = questData.label;
+            objectives.text = questData.GetObjectivesText();
+            rewards.text = questData.GetRewardsText();
+        }
+        else
+        {
+            label.text = questData.label;
+            objectives.text = "Complete!";
+            rewards.text = questData.GetRewardsText();
+        }
     }
 }

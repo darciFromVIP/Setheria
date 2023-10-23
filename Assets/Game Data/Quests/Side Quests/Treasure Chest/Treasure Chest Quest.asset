@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Strange Chest
+  synchronizedQuest: 1
   requiredItems:
   - itemData: {fileID: 11400000, guid: e422741b5d6d345448e8ca6d5a17a6ac, type: 2}
     stacks: 1
@@ -27,6 +28,7 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
     rewardAmount: 30

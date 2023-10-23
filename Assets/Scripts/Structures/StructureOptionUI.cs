@@ -143,17 +143,16 @@ public class StructureOptionUI : MonoBehaviour
             if (item.item.itemType == ItemType.Resources)
             {
                 gameManager.ChangeResources(item.item.value);
-                gameManager.localPlayerCharacter.professions.AddExploration(1);
                 resources += item.item.value;
             }
             if (item.item.itemType == ItemType.Knowledge)
             {
                 gameManager.ChangeKnowledge(item.item.value);
-                gameManager.localPlayerCharacter.professions.AddExploration(1);
                 knowledge += item.item.value;
             }
             inventory.RemoveItem(new ItemRecipeInfo() { itemData = item.item, stacks = 1 });
         }
+        gameManager.localPlayerCharacter.professions.AddExploration(selectedItems.Count);
         FindObjectOfType<AudioManager>().ResourcesCollected(GetComponentInParent<StructureScreen>().currentStructure.transform.position);
         FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + resources.ToString() + " Resources", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up, FloatingTextType.Resources);
         FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + knowledge.ToString() + " Knowledge", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up * 0.5f, FloatingTextType.Knowledge);

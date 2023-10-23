@@ -588,10 +588,20 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     public void Recall()
     {
-        moveComp.StopAgent();
+        moveComp.agent.enabled = false;
+        StartCoroutine(DelayedRecallEnd());
         GetComponent<NetworkTransform>().CmdTeleport(returnPoint);
-        moveComp.ResumeAgent();
+    }
+    private IEnumerator DelayedRecallEnd()
+    {
+        Vector3 currentPos = transform.position;
+        while (currentPos == transform.position)
+        {
+            yield return null;
+        }
+        moveComp.agent.enabled = true;
         moveComp.Stop();
+        FindObjectOfType<CameraTarget>().Teleport(transform.position);
     }
     public void UpdateManualCategories()
     {

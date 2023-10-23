@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Collect Pure crystal
+  synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: bc713de8271117249a9f00941267a367, type: 2}
     stacks: 1
@@ -27,6 +28,7 @@ MonoBehaviour:
   requiredCustom1: 0
   currentCustom1: 0
   custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
     rewardAmount: 400

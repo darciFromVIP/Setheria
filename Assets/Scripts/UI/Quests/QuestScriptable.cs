@@ -1,3 +1,4 @@
+using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -72,10 +73,14 @@ public class QuestScriptable : ScriptableObject, IComparable
 
             currentItemTypeAmount = 0;
 
+            if (requiredResources > 0)
+                gm.Resources_Added.AddListener(ReduceResourceRequirement);
+
+            if (requiredKnowledge > 0)
+                gm.Knowledge_Added.AddListener(ReduceKnowledgeRequirement);
+
             if (synchronizedQuest)
             {
-                gm.Knowledge_Added.AddListener(ReduceKnowledgeRequirement);
-                gm.Resources_Added.AddListener(ReduceResourceRequirement);
                 if (customEvent)
                     customEvent.theEvent.AddListener(CmdReduceCustom1Requirement);
                 foreach (var item in requiredItems)
@@ -125,6 +130,21 @@ public class QuestScriptable : ScriptableObject, IComparable
                             validItemTypeNames.Add(item.name);
                         }
                     }
+            }
+            if (requiredItemsDic.Count > 0)
+            {
+                var playerItems = FindObjectOfType<InventoryManager>().GetAllItems();
+                List<KeyValuePair<string, int>> dicCopy = new();
+                requiredItemsDic.CopyTo(dicCopy);
+                foreach (var requiredItem in dicCopy)
+                {
+                    foreach (var playerItem in playerItems)
+                    {
+                        if (requiredItem.Key == playerItem.item.name)
+                            requiredItemsDic[requiredItem.Key] += playerItem.stacks;
+                    }
+                }
+                CheckQuestCompletion();
             }
         }
         else
@@ -321,6 +341,7 @@ public class QuestScriptable : ScriptableObject, IComparable
     {
         SetQuestActive(false);
         Quest_Complete.Invoke();
+
     }
     public string GetObjectivesText()
     {

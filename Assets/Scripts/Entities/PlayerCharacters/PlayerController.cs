@@ -5,6 +5,7 @@ using Mirror;
 using UnityEngine.Events;
 using FoW;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public enum PlayerState
 {
@@ -161,7 +162,7 @@ public class PlayerController : NetworkBehaviour
         if (state != PlayerState.None && state != PlayerState.Working)
             return;
 
-        if (EventSystem.current.IsPointerOverGameObject())              // Is mouse over UI?
+        if (IsPointerOverGameObject())              // Is mouse over UI?
             return;
 
         RaycastHit hit;
@@ -462,5 +463,26 @@ public class PlayerController : NetworkBehaviour
         Work_Finished.RemoveAllListeners();
         Work_Cancelled.RemoveAllListeners();
         playerCharacter.animator.animator.SetBool("Interact", false);
+    }
+    private bool IsPointerOverGameObject()
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            string[] tagsToIgnore = { "FxTemporaire" };
+
+            PointerEventData eventData = new PointerEventData(EventSystem.current);
+            eventData.position = Input.mousePosition;
+
+            // Create a list to hold RaycastResults
+            List<RaycastResult> results = new List<RaycastResult>();
+
+            // Perform the raycast and store the results in the list
+            EventSystem.current.RaycastAll(eventData, results);
+
+            // Check if any of the results match the specified tags to ignore
+            return !results.Any(result => tagsToIgnore.Any(tag => result.gameObject.CompareTag(tag)));
+        }
+
+        return false;
     }
 }
