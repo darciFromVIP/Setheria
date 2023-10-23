@@ -19,6 +19,8 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
 
     public Animator animator;
     public PlayerController player;
+
+    public bool interactable = true;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -26,6 +28,8 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
     }
     public virtual void Interact(PlayerCharacter player)
     {
+        if (!interactable)
+            return;
         this.player = player.GetComponent<PlayerController>();
         foreach (var item in requiredItemsParent.GetComponentsInChildren<InventoryItem>())
         {
