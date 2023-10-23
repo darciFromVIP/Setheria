@@ -59,7 +59,9 @@ public class QuestManager : NetworkBehaviour
     }
     public void ReduceItemRequirement(string questName, string itemName, int stacks)
     {
-        foreach (var item in questlines)
+        QuestlineScriptable[] temp = new QuestlineScriptable[questlines.Count];
+        questlines.CopyTo(temp);
+        foreach (var item in temp)
         {
             foreach (var item2 in item.questList)
             {
@@ -82,7 +84,9 @@ public class QuestManager : NetworkBehaviour
     }
     public void ReduceStructureRequirement(string questName, string structureName)
     {
-        foreach (var item in questlines)
+        QuestlineScriptable[] temp = new QuestlineScriptable[questlines.Count];
+        questlines.CopyTo(temp);
+        foreach (var item in temp)
         {
             foreach (var item2 in item.questList)
             {
@@ -105,7 +109,9 @@ public class QuestManager : NetworkBehaviour
     }
     public void IncreaseItemRequirement(string questName, string itemName, int stacks)
     {
-        foreach (var item in questlines)
+        QuestlineScriptable[] temp = new QuestlineScriptable[questlines.Count];
+        questlines.CopyTo(temp);
+        foreach (var item in temp)
         {
             foreach (var item2 in item.questList)
             {
@@ -128,7 +134,9 @@ public class QuestManager : NetworkBehaviour
     }
     public void ReduceCustom1Requirement(string questName, int amount)
     {
-        foreach (var item in questlines)
+        QuestlineScriptable[] temp = new QuestlineScriptable[questlines.Count];
+        questlines.CopyTo(temp);
+        foreach (var item in temp)
         {
             foreach (var item2 in item.questList)
             {
@@ -152,7 +160,9 @@ public class QuestManager : NetworkBehaviour
     private void QuestComplete(string questName)
     {
         QuestScriptable quest = null;
-        foreach (var item in questlines)
+        QuestlineScriptable[] temp = new QuestlineScriptable[questlines.Count];
+        questlines.CopyTo(temp);
+        foreach (var item in temp)
         {
             foreach (var item2 in item.questList)
             {
@@ -213,11 +223,20 @@ public class QuestManager : NetworkBehaviour
         }
         if (temp is not null)
         {
-            if (isServer)
+            if (temp.synchronized)
             {
-                temp.Quest_Complete.RemoveListener(RpcQuestComplete);
-                temp.Questline_Complete.RemoveListener(RpcQuestlineComplete);
-                temp.New_Quest.RemoveListener(RpcNewQuest);
+                if (isServer)
+                {
+                    temp.Quest_Complete.RemoveListener(RpcQuestComplete);
+                    temp.Questline_Complete.RemoveListener(RpcQuestlineComplete);
+                    temp.New_Quest.RemoveListener(RpcNewQuest);
+                }
+            }
+            else
+            {
+                temp.Quest_Complete.RemoveListener(QuestComplete);
+                temp.Questline_Complete.RemoveListener(QuestlineComplete);
+                temp.New_Quest.RemoveListener(NewQuest);
             }
             questlines.Remove(temp);
         }
