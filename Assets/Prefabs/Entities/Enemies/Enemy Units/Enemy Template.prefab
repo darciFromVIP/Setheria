@@ -263,6 +263,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8549408159864635415, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549408159864635415, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.029678369
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549408159864635415, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8972237152418319047, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       propertyPath: baseAttackSpeed
@@ -318,6 +333,7 @@ MonoBehaviour:
   allyHelpRange: 10
   shouldCallForHelp: 1
   enemyType: 0
+  BeastKilledEvent: {fileID: 0}
 --- !u!114 &-4860879882820551187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +427,7 @@ MonoBehaviour:
   itemDatabase: {fileID: 11400000, guid: 21c965b5672c11e48892e8a6384c3290, type: 2}
   itemDropsTable:
   - itemDropChances: []
+  fishingQuestEvent: {fileID: 0}
 --- !u!1 &7351104516572008576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3678164197958677912, guid: 36b01e57100ea254d9149e8306d6dd8f,

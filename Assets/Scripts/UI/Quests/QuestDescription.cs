@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 public class QuestDescription : MonoBehaviour
 {
     public QuestScriptable questData;
     public TextMeshProUGUI label, objectives, rewards;
 
+    public Material mainQuestMaterial;
+
     private Transform parent;
 
     public void Initialize(QuestScriptable data)
     {
+        if (data.name.Contains("Main"))
+            GetComponent<Image>().material = mainQuestMaterial;
         questData = data;
         questData.Quest_Updated.AddListener(UpdateUI);
         UpdateUI();
@@ -49,6 +55,7 @@ public class QuestDescription : MonoBehaviour
             label.text = questData.label;
             objectives.text = "Complete!";
             rewards.text = questData.GetRewardsText();
+            QuestCompleted();
         }
     }
 }

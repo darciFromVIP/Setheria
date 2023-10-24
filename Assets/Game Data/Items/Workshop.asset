@@ -12,15 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Workshop
   m_EditorClassIdentifier: 
-  description: 'Supply storage which stores your Resources and Knowledge. You can
-    craft new items here.
-
-    Turn in your items, which can be converted to Resources
-    or Knowledge here.
-
-    __________________________________
-
-    Structure'
+  description: "- Turn in crates of Resources and Knowledge here. \n- New recipes
+    can be researched here. \n- New items can be bought here for Resources and Knowledge.\n__________________________________\nStructure"
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: c11e8a150de2fcc40b6dfbc138facd18, type: 3}
@@ -39,5 +32,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

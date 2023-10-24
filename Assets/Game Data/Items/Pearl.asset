@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Pearl
   m_EditorClassIdentifier: 
-  description: "How beautiful glosy item. \nUsed in crafting."
+  description: "What a beautiful and glossy pearl. \nUsed in crafting."
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: eb333caf88dd470408816e5aaa523572, type: 3}
@@ -27,5 +27,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

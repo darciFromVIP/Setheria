@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Spellbloom Berries
   m_EditorClassIdentifier: 
-  description: "This is beautifull berrie full of mana essense. Eat this to restore
-    10 Mana and +1 Food. \n__________________________________\nUsed in Alchemy"
+  description: "Beautiful berries full of mana essence. Can be eaten to restore +1
+    <sprite=12> and +10 Mana. \n__________________________________\nUsed in Alchemy"
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 25de37e57cfe3264abda43240fac4397, type: 3}
@@ -30,5 +30,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

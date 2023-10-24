@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Bones
   m_EditorClassIdentifier: 
-  description: Bunch of Bones. Crafting ingredient.
+  description: Bunch of bones. Crafting ingredient.
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: dfc347dc4b2c4d34687a218f2fdde09a, type: 3}
@@ -26,3 +26,12 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
+    m_PersistentCalls:
+      m_Calls: []

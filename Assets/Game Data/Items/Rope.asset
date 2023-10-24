@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Rope
   m_EditorClassIdentifier: 
-  description: "Rope is possible created in Workshop. \nUsed in crafting.\n__________________________________\nFishing"
+  description: 'Used in crafting. Can be bought at Workshop''s Resource Shop.
+
+    __________________________________
+
+    Fishing'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 9fa8fec4626cf704f9ab06985fb55523, type: 3}
@@ -27,5 +31,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

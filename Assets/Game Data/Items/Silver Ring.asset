@@ -19,7 +19,7 @@ MonoBehaviour:
     +5%<sprite=7>
 
     +1
-    HP<sprite=1>'
+    <sprite=1>'
   grade: 1
   itemType: 9
   sprite: {fileID: 21300000, guid: d9a956c835d592b4ab3d646ac720118e, type: 3}
@@ -36,5 +36,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

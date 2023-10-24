@@ -341,7 +341,6 @@ public class QuestScriptable : ScriptableObject, IComparable
     {
         SetQuestActive(false);
         Quest_Complete.Invoke();
-
     }
     public string GetObjectivesText()
     {

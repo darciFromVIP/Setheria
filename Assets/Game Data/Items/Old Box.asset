@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Old Box
   m_EditorClassIdentifier: 
-  description: 'An old but undamaged box containing something interesting.
-
-    __________________________________
-
-    Requirements:
-    Tool'
+  description: An old but undamaged box containing something interesting. Use to
+    open it with an equipped Handicraft Tool.
   grade: 1
   itemType: 0
   sprite: {fileID: 21300000, guid: a7fb1314512799f42a4326a0a8b252c9, type: 3}
@@ -33,5 +29,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

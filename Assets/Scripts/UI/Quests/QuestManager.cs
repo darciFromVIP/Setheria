@@ -171,7 +171,9 @@ public class QuestManager : NetworkBehaviour
             }
         }
         if (quest == null)
+        {
             return;
+        }
         foreach (var item in quest.rewards)
         {
             switch (item.rewardType)
@@ -185,7 +187,9 @@ public class QuestManager : NetworkBehaviour
                         FindObjectOfType<GameManager>().ChangeKnowledge(item.rewardAmount);
                     break;
                 case QuestRewardType.XP:
-                    FindObjectOfType<GameManager>().localPlayerCharacter.AddXp(item.rewardAmount);
+                    var player = FindObjectOfType<GameManager>().localPlayerCharacter;
+                    if (player.isOwned)
+                        player.CmdAddXp(item.rewardAmount);
                     break;
                 case QuestRewardType.Item:
                     FindObjectOfType<InventoryManager>().AddItem(item.itemReward, item.rewardAmount);
@@ -194,7 +198,7 @@ public class QuestManager : NetworkBehaviour
                     break;
             }
         }
-        foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
+        foreach (var item in FindObjectsOfType<QuestDescription>(true))
         {
             if (item.questData == quest)
             {

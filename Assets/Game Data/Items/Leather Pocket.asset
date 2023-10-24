@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Leather Pocket
   m_EditorClassIdentifier: 
-  description: "This fixed larger pocket extends your inventory. \n+4 slots\n__________________________________\nEquipable,
-    Bag"
+  description: 'This larger pocket extends your inventory by 4 slots.
+
+    __________________________________
+
+    Equipable,
+    Bag'
   grade: 1
   itemType: 7
   sprite: {fileID: 21300000, guid: c301cf3705bbf3e4bb1cd77c89362e66, type: 3}
@@ -29,5 +33,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

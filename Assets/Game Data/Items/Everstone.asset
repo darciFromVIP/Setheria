@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Everstone
   m_EditorClassIdentifier: 
   description: 'This stone is used to teleport to the base. Your character can be
-    linked with one Central Building. Linking to another will cancel the current
-    connection.
+    linked with one Tent. Linking to another will cancel the current connection.
 
     __________________________________
 
-    Actively Item'
+    Active
+    Item'
   grade: 2
   itemType: 0
   sprite: {fileID: 21300000, guid: 0842a51fdf48d794c8aeee44ba50a13a, type: 3}
@@ -34,5 +34,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 0
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

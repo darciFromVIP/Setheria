@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Shell
   m_EditorClassIdentifier: 
-  description: 'Open it and you will see what is inside or use it as crafting material.
+  description: 'Open it using an equipped Handicraft Tool or use it as a crafting
+    material.
 
     __________________________________
-
-    Requirements:
-    Tool
 
     Armory'
   grade: 0
@@ -35,5 +33,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Potion of Protection
   m_EditorClassIdentifier: 
-  description: 'Use to gain +2 Armor for 1h. Can be stacked.
+  description: 'Use to gain +2 Armor for 1h. This effect can be stacked.
 
     __________________________________
 
-    Equipable,
-    Active slot'
+    Active
+    Item, Cooldown: 2 seconds'
   grade: 1
   itemType: 0
   sprite: {fileID: 21300000, guid: 0315de608234ba24e9e138c5bf52396e, type: 3}

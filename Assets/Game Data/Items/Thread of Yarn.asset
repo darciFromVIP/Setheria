@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Thread of Yarn
   m_EditorClassIdentifier: 
-  description: "Crafting ingredient created from Cloth.  \nUsed in Armory."
+  description: 'Crafting ingredient created from Cloth.
+
+    __________________________________
+
+    Armory'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 0191efc856793e14e9d1f2d70079079e, type: 3}
@@ -27,5 +31,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

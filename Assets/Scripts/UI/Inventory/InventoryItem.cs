@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
-using Mirror;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IDropHandler, IPointerDownHandler
 {
@@ -125,6 +124,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             stackText.text = this.stacks.ToString();
             stackText.gameObject.SetActive(true);
         }
+        if (stacks < 0)
+            item.Item_Stacks_Lost.Invoke(item, -stacks);
         if (this.stacks <= 0)
         {
             if (item.itemType == ItemType.HandicraftTool || item.itemType == ItemType.FishingTool || item.itemType == ItemType.HandicraftTool || item.itemType == ItemType.GatheringTool)
@@ -134,8 +135,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
             DestroyItem();
         }
-        else if (stacks < 0)
-            item.Item_Stacks_Lost.Invoke(item, -stacks);
     }
     public void UseItem()
     {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Wooden Stick
   m_EditorClassIdentifier: 
-  description: "A basic material found all over the world. \nUsed in crafting.\n"
+  description: A basic material found all over the world. Used in crafting.
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 07e0b4d3074eb104f8ef138a6f42addc, type: 3}
@@ -27,5 +27,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []
