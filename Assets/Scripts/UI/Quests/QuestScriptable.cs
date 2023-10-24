@@ -283,12 +283,14 @@ public class QuestScriptable : ScriptableObject, IComparable
     }
     private void ReduceResourceRequirement(int amount)
     {
-        currentResources += amount;
+        if (amount > 0)
+            currentResources += amount;
         CheckQuestCompletion();
     }
     private void ReduceKnowledgeRequirement(int amount)
     {
-        currentKnowledge += amount;
+        if (amount > 0)
+            currentKnowledge += amount;
         CheckQuestCompletion();
     }
     private void CmdReduceCustom1Requirement()

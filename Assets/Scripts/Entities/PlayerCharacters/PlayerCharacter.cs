@@ -294,7 +294,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             level++;
             maxXp = (int)(BaseMaxXpValue * level * MaxXpMultiplier);
             Level_Up.Invoke(level);
-            talentTrees.ChangeTalentPoints(1);
+            if (level <= 5)
+                talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);
             FindObjectOfType<FloatingText>().SpawnText("Level Up!", transform.position + Vector3.up * 1, FloatingTextType.Experience);
             levelUpEffect.SetActive(true);
@@ -503,7 +504,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             item.enabled = false;
         }
-        GetComponentInChildren<SkinnedMeshRenderer>(true).enabled = false;
+        foreach (var item in GetComponentsInChildren<SkinnedMeshRenderer>(true))
+        {
+            item.enabled = false;
+        }
         GetComponentInChildren<EntityStatusBar>(true).gameObject.SetActive(false);
         moveComp.agent.enabled = false;
         playerController.ChangeState(PlayerState.Busy);
@@ -515,7 +519,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             item.enabled = true;
         }
-        GetComponentInChildren<SkinnedMeshRenderer>(true).enabled = true;
+        foreach (var item in GetComponentsInChildren<SkinnedMeshRenderer>(true))
+        {
+            item.enabled = true;
+        }
         GetComponentInChildren<EntityStatusBar>(true).gameObject.SetActive(true);
         transform.position = position;
         moveComp.agent.enabled = true;

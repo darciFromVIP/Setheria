@@ -42,6 +42,13 @@ public class AGainProfession : ActionTemplate
 
     public override bool TestExecute()
     {
-        return true;
+        var prof = FindObjectOfType<GameManager>().localPlayerCharacter.professions;
+        if (prof.GetProfessionExperience(professionType) > 0)
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("You can't use this anymore!", MsgType.Error);
+            return false;
+        }
+        else
+            return true;
     }
 }
