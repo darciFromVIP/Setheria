@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Mirror;
+using UnityEngine.UIElements;
 
 public enum FloatingTextType
 {
@@ -15,6 +16,10 @@ public class FloatingText : NetworkBehaviour
 
     [Command(requiresAuthority = false)]
     public void CmdSpawnFloatingText(string msg, Vector3 position, FloatingTextType type)
+    {
+        ServerSpawnFloatingText(msg, position, type);
+    }
+    public void ServerSpawnFloatingText(string msg, Vector3 position, FloatingTextType type)
     {
         var text = Instantiate(textPrefab, position, Quaternion.identity);
         NetworkServer.Spawn(text.gameObject);

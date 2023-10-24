@@ -108,7 +108,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
 
         health -= finalDmg;
         if (isServer)
-            FindObjectOfType<FloatingText>().SpawnText("-" + ((int)finalDmg).ToString(), transform.position + Vector3.up, FloatingTextType.Damage);
+            FindObjectOfType<FloatingText>().ServerSpawnFloatingText("-" + ((int)finalDmg).ToString(), transform.position + Vector3.up, FloatingTextType.Damage);
         if (health <= 0)
             OnDeath();
         Health_Changed.Invoke(health, maxHealth);
