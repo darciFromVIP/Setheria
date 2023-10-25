@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3345616201340041202}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.26253515, y: 0.26253515, z: 0.26253515}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6302289714603727510}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!198 &2245539393278299907
 ParticleSystem:
@@ -4913,6 +4913,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6225270307245999021}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.282, y: 3.4190001, z: 0}
   m_LocalScale: {x: 0.23986, y: 0.23986, z: 0.23986}
@@ -4920,7 +4921,6 @@ Transform:
   m_Children:
   - {fileID: 8534341008995493127}
   m_Father: {fileID: 6230602716759643960}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!198 &4026518328427311409
 ParticleSystem:
@@ -10767,6 +10767,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &9039914921091210025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10972,10 +10973,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5973066566595933207}
-    - targetCorrespondingSourceObject: {fileID: 237806135351412532, guid: 5ae93da07d471b54a9b55bd3c5a3449a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1806975711752146148}
   m_SourcePrefab: {fileID: 100100000, guid: 5ae93da07d471b54a9b55bd3c5a3449a, type: 3}
 --- !u!4 &6230602716759643960 stripped
 Transform:
@@ -11018,23 +11015,3 @@ MonoBehaviour:
   skill3: {fileID: 0}
   skill4: {fileID: 0}
   skill5: {fileID: 0}
---- !u!95 &1806975711752146148
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6230602716759643967}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6c9d531cd5f14794b96985f3cff0cf15, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0

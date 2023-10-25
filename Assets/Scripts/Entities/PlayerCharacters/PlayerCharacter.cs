@@ -294,6 +294,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             level++;
             maxXp = (int)(BaseMaxXpValue * level * MaxXpMultiplier);
             Level_Up.Invoke(level);
+            Debug.Log("Level up: " + level);
             if (level <= 5)
                 talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);

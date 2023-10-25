@@ -42,7 +42,7 @@ public class Professions
         {
             gathering += amount;
             player.SpawnProfessionFloatingText(TalentTreeType.Gathering, amount, gathering, maxGathering);
-            if (gathering / gatheringMilestone > 0)
+            if (gathering / gatheringMilestone >= 1)
             {
                 player.talentTrees.ChangeTalentPoints(gathering / gatheringMilestone);
                 foreach (var item in largeProfMilestones)
@@ -61,7 +61,7 @@ public class Professions
         {
             alchemy += amount;
             player.SpawnProfessionFloatingText(TalentTreeType.Alchemy, amount, alchemy, maxAlchemy);
-            if (alchemy / alchemyMilestone > 0)
+            if (alchemy / alchemyMilestone >= 1)
             {
                 player.talentTrees.ChangeTalentPoints(alchemy / alchemyMilestone);
                 foreach (var item in largeProfMilestones)
@@ -82,7 +82,7 @@ public class Professions
         {
             cooking += amount;
             player.SpawnProfessionFloatingText(TalentTreeType.Cooking, amount, cooking, maxCooking);
-            if (cooking/ cookingMilestone > 0)
+            if (cooking/ cookingMilestone >= 1)
             {
                 player.talentTrees.ChangeTalentPoints(cooking / cookingMilestone);
                 foreach (var item in largeProfMilestones)
@@ -103,7 +103,7 @@ public class Professions
         {
             fishing += amount;
             player.SpawnProfessionFloatingText(TalentTreeType.Fishing, amount, fishing, maxFishing);
-            if (fishing / fishingMilestone > 0)
+            if (fishing / fishingMilestone >= 1)
             {
                 player.talentTrees.ChangeTalentPoints(fishing / fishingMilestone);
                 foreach (var item in largeProfMilestones)
@@ -124,7 +124,7 @@ public class Professions
         {
             exploration += amount;
             player.SpawnProfessionFloatingText(TalentTreeType.Exploration, amount, exploration, maxExploration);
-            if (exploration / explorationMilestone > 0)
+            if (exploration / explorationMilestone >= 1)
             {
                 player.talentTrees.ChangeTalentPoints(exploration / explorationMilestone);
                 foreach (var item in largeProfMilestones)
