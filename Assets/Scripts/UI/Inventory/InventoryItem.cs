@@ -144,6 +144,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             return;
         if (!usable)
             return;
+        if (transform.parent.TryGetComponent(out StashSlot stashSlot))
+            return;
         if (item.itemType != ItemType.None)
         {
             var gearSlot = GetComponentInParent<CharacterGearSlot>(true);

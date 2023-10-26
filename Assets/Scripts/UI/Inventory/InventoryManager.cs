@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
     private PlayerCharacter localPlayerCharacter;
 
     public ItemScriptableDatabase itemDatabase;
+    private bool equipableItemTutorial = true;
     public void InitializeInventory()
     {
         foreach (var item in GetComponentsInChildren<InventorySlot>(true))
@@ -51,6 +52,11 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
             }
         }
         localPlayerCharacter.CreateItem(new SaveDataItem() { name = item.name, stacks = stacks }, localPlayerCharacter.transform.position);
+        if (item.itemType == ItemType.GatheringTool && equipableItemTutorial)
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("Equip your new pickaxe by double clicking it!", MsgType.Notice);
+            equipableItemTutorial = false;
+        }
         FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
         return false;
     }
