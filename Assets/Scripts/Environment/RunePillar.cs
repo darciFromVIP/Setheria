@@ -10,7 +10,7 @@ public class RunePillar : TurnInItemsInteractable
     protected override void ItemsTurnedIn()
     {
         base.ItemsTurnedIn();
-        runePillarActivationEvent.theEvent.Invoke();
+        runePillarActivationEvent.voiiddEEvveenntt.Invoke();
     }
     public override void Interact(PlayerCharacter player)
     {

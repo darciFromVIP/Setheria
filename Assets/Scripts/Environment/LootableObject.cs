@@ -5,7 +5,7 @@ using Mirror;
 using UnityEngine.UI;
 using TMPro;
 
-public class LootableObject : NetworkBehaviour, IInteractable
+public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerCharacter
 {
     public float lootDuration;
     public float refreshDuration;
@@ -30,11 +30,11 @@ public class LootableObject : NetworkBehaviour, IInteractable
 
     public Slider refreshProgressBar;
     public TextMeshProUGUI remainingChargesText;
-
+    public EventScriptable Player_Event;
     private void Start()
     {
         tooltip = GetComponent<TooltipTriggerWorld>();
-        tooltip.objectName = lootableName;
+        Player_Event.playerEvent.AddListener(SetLocalPlayerCharacter);
         currentCharges = maxCharges;
     }
     public void Interact(PlayerCharacter player)
@@ -233,5 +233,43 @@ public class LootableObject : NetworkBehaviour, IInteractable
         CmdUpdateLootability(true);
         refreshProgressBar.gameObject.SetActive(false);
         currentCharges = maxCharges;
+    }
+
+    public void SetLocalPlayerCharacter(PlayerCharacter player)
+    {
+        switch (professionRequired)
+        {
+            case TalentTreeType.Special:
+                break;
+            case TalentTreeType.Gathering:
+                player.professions.Gathering_Changed.AddListener(UpdateTooltip);
+                player.professions.AddGathering(0);
+                break;
+            case TalentTreeType.Cooking:
+                player.professions.Cooking_Changed.AddListener(UpdateTooltip);
+                player.professions.AddCooking(0);
+                break;
+            case TalentTreeType.Alchemy:
+                player.professions.Alchemy_Changed.AddListener(UpdateTooltip);
+                player.professions.AddAlchemy(0);
+                break;
+            case TalentTreeType.Fishing:
+                player.professions.Fishing_Changed.AddListener(UpdateTooltip);
+                player.professions.AddFishing(0);
+                break;
+            case TalentTreeType.Exploration:
+                player.professions.Exploration_Changed.AddListener(UpdateTooltip);
+                player.professions.AddExploration(0);
+                break;
+            default:
+                break;
+        }
+    }
+    private void UpdateTooltip(int profession)
+    {
+        if (profession >= professionExperienceRequired)
+            tooltip.objectName = lootableName + " <color=green>(" + professionExperienceRequired + ")";
+        else
+            tooltip.objectName = lootableName + " <color=red>(" + professionExperienceRequired + ")";
     }
 }

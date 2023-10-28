@@ -6,5 +6,7 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Event Scriptable")]
 public class EventScriptable : ScriptableObject
 {
-    public UnityEvent theEvent;
+    public UnityEvent voiiddEEvveenntt = new();
+
+    public UnityEvent<PlayerCharacter> playerEvent = new();
 }

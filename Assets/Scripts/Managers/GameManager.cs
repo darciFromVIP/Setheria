@@ -6,6 +6,8 @@ using Mirror;
 using TMPro;
 using UnityEngine.Events;
 using Steamworks;
+using System;
+
 public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
 {
     public TextMeshProUGUI resourcesText, knowledgeText;
@@ -18,12 +20,15 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     public UnityEvent<float> Mana_Potions_Cooldown = new();
     public UnityEvent<int> Resources_Added = new();
     public UnityEvent<int> Knowledge_Added = new();
+    public EventScriptable Player_Event;
 
+    
     public RecipeDatabase recipeDatabase;
     public PlayerCharacter localPlayerCharacter;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         localPlayerCharacter = player;
+        Player_Event.playerEvent.Invoke(player);
     }
     public void SaveAndExitToMainMenu()
     {
