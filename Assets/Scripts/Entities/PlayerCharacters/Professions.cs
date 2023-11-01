@@ -53,7 +53,7 @@ public class Professions
                 player.SpawnProfessionFloatingText(TalentTreeType.Gathering, amount, gathering, maxGathering);
             if (gathering / gatheringMilestone >= 1)
             {
-                player.talentTrees.ChangeTalentPoints(gathering / gatheringMilestone);
+                //player.talentTrees.ChangeTalentPoints(gathering / gatheringMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (gatheringMilestone / item < 1)
@@ -74,7 +74,7 @@ public class Professions
                 player.SpawnProfessionFloatingText(TalentTreeType.Alchemy, amount, alchemy, maxAlchemy);
             if (alchemy / alchemyMilestone >= 1)
             {
-                player.talentTrees.ChangeTalentPoints(alchemy / alchemyMilestone);
+               // player.talentTrees.ChangeTalentPoints(alchemy / alchemyMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (alchemyMilestone / item < 1)
@@ -97,7 +97,7 @@ public class Professions
                 player.SpawnProfessionFloatingText(TalentTreeType.Cooking, amount, cooking, maxCooking);
             if (cooking/ cookingMilestone >= 1)
             {
-                player.talentTrees.ChangeTalentPoints(cooking / cookingMilestone);
+                //player.talentTrees.ChangeTalentPoints(cooking / cookingMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (cookingMilestone / item < 1)
@@ -120,7 +120,7 @@ public class Professions
                 player.SpawnProfessionFloatingText(TalentTreeType.Fishing, amount, fishing, maxFishing);
             if (fishing / fishingMilestone >= 1)
             {
-                player.talentTrees.ChangeTalentPoints(fishing / fishingMilestone);
+                //player.talentTrees.ChangeTalentPoints(fishing / fishingMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (fishingMilestone / item < 1)
@@ -143,7 +143,7 @@ public class Professions
                 player.SpawnProfessionFloatingText(TalentTreeType.Exploration, amount, exploration, maxExploration);
             if (exploration / explorationMilestone >= 1)
             {
-                player.talentTrees.ChangeTalentPoints(exploration / explorationMilestone);
+                //player.talentTrees.ChangeTalentPoints(exploration / explorationMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (explorationMilestone / item < 1)

@@ -158,11 +158,11 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>(true));
         CmdSetInteractingPlayer(null);
         currentCharges--;
-        FindObjectOfType<CharacterScreen>(true).ReduceToolDurability(toolRequirement, -1);
         remainingChargesText.gameObject.SetActive(true);
         remainingChargesText.text = currentCharges + "/" + maxCharges;
         if (currentCharges <= 0)
         {
+            
             remainingChargesText.gameObject.SetActive(false);
             CmdUpdateLootability(false);
             if (!oneTimeLoot)
@@ -203,10 +203,12 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             {
                 item.SetActive(lootable);
             }
-        if (value)
+        GetComponent<Collider>().enabled = lootable;
+        GetComponentInChildren<EnableOutlineOnMouseOver>().enabled = lootable;
+       /* if (value)
             tooltip.objectName = lootableName;
         else
-            tooltip.objectName = unlootableName;
+            tooltip.objectName = unlootableName;*/
     }
     [Command(requiresAuthority = false)]
     private void CmdStartRefreshTimer()

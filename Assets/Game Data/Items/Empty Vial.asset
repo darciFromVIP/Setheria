@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Empty Vial
   m_EditorClassIdentifier: 
-  description: Basic ingredient used in alchemy.
+  description: Basic ingredient used in alchemy. Can be bought at Workshop's Resource
+    Shop.
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: fb991739ab0c7e1499d63be50db8197a, type: 3}
@@ -27,5 +28,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

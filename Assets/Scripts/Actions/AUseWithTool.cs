@@ -27,7 +27,6 @@ public class AUseWithTool : ActionTemplate
                 {
                     var player = FindObjectOfType<GameManager>().localPlayerCharacter;
                     FindObjectOfType<InventoryManager>().AddItem(item2.item);
-                    FindObjectOfType<CharacterScreen>().ReduceToolDurability(toolType, -1);
                     Action_Finished.Invoke();
                 }
             }

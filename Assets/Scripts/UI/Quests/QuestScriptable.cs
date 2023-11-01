@@ -352,7 +352,7 @@ public class QuestScriptable : ScriptableObject, IComparable
             bool isCompleted = requiredItemsDic[item.itemData.name] >= item.stacks;
             if (isCompleted)
                 result += "<s>";
-            result += "Collect " + item.itemData.name + " " + requiredItemsDic[item.itemData.name] + "/" + item.stacks + "\n";
+            result += "Obtain " + item.itemData.name + " " + requiredItemsDic[item.itemData.name] + "/" + item.stacks + "\n";
             if (isCompleted)
                 result += "</s>";
         }
@@ -361,7 +361,7 @@ public class QuestScriptable : ScriptableObject, IComparable
             bool isCompleted = currentItemTypeAmount >= requiredItemTypeAmount;
             if (isCompleted)
                 result += "<s>";
-            result += "Collect any " + requiredItemType.ToString() + " " + currentItemTypeAmount + "/" + requiredItemTypeAmount + "\n";
+            result += "Obtain any " + requiredItemType.ToString() + " " + currentItemTypeAmount + "/" + requiredItemTypeAmount + "\n";
             if (isCompleted)
                 result += "</s>";
         }

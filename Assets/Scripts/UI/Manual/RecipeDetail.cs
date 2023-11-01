@@ -8,7 +8,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     public InventoryItem inventoryItemPrefab;
     public TextMeshProUGUI resultItemNameText, resourceCostText, structureRequirement, professionRequirement;
     public Transform resultItemParent, components;
-    public Button craftBtn;
+    public Button craftBtn, craftAllBtn;
     public GameObject amountUI, blockingUI;
     public TMP_InputField amountInput;
 
@@ -89,7 +89,9 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         resourceCostText.text = "Resources: " + (recipeData.resourceCost * amount).ToString();
         if (!FindObjectOfType<GameManager>().TestSubtractResources(recipeData.resourceCost * amount))
             craftBtn.interactable = false;
-    }    
+
+        craftAllBtn.interactable = craftBtn.interactable;
+    }
     public void ClearDetails()
     {
         currentOpenedRecipe = null;
@@ -107,6 +109,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         }
         resourceCostText.text = "";
         craftBtn.interactable = false;
+        craftAllBtn.interactable = false;
     }
     public void UpdateCurrentDetails()
     {
@@ -122,6 +125,33 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
             localPlayer.CmdStartWorking(currentOpenedRecipe.craftingDuration * amount);
             localPlayer.Work_Finished.AddListener(FinishCrafting);
             localPlayer.Work_Cancelled.AddListener(CraftingCancelled);
+        }
+    }
+    public void CraftAllItems()
+    {
+        if (localPlayer.state == PlayerState.None)
+        {
+            int tempAmount = 99;
+            for (int i = 0; i < currentOpenedRecipe.componentItems.Count; i++)
+            {
+                foreach (var item in currentPlayerItems)
+                {
+                    if (item.item == currentOpenedRecipe.componentItems[i].itemData)
+                    {
+                        int temp = item.stacks / currentOpenedRecipe.componentItems[i].stacks;
+                        if (temp < tempAmount)
+                            tempAmount = temp;
+                    }
+                }
+            }
+            amount = tempAmount;
+            if (amount > 0)
+            {
+                blockingUI.SetActive(true);
+                localPlayer.CmdStartWorking(currentOpenedRecipe.craftingDuration * amount);
+                localPlayer.Work_Finished.AddListener(FinishCrafting);
+                localPlayer.Work_Cancelled.AddListener(CraftingCancelled);
+            }
         }
     }
     private void CraftingCancelled()

@@ -195,16 +195,6 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         }
         return false;
     }
-    public void ReduceToolDurability(ItemType toolType, int value)
-    {
-        foreach (var item in GetComponentsInChildren<InventoryItem>(true))
-        {
-            if (item.item.itemType == toolType)
-            {
-                item.ChangeStacks(value);
-            }
-        }
-    }
     public override void OpenAnotherWindow(GameObject window)
     {
         base.OpenAnotherWindow(window);

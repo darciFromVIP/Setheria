@@ -74,7 +74,17 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
             inventory.RemoveItem(item);
         }
         if (animator)
-            animator.SetTrigger("ItemTurnedIn");
+            CmdSetAnimation();
         Items_Turned_In.Invoke();
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdSetAnimation()
+    {
+        RpcSetAnimation();
+    }
+    [ClientRpc]
+    private void RpcSetAnimation()
+    {
+        animator.SetTrigger("ItemTurnedIn");
     }
 }

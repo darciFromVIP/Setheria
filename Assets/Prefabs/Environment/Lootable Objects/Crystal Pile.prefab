@@ -204,6 +204,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6418308608196921697}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6097547091839679738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 976365683102791067, guid: 3f1ff7d6a44f39b409151f3a55626b23,
+    type: 3}
+  m_PrefabInstance: {fileID: 6418308608196921697}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7895598329656108150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -257,6 +263,16 @@ PrefabInstance:
       propertyPath: toolLevelRequirement
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: effectsToHide.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: effectsToHide.Array.data[0]
+      value: 
+      objectReference: {fileID: 6097547091839679738}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: professionExperienceRequired
