@@ -77,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -89,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -101,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -346,7 +349,7 @@ TextureImporter:
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -367,7 +370,7 @@ TextureImporter:
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -388,7 +391,7 @@ TextureImporter:
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -409,7 +412,7 @@ TextureImporter:
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -430,7 +433,7 @@ TextureImporter:
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -451,7 +454,7 @@ TextureImporter:
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -459,6 +462,69 @@ TextureImporter:
       bones: []
       spriteID: ab4f6a8304cf48b4fb266efa99d0f9b0
       internalID: -973922136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stats_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 200
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dc993bedfe483d4cb2892625b43e238
+      internalID: 45961986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stats_7
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 100
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cdc5c0eed78cfa4f9d96eaf50ef7a11
+      internalID: -445354552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stats_8
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 354b01791d1641244bceb7cc124a11d8
+      internalID: 1800561139
       vertices: []
       indices: 
       edges: []
@@ -474,27 +540,29 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Stats 1_7: -116038896
-      Stats 1_8: 501823524
-      Stats_3: -339552603
       Stats 1_0: -1011997451
-      Stats_0: -1225706395
-      Stats_2: 45961986
-      Stats_1: -1095217147
-      Stats 1_2: 1180722599
-      Stats 1_12: 1326488792
-      Stats 1_4: 61246363
-      Stats 1_3: 1801863815
-      Stats_6: -674626207
-      Stats_7: -445354552
       Stats 1_1: -845875244
-      Stats_5: -973922136
       Stats 1_10: 1325486857
-      Stats 1_9: 1636177939
-      Stats_4: -1903749513
+      Stats 1_11: 622328056
+      Stats 1_12: 1326488792
+      Stats 1_2: 1180722599
+      Stats 1_3: 1801863815
+      Stats 1_4: 61246363
       Stats 1_5: -446983401
       Stats 1_6: -763726889
-      Stats 1_11: 622328056
+      Stats 1_7: -116038896
+      Stats 1_8: 501823524
+      Stats 1_9: 1636177939
+      Stats_0: -1225706395
+      Stats_1: -1095217147
+      Stats_2: 45961986
+      Stats_3: -339552603
+      Stats_4: -1903749513
+      Stats_5: -973922136
+      Stats_6: -674626207
+      Stats_7: -445354552
+      Stats_8: 1800561139
+      Stats_9: 699970303
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

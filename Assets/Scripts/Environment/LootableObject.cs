@@ -205,10 +205,6 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             }
         GetComponent<Collider>().enabled = lootable;
         GetComponentInChildren<EnableOutlineOnMouseOver>().enabled = lootable;
-       /* if (value)
-            tooltip.objectName = lootableName;
-        else
-            tooltip.objectName = unlootableName;*/
     }
     [Command(requiresAuthority = false)]
     private void CmdStartRefreshTimer()
@@ -242,6 +238,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         switch (professionRequired)
         {
             case TalentTreeType.Special:
+                tooltip.objectName = lootableName;
                 break;
             case TalentTreeType.Gathering:
                 player.professions.Gathering_Changed.AddListener(UpdateTooltip);

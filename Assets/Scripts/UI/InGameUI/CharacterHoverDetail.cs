@@ -28,6 +28,10 @@ public class CharacterHoverDetail : MonoBehaviour
             lastUpdatedCharacter = character;
             UpdateDetail();
         }
+        if (character is EnemyCharacter)
+            hpSlider.fillRect.GetComponent<Image>().color = Color.red;
+        else
+            hpSlider.fillRect.GetComponent<Image>().color = Color.green;
     }
     public void Hide(bool disableTargeting)
     {
@@ -73,6 +77,7 @@ public class CharacterHoverDetail : MonoBehaviour
             hpPercentage.gameObject.SetActive(false);
             hpSlider.gameObject.SetActive(false);
         }
+
         if (characterMpComp)
         {
             mpSlider.gameObject.SetActive(true);
