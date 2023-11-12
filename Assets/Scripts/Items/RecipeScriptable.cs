@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public enum RecipeCategory
 {
-    Survival, Structures, Alchemy, Fishing, Armorsmithing, Cooking, Exploration
+    Survival, Structures, Alchemy, Fishing, Armorsmithing, Cooking, Exploration, AllRecipes
 }
 [CreateAssetMenu(menuName = "Recipe")]
 public class RecipeScriptable : ScriptableObject

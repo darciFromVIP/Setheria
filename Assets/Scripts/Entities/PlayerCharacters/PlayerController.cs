@@ -464,7 +464,7 @@ public class PlayerController : NetworkBehaviour
         Work_Cancelled.RemoveAllListeners();
         playerCharacter.animator.animator.SetBool("Interact", false);
     }
-    private bool IsPointerOverGameObject()
+    public bool IsPointerOverGameObject()
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {

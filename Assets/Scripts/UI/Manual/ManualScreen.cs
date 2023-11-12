@@ -96,6 +96,9 @@ public class ManualScreen : MonoBehaviour, WindowedUI
             case RecipeCategory.Exploration:
                 LoadExplorationRecipes();
                 break;
+            case RecipeCategory.AllRecipes:
+                LoadAllRecipes();
+                break;
             default:
                 break;
         }
@@ -198,6 +201,20 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         ClearRecipeList();
         SetRecipeData(recipeDatabase.explorationRecipes, false);
         currentOpenedCategory = RecipeCategory.Exploration;
+    }
+    public void LoadAllRecipes()
+    {
+        ClearRecipeList();
+        var allRecipes = new List<RecipeScriptable>();
+        allRecipes.AddRange(recipeDatabase.survivalRecipes);
+        allRecipes.AddRange(recipeDatabase.structureRecipes);
+        allRecipes.AddRange(recipeDatabase.alchemyRecipes);
+        allRecipes.AddRange(recipeDatabase.fishingRecipes);
+        allRecipes.AddRange(recipeDatabase.armoryRecipes);
+        allRecipes.AddRange(recipeDatabase.cookingRecipes);
+        allRecipes.AddRange(recipeDatabase.explorationRecipes);
+        SetRecipeData(allRecipes, false);
+        currentOpenedCategory = RecipeCategory.AllRecipes;
     }
     public void UpdateCategoryButtons(Professions prof)
     {

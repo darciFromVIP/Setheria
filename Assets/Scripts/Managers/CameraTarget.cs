@@ -113,7 +113,6 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
             pos = Vector3.MoveTowards(pos, pos - transform.forward, Time.deltaTime * cameraSpeed);
             pos = Vector3.MoveTowards(pos, pos - transform.right, Time.deltaTime * cameraSpeed);
         }
-
         if (Input.GetKey(KeyCode.Mouse2) && Input.GetAxis("Mouse X") > 0)
         {
             rottarget.y += cameraRotationSpeed * Mathf.Abs(Input.GetAxis("Mouse X"));
@@ -123,6 +122,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             rottarget.y -= cameraRotationSpeed * Mathf.Abs(Input.GetAxis("Mouse X"));
         }
+        
 
         if (Time.time - lastKeyPressTime >= cooldownTime)
         {
@@ -159,10 +159,13 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
         //float groundLevel = Terrain.activeTerrain.SampleHeight(pos);  //Height based on Terrain
         
         Vector3 zoomDir = followOffset.normalized;
-        if (Input.mouseScrollDelta.y < 0)
-            followOffset += zoomDir;
-        if (Input.mouseScrollDelta.y > 0)
-            followOffset -= zoomDir;
+        if (!localPlayerCharacter.GetComponent<PlayerController>().IsPointerOverGameObject())
+        {
+            if (Input.mouseScrollDelta.y < 0)
+                followOffset += zoomDir;
+            if (Input.mouseScrollDelta.y > 0)
+                followOffset -= zoomDir;
+        }
         if (followOffset.magnitude < cameraZoomMin)
             followOffset = zoomDir * cameraZoomMin;
         if (followOffset.magnitude > cameraZoomMax)

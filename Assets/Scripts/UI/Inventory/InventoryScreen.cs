@@ -18,6 +18,10 @@ public class InventoryScreen : MonoBehaviour
         {
             ToggleWindow();
         }
+        if (Input.GetKeyDown(settingsManager.settings.characterScreen))
+        {
+            ShowWindow();
+        }
     }
     public void ToggleWindow()
     {
@@ -26,6 +30,18 @@ public class InventoryScreen : MonoBehaviour
             FindObjectOfType<AudioManager>().InventoryOpen();
         else
             FindObjectOfType<AudioManager>().InventoryClose();
+        FindObjectOfType<Tooltip>(true).Hide();
+    }
+    public void HideWindow()
+    {
+        window.SetActive(false);
+        FindObjectOfType<AudioManager>().InventoryClose();
+        FindObjectOfType<Tooltip>(true).Hide();
+    }
+    public void ShowWindow()
+    {
+        window.SetActive(true);
+        FindObjectOfType<AudioManager>().InventoryOpen();
         FindObjectOfType<Tooltip>(true).Hide();
     }
 }
