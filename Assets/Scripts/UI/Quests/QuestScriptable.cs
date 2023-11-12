@@ -82,7 +82,7 @@ public class QuestScriptable : ScriptableObject, IComparable
             if (synchronizedQuest)
             {
                 if (customEvent)
-                    customEvent.voiiddEEvveenntt.AddListener(CmdReduceCustom1Requirement);
+                    customEvent.voidEvent.AddListener(CmdReduceCustom1Requirement);
                 foreach (var item in requiredItems)
                 {
                     item.itemData.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
@@ -108,7 +108,7 @@ public class QuestScriptable : ScriptableObject, IComparable
             else
             {
                 if (customEvent)
-                    customEvent.voiiddEEvveenntt.AddListener(ReduceCustom1Requirement);
+                    customEvent.voidEvent.AddListener(ReduceCustom1Requirement);
                 foreach (var item in requiredItems)
                 {
                     item.itemData.Item_Stacks_Acquired.AddListener(ReduceItemRequirement);
@@ -155,7 +155,7 @@ public class QuestScriptable : ScriptableObject, IComparable
                 gm.Knowledge_Added.RemoveListener(ReduceKnowledgeRequirement);
                 gm.Resources_Added.RemoveListener(ReduceResourceRequirement);
                 if (customEvent)
-                    customEvent.voiiddEEvveenntt.RemoveListener(CmdReduceCustom1Requirement);
+                    customEvent.voidEvent.RemoveListener(CmdReduceCustom1Requirement);
                 foreach (var item in requiredItems)
                 {
                     item.itemData.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
@@ -178,7 +178,7 @@ public class QuestScriptable : ScriptableObject, IComparable
             else
             {
                 if (customEvent)
-                    customEvent.voiiddEEvveenntt.RemoveListener(ReduceCustom1Requirement);
+                    customEvent.voidEvent.RemoveListener(ReduceCustom1Requirement);
                 foreach (var item in requiredItems)
                 {
                     item.itemData.Item_Stacks_Acquired.RemoveListener(ReduceItemRequirement);
