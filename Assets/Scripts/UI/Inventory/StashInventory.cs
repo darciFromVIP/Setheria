@@ -12,13 +12,14 @@ public class StashInventory : MonoBehaviour, WindowedUI
     public ItemScriptableDatabase itemDatabase;
     private void Start()
     {
-        ShowWindow();
+        window.SetActive(true);
         InitializeInventory();
-        HideWindow();
+        window.SetActive(false);
     }
     public void ShowWindow()
     {
         window.SetActive(true);
+        FindObjectOfType<InventoryScreen>(true).ShowWindow();
     }
     public void HideWindow()
     {

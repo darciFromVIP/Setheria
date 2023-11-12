@@ -24,7 +24,7 @@ public class StructureOptionUI : MonoBehaviour
 
         if (FindObjectOfType<GameManager>().localPlayerCharacter.professions.GetProfessionExperience(structureOption.professionRequired) < structureOption.professionLevelRequired)
             GetComponent<Button>().interactable = false;
-        if (!FindObjectOfType<InventoryManager>().GetItemOfName("Everstone") && structureOption.structureAction == StructureAction.SetReturnPoint)
+        if (!FindObjectOfType<InventoryManager>(true).GetItemOfName("Everstone") && structureOption.structureAction == StructureAction.SetReturnPoint)
             GetComponent<Button>().interactable = false;
     }
     private void Update()

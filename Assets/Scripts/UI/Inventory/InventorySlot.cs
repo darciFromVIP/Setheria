@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
+
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
     public Sprite freeSprite, lockSprite;
@@ -37,10 +39,12 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                     {
                         player.CmdRemoveBuff(item.name);
                     }
+                    inventoryItem.item.Item_Stacks_Acquired.Invoke(inventoryItem.item, inventoryItem.stacks);
                 }
                 if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
                 {
                     stashSlot.CmdDeleteItemOnClients();
+                    inventoryItem.item.Item_Stacks_Acquired.Invoke(inventoryItem.item, inventoryItem.stacks);
                 }
                 inventoryItem.parentAfterDrag = transform;
             }

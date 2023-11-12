@@ -13,7 +13,7 @@ public struct KeyData
 [Serializable]
 public class Settings
 {
-    public KeyCode move, target, interact, characterScreen, manual, inventory, cameraLock, passiveSkill, skill1, skill2, skill3, skill4;
+    public KeyCode move, target, interact, characterScreen, manual, inventory, cameraLock, passiveSkill, skill1, skill2, skill3, skill4, cameraUp, cameraDown, cameraLeft, cameraRight;
     public float masterVolume, musicVolume, ambienceVolume, SFXVolume;
     public Settings()
     {
@@ -24,11 +24,15 @@ public class Settings
         manual = KeyCode.N;
         inventory = KeyCode.I;
         cameraLock = KeyCode.Space;
-        passiveSkill = KeyCode.D;
+        passiveSkill = KeyCode.F;
         skill1 = KeyCode.Q;
-        skill2 = KeyCode.W;
-        skill3 = KeyCode.E;
-        skill4 = KeyCode.R;
+        skill2 = KeyCode.E;
+        skill3 = KeyCode.R;
+        skill4 = KeyCode.T;
+        cameraDown = KeyCode.S;
+        cameraUp = KeyCode.W;
+        cameraLeft = KeyCode.A;
+        cameraRight = KeyCode.D;
         masterVolume = 1.0f;
         musicVolume = 1.0f;
         ambienceVolume = 1.0f;
@@ -491,6 +495,14 @@ public class SettingsManager : MonoBehaviour
                 return GetDataByKey(settings.skill4);
             case KeybindType.None:
                 break;
+            case KeybindType.CameraUp:
+                return GetDataByKey(settings.cameraUp);
+            case KeybindType.CameraDown:
+                return GetDataByKey(settings.cameraDown);
+            case KeybindType.CameraLeft:
+                return GetDataByKey(settings.cameraLeft);
+            case KeybindType.CameraRight:
+                return GetDataByKey(settings.cameraRight);
             default:
                 break;
         }
@@ -573,6 +585,26 @@ public class SettingsManager : MonoBehaviour
     public void ChangeSkill4Key(KeyCode key)
     {
         settings.skill4 = key;
+        KeyChanged();
+    }
+    public void ChangeCameraUpKey(KeyCode key)
+    {
+        settings.cameraUp = key;
+        KeyChanged();
+    }
+    public void ChangeCameraDownKey(KeyCode key)
+    {
+        settings.cameraDown = key;
+        KeyChanged();
+    }
+    public void ChangeCameraLeftKey(KeyCode key)
+    {
+        settings.cameraLeft = key;
+        KeyChanged();
+    }
+    public void ChangeCameraRightKey(KeyCode key)
+    {
+        settings.cameraRight = key;
         KeyChanged();
     }
     private void KeyChanged()

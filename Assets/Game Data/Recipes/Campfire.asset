@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Campfire
   m_EditorClassIdentifier: 
   recipeCategory: 1
+  priority: 2
   resultItem:
     itemData: {fileID: 11400000, guid: c1c19e88d55514748b3a55507fbdc8c5, type: 2}
     stacks: 1
@@ -33,3 +34,8 @@ MonoBehaviour:
   requiredItems: []
   requiredStructures:
   - {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

@@ -90,25 +90,25 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
         Vector3 rottarget = transform.rotation.eulerAngles;
         Vector3 pos = transform.position;
 
-        if ((Input.mousePosition.y >= Screen.height - borderThickness && cameraMouseControl) || Input.GetKey(KeyCode.UpArrow))
+        if ((Input.mousePosition.y >= Screen.height - borderThickness && cameraMouseControl) || Input.GetKey(settingsManager.settings.cameraUp))
         {
             pos = Vector3.MoveTowards(pos, pos + transform.forward, Time.deltaTime * cameraSpeed);
             pos = Vector3.MoveTowards(pos, pos - transform.right, Time.deltaTime * cameraSpeed);
         }
 
-        if ((Input.mousePosition.y <= borderThickness && cameraMouseControl) || Input.GetKey(KeyCode.DownArrow))
+        if ((Input.mousePosition.y <= borderThickness && cameraMouseControl) || Input.GetKey(settingsManager.settings.cameraDown))
         {
             pos = Vector3.MoveTowards(pos, pos - transform.forward, Time.deltaTime * cameraSpeed);
             pos = Vector3.MoveTowards(pos, pos + transform.right, Time.deltaTime * cameraSpeed);
         }
 
-        if ((Input.mousePosition.x >= Screen.width - borderThickness && cameraMouseControl) || Input.GetKey(KeyCode.RightArrow))
+        if ((Input.mousePosition.x >= Screen.width - borderThickness && cameraMouseControl) || Input.GetKey(settingsManager.settings.cameraRight))
         {
             pos = Vector3.MoveTowards(pos, pos + transform.forward, Time.deltaTime * cameraSpeed);
             pos = Vector3.MoveTowards(pos, pos + transform.right, Time.deltaTime * cameraSpeed);
         }
 
-        if ((Input.mousePosition.x <= borderThickness && cameraMouseControl) || Input.GetKey(KeyCode.LeftArrow))
+        if ((Input.mousePosition.x <= borderThickness && cameraMouseControl) || Input.GetKey(settingsManager.settings.cameraLeft))
         {
             pos = Vector3.MoveTowards(pos, pos - transform.forward, Time.deltaTime * cameraSpeed);
             pos = Vector3.MoveTowards(pos, pos - transform.right, Time.deltaTime * cameraSpeed);

@@ -213,8 +213,13 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         allRecipes.AddRange(recipeDatabase.armoryRecipes);
         allRecipes.AddRange(recipeDatabase.cookingRecipes);
         allRecipes.AddRange(recipeDatabase.explorationRecipes);
+        allRecipes.Sort(CompareByIntValue);
         SetRecipeData(allRecipes, false);
         currentOpenedCategory = RecipeCategory.AllRecipes;
+    }
+    private int CompareByIntValue(RecipeScriptable a, RecipeScriptable b)
+    {
+        return a.priority.CompareTo(b.priority);
     }
     public void UpdateCategoryButtons(Professions prof)
     {

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Create Wooden Stick
   m_EditorClassIdentifier: 
   recipeCategory: 0
+  priority: 4
   resultItem:
     itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
     stacks: 3
@@ -31,3 +32,8 @@ MonoBehaviour:
   requiredItems: []
   requiredStructures:
   - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

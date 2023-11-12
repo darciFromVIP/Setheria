@@ -11,6 +11,8 @@ public enum RecipeCategory
 public class RecipeScriptable : ScriptableObject
 {
     public RecipeCategory recipeCategory;
+    [Tooltip("1 means top of the list, the higher the priority, the lower on the list this recipe appears.")]
+    public int priority;
     public ItemRecipeInfo resultItem;
     public List<ItemRecipeInfo> componentItems;
     public int resourceCost;

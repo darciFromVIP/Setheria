@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tent
   m_EditorClassIdentifier: 
   recipeCategory: 1
+  priority: 1
   resultItem:
     itemData: {fileID: 11400000, guid: 78040a27ee4f73448bd276c0b0c7d992, type: 2}
     stacks: 1
@@ -36,3 +37,8 @@ MonoBehaviour:
   recipeItem: {fileID: 0}
   requiredItems: []
   requiredStructures: []
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

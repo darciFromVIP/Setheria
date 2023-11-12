@@ -77,6 +77,17 @@ public class RecipeDatabase : ScriptableObject
                     break;
             }
         }
+        survivalRecipes.Sort(CompareByIntValue);
+        structureRecipes.Sort(CompareByIntValue);
+        alchemyRecipes.Sort(CompareByIntValue);
+        fishingRecipes.Sort(CompareByIntValue);
+        armoryRecipes.Sort(CompareByIntValue);
+        cookingRecipes.Sort(CompareByIntValue);
+        explorationRecipes.Sort(CompareByIntValue);
+    }
+    private int CompareByIntValue(RecipeScriptable a, RecipeScriptable b)
+    {
+        return a.priority.CompareTo(b.priority);
     }
 #endif
 }
