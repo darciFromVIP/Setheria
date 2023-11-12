@@ -5,22 +5,25 @@ using UnityEngine;
 public class InventoryScreen : MonoBehaviour
 {
     public GameObject window;
+    public EventScriptable Character_Screen_Toggled;
     private SettingsManager settingsManager;
+    private bool wasActive;
+    private Vector3 defaultWindowPosition;
+    private Vector3 customWindowPosition;
 
     private void Start()
     {
         GetComponentInChildren<InventoryManager>(true).InitializeInventory();
         settingsManager = FindObjectOfType<SettingsManager>();
+        defaultWindowPosition = window.transform.position;
+        customWindowPosition = defaultWindowPosition;
+        Character_Screen_Toggled.boolEvent.AddListener(CharacterScreenToggled);
     }
     void Update()
     {
         if (Input.GetKeyDown(settingsManager.settings.inventory))
         {
             ToggleWindow();
-        }
-        if (Input.GetKeyDown(settingsManager.settings.characterScreen))
-        {
-            ShowWindow();
         }
     }
     public void ToggleWindow()
@@ -43,5 +46,21 @@ public class InventoryScreen : MonoBehaviour
         window.SetActive(true);
         FindObjectOfType<AudioManager>().InventoryOpen();
         FindObjectOfType<Tooltip>(true).Hide();
+    }
+    private void CharacterScreenToggled(bool value)
+    {
+        if (value)
+        {
+            wasActive = window.activeSelf;
+            customWindowPosition = window.transform.position;
+            ShowWindow();
+            window.transform.position = defaultWindowPosition;
+        }
+        else
+        {
+            window.transform.position = customWindowPosition;
+            if (!wasActive)
+                HideWindow();
+        }
     }
 }

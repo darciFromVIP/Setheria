@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
+
 public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, WindowedUI
 {
     public GameObject window;
@@ -16,6 +18,8 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     public HeroModelDatabase modelDatabase;
     public List<Button> attributeButtons;
     public CharacterSkillsWindow characterSkills;
+
+    public EventScriptable Character_Screen_Toggled;
 
     private SettingsManager settingsManager;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
@@ -58,6 +62,7 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     {
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(!window.activeSelf);
+        Character_Screen_Toggled.boolEvent.Invoke(window.activeSelf);
         if (window.activeSelf)
             characterSkills.HideGraphics();
         else
@@ -69,12 +74,14 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         characterSkills.ShowGraphics();
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(false);
+        Character_Screen_Toggled.boolEvent.Invoke(window.activeSelf);
     }
     public void ShowWindow()
     {
         characterSkills.HideGraphics();
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(true);
+        Character_Screen_Toggled.boolEvent.Invoke(window.activeSelf);
     }
 
     public bool IsActive()

@@ -85,6 +85,6 @@ public class HasAggro : NetworkBehaviour
     }
     private void BeastKilledEventInvoke()
     {
-        BeastKilledEvent.voiiddEEvveenntt.Invoke();
+        BeastKilledEvent.voidEvent.Invoke();
     }
 }

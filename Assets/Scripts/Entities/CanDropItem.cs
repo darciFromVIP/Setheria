@@ -75,7 +75,7 @@ public class CanDropItem : NetworkBehaviour
                 {
                     inventoryManager.AddItem(item2.item);
                     if (item2.item.itemData.itemType == ItemType.Fish)
-                        fishingQuestEvent.voiiddEEvveenntt.Invoke();
+                        fishingQuestEvent.voidEvent.Invoke();
                 }
             }
         }
