@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bone Necklace
   m_EditorClassIdentifier: 
   recipeCategory: 4
+  priority: 7
   resultItem:
     itemData: {fileID: 11400000, guid: c86629e46e6432a4fafa6e3e46b71b22, type: 2}
     stacks: 1
@@ -35,3 +36,8 @@ MonoBehaviour:
   requiredItems:
   - {fileID: 11400000, guid: 0a9be37b8320fb647b7443dad5ca33d5, type: 2}
   requiredStructures: []
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

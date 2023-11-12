@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Leather Gloves
   m_EditorClassIdentifier: 
   recipeCategory: 4
+  priority: 5
   resultItem:
     itemData: {fileID: 11400000, guid: 6288f3632360bfc4f9ce5b58d9ae16ea, type: 2}
     stacks: 1
@@ -36,3 +37,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6288f3632360bfc4f9ce5b58d9ae16ea, type: 2}
   requiredStructures:
   - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

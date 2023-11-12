@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Torch
   m_EditorClassIdentifier: 
   recipeCategory: 1
+  priority: 4
   resultItem:
     itemData: {fileID: 11400000, guid: 084e2b6017fd1f94695aa56411411b3c, type: 2}
     stacks: 1
@@ -35,3 +36,8 @@ MonoBehaviour:
   requiredItems: []
   requiredStructures:
   - {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

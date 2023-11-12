@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Workshop
   m_EditorClassIdentifier: 
   recipeCategory: 1
+  priority: 3
   resultItem:
     itemData: {fileID: 11400000, guid: 10654546673692c4f8b3bfed64a1e4b7, type: 2}
     stacks: 1
@@ -38,3 +39,8 @@ MonoBehaviour:
   requiredStructures:
   - {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
   - {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

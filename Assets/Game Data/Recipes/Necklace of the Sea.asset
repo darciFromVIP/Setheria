@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Necklace of the Sea
   m_EditorClassIdentifier: 
   recipeCategory: 4
+  priority: 8
   resultItem:
     itemData: {fileID: 11400000, guid: 134d40116216ae5459ab38711db13ead, type: 2}
     stacks: 1
@@ -34,3 +35,8 @@ MonoBehaviour:
   recipeItem: {fileID: 0}
   requiredItems: []
   requiredStructures: []
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

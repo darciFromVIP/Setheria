@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Theria Motes
   m_EditorClassIdentifier: 
   recipeCategory: 2
+  priority: 7
   resultItem:
     itemData: {fileID: 11400000, guid: 2a8974aad52e27a49b69e4ef1cfafffc, type: 2}
     stacks: 1
@@ -34,3 +35,6 @@ MonoBehaviour:
   requiredStructures: []
   requiredProfession: 3
   requiredProfessionExperience: 30
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

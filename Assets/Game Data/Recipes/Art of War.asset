@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Art of War
   m_EditorClassIdentifier: 
   recipeCategory: 2
+  priority: 4
   resultItem:
     itemData: {fileID: 11400000, guid: e43def0fcf0c31f4081d6da1639a1d8f, type: 2}
     stacks: 1
@@ -32,3 +33,8 @@ MonoBehaviour:
   recipeItem: {fileID: 11400000, guid: efcb89144d2397d40a3b647189968f30, type: 2}
   requiredItems: []
   requiredStructures: []
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

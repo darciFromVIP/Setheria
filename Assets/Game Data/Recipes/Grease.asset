@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Grease
   m_EditorClassIdentifier: 
   recipeCategory: 2
+  priority: 3
   resultItem:
     itemData: {fileID: 11400000, guid: 7587a223c3058a94cb69d1d3cbf1480b, type: 2}
     stacks: 1
@@ -37,3 +38,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
   requiredProfession: 3
   requiredProfessionExperience: 5
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

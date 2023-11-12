@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cooked Meat
   m_EditorClassIdentifier: 
   recipeCategory: 5
+  priority: 1
   resultItem:
     itemData: {fileID: 11400000, guid: 294bbf2a06d985842802a3842f31fe4b, type: 2}
     stacks: 1
@@ -33,3 +34,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}
   requiredProfession: 2
   requiredProfessionExperience: 1
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

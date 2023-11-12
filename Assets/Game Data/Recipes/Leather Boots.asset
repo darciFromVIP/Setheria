@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Leather Boots
   m_EditorClassIdentifier: 
   recipeCategory: 4
+  priority: 6
   resultItem:
     itemData: {fileID: 11400000, guid: 70ba17c685486c745950cd60595f7caa, type: 2}
     stacks: 1
@@ -37,3 +38,8 @@ MonoBehaviour:
   requiredItems: []
   requiredStructures:
   - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

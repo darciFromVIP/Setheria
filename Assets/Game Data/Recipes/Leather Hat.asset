@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Leather Hat
   m_EditorClassIdentifier: 
   recipeCategory: 4
+  priority: 3
   resultItem:
     itemData: {fileID: 11400000, guid: 5aab1969afb57d246a4b0d90f6eca13f, type: 2}
     stacks: 1
@@ -35,3 +36,8 @@ MonoBehaviour:
   requiredItems: []
   requiredStructures:
   - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []
