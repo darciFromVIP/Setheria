@@ -30,9 +30,9 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
             {
                 if (slot.transform.childCount > 0)
                 {
-                    if (slot.GetComponentInChildren<InventoryItem>().item == item)
+                    if (slot.GetComponentInChildren<InventoryItem>(true).item == item)
                     {
-                        slot.GetComponentInChildren<InventoryItem>().ChangeStacks(stacks);
+                        slot.GetComponentInChildren<InventoryItem>(true).ChangeStacks(stacks);
                         item.Item_Stacks_Acquired.Invoke(item, stacks);
                         FindObjectOfType<AcquiredItems>().ItemAcquired(new ItemRecipeInfo { itemData = item, stacks = stacks });
                         return true;
@@ -74,7 +74,7 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             if (item.transform.childCount > 0)
             {
-                var temp = item.GetComponentInChildren<InventoryItem>();
+                var temp = item.GetComponentInChildren<InventoryItem>(true);
                 if (temp.item == itemToDestroy.itemData)
                 {
                     if (temp.item.stackable)
@@ -109,7 +109,7 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
         foreach (var item in inventorySlots)
         {
             if (item.transform.childCount > 0)
-                result.Add(item.GetComponentInChildren<InventoryItem>());
+                result.Add(item.GetComponentInChildren<InventoryItem>(true));
         }
         return result;
     }

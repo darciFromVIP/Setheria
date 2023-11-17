@@ -133,7 +133,7 @@ public class QuestScriptable : ScriptableObject, IComparable
             }
             if (requiredItemsDic.Count > 0)
             {
-                var playerItems = FindObjectOfType<InventoryManager>().GetAllItems();
+                var playerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
                 List<KeyValuePair<string, int>> dicCopy = new();
                 requiredItemsDic.CopyTo(dicCopy);
                 foreach (var requiredItem in dicCopy)

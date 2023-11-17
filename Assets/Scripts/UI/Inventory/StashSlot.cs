@@ -55,7 +55,7 @@ public class StashSlot : NetworkBehaviour, IDropHandler
     [ClientRpc]
     private void RpcDeleteItemOnClients()
     {
-        var item = GetComponentInChildren<InventoryItem>();
+        var item = GetComponentInChildren<InventoryItem>(true);
         if (item)
             Destroy(item.gameObject);
         isFree = true;
@@ -68,7 +68,7 @@ public class StashSlot : NetworkBehaviour, IDropHandler
     [ClientRpc]
     private void RpcChangeStacks(int stacks)
     {
-        var item = GetComponentInChildren<InventoryItem>();
+        var item = GetComponentInChildren<InventoryItem>(true);
         if (item)
             item.ChangeStacks(stacks, false);
     }

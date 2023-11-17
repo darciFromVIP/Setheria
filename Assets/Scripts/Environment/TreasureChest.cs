@@ -20,7 +20,7 @@ public class TreasureChest : NetworkBehaviour
             return;
         }
         FindObjectOfType<AudioManager>().ChestOpen(transform.position);
-        GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>());
+        GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>(true));
         CmdChestLooted();
     }
     [Command(requiresAuthority = false)]

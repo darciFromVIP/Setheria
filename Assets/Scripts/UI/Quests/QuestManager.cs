@@ -190,7 +190,7 @@ public class QuestManager : NetworkBehaviour
                     FindObjectOfType<GameManager>().localPlayerCharacter.AddXp(item.rewardAmount);
                     break;
                 case QuestRewardType.Item:
-                    FindObjectOfType<InventoryManager>().AddItem(item.itemReward, item.rewardAmount);
+                    FindObjectOfType<InventoryManager>(true).AddItem(item.itemReward, item.rewardAmount);
                     break;
                 default:
                     break;

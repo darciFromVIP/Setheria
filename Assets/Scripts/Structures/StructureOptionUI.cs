@@ -63,7 +63,7 @@ public class StructureOptionUI : MonoBehaviour
                 if (gameManager.TestSubtractResources(structure.demolishCost))
                 {
                     gameManager.ChangeResources(-structure.demolishCost);
-                    FindObjectOfType<InventoryManager>().AddItem(structure.structureItem, 1);
+                    FindObjectOfType<InventoryManager>(true).AddItem(structure.structureItem, 1);
                     structure.CmdDemolishStructure();
                     GetComponentInParent<StructureScreen>().HideWindow();
                 }
@@ -71,7 +71,7 @@ public class StructureOptionUI : MonoBehaviour
                     FindObjectOfType<SystemMessages>().AddMessage("You don't have enough Resources!");
                 break;
             case StructureAction.TurnInResourcesAndKnowledge:
-                var items = FindObjectOfType<InventoryManager>().GetAllItems();
+                var items = FindObjectOfType<InventoryManager>(true).GetAllItems();
                 selectedItems.Clear();
                 foreach (var item in items)
                 {
@@ -89,7 +89,7 @@ public class StructureOptionUI : MonoBehaviour
                 FindObjectOfType<ResearchScreen>().ToggleWindow(true);
                 break;
             case StructureAction.CookFish:
-                var items1 = FindObjectOfType<InventoryManager>().GetAllItems();
+                var items1 = FindObjectOfType<InventoryManager>(true).GetAllItems();
                 selectedItems.Clear();
                 foreach (var item in items1)
                 {
@@ -134,7 +134,7 @@ public class StructureOptionUI : MonoBehaviour
     }
     private void TurnInItems()
     {
-        var inventory = FindObjectOfType<InventoryManager>();
+        var inventory = FindObjectOfType<InventoryManager>(true);
         var gameManager = FindObjectOfType<GameManager>();
         int resources = 0;
         int knowledge = 0;
@@ -160,7 +160,7 @@ public class StructureOptionUI : MonoBehaviour
     }
     private void CookFish()
     {
-        var inventory = FindObjectOfType<InventoryManager>();
+        var inventory = FindObjectOfType<InventoryManager>(true);
         var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         foreach (var item in selectedItems)
         {
@@ -177,7 +177,7 @@ public class StructureOptionUI : MonoBehaviour
     private void DrawWater()
     {
         (currentStructure as Well).CmdStartWaterCooldown();
-        FindObjectOfType<InventoryManager>().AddItem(new ItemRecipeInfo { itemData = (currentStructure as Well).waterItem, stacks = 1 });
+        FindObjectOfType<InventoryManager>(true).AddItem(new ItemRecipeInfo { itemData = (currentStructure as Well).waterItem, stacks = 1 });
 
     }
 }

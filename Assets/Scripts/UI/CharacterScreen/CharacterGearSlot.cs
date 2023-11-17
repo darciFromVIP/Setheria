@@ -34,7 +34,7 @@ public class CharacterGearSlot : MonoBehaviour, IDropHandler
                         return;
                 }
             }
-            var unequippedItem = GetComponentInChildren<InventoryItem>();
+            var unequippedItem = GetComponentInChildren<InventoryItem>(true);
             unequippedItem.transform.SetParent(inventoryItem.parentAfterDrag);
             foreach (var item in unequippedItem.item.passiveBuffs)
             {

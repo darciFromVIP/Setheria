@@ -44,7 +44,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
             {
                 if (slot.transform.childCount > 0)
                 {
-                    if (slot.GetComponentInChildren<InventoryItem>().item == item)
+                    if (slot.GetComponentInChildren<InventoryItem>(true).item == item)
                     {
                         slot.CmdChangeStacks(stacks);
                         return true;
@@ -78,7 +78,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
         {
             if (item.transform.childCount > 0)
             {
-                var temp = item.GetComponentInChildren<InventoryItem>();
+                var temp = item.GetComponentInChildren<InventoryItem>(true);
                 if (temp.item == itemToDestroy.itemData)
                 {
                     if (temp.item.stackable)
@@ -112,7 +112,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
         foreach (var item in stashSlots)
         {
             if (item.transform.childCount > 0)
-                result.Add(item.GetComponentInChildren<InventoryItem>());
+                result.Add(item.GetComponentInChildren<InventoryItem>(true));
         }
         return result;
     }

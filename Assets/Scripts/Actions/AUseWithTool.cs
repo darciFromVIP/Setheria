@@ -26,7 +26,7 @@ public class AUseWithTool : ActionTemplate
                 if (random >= temp - item2.chance && random < temp)
                 {
                     var player = FindObjectOfType<GameManager>().localPlayerCharacter;
-                    FindObjectOfType<InventoryManager>().AddItem(item2.item);
+                    FindObjectOfType<InventoryManager>(true).AddItem(item2.item);
                     Action_Finished.Invoke();
                 }
             }

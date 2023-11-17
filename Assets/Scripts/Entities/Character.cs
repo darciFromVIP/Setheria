@@ -180,7 +180,7 @@ public class Character : Entity
                 buffInstance = new BManaRegen(buffScriptable.value, this);
                 break;
             case BuffType.InventorySlots:
-                buffInstance = new BInventorySlots(buffScriptable.value, FindObjectOfType<InventoryManager>());
+                buffInstance = new BInventorySlots(buffScriptable.value, FindObjectOfType<InventoryManager>(true));
                 break;
             case BuffType.Power:
                 buffInstance = new BPower(buffScriptable.value, this);

@@ -31,11 +31,11 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
         if (!interactable)
             return;
         this.player = player.GetComponent<PlayerController>();
-        foreach (var item in requiredItemsParent.GetComponentsInChildren<InventoryItem>())
+        foreach (var item in requiredItemsParent.GetComponentsInChildren<InventoryItem>(true))
         {
             Destroy(item.gameObject);
         }
-        var items = FindObjectOfType<InventoryManager>().GetAllItems();
+        var items = FindObjectOfType<InventoryManager>(true).GetAllItems();
         turnInBTN.interactable = true;
         for (int i = 0; i < requiredItems.Count; i++)
         {
@@ -68,7 +68,7 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
     }
     protected virtual void ItemsTurnedIn()
     {
-        var inventory = FindObjectOfType<InventoryManager>();
+        var inventory = FindObjectOfType<InventoryManager>(true);
         foreach (var item in requiredItems)
         {
             inventory.RemoveItem(item);

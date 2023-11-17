@@ -45,9 +45,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             parentAfterDrag = transform.parent;
             stashInventoryParent = null;
             inventoryManagerParent = null;
-            stashInventoryParent = GetComponentInParent<StashInventory>();
-            inventoryManagerParent = GetComponentInParent<InventoryManager>();
-            stashInventory = FindObjectOfType<StashInventory>();
+            stashInventoryParent = GetComponentInParent<StashInventory>(true);
+            inventoryManagerParent = GetComponentInParent<InventoryManager>(true);
+            stashInventory = FindObjectOfType<StashInventory>(true);
             inventoryManager = FindObjectOfType<InventoryManager>(true);
         }
     }
@@ -222,7 +222,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     slot.CmdChangeStacks(-newStacks);
                 else
                     ChangeStacks(-newStacks);
-                FindObjectOfType<InventoryManager>().AddItem(item, newStacks, false);
+                FindObjectOfType<InventoryManager>(true).AddItem(item, newStacks, false);
             }
         }
         else QuickItemTransfer();
