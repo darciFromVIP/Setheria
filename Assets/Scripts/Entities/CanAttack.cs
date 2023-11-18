@@ -103,10 +103,23 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
 
         if (enemyTarget && canAct && !isDelayingTargetLost)
         {
+            if (!moveComp.agent.isOnNavMesh)
+            {
+                TargetLost();
+                return;
+            }
             if (enemyTarget.GetComponent<HasHealth>().GetHealth() <= 0)
             {
                 TargetLost();
                 return;
+            }
+            if (enemyTarget.TryGetComponent(out PlayerController player))
+            {
+                if (player.state == PlayerState.OutOfGame)
+                {
+                    TargetLost();
+                    return;
+                }
             }
             if (Vector3.Distance(transform.position, enemyTarget.transform.position) <= (attackRange > moveComp.agent.stoppingDistance ? attackRange : moveComp.agent.stoppingDistance))
             {

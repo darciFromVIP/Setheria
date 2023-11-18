@@ -14,6 +14,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     private SettingsManager settingsManager;
 
     public RecipeDatabase recipeDatabase;
+    public InputEnabledScriptable inputEnabled;
     private void Awake()
     {
         manualScreen.SetActive(false);
@@ -21,6 +22,8 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     }
     private void Update()
     {
+        if (!inputEnabled.inputEnabled)
+            return;
         if (Input.GetKeyDown(settingsManager.settings.manual))
         {
             ToggleWindow();

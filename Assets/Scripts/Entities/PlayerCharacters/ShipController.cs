@@ -13,6 +13,7 @@ public class ShipController : NetworkBehaviour
     public SettingsManager settingsManager;
     private List<Collider> collidingColliders = new();
     private GameObject clickEffect;
+    public InputEnabledScriptable inputEnabled;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class ShipController : NetworkBehaviour
     }
     private void Update()
     {
-        if (isOwned)
+        if (isOwned && inputEnabled.inputEnabled)
             InputHandle();
     }
     private void OnTriggerEnter(Collider other)
@@ -82,7 +83,7 @@ public class ShipController : NetworkBehaviour
             yield return null;
         }
         moveComp.Stop();
-        shipComp.UnloadCrew(moveComp.agent.destination);
+        shipComp.UnloadCrew(position);
     }
     private IEnumerator GoToInteract(Collider collider, IInteractable interactable)
     {

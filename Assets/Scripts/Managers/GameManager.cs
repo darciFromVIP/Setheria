@@ -16,6 +16,8 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     [SyncVar(hook = nameof(KnowledgeHook))]
     private int knowledge = 0;
 
+    private bool inputEnabled = true;
+
     public UnityEvent<float> Healing_Potions_Cooldown = new();
     public UnityEvent<float> Mana_Potions_Cooldown = new();
     public UnityEvent<int> Resources_Added = new();
@@ -165,5 +167,17 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
         {
             item.itemData.unlocked = true;
         }
+    }
+    public void DisableInput()
+    {
+        inputEnabled = false;
+    }
+    public void EnableInput()
+    {
+        inputEnabled = true;
+    }
+    public bool GetInput()
+    {
+        return inputEnabled;
     }
 }

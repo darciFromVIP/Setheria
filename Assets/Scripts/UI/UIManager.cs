@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     public GameObject dayNightSphere;
     public TextMeshProUGUI dayText;
     public DayNightCycleScriptable dayNightUI;
+
+    public InputEnabledScriptable inputEnabled;
     private void Awake()
     {
         foreach (var item in windows)
@@ -38,6 +40,10 @@ public class UIManager : MonoBehaviour
                 }
             }
             menuWindow.SetActive(!menuWindow.activeSelf);
+            if (menuWindow.activeSelf)
+                inputEnabled.inputEnabled = false;
+            else
+                inputEnabled.inputEnabled = true;
         }
     }
 }

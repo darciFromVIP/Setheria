@@ -15,6 +15,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     private Animator animator;
 
     private bool stunned;
+    private Vector3 startingLocation;
 
     protected int animHash_Walk = Animator.StringToHash("Walk");
     protected int animHash_Run = Animator.StringToHash("Run");
@@ -42,9 +43,12 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
         {
             player.Resume_Acting.AddListener(ResumeAgent);
         }
+        startingLocation = transform.position;
     }
     private void Update()
     {
+        if (baseMovementSpeed == 0)
+            transform.position = startingLocation;
         if (!(isOwned || (entity is not PlayerCharacter && isServer)) || baseMovementSpeed == 0)
             return;
         animator.SetFloat("AgentVelocity", agent.velocity.magnitude);

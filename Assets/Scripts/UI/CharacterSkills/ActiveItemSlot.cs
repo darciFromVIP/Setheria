@@ -18,10 +18,36 @@ public class ActiveItemSlot : MonoBehaviour, IDropHandler
 
     private InventoryItem reference;
     private TooltipTrigger tooltip;
+    public InputEnabledScriptable inputEnabled;
+
     private void Start()
     {
         tooltip = GetComponent<TooltipTrigger>();
         settingsManager = FindObjectOfType<SettingsManager>();
+        settingsManager.Key_Changed.AddListener(UpdateKeybind);
+        UpdateKeybind();
+        if (!isFree)
+        {
+            image.sprite = lockSprite;
+            SetLockedSlotTooltip();
+        }
+        else
+            SetEmptySlotTooltip();
+    }
+    private void Update()
+    {
+        if (!inputEnabled.inputEnabled)
+            return;
+        if (Input.GetKeyDown(keyCode))
+        {
+            UseItem();
+        }
+    }
+    private void UpdateKeybind()
+    {
+        var keybindData = settingsManager.GetDataByKeybindType(keybind);
+        keybindImage.sprite = keybindData.sprite;
+        keybindText.text = keybindData.text;
         switch (keybind)
         {
             case KeybindType.ActiveItem1:
@@ -51,28 +77,6 @@ public class ActiveItemSlot : MonoBehaviour, IDropHandler
             default:
                 break;
         }
-        settingsManager.Key_Changed.AddListener(UpdateKeybind);
-        UpdateKeybind();
-        if (!isFree)
-        {
-            image.sprite = lockSprite;
-            SetLockedSlotTooltip();
-        }
-        else
-            SetEmptySlotTooltip();
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(keyCode))
-        {
-            UseItem();
-        }
-    }
-    private void UpdateKeybind()
-    {
-        var keybindData = settingsManager.GetDataByKeybindType(keybind);
-        keybindImage.sprite = keybindData.sprite;
-        keybindText.text = keybindData.text;
     }
     public void ToggleSlotAvailability(bool value)
     {

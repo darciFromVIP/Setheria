@@ -511,7 +511,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         }
         GetComponentInChildren<EntityStatusBar>(true).gameObject.SetActive(false);
         moveComp.agent.enabled = false;
-        playerController.ChangeState(PlayerState.Busy);
+        playerController.ChangeState(PlayerState.OutOfGame);
         spotlight.SetActive(false);
     }
     public void UnboardShip(Vector3 position)

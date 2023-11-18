@@ -22,6 +22,8 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     public EventScriptable Character_Screen_Toggled;
 
     private SettingsManager settingsManager;
+    public InputEnabledScriptable inputEnabled;
+
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         playerCharacter = player;
@@ -51,6 +53,8 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     }
     private void Update()
     {
+        if (!inputEnabled.inputEnabled)
+            return;
         if (Input.GetKeyDown(settingsManager.settings.characterScreen))
         {
             ToggleWindow();

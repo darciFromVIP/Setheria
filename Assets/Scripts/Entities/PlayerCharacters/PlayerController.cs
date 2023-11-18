@@ -9,7 +9,7 @@ using System.Linq;
 
 public enum PlayerState
 {
-    None, Busy, Casting, Working
+    None, Busy, Casting, Working, OutOfGame
 }
 public enum CastingState
 {
@@ -31,6 +31,8 @@ public class PlayerController : NetworkBehaviour
     public LayerMask spellCastingLayerMask;
     private GameObject clickEffect;
     private SettingsManager settingsManager;
+    public InputEnabledScriptable inputEnabled;
+
 
     public float cooldownD;
     public float cooldownQ;
@@ -82,11 +84,12 @@ public class PlayerController : NetworkBehaviour
         if (cooldownR > 0)
             cooldownR -= Time.deltaTime;
 
-        InputHandle();
+        if (inputEnabled.inputEnabled)
+            InputHandle();
     }
     private void LateUpdate()
     {
-        if (!isOwned)
+        if (!isOwned || !inputEnabled.inputEnabled)
             return;
         if (Input.GetKeyDown(KeyCode.Mouse0) && state == PlayerState.Casting)
         {

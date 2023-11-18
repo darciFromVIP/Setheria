@@ -28,6 +28,8 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     public CinemachineVirtualCamera cam;
 
     private SettingsManager settingsManager;
+    public InputEnabledScriptable inputEnabled;
+
     private void Start()
     {
         followOffset = cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
@@ -57,12 +59,12 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     void Update()
     {
-        if (!localPlayerCharacter)
+        if (!localPlayerCharacter || !inputEnabled.inputEnabled)
             return;
         //Turn Off Objects near the Camera
         objectsInTheWay.Clear();
         //foreach (var item in Physics.CapsuleCastAll(cam.transform.position + cam.transform.right * 0.2f, cam.transform.position - cam.transform.right * 0.2f, 3, localPlayerCharacter.transform.position - cam.transform.position, 30))
-        foreach (var item in Physics.RaycastAll(cam.transform.position, localPlayerCharacter.transform.position - cam.transform.position, 30))
+        foreach (var item in Physics.RaycastAll(cam.transform.position, localPlayerCharacter.transform.position - cam.transform.position, 50))
         {
             if (item.collider.TryGetComponent(out InCameraWay obstacle))
             {

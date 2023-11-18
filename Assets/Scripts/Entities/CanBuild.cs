@@ -11,6 +11,8 @@ public class CanBuild : NetworkBehaviour
 
     public StructureDatabase structureDatabase;
 
+    public InputEnabledScriptable inputEnabled;
+
     [HideInInspector] public UnityEvent Structure_Built = new();
 
     private void Awake()
@@ -32,26 +34,29 @@ public class CanBuild : NetworkBehaviour
         RaycastHit hit;
         while (true)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Default", "Water")))
+            if (inputEnabled.inputEnabled)
             {
-                if (hit.collider is TerrainCollider || hit.collider.CompareTag("Water"))
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Default", "Water")))
                 {
-                    ghost.transform.position = hit.point;
-                    if (Input.GetKeyDown(KeyCode.Mouse0) && ghost.GetComponent<StructureGhost>().canBuild)
+                    if (hit.collider is TerrainCollider || hit.collider.CompareTag("Water"))
                     {
-                        StartCoroutine(GoToBuildStructure(structure, hit.point, ghost.transform.rotation));
-                        Destroy(ghost.gameObject);
-                        playerController.ChangeState(PlayerState.None);
-                        break;
-                    }
-                    if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Escape))
-                    {
-                        if (buildStructureAction)
-                            buildStructureAction.StopExecute(this);
-                        Destroy(ghost.gameObject);
-                        playerController.ChangeState(PlayerState.None);
-                        break;
+                        ghost.transform.position = hit.point;
+                        if (Input.GetKeyDown(KeyCode.Mouse0) && ghost.GetComponent<StructureGhost>().canBuild)
+                        {
+                            StartCoroutine(GoToBuildStructure(structure, hit.point, ghost.transform.rotation));
+                            Destroy(ghost.gameObject);
+                            playerController.ChangeState(PlayerState.None);
+                            break;
+                        }
+                        if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Escape))
+                        {
+                            if (buildStructureAction)
+                                buildStructureAction.StopExecute(this);
+                            Destroy(ghost.gameObject);
+                            playerController.ChangeState(PlayerState.None);
+                            break;
+                        }
                     }
                 }
             }

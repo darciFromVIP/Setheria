@@ -8969,6 +8969,7 @@ MonoBehaviour:
   dayNightSphere: {fileID: 580119754}
   dayText: {fileID: 1501937219}
   dayNightUI: {fileID: 11400000, guid: 44be69ec43d9c2f4890fc8a7ec2b6bfb, type: 2}
+  inputEnabled: {fileID: 11400000, guid: 0fff680439f954342ba97bf786eb6020, type: 2}
 --- !u!1 &306122995
 GameObject:
   m_ObjectHideFlags: 0
@@ -13498,6 +13499,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1110854680}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: EnableInput
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -38585,6 +38598,7 @@ MonoBehaviour:
   characterSkills: {fileID: 77457841}
   Character_Screen_Toggled: {fileID: 11400000, guid: b7fb634f1e5609e4e8f3be74abd9a36d,
     type: 2}
+  inputEnabled: {fileID: 11400000, guid: 0fff680439f954342ba97bf786eb6020, type: 2}
 --- !u!1001 &1362330084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48101,6 +48115,7 @@ MonoBehaviour:
   cookingButton: {fileID: 673908887}
   explorationButton: {fileID: 1177122664}
   recipeDatabase: {fileID: 11400000, guid: d3de020ec95ff8b46aaf88bcbecabb1a, type: 2}
+  inputEnabled: {fileID: 11400000, guid: 0fff680439f954342ba97bf786eb6020, type: 2}
 --- !u!1 &1716971287
 GameObject:
   m_ObjectHideFlags: 0
@@ -62735,6 +62750,7 @@ MonoBehaviour:
   cameraMouseControl: 1
   camBounds: {fileID: 1001301542}
   cam: {fileID: 1262146509}
+  inputEnabled: {fileID: 11400000, guid: 0fff680439f954342ba97bf786eb6020, type: 2}
 --- !u!114 &7066072963047802599
 MonoBehaviour:
   m_ObjectHideFlags: 0
