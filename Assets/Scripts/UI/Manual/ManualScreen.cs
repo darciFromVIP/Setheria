@@ -205,14 +205,19 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     public void LoadAllRecipes()
     {
         ClearRecipeList();
+        var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         var allRecipes = new List<RecipeScriptable>();
         allRecipes.AddRange(recipeDatabase.survivalRecipes);
         allRecipes.AddRange(recipeDatabase.structureRecipes);
-        allRecipes.AddRange(recipeDatabase.alchemyRecipes);
-        allRecipes.AddRange(recipeDatabase.fishingRecipes);
+        if (player.professions.alchemy > 0)
+            allRecipes.AddRange(recipeDatabase.alchemyRecipes);
+        if (player.professions.fishing > 0)
+            allRecipes.AddRange(recipeDatabase.fishingRecipes);
         allRecipes.AddRange(recipeDatabase.armoryRecipes);
-        allRecipes.AddRange(recipeDatabase.cookingRecipes);
-        allRecipes.AddRange(recipeDatabase.explorationRecipes);
+        if (player.professions.cooking > 0)
+            allRecipes.AddRange(recipeDatabase.cookingRecipes);
+        if (player.professions.exploration > 0)
+            allRecipes.AddRange(recipeDatabase.explorationRecipes);
         allRecipes.Sort(CompareByIntValue);
         SetRecipeData(allRecipes, false);
         currentOpenedCategory = RecipeCategory.AllRecipes;

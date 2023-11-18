@@ -34,6 +34,8 @@ public class DayNightCycle : MonoBehaviour
             multiplier = 1;
         }
 #endif
+        if (uiData.sphere == null || uiData.daysAliveText == null)
+            return;
         if (timer >= data[currentIndex].timeStamp)
         {
             if (currentIndex == maxIndex)

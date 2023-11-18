@@ -122,7 +122,16 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             rottarget.y -= cameraRotationSpeed * Mathf.Abs(Input.GetAxis("Mouse X"));
         }
-        
+
+        if (Input.GetKey(settingsManager.settings.cameraRotRight))
+        {
+            rottarget.y += cameraRotationSpeed * Time.deltaTime * 5;
+        }
+
+        if (Input.GetKey(settingsManager.settings.cameraRotLeft))
+        {
+            rottarget.y -= cameraRotationSpeed * Time.deltaTime * 5;
+        }
 
         if (Time.time - lastKeyPressTime >= cooldownTime)
         {

@@ -55,7 +55,7 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         {
             ToggleWindow();
         }
-        if (Input.GetKeyDown(settingsManager.settings.manual))
+        if (Input.GetKeyDown(settingsManager.settings.manual) && window.activeSelf)
             HideWindow();
     }
     public void ToggleWindow()

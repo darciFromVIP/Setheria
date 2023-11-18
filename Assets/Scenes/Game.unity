@@ -386,6 +386,11 @@ PrefabInstance:
       propertyPath: hotkey
       value: 49
       objectReference: {fileID: 0}
+    - target: {fileID: 6733103204505586930, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: keybind
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 8330576830776784160, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
       propertyPath: m_Name
@@ -5443,6 +5448,11 @@ PrefabInstance:
       propertyPath: isFree
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6733103204505586930, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: keybind
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7683859853281137911, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
       propertyPath: m_text
@@ -6914,6 +6924,11 @@ PrefabInstance:
       propertyPath: isFree
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6733103204505586930, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: keybind
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7683859853281137911, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
       propertyPath: m_text
@@ -7886,7 +7901,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 795671098}
         m_TargetAssemblyTypeName: InventoryScreen, Assembly-CSharp
-        m_MethodName: HideWindow
+        m_MethodName: HideWindowWithoutSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16510,6 +16525,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isFree
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733103204505586930, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: keybind
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 7683859853281137911, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
@@ -36855,7 +36875,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 795671098}
         m_TargetAssemblyTypeName: InventoryScreen, Assembly-CSharp
-        m_MethodName: ShowWindow
+        m_MethodName: ShowWindowWithoutSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -45292,6 +45312,11 @@ PrefabInstance:
       propertyPath: isFree
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6733103204505586930, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: keybind
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 7683859853281137911, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
       propertyPath: m_text
@@ -45306,6 +45331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActiveItemSlot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330576830776784160, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8962721998699023147, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
@@ -47764,6 +47794,11 @@ PrefabInstance:
       propertyPath: isFree
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6733103204505586930, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: keybind
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 7683859853281137911, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
       propertyPath: m_text
@@ -47773,6 +47808,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActiveItemSlot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330576830776784160, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8962721998699023147, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
@@ -50526,6 +50566,11 @@ PrefabInstance:
       propertyPath: isFree
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6733103204505586930, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: keybind
+      value: 23
+      objectReference: {fileID: 0}
     - target: {fileID: 7683859853281137911, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
       propertyPath: m_text
@@ -50535,6 +50580,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActiveItemSlot (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330576830776784160, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8962721998699023147, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
@@ -52985,7 +53035,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 795671098}
         m_TargetAssemblyTypeName: InventoryScreen, Assembly-CSharp
-        m_MethodName: HideWindow
+        m_MethodName: HideWindowWithoutSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -57836,6 +57886,11 @@ PrefabInstance:
       propertyPath: isFree
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6733103204505586930, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: keybind
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 7683859853281137911, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}
       propertyPath: m_text
@@ -57845,6 +57900,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActiveItemSlot (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8330576830776784160, guid: 59fa369e8358d254b8d2fdad19d4b90b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8962721998699023147, guid: 59fa369e8358d254b8d2fdad19d4b90b,
         type: 3}

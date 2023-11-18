@@ -5,7 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 public enum KeybindType
 {
-    None, Move, Target, Interact, CharacterScreen, Manual, Inventory, CameraLock, PassiveSkill, Skill1, Skill2, Skill3, Skill4, CameraUp, CameraDown, CameraLeft, CameraRight
+    None, Move, Target, Interact, CharacterScreen, Manual, Inventory, CameraLock, PassiveSkill, Skill1, Skill2, Skill3, Skill4, CameraUp, CameraDown, CameraLeft, CameraRight, 
+    ActiveItem1, ActiveItem2, ActiveItem3, ActiveItem4, ActiveItem5, ActiveItem6, ActiveItem7, ActiveItem8, CameraRotLeft, CameraRotRight
 }
 public class Keybind : MonoBehaviour
 {
@@ -68,16 +69,46 @@ public class Keybind : MonoBehaviour
             case KeybindType.None:
                 break;
             case KeybindType.CameraUp:
-                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeSkill4Key);
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeCameraUpKey);
                 break;
             case KeybindType.CameraDown:
-                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeSkill4Key);
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeCameraDownKey);
                 break;
             case KeybindType.CameraLeft:
-                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeSkill4Key);
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeCameraLeftKey);
                 break;
             case KeybindType.CameraRight:
-                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeSkill4Key);
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeCameraRightKey);
+                break;
+            case KeybindType.ActiveItem1:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeActiveItem1Key);
+                break;
+            case KeybindType.ActiveItem2:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeActiveItem2Key);
+                break;
+            case KeybindType.ActiveItem3:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeActiveItem3Key);
+                break;
+            case KeybindType.ActiveItem4:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeActiveItem4Key);
+                break;
+            case KeybindType.ActiveItem5:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeActiveItem5Key);
+                break;
+            case KeybindType.ActiveItem6:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeActiveItem6Key);
+                break;
+            case KeybindType.ActiveItem7:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeActiveItem7Key);
+                break;
+            case KeybindType.ActiveItem8:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeActiveItem8Key);
+                break;
+            case KeybindType.CameraRotLeft:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeCameraRotLeftKey);
+                break;
+            case KeybindType.CameraRotRight:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeCameraRotRightKey);
                 break;
             default:
                 break;

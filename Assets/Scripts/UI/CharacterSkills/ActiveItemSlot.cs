@@ -6,12 +6,14 @@ using UnityEngine.EventSystems;
 using TMPro;
 public class ActiveItemSlot : MonoBehaviour, IDropHandler
 {
-    public KeyCode hotkey;
+    public SettingsManager settingsManager;
+    public KeybindType keybind;
+    private KeyCode keyCode;
     public Sprite lockSprite;
     public Sprite emptySprite;
     public bool isFree = false;
-    public Image image;
-    public TextMeshProUGUI stackText, cooldownText;
+    public Image image, keybindImage;
+    public TextMeshProUGUI stackText, cooldownText, keybindText;
     public Slider cooldownSlider;
 
     private InventoryItem reference;
@@ -19,6 +21,38 @@ public class ActiveItemSlot : MonoBehaviour, IDropHandler
     private void Start()
     {
         tooltip = GetComponent<TooltipTrigger>();
+        settingsManager = FindObjectOfType<SettingsManager>();
+        switch (keybind)
+        {
+            case KeybindType.ActiveItem1:
+                keyCode = settingsManager.settings.activeItem1;
+                break;
+            case KeybindType.ActiveItem2:
+                keyCode = settingsManager.settings.activeItem2;
+                break;
+            case KeybindType.ActiveItem3:
+                keyCode = settingsManager.settings.activeItem3;
+                break;
+            case KeybindType.ActiveItem4:
+                keyCode = settingsManager.settings.activeItem4;
+                break;
+            case KeybindType.ActiveItem5:
+                keyCode = settingsManager.settings.activeItem5;
+                break;
+            case KeybindType.ActiveItem6:
+                keyCode = settingsManager.settings.activeItem6;
+                break;
+            case KeybindType.ActiveItem7:
+                keyCode = settingsManager.settings.activeItem7;
+                break;
+            case KeybindType.ActiveItem8:
+                keyCode = settingsManager.settings.activeItem8;
+                break;
+            default:
+                break;
+        }
+        settingsManager.Key_Changed.AddListener(UpdateKeybind);
+        UpdateKeybind();
         if (!isFree)
         {
             image.sprite = lockSprite;
@@ -29,10 +63,16 @@ public class ActiveItemSlot : MonoBehaviour, IDropHandler
     }
     private void Update()
     {
-        if (Input.GetKeyDown(hotkey))
+        if (Input.GetKeyDown(keyCode))
         {
             UseItem();
         }
+    }
+    private void UpdateKeybind()
+    {
+        var keybindData = settingsManager.GetDataByKeybindType(keybind);
+        keybindImage.sprite = keybindData.sprite;
+        keybindText.text = keybindData.text;
     }
     public void ToggleSlotAvailability(bool value)
     {
@@ -84,13 +124,13 @@ public class ActiveItemSlot : MonoBehaviour, IDropHandler
     }
     private void SetEmptySlotTooltip()
     {
-        tooltip.SetText("Empty Slot (" + hotkey.ToString()[hotkey.ToString().Length - 1] + ")",
-            "This is a slot for an active item. Drag any item that can be activated from your inventory or equipped gear to this slot and use " + hotkey + " to activate it.",
+        tooltip.SetText("Empty Slot (" + keyCode.ToString()[keyCode.ToString().Length - 1] + ")",
+            "This is a slot for an active item. Drag any item that can be activated from your inventory or equipped gear to this slot and use " + keyCode + " to activate it.",
             image.sprite);
     }
     private void SetLockedSlotTooltip()
     {
-        tooltip.SetText("Locked Slot (" + hotkey.ToString()[hotkey.ToString().Length - 1] + ")",
+        tooltip.SetText("Locked Slot (" + keyCode.ToString()[keyCode.ToString().Length - 1] + ")",
             "This is a locked slot for an active item. You have to find a special item which can unlock it.",
             image.sprite);
     }

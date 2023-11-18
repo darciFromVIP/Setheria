@@ -41,10 +41,20 @@ public class InventoryScreen : MonoBehaviour
         FindObjectOfType<AudioManager>().InventoryClose();
         FindObjectOfType<Tooltip>(true).Hide();
     }
+    public void HideWindowWithoutSound()
+    {
+        window.SetActive(false);
+        FindObjectOfType<Tooltip>(true).Hide();
+    }
     public void ShowWindow()
     {
         window.SetActive(true);
         FindObjectOfType<AudioManager>().InventoryOpen();
+        FindObjectOfType<Tooltip>(true).Hide();
+    }
+    public void ShowWindowWithoutSound()
+    {
+        window.SetActive(true);
         FindObjectOfType<Tooltip>(true).Hide();
     }
     private void CharacterScreenToggled(bool value)
@@ -53,7 +63,8 @@ public class InventoryScreen : MonoBehaviour
         {
             wasActive = window.activeSelf;
             customWindowPosition = window.transform.position;
-            ShowWindow();
+            if (!window.activeSelf)
+                ShowWindow();
             window.transform.position = defaultWindowPosition;
         }
         else

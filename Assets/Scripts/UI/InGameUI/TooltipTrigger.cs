@@ -17,6 +17,14 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public TextMeshProUGUI keyText;
     private void Start()
     {
+        if (keybindType != KeybindType.None)
+        {
+            FindObjectOfType<SettingsManager>().Key_Changed.AddListener(UpdateKeybind);
+            UpdateKeybind();
+        }
+    }
+    private void UpdateKeybind()
+    {
         var data = FindObjectOfType<SettingsManager>().GetDataByKeybindType(keybindType);
         if (keyImage)
             keyImage.sprite = data.sprite;

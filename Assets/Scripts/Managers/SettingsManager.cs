@@ -13,7 +13,8 @@ public struct KeyData
 [Serializable]
 public class Settings
 {
-    public KeyCode move, target, interact, characterScreen, manual, inventory, cameraLock, passiveSkill, skill1, skill2, skill3, skill4, cameraUp, cameraDown, cameraLeft, cameraRight;
+    public KeyCode move, target, interact, characterScreen, manual, inventory, cameraLock, passiveSkill, skill1, skill2, skill3, skill4, cameraUp, cameraDown, cameraLeft, cameraRight,
+        activeItem1, activeItem2, activeItem3, activeItem4, activeItem5, activeItem6, activeItem7, activeItem8, cameraRotLeft, cameraRotRight;
     public float masterVolume, musicVolume, ambienceVolume, SFXVolume;
     public Settings()
     {
@@ -24,15 +25,25 @@ public class Settings
         manual = KeyCode.N;
         inventory = KeyCode.I;
         cameraLock = KeyCode.Space;
-        passiveSkill = KeyCode.F;
-        skill1 = KeyCode.Q;
-        skill2 = KeyCode.E;
-        skill3 = KeyCode.R;
-        skill4 = KeyCode.T;
+        passiveSkill = KeyCode.Alpha1;
+        skill1 = KeyCode.Alpha2;
+        skill2 = KeyCode.Alpha3;
+        skill3 = KeyCode.Alpha4;
+        skill4 = KeyCode.Alpha5;
         cameraDown = KeyCode.S;
         cameraUp = KeyCode.W;
         cameraLeft = KeyCode.A;
         cameraRight = KeyCode.D;
+        cameraRotLeft = KeyCode.Q;
+        cameraRotRight = KeyCode.E;
+        activeItem1 = KeyCode.F1;
+        activeItem2 = KeyCode.F2;
+        activeItem3 = KeyCode.F3;
+        activeItem4 = KeyCode.F4;
+        activeItem5 = KeyCode.F5;
+        activeItem6 = KeyCode.F6;
+        activeItem7 = KeyCode.F7;
+        activeItem8 = KeyCode.F8;
         masterVolume = 1.0f;
         musicVolume = 1.0f;
         ambienceVolume = 1.0f;
@@ -48,6 +59,7 @@ public class SettingsManager : MonoBehaviour
     public Sprite key, space, enter, mouseLeft, mouseWheel, mouseRight;
 
     public UnityEvent<KeyCode> Key_Pressed = new();
+    public UnityEvent Key_Changed = new();
 
     private void Awake()
     {
@@ -503,6 +515,26 @@ public class SettingsManager : MonoBehaviour
                 return GetDataByKey(settings.cameraLeft);
             case KeybindType.CameraRight:
                 return GetDataByKey(settings.cameraRight);
+            case KeybindType.ActiveItem1:
+                return GetDataByKey(settings.activeItem1);
+            case KeybindType.ActiveItem2:
+                return GetDataByKey(settings.activeItem2);
+            case KeybindType.ActiveItem3:
+                return GetDataByKey(settings.activeItem3);
+            case KeybindType.ActiveItem4:
+                return GetDataByKey(settings.activeItem4);
+            case KeybindType.ActiveItem5:
+                return GetDataByKey(settings.activeItem5);
+            case KeybindType.ActiveItem6:
+                return GetDataByKey(settings.activeItem6);
+            case KeybindType.ActiveItem7:
+                return GetDataByKey(settings.activeItem7);
+            case KeybindType.ActiveItem8:
+                return GetDataByKey(settings.activeItem8);
+            case KeybindType.CameraRotLeft:
+                return GetDataByKey(settings.cameraRotLeft);
+            case KeybindType.CameraRotRight:
+                return GetDataByKey(settings.cameraRotRight);
             default:
                 break;
         }
@@ -607,9 +639,60 @@ public class SettingsManager : MonoBehaviour
         settings.cameraRight = key;
         KeyChanged();
     }
+    public void ChangeActiveItem1Key(KeyCode key)
+    {
+        settings.activeItem1 = key;
+        KeyChanged();
+    }
+    public void ChangeActiveItem2Key(KeyCode key)
+    {
+        settings.activeItem2 = key;
+        KeyChanged();
+    }
+    public void ChangeActiveItem3Key(KeyCode key)
+    {
+        settings.activeItem3 = key;
+        KeyChanged();
+    }
+    public void ChangeActiveItem4Key(KeyCode key)
+    {
+        settings.activeItem4 = key;
+        KeyChanged();
+    }
+    public void ChangeActiveItem5Key(KeyCode key)
+    {
+        settings.activeItem5 = key;
+        KeyChanged();
+    }
+    public void ChangeActiveItem6Key(KeyCode key)
+    {
+        settings.activeItem6 = key;
+        KeyChanged();
+    }
+    public void ChangeActiveItem7Key(KeyCode key)
+    {
+        settings.activeItem7 = key;
+        KeyChanged();
+    }
+    public void ChangeActiveItem8Key(KeyCode key)
+    {
+        settings.activeItem8 = key;
+        KeyChanged();
+    }
+    public void ChangeCameraRotLeftKey(KeyCode key)
+    {
+        settings.cameraRotLeft = key;
+        KeyChanged();
+    }
+    public void ChangeCameraRotRightKey(KeyCode key)
+    {
+        settings.cameraRotRight = key;
+        KeyChanged();
+    }
     private void KeyChanged()
     {
         Key_Pressed.RemoveAllListeners();
+        Key_Changed.Invoke();
         FindObjectOfType<ControlsWindow>().UpdateKeybinds();
         SaveFile();
     }
