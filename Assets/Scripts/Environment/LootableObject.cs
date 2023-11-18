@@ -204,7 +204,9 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                 item.SetActive(lootable);
             }
         GetComponent<Collider>().enabled = lootable;
-        GetComponentInChildren<EnableOutlineOnMouseOver>().enabled = lootable;
+        var outline = GetComponentInChildren<EnableOutlineOnMouseOver>();
+        if (outline)
+            outline.enabled = lootable;
     }
     [Command(requiresAuthority = false)]
     private void CmdStartRefreshTimer()

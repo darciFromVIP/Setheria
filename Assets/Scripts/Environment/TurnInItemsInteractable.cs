@@ -76,6 +76,10 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
         if (animator)
             CmdSetAnimation();
         Items_Turned_In.Invoke();
+        GetComponent<Collider>().enabled = false;
+        var outline = GetComponentInChildren<EnableOutlineOnMouseOver>();
+        if (outline)
+            outline.enabled = false;
     }
     [Command(requiresAuthority = false)]
     private void CmdSetAnimation()

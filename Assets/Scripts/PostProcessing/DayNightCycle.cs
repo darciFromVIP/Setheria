@@ -6,10 +6,9 @@ using UnityEngine.Rendering.Universal;
 using TMPro;
 public class DayNightCycle : MonoBehaviour
 {
-    public GameObject sphere;
     public Light directionalLight;
     public Volume volume;
-    public TextMeshProUGUI daysAliveText;
+    public DayNightCycleScriptable uiData;
     public List<PostProcessingDataScriptable> data = new();
 
     private int daysAlive = 0;
@@ -42,8 +41,8 @@ public class DayNightCycle : MonoBehaviour
                 currentIndex = 0;
                 timer = 0;
                 daysAlive++;
-                daysAliveText.text = "Day " + daysAlive;
-                daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
+                uiData.daysAliveText.text = "Day " + daysAlive;
+                uiData.daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
             }
             else
                 currentIndex++;
@@ -62,7 +61,7 @@ public class DayNightCycle : MonoBehaviour
         {
             directionalLight.color = Color.Lerp(currentIndex == 0 ? data[maxIndex].color : data[currentIndex - 1].color, data[currentIndex].color, progressPercentage);
             directionalLight.intensity = Mathf.Lerp(currentIndex == 0 ? data[maxIndex].intensity : data[currentIndex - 1].intensity, data[currentIndex].intensity, progressPercentage);
-            sphere.transform.rotation = Quaternion.Lerp(Quaternion.Euler(currentIndex == 0 ? data[maxIndex].rotation : data[currentIndex - 1].rotation), Quaternion.Euler(data[currentIndex].rotation), progressPercentage);
+            uiData.sphere.transform.rotation = Quaternion.Lerp(Quaternion.Euler(currentIndex == 0 ? data[maxIndex].rotation : data[currentIndex - 1].rotation), Quaternion.Euler(data[currentIndex].rotation), progressPercentage);
             
             if (volume.profile.TryGet(out ColorAdjustments color))
             {

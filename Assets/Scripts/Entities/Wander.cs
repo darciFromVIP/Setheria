@@ -36,7 +36,7 @@ public class Wander : MonoBehaviour
                 wanderTimer -= Time.deltaTime;
             yield return null;
         }
-        moveComp.SetBaseMovementSpeed(1);
+        moveComp.SetBaseMovementSpeed(0.5f);
         if (rangeFromStart)
             moveComp.MoveTo(new Vector3(startingPosition.x + Random.Range(-wanderRange, wanderRange), startingPosition.y, startingPosition.z + Random.Range(-wanderRange, wanderRange)));
         else

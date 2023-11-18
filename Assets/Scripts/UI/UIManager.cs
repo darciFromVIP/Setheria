@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 public interface WindowedUI
 {
@@ -12,12 +13,17 @@ public class UIManager : MonoBehaviour
     public List<GameObject> windows = new();
     private List<WindowedUI> windowedUIs = new();
     public GameObject menuWindow;
+    public GameObject dayNightSphere;
+    public TextMeshProUGUI dayText;
+    public DayNightCycleScriptable dayNightUI;
     private void Awake()
     {
         foreach (var item in windows)
         {
             windowedUIs.Add(item.GetComponent<WindowedUI>());
         }
+        dayNightUI.sphere = dayNightSphere;
+        dayNightUI.daysAliveText = dayText;
     }
     private void Update()
     {
