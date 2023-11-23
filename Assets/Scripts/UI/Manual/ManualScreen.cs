@@ -7,6 +7,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     public GameObject manualScreen;
     public GameObject recipeList;
     public GameObject recipeCategories;
+    public GameObject allRecipes;
     public Recipe recipePrefab;
     public TooltipTrigger alchemyButton, fishingButton, cookingButton, explorationButton;
 
@@ -53,6 +54,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         manualScreen.SetActive(!manualScreen.activeSelf);
         if (!recipeCategories.activeSelf)
             ClearRecipeList();
+        allRecipes.SetActive(true);
         recipeCategories.SetActive(true);
         FindObjectOfType<Tooltip>(true).Hide();
         FindObjectOfType<TooltipWorld>(true).Hide();
@@ -159,6 +161,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         manualScreen.SetActive(true);
         FindObjectOfType<RecipeDetail>(true).ClearDetails();
         recipeCategories.SetActive(false);
+        allRecipes.SetActive(false);
         ClearRecipeList();
         SetRecipeData(recipes, true);
     }

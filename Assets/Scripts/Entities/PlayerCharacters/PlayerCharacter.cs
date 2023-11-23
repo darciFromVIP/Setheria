@@ -63,6 +63,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
 
     public ItemPrefabDatabase itemDatabase;
     public ItemScriptableDatabase itemScriptableDatabase;
+    public TutorialDataScriptable movementTutorial;
 
     private HasHealth healthComp;
     private HasMana manaComp;
@@ -81,6 +82,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         moveComp = GetComponent<CanMove>();
         attackComp = GetComponent<CanAttack>();
         playerController = GetComponent<PlayerController>();
+        FindObjectOfType<Tutorial>().SetNewTutorialWindow(movementTutorial);
         professions = new Professions(this);
         foreach (var item in FindObjectsOfType<HeroButton>(true))
         {
