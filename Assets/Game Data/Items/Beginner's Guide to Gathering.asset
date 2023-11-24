@@ -24,6 +24,7 @@ MonoBehaviour:
   usage:
   - {fileID: 11400000, guid: c103c18881fad3d43957d7278e5a33cc, type: 2}
   - {fileID: 11400000, guid: 7e60f4a201fd2cb4cb0750921f80aa37, type: 2}
+  - {fileID: 11400000, guid: afc51123c53ba2f4ba7d6f67f142aa0c, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -32,6 +33,8 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 5
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 11400000, guid: 7dfba2e438aa93e45ad544346cf37975,
+    type: 2}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

@@ -33,8 +33,20 @@ public class ItemScriptable : ScriptableObject
     public int resourceCost;
     public int knowledgeCost;
     public bool unlocked = true;
+    public TutorialDataScriptable tutorialToShowAfterItemAcquirement;
 
     [HideInInspector] public UnityEvent<ItemScriptable> Item_Acquired = new();
     [HideInInspector] public UnityEvent<ItemScriptable, int> Item_Stacks_Acquired = new();
     [HideInInspector] public UnityEvent<ItemScriptable, int> Item_Stacks_Lost = new();
+
+    private void OnEnable()
+    {
+        if (tutorialToShowAfterItemAcquirement != null)
+            Item_Acquired.AddListener(ShowTutorial);
+    }
+    private void ShowTutorial(ItemScriptable item)
+    {
+        FindObjectOfType<Tutorial>().QueueNewTutorial(tutorialToShowAfterItemAcquirement);
+        Item_Acquired.RemoveListener(ShowTutorial);
+    }
 }

@@ -63,7 +63,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
 
     public ItemPrefabDatabase itemDatabase;
     public ItemScriptableDatabase itemScriptableDatabase;
-    public TutorialDataScriptable movementTutorial;
+    public List<TutorialDataScriptable> introductoryTutorial = new();
+    public List<TutorialDataScriptable> levelUpTutorial = new();
 
     private HasHealth healthComp;
     private HasMana manaComp;
@@ -82,7 +83,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         moveComp = GetComponent<CanMove>();
         attackComp = GetComponent<CanAttack>();
         playerController = GetComponent<PlayerController>();
-        FindObjectOfType<Tutorial>().SetNewTutorialWindow(movementTutorial);
+        foreach (var item in introductoryTutorial)
+        {
+            FindObjectOfType<Tutorial>().QueueNewTutorial(item);
+        }
         professions = new Professions(this);
         foreach (var item in FindObjectsOfType<HeroButton>(true))
         {
@@ -297,6 +301,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             maxXp = (int)(BaseMaxXpValue * level * MaxXpMultiplier);
             Level_Up.Invoke(level);
             Debug.Log("Level up: " + level);
+            if (level == 2)
+            {
+                foreach (var item in levelUpTutorial)
+                {
+                    FindObjectOfType<Tutorial>().QueueNewTutorial(item);
+                }
+            }    
             if (level <= 5)
                 talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);

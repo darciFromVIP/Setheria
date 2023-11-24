@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public class TutorialArea : MonoBehaviour
 {
-    public string textBeforeKey, textAfterKey;
-    public KeybindType keybind;
+    public TutorialDataScriptable tutData;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,8 +12,7 @@ public class TutorialArea : MonoBehaviour
         {
             if (character.isOwned)
             {
-                var key = FindObjectOfType<SettingsManager>().GetDataByKeybindType(keybind);
-                FindObjectOfType<SystemMessages>().AddMessage(textBeforeKey + key.text + textAfterKey, MsgType.Notice);
+                FindObjectOfType<Tutorial>().QueueNewTutorial(tutData);
                 Destroy(gameObject);
             }
         }

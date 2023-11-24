@@ -9,6 +9,9 @@ public class Tutorial : MonoBehaviour
     public GameObject window;
     public TextMeshProUGUI label, description;
     public Animator gifAnimator;
+    
+    private Queue<TutorialDataScriptable> tutorialDataStack = new();
+    private bool isCoroutineRunning = false;
 
     private bool isTutorialDisabled = false;
 
@@ -20,13 +23,40 @@ public class Tutorial : MonoBehaviour
     {
         return isTutorialDisabled;
     }
-    public void SetNewTutorialWindow(TutorialDataScriptable tutData)
+    public void QueueNewTutorial(TutorialDataScriptable tutData)
+    {
+        if (isTutorialDisabled)
+            return;
+        if (window.activeSelf || tutorialDataStack.Count > 0)
+        {
+            tutorialDataStack.Enqueue(tutData);
+            if (!isCoroutineRunning)
+                StartCoroutine(DelayedSetNewWindow());
+            return;
+        }
+        SetNewTutorialWindow(tutData);
+    }
+    private void SetNewTutorialWindow(TutorialDataScriptable tutData)
     {
         if (isTutorialDisabled)
             return;
         label.text = tutData.label;
         description.text = tutData.description;
-        gifAnimator.Play(tutData.gifAnim.name);
         window.SetActive(true);
+        gifAnimator.Play(tutData.gifAnim.name);
+    }
+    private IEnumerator DelayedSetNewWindow()
+    {
+        isCoroutineRunning = true;
+        while (window.activeSelf)
+        {
+            yield return null;
+        }
+        isCoroutineRunning = false;
+        SetNewTutorialWindow(tutorialDataStack.Dequeue());
+        if (tutorialDataStack.Count > 0)
+        {
+            StartCoroutine(DelayedSetNewWindow());
+        }
     }
 }
