@@ -1,0 +1,23 @@
+STEP 1
+-record gif
+-save gif and convert to PNG and Sheet
+STEP 2
+-add Sheet to Unity (Tut Data -> Gifts)and change:
+	sprite 2D
+	multiple
+	alpha Source None
+	MaxSize 8192
+	Compression High Quality
+-Sprite Editor and Left corner Slice edit grid by cell size
+-delete last cells  
+STEP 3
+-open Game
+-find Tutorial in Hierarchy and "GIF"
+-create animation in TutorialData->Gift
+-open it 
+-open GiF animator and create new animation
+-add to animation Sheetpictures
+-edit length and add gif to Script in TutorialData
+STEP 4
+!!!DONE!!!
+	 
