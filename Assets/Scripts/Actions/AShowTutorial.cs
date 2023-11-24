@@ -5,7 +5,6 @@ using UnityEngine;
 public class AShowTutorial : ActionTemplate
 {
     public TutorialDataScriptable tutorialToShow;
-    private bool alreadyShown = false;
 
     public override void ActionFinished()
     {
@@ -15,11 +14,10 @@ public class AShowTutorial : ActionTemplate
     public override void Execute()
     {
         FindObjectOfType<Tutorial>().QueueNewTutorial(tutorialToShow);
-        alreadyShown = true;
     }
 
     public override bool TestExecute()
     {
-        return !alreadyShown;
+        return true;
     }
 }
