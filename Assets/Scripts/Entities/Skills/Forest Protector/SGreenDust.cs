@@ -20,14 +20,12 @@ public class SGreenDust : Skill
 
 
     [HideInInspector] public Vector3 actualPoint;
+
     public override void Execute(Character self)
     {
         base.Execute(self);
-        if (castingEntity.isServer)
-        {
-            self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCast);
-            self.GetComponent<PlayerController>().ChangeCastingState(CastingState.BothExceptSelf);
-        }
+        self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCast);
+        self.GetComponent<PlayerController>().ChangeCastingState(CastingState.BothExceptSelf);
     }
     public override void ExecuteOnStart(Character self)
     {
@@ -51,9 +49,11 @@ public class SGreenDust : Skill
     }
     private void Cast()
     {
-        castingEntity.GetComponent<ForestProtector>().CastGreenDust();
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<ForestProtector>().CastGreenDust();
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownQ();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);

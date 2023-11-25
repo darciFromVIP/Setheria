@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class ForestProtector : NetworkBehaviour
 {
-    [Command(requiresAuthority = false)]
     public void CastGreenDust()
     {
         SGreenDust skill = (SGreenDust)GetComponent<PlayerCharacter>().skills[2];
