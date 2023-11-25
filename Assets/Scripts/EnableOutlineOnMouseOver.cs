@@ -11,11 +11,13 @@ public class EnableOutlineOnMouseOver : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        outline.enabled = true;
+        if (outline)
+            outline.enabled = true;
     }
     private void OnMouseExit()
     {
-        outline.enabled = false;
+        if (outline)
+            outline.enabled = false;
     }
 
 }

@@ -169,6 +169,7 @@ public class Projectile : NetworkBehaviour
                 case ProjectileImpactEffect.Damage:
                     foreach (var item in entities)
                     {
+                        Debug.Log("Damaging: " + item.name);
                         if (isServer)
                             item.RpcTakeDamage(data.effectValue, data.ignoresArmor, data.owner.GetComponent<NetworkIdentity>());
                     }
@@ -176,6 +177,7 @@ public class Projectile : NetworkBehaviour
                 case ProjectileImpactEffect.Healing:
                     foreach (var item in entities)
                     {
+                        Debug.Log("Healing: " + item.name);
                         if (isServer)
                             item.RpcHealDamage(data.effectValue, false);
                     }
