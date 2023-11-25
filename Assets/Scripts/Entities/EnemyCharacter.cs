@@ -61,18 +61,21 @@ public class EnemyCharacter : Character, ISaveable
     protected override void OnDeath()
     {
         base.OnDeath();
-        Collider[] targets = new Collider[4];
-        Physics.OverlapSphereNonAlloc(transform.position, 20, targets, xpReceiverMask);
-        List<PlayerCharacter> xpReceivers = new();
-        foreach (var item in targets)
+        if (isServer)
         {
-            if (item)
-                if (item.TryGetComponent(out PlayerCharacter player))
-                    xpReceivers.Add(player);
-        }
-        foreach (var item in xpReceivers)
-        {
-            item.RpcAddXp(xpGranted / xpReceivers.Count);
+            Collider[] targets = new Collider[4];
+            Physics.OverlapSphereNonAlloc(transform.position, 20, targets, xpReceiverMask);
+            List<PlayerCharacter> xpReceivers = new();
+            foreach (var item in targets)
+            {
+                if (item)
+                    if (item.TryGetComponent(out PlayerCharacter player))
+                        xpReceivers.Add(player);
+            }
+            foreach (var item in xpReceivers)
+            {
+                item.RpcAddXp(xpGranted / xpReceivers.Count);
+            }
         }
     }
     public SaveDataWorldObject SaveState()
