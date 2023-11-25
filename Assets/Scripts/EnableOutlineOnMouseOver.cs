@@ -8,6 +8,8 @@ public class EnableOutlineOnMouseOver : MonoBehaviour
     private void Start()
     {
         outline = GetComponentInChildren<Outline>();
+        if (outline)
+            outline.enabled = false;
     }
     private void OnMouseEnter()
     {

@@ -39,8 +39,8 @@ public class ForestProtector : NetworkBehaviour
             affectsStructures = false,
             owner = GetComponent<PlayerCharacter>()
         });
-        NetworkServer.Spawn(proj2.gameObject);
         NetworkServer.Spawn(proj.gameObject);
+        NetworkServer.Spawn(proj2.gameObject);
     }
 
 }

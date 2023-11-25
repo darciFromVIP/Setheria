@@ -126,6 +126,7 @@ public class Projectile : NetworkBehaviour
                 break;
             case ProjectileImpactType.AoE:
                 Collider[] colliders = new Collider[20];
+                Debug.Log("AoE Radius: " + data.aoeRadius);
                 Physics.OverlapSphereNonAlloc(transform.position, data.aoeRadius, colliders, data.targetsMask);
                 foreach (var item in colliders)
                 {
@@ -197,6 +198,7 @@ public class Projectile : NetworkBehaviour
         }
         if (impactParticlePrefab)
             Instantiate(impactParticlePrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        if (isServer)
+           NetworkServer.Destroy(gameObject);
     }
 }
