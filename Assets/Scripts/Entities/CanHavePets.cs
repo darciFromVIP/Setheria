@@ -13,7 +13,7 @@ public class CanHavePets : NetworkBehaviour
         pet.GetComponent<CanAttack>().SetPower(power);
         spawnedPets.Add(pet);
         pet.GetComponent<Pet>().StartTimedLife(time, this);
-        NetworkServer.Spawn(pet.gameObject);
+        NetworkServer.Spawn(pet.gameObject, gameObject);
     }
     public void DespawnPet(Entity pet, bool deathAnimation)
     {

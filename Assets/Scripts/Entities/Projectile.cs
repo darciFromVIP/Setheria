@@ -54,6 +54,14 @@ public class Projectile : NetworkBehaviour
         if (!launchSound.IsNull)
             FindObjectOfType<AudioManager>().PlayOneShot(launchSound, transform.position);
         this.data = data;
+        StartCoroutine(WaitForServerLoad());
+    }
+    private IEnumerator WaitForServerLoad()
+    {
+        while (!(isClient || isServer)) 
+        {
+            yield return null;
+        }
         switch (data.projectileTravel)
         {
             case ProjectileTravelType.Skillshot:
@@ -176,8 +184,13 @@ public class Projectile : NetworkBehaviour
                 case ProjectileImpactEffect.Healing:
                     foreach (var item in entities)
                     {
+                        
                         if (isServer)
+                        {
+                            Debug.Log("Healing someone for " + data.effectValue);
                             item.RpcHealDamage(data.effectValue, false);
+
+                        }
                     }
                     break;
                 case ProjectileImpactEffect.Buff:
@@ -195,6 +208,7 @@ public class Projectile : NetworkBehaviour
         }
         if (impactParticlePrefab)
             Instantiate(impactParticlePrefab, transform.position, Quaternion.identity);
+        Debug.Log("Destroying " + name);
         if (isServer)
            NetworkServer.Destroy(gameObject);
     }

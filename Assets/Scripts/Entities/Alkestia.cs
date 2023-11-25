@@ -7,6 +7,7 @@ public class Alkestia : NetworkBehaviour
 {
     public void CastFlowerPowerHeal()
     {
+        Debug.Log("Casting FPHeal");
         SFlowerPowerHeal skill = (SFlowerPowerHeal)GetComponent<Character>().skills[0];
         var proj = Instantiate(skill.projectile, transform.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
@@ -20,6 +21,7 @@ public class Alkestia : NetworkBehaviour
             affectsOwner = false,
             effectValue = skill.heal,
         });
-        NetworkServer.Spawn(proj.gameObject);
+        NetworkServer.Spawn(proj.gameObject, gameObject);
     }
+
 }

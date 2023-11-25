@@ -10,7 +10,6 @@ public class SFlowerPowerHeal : Skill
     public override void Execute(Character self)
     {
         base.Execute(self);
-        castingEntity = self;
         if (self.isServer)
             castingEntity.GetComponent<Character>().CastSkill1();
 
