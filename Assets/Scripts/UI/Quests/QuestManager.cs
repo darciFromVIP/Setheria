@@ -187,7 +187,8 @@ public class QuestManager : NetworkBehaviour
                         FindObjectOfType<GameManager>().ChangeKnowledge(item.rewardAmount);
                     break;
                 case QuestRewardType.XP:
-                    FindObjectOfType<GameManager>().localPlayerCharacter.CmdAddXp(item.rewardAmount);
+                    if (FindObjectOfType<GameManager>().localPlayerCharacter.isOwned)
+                        FindObjectOfType<GameManager>().localPlayerCharacter.CmdAddXp(item.rewardAmount);
                     break;
                 case QuestRewardType.Item:
                     FindObjectOfType<InventoryManager>(true).AddItem(item.itemReward, item.rewardAmount);

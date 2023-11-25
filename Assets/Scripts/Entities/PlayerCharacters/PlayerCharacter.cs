@@ -24,7 +24,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
 {
     public string heroName;
     public Hero hero;
-    private int xp;                                             //We need SyncVars to sync data from server to client when the client connects
+    [SerializeField] private int xp;                                             //We need SyncVars to sync data from server to client when the client connects
     private int maxXp;
     private int attributePoints = 0;
     public int hunger;
