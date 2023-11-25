@@ -47,6 +47,9 @@ public class SEntanglingRoots : Skill
     }
     private void StartCasting()
     {
+        damageBuff.value = finalDamage;
+        damageBuff.duration = baseDuration;
+        stunBuff.duration = baseDuration;
         if (castingEntity.isServer)
             castingEntity.GetComponent<Character>().CastSkill4();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
@@ -56,9 +59,6 @@ public class SEntanglingRoots : Skill
     }
     private void Cast()
     {
-        damageBuff.value = finalDamage;
-        damageBuff.duration = baseDuration;
-        stunBuff.duration = baseDuration;
         if (castingEntity.isServer)
             castingEntity.GetComponent<ForestProtector>().CastEntanglingRoots();
         PlayerController player = castingEntity.GetComponent<PlayerController>();

@@ -42,7 +42,7 @@ public class SFlowerPower : Skill
         actualPoint = Vector3.MoveTowards(castingEntity.transform.position, point, range);
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
-        if (castingEntity.isOwned)
+        if (castingEntity.isServer)
             castingEntity.GetComponent<Character>().CastSkill5();
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(point);
