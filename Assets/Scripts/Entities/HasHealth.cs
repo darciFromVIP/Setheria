@@ -93,6 +93,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
             {
                 if (isServer)
                     attack.RpcTargetAcquired(owner);
+                else
+                    attack.CmdTargetAcquired(owner);
             }
         }
         if (isInvulnerable)
