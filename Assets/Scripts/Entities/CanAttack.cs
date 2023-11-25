@@ -178,7 +178,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (enemyTarget)
             enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(power * modifier, false, GetComponent<NetworkIdentity>());
         Attacked();
-        ResumeActing();
+        RpcSetCanAct(true);
     }
     public void RangedAttack()                          //This reacts to animations, that are run on both the server and client
     {
@@ -187,7 +187,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (enemyTarget)
             SpawnProjectile();
         Attacked();
-        ResumeActing();
+        RpcSetCanAct(true);
     }
     private void Attacked()
     {

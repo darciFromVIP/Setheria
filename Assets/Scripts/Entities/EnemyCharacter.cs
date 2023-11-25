@@ -72,7 +72,7 @@ public class EnemyCharacter : Character, ISaveable
         }
         foreach (var item in xpReceivers)
         {
-            item.AddXp(xpGranted / xpReceivers.Count);
+            item.RpcAddXp(xpGranted / xpReceivers.Count);
         }
     }
     public SaveDataWorldObject SaveState()
