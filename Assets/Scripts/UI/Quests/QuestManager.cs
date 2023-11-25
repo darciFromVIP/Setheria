@@ -187,7 +187,6 @@ public class QuestManager : NetworkBehaviour
                         FindObjectOfType<GameManager>().ChangeKnowledge(item.rewardAmount);
                     break;
                 case QuestRewardType.XP:
-                    Debug.Log("Local Player Character for this client: " + FindObjectOfType<GameManager>().localPlayerCharacter.name);
                     FindObjectOfType<GameManager>().localPlayerCharacter.CmdAddXp(item.rewardAmount);
                     break;
                 case QuestRewardType.Item:
