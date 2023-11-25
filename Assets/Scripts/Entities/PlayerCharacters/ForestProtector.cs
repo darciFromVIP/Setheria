@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForestProtector : PlayerCharacter
+public class ForestProtector : NetworkBehaviour
 {
     [Command(requiresAuthority = false)]
     public void CastGreenDust()
     {
-        SGreenDust skill = (SGreenDust)skills[2];
+        SGreenDust skill = (SGreenDust)GetComponent<PlayerCharacter>().skills[2];
         var proj = Instantiate(skill.damageProjectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -21,7 +21,7 @@ public class ForestProtector : PlayerCharacter
             speed = 5,
             targetPoint = skill.actualPoint,
             affectsEntities = true,
-            owner = this
+            owner = GetComponent<PlayerCharacter>()
         });
         var proj2 = Instantiate(skill.healingProjectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
         proj2.InitializeProjectile(new ProjectileData()
@@ -37,7 +37,7 @@ public class ForestProtector : PlayerCharacter
             affectsOwner = false,
             affectsEntities = true,
             affectsStructures = false,
-            owner = this
+            owner = GetComponent<PlayerCharacter>()
         });
         NetworkServer.Spawn(proj.gameObject);
         NetworkServer.Spawn(proj2.gameObject);
