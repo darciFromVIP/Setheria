@@ -110,16 +110,13 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                     return;
                 }
             }
-            Debug.Log("Have Target");
             if (Vector3.Distance(transform.position, enemyTarget.transform.position) <= (attackRange > moveComp.agent.stoppingDistance ? attackRange : moveComp.agent.stoppingDistance))
             {
-                Debug.Log("Stopping");
                 moveComp.Stop();
                 if (attackSpeedTimer <= 0)
                 {
                     if (netAnim)
                     {
-                        Debug.Log("Attacking");
                         Attack();
                     }
                     else
