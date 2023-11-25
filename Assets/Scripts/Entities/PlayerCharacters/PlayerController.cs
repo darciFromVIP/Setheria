@@ -394,30 +394,40 @@ public class PlayerController : NetworkBehaviour
     {
         cooldownD = playerCharacter.skills[1].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_D_Started.Invoke();
-        Resume_Acting.Invoke();
+        CmdResumeActing();
     }
     public void StartCooldownQ()
     {
         cooldownQ = playerCharacter.skills[2].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_Q_Started.Invoke();
-        Resume_Acting.Invoke();
+        CmdResumeActing();
     }
     public void StartCooldownW()
     {
         cooldownW = playerCharacter.skills[3].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_W_Started.Invoke();
-        Resume_Acting.Invoke();
+        CmdResumeActing();
     }
     public void StartCooldownE()
     {
         cooldownE = playerCharacter.skills[4].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_E_Started.Invoke();
-        Resume_Acting.Invoke();
+        CmdResumeActing();
     }
     public void StartCooldownR()
     {
         cooldownR = playerCharacter.skills[5].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_R_Started.Invoke();
+        CmdResumeActing();
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdResumeActing()
+    {
+        RpcResumeActing();
+    }
+    [ClientRpc]
+    private void RpcResumeActing()
+    {
         Resume_Acting.Invoke();
     }
     [Command]
