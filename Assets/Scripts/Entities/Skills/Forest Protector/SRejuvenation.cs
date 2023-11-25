@@ -46,7 +46,8 @@ public class SRejuvenation : Skill
     }
     private void StartCasting()
     {
-        castingEntity.GetComponent<Character>().CastSkill3();
+        if (castingEntity.isOwned)
+            castingEntity.GetComponent<Character>().CastSkill3();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         if (castingEntity.isOwned)
         {
@@ -56,17 +57,11 @@ public class SRejuvenation : Skill
     }
     private void Cast()
     {
-        var proj = Instantiate(projectile, castingEntity.GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = buff,
-            targetedEntity = ally.GetComponent<HasHealth>()
-        });
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<ForestProtector>().CastRejuvenation(ally);
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownW();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);

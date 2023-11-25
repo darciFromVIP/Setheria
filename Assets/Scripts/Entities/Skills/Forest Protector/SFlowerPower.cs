@@ -42,15 +42,18 @@ public class SFlowerPower : Skill
         actualPoint = Vector3.MoveTowards(castingEntity.transform.position, point, range);
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
-        castingEntity.GetComponent<Character>().CastSkill5();
+        if (castingEntity.isOwned)
+            castingEntity.GetComponent<Character>().CastSkill5();
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(point);
     }
     private void Cast()
     {
-        castingEntity.GetComponent<CanHavePets>().CmdSpawnPet(flowerPrefab.name, actualPoint, timedLife, finalDamage);
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<CanHavePets>().SpawnPet(flowerPrefab.name, actualPoint, timedLife, finalDamage);
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownR();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);

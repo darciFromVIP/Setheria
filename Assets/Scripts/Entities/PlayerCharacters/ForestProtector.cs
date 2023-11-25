@@ -41,5 +41,41 @@ public class ForestProtector : NetworkBehaviour
         NetworkServer.Spawn(proj.gameObject);
         NetworkServer.Spawn(proj2.gameObject);
     }
-
+    public void CastRejuvenation(PlayerCharacter ally)
+    {
+        SRejuvenation skill = (SRejuvenation)GetComponent<PlayerCharacter>().skills[3];
+        var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
+        proj.InitializeProjectile(new ProjectileData()
+        {
+            projectileTravel = ProjectileTravelType.Instant,
+            projectileImpact = ProjectileImpactType.Single,
+            impactEffect = ProjectileImpactEffect.Buff,
+            buff = skill.buff,
+            targetedEntity = ally.GetComponent<HasHealth>()
+        });
+        NetworkServer.Spawn(proj.gameObject);
+    }
+    public void CastEntanglingRoots(BuffScriptable damageBuff, BuffScriptable stunBuff, EnemyCharacter enemy)
+    {
+        SEntanglingRoots skill = (SEntanglingRoots)GetComponent<PlayerCharacter>().skills[4];
+        var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
+        proj.InitializeProjectile(new ProjectileData()
+        {
+            projectileTravel = ProjectileTravelType.Instant,
+            projectileImpact = ProjectileImpactType.Single,
+            impactEffect = ProjectileImpactEffect.Buff,
+            buff = damageBuff,
+            targetedEntity = enemy.GetComponent<HasHealth>()
+        });
+        var proj2 = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
+        proj2.InitializeProjectile(new ProjectileData()
+        {
+            projectileTravel = ProjectileTravelType.Instant,
+            projectileImpact = ProjectileImpactType.Single,
+            impactEffect = ProjectileImpactEffect.Buff,
+            buff = stunBuff,
+            targetedEntity = enemy.GetComponent<HasHealth>()
+        });
+        NetworkServer.Spawn(proj.gameObject);
+    }
 }

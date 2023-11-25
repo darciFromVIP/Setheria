@@ -23,12 +23,13 @@ public class SCallOfTheWild : Skill
     }
     private void Cast()
     {
-        for (int i = 0; i < baseNumberOfWolves; i++)
-        {
-            castingEntity.GetComponent<CanHavePets>().CmdSpawnPet(wolfPrefab.name, 
-                castingEntity.transform.position - (castingEntity.transform.forward * 2) - (castingEntity.transform.right * 4) + (castingEntity.transform.right * i * 2), 
-                timedLife, finalPower);
-        }
+        if (castingEntity.isServer)
+            for (int i = 0; i < baseNumberOfWolves; i++)
+            {
+                castingEntity.GetComponent<CanHavePets>().SpawnPet(wolfPrefab.name, 
+                    castingEntity.transform.position - (castingEntity.transform.forward * 2) - (castingEntity.transform.right * 4) + (castingEntity.transform.right * i * 2), 
+                    timedLife, finalPower);
+            }
 
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         player.GetComponent<HasMana>().CmdSpendMana(manaCost);

@@ -7,8 +7,7 @@ public class CanHavePets : NetworkBehaviour
     public List<Entity> spawnedPets = new();
     public EntityDatabase entityDatabase;
 
-    [Command(requiresAuthority = false)]
-    public void CmdSpawnPet(string name, Vector3 position, float time, float power)
+    public void SpawnPet(string name, Vector3 position, float time, float power)
     {
         var pet = Instantiate(entityDatabase.GetEntityByName(name), position, Quaternion.identity);
         pet.GetComponent<CanAttack>().SetPower(power);

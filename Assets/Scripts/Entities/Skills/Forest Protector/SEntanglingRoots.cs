@@ -47,7 +47,8 @@ public class SEntanglingRoots : Skill
     }
     private void StartCasting()
     {
-        castingEntity.GetComponent<Character>().CastSkill4();
+        if (castingEntity.isOwned)
+            castingEntity.GetComponent<Character>().CastSkill4();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         if (castingEntity.isOwned)
         {
@@ -61,27 +62,12 @@ public class SEntanglingRoots : Skill
         damageBuff.value = finalDamage;
         damageBuff.duration = baseDuration;
         stunBuff.duration = baseDuration;
-        var proj = Instantiate(projectile, castingEntity.GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = damageBuff,
-            targetedEntity = enemy.GetComponent<HasHealth>()
-        });
-        var proj2 = Instantiate(projectile, castingEntity.GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
-        proj2.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = stunBuff,
-            targetedEntity = enemy.GetComponent<HasHealth>()
-        });
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<ForestProtector>().CastEntanglingRoots(damageBuff, stunBuff, enemy);
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         FindObjectOfType<AudioManager>().PlayOneShot(sound, enemy.transform.position);
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownE();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);
