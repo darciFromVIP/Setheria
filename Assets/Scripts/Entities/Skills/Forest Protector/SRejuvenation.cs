@@ -10,7 +10,7 @@ public class SRejuvenation : Skill
     public PlayerStat healScalingStat;
     public float healScalingValue;
     public BuffScriptable buff;
-    private PlayerCharacter ally;
+    [HideInInspector] public PlayerCharacter ally;
     public Projectile projectile;
     public override void Execute(Character self)
     {
@@ -46,19 +46,16 @@ public class SRejuvenation : Skill
     }
     private void StartCasting()
     {
-        if (castingEntity.isOwned)
+        if (castingEntity.isServer)
             castingEntity.GetComponent<Character>().CastSkill3();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
-        if (castingEntity.isOwned)
-        {
-            castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
-            castingEntity.GetComponent<Character>().RotateToPoint(ally.transform.position);
-        }
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
+        castingEntity.GetComponent<Character>().RotateToPoint(ally.transform.position);
     }
     private void Cast()
     {
         if (castingEntity.isServer)
-            castingEntity.GetComponent<ForestProtector>().CastRejuvenation(ally);
+            castingEntity.GetComponent<ForestProtector>().CastRejuvenation();
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         if (castingEntity.isServer)
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);

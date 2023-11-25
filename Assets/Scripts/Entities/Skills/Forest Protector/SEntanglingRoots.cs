@@ -13,7 +13,7 @@ public class SEntanglingRoots : Skill
     public float damageScalingValue;
     public BuffScriptable stunBuff;
     public BuffScriptable damageBuff;
-    private EnemyCharacter enemy;
+    [HideInInspector] public EnemyCharacter enemy;
     public Projectile projectile;
     public override void Execute(Character self)
     {
@@ -47,15 +47,12 @@ public class SEntanglingRoots : Skill
     }
     private void StartCasting()
     {
-        if (castingEntity.isOwned)
+        if (castingEntity.isServer)
             castingEntity.GetComponent<Character>().CastSkill4();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
-        if (castingEntity.isOwned)
-        {
-            castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
-            castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
-            castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
-        }
+        castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
+        castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
     }
     private void Cast()
     {
@@ -63,7 +60,7 @@ public class SEntanglingRoots : Skill
         damageBuff.duration = baseDuration;
         stunBuff.duration = baseDuration;
         if (castingEntity.isServer)
-            castingEntity.GetComponent<ForestProtector>().CastEntanglingRoots(damageBuff, stunBuff, enemy);
+            castingEntity.GetComponent<ForestProtector>().CastEntanglingRoots();
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         FindObjectOfType<AudioManager>().PlayOneShot(sound, enemy.transform.position);
         if (castingEntity.isServer)

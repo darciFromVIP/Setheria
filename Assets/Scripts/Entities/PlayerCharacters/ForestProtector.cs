@@ -41,7 +41,7 @@ public class ForestProtector : NetworkBehaviour
         NetworkServer.Spawn(proj.gameObject);
         NetworkServer.Spawn(proj2.gameObject);
     }
-    public void CastRejuvenation(PlayerCharacter ally)
+    public void CastRejuvenation()
     {
         SRejuvenation skill = (SRejuvenation)GetComponent<PlayerCharacter>().skills[3];
         var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
@@ -51,11 +51,11 @@ public class ForestProtector : NetworkBehaviour
             projectileImpact = ProjectileImpactType.Single,
             impactEffect = ProjectileImpactEffect.Buff,
             buff = skill.buff,
-            targetedEntity = ally.GetComponent<HasHealth>()
+            targetedEntity = skill.ally.GetComponent<HasHealth>()
         });
         NetworkServer.Spawn(proj.gameObject);
     }
-    public void CastEntanglingRoots(BuffScriptable damageBuff, BuffScriptable stunBuff, EnemyCharacter enemy)
+    public void CastEntanglingRoots()
     {
         SEntanglingRoots skill = (SEntanglingRoots)GetComponent<PlayerCharacter>().skills[4];
         var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
@@ -64,8 +64,8 @@ public class ForestProtector : NetworkBehaviour
             projectileTravel = ProjectileTravelType.Instant,
             projectileImpact = ProjectileImpactType.Single,
             impactEffect = ProjectileImpactEffect.Buff,
-            buff = damageBuff,
-            targetedEntity = enemy.GetComponent<HasHealth>()
+            buff = skill.damageBuff,
+            targetedEntity = skill.enemy.GetComponent<HasHealth>()
         });
         var proj2 = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
         proj2.InitializeProjectile(new ProjectileData()
@@ -73,9 +73,10 @@ public class ForestProtector : NetworkBehaviour
             projectileTravel = ProjectileTravelType.Instant,
             projectileImpact = ProjectileImpactType.Single,
             impactEffect = ProjectileImpactEffect.Buff,
-            buff = stunBuff,
-            targetedEntity = enemy.GetComponent<HasHealth>()
+            buff = skill.stunBuff,
+            targetedEntity = skill.enemy.GetComponent<HasHealth>()
         });
         NetworkServer.Spawn(proj.gameObject);
+        NetworkServer.Spawn(proj2.gameObject);
     }
 }

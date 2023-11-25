@@ -42,7 +42,7 @@ public class SGreenDust : Skill
         actualPoint = Vector3.MoveTowards(castingEntity.transform.position, point, range);
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
-        if (castingEntity.isOwned)
+        if (castingEntity.isServer)
             castingEntity.GetComponent<Character>().CastSkill2();
         castingEntity.GetComponent<CharacterVFXReference>().skill2.SetActive(true);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.AddListener(Cast);

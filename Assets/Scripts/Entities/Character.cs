@@ -92,31 +92,26 @@ public class Character : Entity
     {
         rotateTarget = null;
     }
-    [Command(requiresAuthority = false)]
     public void CastSkill1()
     {
         animator.SetTrigger(animHash_Skill1);
         StopActing();
     }
-    [Command(requiresAuthority = false)]
     public void CastSkill2()
     {
         animator.SetTrigger(animHash_Skill2);
         StopActing();
     }
-    [Command(requiresAuthority = false)]
     public void CastSkill3()
     {
         animator.SetTrigger(animHash_Skill3);
         StopActing();
     }
-    [Command(requiresAuthority = false)]
     public void CastSkill4()
     {
         animator.SetTrigger(animHash_Skill4);
         StopActing();
     }
-    [Command(requiresAuthority = false)]
     public void CastSkill5()
     {
         animator.SetTrigger(animHash_Skill5);

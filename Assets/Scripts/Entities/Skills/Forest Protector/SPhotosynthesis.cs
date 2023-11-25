@@ -10,7 +10,7 @@ public class SPhotosynthesis : Skill
     {
         base.Execute(self);
         castingEntity = self;
-        if (castingEntity.isOwned)
+        if (castingEntity.isServer)
             castingEntity.GetComponent<Character>().CastSkill1();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
