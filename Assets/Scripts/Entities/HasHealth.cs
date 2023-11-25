@@ -59,7 +59,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         RpcHealDamage(heal, isRegen);
     }
     [ClientRpc]
-    private void RpcHealDamage(float heal, bool isRegen)
+    public void RpcHealDamage(float heal, bool isRegen)
     {
         HealDamage(heal, isRegen);
     }

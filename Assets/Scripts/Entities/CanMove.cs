@@ -63,20 +63,12 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
                 agent.path = path;
             else
                 agent.SetDestination(destination);
-
-            /*if (GetFinalMovementSpeed() >= 2.9f)
-            {
-                animator.SetBool(animHash_Run, true);
-                animator.SetBool(animHash_Walk, false);
-            }
-            else if (GetFinalMovementSpeed() >= 0.1f)
-            {
-                animator.SetBool(animHash_Run, false);
-                animator.SetBool(animHash_Walk, true);
-            }
-            StopCoroutine("CheckPathEnd");
-            StartCoroutine("CheckPathEnd");*/
         }
+    }
+    [ClientRpc]
+    public void RpcMoveTo(Vector3 destination)
+    {
+        MoveTo(destination);
     }
     private IEnumerator CheckPathEnd()
     {

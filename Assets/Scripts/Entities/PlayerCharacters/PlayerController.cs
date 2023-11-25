@@ -176,7 +176,7 @@ public class PlayerController : NetworkBehaviour
                 if (hit.collider.CompareTag("Ground"))                         
                 {
                     moveComp.MoveTo(hit.point);
-                    attackComp.TargetLost();
+                    attackComp.CmdTargetLost();
                 }
             }
             if (Input.GetKeyDown(settingsManager.settings.move))

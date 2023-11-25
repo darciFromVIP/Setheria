@@ -142,7 +142,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                     moveComp.Stop();
             }
             else if (moveComp)
-                moveComp.MoveTo(enemyTarget.transform.position);
+                moveComp.RpcMoveTo(enemyTarget.transform.position);
         }
     }
     [ClientRpc]

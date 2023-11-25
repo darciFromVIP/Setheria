@@ -169,13 +169,15 @@ public class Projectile : NetworkBehaviour
                 case ProjectileImpactEffect.Damage:
                     foreach (var item in entities)
                     {
-                        item.TakeDamage(data.effectValue, data.ignoresArmor, data.owner.GetComponent<NetworkIdentity>());
+                        if (isServer)
+                            item.RpcTakeDamage(data.effectValue, data.ignoresArmor, data.owner.GetComponent<NetworkIdentity>());
                     }
                     break;
                 case ProjectileImpactEffect.Healing:
                     foreach (var item in entities)
                     {
-                        item.HealDamage(data.effectValue, false);
+                        if (isServer)
+                            item.RpcHealDamage(data.effectValue, false);
                     }
                     break;
                 case ProjectileImpactEffect.Buff:
