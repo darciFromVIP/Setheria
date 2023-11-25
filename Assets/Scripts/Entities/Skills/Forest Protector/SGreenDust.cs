@@ -23,7 +23,7 @@ public class SGreenDust : Skill
     public override void Execute(Character self)
     {
         base.Execute(self);
-        if (castingEntity.isOwned)
+        if (castingEntity.isServer)
         {
             self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCast);
             self.GetComponent<PlayerController>().ChangeCastingState(CastingState.BothExceptSelf);
