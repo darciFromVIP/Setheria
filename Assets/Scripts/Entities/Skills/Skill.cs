@@ -31,7 +31,7 @@ public class Skill : ScriptableObject
         {
             player.SetCurrentSkill(this);
             player.ChangeState(PlayerState.Casting);
-            self.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveAllListeners();
+            player.Ground_Left_Clicked.RemoveAllListeners();
         }
     }
     public virtual void StopExecute()

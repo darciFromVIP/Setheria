@@ -23,8 +23,11 @@ public class SGreenDust : Skill
     public override void Execute(Character self)
     {
         base.Execute(self);
-        self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCast);
-        self.GetComponent<PlayerController>().ChangeCastingState(CastingState.BothExceptSelf);
+        if (castingEntity.isOwned)
+        {
+            self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCast);
+            self.GetComponent<PlayerController>().ChangeCastingState(CastingState.BothExceptSelf);
+        }
     }
     public override void ExecuteOnStart(Character self)
     {
