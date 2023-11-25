@@ -11,15 +11,15 @@ public class SGreenDust : Skill
     public float baseHeal;
     public PlayerStat healScalingStat;
     public float healScalingValue;
-    private float finalDamage;
-    private float finalHeal;
+    [HideInInspector] public float finalDamage;
+    [HideInInspector] public float finalHeal;
     public float aoeRadius;
     public float range;
     public Projectile damageProjectile;
     public Projectile healingProjectile;
 
 
-    private Vector3 actualPoint;
+    [HideInInspector] public Vector3 actualPoint;
     public override void Execute(Character self)
     {
         base.Execute(self);
@@ -48,36 +48,7 @@ public class SGreenDust : Skill
     }
     private void Cast()
     {
-        var proj = Instantiate(damageProjectile, castingEntity.GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.TerrainTargeted,
-            projectileImpact = ProjectileImpactType.AoE,
-            impactEffect = ProjectileImpactEffect.Damage,
-            targetsMask = LayerMask.GetMask("Enemy"),
-            aoeRadius = aoeRadius,
-            effectValue = finalDamage,
-            speed = 5,
-            targetPoint = actualPoint,
-            affectsEntities = true,
-            owner = castingEntity
-        });
-        var proj2 = Instantiate(healingProjectile, castingEntity.GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
-        proj2.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.TerrainTargeted,
-            projectileImpact = ProjectileImpactType.AoE,
-            impactEffect = ProjectileImpactEffect.Healing,
-            targetsMask = LayerMask.GetMask("Player"),
-            aoeRadius = aoeRadius,
-            effectValue = finalHeal,
-            speed = 5,
-            targetPoint = actualPoint,
-            affectsOwner = false,
-            affectsEntities = true,
-            affectsStructures = false,
-            owner = castingEntity
-        });
+        castingEntity.GetComponent<ForestProtector>().CastGreenDust();
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         player.GetComponent<HasMana>().CmdSpendMana(manaCost);
         player.StartCooldownQ();

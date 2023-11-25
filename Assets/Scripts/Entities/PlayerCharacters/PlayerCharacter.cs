@@ -24,32 +24,32 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
 {
     public string heroName;
     public Hero hero;
-    [SyncVar] [SerializeField] private int xp;                                             //We need SyncVars to sync data from server to client when the client connects
-    [SyncVar] [SerializeField] private int maxXp;
-    private int attributePoints = 0;
+    [SyncVar] [SerializeField] protected int xp;                                             //We need SyncVars to sync data from server to client when the client connects
+    [SyncVar] [SerializeField] protected int maxXp;
+    protected int attributePoints = 0;
     public int hunger;
     public int maxHunger;
-    private float hungerInterval;
-    private float hungerTimer = 0;
-    private Vector3 returnPoint;
+    protected float hungerInterval;
+    protected float hungerTimer = 0;
+    protected Vector3 returnPoint;
 
-    private int attMaxHealth = 0;
-    private int attHealthRegen = 0;
-    private int attArmor = 0;
-    private int attMaxMana = 0;
-    private int attManaRegen = 0;
-    private int attPower = 0;
-    private int attCriticalChance = 0;
-    private int attCriticalDamage = 0;
-    private int attAttackSpeed = 0;
-    private int attCooldownReduction = 0;
+    protected int attMaxHealth = 0;
+    protected int attHealthRegen = 0;
+    protected int attArmor = 0;
+    protected int attMaxMana = 0;
+    protected int attManaRegen = 0;
+    protected int attPower = 0;
+    protected int attCriticalChance = 0;
+    protected int attCriticalDamage = 0;
+    protected int attAttackSpeed = 0;
+    protected int attCooldownReduction = 0;
 
     public TalentTreesReference refTalentTrees;
     [HideInInspector] public TalentTrees talentTrees = new();
     public Professions professions;
 
-    private const float MaxXpMultiplier = 1.2f;
-    private const int BaseMaxXpValue = 100;
+    protected const float MaxXpMultiplier = 1.2f;
+    protected const int BaseMaxXpValue = 100;
 
     [System.NonSerialized] public UnityEvent<int> Level_Up = new();
     [System.NonSerialized] public UnityEvent<int, int> Xp_Changed = new();
@@ -64,13 +64,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public List<TutorialDataScriptable> introductoryTutorial = new();
     public List<TutorialDataScriptable> levelUpTutorial = new();
 
-    private HasHealth healthComp;
-    private HasMana manaComp;
-    private CanMove moveComp;
-    private CanAttack attackComp;
-    private PlayerController playerController;
-    [SerializeField] private GameObject spotlight;
-    [SerializeField] private GameObject levelUpEffect;
+    protected HasHealth healthComp;
+    protected HasMana manaComp;
+    protected CanMove moveComp;
+    protected CanAttack attackComp;
+    protected PlayerController playerController;
+    [SerializeField] protected GameObject spotlight;
+    [SerializeField] protected GameObject levelUpEffect;
     public EventReference levelUpSound;
 
     protected override void Start()
@@ -95,7 +95,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 item.SetButtonInteractability(false);
         }
     }
-    private IEnumerator UpdatePlayer()
+    protected IEnumerator UpdatePlayer()
     {
         while (true)
         {
@@ -122,16 +122,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         LoadCharacter();
     }
     [Command]
-    private void LoadCharacter()
+    protected void LoadCharacter()
     {
         StartCoroutine(LoadCharacterCoro());
     }
-    private IEnumerator LoadCharacterCoro()
+    protected IEnumerator LoadCharacterCoro()
     {
         yield return new WaitUntil(EvaluateLoadData);
         LoadState(connectionToClient.identity.GetComponent<ClientObject>().GetSaveData());
     }
-    private bool EvaluateLoadData()
+    protected bool EvaluateLoadData()
     {
         return connectionToClient.identity.GetComponent<ClientObject>().GetSaveData() != null;
     }
@@ -357,7 +357,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         RpcUpdateCreatedItem(newItem.GetComponent<NetworkIdentity>(), item.stacks);
     }
     [ClientRpc]
-    private void RpcUpdateCreatedItem(NetworkIdentity item, int stacks)
+    protected void RpcUpdateCreatedItem(NetworkIdentity item, int stacks)
     {
         item.GetComponent<Item>().stacks = stacks;
     }
@@ -614,7 +614,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         StartCoroutine(DelayedRecallEnd());
         GetComponent<NetworkTransform>().CmdTeleport(returnPoint);
     }
-    private IEnumerator DelayedRecallEnd()
+    protected IEnumerator DelayedRecallEnd()
     {
         Vector3 currentPos = transform.position;
         while (currentPos == transform.position)
