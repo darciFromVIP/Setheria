@@ -91,7 +91,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
             if (TryGetComponent(out EnemyCharacter enemy) && attack.enemyTarget == null || 
                 GetComponent<CanMove>().agent.velocity.magnitude == 0 && TryGetComponent(out PlayerCharacter playerCharacter) && attack.enemyTarget == null)
             {
-                attack.TargetAcquired(owner);
+                if (isServer)
+                    attack.RpcTargetAcquired(owner);
             }
         }
         if (isInvulnerable)

@@ -235,7 +235,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         RpcTargetAcquired(target);
     }
     [ClientRpc]
-    private void RpcTargetAcquired(NetworkIdentity target)
+    public void RpcTargetAcquired(NetworkIdentity target)
     {
         TargetAcquired(target);
     }
