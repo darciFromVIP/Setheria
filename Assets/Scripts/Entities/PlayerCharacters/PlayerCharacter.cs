@@ -24,9 +24,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
 {
     public string heroName;
     public Hero hero;
-    [SyncVar]
     private int xp;                                             //We need SyncVars to sync data from server to client when the client connects
-    [SyncVar]
     private int maxXp;
     private int attributePoints = 0;
     public int hunger;
@@ -83,9 +81,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         moveComp = GetComponent<CanMove>();
         attackComp = GetComponent<CanAttack>();
         playerController = GetComponent<PlayerController>();
-        foreach (var item in introductoryTutorial)
+        if (isOwned)
         {
-            FindObjectOfType<Tutorial>().QueueNewTutorial(item);
+            foreach (var item in introductoryTutorial)
+            {
+                FindObjectOfType<Tutorial>().QueueNewTutorial(item);
+            }
         }
         professions = new Professions(this);
         foreach (var item in FindObjectsOfType<HeroButton>(true))

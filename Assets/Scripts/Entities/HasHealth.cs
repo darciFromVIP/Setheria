@@ -5,15 +5,12 @@ using Mirror;
 using UnityEngine.Events;
 public class HasHealth : NetworkBehaviour, ISaveable
 {
-    [SyncVar]
     private float health;
     [Header("Don't set this on player characters! They have their data in the code.")]
     [SerializeField]
-    [SyncVar]
     private float maxHealth;
     private float baseMaxHealth;
     private float bonusMaxHealth = 0;
-    [SyncVar]
     [SerializeField]
     private float healthRegen = 0.25f;
     private float baseHealthRegen;
