@@ -11,29 +11,18 @@ public class SFlowerPowerHeal : Skill
     {
         base.Execute(self);
         castingEntity = self;
-        castingEntity.GetComponent<Character>().CastSkill1();
         if (self.isServer)
         {
+            castingEntity.GetComponent<Character>().CastSkill1();
             castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
             castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
         }
     }
     private void Cast()
     {
+        castingEntity.GetComponent<Alkestia>().CastFlowerPowerHeal();
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         castingEntity.GetComponent<CharacterVFXReference>().skill1.SetActive(true);
-        var proj = Instantiate(projectile, castingEntity.transform.position, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.AoE,
-            impactEffect = ProjectileImpactEffect.Healing,
-            affectsEntities = true,
-            targetsMask = LayerMask.GetMask("Player"),
-            aoeRadius = range,
-            affectsOwner = false,
-            effectValue = heal,
-        });
         castingEntity.GetComponent<CanAttack>().ResumeActing();
     }
 }
