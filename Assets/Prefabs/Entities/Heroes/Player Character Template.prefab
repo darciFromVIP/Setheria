@@ -134,12 +134,12 @@ PrefabInstance:
     - target: {fileID: 1094240375776113113, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       propertyPath: syncDirection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1094240375776113113, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       propertyPath: clientAuthority
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2367397655041227014, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
@@ -488,7 +488,7 @@ MonoBehaviour:
   cooldownW: 0
   cooldownE: 0
   cooldownR: 0
-  Enemy_Lost:
+  Enemy_Clicked:
     m_PersistentCalls:
       m_Calls: []
   Ground_Left_Clicked:
