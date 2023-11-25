@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using FMODUnity;
+
 public class Pet : NetworkBehaviour
 {
     public CanHavePets petOwner;
     public GameObject despawnVfx;
+    public EventReference soundOnSpawn;
     
     public void StartTimedLife(float time, CanHavePets owner)
     {
@@ -14,6 +17,8 @@ public class Pet : NetworkBehaviour
         if (TryGetComponent(out CanMove canMove))
             if (canMove.baseMovementSpeed > 0)
                 StartCoroutine(MovementOrder());
+        if (!soundOnSpawn.IsNull)
+            FindObjectOfType<AudioManager>().PlayOneShot(soundOnSpawn, transform.position);
     }
     private IEnumerator TimedLife(float time)
     {

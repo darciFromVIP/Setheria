@@ -49,7 +49,6 @@ public class SFlowerPower : Skill
     private void Cast()
     {
         castingEntity.GetComponent<CanHavePets>().CmdSpawnPet(flowerPrefab.name, actualPoint, timedLife, finalDamage);
-        FindObjectOfType<AudioManager>().PlayOneShot(GrowSound, castingEntity.GetComponent<CanHavePets>().spawnedPets[0].transform.position);
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         player.GetComponent<HasMana>().CmdSpendMana(manaCost);
         player.StartCooldownR();
