@@ -42,7 +42,8 @@ public class SGreenDust : Skill
         actualPoint = Vector3.MoveTowards(castingEntity.transform.position, point, range);
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
-        castingEntity.GetComponent<Character>().CastSkill2();
+        if (castingEntity.isOwned)
+            castingEntity.GetComponent<Character>().CastSkill2();
         castingEntity.GetComponent<CharacterVFXReference>().skill2.SetActive(true);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(point);
