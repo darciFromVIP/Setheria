@@ -201,6 +201,11 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         var random = Random.Range(0f, 100f);
         if (random < criticalChance)
             modifier = 1 + (criticalDamage / 100);
+        Entity owner;
+        if (TryGetComponent(out Pet pet))
+            owner = pet.petOwner.GetComponent<Entity>();
+        else
+            owner = GetComponent<Entity>();
         GameObject projectile = Instantiate(projectilePrefab.gameObject, projectileLaunchPoint.position, Quaternion.identity);
         projectile.GetComponent<Projectile>().InitializeProjectile(new ProjectileData() 
         { 
@@ -209,7 +214,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             projectileImpact = ProjectileImpactType.Single, 
             impactEffect = ProjectileImpactEffect.Damage, 
             speed = 10, 
-            owner = GetComponent<Entity>(),
+            owner = owner,
             targetedEntity = enemyTarget,
         });
         NetworkServer.Spawn(projectile);
