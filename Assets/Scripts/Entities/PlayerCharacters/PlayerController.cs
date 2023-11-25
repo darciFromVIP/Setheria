@@ -40,9 +40,7 @@ public class PlayerController : NetworkBehaviour
     public float cooldownE;
     public float cooldownR;
 
-    private List<UnityAction<NetworkIdentity>> Enemy_ClickedListeners = new();
-    private UnityEvent<NetworkIdentity> Enemy_Clicked = new();
-    [HideInInspector] public UnityEvent Enemy_Lost = new();
+    public UnityEvent<NetworkIdentity> Enemy_Clicked = new();
     [HideInInspector] public UnityEvent<Vector3> Ground_Left_Clicked = new();
     [HideInInspector] public UnityEvent<EnemyCharacter> Enemy_Left_Clicked = new();
     [HideInInspector] public UnityEvent<PlayerCharacter> Ally_Left_Clicked = new();
@@ -370,11 +368,6 @@ public class PlayerController : NetworkBehaviour
     private bool ContainsCollider(Collider colliderToCompare)
     {
         return collidingColliders.Contains(colliderToCompare);
-    }
-    public void EnemyClickedAddListener(UnityAction<NetworkIdentity> method)
-    {
-        Enemy_Clicked.AddListener(method);
-        Enemy_ClickedListeners.Add(method);
     }
     public void ChangeStateToNone()
     {

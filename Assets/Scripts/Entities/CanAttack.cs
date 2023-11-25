@@ -11,16 +11,16 @@ public enum AttackType
 }
 public class CanAttack : NetworkBehaviour, IUsesAnimator
 {
-    [SyncVar] [SerializeField] private float power;
-    [SyncVar] [SerializeField] private float criticalChance = 0f;
-    [SyncVar] [SerializeField] private float criticalDamage = 0f;
-    [SyncVar] private float finalAttackSpeed;
-    [SyncVar] [SerializeField] private float baseAttackSpeed = 0;
-    [SyncVar] private float bonusAttackSpeed = 0;
+    [SerializeField] private float power;
+    [SerializeField] private float criticalChance = 0f;
+    [SerializeField] private float criticalDamage = 0f;
+    private float finalAttackSpeed;
+    [SerializeField] private float baseAttackSpeed = 0;
+    private float bonusAttackSpeed = 0;
     public float attackSpeedTimer = 0;
-    [SyncVar] [SerializeField] private float attackRange;
-    [SyncVar] [SerializeField] private float cooldownReduction = 0;
-    [SyncVar] [SerializeField] private AttackType attackType;
+    [SerializeField] private float attackRange;
+    [SerializeField] private float cooldownReduction = 0;
+    [SerializeField] private AttackType attackType;
     public bool canAct = true;
     private bool isDelayingTargetLost = false;
 
@@ -34,22 +34,14 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
 
     public EventReference attackSound;
 
-    [System.NonSerialized]
-    public UnityEvent<NetworkIdentity> Target_Acquired = new();
-    [System.NonSerialized]
-    public UnityEvent Target_Lost = new();
-    [System.NonSerialized]
-    public UnityEvent<float> Power_Changed = new();
-    [System.NonSerialized]
-    public UnityEvent<float> Critical_Chance_Changed = new();
-    [System.NonSerialized]
-    public UnityEvent<float> Critical_Damage_Changed = new();
-    [System.NonSerialized]
-    public UnityEvent<float> Attack_Speed_Changed = new();
-    [System.NonSerialized]
-    public UnityEvent<float> Attack_Range_Changed = new();
-    [System.NonSerialized]
-    public UnityEvent<float> Cooldown_Reduction_Changed = new();
+    [System.NonSerialized] public UnityEvent<NetworkIdentity> Target_Acquired = new();
+    [System.NonSerialized] public UnityEvent Target_Lost = new();
+    [System.NonSerialized] public UnityEvent<float> Power_Changed = new();
+    [System.NonSerialized] public UnityEvent<float> Critical_Chance_Changed = new();
+    [System.NonSerialized] public UnityEvent<float> Critical_Damage_Changed = new();
+    [System.NonSerialized] public UnityEvent<float> Attack_Speed_Changed = new();
+    [System.NonSerialized] public UnityEvent<float> Attack_Range_Changed = new();
+    [System.NonSerialized] public UnityEvent<float> Cooldown_Reduction_Changed = new();
     [HideInInspector] public UnityEvent Stop_Acting = new();
     [HideInInspector] public UnityEvent Resume_Acting = new();
     [HideInInspector] public UnityEvent Has_Attacked = new();
@@ -65,8 +57,6 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         {
             if (isServer)
                 aggro.Target_Found.AddListener(RpcTargetAcquired);
-            else if (isOwned)
-                aggro.Target_Found.AddListener(CmdTargetAcquired);
         }
         moveComp = GetComponent<CanMove>();
         if (TryGetComponent(out Character character))
@@ -85,8 +75,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
 
             if (isClient)
             {
-                player.EnemyClickedAddListener(CmdTargetAcquired);
-                player.Enemy_Lost.AddListener(CmdTargetLost);
+                player.Enemy_Clicked.AddListener(CmdTargetAcquired);
             }
         }
         netAnim = GetComponent<NetworkAnimator>();
@@ -95,7 +84,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     private void Update()
     {
-        if (!(isOwned || (entity is not PlayerCharacter && isServer)))
+        if (!isServer)
             return;
 
         if (attackSpeedTimer > 0)
@@ -144,10 +133,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                                 break;
                         }
                     }
-                    if (!isServer)
-                        StopActing();
-                    else
-                        RpcSetCanAct(false);
+                    RpcSetCanAct(false);
                 }
                 if (moveComp && entity is EnemyCharacter)
                     moveComp.Stop();
@@ -165,7 +151,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         if (attackSpeedTimer > 0 || !canAct)
             return;
-        StopActing();
+        RpcSetCanAct(false);
         int random = Random.Range(0, 4);
         if (random == 0)
             netAnim.SetTrigger(animHash_Attack1);
@@ -178,6 +164,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void MeleeAttack()                           //This reacts to animations, that are run on both the server and client
     {
+        if (!isServer)
+            return;
         if (!attackSound.IsNull)
             FindObjectOfType<AudioManager>().PlayOneShot(attackSound, transform.position);
         float modifier = 1;
@@ -185,12 +173,14 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (random < criticalChance)
             modifier = 1 + (criticalDamage / 100);
         if (enemyTarget)
-            enemyTarget.GetComponent<HasHealth>().TakeDamage(power * modifier, false, GetComponent<NetworkIdentity>());
+            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(power * modifier, false, GetComponent<NetworkIdentity>());
         Attacked();
         ResumeActing();
     }
     public void RangedAttack()                          //This reacts to animations, that are run on both the server and client
     {
+        if (!isServer)
+            return;
         if (enemyTarget)
             SpawnProjectile();
         Attacked();
@@ -222,6 +212,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             owner = GetComponent<Entity>(),
             targetedEntity = enemyTarget,
         });
+        NetworkServer.Spawn(projectile);
     }
     public void StopActing()
     {
