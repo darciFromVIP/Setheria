@@ -12,15 +12,16 @@ public class SFlowerPowerHeal : Skill
         base.Execute(self);
         castingEntity = self;
         if (self.isServer)
-        {
             castingEntity.GetComponent<Character>().CastSkill1();
-            castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
-            castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
-        }
+
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
+        
     }
     private void Cast()
     {
-        castingEntity.GetComponent<Alkestia>().CastFlowerPowerHeal();
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Alkestia>().CastFlowerPowerHeal();
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         castingEntity.GetComponent<CharacterVFXReference>().skill1.SetActive(true);
         castingEntity.GetComponent<CanAttack>().ResumeActing();
