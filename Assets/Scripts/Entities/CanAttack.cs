@@ -148,7 +148,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     [ClientRpc]
     private void RpcSetCanAct(bool value)
     {
-        canAct = false;
+        canAct = value;
     }
     public void Attack()
     {
