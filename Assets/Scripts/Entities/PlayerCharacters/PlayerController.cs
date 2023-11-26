@@ -415,7 +415,12 @@ public class PlayerController : NetworkBehaviour
         {
             attackComp.CmdTargetLost();
         }
-        Debug.Log(state);
+        if (state == PlayerState.Casting)
+        {
+            attackComp.StopActing();
+        }
+        else
+            attackComp.ResumeActing();
     }
     public void ChangeCastingState(CastingState state)
     {
