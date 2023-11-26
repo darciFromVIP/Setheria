@@ -151,6 +151,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         if (attackSpeedTimer > 0 || !canAct)
             return;
+        Debug.Log("Attacking");
         RpcSetCanAct(false);
         int random = Random.Range(0, 4);
         if (random == 0)
