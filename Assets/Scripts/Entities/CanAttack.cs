@@ -133,7 +133,6 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                                 break;
                         }
                     }
-                    RpcSetCanAct(false);
                 }
                 if (moveComp && entity is EnemyCharacter)
                     moveComp.Stop();
@@ -151,8 +150,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         if (attackSpeedTimer > 0 || !canAct)
             return;
+        canAct = false;                                 //RPC is too slow so we're doing it again on the server
         RpcSetCanAct(false);
-        canAct = false;                                 //RPC is too slow so we're doing it again locally
         int random = Random.Range(0, 4);
         if (random == 0)
             netAnim.SetTrigger(animHash_Attack1);
