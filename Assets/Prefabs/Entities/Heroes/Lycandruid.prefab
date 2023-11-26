@@ -5299,6 +5299,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1020434472001608854}
+    - targetCorrespondingSourceObject: {fileID: 4712205572119561755, guid: 00c8698ced8ff66429e09ca3249b0642,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 130936759918233485}
   m_SourcePrefab: {fileID: 100100000, guid: 00c8698ced8ff66429e09ca3249b0642, type: 3}
 --- !u!1 &8082605239311650794 stripped
 GameObject:
@@ -5369,6 +5373,21 @@ MonoBehaviour:
   syncInterval: 0.1
   spawnedPets: []
   entityDatabase: {fileID: 11400000, guid: 0272411464c49914aa52af49104af5e1, type: 2}
+--- !u!114 &130936759918233485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8082605239311650794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d811ec99f36ade64fac11a01385b5e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!4 &8082605239311650797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4712205572119561756, guid: 00c8698ced8ff66429e09ca3249b0642,

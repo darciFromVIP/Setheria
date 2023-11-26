@@ -25,17 +25,24 @@ MonoBehaviour:
   description: '<sprite=10>8,0 <sprite=4>40
 
     Bites the enemy target, dealing
-    <color=orange>50</color> damage (40 + 50% <sprite=3>) and healing self by <color=orange>30</color>
+    <color=orange>47,5</color> damage (40 + 50% <sprite=3>) and healing self by <color=orange>30</color>
     (10 + 5% <sprite=5>).'
   requiredTalent: {fileID: 11400000, guid: 03b919a7586550f4b959036a1ce5a2bb, type: 2}
   requiredTalentLevel: 1
-  unlocked: 1
+  unlocked: 0
+  Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []
   baseDamage: 40
   damageScalingStat: 12
-  damageScalingValue: 0.5
+  damageScalingValue: 0.6
   baseHeal: 10
   healScalingStat: 1
   healScalingValue: 0.05
+  finalDamage: 47.5
+  finalHeal: 30
   range: 2
   projectile: {fileID: 4533246921958147235, guid: 79bd197935df4384c9f8e2f43d8cc2e3,
     type: 3}
+  enemy: {fileID: 0}
+  actualPoint: {x: 0, y: 0, z: 0}

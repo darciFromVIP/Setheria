@@ -25,21 +25,27 @@ MonoBehaviour:
   description: '<sprite=10>8,0 <sprite=4>30
 
     Swipes forward with both claws,
-    dealing <color=orange>32</color> damage (20 + 60% <sprite=3>) to all enemies
-    hit as well as applying Bleed reducing <sprite=1> by <color=orange>4</color>
+    dealing <color=orange>29</color> damage (20 + 60% <sprite=3>) to all enemies
+    hit as well as applying Bleed reducing <sprite=1> by <color=orange>3,25</color>
     (1 + 15% <sprite=3>). Lasts 4 seconds.'
   requiredTalent: {fileID: 11400000, guid: 03b919a7586550f4b959036a1ce5a2bb, type: 2}
   requiredTalentLevel: 1
-  unlocked: 1
+  unlocked: 0
+  Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []
   baseDuration: 4
-  baseDamage: 20
+  baseDamage: 25
   damageScalingStat: 12
-  damageScalingValue: 0.6
+  damageScalingValue: 0.5
   bleedBaseDamage: 1
   bleedDamageScalingStat: 12
   bleedDamageScalingValue: 0.15
+  finalDamage: 29
+  finalBleedDamage: 3.25
   aoeRadius: 2
   range: 2
   damageProjectile: {fileID: 4533246921958147235, guid: 79bd197935df4384c9f8e2f43d8cc2e3,
     type: 3}
   bleedingBuff: {fileID: 11400000, guid: 2dce1bb7a56eb244eac501f7ef02dee1, type: 2}
+  actualPoint: {x: 0, y: 0, z: 0}

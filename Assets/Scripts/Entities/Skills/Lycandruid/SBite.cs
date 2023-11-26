@@ -10,13 +10,13 @@ public class SBite : Skill
     public float baseHeal;
     public PlayerStat healScalingStat;
     public float healScalingValue;
-    private float finalDamage;
-    private float finalHeal;
+    [HideInInspector] public float finalDamage;
+    [HideInInspector] public float finalHeal;
     public float range;
     public Projectile projectile;
-    private EnemyCharacter enemy;
+    [HideInInspector] public EnemyCharacter enemy;
 
-    private Vector3 actualPoint;
+    [HideInInspector] public Vector3 actualPoint;
     public override void Execute(Character self)
     {
         base.Execute(self);
@@ -45,39 +45,20 @@ public class SBite : Skill
     private void StartCasting()
     {
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
-        castingEntity.GetComponent<Character>().CastSkill2();
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Character>().CastSkill2();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
-        if (castingEntity.isOwned)
-        {
-            castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
-            castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.AddListener(Cast);
-            castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
-        }
+        castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.AddListener(Cast);
+        castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
     }
     private void Cast()
     {
-        var proj = Instantiate(projectile, actualPoint, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Damage,
-            effectValue = finalDamage,
-            targetedEntity = enemy.GetComponent<HasHealth>(),
-            owner = castingEntity
-        });
-        var proj2 = Instantiate(projectile, actualPoint, Quaternion.identity);
-        proj2.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Healing,
-            effectValue = finalHeal,
-            targetedEntity = castingEntity.GetComponent<HasHealth>(),
-            owner = castingEntity
-        });
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Lycandruid>().CastBite();
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownQ();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);

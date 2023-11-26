@@ -7,11 +7,11 @@ public class SRoar : Skill
     public float range;
     public float baseDuration;
     public float movementBaseReduction;
-    private float movementFinalReduction;
+    [HideInInspector] public float movementFinalReduction;
     public PlayerStat movementReductionScalingStat;
     public float movementReductionScalingValue;
     public float attackSpeedBaseReduction;
-    private float attackSpeedFinalReduction;
+    [HideInInspector] public float attackSpeedFinalReduction;
     public PlayerStat attackSpeedReductionScalingStat;
     public float attackSpeedReductionScalingValue;
     public BuffScriptable movementReductionBuff;
@@ -21,42 +21,23 @@ public class SRoar : Skill
     {
         base.Execute(self);
         castingEntity = self;
-        castingEntity.GetComponent<Character>().CastSkill4();
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Character>().CastSkill4();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
-        if (castingEntity.isOwned)
-            self.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
-    }
-    private void Cast()
-    {
+        self.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
         movementReductionBuff.duration = baseDuration;
         attackSpeedReductionBuff.duration = baseDuration;
         movementReductionBuff.value = movementFinalReduction;
         attackSpeedReductionBuff.value = attackSpeedFinalReduction;
-        var proj = Instantiate(projectile, castingEntity.transform.position, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.AoE,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = movementReductionBuff,
-            affectsEntities = true,
-            targetsMask = LayerMask.GetMask("Enemy"),
-            aoeRadius = range
-        });
-        var proj2 = Instantiate(projectile, castingEntity.transform.position, Quaternion.identity);
-        proj2.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.AoE,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = attackSpeedReductionBuff,
-            affectsEntities = true,
-            targetsMask = LayerMask.GetMask("Enemy"),
-            aoeRadius = range
-        });
+    }
+    private void Cast()
+    {
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Lycandruid>().CastRoar();
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownE();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);

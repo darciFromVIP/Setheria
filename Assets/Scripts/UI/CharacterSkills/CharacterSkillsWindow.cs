@@ -212,22 +212,22 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     public void CastD()
     {
-        playerController.CmdExecuteSkill1();
+        playerController.AttemptExecuteSkill1();
     }
     public void CastQ()
     {
-        playerController.CmdExecuteSkill2();
+        playerController.AttemptExecuteSkill2();
     }
     public void CastW()
     {
-        playerController.CmdExecuteSkill3();
+        playerController.AttemptExecuteSkill3();
     }
     public void CastE()
     {
-        playerController.CmdExecuteSkill4();
+        playerController.AttemptExecuteSkill4();
     }
     public void CastR()
     {
-        playerController.CmdExecuteSkill5();
+        playerController.AttemptExecuteSkill5();
     }
 }

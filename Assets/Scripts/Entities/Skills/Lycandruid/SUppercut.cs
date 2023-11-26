@@ -9,18 +9,18 @@ public class SUppercut : Skill
     public float baseDamage;
     public PlayerStat damageScalingStat;
     public float damageScalingValue;
-    private float damageFinal;
+    [HideInInspector] public float damageFinal;
     public float armorBaseReduction;
-    private float armorFinalReduction;
+    [HideInInspector] public float armorFinalReduction;
     public PlayerStat armorReductionScalingStat;
     public float armorReductionScalingValue;
     public float damageBaseReduction;
-    private float damageFinalReduction;
+    [HideInInspector] public float damageFinalReduction;
     public PlayerStat damageReductionScalingStat;
     public float damageReductionScalingValue;
     public BuffScriptable armorReductionBuff;
     public BuffScriptable damageReductionBuff;
-    private EnemyCharacter enemy;
+    [HideInInspector] public EnemyCharacter enemy;
     public Projectile projectile;
     public override void Execute(Character self)
     {
@@ -54,52 +54,25 @@ public class SUppercut : Skill
     }
     private void StartCasting()
     {
-        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
-        castingEntity.GetComponent<Character>().CastSkill3();
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
-        if (castingEntity.isOwned)
-        {
-            castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
-            castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
-            castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
-        }
-    }
-    private void Cast()
-    {
         armorReductionBuff.duration = baseDuration;
         damageReductionBuff.duration = baseDuration;
         armorReductionBuff.value = armorFinalReduction;
         damageReductionBuff.value = damageFinalReduction;
-        var proj = Instantiate(projectile, castingEntity.transform.position, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = armorReductionBuff,
-            targetedEntity = enemy.GetComponent<HasHealth>()
-        });
-        var proj2 = Instantiate(projectile, castingEntity.transform.position, Quaternion.identity);
-        proj2.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = damageReductionBuff,
-            targetedEntity = enemy.GetComponent<HasHealth>()
-        });
-        var proj3 = Instantiate(projectile, castingEntity.transform.position, Quaternion.identity);
-        proj3.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Damage,
-            effectValue = damageFinal,
-            targetedEntity = enemy.GetComponent<HasHealth>(),
-            owner = castingEntity
-        });
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
+        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
+        castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
+        castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Character>().CastSkill3();
+    }
+    private void Cast()
+    {
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Lycandruid>().CastUppercut();
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownW();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);

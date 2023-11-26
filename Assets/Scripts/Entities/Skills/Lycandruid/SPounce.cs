@@ -8,15 +8,15 @@ public class SPounce : Skill
     public float baseDamage;
     public PlayerStat damageScalingStat;
     public float damageScalingValue;
-    private float finalDamage;
+    [HideInInspector] public float finalDamage;
     public float baseDuration;
     public float range;
     public Projectile projectile;
     public BuffScriptable stunBuff;
-    private EnemyCharacter enemy;
+    [HideInInspector] public EnemyCharacter enemy;
     public EventReference PounceImpactSound;
 
-    private Vector3 actualPoint;
+    [HideInInspector] public Vector3 actualPoint;
     public override void Execute(Character self)
     {
         base.Execute(self);
@@ -44,14 +44,12 @@ public class SPounce : Skill
     }
     private void StartCasting()
     {
-        castingEntity.GetComponent<Character>().CastSkill3();
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Character>().CastSkill3();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
-        if (castingEntity.isOwned)
-        {
-            castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
-            castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
-            castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
-        }
+        castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
+        castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
     }
     private void Cast()
     {
@@ -69,34 +67,17 @@ public class SPounce : Skill
             yield return null;
         }
         moveComp.agent.enabled = true;
+        stunBuff.duration = baseDuration;
         CastEffect();
     }
     private void CastEffect()
     {
-        stunBuff.duration = baseDuration;
-        var proj = Instantiate(projectile, actualPoint, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Damage,
-            effectValue = finalDamage,
-            targetedEntity = enemy.GetComponent<HasHealth>(),
-            owner = castingEntity
-        });
-        var proj2 = Instantiate(projectile, actualPoint, Quaternion.identity);
-        proj2.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = stunBuff,
-            targetedEntity = enemy.GetComponent<HasHealth>(),
-            owner = castingEntity
-        });
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Lycandruid>().CastPounce();
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         FindObjectOfType<AudioManager>().PlayOneShot(PounceImpactSound, castingEntity.transform.position);
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownW();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);

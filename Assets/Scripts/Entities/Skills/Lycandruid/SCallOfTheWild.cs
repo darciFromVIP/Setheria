@@ -15,11 +15,11 @@ public class SCallOfTheWild : Skill
     {
         base.Execute(self);
         castingEntity = self;
-        castingEntity.GetComponent<Character>().CastSkill5();
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Character>().CastSkill5();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
-        if (castingEntity.isOwned)
-            self.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.AddListener(Cast);
+        self.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.AddListener(Cast);
     }
     private void Cast()
     {
@@ -32,7 +32,8 @@ public class SCallOfTheWild : Skill
             }
 
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownR();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);

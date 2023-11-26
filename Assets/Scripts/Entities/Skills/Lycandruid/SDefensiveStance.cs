@@ -16,7 +16,8 @@ public class SDefensiveStance : Skill
         castingEntity = self;
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         TogglePassive(false);
-        castingEntity.GetComponent<Shapeshifter>().CmdShapeshift(false);
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Shapeshifter>().RpcShapeshift(false);
         castingEntity.GetComponent<PlayerController>().StartCooldownD();
     }
     public override void ExecuteOnStart(Character self)

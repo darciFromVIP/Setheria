@@ -184,13 +184,8 @@ public class Projectile : NetworkBehaviour
                 case ProjectileImpactEffect.Healing:
                     foreach (var item in entities)
                     {
-                        
                         if (isServer)
-                        {
-                            Debug.Log("Healing someone for " + data.effectValue);
                             item.RpcHealDamage(data.effectValue, false);
-
-                        }
                     }
                     break;
                 case ProjectileImpactEffect.Buff:
@@ -208,7 +203,6 @@ public class Projectile : NetworkBehaviour
         }
         if (impactParticlePrefab)
             Instantiate(impactParticlePrefab, transform.position, Quaternion.identity);
-        Debug.Log("Destroying " + name);
         if (isServer)
            NetworkServer.Destroy(gameObject);
     }

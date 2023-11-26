@@ -25,7 +25,7 @@ public class Shapeshifter : NetworkBehaviour
         RpcShapeshift(defaultForm);
     }
     [ClientRpc]
-    private void RpcShapeshift(bool defaultForm)
+    public void RpcShapeshift(bool defaultForm)
     {
         Shapeshift(defaultForm);
     }

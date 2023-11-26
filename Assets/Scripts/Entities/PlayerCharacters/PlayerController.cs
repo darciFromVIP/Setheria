@@ -231,60 +231,15 @@ public class PlayerController : NetworkBehaviour
         if (state != PlayerState.None)
             return;
         if (Input.GetKeyDown(settingsManager.settings.passiveSkill))
-            if (playerCharacter.skills[1].unlocked)
-                if (cooldownD <= 0)
-                    if (manaComp.GetMana() >= playerCharacter.skills[1].manaCost)
-                        CmdExecuteSkill1();
-                    else
-                        SendMessageNotEnoughMana();
-                else
-                    SendMessageSkillNotReady();
-            else
-                SendMessageSkillNotUnlocked();
+            AttemptExecuteSkill1();
         if (Input.GetKeyDown(settingsManager.settings.skill1))
-            if (playerCharacter.skills[2].unlocked)
-                if (cooldownQ <= 0)
-                    if (manaComp.GetMana() >= playerCharacter.skills[2].manaCost)
-                        CmdExecuteSkill2();
-                    else
-                        SendMessageNotEnoughMana();
-                else
-                    SendMessageSkillNotReady();
-            else
-                SendMessageSkillNotUnlocked();
+            AttemptExecuteSkill2();
         if (Input.GetKeyDown(settingsManager.settings.skill2))
-            if (playerCharacter.skills[3].unlocked)
-                if (cooldownW <= 0)
-                    if (manaComp.GetMana() >= playerCharacter.skills[3].manaCost)
-                        CmdExecuteSkill3();
-                    else
-                        SendMessageNotEnoughMana();
-                else
-                    SendMessageSkillNotReady();
-            else
-                SendMessageSkillNotUnlocked();
+            AttemptExecuteSkill3();
         if (Input.GetKeyDown(settingsManager.settings.skill3))
-            if (playerCharacter.skills[4].unlocked)
-                if (cooldownE <= 0)
-                    if (manaComp.GetMana() >= playerCharacter.skills[4].manaCost)
-                        CmdExecuteSkill4();
-                    else
-                        SendMessageNotEnoughMana();
-                else
-                    SendMessageSkillNotReady();
-            else
-                SendMessageSkillNotUnlocked();
+            AttemptExecuteSkill4();
         if (Input.GetKeyDown(settingsManager.settings.skill4))
-            if (playerCharacter.skills[5].unlocked)
-                if (cooldownR <= 0)
-                    if (manaComp.GetMana() >= playerCharacter.skills[5].manaCost)
-                        CmdExecuteSkill5();
-                    else
-                        SendMessageNotEnoughMana();
-                else
-                    SendMessageSkillNotReady();
-            else
-                SendMessageSkillNotUnlocked();
+            AttemptExecuteSkill5();
     }
     private void SendMessageNotEnoughMana()
     {
@@ -298,6 +253,82 @@ public class PlayerController : NetworkBehaviour
     {
         FindObjectOfType<SystemMessages>().AddMessage("This skill is not unlocked yet!");
     }
+    public void AttemptExecuteSkill1()
+    {
+        if (state != PlayerState.None)
+            return;
+        if (playerCharacter.skills[1].unlocked)
+            if (cooldownD <= 0)
+                if (manaComp.GetMana() >= playerCharacter.skills[1].manaCost)
+                    CmdExecuteSkill1();
+                else
+                    SendMessageNotEnoughMana();
+            else
+                SendMessageSkillNotReady();
+        else
+            SendMessageSkillNotUnlocked();
+    }
+    public void AttemptExecuteSkill2()
+    {
+        if (state != PlayerState.None)
+            return;
+        if (playerCharacter.skills[2].unlocked)
+            if (cooldownQ <= 0)
+                if (manaComp.GetMana() >= playerCharacter.skills[2].manaCost)
+                    CmdExecuteSkill2();
+                else
+                    SendMessageNotEnoughMana();
+            else
+                SendMessageSkillNotReady();
+        else
+            SendMessageSkillNotUnlocked();
+    }
+    public void AttemptExecuteSkill3()
+    {
+        if (state != PlayerState.None)
+            return;
+        if (playerCharacter.skills[3].unlocked)
+            if (cooldownW <= 0)
+                if (manaComp.GetMana() >= playerCharacter.skills[3].manaCost)
+                    CmdExecuteSkill3();
+                else
+                    SendMessageNotEnoughMana();
+            else
+                SendMessageSkillNotReady();
+        else
+            SendMessageSkillNotUnlocked();
+    }
+    public void AttemptExecuteSkill4()
+    {
+        if (state != PlayerState.None)
+            return;
+        if (playerCharacter.skills[4].unlocked)
+            if (cooldownE <= 0)
+                if (manaComp.GetMana() >= playerCharacter.skills[4].manaCost)
+                    CmdExecuteSkill4();
+                else
+                    SendMessageNotEnoughMana();
+            else
+                SendMessageSkillNotReady();
+        else
+            SendMessageSkillNotUnlocked();
+    }
+    public void AttemptExecuteSkill5()
+    {
+        if (state != PlayerState.None)
+            return;
+        if (playerCharacter.skills[5].unlocked)
+            if (cooldownR <= 0)
+                if (manaComp.GetMana() >= playerCharacter.skills[5].manaCost)
+                    CmdExecuteSkill5();
+                else
+                    SendMessageNotEnoughMana();
+            else
+                SendMessageSkillNotReady();
+        else
+            SendMessageSkillNotUnlocked();
+    }
+
     [Command]
     public void CmdExecuteSkill1()
     {

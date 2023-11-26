@@ -9,9 +9,14 @@ public class TalentButton : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private Button btn;
-    private void Awake()
+    private void Start()
     {
         btn.onClick.AddListener(UnlockTalent);
+        talent.Talent_Description_Updated.AddListener(UpdateTalentDescription);
+        UpdateTalentDescription();
+    }
+    public void UpdateTalentDescription()
+    {
         string talentDescription = talent.description;
         if (talent.requiredTalent || talent.requiredTalentPointsSpent > 0)
             talentDescription += "\n\n";

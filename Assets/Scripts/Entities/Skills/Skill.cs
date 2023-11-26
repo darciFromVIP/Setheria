@@ -2,6 +2,8 @@ using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 public class Skill : ScriptableObject
 {
     protected Character castingEntity;
@@ -15,6 +17,8 @@ public class Skill : ScriptableObject
     public TalentScriptable requiredTalent;
     public byte requiredTalentLevel;
     [HideInInspector] public bool unlocked = true;
+
+    public UnityEvent<string> Description_Updated = new();
     public virtual void ExecuteOnStart(Character self)
     {
 
@@ -43,6 +47,7 @@ public class Skill : ScriptableObject
         if (requiredTalent != null)
             unlocked = (castingEntity as PlayerCharacter).talentTrees.IsTalentUnlocked(requiredTalent, requiredTalentLevel);
         (castingEntity as PlayerCharacter).Skills_Changed.Invoke(castingEntity.skills);
+        Description_Updated.Invoke(description);
     }
     public void SetCastingEntity(Character self)
     {

@@ -319,9 +319,23 @@ public class Character : Entity
     }
     public void UpdateSkills()
     {
-        foreach (var item in skills)
+        if (TryGetComponent(out Shapeshifter shapeshifter))
         {
-            item.SetCastingEntity(this);
+            foreach (var item in shapeshifter.defaultSkills)
+            {
+                item.SetCastingEntity(this);
+            }
+            foreach (var item in shapeshifter.shapeshiftedSkills)
+            {
+                item.SetCastingEntity(this);
+            }
+        }
+        else
+        {
+            foreach (var item in skills)
+            {
+                item.SetCastingEntity(this);
+            }
         }
     }
 }

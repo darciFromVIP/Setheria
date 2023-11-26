@@ -20,49 +20,28 @@ public class SBattleCry : Skill
     public override void Execute(Character self)
     {
         base.Execute(self);
-        castingEntity = self;
-        castingEntity.GetComponent<Character>().CastSkill4();
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Character>().CastSkill4();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
-        if (castingEntity.isOwned)
-            self.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
-    }
-    private void Cast()
-    {
         movementBuff.duration = baseDuration;
         attackSpeedBuff.duration = baseDuration;
         movementBuff.value = movementFinal;
         attackSpeedBuff.value = attackSpeedFinal;
-        var proj = Instantiate(projectile, castingEntity.transform.position, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.AoE,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = movementBuff,
-            affectsEntities = true,
-            targetsMask = LayerMask.GetMask("Player"),
-            aoeRadius = range,
-            affectsOwner = true
-        });
-        var proj2 = Instantiate(projectile, castingEntity.transform.position, Quaternion.identity);
-        proj2.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.AoE,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = attackSpeedBuff,
-            affectsEntities = true,
-            targetsMask = LayerMask.GetMask("Player"),
-            aoeRadius = range,
-            affectsOwner = true
-        });
+        self.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
+    }
+    private void Cast()
+    {
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Lycandruid>().CastBattleCry();
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownE();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);
     }
+
     public override void UpdateDescription()
     {
         movementFinal = movementBase + GetScalingStatValue(movementScalingStat) * movementScalingValue;

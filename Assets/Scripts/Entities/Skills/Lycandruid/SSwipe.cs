@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,14 +12,14 @@ public class SSwipe : Skill
     public float bleedBaseDamage;
     public PlayerStat bleedDamageScalingStat;
     public float bleedDamageScalingValue;
-    private float finalDamage;
-    private float finalBleedDamage;
+    [HideInInspector] public float finalDamage;
+    [HideInInspector] public float finalBleedDamage;
     public float aoeRadius;
     public float range;
     public Projectile damageProjectile;
     public BuffScriptable bleedingBuff;
 
-    private Vector3 actualPoint;
+    [HideInInspector] public Vector3 actualPoint;
     public override void Execute(Character self)
     {
         base.Execute(self);
@@ -36,45 +37,24 @@ public class SSwipe : Skill
     }
     private void StartCast(Vector3 point)
     {
-        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         actualPoint = Vector3.MoveTowards(castingEntity.transform.position, point, range);
+        bleedingBuff.value = finalBleedDamage;
+        bleedingBuff.duration = baseDuration;
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
-        castingEntity.GetComponent<Character>().CastSkill2();
-        //castingEntity.GetComponent<CharacterVFXReference>().skill2.SetActive(true);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(point);
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Character>().CastSkill2();
     }
     private void Cast()
     {
-        bleedingBuff.value = finalBleedDamage;
-        bleedingBuff.duration = baseDuration;
-        var proj = Instantiate(damageProjectile, actualPoint, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.AoE,
-            impactEffect = ProjectileImpactEffect.Damage,
-            targetsMask = LayerMask.GetMask("Enemy"),
-            aoeRadius = aoeRadius,
-            effectValue = finalDamage,
-            affectsEntities = true,
-            owner = castingEntity
-        });
-        var proj2 = Instantiate(damageProjectile, actualPoint, Quaternion.identity);
-        proj.InitializeProjectile(new ProjectileData()
-        {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.AoE,
-            impactEffect = ProjectileImpactEffect.Buff,
-            targetsMask = LayerMask.GetMask("Enemy"),
-            buff = bleedingBuff,
-            aoeRadius = aoeRadius,
-            affectsEntities = true,
-            owner = castingEntity
-        });
+        if (castingEntity.isServer)
+            castingEntity.GetComponent<Lycandruid>().CastSwipe();
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.GetComponent<HasMana>().CmdSpendMana(manaCost);
+        if (castingEntity.isServer)
+            player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldownQ();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);
