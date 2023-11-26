@@ -151,10 +151,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         if (attackSpeedTimer > 0 || !canAct)
             return;
-        if (TryGetComponent(out PlayerCharacter pl))
-            Debug.Log("Attacking");
         RpcSetCanAct(false);
-        canAct = false;
+        canAct = false;                                 //RPC is too slow so we're doing it again locally
         int random = Random.Range(0, 4);
         if (random == 0)
             netAnim.SetTrigger(animHash_Attack1);
@@ -247,7 +245,11 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         enemyTarget = target.GetComponent<HasHealth>();
         if (!enemyTarget)
             if (target.TryGetComponent(out Pet pet))
-                enemyTarget = pet.petOwner.GetComponent<HasHealth>();
+            {
+                var petOwner = pet.petOwner.GetComponent<HasHealth>();
+                if (petOwner)
+                    enemyTarget = petOwner;
+            }
 
         if (enemyTarget)
         {

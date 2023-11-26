@@ -10,9 +10,9 @@ public class CanHavePets : NetworkBehaviour
     public void SpawnPet(string name, Vector3 position, float time, float power)
     {
         var pet = Instantiate(entityDatabase.GetEntityByName(name), position, Quaternion.identity);
+        pet.GetComponent<Pet>().StartTimedLife(time, this);
         pet.GetComponent<CanAttack>().SetPower(power);
         spawnedPets.Add(pet);
-        pet.GetComponent<Pet>().StartTimedLife(time, this);
         NetworkServer.Spawn(pet.gameObject, gameObject);
     }
     public void DespawnPet(Entity pet, bool deathAnimation)
