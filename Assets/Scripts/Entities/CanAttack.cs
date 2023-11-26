@@ -154,6 +154,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (TryGetComponent(out PlayerCharacter pl))
             Debug.Log("Attacking");
         RpcSetCanAct(false);
+        canAct = false;
         int random = Random.Range(0, 4);
         if (random == 0)
             netAnim.SetTrigger(animHash_Attack1);
