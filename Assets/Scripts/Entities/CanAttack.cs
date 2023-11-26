@@ -246,9 +246,12 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (!enemyTarget)
             if (target.TryGetComponent(out Pet pet))
             {
-                var petOwner = pet.petOwner.GetComponent<HasHealth>();
-                if (petOwner)
-                    enemyTarget = petOwner;
+                if (pet.petOwner)
+                {
+                    var petOwner = pet.petOwner.GetComponent<HasHealth>();
+                    if (petOwner)
+                        enemyTarget = petOwner;
+                }
             }
 
         if (enemyTarget)
