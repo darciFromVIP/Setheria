@@ -23,6 +23,6 @@ public class SFlowerPowerHeal : Skill
             castingEntity.GetComponent<Alkestia>().CastFlowerPowerHeal();
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         castingEntity.GetComponent<CharacterVFXReference>().skill1.SetActive(true);
-        castingEntity.GetComponent<CanAttack>().ResumeActing();
+        castingEntity.GetComponent<CanAttack>().CmdResumeActing();
     }
 }

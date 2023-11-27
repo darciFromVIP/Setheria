@@ -61,9 +61,9 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         moveComp = GetComponent<CanMove>();
         if (TryGetComponent(out Character character))
         {
-            character.Stop_Acting.AddListener(StopActing);
-            character.Stun_Begin.AddListener(StopActing);
-            character.Stun_End.AddListener(ResumeActing);
+            character.Stop_Acting.AddListener(CmdStopActing);
+            character.Stun_Begin.AddListener(CmdStopActing);
+            character.Stun_End.AddListener(CmdResumeActing);
         }
         if (TryGetComponent(out HasHealth hpComp))
         {
@@ -71,7 +71,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         }
         if (TryGetComponent(out PlayerController player))
         {
-            player.Resume_Acting.AddListener(ResumeActing);
+            player.Resume_Acting.AddListener(CmdResumeActing);
 
             if (isClient)
             {
@@ -219,15 +219,17 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         });
         NetworkServer.Spawn(projectile);
     }
-    public void StopActing()
+    [Command(requiresAuthority = false)]
+    public void CmdStopActing()
     {
         Stop_Acting.Invoke();
-        canAct = false;
+        RpcSetCanAct(false);
     }
-    public void ResumeActing()
+    [Command(requiresAuthority = false)]
+    public void CmdResumeActing()
     {
         Resume_Acting.Invoke();
-        canAct = true;
+        RpcSetCanAct(true);
     }
     [Command(requiresAuthority = false)]
     public void CmdTargetAcquired(NetworkIdentity target)
