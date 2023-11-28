@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 1815974454113220715}
   - component: {fileID: 3424164063009273840}
   - component: {fileID: 5106145353333021387}
+  - component: {fileID: 3161037805545595649}
   m_Layer: 0
   m_Name: TurnInItemsInteractableTemplate
   m_TagString: Untagged
@@ -351,6 +352,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e5598295790f644e9b6c53d8d386698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   requiredItems: []
   workDuration: 10
   tooltipUI: {fileID: 5686262267761380507}
@@ -363,6 +367,7 @@ MonoBehaviour:
       m_Calls: []
   animator: {fileID: 0}
   player: {fileID: 0}
+  interactable: 1
 --- !u!114 &5106145353333021387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +383,19 @@ MonoBehaviour:
   objectName: 
   keybindLabel: Interact
   keybindType: 3
+--- !u!114 &3161037805545595649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810923609589089185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84704bedf9eb6d14ab0b003806971c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!1 &4502185918002607813
 GameObject:
   m_ObjectHideFlags: 0

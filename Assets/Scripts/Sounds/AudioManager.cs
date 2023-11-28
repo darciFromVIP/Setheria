@@ -16,8 +16,16 @@ public class AudioManager : MonoBehaviour
     private EventInstance currentAmbienceInstance;
 
     private List<EventInstance> eventInstances = new();
+
+    public static AudioManager instance;
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+            instance = this;
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += CleanUp;
         masterBus = RuntimeManager.GetBus("bus:/");

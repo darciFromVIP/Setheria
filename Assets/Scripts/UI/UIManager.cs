@@ -26,24 +26,29 @@ public class UIManager : MonoBehaviour
         }
         dayNightUI.sphere = dayNightSphere;
         dayNightUI.daysAliveText = dayText;
+        inputEnabled.inputEnabled = true;
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            for (int i = 0; i < windowedUIs.Count; i++)
-            {
-                if (windowedUIs[i].IsActive())
-                {
-                    windowedUIs[i].HideWindow();
-                    return;
-                }
-            }
-            menuWindow.SetActive(!menuWindow.activeSelf);
-            if (menuWindow.activeSelf)
-                inputEnabled.inputEnabled = false;
-            else
-                inputEnabled.inputEnabled = true;
+            ToggleWindows();
         }
+    }
+    public void ToggleWindows()
+    {
+        for (int i = 0; i < windowedUIs.Count; i++)
+        {
+            if (windowedUIs[i].IsActive())
+            {
+                windowedUIs[i].HideWindow();
+                return;
+            }
+        }
+        menuWindow.SetActive(!menuWindow.activeSelf);
+        if (menuWindow.activeSelf)
+            inputEnabled.inputEnabled = false;
+        else
+            inputEnabled.inputEnabled = true;
     }
 }

@@ -13885,21 +13885,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 634548966}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1110854680}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: EnableInput
+      - m_Target: {fileID: 305914545}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: ToggleWindows
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14700,9 +14688,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DisconnectButton, Assembly-CSharp
-        m_MethodName: Disconnect
+      - m_Target: {fileID: 1110854680}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SaveAndExitToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -39258,8 +39246,6 @@ MonoBehaviour:
   - {fileID: 611927907}
   - {fileID: 69708224}
   characterSkills: {fileID: 77457841}
-  Character_Screen_Toggled: {fileID: 11400000, guid: b7fb634f1e5609e4e8f3be74abd9a36d,
-    type: 2}
   inputEnabled: {fileID: 11400000, guid: 0fff680439f954342ba97bf786eb6020, type: 2}
 --- !u!1001 &1362330084
 PrefabInstance:
@@ -40999,6 +40985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1433921302}
   - component: {fileID: 1433921303}
+  - component: {fileID: 1433921304}
   m_Layer: 5
   m_Name: CharacterStatsWindow
   m_TagString: Untagged
@@ -41054,6 +41041,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1433921304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433921301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d32a239e8a77b418cc7c4bdde9b0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Character_Screen_Toggled: {fileID: 11400000, guid: b7fb634f1e5609e4e8f3be74abd9a36d,
+    type: 2}
 --- !u!1001 &1434329820
 PrefabInstance:
   m_ObjectHideFlags: 0

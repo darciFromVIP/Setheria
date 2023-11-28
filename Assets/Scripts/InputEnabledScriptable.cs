@@ -6,5 +6,4 @@ using UnityEngine;
 public class InputEnabledScriptable : ScriptableObject
 {
     public bool inputEnabled = true;
-
 }

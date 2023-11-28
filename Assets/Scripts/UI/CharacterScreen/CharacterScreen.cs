@@ -19,8 +19,6 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     public List<Button> attributeButtons;
     public CharacterSkillsWindow characterSkills;
 
-    public EventScriptable Character_Screen_Toggled;
-
     private SettingsManager settingsManager;
     public InputEnabledScriptable inputEnabled;
 
@@ -66,7 +64,6 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     {
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(!window.activeSelf);
-        Character_Screen_Toggled.boolEvent.Invoke(window.activeSelf);
         if (window.activeSelf)
             characterSkills.HideGraphics();
         else
@@ -78,14 +75,12 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         characterSkills.ShowGraphics();
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(false);
-        Character_Screen_Toggled.boolEvent.Invoke(window.activeSelf);
     }
     public void ShowWindow()
     {
         characterSkills.HideGraphics();
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(true);
-        Character_Screen_Toggled.boolEvent.Invoke(window.activeSelf);
     }
 
     public bool IsActive()

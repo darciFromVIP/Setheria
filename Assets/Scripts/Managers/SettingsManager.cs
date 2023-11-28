@@ -61,8 +61,16 @@ public class SettingsManager : MonoBehaviour
     public UnityEvent<KeyCode> Key_Pressed = new();
     public UnityEvent Key_Changed = new();
 
+    public static SettingsManager instance;
+
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+            instance = this;
         settings = new();
         DontDestroyOnLoad(gameObject);
         fullPath = Application.persistentDataPath + "/User/Settings";

@@ -17,8 +17,16 @@ public class SaveLoadSystem : MonoBehaviour
 
     public bool saveFinished = false;
 
+    public static SaveLoadSystem instance;
+
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+            instance = this;
         DontDestroyOnLoad(gameObject);
         dataDirPath = Application.persistentDataPath + "/Worlds";
     }

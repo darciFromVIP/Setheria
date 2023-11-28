@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using Mirror;
 
-public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
+public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveable
 {
     public List<ItemRecipeInfo> requiredItems;
     public float workDuration;
@@ -68,10 +68,13 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
     }
     protected virtual void ItemsTurnedIn()
     {
-        var inventory = FindObjectOfType<InventoryManager>(true);
-        foreach (var item in requiredItems)
+        if (interactable)
         {
-            inventory.RemoveItem(item);
+            var inventory = FindObjectOfType<InventoryManager>(true);
+            foreach (var item in requiredItems)
+            {
+                inventory.RemoveItem(item);
+            }
         }
         if (animator)
             CmdSetAnimation();
@@ -80,6 +83,7 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
         var outline = GetComponentInChildren<EnableOutlineOnMouseOver>();
         if (outline)
             outline.enabled = false;
+        interactable = false;
     }
     [Command(requiresAuthority = false)]
     private void CmdSetAnimation()
@@ -90,5 +94,19 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable
     private void RpcSetAnimation()
     {
         animator.SetTrigger("ItemTurnedIn");
+    }
+
+    public SaveDataWorldObject SaveState()
+    {
+        return new SaveDataWorldObject
+        {
+            boolData1 = interactable
+        };
+    }
+
+    public void LoadState(SaveDataWorldObject state)
+    {
+        if (!interactable)
+            ItemsTurnedIn();
     }
 }

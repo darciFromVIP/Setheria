@@ -5,13 +5,14 @@ using Mirror;
 using UnityEngine.UI;
 using TMPro;
 
-public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerCharacter
+public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerCharacter, ISaveable
 {
     public float lootDuration;
     public float refreshDuration;
     public int xpGranted;
     public int maxCharges;
     private int currentCharges;
+    private float refreshTimer;
     public bool oneTimeLoot = true;
     public bool destroyOnLoot = false;
     public bool lootable = true;
@@ -219,15 +220,16 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         StartCoroutine(StartRefreshTimer());
     }
 
-    private IEnumerator StartRefreshTimer()
+    private IEnumerator StartRefreshTimer(bool isContinuing = false)
     {
         refreshProgressBar.gameObject.SetActive(true);
         refreshProgressBar.maxValue = refreshDuration;
-        float timer = refreshDuration;
-        while (timer > 0)
+        if (!isContinuing)
+            refreshTimer = refreshDuration;
+        while (refreshTimer > 0)
         {
-            timer -= Time.deltaTime;
-            refreshProgressBar.value = timer;
+            refreshTimer -= Time.deltaTime;
+            refreshProgressBar.value = refreshTimer;
             yield return null;
         }
         CmdUpdateLootability(true);
@@ -272,5 +274,26 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             tooltip.objectName = lootableName + " <color=green>(" + professionExperienceRequired + ")";
         else
             tooltip.objectName = lootableName + " <color=red>(" + professionExperienceRequired + ")";
+    }
+
+    public SaveDataWorldObject SaveState()
+    {
+        return new SaveDataWorldObject
+        {
+             intData1 = currentCharges,
+             boolData1 = lootable,
+             floatData1 = refreshTimer
+        };
+    }
+
+    public void LoadState(SaveDataWorldObject state)
+    {
+        RpcUpdateLootability(state.boolData1);
+        currentCharges = state.intData1;
+        if (currentCharges == 0 && refreshTimer > 0)
+        {
+            refreshTimer = state.floatData1;
+            StartCoroutine(StartRefreshTimer(true));
+        }
     }
 }

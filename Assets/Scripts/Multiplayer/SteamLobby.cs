@@ -72,8 +72,11 @@ public class SteamLobby : MonoBehaviour
     }
     private void OnDestroy()
     {
-        lobbyCreated.Dispose();
-        gameLobbyJoinRequested.Dispose();
-        lobbyEntered.Dispose();
+        if (lobbyCreated != null)
+        {
+            lobbyCreated.Dispose();
+            gameLobbyJoinRequested.Dispose();
+            lobbyEntered.Dispose();
+        }
     }
 }

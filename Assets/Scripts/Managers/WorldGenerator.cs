@@ -16,8 +16,16 @@ public class WorldGenerator : MonoBehaviour
     public StructureDatabase structureDatabase;
 
     public SaveDataWorld lastLoadedWorldState;
+
+    public static WorldGenerator instance;
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+            instance = this;
         DontDestroyOnLoad(gameObject);
     }
     public void CreateGameWorld(SaveDataWorld state)
@@ -42,6 +50,7 @@ public class WorldGenerator : MonoBehaviour
             FindObjectOfType<LoadingScreen>().LoadAsyncOperation("Loading Terrain...", operation);
             while (!operation.isDone)
             {
+                Debug.Log("Loading terrain");
                 yield return null;
             }
             biomeCopy[random] = null;
@@ -58,6 +67,7 @@ public class WorldGenerator : MonoBehaviour
                     item.transform.position += dic[i - 1];
             } 
         }
+        Debug.Log("Waiting for Scene to load");
         yield return new WaitUntil(IsMainSceneLoaded);
         if (NetworkServer.active)
             LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);

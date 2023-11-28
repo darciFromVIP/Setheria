@@ -33,6 +33,7 @@ public class MyNetworkManager : NetworkManager
     public override void OnClientConnect()
     {
         base.OnClientConnect();
+        scenesLoaded = 0;
         NetworkClient.ReplaceHandler<CurrentWorldSetMessage>(SetCurrentWorld);
         SceneManager.sceneLoaded -= OnSceneLoaded;
         SceneManager.sceneLoaded += OnSceneLoaded;

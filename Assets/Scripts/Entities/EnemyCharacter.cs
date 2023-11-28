@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using static UnityEditor.Progress;
+
 public class EnemyCharacter : Character, ISaveable
 {
     [SerializeField] private int xpGranted;
@@ -84,12 +86,17 @@ public class EnemyCharacter : Character, ISaveable
         {
             positionX = transform.position.x,
             positionY = transform.position.y,
-            positionZ = transform.position.z
+            positionZ = transform.position.z,
+            floatData1 = GetComponent<HasHealth>().GetHealth()
         };
     }
 
     public void LoadState(SaveDataWorldObject state)
     {
-        transform.position = new Vector3(state.positionX, state.positionY, state.positionZ);
+        if (isServer)
+            GetComponent<NetworkTransform>().CmdTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));
+        else
+            GetComponent<NetworkTransform>().RpcTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));
+        GetComponent<HasHealth>().SetHealth(state.floatData1);
     }
 }
