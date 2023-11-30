@@ -1492,6 +1492,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3022393319508150044}
+    - targetCorrespondingSourceObject: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 824066971831688148}
   m_SourcePrefab: {fileID: 100100000, guid: cf1fd752683bedf41b6bd4eae6622612, type: 3}
 --- !u!1 &892508273946089717 stripped
 GameObject:
@@ -1514,7 +1518,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2419832119524849849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5facd78f656fbc4438b7bb3b216b4df1, type: 3}
+  m_Script: {fileID: 11500000, guid: aff22ebbd191db742b2f08bd1de1d166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
@@ -1535,6 +1539,21 @@ MonoBehaviour:
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 8b497a35dbd6ffe46921b06c141e395a, type: 2}
   demolishCost: 10
+--- !u!114 &824066971831688148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419832119524849849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5facd78f656fbc4438b7bb3b216b4df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   waterCooldown: 5
   waterItem: {fileID: 11400000, guid: 26114d5f419d2394c92c732c66eb1471, type: 2}
 --- !u!4 &7505601321121825829 stripped

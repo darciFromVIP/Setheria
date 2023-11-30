@@ -9,7 +9,7 @@ public class SaveDataWorldObject
     public float positionX;
     public float positionY;
     public float positionZ;
-    public int intData1;
-    public float floatData1;
+    public int intData1, intData2;
+    public float floatData1, floatData2;
     public bool boolData1;
 }

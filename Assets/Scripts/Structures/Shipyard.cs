@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shipyard : Structure
+public class Shipyard : MonoBehaviour
 {
     
 }

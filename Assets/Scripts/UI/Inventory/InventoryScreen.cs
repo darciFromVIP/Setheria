@@ -7,7 +7,6 @@ public class InventoryScreen : MonoBehaviour
     public GameObject window;
     public EventScriptable Character_Screen_Toggled;
     private SettingsManager settingsManager;
-    private bool wasActive;
     private Vector3 defaultWindowPosition;
     private Vector3 customWindowPosition;
 
@@ -61,17 +60,15 @@ public class InventoryScreen : MonoBehaviour
     {
         if (value)
         {
-            wasActive = window.activeSelf;
             customWindowPosition = window.transform.position;
             if (!window.activeSelf)
-                ShowWindow();
+                ShowWindowWithoutSound();
             window.transform.position = defaultWindowPosition;
         }
         else
         {
             window.transform.position = customWindowPosition;
-            if (!wasActive)
-                HideWindow();
+            HideWindowWithoutSound();
         }
     }
 }

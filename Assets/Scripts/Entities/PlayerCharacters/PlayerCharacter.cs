@@ -199,6 +199,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 attackComp.SetCooldownReduction(item.cooldownReduction);
                 if (isOwned)
                 {
+                    talentTrees.talentPoints = 0;
                     if (item.talentTrees != null)
                     {
                         talentTrees = item.talentTrees;

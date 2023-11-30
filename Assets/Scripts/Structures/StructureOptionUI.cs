@@ -31,11 +31,11 @@ public class StructureOptionUI : MonoBehaviour
     {
         if (currentStructure)
         {
-            if (currentStructure is Well)
+            if (currentStructure.TryGetComponent(out Well well))
             {
                 cooldownSlider.gameObject.SetActive(true);
-                cooldownSlider.maxValue = (currentStructure as Well).waterCooldown;
-                cooldownSlider.value = (currentStructure as Well).GetWaterTimer();
+                cooldownSlider.maxValue = well.waterCooldown;
+                cooldownSlider.value = well.GetWaterTimer();
             }
             else
                 cooldownSlider.gameObject.SetActive(false);
@@ -118,7 +118,7 @@ public class StructureOptionUI : MonoBehaviour
                 player2.Work_Finished.AddListener(SetReturnPoint);
                 break;
             case StructureAction.DrawWater:
-                if ((currentStructure as Well).GetWaterTimer() > 0)
+                if (currentStructure.GetComponent<Well>().GetWaterTimer() > 0)
                     FindObjectOfType<SystemMessages>().AddMessage("There is no water in the Well!");
                 else
                 {
@@ -176,8 +176,8 @@ public class StructureOptionUI : MonoBehaviour
     }
     private void DrawWater()
     {
-        (currentStructure as Well).CmdStartWaterCooldown();
-        FindObjectOfType<InventoryManager>(true).AddItem(new ItemRecipeInfo { itemData = (currentStructure as Well).waterItem, stacks = 1 });
+        currentStructure.GetComponent<Well>().CmdStartWaterCooldown();
+        FindObjectOfType<InventoryManager>(true).AddItem(new ItemRecipeInfo { itemData = currentStructure.GetComponent<Well>().waterItem, stacks = 1 });
 
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using TMPro;
-public class DayNightCycle : MonoBehaviour
+public class DayNightCycle : MonoBehaviour, ISaveable
 {
     public Light directionalLight;
     public Volume volume;
@@ -18,6 +18,26 @@ public class DayNightCycle : MonoBehaviour
     private int maxIndex;
 
     private int multiplier = 1;
+
+    public void LoadState(SaveDataWorldObject state)
+    {
+        daysAlive = state.intData1;
+        currentIndex = state.intData2;
+        timer = state.floatData1;
+        progressPercentage = state.floatData2;
+    }
+
+    public SaveDataWorldObject SaveState()
+    {
+        return new SaveDataWorldObject
+        {
+            intData1 = daysAlive,
+            intData2 = currentIndex,
+            floatData1 = timer,
+            floatData2 = progressPercentage
+        };
+    }
+
     private void Start()
     {
         maxIndex = data.Count - 1;

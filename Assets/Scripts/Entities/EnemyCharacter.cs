@@ -93,7 +93,7 @@ public class EnemyCharacter : Character, ISaveable
 
     public void LoadState(SaveDataWorldObject state)
     {
-        if (isServer)
+        if (!isServer)
             GetComponent<NetworkTransform>().CmdTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));
         else
             GetComponent<NetworkTransform>().RpcTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));

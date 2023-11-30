@@ -1813,7 +1813,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7514009509025142872}
+      addedObject: {fileID: 867903199493659754}
   m_SourcePrefab: {fileID: 100100000, guid: cf1fd752683bedf41b6bd4eae6622612, type: 3}
 --- !u!1 &264877083464349759 stripped
 GameObject:
@@ -1827,7 +1827,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3612934620317254160}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7514009509025142872
+--- !u!114 &867903199493659754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1836,18 +1836,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3340302838364641395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48136b648c5cbd94caf63c149a5dfe20, type: 3}
+  m_Script: {fileID: 11500000, guid: aff22ebbd191db742b2f08bd1de1d166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0
   animator: {fileID: 0}
   On_Death:
     m_PersistentCalls:
       m_Calls: []
   hudCircle: {fileID: 264877083464349759}
-  vfxDatabase: {fileID: 0}
+  vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
   structureItem: {fileID: 11400000, guid: 10654546673692c4f8b3bfed64a1e4b7, type: 2}
   structureOptions:
   - {fileID: 11400000, guid: ffc09c9fe28a1044a8dd87afd5ad3cb8, type: 2}
@@ -1855,7 +1855,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f050df7932b8274ba7259e62054bca3, type: 2}
   - {fileID: 11400000, guid: c60c51bea0c77c64799aa8ff424b70fb, type: 2}
   skills: []
-  entityDatabase: {fileID: 0}
+  entityDatabase: {fileID: 11400000, guid: 0272411464c49914aa52af49104af5e1, type: 2}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
   demolishCost: 20

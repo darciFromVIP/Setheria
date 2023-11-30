@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using Mono.CecilX.Cil;
 
 public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, WindowedUI
 {
@@ -21,6 +22,8 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
 
     private SettingsManager settingsManager;
     public InputEnabledScriptable inputEnabled;
+
+    public EventScriptable Character_Stats_Screen_Toggled;
 
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
@@ -56,6 +59,8 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         if (Input.GetKeyDown(settingsManager.settings.characterScreen))
         {
             ToggleWindow();
+            if (window.activeSelf)
+                CheckIfStatsAreOpened();
         }
         if (Input.GetKeyDown(settingsManager.settings.manual) && window.activeSelf)
             HideWindow();
@@ -205,5 +210,13 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     {
         base.OpenAnotherWindow(window);
         GetComponentInChildren<TalentScreen>(true).UpdateTalents();
+        CheckIfStatsAreOpened();
+    }
+    private void CheckIfStatsAreOpened()
+    {
+        if (currentOpenedWindow.name == "CharacterStatsWindow")
+            Character_Stats_Screen_Toggled.boolEvent.Invoke(true);
+        else
+            Character_Stats_Screen_Toggled.boolEvent.Invoke(false);
     }
 }

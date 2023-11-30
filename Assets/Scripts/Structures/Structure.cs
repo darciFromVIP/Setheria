@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-public abstract class Structure : Entity, ISaveable, IInteractable
+public class Structure : Entity, ISaveable, IInteractable
 {
     public ItemScriptable structureItem;
     public List<StructureOption> structureOptions;

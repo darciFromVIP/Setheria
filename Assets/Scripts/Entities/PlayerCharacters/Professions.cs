@@ -9,8 +9,8 @@ public class Professions
 {
     public int gathering, alchemy, cooking, fishing, exploration;
     public int maxGathering, maxAlchemy, maxCooking, maxFishing, maxExploration;
-    private int gatheringMilestone, alchemyMilestone, cookingMilestone, fishingMilestone, explorationMilestone;
-    private List<int> largeProfMilestones;
+    public int gatheringMilestone, alchemyMilestone, cookingMilestone, fishingMilestone, explorationMilestone;
+    public List<int> largeProfMilestones;
 
     [NonSerialized] public PlayerCharacter player;
 

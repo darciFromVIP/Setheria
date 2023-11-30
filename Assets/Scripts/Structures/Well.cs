@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Well : Structure
+public class Well : NetworkBehaviour
 {
     public float waterCooldown;
     private float waterTimer;

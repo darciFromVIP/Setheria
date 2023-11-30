@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Warehouse : Structure
+public class Warehouse : MonoBehaviour
 {
     
 }
