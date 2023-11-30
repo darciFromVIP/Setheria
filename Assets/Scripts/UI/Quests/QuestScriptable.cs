@@ -53,6 +53,9 @@ public class QuestScriptable : ScriptableObject, IComparable
     [Tooltip("Quest rewards. Always fill only one reward per list element.")]
     public List<QuestReward> rewards;
 
+    [Tooltip("Does this quest introduce new mechanic? Add the corresponding tutorial data here.")]
+    public TutorialDataScriptable tutorialToShow;
+
     private QuestManager questManager;
 
     [HideInInspector] public UnityEvent Quest_Complete = new();
@@ -146,6 +149,8 @@ public class QuestScriptable : ScriptableObject, IComparable
                 }
                 CheckQuestCompletion();
             }
+            if (tutorialToShow != null)
+                FindObjectOfType<Tutorial>().QueueNewTutorial(tutorialToShow);
         }
         else
         {

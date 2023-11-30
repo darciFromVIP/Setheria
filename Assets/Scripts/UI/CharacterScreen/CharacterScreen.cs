@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using Mono.CecilX.Cil;
 
 public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, WindowedUI
 {
