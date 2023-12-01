@@ -55,10 +55,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.07
+  m_Radius: 0.06
   m_Height: 1.58
   m_Direction: 1
-  m_Center: {x: -0.06, y: 0.67, z: -0.21}
+  m_Center: {x: 0, y: 0.65, z: -0.21}
 --- !u!23 &8896121979494360492
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8df05deefdf6094982b674e91534d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToHide: {fileID: 0}
 --- !u!1 &5100696003583784063
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,3 +287,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8df05deefdf6094982b674e91534d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToHide: {fileID: 0}

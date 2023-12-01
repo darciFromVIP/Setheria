@@ -166,6 +166,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6734150159591962957, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
+      propertyPath: aggroRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -6734150159591962957, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
       propertyPath: allyHelpRange
       value: 7
       objectReference: {fileID: 0}
@@ -322,12 +327,12 @@ PrefabInstance:
     - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].item.stacks
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[1].item.stacks
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
