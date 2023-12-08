@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2465631053712169682}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -126.7, y: -85.01, z: -76.52}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 7.8223696, y: 7.8223696, z: 7.8223696}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -902,7 +902,7 @@ PrefabInstance:
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: effectsToHide.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -913,7 +913,12 @@ PrefabInstance:
         type: 3}
       propertyPath: effectsToHide.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5642212036948412285}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: effectsToHide.Array.data[2]
+      value: 
+      objectReference: {fileID: 2465631053712169682}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: professionExperienceRequired
@@ -927,17 +932,17 @@ PrefabInstance:
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 126.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 85.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 76.52
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
