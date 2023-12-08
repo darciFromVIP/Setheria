@@ -39,11 +39,11 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         player.Skills_Changed.AddListener(UpdateSkills);
         UpdateSkills(player.skills);
         playerController.GetComponent<CanAttack>().Has_Attacked.AddListener(StartCooldownA);
-        playerController.Cooldown_D_Started.AddListener(StartCooldownD);
-        playerController.Cooldown_Q_Started.AddListener(StartCooldownQ);
-        playerController.Cooldown_W_Started.AddListener(StartCooldownW);
-        playerController.Cooldown_E_Started.AddListener(StartCooldownE);
-        playerController.Cooldown_R_Started.AddListener(StartCooldownR);
+        playerController.Cooldown_1_Started.AddListener(StartCooldownD);
+        playerController.Cooldown_2_Started.AddListener(StartCooldownQ);
+        playerController.Cooldown_3_Started.AddListener(StartCooldownW);
+        playerController.Cooldown_4_Started.AddListener(StartCooldownE);
+        playerController.Cooldown_5_Started.AddListener(StartCooldownR);
         attributePointsBTN.Initialize(player);
         talentPointsBTN.Initialize(player);
     }
@@ -122,14 +122,14 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     private IEnumerator UpdateCooldownD()
     {
         cdDSlider.gameObject.SetActive(true);
-        cdDSlider.maxValue = playerController.cooldownD;
-        while (playerController.cooldownD > 0)
+        cdDSlider.maxValue = playerController.cooldown1;
+        while (playerController.cooldown1 > 0)
         {
-            cdDSlider.value = playerController.cooldownD;
-            if (playerController.cooldownD >= 1)
-                textCdD.text = ((int)playerController.cooldownD).ToString();
+            cdDSlider.value = playerController.cooldown1;
+            if (playerController.cooldown1 >= 1)
+                textCdD.text = ((int)playerController.cooldown1).ToString();
             else
-                textCdD.text = playerController.cooldownD.ToString("F1");
+                textCdD.text = playerController.cooldown1.ToString("F1");
             yield return null;
         }
         cdDSlider.gameObject.SetActive(false);
@@ -141,14 +141,14 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     private IEnumerator UpdateCooldownQ()
     {
         cdQSlider.gameObject.SetActive(true);
-        cdQSlider.maxValue = playerController.cooldownQ;
-        while (playerController.cooldownQ > 0)
+        cdQSlider.maxValue = playerController.cooldown2;
+        while (playerController.cooldown2 > 0)
         {
-            cdQSlider.value = playerController.cooldownQ;
-            if (playerController.cooldownQ >= 1)
-                textCdQ.text = ((int)playerController.cooldownQ).ToString();
+            cdQSlider.value = playerController.cooldown2;
+            if (playerController.cooldown2 >= 1)
+                textCdQ.text = ((int)playerController.cooldown2).ToString();
             else
-                textCdQ.text = playerController.cooldownQ.ToString("F1"); 
+                textCdQ.text = playerController.cooldown2.ToString("F1"); 
             yield return null;
         }
         cdQSlider.gameObject.SetActive(false);
@@ -160,14 +160,14 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     private IEnumerator UpdateCooldownW()
     {
         cdWSlider.gameObject.SetActive(true);
-        cdWSlider.maxValue = playerController.cooldownW;
-        while (playerController.cooldownW > 0)
+        cdWSlider.maxValue = playerController.cooldown3;
+        while (playerController.cooldown3 > 0)
         {
-            cdWSlider.value = playerController.cooldownW;
-            if (playerController.cooldownW >= 1)
-                textCdW.text = ((int)playerController.cooldownW).ToString();
+            cdWSlider.value = playerController.cooldown3;
+            if (playerController.cooldown3 >= 1)
+                textCdW.text = ((int)playerController.cooldown3).ToString();
             else
-                textCdW.text = playerController.cooldownW.ToString("F1"); 
+                textCdW.text = playerController.cooldown3.ToString("F1"); 
             yield return null;
         }
         cdWSlider.gameObject.SetActive(false);
@@ -179,14 +179,14 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     private IEnumerator UpdateCooldownE()
     {
         cdESlider.gameObject.SetActive(true);
-        cdESlider.maxValue = playerController.cooldownE;
-        while (playerController.cooldownE > 0)
+        cdESlider.maxValue = playerController.cooldown4;
+        while (playerController.cooldown4 > 0)
         {
-            cdESlider.value = playerController.cooldownE;
-            if (playerController.cooldownE >= 1)
-                textCdE.text = ((int)playerController.cooldownE).ToString();
+            cdESlider.value = playerController.cooldown4;
+            if (playerController.cooldown4 >= 1)
+                textCdE.text = ((int)playerController.cooldown4).ToString();
             else
-                textCdE.text = playerController.cooldownE.ToString("F1"); 
+                textCdE.text = playerController.cooldown4.ToString("F1"); 
             yield return null;
         }
         cdESlider.gameObject.SetActive(false);
@@ -198,14 +198,14 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     private IEnumerator UpdateCooldownR()
     {
         cdRSlider.gameObject.SetActive(true);
-        cdRSlider.maxValue = playerController.cooldownR;
-        while (playerController.cooldownR > 0)
+        cdRSlider.maxValue = playerController.cooldown5;
+        while (playerController.cooldown5 > 0)
         {
-            cdRSlider.value = playerController.cooldownR;
-            if (playerController.cooldownR >= 1)
-                textCdR.text = ((int)playerController.cooldownR).ToString();
+            cdRSlider.value = playerController.cooldown5;
+            if (playerController.cooldown5 >= 1)
+                textCdR.text = ((int)playerController.cooldown5).ToString();
             else
-                textCdR.text = playerController.cooldownR.ToString("F1"); 
+                textCdR.text = playerController.cooldown5.ToString("F1"); 
             yield return null;
         }
         cdRSlider.gameObject.SetActive(false);

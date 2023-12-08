@@ -38,7 +38,7 @@ public class SRoar : Skill
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         if (castingEntity.isServer)
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
-        player.StartCooldownE();
+        player.StartCooldown4();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);
     }

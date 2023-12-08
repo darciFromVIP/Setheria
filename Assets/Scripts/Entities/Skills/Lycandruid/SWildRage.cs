@@ -34,7 +34,7 @@ public class SWildRage : Skill
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         if (castingEntity.isServer)
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
-        player.StartCooldownR();
+        player.StartCooldown5();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);
     }

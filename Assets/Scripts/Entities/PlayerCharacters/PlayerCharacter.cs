@@ -166,6 +166,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     GetComponent<NetworkTransform>().CmdTeleport(new Vector3(item.positionX, item.positionY, item.positionZ));
                 moveComp.ResumeAgent();
                 transform.rotation = new Quaternion(item.rotationX, item.rotationY, item.rotationZ, item.rotationW);
+                returnPoint = new Vector3(item.everstonePointX, item.everstonePointY, item.everstonePointZ);
                 heroName = item.name;
                 level = item.level;
                 Level_Up.Invoke(level);
@@ -197,6 +198,32 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 attackComp.SetAttackRange(item.attackRange);
                 healthComp.SetArmor(item.armor);
                 attackComp.SetCooldownReduction(item.cooldownReduction);
+                var controller = GetComponent<PlayerController>();
+                if (item.cooldown1 > 0)
+                {
+                    controller.StartCooldown1();
+                    controller.cooldown1 = item.cooldown1;
+                }
+                if (item.cooldown2 > 0)
+                {
+                    controller.StartCooldown2();
+                    controller.cooldown2 = item.cooldown2;
+                }
+                if (item.cooldown3 > 0)
+                {
+                    controller.StartCooldown3();
+                    controller.cooldown3 = item.cooldown3;
+                }
+                if (item.cooldown4 > 0)
+                {
+                    controller.StartCooldown4();
+                    controller.cooldown4 = item.cooldown4;
+                }
+                if (item.cooldown5 > 0)
+                {
+                    controller.StartCooldown5();
+                    controller.cooldown5 = item.cooldown5;
+                }
                 if (isOwned)
                 {
                     talentTrees.talentPoints = 0;
@@ -234,6 +261,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             items.Add(new SaveDataItem { name = item.item.name, stacks = item.stacks });
         }
+        var controller = GetComponent<PlayerController>();
+
         return new SaveDataPlayer {
             positionX = transform.position.x,
             positionY = transform.position.y,
@@ -242,6 +271,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             rotationY = transform.rotation.y,
             rotationX = transform.rotation.x,
             rotationZ = transform.rotation.z,
+            everstonePointX = returnPoint.x,
+            everstonePointY = returnPoint.y,
+            everstonePointZ = returnPoint.z,
             hero = hero,
             level = level,
             maxXp = maxXp,
@@ -269,6 +301,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             attackRange = attackComp.GetAttackRange(),
             armor = healthComp.GetArmor(),
             cooldownReduction = attackComp.GetCooldownReduction(),
+            cooldown1 = controller.cooldown1,
+            cooldown2 = controller.cooldown2,
+            cooldown3 = controller.cooldown3,
+            cooldown4 = controller.cooldown4,
+            cooldown5 = controller.cooldown5,
             talentTrees = talentTrees,
             professions = professions,
         };

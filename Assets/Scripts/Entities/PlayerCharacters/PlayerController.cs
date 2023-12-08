@@ -34,21 +34,21 @@ public class PlayerController : NetworkBehaviour
     public InputEnabledScriptable inputEnabled;
 
 
-    public float cooldownD;
-    public float cooldownQ;
-    public float cooldownW;
-    public float cooldownE;
-    public float cooldownR;
+    public float cooldown1;
+    public float cooldown2;
+    public float cooldown3;
+    public float cooldown4;
+    public float cooldown5;
 
     public UnityEvent<NetworkIdentity> Enemy_Clicked = new();
     [HideInInspector] public UnityEvent<Vector3> Ground_Left_Clicked = new();
     [HideInInspector] public UnityEvent<EnemyCharacter> Enemy_Left_Clicked = new();
     [HideInInspector] public UnityEvent<PlayerCharacter> Ally_Left_Clicked = new();
-    [HideInInspector] public UnityEvent Cooldown_D_Started = new();
-    [HideInInspector] public UnityEvent Cooldown_Q_Started = new();
-    [HideInInspector] public UnityEvent Cooldown_W_Started = new();
-    [HideInInspector] public UnityEvent Cooldown_E_Started = new();
-    [HideInInspector] public UnityEvent Cooldown_R_Started = new();
+    [HideInInspector] public UnityEvent Cooldown_1_Started = new();
+    [HideInInspector] public UnityEvent Cooldown_2_Started = new();
+    [HideInInspector] public UnityEvent Cooldown_3_Started = new();
+    [HideInInspector] public UnityEvent Cooldown_4_Started = new();
+    [HideInInspector] public UnityEvent Cooldown_5_Started = new();
     [HideInInspector] public UnityEvent<float> Working_Event = new();
     [HideInInspector] public UnityEvent Work_Cancelled = new();
     [HideInInspector] public UnityEvent Work_Finished = new();
@@ -71,16 +71,16 @@ public class PlayerController : NetworkBehaviour
         if (!isOwned)
             return;
 
-        if (cooldownD > 0)
-            cooldownD -= Time.deltaTime;
-        if (cooldownQ > 0)
-            cooldownQ -= Time.deltaTime;
-        if (cooldownW > 0)
-            cooldownW -= Time.deltaTime;
-        if (cooldownE > 0)
-            cooldownE -= Time.deltaTime;
-        if (cooldownR > 0)
-            cooldownR -= Time.deltaTime;
+        if (cooldown1 > 0)
+            cooldown1 -= Time.deltaTime;
+        if (cooldown2 > 0)
+            cooldown2 -= Time.deltaTime;
+        if (cooldown3 > 0)
+            cooldown3 -= Time.deltaTime;
+        if (cooldown4 > 0)
+            cooldown4 -= Time.deltaTime;
+        if (cooldown5 > 0)
+            cooldown5 -= Time.deltaTime;
 
         if (inputEnabled.inputEnabled)
             InputHandle();
@@ -258,7 +258,7 @@ public class PlayerController : NetworkBehaviour
         if (state != PlayerState.None)
             return;
         if (playerCharacter.skills[1].unlocked)
-            if (cooldownD <= 0)
+            if (cooldown1 <= 0)
                 if (manaComp.GetMana() >= playerCharacter.skills[1].manaCost)
                     CmdExecuteSkill1();
                 else
@@ -273,7 +273,7 @@ public class PlayerController : NetworkBehaviour
         if (state != PlayerState.None)
             return;
         if (playerCharacter.skills[2].unlocked)
-            if (cooldownQ <= 0)
+            if (cooldown2 <= 0)
                 if (manaComp.GetMana() >= playerCharacter.skills[2].manaCost)
                     CmdExecuteSkill2();
                 else
@@ -288,7 +288,7 @@ public class PlayerController : NetworkBehaviour
         if (state != PlayerState.None)
             return;
         if (playerCharacter.skills[3].unlocked)
-            if (cooldownW <= 0)
+            if (cooldown3 <= 0)
                 if (manaComp.GetMana() >= playerCharacter.skills[3].manaCost)
                     CmdExecuteSkill3();
                 else
@@ -303,7 +303,7 @@ public class PlayerController : NetworkBehaviour
         if (state != PlayerState.None)
             return;
         if (playerCharacter.skills[4].unlocked)
-            if (cooldownE <= 0)
+            if (cooldown4 <= 0)
                 if (manaComp.GetMana() >= playerCharacter.skills[4].manaCost)
                     CmdExecuteSkill4();
                 else
@@ -318,7 +318,7 @@ public class PlayerController : NetworkBehaviour
         if (state != PlayerState.None)
             return;
         if (playerCharacter.skills[5].unlocked)
-            if (cooldownR <= 0)
+            if (cooldown5 <= 0)
                 if (manaComp.GetMana() >= playerCharacter.skills[5].manaCost)
                     CmdExecuteSkill5();
                 else
@@ -420,34 +420,34 @@ public class PlayerController : NetworkBehaviour
     {
         castingState = state;
     }
-    public void StartCooldownD()
+    public void StartCooldown1()
     {
-        cooldownD = playerCharacter.skills[1].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
-        Cooldown_D_Started.Invoke();
+        cooldown1 = playerCharacter.skills[1].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
+        Cooldown_1_Started.Invoke();
         CmdResumeActing();
     }
-    public void StartCooldownQ()
+    public void StartCooldown2()
     {
-        cooldownQ = playerCharacter.skills[2].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
-        Cooldown_Q_Started.Invoke();
+        cooldown2 = playerCharacter.skills[2].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
+        Cooldown_2_Started.Invoke();
         CmdResumeActing();
     }
-    public void StartCooldownW()
+    public void StartCooldown3()
     {
-        cooldownW = playerCharacter.skills[3].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
-        Cooldown_W_Started.Invoke();
+        cooldown3 = playerCharacter.skills[3].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
+        Cooldown_3_Started.Invoke();
         CmdResumeActing();
     }
-    public void StartCooldownE()
+    public void StartCooldown4()
     {
-        cooldownE = playerCharacter.skills[4].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
-        Cooldown_E_Started.Invoke();
+        cooldown4 = playerCharacter.skills[4].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
+        Cooldown_4_Started.Invoke();
         CmdResumeActing();
     }
-    public void StartCooldownR()
+    public void StartCooldown5()
     {
-        cooldownR = playerCharacter.skills[5].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
-        Cooldown_R_Started.Invoke();
+        cooldown5 = playerCharacter.skills[5].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
+        Cooldown_5_Started.Invoke();
         CmdResumeActing();
     }
     [Command(requiresAuthority = false)]

@@ -18,7 +18,7 @@ public class SDefensiveStance : Skill
         TogglePassive(false);
         if (castingEntity.isServer)
             castingEntity.GetComponent<Shapeshifter>().RpcShapeshift(false);
-        castingEntity.GetComponent<PlayerController>().StartCooldownD();
+        castingEntity.GetComponent<PlayerController>().StartCooldown1();
     }
     public override void ExecuteOnStart(Character self)
     {

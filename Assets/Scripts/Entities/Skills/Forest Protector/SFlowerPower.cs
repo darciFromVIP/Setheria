@@ -54,7 +54,7 @@ public class SFlowerPower : Skill
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         if (castingEntity.isServer)
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
-        player.StartCooldownR();
+        player.StartCooldown5();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);
         player.ChangeCastingState(CastingState.None);

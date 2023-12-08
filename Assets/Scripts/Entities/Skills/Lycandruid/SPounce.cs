@@ -78,7 +78,7 @@ public class SPounce : Skill
         FindObjectOfType<AudioManager>().PlayOneShot(PounceImpactSound, castingEntity.transform.position);
         if (castingEntity.isServer)
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
-        player.StartCooldownW();
+        player.StartCooldown3();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveListener(Cast);
         player.ChangeState(PlayerState.None);
         player.ChangeCastingState(CastingState.None);

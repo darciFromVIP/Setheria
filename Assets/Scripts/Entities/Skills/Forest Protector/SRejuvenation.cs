@@ -59,7 +59,7 @@ public class SRejuvenation : Skill
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         if (castingEntity.isServer)
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
-        player.StartCooldownW();
+        player.StartCooldown3();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);
         player.ChangeCastingState(CastingState.None);

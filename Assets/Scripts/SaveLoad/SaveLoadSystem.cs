@@ -205,16 +205,21 @@ public class SaveLoadSystem : MonoBehaviour
             Debug.Log("The Scene Game isn't loaded!");
             return null;
         }
-        if (NetworkServer.active)
-            Debug.Log("Server");
-        else
-            Debug.Log("Client");
         SaveDataWorldServer state = new();
         state.worldSaveData.worldName = currentWorldDataServer.worldSaveData.worldName;
         state.worldSaveData.worldSeed = currentWorldDataServer.worldSaveData.worldSeed;
         state.worldSaveData.fogOfWar = new byte[FoW.FogOfWarTeam.GetTeam(0).mapResolution.x * FoW.FogOfWarTeam.GetTeam(0).mapResolution.y];
         FoW.FogOfWarTeam.GetTeam(0).GetTotalFogValues(ref state.worldSaveData.fogOfWar);
         state.worldSaveData.questlines = FindObjectOfType<QuestManager>().SaveState();
+        state.worldSaveData.resources = FindObjectOfType<GameManager>().GetResources();
+        state.worldSaveData.knowledge = FindObjectOfType<GameManager>().GetKnowledge();
+        var stash = FindObjectOfType<StashInventory>(true).GetAllItems();
+        List<SaveDataItem> items = new();
+        foreach (var item in stash)
+        {
+            items.Add(new SaveDataItem { name = item.item.name, stacks = item.stacks });
+        }
+        state.worldSaveData.stash = items;
         foreach (var item in FindObjectsOfType<SaveableBehaviour>())
         {
             state.worldObjects.Add(item.Id, item.SaveState());

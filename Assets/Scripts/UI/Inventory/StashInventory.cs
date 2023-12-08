@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 public class StashInventory : MonoBehaviour, WindowedUI
 {
     public List<StashSlot> stashSlots = new();
@@ -14,6 +13,10 @@ public class StashInventory : MonoBehaviour, WindowedUI
     {
         window.SetActive(true);
         InitializeInventory();
+        foreach (var item in FindObjectOfType<WorldGenerator>().lastLoadedWorldState.stash)
+        {
+            AddItem(item);
+        }
         window.SetActive(false);
     }
     public void ShowWindow()

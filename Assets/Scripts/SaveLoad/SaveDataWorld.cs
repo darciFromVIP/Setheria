@@ -10,4 +10,6 @@ public class SaveDataWorld
     public int worldSeed;
     public byte[] fogOfWar;
     public List<QuestlineSaveable> questlines;
+    public int resources, knowledge;
+    public List<SaveDataItem> stash = new();
 }

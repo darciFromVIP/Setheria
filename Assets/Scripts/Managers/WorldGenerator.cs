@@ -5,6 +5,8 @@ using System;
 using UnityEngine.SceneManagement;
 using Mirror;
 using UnityEngine.AI;
+using static UnityEditor.Progress;
+
 public class WorldGenerator : MonoBehaviour
 {
     [Scene] 
@@ -72,6 +74,8 @@ public class WorldGenerator : MonoBehaviour
         if (NetworkServer.active)
             LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
         FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
+        FindObjectOfType<GameManager>().ChangeResources(state.resources);
+        FindObjectOfType<GameManager>().ChangeKnowledge(state.knowledge);
         Debug.Log("Scene Loaded");
     }
     private void LoadWorldObjects(Dictionary<string, Dictionary<string, SaveDataWorldObject>> worldObjects)
@@ -84,7 +88,12 @@ public class WorldGenerator : MonoBehaviour
                 worldObjects.Remove(item.Id);
             }
             else if (!FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.fresh)
-                NetworkServer.Destroy(item.gameObject);
+            {
+                if (item.TryGetComponent(out NetworkBehaviour net))
+                    NetworkServer.Destroy(item.gameObject);
+                else
+                    Destroy(item.gameObject);
+            }
         }
         foreach (var item in worldObjects)
         {

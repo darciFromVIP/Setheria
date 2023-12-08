@@ -39,7 +39,7 @@ public class STaunt : Skill
             }
         }
         PlayerController player = castingEntity.GetComponent<PlayerController>();
-        player.StartCooldownD();
+        player.StartCooldown1();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
         player.ChangeState(PlayerState.None);
     }

@@ -12,7 +12,7 @@ public class SOneWithNature : Skill
         (castingEntity.GetComponent<Shapeshifter>().defaultSkills[1] as SDefensiveStance).TogglePassive(true);
         if (castingEntity.isServer)
             castingEntity.GetComponent<Shapeshifter>().RpcShapeshift(true);
-        castingEntity.GetComponent<PlayerController>().StartCooldownD();
+        castingEntity.GetComponent<PlayerController>().StartCooldown1();
     }
     public override void UpdateDescription()
     {

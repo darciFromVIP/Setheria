@@ -41,14 +41,18 @@ PrefabInstance:
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: effectsToHide.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: effectsToHide.Array.data[0]
       value: 
-      objectReference: {fileID: 8316823297637578971, guid: f57c7553d3e08b344b5d9fc058020524,
+      objectReference: {fileID: 4576380573903272576}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
+      propertyPath: effectsToHide.Array.data[1]
+      value: 
+      objectReference: {fileID: 3411567996758445366}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: professionExperienceRequired
@@ -203,6 +207,12 @@ PrefabInstance:
 --- !u!4 &3970291885980843161 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
+    type: 3}
+  m_PrefabInstance: {fileID: 2408609639240734592}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4576380573903272576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2229150244544064768, guid: f87e8e15654f0d1439fa30e59ccad342,
     type: 3}
   m_PrefabInstance: {fileID: 2408609639240734592}
   m_PrefabAsset: {fileID: 0}
@@ -393,6 +403,12 @@ PrefabInstance:
       addedObject: {fileID: 3822321449121347473}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b46344c8183999644b38ae37a7077b00, type: 3}
+--- !u!1 &3411567996758445366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 976365683102791067, guid: b46344c8183999644b38ae37a7077b00,
+    type: 3}
+  m_PrefabInstance: {fileID: 2509890853801687213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7332479831725924170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5122527780174866407, guid: b46344c8183999644b38ae37a7077b00,

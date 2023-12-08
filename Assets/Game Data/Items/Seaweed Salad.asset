@@ -23,7 +23,7 @@ MonoBehaviour:
   stackable: 1
   usage:
   - {fileID: 11400000, guid: a4907513d044f3f4492811ad4ca7b5aa, type: 2}
-  usageCooldown: 5
+  usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   value: 0
@@ -31,6 +31,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

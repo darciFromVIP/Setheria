@@ -11,6 +11,9 @@ public class SaveDataPlayer
     public float rotationX;
     public float rotationY;
     public float rotationZ;
+    public float everstonePointX;
+    public float everstonePointY;
+    public float everstonePointZ;
     public string name;
     public Hero hero;
     public int level;
@@ -38,6 +41,11 @@ public class SaveDataPlayer
     public float attackRange;
     public float armor;
     public float cooldownReduction;
+    public float cooldown1;
+    public float cooldown2;
+    public float cooldown3; 
+    public float cooldown4; 
+    public float cooldown5;
     public TalentTrees talentTrees;
     public Professions professions;
 
