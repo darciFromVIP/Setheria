@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0345b34eca3faad499132b42223de7eb, type: 3}
+  m_Name: Ancient Crate
+  m_EditorClassIdentifier: 
+  Action_Finished:
+    m_PersistentCalls:
+      m_Calls: []
+  toolType: 11
+  requiredLevel: 1
+  itemDropsTable:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
+        stacks: 3
+      chance: 20
+    - item:
+        itemData: {fileID: 11400000, guid: 8b8309f0d9762af4ca4a413da72b998d, type: 2}
+        stacks: 1
+      chance: 20
+    - item:
+        itemData: {fileID: 11400000, guid: 77ee74d9a32ed344bbfa8696f6b1a5c3, type: 2}
+        stacks: 4
+      chance: 20
+    - item:
+        itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
+        stacks: 4
+      chance: 20
+    - item:
+        itemData: {fileID: 11400000, guid: 413daef5bb9d75f4fb4a0ddf31764871, type: 2}
+        stacks: 1
+      chance: 20

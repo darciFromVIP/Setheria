@@ -52,7 +52,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.44
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5819653607729827626
 MonoBehaviour:
@@ -83,22 +83,27 @@ PrefabInstance:
     - target: {fileID: 3712713297513351526, guid: f57c7553d3e08b344b5d9fc058020524,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.85858
+      value: 0.7295698
       objectReference: {fileID: 0}
     - target: {fileID: 3712713297513351526, guid: f57c7553d3e08b344b5d9fc058020524,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.85858
+      value: 0.7295698
       objectReference: {fileID: 0}
     - target: {fileID: 3712713297513351526, guid: f57c7553d3e08b344b5d9fc058020524,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.85858
+      value: 0.7295698
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712713297513351526, guid: f57c7553d3e08b344b5d9fc058020524,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.198
       objectReference: {fileID: 0}
     - target: {fileID: 3712713297513351526, guid: f57c7553d3e08b344b5d9fc058020524,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.548
+      value: 1.32
       objectReference: {fileID: 0}
     - target: {fileID: 3712713297513351526, guid: f57c7553d3e08b344b5d9fc058020524,
         type: 3}
@@ -203,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 8316823297637578971, guid: f57c7553d3e08b344b5d9fc058020524,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -239,6 +244,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Item Template Material
+      objectReference: {fileID: 0}
+    - target: {fileID: 3763204783118822881, guid: ae6d18d5d6d4b1b4a9d19b8d6dc2e3c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3811736746387039585, guid: ae6d18d5d6d4b1b4a9d19b8d6dc2e3c9,
         type: 3}
