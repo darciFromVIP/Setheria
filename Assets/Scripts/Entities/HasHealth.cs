@@ -10,13 +10,15 @@ public class HasHealth : NetworkBehaviour, ISaveable
     [SerializeField]
     private float maxHealth;
     private float baseMaxHealth;
-    private float bonusMaxHealth = 0;
+    private float gearMaxHealth = 0;
     [SerializeField]
     private float healthRegen = 0.25f;
     private float baseHealthRegen;
-    private float bonusHealthRegen = 0;
+    private float gearHealthRegen = 0;
     private float healthRegenTimer = 0;
-    [SerializeField] private float armor = 0;
+    [SerializeField] private float baseArmor = 0;
+    private float gearArmor = 0;
+    private float finalArmor;
 
     private bool isInvulnerable;
 
@@ -106,7 +108,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         }
         float finalDmg = damage;
         if (!ignoreArmor)
-            finalDmg = damage * (1 - (armor / 100));
+            finalDmg = damage * (1 - (GetFinalArmor() / 100));
 
         health -= finalDmg;
         if (isServer)
@@ -134,23 +136,23 @@ public class HasHealth : NetworkBehaviour, ISaveable
         UpdateMaxHealth();
     }
     [Command]
-    public void CmdChangeBonusMaxHealth(float amount)
+    public void CmdChangeGearMaxHealth(float amount)
     {
-        RpcChangeBonusMaxHealth(amount);
+        RpcChangeGearMaxHealth(amount);
     }
     [ClientRpc]
-    public void RpcChangeBonusMaxHealth(float amount)
+    public void RpcChangeGearMaxHealth(float amount)
     {
-        ChangeBonusMaxHealth(amount);
+        ChangeGearMaxHealth(amount);
     }
-    public void ChangeBonusMaxHealth(float amount)
+    public void ChangeGearMaxHealth(float amount)
     {
-        bonusMaxHealth += amount;
+        gearMaxHealth += amount;
         UpdateMaxHealth();
     }
     private void UpdateMaxHealth()
     {
-        maxHealth = baseMaxHealth + bonusMaxHealth;
+        maxHealth = baseMaxHealth + gearMaxHealth;
         Health_Changed.Invoke(health, maxHealth);
     }
     [Command]
@@ -172,23 +174,23 @@ public class HasHealth : NetworkBehaviour, ISaveable
         UpdateHealthRegen();
     }
     [Command]
-    public void CmdChangeBonusHealthRegen(float amount)
+    public void CmdChangeGearHealthRegen(float amount)
     {
-        RpcChangeBonusHealthRegen(amount);
+        RpcChangeGearHealthRegen(amount);
     }
     [ClientRpc]
-    public void RpcChangeBonusHealthRegen(float amount)
+    public void RpcChangeGearHealthRegen(float amount)
     {
-        ChangeBonusHealthRegen(amount);
+        ChangeGearHealthRegen(amount);
     }
-    public void ChangeBonusHealthRegen(float amount)
+    public void ChangeGearHealthRegen(float amount)
     {
-        bonusHealthRegen += amount;
+        gearHealthRegen += amount;
         UpdateHealthRegen();
     }
     private void UpdateHealthRegen()
     {
-        healthRegen = baseHealthRegen + bonusHealthRegen;
+        healthRegen = baseHealthRegen + gearHealthRegen;
         Health_Regen_Changed.Invoke(healthRegen);
     }
     [Command]
@@ -203,12 +205,33 @@ public class HasHealth : NetworkBehaviour, ISaveable
     }
     public void ChangeArmor(float value)
     {
-        armor += value;
-        Armor_Changed.Invoke(armor);
+        baseArmor += value;
+        finalArmor = baseArmor + gearArmor;
+        Armor_Changed.Invoke(finalArmor);
     }
-    public float GetArmor()
+    [Command]
+    public void CmdChangeGearArmor(float amount)
     {
-        return armor;
+        RpcChangeGearArmor(amount);
+    }
+    [ClientRpc]
+    public void RpcChangeGearArmor(float amount)
+    {
+        ChangeGearArmor(amount);
+    }
+    public void ChangeGearArmor(float value)
+    {
+        gearArmor += value;
+        finalArmor = baseArmor + gearArmor;
+        Armor_Changed.Invoke(finalArmor);
+    }
+    public float GetBaseArmor()
+    {
+        return baseArmor;
+    }
+    public float GetFinalArmor()
+    {
+        return finalArmor;
     }
     public float GetHealth()
     {
@@ -218,17 +241,9 @@ public class HasHealth : NetworkBehaviour, ISaveable
     {
         return baseMaxHealth;
     }
-    public float GetBonusMaxHealth()
-    {
-        return bonusMaxHealth;
-    }
     public float GetFinalMaxHealth()
     {
         return maxHealth;
-    }
-    public float GetBonusHealthRegen()
-    {
-        return bonusHealthRegen;
     }
     public float GetBaseHealthRegen()
     {
@@ -250,7 +265,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     }
     public void SetBonusMaxHealth(float value)
     {
-        bonusMaxHealth = value;
+        gearMaxHealth = value;
         UpdateMaxHealth();
     }
     public void SetBaseHealthRegen(float value)
@@ -260,13 +275,14 @@ public class HasHealth : NetworkBehaviour, ISaveable
     }
     public void SetBonusHealthRegen(float value)
     {
-        bonusHealthRegen += value;
+        gearHealthRegen += value;
         UpdateHealthRegen();
     }
     public void SetArmor(float value)
     {
-        armor = value;
-        Armor_Changed.Invoke(armor);
+        baseArmor = value;
+        finalArmor = baseArmor + gearArmor;
+        Armor_Changed.Invoke(finalArmor);
     }
     private void OnDeath()
     {

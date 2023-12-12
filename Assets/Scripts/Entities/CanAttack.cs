@@ -1,9 +1,8 @@
+using FMODUnity;
+using Mirror;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Mirror;
-using FMODUnity;
 
 public enum AttackType
 {
@@ -11,15 +10,24 @@ public enum AttackType
 }
 public class CanAttack : NetworkBehaviour, IUsesAnimator
 {
-    [SerializeField] private float power;
-    [SerializeField] private float criticalChance = 0f;
-    [SerializeField] private float criticalDamage = 0f;
-    private float finalAttackSpeed;
+    [SerializeField] private float basePower;
+    private float gearPower = 0;
+    private float finalPower;
+    [SerializeField] private float baseCriticalChance = 0f;
+    private float gearCriticalChance = 0;
+    private float finalCriticalChance;
+    [SerializeField] private float baseCriticalDamage = 0f;
+    private float gearCriticalDamage = 0;
+    private float finalCriticalDamage;
     [SerializeField] private float baseAttackSpeed = 0;
     private float bonusAttackSpeed = 0;
+    private float gearAttackSpeed = 0;
+    private float finalAttackSpeed;
     public float attackSpeedTimer = 0;
     [SerializeField] private float attackRange;
-    [SerializeField] private float cooldownReduction = 0;
+    [SerializeField] private float baseCooldownReduction = 0;
+    private float gearCooldownReduction = 0;
+    private float finalCooldownReduction;
     [SerializeField] private AttackType attackType;
     public bool canAct = true;
     private bool isDelayingTargetLost = false;
@@ -170,10 +178,10 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             FindObjectOfType<AudioManager>().PlayOneShot(attackSound, transform.position);
         float modifier = 1;
         var random = Random.Range(0f, 100f);
-        if (random < criticalChance)
-            modifier = 1 + (criticalDamage / 100);
+        if (random < baseCriticalChance)
+            modifier = 1 + (baseCriticalDamage / 100);
         if (enemyTarget)
-            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(power * modifier, false, GetComponent<NetworkIdentity>());
+            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier, false, GetComponent<NetworkIdentity>());
         Attacked();
         RpcSetCanAct(true);
     }
@@ -199,8 +207,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         float modifier = 1;
         var random = Random.Range(0f, 100f);
-        if (random < criticalChance)
-            modifier = 1 + (criticalDamage / 100);
+        if (random < baseCriticalChance)
+            modifier = 1 + (baseCriticalDamage / 100);
         Entity owner;
         if (TryGetComponent(out Pet pet))
             owner = pet.petOwner.GetComponent<Entity>();
@@ -209,7 +217,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         GameObject projectile = Instantiate(projectilePrefab.gameObject, projectileLaunchPoint.position, Quaternion.identity);
         projectile.GetComponent<Projectile>().InitializeProjectile(new ProjectileData() 
         { 
-            effectValue = power * modifier, 
+            effectValue = GetFinalPower() * modifier, 
             projectileTravel = ProjectileTravelType.EntityTargeted, 
             projectileImpact = ProjectileImpactType.Single, 
             impactEffect = ProjectileImpactEffect.Damage, 
@@ -307,19 +315,35 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         TargetLost();
         isDelayingTargetLost = false;
     }
-    public float GetPower()
+    public float GetBasePower()
     {
-        return power;
+        return basePower;
     }
-    public float GetCritChance()
+    public float GetFinalPower()
     {
-        return criticalChance;
+        return finalPower;
     }
-    public float GetCritDamage()
+    public float GetBaseCritChance()
     {
-        return criticalDamage;
+        return baseCriticalChance;
     }
-    public float GetAttackSpeed()
+    public float GetFinalCritChance()
+    {
+        return finalCriticalChance;
+    }
+    public float GetBaseCritDamage()
+    {
+        return baseCriticalDamage;
+    }
+    public float GetFinalCritDamage()
+    {
+        return finalCriticalDamage;
+    }
+    public float GetBaseAttackSpeed()
+    {
+        return baseAttackSpeed;
+    }
+    public float GetFinalAttackSpeed()
     {
         return finalAttackSpeed;
     }
@@ -327,9 +351,13 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         return attackRange;
     }
-    public float GetCooldownReduction()
+    public float GetBaseCooldownReduction()
     {
-        return cooldownReduction;
+        return baseCooldownReduction;
+    }
+    public float GetFinalCooldownReduction()
+    {
+        return finalCooldownReduction;
     }
     [Command(requiresAuthority = false)]
     public void CmdChangePower(float value)
@@ -343,13 +371,31 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void ChangePower(float value)
     {
-        power += value;
-        Power_Changed.Invoke(power);
+        basePower += value;
+        finalPower = basePower + gearPower;
+        Power_Changed.Invoke(finalPower);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeGearPower(float value)
+    {
+        RpcChangeGearPower(value);
+    }
+    [ClientRpc]
+    public void RpcChangeGearPower(float value)
+    {
+        ChangeGearPower(value);
+    }
+    public void ChangeGearPower(float value)
+    {
+        gearPower += value;
+        finalPower = basePower + gearPower;
+        Power_Changed.Invoke(finalPower);
     }
     public void SetPower(float value)
     {
-        power = value;
-        Power_Changed.Invoke(power);
+        basePower = value;
+        finalPower = basePower + gearPower;
+        Power_Changed.Invoke(finalPower);
     }
     [Command(requiresAuthority = false)]
     public void CmdChangeCriticalChance(float value)
@@ -363,15 +409,37 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void ChangeCriticalChance(float value)
     {
-        criticalChance += value;
-        if (criticalChance > 100)
-            criticalChance = 100;
-        Critical_Chance_Changed.Invoke(criticalChance);
+        baseCriticalChance += value;
+        finalCriticalChance = baseCriticalChance + gearCriticalChance;
+        if (finalCriticalChance > 100)
+            finalCriticalChance = 100;
+        Critical_Chance_Changed.Invoke(finalCriticalChance);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeGearCriticalChance(float value)
+    {
+        RpcChangeGearCriticalChance(value);
+    }
+    [ClientRpc]
+    public void RpcChangeGearCriticalChance(float value)
+    {
+        ChangeGearCriticalChance(value);
+    }
+    public void ChangeGearCriticalChance(float value)
+    {
+        gearCriticalChance += value;
+        finalCriticalChance = baseCriticalChance + gearCriticalChance;
+        if (finalCriticalChance > 100)
+            finalCriticalChance = 100;
+        Critical_Chance_Changed.Invoke(finalCriticalChance);
     }
     public void SetCriticalChance(float value)
     {
-        criticalChance = value;
-        Critical_Chance_Changed.Invoke(criticalChance);
+        baseCriticalChance = value;
+        finalCriticalChance = baseCriticalChance + gearCriticalChance;
+        if (finalCriticalChance > 100)
+            finalCriticalChance = 100;
+        Critical_Chance_Changed.Invoke(finalCriticalChance);
     }
     [Command(requiresAuthority = false)]
     public void CmdChangeCriticalDamage(float value)
@@ -385,13 +453,31 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void ChangeCriticalDamage(float value)
     {
-        criticalDamage += value;
-        Critical_Damage_Changed.Invoke(criticalDamage);
+        baseCriticalDamage += value;
+        finalCriticalDamage = gearCriticalDamage + baseCriticalDamage;
+        Critical_Damage_Changed.Invoke(finalCriticalDamage);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeGearCriticalDamage(float value)
+    {
+        RpcChangeGearCriticalDamage(value);
+    }
+    [ClientRpc]
+    public void RpcChangeGearCriticalDamage(float value)
+    {
+        ChangeGearCriticalDamage(value);
+    }
+    public void ChangeGearCriticalDamage(float value)
+    {
+        gearCriticalDamage += value;
+        finalCriticalDamage = gearCriticalDamage + baseCriticalDamage;
+        Critical_Damage_Changed.Invoke(finalCriticalDamage);
     }
     public void SetCriticalDamage(float value)
     {
-        criticalDamage = value;
-        Critical_Damage_Changed.Invoke(criticalDamage);
+        baseCriticalDamage = value;
+        finalCriticalDamage = gearCriticalDamage + baseCriticalDamage;
+        Critical_Damage_Changed.Invoke(finalCriticalDamage);
     }
     [Command(requiresAuthority = false)]
     public void CmdChangeBonusAttackSpeed(float value)
@@ -406,7 +492,23 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     public void ChangeBonusAttackSpeed(float value)
     {
         bonusAttackSpeed += value;
-        finalAttackSpeed = baseAttackSpeed * (1 + bonusAttackSpeed);
+        finalAttackSpeed = baseAttackSpeed * (1 + bonusAttackSpeed + gearAttackSpeed);
+        Attack_Speed_Changed.Invoke(finalAttackSpeed);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeGearAttackSpeed(float value)
+    {
+        RpcChangeGearAttackSpeed(value);
+    }
+    [ClientRpc]
+    public void RpcChangeGearAttackSpeed(float value)
+    {
+        ChangeGearAttackSpeed(value);
+    }
+    public void ChangeGearAttackSpeed(float value)
+    {
+        gearAttackSpeed += value;
+        finalAttackSpeed = baseAttackSpeed * (1 + bonusAttackSpeed + gearAttackSpeed);
         Attack_Speed_Changed.Invoke(finalAttackSpeed);
     }
     public void SetBaseAttackSpeed(float value)
@@ -447,17 +549,35 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void ChangeCooldownReduction(float value)
     {
-        cooldownReduction += value;
-        Cooldown_Reduction_Changed.Invoke(cooldownReduction);
+        baseCooldownReduction += value;
+        finalCooldownReduction = baseCooldownReduction + gearCooldownReduction;
+        Cooldown_Reduction_Changed.Invoke(finalCooldownReduction);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeGearCooldownReduction(float value)
+    {
+        RpcChangeGearCooldownReduction(value);
+    }
+    [ClientRpc]
+    public void RpcChangeGearCooldownReduction(float value)
+    {
+        ChangeGearCooldownReduction(value);
+    }
+    public void ChangeGearCooldownReduction(float value)
+    {
+        gearCooldownReduction += value;
+        finalCooldownReduction = baseCooldownReduction + gearCooldownReduction;
+        Cooldown_Reduction_Changed.Invoke(finalCooldownReduction);
     }
     public void SetCooldownReduction(float value)
     {
-        cooldownReduction = value;
-        Cooldown_Reduction_Changed.Invoke(cooldownReduction);
+        baseCooldownReduction = value;
+        finalCooldownReduction = baseCooldownReduction + gearCooldownReduction;
+        Cooldown_Reduction_Changed.Invoke(finalCooldownReduction);
     }
     public float GetCooldownReductionModifier()
     {
-        return 1 - (cooldownReduction / 100);
+        return 1 - (baseCooldownReduction / 100);
     }
 
     public void SetNewAnimator(Animator animator)

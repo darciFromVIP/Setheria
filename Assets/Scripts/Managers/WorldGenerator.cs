@@ -5,7 +5,6 @@ using System;
 using UnityEngine.SceneManagement;
 using Mirror;
 using UnityEngine.AI;
-using static UnityEditor.Progress;
 
 public class WorldGenerator : MonoBehaviour
 {

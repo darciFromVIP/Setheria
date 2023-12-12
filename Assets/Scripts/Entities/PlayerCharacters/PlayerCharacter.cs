@@ -159,13 +159,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             if (item.hero == hero)
             {
-                moveComp.StopAgent();
+                moveComp.agent.enabled = false;
                 if (item.positionX == 0 && item.positionY == 0 && item.positionZ == 0)
                     GetComponent<NetworkTransform>().CmdTeleport(FindObjectOfType<WorldGenerator>().globalStartingPoint.position);
                 else
                     GetComponent<NetworkTransform>().CmdTeleport(new Vector3(item.positionX, item.positionY, item.positionZ));
-                moveComp.ResumeAgent();
                 transform.rotation = new Quaternion(item.rotationX, item.rotationY, item.rotationZ, item.rotationW);
+                moveComp.agent.enabled = true;
                 returnPoint = new Vector3(item.everstonePointX, item.everstonePointY, item.everstonePointZ);
                 heroName = item.name;
                 level = item.level;
@@ -174,23 +174,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 maxXp = item.maxXp;
                 ChangeAttributePoints(item.attributePoints);
                 Xp_Changed.Invoke(xp, maxXp);
-                var manager = FindObjectOfType<InventoryManager>(true);
-                foreach (var item2 in item.inventory)
-                {
-                    manager.AddItem(item2);
-                }
                 maxHunger = item.maxHunger;
                 ChangeHunger(item.hunger, false);
                 hungerInterval = item.hungerInterval;
                 healthComp.SetBaseMaxHealth(item.baseMaxHealth);
-                healthComp.SetBonusMaxHealth(item.bonusMaxHealth);
                 healthComp.SetHealth(item.health);
                 healthComp.SetBaseHealthRegen(item.baseHealthRegen);
-                healthComp.SetBonusHealthRegen(item.bonusHealthRegen);
                 manaComp.SetMaxMana(item.baseMaxMana);
                 manaComp.SetMana(item.mana);
                 manaComp.SetBaseManaRegen(item.baseManaRegen);
-                manaComp.SetBonusManaRegen(item.bonusManaRegen);
                 attackComp.SetPower(item.power);
                 attackComp.SetCriticalChance(item.criticalChance);
                 attackComp.SetCriticalDamage(item.criticalDamage);
@@ -226,6 +218,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 }
                 if (isOwned)
                 {
+                    var manager = FindObjectOfType<InventoryManager>(true);
+                    foreach (var item3 in item.equippedGear)
+                    {
+                        var gearItem = manager.AddItem(item3);
+                        gearItem.GetComponent<ItemButton>().TryEquip();
+                    }
+                    foreach (var item2 in item.inventory)
+                    {
+                        manager.AddItem(item2);
+                    }
                     talentTrees.talentPoints = 0;
                     if (item.talentTrees != null)
                     {
@@ -241,6 +243,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     if (item.professions != null)
                         professions = item.professions;
                     professions.player = this;
+                    FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
                 }
             }
         }
@@ -261,6 +264,24 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             items.Add(new SaveDataItem { name = item.item.name, stacks = item.stacks });
         }
+
+        var charScreen = FindObjectOfType<CharacterScreen>(true).GetEquippedGear();
+        List<SaveDataItem> gear = new();
+        foreach (var item in charScreen)
+        {
+            gear.Add(new SaveDataItem { name = item.item.name, stacks = item.stacks });
+        }
+        var inventoryScreen = FindObjectOfType<InventoryScreen>(true);
+        foreach (var item in inventoryScreen.GetComponentsInChildren<CharacterGearSlot>(true))
+        {
+            if (item.transform.childCount > 0)
+            {
+                var bag = item.GetComponentInChildren<InventoryItem>(true);
+                gear.Add(new SaveDataItem { name = bag.item.name, stacks = bag.stacks });
+            }
+
+        }
+
         var controller = GetComponent<PlayerController>();
 
         return new SaveDataPlayer {
@@ -281,26 +302,23 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             attributePoints = attributePoints,
             name = heroName,
             inventory = items,
+            equippedGear = gear,
             hunger = hunger,
             maxHunger = maxHunger,
             hungerInterval = hungerInterval,
             health = healthComp.GetHealth(),
             baseMaxHealth = healthComp.GetBaseMaxHealth(),
-            bonusMaxHealth = healthComp.GetBonusMaxHealth(),
             baseHealthRegen = healthComp.GetBaseHealthRegen(),
-            bonusHealthRegen = healthComp.GetBonusHealthRegen(),
             mana = manaComp.GetMana(),
             baseMaxMana = manaComp.GetBaseMaxMana(),
-            bonusMaxMana = manaComp.GetBonusMaxMana(),
             baseManaRegen = manaComp.GetBaseManaRegen(),
-            bonusManaRegen = manaComp.GetBonusManaRegen(),
-            power = attackComp.GetPower(),
-            criticalChance = attackComp.GetCritChance(),
-            criticalDamage = attackComp.GetCritDamage(),
-            attackSpeed = attackComp.GetAttackSpeed(),
+            power = attackComp.GetBasePower(),
+            criticalChance = attackComp.GetBaseCritChance(),
+            criticalDamage = attackComp.GetBaseCritDamage(),
+            attackSpeed = attackComp.GetBaseAttackSpeed(),
             attackRange = attackComp.GetAttackRange(),
-            armor = healthComp.GetArmor(),
-            cooldownReduction = attackComp.GetCooldownReduction(),
+            armor = healthComp.GetBaseArmor(),
+            cooldownReduction = attackComp.GetBaseCooldownReduction(),
             cooldown1 = controller.cooldown1,
             cooldown2 = controller.cooldown2,
             cooldown3 = controller.cooldown3,
@@ -330,7 +348,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void AddXp(int value)
     {
         xp += value;
-        FindObjectOfType<FloatingText>().SpawnText("+" + value.ToString() + " EXP", transform.position + Vector3.up * 0.5f, FloatingTextType.Experience);
+        FindObjectOfType<FloatingText>().SpawnText("+" + value.ToString() + " <sprite=14>", transform.position + Vector3.up * 0.5f, FloatingTextType.Experience);
 
         if (xp >= maxXp)
         {
@@ -349,7 +367,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             if (level <= 5)
                 talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);
-            FindObjectOfType<FloatingText>().SpawnText("Level Up!", transform.position + Vector3.up * 1, FloatingTextType.Experience);
+            FindObjectOfType<FloatingText>().SpawnText("+1 <sprite=13>", transform.position + Vector3.up * 1, FloatingTextType.Experience);
             levelUpEffect.SetActive(true);
             FindObjectOfType<AudioManager>().PlayOneShot(levelUpSound, transform.position);
         }
@@ -451,9 +469,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (amount > 0)
         {
             if (showTextToOthers)
-                FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + amount + " Food", transform.position, FloatingTextType.Hunger);
+                FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
             else
-                FindObjectOfType<FloatingText>().SpawnText("+" + amount + " Food", transform.position, FloatingTextType.Hunger);
+                FindObjectOfType<FloatingText>().SpawnText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
         }
         Hunger_Changed.Invoke();
     }
@@ -468,10 +486,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     healthComp.CmdTakeDamage(modifier, true, GetComponent<NetworkIdentity>());
                 break;
             case PlayerStat.MaxHealth:
-                healthComp.ChangeBonusMaxHealth(modifier);
+                healthComp.ChangeBaseMaxHealth(modifier);
                 break;
             case PlayerStat.HealthRegen:
-                healthComp.ChangeBonusHealthRegen(modifier);
+                healthComp.ChangeBaseHealthRegen(modifier);
                 break;
             case PlayerStat.Mana:
                 if (modifier > 0)
@@ -480,10 +498,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     manaComp.CmdSpendMana(modifier);
                 break;
             case PlayerStat.MaxMana:
-                manaComp.CmdChangeBonusMaxMana(modifier);
+                manaComp.CmdChangeBaseMaxMana(modifier);
                 break;
             case PlayerStat.ManaRegen:
-                manaComp.CmdChangeBonusManaRegen(modifier);
+                manaComp.CmdChangeBaseManaRegen(modifier);
                 break;
             case PlayerStat.Hunger:
                 ChangeHunger((int)modifier, true);
@@ -585,13 +603,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         attMaxHealth += value;
         ChangeAttributePoints(-value);
-        healthComp.ChangeBonusMaxHealth(value * 15);
+        healthComp.ChangeBaseMaxHealth(value * 15);
     }
     public void AddHealthRegenAttribute(int value)
     {
         attHealthRegen += value;
         ChangeAttributePoints(-value);
-        healthComp.ChangeBonusHealthRegen(value * 0.1f);
+        healthComp.ChangeBaseHealthRegen(value * 0.1f);
     }
     public void AddArmorAttribute(int value)
     {
@@ -603,13 +621,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         attMaxMana += value;
         ChangeAttributePoints(-value);
-        manaComp.CmdChangeBonusMaxMana(value * 15);
+        manaComp.CmdChangeBaseMaxMana(value * 15);
     }
     public void AddManaRegenAttribute(int value)
     {
         attManaRegen += value;
         ChangeAttributePoints(-value);
-        manaComp.CmdChangeBonusManaRegen(value * 0.1f);
+        manaComp.CmdChangeBaseManaRegen(value * 0.1f);
     }
     public void AddPowerAttribute(int value)
     {

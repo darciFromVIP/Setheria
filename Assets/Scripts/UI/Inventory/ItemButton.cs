@@ -34,7 +34,7 @@ public class ItemButton : Button
         yield return new WaitForSeconds(1);
         clickCount = 0;
     }
-    private void TryEquip()
+    public void TryEquip()
     {
         if (item.item.itemType == ItemType.ArchaeologyTool || item.item.itemType == ItemType.Backpack || item.item.itemType == ItemType.Bracelet || item.item.itemType == ItemType.Chest
            || item.item.itemType == ItemType.Feet || item.item.itemType == ItemType.FishingTool || item.item.itemType == ItemType.HandicraftTool

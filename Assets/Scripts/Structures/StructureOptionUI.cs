@@ -154,8 +154,8 @@ public class StructureOptionUI : MonoBehaviour
         }
         gameManager.localPlayerCharacter.professions.AddExploration(selectedItems.Count);
         FindObjectOfType<AudioManager>().ResourcesCollected(GetComponentInParent<StructureScreen>().currentStructure.transform.position);
-        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + resources.ToString() + " Resources", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up, FloatingTextType.Resources);
-        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + knowledge.ToString() + " Knowledge", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up * 0.5f, FloatingTextType.Knowledge);
+        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + resources.ToString() + " <sprite=15>", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up, FloatingTextType.Resources);
+        FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+ " + knowledge.ToString() + " <sprite=11>", GetComponentInParent<StructureScreen>().currentStructure.transform.position + Vector3.up * 0.5f, FloatingTextType.Knowledge);
 
     }
     private void CookFish()

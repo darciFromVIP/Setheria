@@ -8,10 +8,10 @@ public class HasMana : NetworkBehaviour
     [SyncVar] private float mana;
     [SyncVar] [SerializeField] private float maxMana;
     [SyncVar] [SerializeField] private float baseMaxMana;
-    [SyncVar] [SerializeField] private float bonusMaxMana = 0;
+    [SyncVar] [SerializeField] private float gearMaxMana = 0;
     [SyncVar] [SerializeField] private float manaRegen = 0.15f;
     [SyncVar] private float baseManaRegen = 0;
-    [SyncVar] private float bonusManaRegen = 0;
+    [SyncVar] private float gearManaRegen = 0;
     private float manaRegenTimer = 0;
 
     [System.NonSerialized]
@@ -86,23 +86,23 @@ public class HasMana : NetworkBehaviour
         UpdateMaxMana();
     }
     [Command]
-    public void CmdChangeBonusMaxMana(float amount)
+    public void CmdChangeGearMaxMana(float amount)
     {
-        RpcChangeBonusMaxMana(amount);
+        RpcChangeGearMaxMana(amount);
     }
     [ClientRpc]
-    public void RpcChangeBonusMaxMana(float amount)
+    public void RpcChangeGearMaxMana(float amount)
     {
-        ChangeBonusMaxMana(amount);
+        ChangeGearMaxMana(amount);
     }
-    public void ChangeBonusMaxMana(float amount)
+    public void ChangeGearMaxMana(float amount)
     {
-        bonusMaxMana += amount;
+        gearMaxMana += amount;
         UpdateMaxMana();
     }
     private void UpdateMaxMana()
     {
-        maxMana = baseMaxMana + bonusMaxMana;
+        maxMana = baseMaxMana + gearMaxMana;
         Mana_Changed.Invoke(mana, maxMana);
     }
     [Command]
@@ -121,23 +121,23 @@ public class HasMana : NetworkBehaviour
         UpdateManaRegen();
     }
     [Command]
-    public void CmdChangeBonusManaRegen(float amount)
+    public void CmdChangeGearManaRegen(float amount)
     {
-        RpcChangeBonusManaRegen(amount);
+        RpcChangeGearManaRegen(amount);
     }
     [ClientRpc]
-    public void RpcChangeBonusManaRegen(float amount)
+    public void RpcChangeGearManaRegen(float amount)
     {
-        ChangeBonusManaRegen(amount);
+        ChangeGearManaRegen(amount);
     }
-    public void ChangeBonusManaRegen(float amount)
+    public void ChangeGearManaRegen(float amount)
     {
-        bonusManaRegen += amount;
+        gearManaRegen += amount;
         UpdateManaRegen();
     }
     private void UpdateManaRegen()
     {
-        manaRegen = baseManaRegen + bonusManaRegen;
+        manaRegen = baseManaRegen + gearManaRegen;
         Mana_Regen_Changed.Invoke(manaRegen);
     }
     public float GetMana()
@@ -148,10 +148,6 @@ public class HasMana : NetworkBehaviour
     {
         return baseMaxMana;
     }
-    public float GetBonusMaxMana()
-    {
-        return bonusMaxMana;
-    }
     public float GetFinalMaxMana()
     {
         return maxMana;
@@ -159,10 +155,6 @@ public class HasMana : NetworkBehaviour
     public float GetBaseManaRegen()
     {
         return baseManaRegen;
-    }
-    public float GetBonusManaRegen()
-    {
-        return bonusManaRegen;
     }
     public float GetFinalManaRegen()
     {
@@ -181,11 +173,6 @@ public class HasMana : NetworkBehaviour
     public void SetBaseManaRegen(float value)
     {
         baseManaRegen = value;
-        UpdateManaRegen();
-    }
-    public void SetBonusManaRegen(float value)
-    {
-        bonusManaRegen = value;
         UpdateManaRegen();
     }
 }

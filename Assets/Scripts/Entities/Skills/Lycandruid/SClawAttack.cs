@@ -8,7 +8,7 @@ public class SClawAttack : Skill
     {
         var attackComp = castingEntity.GetComponent<CanAttack>();
         description = GetTextIconByStat(PlayerStat.AttackSpeed) + attackComp.GetAttackCooldown().ToString("F2") + "\nYour basic attack deals <color=orange>"
-            + attackComp.GetPower() + "</color> (" + "100%" + GetTextIconByStat(PlayerStat.Power) + ") damage.";
+            + attackComp.GetFinalPower() + "</color> (" + "100%" + GetTextIconByStat(PlayerStat.Power) + ") damage.";
         base.UpdateDescription();
     }
 }

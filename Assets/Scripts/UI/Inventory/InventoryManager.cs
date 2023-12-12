@@ -18,12 +18,13 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
             inventorySlots.Add(item);
         }
     }
-    public bool AddItem(Item item, bool stackable = true)
+    public InventoryItem AddItem(Item item, bool stackable = true)
     {
         return AddItem(item.itemData, item.stacks, stackable);
     }
-    public bool AddItem(ItemScriptable item, int stacks, bool stackable = true)
+    public InventoryItem AddItem(ItemScriptable item, int stacks, bool stackable = true)
     {
+        InventoryItem result = null;
         if (item.stackable && stackable)
         {
             foreach (var slot in inventorySlots)
@@ -32,10 +33,11 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
                 {
                     if (slot.GetComponentInChildren<InventoryItem>(true).item == item)
                     {
-                        slot.GetComponentInChildren<InventoryItem>(true).ChangeStacks(stacks);
+                        result = slot.GetComponentInChildren<InventoryItem>(true);
+                        result.ChangeStacks(stacks);
                         item.Item_Stacks_Acquired.Invoke(item, stacks);
                         FindObjectOfType<AcquiredItems>().ItemAcquired(new ItemRecipeInfo { itemData = item, stacks = stacks });
-                        return true;
+                        return result;
                     }
                 }
             }
@@ -44,11 +46,11 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             if (slot.transform.childCount == 0 && slot.isFree)
             {
-                SpawnNewItem(item, stacks, slot);
+                result = SpawnNewItem(item, stacks, slot);
                 item.Item_Acquired.Invoke(item);
                 item.Item_Stacks_Acquired.Invoke(item, stacks);
                 FindObjectOfType<AcquiredItems>().ItemAcquired(new ItemRecipeInfo { itemData = item, stacks = stacks });
-                return true;
+                return result;
             }
         }
         localPlayerCharacter.CreateItem(new SaveDataItem() { name = item.name, stacks = stacks }, localPlayerCharacter.transform.position);
@@ -58,13 +60,13 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
             equipableItemTutorial = false;
         }
         FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
-        return false;
+        return result;
     }
-    public bool AddItem(ItemRecipeInfo itemData, bool stackable = true)
+    public InventoryItem AddItem(ItemRecipeInfo itemData, bool stackable = true)
     {
         return AddItem(itemData.itemData, itemData.stacks, stackable);
     }
-    public bool AddItem(SaveDataItem itemData, bool stackable = true)
+    public InventoryItem AddItem(SaveDataItem itemData, bool stackable = true)
     {
         return AddItem(itemDatabase.GetItemByName(itemData.name), itemData.stacks, stackable);
     }
@@ -98,10 +100,11 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
         var newItem = Instantiate(inventoryItemPrefab, slot.transform);
         newItem.InitializeItem(item);
     }
-    private void SpawnNewItem(ItemScriptable item, int stacks, InventorySlot slot)
+    private InventoryItem SpawnNewItem(ItemScriptable item, int stacks, InventorySlot slot)
     {
         var newItem = Instantiate(inventoryItemPrefab, slot.transform);
         newItem.InitializeItem(item, stacks);
+        return newItem;
     }
     public List<InventoryItem> GetAllItems()
     {

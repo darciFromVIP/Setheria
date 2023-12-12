@@ -73,17 +73,17 @@ public class Skill : ScriptableObject
             case PlayerStat.ManaRegen:
                 return castingEntity.GetComponent<HasMana>().GetFinalManaRegen();
             case PlayerStat.Power:
-                return castingEntity.GetComponent<CanAttack>().GetPower();
+                return castingEntity.GetComponent<CanAttack>().GetFinalPower();
             case PlayerStat.AttackSpeed:
-                return castingEntity.GetComponent<CanAttack>().GetAttackSpeed();
+                return castingEntity.GetComponent<CanAttack>().GetFinalAttackSpeed();
             case PlayerStat.CriticalChance:
-                return castingEntity.GetComponent<CanAttack>().GetCritChance();
+                return castingEntity.GetComponent<CanAttack>().GetFinalCritChance();
             case PlayerStat.CriticalDamage:
-                return castingEntity.GetComponent<CanAttack>().GetCritDamage();
+                return castingEntity.GetComponent<CanAttack>().GetFinalCritDamage();
             case PlayerStat.Armor:
-                return castingEntity.GetComponent<HasHealth>().GetArmor();
+                return castingEntity.GetComponent<HasHealth>().GetFinalArmor();
             case PlayerStat.CooldownReduction:
-                return castingEntity.GetComponent<CanAttack>().GetCooldownReduction();
+                return castingEntity.GetComponent<CanAttack>().GetFinalCooldownReduction();
             case PlayerStat.MovementSpeed:
                 return castingEntity.GetComponent<CanMove>().GetFinalMovementSpeed();
             case PlayerStat.Level:

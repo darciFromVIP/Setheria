@@ -218,4 +218,13 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         else
             Character_Stats_Screen_Toggled.boolEvent.Invoke(false);
     }
+    public List<InventoryItem> GetEquippedGear()
+    {
+        List<InventoryItem> result = new();
+        foreach (var item in GetComponentsInChildren<InventoryItem>(true))
+        {
+            result.Add(item);
+        }
+        return result;
+    }
 }

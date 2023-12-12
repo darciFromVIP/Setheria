@@ -54,12 +54,12 @@ public class BMaxHealth : Buff
         buffType = BuffType.MaxHealth;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<HasHealth>().ChangeBonusMaxHealth(value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearMaxHealth(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasHealth>().ChangeBonusMaxHealth(-value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearMaxHealth(-value);
     }
 }
 public class BMaxMana : Buff
@@ -69,12 +69,12 @@ public class BMaxMana : Buff
         buffType = BuffType.MaxMana;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<HasMana>().ChangeBonusMaxMana(value);
+        targetEntity.GetComponent<HasMana>().ChangeGearMaxMana(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasMana>().ChangeBonusMaxMana(-value);
+        targetEntity.GetComponent<HasMana>().ChangeGearMaxMana(-value);
     }
 }
 public class BManaRegen : Buff
@@ -99,12 +99,12 @@ public class BBleed : Buff
         buffType = BuffType.Bleed;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<HasHealth>().ChangeBonusHealthRegen(-value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(-value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasHealth>().ChangeBonusHealthRegen(value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(value);
     }
 }
 public class BRegen : Buff
@@ -114,14 +114,14 @@ public class BRegen : Buff
         buffType = BuffType.Regen;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<HasHealth>().ChangeBonusHealthRegen(value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
         if (sound.isValid())
             sound.setParameterByNameWithLabel("Rejuvenation", "End");
-        targetEntity.GetComponent<HasHealth>().ChangeBonusHealthRegen(-value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(-value);
     }
 }
 public class BInventorySlots : Buff
@@ -151,12 +151,12 @@ public class BPower : Buff
         buffType = BuffType.Power;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<CanAttack>().ChangePower(value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearPower(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangePower(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearPower(-value);
     }
 }
 public class BCriticalChance : Buff
@@ -166,12 +166,12 @@ public class BCriticalChance : Buff
         buffType = BuffType.CriticalChance;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<CanAttack>().ChangeCriticalChance(value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalChance(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeCriticalChance(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalChance(-value);
     }
 }
 public class BCriticalDamage : Buff
@@ -181,12 +181,12 @@ public class BCriticalDamage : Buff
         buffType = BuffType.CriticalDamage;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<CanAttack>().ChangeCriticalDamage(value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalDamage(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeCriticalDamage(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalDamage(-value);
     }
 }
 public class BAttackSpeed : Buff
@@ -196,12 +196,12 @@ public class BAttackSpeed : Buff
         buffType = BuffType.AttackSpeed;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<CanAttack>().ChangeBonusAttackSpeed(value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearAttackSpeed(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeBonusAttackSpeed(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearAttackSpeed(-value);
     }
 }
 public class BAttackRange : Buff
@@ -226,12 +226,12 @@ public class BArmor : Buff
         buffType = BuffType.Armor;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<HasHealth>().ChangeArmor(value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearArmor(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasHealth>().ChangeArmor(-value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearArmor(-value);
     }
 }
 public class BStun : Buff
@@ -285,11 +285,11 @@ public class BCooldownReduction : Buff
         buffType = BuffType.CooldownReduction;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<CanAttack>().ChangeCooldownReduction(value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearCooldownReduction(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeCooldownReduction(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearCooldownReduction(-value);
     }
 }

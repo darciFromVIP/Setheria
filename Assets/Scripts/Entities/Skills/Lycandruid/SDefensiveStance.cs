@@ -34,7 +34,7 @@ public class SDefensiveStance : Skill
             aggroedEnemies.Add(enemy);
             if (!enabled)
                 return;
-            selfCharacter.ChangeArmor(1);
+            selfCharacter.ChangeGearArmor(1);
         }
     }
     private void RemoveEnemy(HasHealth enemy)
@@ -44,7 +44,7 @@ public class SDefensiveStance : Skill
             aggroedEnemies.Remove(enemy);
             if (!enabled)
                 return;
-            selfCharacter.ChangeArmor(-1);
+            selfCharacter.ChangeGearArmor(-1);
         }
     }
     public void TogglePassive(bool value)
@@ -54,14 +54,14 @@ public class SDefensiveStance : Skill
         {
             foreach (var item in aggroedEnemies)
             {
-                selfCharacter.ChangeArmor(1);
+                selfCharacter.ChangeGearArmor(1);
             }
         }
         else
         {
             foreach (var item in aggroedEnemies)
             {
-                selfCharacter.ChangeArmor(-1);
+                selfCharacter.ChangeGearArmor(-1);
             }
         }
     }
