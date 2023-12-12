@@ -10,24 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Mushroom Soup
+  m_Name: Recipe - Create Resources
   m_EditorClassIdentifier: 
-  description: 'Warm tasty soup. Restores +12<sprite=12>.
-
-    __________________________________
-
-    Food'
+  description: Unlocks the recipe to create Resources.
   grade: 0
   itemType: 0
-  sprite: {fileID: 21300000, guid: 70cfc174df715ad419cc3cb6b4cac5ea, type: 3}
-  stackable: 1
+  sprite: {fileID: 21300000, guid: 3bbd99494f6dddb4f8a52638989645f5, type: 3}
+  stackable: 0
   usage:
-  - {fileID: 11400000, guid: 176d6583a0d6fa24891e162ce79c6bdf, type: 2}
+  - {fileID: 11400000, guid: b97e38d4cedeb2744ae711902f632f65, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   value: 0
-  destroyItemOnUse: 0
+  destroyItemOnUse: 1
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1

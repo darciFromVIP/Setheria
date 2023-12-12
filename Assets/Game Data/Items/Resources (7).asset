@@ -10,23 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Mushroom Soup
+  m_Name: Resources (7)
   m_EditorClassIdentifier: 
-  description: 'Warm tasty soup. Restores +12<sprite=12>.
-
-    __________________________________
-
-    Food'
+  description: This crate is worth 7 Resources. Turn it in your Workshop to get Resources.
   grade: 0
-  itemType: 0
-  sprite: {fileID: 21300000, guid: 70cfc174df715ad419cc3cb6b4cac5ea, type: 3}
-  stackable: 1
-  usage:
-  - {fileID: 11400000, guid: 176d6583a0d6fa24891e162ce79c6bdf, type: 2}
+  itemType: 15
+  sprite: {fileID: 21300000, guid: d6b3b71a1a953cd428a380ba10e647c4, type: 3}
+  stackable: 0
+  usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
-  value: 0
+  value: 7
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
