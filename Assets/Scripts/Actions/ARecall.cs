@@ -21,6 +21,12 @@ public class ARecall : ActionTemplate
     }
     public override bool TestExecute()
     {
-        return true;
+        if (FindObjectOfType<GameManager>().localPlayerCharacter.IsReturnPointValid())
+            return true;
+        else
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("You need to set a return point first!");
+            return false;
+        }
     }
 }

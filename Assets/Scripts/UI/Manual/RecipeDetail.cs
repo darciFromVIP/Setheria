@@ -33,21 +33,6 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         this.amount = amount;
         amountInput.text = amount.ToString();
-        if (recipeData.resultItem.itemData.stackable)
-        {
-            foreach (var item in amountUI.GetComponentsInChildren<Selectable>())
-            {
-                item.interactable = true;
-            }
-        }
-        else
-        {
-            foreach (var item in amountUI.GetComponentsInChildren<Selectable>())
-            {
-                item.interactable = false;
-            }
-        }
-        
         currentPlayerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
 
         this.openedInStructure = openedInStructure;
@@ -58,7 +43,12 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         if (recipeData.requiredProfession == TalentTreeType.Special)
             professionRequirement.text = "";
         else
-            professionRequirement.text = recipeData.requiredProfession.ToString() + ": " + player.professions.GetProfessionExperience(recipeData.requiredProfession) + "/" + recipeData.requiredProfessionExperience;
+        {
+            if (player.professions.GetProfessionExperience(recipeData.requiredProfession) >= recipeData.requiredProfessionExperience)
+                professionRequirement.text = recipeData.requiredProfession.ToString() + ": <color=green>" + player.professions.GetProfessionExperience(recipeData.requiredProfession) + "/" + recipeData.requiredProfessionExperience;
+            else
+                professionRequirement.text = recipeData.requiredProfession.ToString() + ": <color=red>" + player.professions.GetProfessionExperience(recipeData.requiredProfession) + "/" + recipeData.requiredProfessionExperience;
+        }
         bool hasRequiredProfession = player.professions.GetProfessionExperience(recipeData.requiredProfession) >= recipeData.requiredProfessionExperience;
         craftBtn.interactable = craftableInStructure && hasRequiredProfession;
 
@@ -168,7 +158,15 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         }
         FindObjectOfType<GameManager>().ChangeResources(-currentOpenedRecipe.resourceCost * amount);
         var tempItem = new ItemRecipeInfo() { itemData = currentOpenedRecipe.resultItem.itemData, stacks = currentOpenedRecipe.resultItem.stacks * amount };
-        inventory.AddItem(tempItem);
+        if (tempItem.itemData.stackable)
+            inventory.AddItem(tempItem);
+        else
+        {
+            for (int i = 0; i < tempItem.stacks; i++)
+            {
+                inventory.AddItem(tempItem);
+            }
+        }
         if (!openedInStructure)
             GetComponentInParent<ManualScreen>().UpdateCurrentCategory();
         FindObjectOfType<AudioManager>().ItemCrafted(localPlayer.transform.position);

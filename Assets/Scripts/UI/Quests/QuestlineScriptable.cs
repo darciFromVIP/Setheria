@@ -32,6 +32,7 @@ public class QuestlineScriptable : ScriptableObject
             Questline_Complete.Invoke(name);
         else
         {
+            questList[currentQuestIndex].Quest_Complete.RemoveListener(QuestComplete);
             questList[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
             New_Quest.Invoke(questList[currentQuestIndex].name);
         }

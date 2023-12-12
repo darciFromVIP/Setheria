@@ -282,11 +282,6 @@ public class QuestManager : NetworkBehaviour
         {
             List<string> names = new();
             List<int> values = new();
-            foreach (var item2 in item.questList[item.currentQuestIndex].requiredItemsDic)
-            {
-                names.Add(item2.Key);
-                values.Add(item2.Value);
-            }
             foreach (var item2 in item.questList[item.currentQuestIndex].requiredStructuresDic)
             {
                 names.Add(item2.Key);
@@ -305,13 +300,6 @@ public class QuestManager : NetworkBehaviour
                 var quest = NewQuestline(item.questlineName, item.currentQuestIndex);
                 for (int i = 0; i < item.questRequirementsNames.Count; i++)
                 {
-                    foreach (var item3 in quest.requiredItemsDic.ToList())
-                    {
-                        if (item.questRequirementsNames[i] == item3.Key)
-                        {
-                            quest.requiredItemsDic[item3.Key] = item.questRequirementsValues[i];
-                        }
-                    }
                     foreach (var item3 in quest.requiredStructuresDic.ToList())
                     {
                         if (item.questRequirementsNames[i] == item3.Key)

@@ -77,23 +77,35 @@ public class QuestScriptable : ScriptableObject, IComparable
             currentItemTypeAmount = 0;
 
             if (requiredResources > 0)
+            {
+                gm.Resources_Added.RemoveListener(ReduceResourceRequirement);
                 gm.Resources_Added.AddListener(ReduceResourceRequirement);
+            }
 
             if (requiredKnowledge > 0)
+            {
+                gm.Knowledge_Added.RemoveListener(ReduceKnowledgeRequirement);
                 gm.Knowledge_Added.AddListener(ReduceKnowledgeRequirement);
+            }
 
             if (synchronizedQuest)
             {
                 if (customEvent)
+                {
+                    customEvent.voidEvent.RemoveListener(CmdReduceCustom1Requirement);
                     customEvent.voidEvent.AddListener(CmdReduceCustom1Requirement);
+                }
                 foreach (var item in requiredItems)
                 {
+                    item.itemData.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
+                    item.itemData.Item_Stacks_Lost.RemoveListener(CmdIncreaseItemRequirement);
                     item.itemData.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
                     item.itemData.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
                     requiredItemsDic.Add(item.itemData.name, 0);
                 }
                 foreach (var item in requiredStructures)
                 {
+                    item.Structure_Built.RemoveListener(CmdReduceStructureRequirement);
                     item.Structure_Built.AddListener(CmdReduceStructureRequirement);
                     requiredStructuresDic.Add(item.name, false);
                 }
@@ -102,6 +114,8 @@ public class QuestScriptable : ScriptableObject, IComparable
                     {
                         if (item.itemType == requiredItemType)
                         {
+                            item.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
+                            item.Item_Stacks_Lost.RemoveListener(CmdIncreaseItemRequirement);
                             item.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
                             item.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
                             validItemTypeNames.Add(item.name);
@@ -111,15 +125,21 @@ public class QuestScriptable : ScriptableObject, IComparable
             else
             {
                 if (customEvent)
+                {
+                    customEvent.voidEvent.RemoveListener(ReduceCustom1Requirement);
                     customEvent.voidEvent.AddListener(ReduceCustom1Requirement);
+                }
                 foreach (var item in requiredItems)
                 {
+                    item.itemData.Item_Stacks_Acquired.RemoveListener(ReduceItemRequirement);
+                    item.itemData.Item_Stacks_Lost.RemoveListener(IncreaseItemRequirement);
                     item.itemData.Item_Stacks_Acquired.AddListener(ReduceItemRequirement);
                     item.itemData.Item_Stacks_Lost.AddListener(IncreaseItemRequirement);
                     requiredItemsDic.Add(item.itemData.name, 0);
                 }
                 foreach (var item in requiredStructures)
                 {
+                    item.Structure_Built.RemoveListener(ReduceStructureRequirement);
                     item.Structure_Built.AddListener(ReduceStructureRequirement);
                     requiredStructuresDic.Add(item.name, false);
                 }
@@ -128,6 +148,8 @@ public class QuestScriptable : ScriptableObject, IComparable
                     {
                         if (item.itemType == requiredItemType)
                         {
+                            item.Item_Stacks_Acquired.RemoveListener(ReduceItemRequirement);
+                            item.Item_Stacks_Lost.RemoveListener(IncreaseItemRequirement);
                             item.Item_Stacks_Acquired.AddListener(ReduceItemRequirement);
                             item.Item_Stacks_Lost.AddListener(IncreaseItemRequirement);
                             validItemTypeNames.Add(item.name);

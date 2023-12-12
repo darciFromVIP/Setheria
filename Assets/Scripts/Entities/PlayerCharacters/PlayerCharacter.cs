@@ -138,23 +138,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [ClientRpc]
     public void LoadState(List<SaveDataPlayer> data)
     {
-        if (isOwned)
-        {
-            var arr = SceneManager.GetActiveScene().GetRootGameObjects();
-            List<NeedsLocalPlayerCharacter> list = new();
-            foreach (var item in arr)
-            {
-                list.AddRange(item.GetComponentsInChildren<NeedsLocalPlayerCharacter>(true));
-            }
-            foreach (var item in list)
-            {
-                item.SetLocalPlayerCharacter(this);
-            }
-            foreach (var item in skills)
-            {
-                item.SetCastingEntity(this);
-            }
-        }
         foreach (var item in data)
         {
             if (item.hero == hero)
@@ -244,6 +227,20 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                         professions = item.professions;
                     professions.player = this;
                     FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
+                    var arr = SceneManager.GetActiveScene().GetRootGameObjects();
+                    List<NeedsLocalPlayerCharacter> list = new();
+                    foreach (var item1 in arr)
+                    {
+                        list.AddRange(item1.GetComponentsInChildren<NeedsLocalPlayerCharacter>(true));
+                    }
+                    foreach (var item1 in list)
+                    {
+                        item1.SetLocalPlayerCharacter(this);
+                    }
+                    foreach (var item1 in skills)
+                    {
+                        item1.SetCastingEntity(this);
+                    }
                 }
             }
         }
@@ -662,6 +659,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void SetReturnPoint()
     {
         returnPoint = transform.position;
+    }
+    public bool IsReturnPointValid()
+    {
+        return returnPoint != Vector3.zero;
     }
     public void Recall()
     {

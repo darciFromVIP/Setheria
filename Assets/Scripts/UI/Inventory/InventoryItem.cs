@@ -160,6 +160,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     item.Action_Finished.AddListener(DestroyItem);
                 }
                 item.Execute();
+                if (this.item.usageCooldown > 0)
+                {
+                    item.Action_Finished.RemoveAllListeners();
+                    item.Action_Finished.AddListener(StartCooldown);
+                }
                 used = true;
             }
             else
@@ -169,13 +174,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             ChangeStacks(-1);
         }
-        if (used)
-        {
-            if (item.cooldownGroup != CooldownGroup.None)
-                FindObjectOfType<GameManager>().StartCooldown(item.cooldownGroup, item.usageCooldown);
-            else
-                FindObjectOfType<GameManager>().StartIndependentCooldown(UpdateCooldown, item.usageCooldown);
-        }
+    }
+    private void StartCooldown()
+    {
+        if (item.cooldownGroup != CooldownGroup.None)
+            FindObjectOfType<GameManager>().StartCooldown(item.cooldownGroup, item.usageCooldown);
+        else
+            FindObjectOfType<GameManager>().StartIndependentCooldown(UpdateCooldown, item.usageCooldown);
     }
     public void DestroyItem()
     {
@@ -282,8 +287,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             if (inventoryManagerParent && stashInventory)                       // To Stash
             {
-                stashInventory.AddItem(item, stacks);
-                DestroyItem();
+                if (stashInventory.AddItem(item, stacks))    
+                    DestroyItem();
             }
             else if (stashInventoryParent && inventoryManager)                  // To Inventory
             {
