@@ -10,4 +10,5 @@ public class QuestlineSaveable
     public int currentQuestIndex;
     public List<string> questRequirementsNames;
     public List<int> questRequirementsValues;
+    public bool synchronized;
 }

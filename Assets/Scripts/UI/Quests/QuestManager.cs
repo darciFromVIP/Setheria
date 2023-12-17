@@ -15,7 +15,7 @@ public class QuestManager : NetworkBehaviour
     private void Start()
     {
         if (isClient)
-            LoadState(FindObjectOfType<WorldGenerator>().lastLoadedWorldState.questlines);
+            LoadStateSynchronized(FindObjectOfType<WorldGenerator>().lastLoadedWorldState.questlines);
     }
     [Command(requiresAuthority = false)] 
     private void CmdNewQuest(string questName)
@@ -275,45 +275,51 @@ public class QuestManager : NetworkBehaviour
         
         return NewQuestReturn(questline.questList[questIndex].name);
     }
-    public List<QuestlineSaveable> SaveState()
+    public List<QuestlineSaveable> SaveStateSynchronized()
     {
         List<QuestlineSaveable> result = new();
         foreach (var item in questlines)
         {
-            List<string> names = new();
-            List<int> values = new();
-            foreach (var item2 in item.questList[item.currentQuestIndex].requiredStructuresDic)
+            if (item.synchronized)
             {
-                names.Add(item2.Key);
-                values.Add(item2.Value ? 1 : 0);
+                List<string> names = new();
+                List<int> values = new();
+                foreach (var item2 in item.questList[item.currentQuestIndex].requiredStructuresDic)
+                {
+                    names.Add(item2.Key);
+                    values.Add(item2.Value ? 1 : 0);
+                }
+                result.Add(new QuestlineSaveable { questlineName = item.name, currentQuestIndex = item.currentQuestIndex, questRequirementsNames = names, questRequirementsValues = values, synchronized = item.synchronized });
             }
-            result.Add(new QuestlineSaveable { questlineName = item.name, currentQuestIndex = item.currentQuestIndex, questRequirementsNames = names, questRequirementsValues = values });
         }
         return result;
     }
-    public void LoadState(List<QuestlineSaveable> saveData)
+    public void LoadStateSynchronized(List<QuestlineSaveable> saveData)
     {
         if (saveData != null)
         {
             foreach (var item in saveData)
             {
-                var quest = NewQuestline(item.questlineName, item.currentQuestIndex);
-                for (int i = 0; i < item.questRequirementsNames.Count; i++)
+                if (item.synchronized)
                 {
-                    foreach (var item3 in quest.requiredStructuresDic.ToList())
+                    var quest = NewQuestline(item.questlineName, item.currentQuestIndex);
+                    for (int i = 0; i < item.questRequirementsNames.Count; i++)
                     {
-                        if (item.questRequirementsNames[i] == item3.Key)
+                        foreach (var item3 in quest.requiredStructuresDic.ToList())
                         {
-                            bool value;
-                            if (item.questRequirementsValues[i] == 0)
-                                value = false;
-                            else
-                                value = true;
-                            quest.requiredStructuresDic[item3.Key] = value;
+                            if (item.questRequirementsNames[i] == item3.Key)
+                            {
+                                bool value;
+                                if (item.questRequirementsValues[i] == 0)
+                                    value = false;
+                                else
+                                    value = true;
+                                quest.requiredStructuresDic[item3.Key] = value;
+                            }
                         }
                     }
+                    quest.Quest_Updated.Invoke();
                 }
-                quest.Quest_Updated.Invoke();
             }
         }
         else
