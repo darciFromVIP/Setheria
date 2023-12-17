@@ -226,7 +226,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     if (item.professions != null)
                         professions = item.professions;
                     professions.player = this;
-                    FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
+                    FindObjectOfType<CameraTarget>().Teleport(transform.position);
                     var arr = SceneManager.GetActiveScene().GetRootGameObjects();
                     List<NeedsLocalPlayerCharacter> list = new();
                     foreach (var item1 in arr)
