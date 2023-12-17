@@ -51,7 +51,6 @@ public class WorldGenerator : MonoBehaviour
             FindObjectOfType<LoadingScreen>().LoadAsyncOperation("Loading Terrain...", operation);
             while (!operation.isDone)
             {
-                Debug.Log("Loading terrain");
                 yield return null;
             }
             biomeCopy[random] = null;
@@ -68,11 +67,12 @@ public class WorldGenerator : MonoBehaviour
                     item.transform.position += dic[i - 1];
             } 
         }
-        Debug.Log("Waiting for Scene to load");
         yield return new WaitUntil(IsMainSceneLoaded);
         if (NetworkServer.active)
             LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
         FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
+        while (FindObjectOfType<GameManager>() == null)
+            yield return null;
         FindObjectOfType<GameManager>().ChangeResources(state.resources);
         FindObjectOfType<GameManager>().ChangeKnowledge(state.knowledge);
         Debug.Log("Scene Loaded");

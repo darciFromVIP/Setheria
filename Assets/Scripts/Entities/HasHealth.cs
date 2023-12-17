@@ -51,7 +51,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
                 if (healthRegen > 0)
                     RpcHealDamage(healthRegen, true);
                 else if (healthRegen < 0)
-                    RpcTakeDamage(-healthRegen, true, GetComponent<NetworkIdentity>());
+                    RpcTakeDamage(-healthRegen, true, GetComponent<NetworkIdentity>(), false);
             }
         }
     }
@@ -75,16 +75,16 @@ public class HasHealth : NetworkBehaviour, ISaveable
         Health_Changed.Invoke(health, maxHealth);
     }
     [Command]
-    public void CmdTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner)
+    public void CmdTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical)
     {
-        RpcTakeDamage(damage, ignoreArmor, owner);
+        RpcTakeDamage(damage, ignoreArmor, owner, isCritical);
     }
     [ClientRpc]
-    public void RpcTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner)
+    public void RpcTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical)
     {
-        TakeDamage(damage, ignoreArmor, owner);
+        TakeDamage(damage, ignoreArmor, owner, isCritical);
     }
-    public void TakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner)
+    public void TakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical)
     {
         if (health < 0)
             return;
@@ -112,7 +112,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
 
         health -= finalDmg;
         if (isServer)
-            FindObjectOfType<FloatingText>().ServerSpawnFloatingText("-" + ((int)finalDmg).ToString(), transform.position + Vector3.up, FloatingTextType.Damage);
+            FindObjectOfType<FloatingText>().ServerSpawnFloatingText("-" + ((int)finalDmg).ToString(), transform.position + Vector3.up, isCritical ? FloatingTextType.CriticalDamage : FloatingTextType.Damage);
         if (health <= 0)
             OnDeath();
         Health_Changed.Invoke(health, maxHealth);

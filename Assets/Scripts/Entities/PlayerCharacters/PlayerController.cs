@@ -158,6 +158,11 @@ public class PlayerController : NetworkBehaviour
     {
         collidingColliders.Remove(other);
     }
+    public void RemoveCollider(Collider other)
+    {
+        if (collidingColliders.Contains(other))
+            collidingColliders.Remove(other);
+    }
     private void InputHandle()
     {
         if (state != PlayerState.None && state != PlayerState.Working)
@@ -383,6 +388,7 @@ public class PlayerController : NetworkBehaviour
     {
         moveComp.MoveTo(collider.transform.position);
         var originDest = moveComp.agent.destination;
+        yield return new WaitForSeconds(0.2f);
         while (true)
         {
             if (originDest != moveComp.agent.destination)

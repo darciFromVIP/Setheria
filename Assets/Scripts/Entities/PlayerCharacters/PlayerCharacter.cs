@@ -108,7 +108,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             else if (hunger <= 0 && hungerTimer >= 4)
             {
                 hungerTimer = 0;
-                healthComp.CmdTakeDamage(healthComp.GetBaseMaxHealth() * 0.2f, true, GetComponent<NetworkIdentity>());
+                healthComp.CmdTakeDamage(healthComp.GetBaseMaxHealth() * 0.2f, true, GetComponent<NetworkIdentity>(), true);
             }
             yield return null;
         }
@@ -142,6 +142,26 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             if (item.hero == hero)
             {
+                if (isOwned)
+                {
+                    if (item.professions != null)
+                        professions = item.professions;
+                    professions.player = this;
+                    var arr = SceneManager.GetActiveScene().GetRootGameObjects();
+                    List<NeedsLocalPlayerCharacter> list = new();
+                    foreach (var item1 in arr)
+                    {
+                        list.AddRange(item1.GetComponentsInChildren<NeedsLocalPlayerCharacter>(true));
+                    }
+                    foreach (var item1 in list)
+                    {
+                        item1.SetLocalPlayerCharacter(this);
+                    }
+                    foreach (var item1 in skills)
+                    {
+                        item1.SetCastingEntity(this);
+                    }
+                }
                 moveComp.agent.enabled = false;
                 if (item.positionX == 0 && item.positionY == 0 && item.positionZ == 0)
                     GetComponent<NetworkTransform>().CmdTeleport(FindObjectOfType<WorldGenerator>().globalStartingPoint.position);
@@ -223,24 +243,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                             talentTrees.talentTrees.Add(new TalentTree(item2.treeType, item2.talents));
                         }
                     }
-                    if (item.professions != null)
-                        professions = item.professions;
-                    professions.player = this;
-                    FindObjectOfType<CameraTarget>().Teleport(transform.position);
-                    var arr = SceneManager.GetActiveScene().GetRootGameObjects();
-                    List<NeedsLocalPlayerCharacter> list = new();
-                    foreach (var item1 in arr)
-                    {
-                        list.AddRange(item1.GetComponentsInChildren<NeedsLocalPlayerCharacter>(true));
-                    }
-                    foreach (var item1 in list)
-                    {
-                        item1.SetLocalPlayerCharacter(this);
-                    }
-                    foreach (var item1 in skills)
-                    {
-                        item1.SetCastingEntity(this);
-                    }
+                    if (item.positionX != 0 && item.positionY != 0 && item.positionZ != 0)
+                        FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
                 }
             }
         }
@@ -480,7 +484,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 if (modifier > 0)
                     healthComp.CmdHealDamage(modifier, false);
                 else
-                    healthComp.CmdTakeDamage(modifier, true, GetComponent<NetworkIdentity>());
+                    healthComp.CmdTakeDamage(modifier, true, GetComponent<NetworkIdentity>(), false);
                 break;
             case PlayerStat.MaxHealth:
                 healthComp.ChangeBaseMaxHealth(modifier);

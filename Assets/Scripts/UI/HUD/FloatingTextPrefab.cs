@@ -51,6 +51,10 @@ public class FloatingTextPrefab : MonoBehaviour
             case FloatingTextType.Exploration:
                 textMesh.color = Color.yellow;
                 break;
+            case FloatingTextType.CriticalDamage:
+                textMesh.color = new Color(1, 0.4149247f, 0, 1);
+                textMesh.text += "!";
+                break;
             default:
                 break;
         }

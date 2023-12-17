@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public enum FloatingTextType
 {
-    Healing, Damage, Resources, Knowledge, Experience, Hunger, Gathering, Fishing, Cooking, Alchemy, Exploration
+    Healing, Damage, Resources, Knowledge, Experience, Hunger, Gathering, Fishing, Cooking, Alchemy, Exploration, CriticalDamage
 }
 
 public class FloatingText : NetworkBehaviour

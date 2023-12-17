@@ -18,6 +18,7 @@ public enum ProjectileImpactEffect
 public struct ProjectileData
 {
     public float effectValue;
+    public bool isCritical;
     public BuffScriptable buff;
     public ProjectileTravelType projectileTravel;
     public ProjectileImpactType projectileImpact;
@@ -178,7 +179,7 @@ public class Projectile : NetworkBehaviour
                     foreach (var item in entities)
                     {
                         if (isServer)
-                            item.RpcTakeDamage(data.effectValue, data.ignoresArmor, data.owner.GetComponent<NetworkIdentity>());
+                            item.RpcTakeDamage(data.effectValue, data.ignoresArmor, data.owner.GetComponent<NetworkIdentity>(), data.isCritical);
                     }
                     break;
                 case ProjectileImpactEffect.Healing:

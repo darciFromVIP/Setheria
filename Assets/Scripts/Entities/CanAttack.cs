@@ -89,6 +89,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         netAnim = GetComponent<NetworkAnimator>();
         entity = GetComponent<Character>();
         SetBaseAttackSpeed(baseAttackSpeed);
+        SetPower(basePower);
     }
     private void Update()
     {
@@ -181,7 +182,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (random < baseCriticalChance)
             modifier = 1 + (baseCriticalDamage / 100);
         if (enemyTarget)
-            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier, false, GetComponent<NetworkIdentity>());
+            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier, false, GetComponent<NetworkIdentity>(), modifier > 1 ? true : false);
         Attacked();
         RpcSetCanAct(true);
     }
@@ -224,6 +225,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             speed = 10, 
             owner = owner,
             targetedEntity = enemyTarget,
+            isCritical = modifier > 1 ? true : false
         });
         NetworkServer.Spawn(projectile);
     }
