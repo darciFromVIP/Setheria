@@ -205,9 +205,11 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                 item.SetActive(lootable);
             }
         GetComponent<Collider>().enabled = lootable;
-        var player = FindObjectOfType<PlayerController>();
-        if (player)
-            player.RemoveCollider(GetComponent<Collider>());
+        var players = FindObjectsOfType<PlayerController>();
+        foreach (var item in players)
+        {
+            item.RemoveCollider(GetComponent<Collider>());
+        }
         var outline = GetComponentInChildren<EnableOutlineOnMouseOver>();
         if (outline)
             outline.enabled = lootable;
