@@ -261,7 +261,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [TargetRpc]
     public void SaveState(NetworkConnection conn, NetworkIdentity player)
     {
-        Debug.Log("Saving " + gameObject.name + " for connection " + connectionToClient.connectionId);
+        Debug.Log("Saving " + gameObject.name + " for connection " + connectionToServer.connectionId);
         var inventory = FindObjectOfType<InventoryManager>(true).GetAllItems();
         List<SaveDataItem> items = new();
         foreach (var item in inventory)
