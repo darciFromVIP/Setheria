@@ -245,6 +245,7 @@ public class SaveLoadSystem : NetworkBehaviour
             foreach (var item2 in item.owned)
             {
                 list.Add(item2);
+                Debug.Log(item2 + " is owned by " + item.connectionId);
             }
         }
         foreach (var item in list)

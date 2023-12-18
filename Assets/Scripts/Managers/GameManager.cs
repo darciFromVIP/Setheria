@@ -32,9 +32,12 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
         localPlayerCharacter = player;
         Player_Event.playerEvent.Invoke(player);
     }
-    public void SaveAndExitToMainMenu()
+    public void SaveGame()
     {
         FindObjectOfType<SaveLoadSystem>().Save();
+    }
+    public void ExitToMainMenu()
+    {
         SceneManager.LoadSceneAsync("Main Menu", LoadSceneMode.Single);
     }
     void ResourceHook(int oldValue, int newValue)
