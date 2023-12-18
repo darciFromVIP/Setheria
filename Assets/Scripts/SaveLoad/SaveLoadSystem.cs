@@ -8,36 +8,40 @@ using UnityEngine.SceneManagement;
 using Mirror;
 using Steamworks;
 using Newtonsoft.Json;
-public class SaveLoadSystem : MonoBehaviour
+public class SaveLoadSystem : NetworkBehaviour
 {
     public string dataDirPath = "";
     public string playerDirPath = "";
     public const string WorldDataFileFormat = ".WorldData";
     public SaveDataWorldServer currentWorldDataServer = null;
+    private List<SaveDataPlayer> saveDataPlayers = new();
+
 
     public bool saveFinished = false;
 
-    public static SaveLoadSystem instance;
-
+    private void OnDisable()
+    {
+        Destroy(gameObject);
+    }
     private void Awake()
     {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-        }
-        else
-            instance = this;
         DontDestroyOnLoad(gameObject);
         dataDirPath = Application.persistentDataPath + "/Worlds";
     }
     [ContextMenu("Save")]
+    [Command(requiresAuthority = false)]
     public void Save()
+    {
+        StartCoroutine(SavingCoro());
+    }
+    private IEnumerator SavingCoro()
     {
         saveFinished = false;
         SaveFileWorld(SaveStateWorld());
-        SavePlayerFiles(SavePlayerStates());
+        SavePlayerStates();
+        yield return StartCoroutine(SavePlayerFiles());
         saveFinished = true;
-    }
+    }    
     public void SetCurrentWorld(string fullPath)
     {
         currentWorldDataServer = LoadFileWorld(fullPath);
@@ -66,21 +70,22 @@ public class SaveLoadSystem : MonoBehaviour
             Debug.Log("Error occured while trying to save data to file: " + fullPath + "\n" + e);
         }
     }
-    public void SavePlayerFiles(List<SaveDataPlayer> playerStates)
+    public IEnumerator SavePlayerFiles()
     {
         if (SteamMatchmaking.GetNumLobbyMembers(SteamLobby.instance.currentLobbyID) != NetworkServer.connections.Count)
             Debug.Log("The Count of Steam users and connections is not equal!");
 
-        Debug.Log(playerDirPath);
+        while (SteamMatchmaking.GetNumLobbyMembers(SteamLobby.instance.currentLobbyID) != saveDataPlayers.Count)
+            yield return null;
         try
         {
             Directory.CreateDirectory(playerDirPath);
             Debug.Log("Current players: " + SteamMatchmaking.GetNumLobbyMembers(SteamLobby.instance.currentLobbyID));
             for (int i = 0; i < SteamMatchmaking.GetNumLobbyMembers(SteamLobby.instance.currentLobbyID); i++)
             {
-                if (playerStates.Count > i)
+                if (saveDataPlayers.Count > i)
                 {
-                    Debug.Log(playerStates[i].name + " belongs to " + SteamMatchmaking.GetLobbyMemberByIndex(SteamLobby.instance.currentLobbyID, i));
+                    Debug.Log(saveDataPlayers[i].name + " belongs to " + SteamMatchmaking.GetLobbyMemberByIndex(SteamLobby.instance.currentLobbyID, i));
                 }
                 var fullPath = playerDirPath + SteamMatchmaking.GetLobbyMemberByIndex(SteamLobby.instance.currentLobbyID, i);
                 List<SaveDataPlayer> loadedPlayerData = new();
@@ -89,8 +94,8 @@ public class SaveLoadSystem : MonoBehaviour
                     loadedPlayerData = LoadFilePlayer(fullPath);
                     for (int k = 0; k < loadedPlayerData.Count; k++)
                     {
-                        if (loadedPlayerData[k].hero == playerStates[i].hero)
-                            loadedPlayerData[k] = playerStates[i];
+                        if (loadedPlayerData[k].hero == saveDataPlayers[i].hero)
+                            loadedPlayerData[k] = saveDataPlayers[i];
                     }
                 }
                 else
@@ -210,7 +215,7 @@ public class SaveLoadSystem : MonoBehaviour
         state.worldSaveData.worldSeed = currentWorldDataServer.worldSaveData.worldSeed;
         state.worldSaveData.fogOfWar = new byte[FoW.FogOfWarTeam.GetTeam(0).mapResolution.x * FoW.FogOfWarTeam.GetTeam(0).mapResolution.y];
         FoW.FogOfWarTeam.GetTeam(0).GetTotalFogValues(ref state.worldSaveData.fogOfWar);
-        state.worldSaveData.questlines = FindObjectOfType<QuestManager>().SaveStateSynchronized();
+        state.worldSaveData.syncedQuestlines = FindObjectOfType<QuestManager>().SaveStateSynchronized();
         state.worldSaveData.resources = FindObjectOfType<GameManager>().GetResources();
         state.worldSaveData.knowledge = FindObjectOfType<GameManager>().GetKnowledge();
         var stash = FindObjectOfType<StashInventory>(true).GetAllItems();
@@ -232,7 +237,7 @@ public class SaveLoadSystem : MonoBehaviour
         FindObjectOfType<WorldGenerator>().CreateGameWorld(state);
     }
     [ContextMenu("Save Players")]
-    public List<SaveDataPlayer> SavePlayerStates()
+    public void SavePlayerStates()
     {
         List<NetworkIdentity> list = new();
         foreach (var item in NetworkServer.connections.Values)
@@ -242,19 +247,19 @@ public class SaveLoadSystem : MonoBehaviour
                 list.Add(item2);
             }
         }
-        
-        List<SaveDataPlayer> result = new();
-
         foreach (var item in list)
         {
             if (item.TryGetComponent(out PlayerCharacter player))
             {
                 Debug.Log(item.name + " is connected to " + item.connectionToClient.connectionId);
-                result.Add(player.SaveState());
+                player.SaveState(item.connectionToClient, item);
             }
         }
-        
-        return result;
+    }
+    [Command(requiresAuthority = false)]
+    public void SavePlayerState(SaveDataPlayer savedata)
+    {
+        saveDataPlayers.Add(savedata);
     }
 #if UNITY_EDITOR
     [ContextMenu("GenerateIdsInScene")]

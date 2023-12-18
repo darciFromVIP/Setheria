@@ -45,6 +45,7 @@ public class SaveDataPlayer
     public float cooldown5;
     public TalentTrees talentTrees;
     public Professions professions;
+    public List<QuestlineSaveable> unsyncedQuestlines = new();
 
     public SaveDataPlayer() { }
     public SaveDataPlayer(Hero hero)

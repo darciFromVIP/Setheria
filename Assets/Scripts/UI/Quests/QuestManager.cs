@@ -15,7 +15,7 @@ public class QuestManager : NetworkBehaviour
     private void Start()
     {
         if (isClient)
-            LoadStateSynchronized(FindObjectOfType<WorldGenerator>().lastLoadedWorldState.questlines);
+            LoadStateSynchronized(FindObjectOfType<WorldGenerator>().lastLoadedWorldState.syncedQuestlines);
     }
     [Command(requiresAuthority = false)] 
     private void CmdNewQuest(string questName)
@@ -327,6 +327,54 @@ public class QuestManager : NetworkBehaviour
             foreach (var item in beginnerQuestlines)
             {
                 NewQuestline(item.name);
+            }
+        }
+    }
+    public List<QuestlineSaveable> SaveStateUnsynchronized()
+    {
+        List<QuestlineSaveable> result = new();
+        foreach (var item in questlines)
+        {
+            if (!item.synchronized)
+            {
+                List<string> names = new();
+                List<int> values = new();
+                foreach (var item2 in item.questList[item.currentQuestIndex].requiredStructuresDic)
+                {
+                    names.Add(item2.Key);
+                    values.Add(item2.Value ? 1 : 0);
+                }
+                result.Add(new QuestlineSaveable { questlineName = item.name, currentQuestIndex = item.currentQuestIndex, questRequirementsNames = names, questRequirementsValues = values, synchronized = item.synchronized });
+            }
+        }
+        return result;
+    }
+    public void LoadStateUnsynchronized(List<QuestlineSaveable> saveData)
+    {
+        if (saveData != null)
+        {
+            foreach (var item in saveData)
+            {
+                if (!item.synchronized)
+                {
+                    var quest = NewQuestline(item.questlineName, item.currentQuestIndex);
+                    for (int i = 0; i < item.questRequirementsNames.Count; i++)
+                    {
+                        foreach (var item3 in quest.requiredStructuresDic.ToList())
+                        {
+                            if (item.questRequirementsNames[i] == item3.Key)
+                            {
+                                bool value;
+                                if (item.questRequirementsValues[i] == 0)
+                                    value = false;
+                                else
+                                    value = true;
+                                quest.requiredStructuresDic[item3.Key] = value;
+                            }
+                        }
+                    }
+                    quest.Quest_Updated.Invoke();
+                }
             }
         }
     }

@@ -41,6 +41,8 @@ public class MyNetworkManager : NetworkManager
     }
     private void SetCurrentWorld(CurrentWorldSetMessage msg)
     {
+        if (!saveLoad)
+            saveLoad = FindObjectOfType<SaveLoadSystem>();
         saveLoad.LoadStateWorld(msg.currentWorldData);
         NetworkClient.UnregisterHandler<CurrentWorldSetMessage>();
         NetworkClient.RegisterHandler<CurrentWorldSetMessage>(EmptyMsgRegister);

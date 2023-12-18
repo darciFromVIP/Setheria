@@ -243,6 +243,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                             talentTrees.talentTrees.Add(new TalentTree(item2.treeType, item2.talents));
                         }
                     }
+                    FindObjectOfType<QuestManager>(true).LoadStateUnsynchronized(item.unsyncedQuestlines);
                     if (item.positionX != 0 && item.positionY != 0 && item.positionZ != 0)
                         FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
                 }
@@ -257,7 +258,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (isOwned)
             StartCoroutine(UpdatePlayer());
     }
-    public SaveDataPlayer SaveState()
+    [TargetRpc]
+    public void SaveState(NetworkConnection conn, NetworkIdentity player)
     {
         var inventory = FindObjectOfType<InventoryManager>(true).GetAllItems();
         List<SaveDataItem> items = new();
@@ -282,10 +284,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             }
 
         }
+        var questManager = FindObjectOfType<QuestManager>(true);
+        List<QuestlineSaveable> questlines = new();
+        foreach (var item in questManager.SaveStateUnsynchronized())
+        {
+            questlines.Add(item);
+        }
 
         var controller = GetComponent<PlayerController>();
 
-        return new SaveDataPlayer {
+        FindObjectOfType<SaveLoadSystem>().SavePlayerState( new SaveDataPlayer {
             positionX = transform.position.x,
             positionY = transform.position.y,
             positionZ = transform.position.z,
@@ -327,7 +335,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             cooldown5 = controller.cooldown5,
             talentTrees = talentTrees,
             professions = professions,
-        };
+            unsyncedQuestlines = questlines
+        });
     }
     public PlayerCharacter GetLocalPlayerCharacter()
     {
