@@ -180,6 +180,13 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
         FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
         return null;
     }
+    public void DestroyAllItems()
+    {
+        foreach (var item in GetAllItems())
+        {
+            item.DestroyItem();
+        }
+    }
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         localPlayerCharacter = player;
