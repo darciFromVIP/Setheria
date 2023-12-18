@@ -248,6 +248,7 @@ public class SaveLoadSystem : NetworkBehaviour
                 Debug.Log(item2 + " is owned by " + item.connectionId);
             }
         }
+        saveDataPlayers.Clear();
         foreach (var item in list)
         {
             if (item.TryGetComponent(out PlayerCharacter player))
