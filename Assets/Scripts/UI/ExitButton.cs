@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class MySceneManager : MonoBehaviour
+public class ExitButton : MonoBehaviour
 {
     public void Quit()
     {

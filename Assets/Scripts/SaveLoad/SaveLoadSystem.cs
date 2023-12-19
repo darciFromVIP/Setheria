@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using Mirror;
 using Steamworks;
 using Newtonsoft.Json;
-public class SaveLoadSystem : NetworkBehaviour
+public class SaveLoadSystem : MonoBehaviour
 {
     public string dataDirPath = "";
     public string playerDirPath = "";
@@ -21,6 +21,7 @@ public class SaveLoadSystem : NetworkBehaviour
 
     private void OnDisable()
     {
+        Debug.Log("Disabling SaveLoad");
         Destroy(gameObject);
     }
     private void Awake()
@@ -29,7 +30,6 @@ public class SaveLoadSystem : NetworkBehaviour
         dataDirPath = Application.persistentDataPath + "/Worlds";
     }
     [ContextMenu("Save")]
-    [Command(requiresAuthority = false)]
     public void Save()
     {
         StartCoroutine(SavingCoro());
@@ -258,7 +258,6 @@ public class SaveLoadSystem : NetworkBehaviour
             }
         }
     }
-    [Command(requiresAuthority = false)]
     public void SavePlayerState(SaveDataPlayer savedata)
     {
         saveDataPlayers.Add(savedata);

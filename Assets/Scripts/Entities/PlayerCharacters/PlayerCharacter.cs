@@ -295,7 +295,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
 
         var controller = GetComponent<PlayerController>();
 
-        FindObjectOfType<SaveLoadSystem>().SavePlayerState( new SaveDataPlayer {
+        FindObjectOfType<NetworkedSaveLoad>().CmdSavePlayerState( new SaveDataPlayer {
             positionX = transform.position.x,
             positionY = transform.position.y,
             positionZ = transform.position.z,

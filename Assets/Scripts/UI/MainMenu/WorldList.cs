@@ -22,7 +22,7 @@ public class WorldList : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-        var saveload = FindObjectOfType<SaveLoadSystem>();
+        var saveload = FindObjectOfType<SaveLoadSystem>(true);
         Directory.CreateDirectory(saveload.dataDirPath);
         var info = new DirectoryInfo(saveload.dataDirPath);
         var fileInfo = info.GetDirectories();
@@ -53,7 +53,7 @@ public class WorldList : MonoBehaviour
             seed = 2147483646;
         if (seed < 0)
             seed = 0;
-        var saveload = FindObjectOfType<SaveLoadSystem>();
+        var saveload = FindObjectOfType<SaveLoadSystem>(true);
         saveload.SaveFileWorld(new SaveDataWorldServer(worldNameInput.text, (int)seed), true);
         List<SaveDataPlayer> newPlayerData = new();
         for (int j = 0; j < System.Enum.GetValues(typeof(Hero)).Length; j++)

@@ -104,7 +104,7 @@ public class ClientObject : NetworkBehaviour, LocalPlayer
     private IEnumerator SaveGame(NetworkConnectionToClient conn)
     {
         Debug.Log("Saving Before Disconnecting");
-        FindObjectOfType<SaveLoadSystem>().Save();
+        FindObjectOfType<NetworkedSaveLoad>().CmdSave();
         yield return new WaitUntil(SaveFinished);
         DisconnectClient(conn);
     }

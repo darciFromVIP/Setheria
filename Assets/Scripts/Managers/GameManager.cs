@@ -34,7 +34,7 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     }
     public void SaveGame()
     {
-        FindObjectOfType<SaveLoadSystem>().Save();
+        FindObjectOfType<NetworkedSaveLoad>().CmdSave();
     }
     public void ExitToMainMenu()
     {

@@ -28,7 +28,7 @@ public class MyNetworkManager : NetworkManager
     {
         base.OnServerConnect(conn);
         if (conn.connectionId != 0)
-            FindObjectOfType<SaveLoadSystem>().Save();
+            FindObjectOfType<NetworkedSaveLoad>().CmdSave();
     }
     public override void OnClientConnect()
     {
