@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -127,6 +128,35 @@ public class StructureOptionUI : MonoBehaviour
                     player3.Work_Finished.RemoveListener(DrawWater);
                     player3.Work_Finished.AddListener(DrawWater);
                 }
+                break;
+            case StructureAction.Rest:
+                var player4 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
+                if (player4.state != PlayerState.None)
+                    FindObjectOfType<SystemMessages>().AddMessage("You are busy right now!");
+                else
+                {
+                    var tent = currentStructure.GetComponent<Tent>();
+                    tent.CmdRestPlayer(player4.GetComponent<NetworkIdentity>());
+                    if (player4.isOwned)
+                        FindObjectOfType<TentButton>().ShowBTN(currentStructure);
+                }
+                break;
+            case StructureAction.StopRest:
+                var player5 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
+                var tent1 = currentStructure.GetComponent<Tent>();
+                if (player5.state == PlayerState.OutOfGame)
+                {
+                    if (tent1.restingPlayers.Contains(player5.GetComponent<PlayerCharacter>()))
+                    {
+                        tent1.CmdStopRestPlayer(player5.GetComponent<NetworkIdentity>());
+                        if (player5.isOwned)
+                            FindObjectOfType<TentButton>().HideBTN();
+                    }
+                    else
+                        FindObjectOfType<SystemMessages>().AddMessage("You are not resting in this tent!");
+                }
+                else
+                    FindObjectOfType<SystemMessages>().AddMessage("You are not resting right now!");
                 break;
             default:
                 break;

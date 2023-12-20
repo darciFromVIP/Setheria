@@ -16,5 +16,6 @@ public class HungerUI : MonoBehaviour, NeedsLocalPlayerCharacter
     private void UpdateUI()
     {
         hungerText.text = "<sprite=12>" + player.hunger + "/" + player.maxHunger;
+        GetComponent<TooltipTrigger>().SetText("Food", "Displays your Hero satiety. If it falls to 0, your hero will start starving to death. You lose 1 Food every " + player.GetHungerInterval() + " seconds.");
     }
 }

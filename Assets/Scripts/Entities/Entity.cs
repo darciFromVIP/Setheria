@@ -30,11 +30,25 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     }
     protected virtual void OnMouseOver()
     {
-        hudCircle.SetActive(true);
+        var bar = GetComponentInChildren<EntityStatusBar>(true);
+        if (bar)
+        { 
+            if (bar.gameObject.activeSelf)
+                hudCircle.SetActive(true);
+        }
+        else
+            hudCircle.SetActive(true);
     }
     protected virtual void OnMouseExit()
     {
-        hudCircle.SetActive(false);
+        var bar = GetComponentInChildren<EntityStatusBar>(true);
+        if (bar)
+        {
+            if (bar.gameObject.activeSelf)
+                hudCircle.SetActive(false);
+        }
+        else
+            hudCircle.SetActive(false);
     }
 
     [Command(requiresAuthority = false)]

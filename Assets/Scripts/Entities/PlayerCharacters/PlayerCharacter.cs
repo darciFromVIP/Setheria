@@ -6,6 +6,7 @@ using Steamworks;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using FMODUnity;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public enum Hero
@@ -30,6 +31,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public int hunger;
     public int maxHunger;
     protected float hungerInterval;
+    protected float hungerIntervalMultiplier = 0;
     protected float hungerTimer = 0;
     protected Vector3 returnPoint;
 
@@ -100,7 +102,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         while (true)
         {
             hungerTimer += Time.deltaTime;
-            if (hungerTimer >= hungerInterval)
+            if (hungerTimer >= GetHungerInterval())
             {
                 hungerTimer = 0;
                 ChangeHunger(-1, false);
@@ -180,6 +182,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 maxHunger = item.maxHunger;
                 ChangeHunger(item.hunger, false);
                 hungerInterval = item.hungerInterval;
+                ChangeHungerIntervalMultiplier(1);
                 healthComp.SetBaseMaxHealth(item.baseMaxHealth);
                 healthComp.SetHealth(item.health);
                 healthComp.SetBaseHealthRegen(item.baseHealthRegen);
@@ -582,6 +585,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     public void BoardShip()
     {
+        DisableCharacter();
+    }
+    public void UnboardShip(Vector3 position)
+    {
+        transform.position = position;
+        EnableCharacter();
+    }
+    public void DisableCharacter()
+    {
         foreach (var item in GetComponentsInChildren<MeshRenderer>())
         {
             item.enabled = false;
@@ -595,7 +607,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         playerController.ChangeState(PlayerState.OutOfGame);
         spotlight.SetActive(false);
     }
-    public void UnboardShip(Vector3 position)
+    public void EnableCharacter()
     {
         foreach (var item in GetComponentsInChildren<MeshRenderer>())
         {
@@ -606,7 +618,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             item.enabled = true;
         }
         GetComponentInChildren<EntityStatusBar>(true).gameObject.SetActive(true);
-        transform.position = position;
         moveComp.agent.enabled = true;
         playerController.ChangeState(PlayerState.None);
         spotlight.SetActive(true);
@@ -699,5 +710,24 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void UpdateManualCategories()
     {
         FindObjectOfType<ManualScreen>().UpdateCategoryButtons(professions);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeHungerIntervalMultiplier(float value)
+    {
+        RpcChangeHungerIntervalMultiplier(value);
+    }
+    [ClientRpc]
+    public void RpcChangeHungerIntervalMultiplier(float value)
+    {
+        ChangeHungerIntervalMultiplier(value);
+    }
+    public void ChangeHungerIntervalMultiplier(float value)
+    {
+        hungerIntervalMultiplier += value;
+        Hunger_Changed.Invoke();
+    }
+    public float GetHungerInterval()
+    {
+        return hungerInterval * hungerIntervalMultiplier;
     }
 }

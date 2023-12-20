@@ -201,6 +201,8 @@ MonoBehaviour:
   structureOptions:
   - {fileID: 11400000, guid: e5501258a7d76524a83c23b0b69574d0, type: 2}
   - {fileID: 11400000, guid: 0216c833e7417a4459ed35dce4d25176, type: 2}
+  - {fileID: 11400000, guid: a72990daabd3b1046b9fd17847b0600e, type: 2}
+  - {fileID: 11400000, guid: 60ccbd9dc7b7a4e4791424444dd3b91f, type: 2}
   - {fileID: 11400000, guid: c60c51bea0c77c64799aa8ff424b70fb, type: 2}
   skills: []
   entityDatabase: {fileID: 0}
@@ -219,6 +221,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c00af6ca3075e4cb376b2a246eb8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  restingPlayers: []
 --- !u!1 &2338083707241930460 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3570985794274343471, guid: cf1fd752683bedf41b6bd4eae6622612,
