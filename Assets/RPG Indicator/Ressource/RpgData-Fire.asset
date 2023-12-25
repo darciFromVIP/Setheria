@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f9eae25619cf842aebe41bcf760f9d, type: 3}
+  m_Name: RpgData-Fire
+  m_EditorClassIdentifier: 
+  MainAllyColor: {r: 0.745283, g: 0.29891768, b: 0.16522783, a: 0}
+  MainNeutralColor: {r: 0.5019608, g: 0.59607846, b: 0.592573, a: 0}
+  MainEnemyColor: {r: 0.4811321, g: 0.024964403, b: 0.024964403, a: 0}
+  MainCustomColor: {r: 0, g: 0, b: 0, a: 0}
+  RangeAllyColor: {r: 0.745283, g: 0.29891768, b: 0.16522783, a: 0}
+  RangeNeutralColor: {r: 0.5019608, g: 0.59607846, b: 0.592573, a: 0}
+  RangeEnemyColor: {r: 0.4811321, g: 0.024964403, b: 0.024964403, a: 0}
+  RangeCustomColor: {r: 0, g: 0, b: 0, a: 0}
+  RangeIndicator: {fileID: 2100000, guid: fe29ab55ff586f147874a13973f9e229, type: 2}
+  ConeIndicator: {fileID: 2100000, guid: e207dfa3f94ee074bb9cc834a9629fbb, type: 2}
+  AreaIndicator: {fileID: 2100000, guid: 0bfa1d57ff573ba42b3dcff3bc9e5583, type: 2}
+  RadiusIndicator: {fileID: 2100000, guid: 82573be73f3eb08429ecc8a7f2deac9a, type: 2}
+  LineIndicator: {fileID: 2100000, guid: 7f273b63556ba0f419b128b320d7f2dc, type: 2}
+  Layer:
+    serializedVersion: 2
+    m_Bits: 64
