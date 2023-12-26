@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class EnableOutlineOnMouseOver : MonoBehaviour
 {
-    private Outline outline;
-    private void Start()
-    {
-        outline = GetComponentInChildren<Outline>();
-        if (outline)
-            outline.enabled = false;
-    }
     private void OnMouseEnter()
     {
-        if (outline)
-            outline.enabled = true;
+        foreach (var item in GetComponentsInChildren<MeshRenderer>())
+        {
+            item.materials[1].SetFloat("_Enabled", 1);
+        }
     }
     private void OnMouseExit()
     {
-        if (outline)
-            outline.enabled = false;
+        foreach (var item in GetComponentsInChildren<MeshRenderer>())
+        {
+            item.materials[1].SetFloat("_Enabled", 0);
+        }
     }
 
 }
