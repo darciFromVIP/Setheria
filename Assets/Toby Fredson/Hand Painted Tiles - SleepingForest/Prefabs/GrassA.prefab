@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013940112078}
   - component: {fileID: 205000010350111652}
+  - component: {fileID: 3840593505465009744}
   m_Layer: 0
   m_Name: GrassA
   m_TagString: Untagged
@@ -24,6 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000010541088282}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,7 +33,6 @@ Transform:
   m_Children:
   - {fileID: 4000013202235940}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &205000010350111652
 LODGroup:
@@ -52,6 +53,22 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23000011937196338}
   m_Enabled: 1
+--- !u!114 &3840593505465009744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010541088282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089e7123bacb77a429df24ec08d2d672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  styledBanner: 0
+  storedPrefabBackupGUID: 3d2952ed142efc145b1dabc73f9b5c6d
+  storedPreset: Tools/SpeedTree7;Vegetation
+  storedOverrides: 
 --- !u!1 &1000013225057882
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,13 +94,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013225057882}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.0000018099951, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4000013940112078}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33000013023416378
 MeshFilter:
@@ -92,7 +109,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013225057882}
-  m_Mesh: {fileID: 4300000, guid: 66bf3a42baa79654bbba36f69622bb68, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 597ea4a562c80ec4c8b85f7eac421d4c, type: 2}
 --- !u!23 &23000011937196338
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -113,7 +130,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 419f2b72f0c939447a816ab8743b2a9a, type: 2}
+  - {fileID: 2100000, guid: f3c3510537fa51b4e9059f65ebc9397f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
