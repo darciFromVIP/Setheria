@@ -104,7 +104,8 @@ MonoBehaviour:
   - {fileID: -4813231320957197842}
   - {fileID: -4997653379090906749}
   - {fileID: -7856870711297772619}
-  m_RendererFeatureMap: eee18f7c9df733bd8381c1fcbac4a4bab5f3ec2eb7c9f692
+  - {fileID: 5933691281699860102}
+  m_RendererFeatureMap: eee18f7c9df733bd8381c1fcbac4a4bab5f3ec2eb7c9f692866e8d5cc8b45852
   m_UseNativeRenderPass: 1
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -147,3 +148,20 @@ MonoBehaviour:
   m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
+--- !u!114 &5933691281699860102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473a86c9e274347dfbdde619584cebe9, type: 3}
+  m_Name: HighlightPlusRenderPassFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  renderPassEvent: 500
+  clearStencil: 0
+  previewInEditMode: 1
+  showInPreviewCamera: 1

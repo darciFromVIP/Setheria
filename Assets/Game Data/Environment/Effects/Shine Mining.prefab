@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5122527780174866407}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shine Mining
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,6 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976365683102791067}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 135.47, y: 63.28, z: 64.47}
   m_LocalScale: {x: 0.35047448, y: 0.3504745, z: 0.3504745}
@@ -31,7 +32,6 @@ Transform:
   - {fileID: 8786435763966719547}
   - {fileID: 6307226709885136817}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4327177601254599874
 GameObject:
@@ -58,13 +58,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4327177601254599874}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -81.11861, y: -92.90263, z: 67.67602}
   m_LocalScale: {x: 0.313204, y: 0.3667314, z: 0.30316046}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5122527780174866407}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6710102120497421710
 ParticleSystem:
@@ -4886,13 +4886,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4959692636363693705}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.22690824, y: -0.4214162, z: 0.18055077, w: 0.8592569}
   m_LocalPosition: {x: -81.11861, y: -92.90263, z: 67.89601}
   m_LocalScale: {x: 1.4268081, y: -0.41963115, z: 1.0490922}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5122527780174866407}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &4595120818234328878
 ParticleSystem:

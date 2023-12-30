@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6545153408213600690}
   - component: {fileID: 2231418315874329088}
   - component: {fileID: 5523696045095945143}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Waves (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4903,7 +4903,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a47ba40305affea45b37b80208fa504f, type: 2}
-  - {fileID: 2100000, guid: 7892f39ad62f0cb4a87daab1e8b13773, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5051,7 +5050,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6795113267687129964}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5138,7 +5137,7 @@ GameObject:
   - component: {fileID: 4322639694425661747}
   - component: {fileID: 4677295090482566929}
   - component: {fileID: 3027900962578716840}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Waves (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10043,7 +10042,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: efc4715330955724b8facceb89317576,
         type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: efc4715330955724b8facceb89317576,
         type: 3}
@@ -10149,6 +10148,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishPool
       objectReference: {fileID: 0}
+    - target: {fileID: 3126613915147387163, guid: dc7db644b84a6524aa8ab5d76cd02864,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8046025933026811871, guid: dc7db644b84a6524aa8ab5d76cd02864,
         type: 3}
       propertyPath: m_IsActive
@@ -10250,7 +10254,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 620f6ee9432b0184cbe19409819ed5ca,
         type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 620f6ee9432b0184cbe19409819ed5ca,
         type: 3}
@@ -10721,6 +10725,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b4d45f6ed1e08a741a6161f5ee7b68bd,
         type: 2}
+    - target: {fileID: 8627531288678635897, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: rmsCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8929349934978510982, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Enabled

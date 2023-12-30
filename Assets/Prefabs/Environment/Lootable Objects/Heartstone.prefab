@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5178860862272110014}
   - component: {fileID: 2261690327243245584}
   - component: {fileID: 2031560908185635028}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,6 +852,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e5e0ca8e31921864390c04acd6b71dcf,
         type: 2}
+    - target: {fileID: 8627531288678635897, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: rmsCount
+      value: 33
+      objectReference: {fileID: 0}
     - target: {fileID: 8929349934978510982, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Radius

@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 using TMPro;
+using HighlightPlus;
 
 public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerCharacter, ISaveable
 {
@@ -210,7 +211,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         {
             item.RemoveCollider(GetComponent<Collider>());
         }
-        var outline = GetComponentInChildren<EnableOutlineOnMouseOver>();
+        var outline = GetComponentInChildren<HighlightTrigger>();
         if (outline)
             outline.enabled = lootable;
     }

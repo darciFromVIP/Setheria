@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using Mirror;
-
+using HighlightPlus;
 public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveable
 {
     public List<ItemRecipeInfo> requiredItems;
@@ -80,10 +80,10 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
             CmdSetAnimation();
         Items_Turned_In.Invoke();
         GetComponent<Collider>().enabled = false;
-        var outline = GetComponentInChildren<EnableOutlineOnMouseOver>();
-        if (outline)
-            outline.enabled = false;
         interactable = false;
+        var outline = GetComponentInChildren<HighlightTrigger>();
+        if (outline)
+            outline.enabled = interactable;
     }
     [Command(requiresAuthority = false)]
     private void CmdSetAnimation()
