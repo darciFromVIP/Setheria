@@ -1,216 +1,602 @@
 fileFormatVersion: 2
 guid: 002df1702d8b20445936f4efbc61c947
-timeCreated: 1516822805
-licenseType: Store
 ModelImporter:
-  serializedVersion: 18
-  fileIDToRecycleName:
-    100000: Bip001
-    100002: Bip001 Footsteps
-    100004: Bip001 Head
-    100006: Bip001 HeadNub
-    100008: Bip001 L Calf
-    100010: Bip001 L Foot
-    100012: Bip001 L Thigh
-    100014: Bip001 L Toe0
-    100016: Bip001 L Toe0Nub
-    100018: Bip001 Neck
-    100020: Bip001 Neck1
-    100022: Bip001 Neck10
-    100024: Bip001 Neck11
-    100026: Bip001 Neck12
-    100028: Bip001 Neck13
-    100030: Bip001 Neck14
-    100032: Bip001 Neck15
-    100034: Bip001 Neck16
-    100036: Bip001 Neck17
-    100038: Bip001 Neck2
-    100040: Bip001 Neck3
-    100042: Bip001 Neck4
-    100044: Bip001 Neck5
-    100046: Bip001 Neck6
-    100048: Bip001 Neck7
-    100050: Bip001 Neck8
-    100052: Bip001 Neck9
-    100054: Bip001 Pelvis
-    100056: Bip001 Ponytail1
-    100058: Bip001 Ponytail1Nub
-    100060: Bip001 Ponytail2
-    100062: Bip001 Ponytail21
-    100064: Bip001 Ponytail210
-    100066: Bip001 Ponytail211
-    100068: Bip001 Ponytail212
-    100070: Bip001 Ponytail213
-    100072: Bip001 Ponytail214
-    100074: Bip001 Ponytail215
-    100076: Bip001 Ponytail216
-    100078: Bip001 Ponytail217
-    100080: Bip001 Ponytail218
-    100082: Bip001 Ponytail219
-    100084: Bip001 Ponytail22
-    100086: Bip001 Ponytail23
-    100088: Bip001 Ponytail24
-    100090: Bip001 Ponytail25
-    100092: Bip001 Ponytail26
-    100094: Bip001 Ponytail27
-    100096: Bip001 Ponytail28
-    100098: Bip001 Ponytail29
-    100100: Bip001 Ponytail2Nub
-    100102: Bip001 R Calf
-    100104: Bip001 R Foot
-    100106: Bip001 R Thigh
-    100108: Bip001 R Toe0
-    100110: Bip001 R Toe0Nub
-    100112: Bip001 Spine
-    100114: Bip001 Tail
-    100116: Bip001 Tail1
-    100118: Bip001 Tail10
-    100120: Bip001 Tail11
-    100122: Bip001 Tail12
-    100124: Bip001 Tail13
-    100126: Bip001 Tail14
-    100128: Bip001 Tail15
-    100130: Bip001 Tail16
-    100132: Bip001 Tail17
-    100134: Bip001 Tail18
-    100136: Bip001 Tail19
-    100138: Bip001 Tail2
-    100140: Bip001 Tail20
-    100142: Bip001 Tail21
-    100144: Bip001 Tail22
-    100146: Bip001 Tail23
-    100148: Bip001 Tail3
-    100150: Bip001 Tail4
-    100152: Bip001 Tail5
-    100154: Bip001 Tail6
-    100156: Bip001 Tail7
-    100158: Bip001 Tail8
-    100160: Bip001 Tail9
-    100162: Bip001 TailNub
-    100164: //RootNode
-    100166: Plane001
-    400000: Bip001
-    400002: Bip001 Footsteps
-    400004: Bip001 Head
-    400006: Bip001 HeadNub
-    400008: Bip001 L Calf
-    400010: Bip001 L Foot
-    400012: Bip001 L Thigh
-    400014: Bip001 L Toe0
-    400016: Bip001 L Toe0Nub
-    400018: Bip001 Neck
-    400020: Bip001 Neck1
-    400022: Bip001 Neck10
-    400024: Bip001 Neck11
-    400026: Bip001 Neck12
-    400028: Bip001 Neck13
-    400030: Bip001 Neck14
-    400032: Bip001 Neck15
-    400034: Bip001 Neck16
-    400036: Bip001 Neck17
-    400038: Bip001 Neck2
-    400040: Bip001 Neck3
-    400042: Bip001 Neck4
-    400044: Bip001 Neck5
-    400046: Bip001 Neck6
-    400048: Bip001 Neck7
-    400050: Bip001 Neck8
-    400052: Bip001 Neck9
-    400054: Bip001 Pelvis
-    400056: Bip001 Ponytail1
-    400058: Bip001 Ponytail1Nub
-    400060: Bip001 Ponytail2
-    400062: Bip001 Ponytail21
-    400064: Bip001 Ponytail210
-    400066: Bip001 Ponytail211
-    400068: Bip001 Ponytail212
-    400070: Bip001 Ponytail213
-    400072: Bip001 Ponytail214
-    400074: Bip001 Ponytail215
-    400076: Bip001 Ponytail216
-    400078: Bip001 Ponytail217
-    400080: Bip001 Ponytail218
-    400082: Bip001 Ponytail219
-    400084: Bip001 Ponytail22
-    400086: Bip001 Ponytail23
-    400088: Bip001 Ponytail24
-    400090: Bip001 Ponytail25
-    400092: Bip001 Ponytail26
-    400094: Bip001 Ponytail27
-    400096: Bip001 Ponytail28
-    400098: Bip001 Ponytail29
-    400100: Bip001 Ponytail2Nub
-    400102: Bip001 R Calf
-    400104: Bip001 R Foot
-    400106: Bip001 R Thigh
-    400108: Bip001 R Toe0
-    400110: Bip001 R Toe0Nub
-    400112: Bip001 Spine
-    400114: Bip001 Tail
-    400116: Bip001 Tail1
-    400118: Bip001 Tail10
-    400120: Bip001 Tail11
-    400122: Bip001 Tail12
-    400124: Bip001 Tail13
-    400126: Bip001 Tail14
-    400128: Bip001 Tail15
-    400130: Bip001 Tail16
-    400132: Bip001 Tail17
-    400134: Bip001 Tail18
-    400136: Bip001 Tail19
-    400138: Bip001 Tail2
-    400140: Bip001 Tail20
-    400142: Bip001 Tail21
-    400144: Bip001 Tail22
-    400146: Bip001 Tail23
-    400148: Bip001 Tail3
-    400150: Bip001 Tail4
-    400152: Bip001 Tail5
-    400154: Bip001 Tail6
-    400156: Bip001 Tail7
-    400158: Bip001 Tail8
-    400160: Bip001 Tail9
-    400162: Bip001 TailNub
-    400164: //RootNode
-    400166: Plane001
-    4300000: Plane001
-    7400000: CBDragonSnake_move
-    7400002: CBDragonSnake_move_root_motion
-    7400004: CBDragonSnake_stand
-    7400006: CBDragonSnake_idle
-    7400008: CBDragonSnake_attack_1
-    7400010: CBDragonSnake_attack_2
-    7400012: CBDragonSnake_attack_3
-    7400014: CBDragonSnake_hit_2
-    7400016: CBDragonSnake_death
-    7400018: CBDragonSnake_move_left_root_motion
-    7400020: CBDragonSnake_move_right_root_motion
-    7400022: CBDragonSnake_move_right
-    7400024: CBDragonSnake_move_left
-    7400026: CBDragonSnake_attack_4
-    7400028: CBDragonSnake_hit_1
-    9500000: //RootNode
-    11100000: //RootNode
-    13700000: Plane001
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip001
+  - first:
+      1: 100002
+    second: Bip001 Footsteps
+  - first:
+      1: 100004
+    second: Bip001 Head
+  - first:
+      1: 100006
+    second: Bip001 HeadNub
+  - first:
+      1: 100008
+    second: Bip001 L Calf
+  - first:
+      1: 100010
+    second: Bip001 L Foot
+  - first:
+      1: 100012
+    second: Bip001 L Thigh
+  - first:
+      1: 100014
+    second: Bip001 L Toe0
+  - first:
+      1: 100016
+    second: Bip001 L Toe0Nub
+  - first:
+      1: 100018
+    second: Bip001 Neck
+  - first:
+      1: 100020
+    second: Bip001 Neck1
+  - first:
+      1: 100022
+    second: Bip001 Neck10
+  - first:
+      1: 100024
+    second: Bip001 Neck11
+  - first:
+      1: 100026
+    second: Bip001 Neck12
+  - first:
+      1: 100028
+    second: Bip001 Neck13
+  - first:
+      1: 100030
+    second: Bip001 Neck14
+  - first:
+      1: 100032
+    second: Bip001 Neck15
+  - first:
+      1: 100034
+    second: Bip001 Neck16
+  - first:
+      1: 100036
+    second: Bip001 Neck17
+  - first:
+      1: 100038
+    second: Bip001 Neck2
+  - first:
+      1: 100040
+    second: Bip001 Neck3
+  - first:
+      1: 100042
+    second: Bip001 Neck4
+  - first:
+      1: 100044
+    second: Bip001 Neck5
+  - first:
+      1: 100046
+    second: Bip001 Neck6
+  - first:
+      1: 100048
+    second: Bip001 Neck7
+  - first:
+      1: 100050
+    second: Bip001 Neck8
+  - first:
+      1: 100052
+    second: Bip001 Neck9
+  - first:
+      1: 100054
+    second: Bip001 Pelvis
+  - first:
+      1: 100056
+    second: Bip001 Ponytail1
+  - first:
+      1: 100058
+    second: Bip001 Ponytail1Nub
+  - first:
+      1: 100060
+    second: Bip001 Ponytail2
+  - first:
+      1: 100062
+    second: Bip001 Ponytail21
+  - first:
+      1: 100064
+    second: Bip001 Ponytail210
+  - first:
+      1: 100066
+    second: Bip001 Ponytail211
+  - first:
+      1: 100068
+    second: Bip001 Ponytail212
+  - first:
+      1: 100070
+    second: Bip001 Ponytail213
+  - first:
+      1: 100072
+    second: Bip001 Ponytail214
+  - first:
+      1: 100074
+    second: Bip001 Ponytail215
+  - first:
+      1: 100076
+    second: Bip001 Ponytail216
+  - first:
+      1: 100078
+    second: Bip001 Ponytail217
+  - first:
+      1: 100080
+    second: Bip001 Ponytail218
+  - first:
+      1: 100082
+    second: Bip001 Ponytail219
+  - first:
+      1: 100084
+    second: Bip001 Ponytail22
+  - first:
+      1: 100086
+    second: Bip001 Ponytail23
+  - first:
+      1: 100088
+    second: Bip001 Ponytail24
+  - first:
+      1: 100090
+    second: Bip001 Ponytail25
+  - first:
+      1: 100092
+    second: Bip001 Ponytail26
+  - first:
+      1: 100094
+    second: Bip001 Ponytail27
+  - first:
+      1: 100096
+    second: Bip001 Ponytail28
+  - first:
+      1: 100098
+    second: Bip001 Ponytail29
+  - first:
+      1: 100100
+    second: Bip001 Ponytail2Nub
+  - first:
+      1: 100102
+    second: Bip001 R Calf
+  - first:
+      1: 100104
+    second: Bip001 R Foot
+  - first:
+      1: 100106
+    second: Bip001 R Thigh
+  - first:
+      1: 100108
+    second: Bip001 R Toe0
+  - first:
+      1: 100110
+    second: Bip001 R Toe0Nub
+  - first:
+      1: 100112
+    second: Bip001 Spine
+  - first:
+      1: 100114
+    second: Bip001 Tail
+  - first:
+      1: 100116
+    second: Bip001 Tail1
+  - first:
+      1: 100118
+    second: Bip001 Tail10
+  - first:
+      1: 100120
+    second: Bip001 Tail11
+  - first:
+      1: 100122
+    second: Bip001 Tail12
+  - first:
+      1: 100124
+    second: Bip001 Tail13
+  - first:
+      1: 100126
+    second: Bip001 Tail14
+  - first:
+      1: 100128
+    second: Bip001 Tail15
+  - first:
+      1: 100130
+    second: Bip001 Tail16
+  - first:
+      1: 100132
+    second: Bip001 Tail17
+  - first:
+      1: 100134
+    second: Bip001 Tail18
+  - first:
+      1: 100136
+    second: Bip001 Tail19
+  - first:
+      1: 100138
+    second: Bip001 Tail2
+  - first:
+      1: 100140
+    second: Bip001 Tail20
+  - first:
+      1: 100142
+    second: Bip001 Tail21
+  - first:
+      1: 100144
+    second: Bip001 Tail22
+  - first:
+      1: 100146
+    second: Bip001 Tail23
+  - first:
+      1: 100148
+    second: Bip001 Tail3
+  - first:
+      1: 100150
+    second: Bip001 Tail4
+  - first:
+      1: 100152
+    second: Bip001 Tail5
+  - first:
+      1: 100154
+    second: Bip001 Tail6
+  - first:
+      1: 100156
+    second: Bip001 Tail7
+  - first:
+      1: 100158
+    second: Bip001 Tail8
+  - first:
+      1: 100160
+    second: Bip001 Tail9
+  - first:
+      1: 100162
+    second: Bip001 TailNub
+  - first:
+      1: 100164
+    second: //RootNode
+  - first:
+      1: 100166
+    second: Plane001
+  - first:
+      4: 400000
+    second: Bip001
+  - first:
+      4: 400002
+    second: Bip001 Footsteps
+  - first:
+      4: 400004
+    second: Bip001 Head
+  - first:
+      4: 400006
+    second: Bip001 HeadNub
+  - first:
+      4: 400008
+    second: Bip001 L Calf
+  - first:
+      4: 400010
+    second: Bip001 L Foot
+  - first:
+      4: 400012
+    second: Bip001 L Thigh
+  - first:
+      4: 400014
+    second: Bip001 L Toe0
+  - first:
+      4: 400016
+    second: Bip001 L Toe0Nub
+  - first:
+      4: 400018
+    second: Bip001 Neck
+  - first:
+      4: 400020
+    second: Bip001 Neck1
+  - first:
+      4: 400022
+    second: Bip001 Neck10
+  - first:
+      4: 400024
+    second: Bip001 Neck11
+  - first:
+      4: 400026
+    second: Bip001 Neck12
+  - first:
+      4: 400028
+    second: Bip001 Neck13
+  - first:
+      4: 400030
+    second: Bip001 Neck14
+  - first:
+      4: 400032
+    second: Bip001 Neck15
+  - first:
+      4: 400034
+    second: Bip001 Neck16
+  - first:
+      4: 400036
+    second: Bip001 Neck17
+  - first:
+      4: 400038
+    second: Bip001 Neck2
+  - first:
+      4: 400040
+    second: Bip001 Neck3
+  - first:
+      4: 400042
+    second: Bip001 Neck4
+  - first:
+      4: 400044
+    second: Bip001 Neck5
+  - first:
+      4: 400046
+    second: Bip001 Neck6
+  - first:
+      4: 400048
+    second: Bip001 Neck7
+  - first:
+      4: 400050
+    second: Bip001 Neck8
+  - first:
+      4: 400052
+    second: Bip001 Neck9
+  - first:
+      4: 400054
+    second: Bip001 Pelvis
+  - first:
+      4: 400056
+    second: Bip001 Ponytail1
+  - first:
+      4: 400058
+    second: Bip001 Ponytail1Nub
+  - first:
+      4: 400060
+    second: Bip001 Ponytail2
+  - first:
+      4: 400062
+    second: Bip001 Ponytail21
+  - first:
+      4: 400064
+    second: Bip001 Ponytail210
+  - first:
+      4: 400066
+    second: Bip001 Ponytail211
+  - first:
+      4: 400068
+    second: Bip001 Ponytail212
+  - first:
+      4: 400070
+    second: Bip001 Ponytail213
+  - first:
+      4: 400072
+    second: Bip001 Ponytail214
+  - first:
+      4: 400074
+    second: Bip001 Ponytail215
+  - first:
+      4: 400076
+    second: Bip001 Ponytail216
+  - first:
+      4: 400078
+    second: Bip001 Ponytail217
+  - first:
+      4: 400080
+    second: Bip001 Ponytail218
+  - first:
+      4: 400082
+    second: Bip001 Ponytail219
+  - first:
+      4: 400084
+    second: Bip001 Ponytail22
+  - first:
+      4: 400086
+    second: Bip001 Ponytail23
+  - first:
+      4: 400088
+    second: Bip001 Ponytail24
+  - first:
+      4: 400090
+    second: Bip001 Ponytail25
+  - first:
+      4: 400092
+    second: Bip001 Ponytail26
+  - first:
+      4: 400094
+    second: Bip001 Ponytail27
+  - first:
+      4: 400096
+    second: Bip001 Ponytail28
+  - first:
+      4: 400098
+    second: Bip001 Ponytail29
+  - first:
+      4: 400100
+    second: Bip001 Ponytail2Nub
+  - first:
+      4: 400102
+    second: Bip001 R Calf
+  - first:
+      4: 400104
+    second: Bip001 R Foot
+  - first:
+      4: 400106
+    second: Bip001 R Thigh
+  - first:
+      4: 400108
+    second: Bip001 R Toe0
+  - first:
+      4: 400110
+    second: Bip001 R Toe0Nub
+  - first:
+      4: 400112
+    second: Bip001 Spine
+  - first:
+      4: 400114
+    second: Bip001 Tail
+  - first:
+      4: 400116
+    second: Bip001 Tail1
+  - first:
+      4: 400118
+    second: Bip001 Tail10
+  - first:
+      4: 400120
+    second: Bip001 Tail11
+  - first:
+      4: 400122
+    second: Bip001 Tail12
+  - first:
+      4: 400124
+    second: Bip001 Tail13
+  - first:
+      4: 400126
+    second: Bip001 Tail14
+  - first:
+      4: 400128
+    second: Bip001 Tail15
+  - first:
+      4: 400130
+    second: Bip001 Tail16
+  - first:
+      4: 400132
+    second: Bip001 Tail17
+  - first:
+      4: 400134
+    second: Bip001 Tail18
+  - first:
+      4: 400136
+    second: Bip001 Tail19
+  - first:
+      4: 400138
+    second: Bip001 Tail2
+  - first:
+      4: 400140
+    second: Bip001 Tail20
+  - first:
+      4: 400142
+    second: Bip001 Tail21
+  - first:
+      4: 400144
+    second: Bip001 Tail22
+  - first:
+      4: 400146
+    second: Bip001 Tail23
+  - first:
+      4: 400148
+    second: Bip001 Tail3
+  - first:
+      4: 400150
+    second: Bip001 Tail4
+  - first:
+      4: 400152
+    second: Bip001 Tail5
+  - first:
+      4: 400154
+    second: Bip001 Tail6
+  - first:
+      4: 400156
+    second: Bip001 Tail7
+  - first:
+      4: 400158
+    second: Bip001 Tail8
+  - first:
+      4: 400160
+    second: Bip001 Tail9
+  - first:
+      4: 400162
+    second: Bip001 TailNub
+  - first:
+      4: 400164
+    second: //RootNode
+  - first:
+      4: 400166
+    second: Plane001
+  - first:
+      43: 4300000
+    second: Plane001
+  - first:
+      74: 7400000
+    second: CBDragonSnake_move
+  - first:
+      74: 7400002
+    second: CBDragonSnake_move_root_motion
+  - first:
+      74: 7400004
+    second: CBDragonSnake_stand
+  - first:
+      74: 7400006
+    second: CBDragonSnake_idle
+  - first:
+      74: 7400008
+    second: CBDragonSnake_attack_1
+  - first:
+      74: 7400010
+    second: CBDragonSnake_attack_2
+  - first:
+      74: 7400012
+    second: CBDragonSnake_attack_3
+  - first:
+      74: 7400014
+    second: CBDragonSnake_hit_2
+  - first:
+      74: 7400016
+    second: CBDragonSnake_death
+  - first:
+      74: 7400018
+    second: CBDragonSnake_move_left_root_motion
+  - first:
+      74: 7400020
+    second: CBDragonSnake_move_right_root_motion
+  - first:
+      74: 7400022
+    second: CBDragonSnake_move_right
+  - first:
+      74: 7400024
+    second: CBDragonSnake_move_left
+  - first:
+      74: 7400026
+    second: CBDragonSnake_attack_4
+  - first:
+      74: 7400028
+    second: CBDragonSnake_hit_1
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      111: 11100000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Plane001
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
-    animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: CBDragonSnake_move
       takeName: 
+      internalID: 0
       firstFrame: 0
       lastFrame: 60
       wrapMode: 2
@@ -218,6 +604,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 1
       loopBlendOrientation: 0
@@ -234,9 +621,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_move_root_motion
       takeName: 
+      internalID: 0
       firstFrame: 65
       lastFrame: 125
       wrapMode: 2
@@ -244,6 +633,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -260,9 +650,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_stand
       takeName: 
+      internalID: 0
       firstFrame: 130
       lastFrame: 175
       wrapMode: 2
@@ -270,6 +662,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 1
       loopBlendOrientation: 0
@@ -286,9 +679,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_idle
       takeName: 
+      internalID: 0
       firstFrame: 180
       lastFrame: 330
       wrapMode: 2
@@ -296,6 +691,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -312,9 +708,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_attack_1
       takeName: 
+      internalID: 0
       firstFrame: 335
       lastFrame: 380
       wrapMode: 0
@@ -322,6 +720,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -334,13 +733,22 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.4892966
+        functionName: MeleeAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_attack_2
       takeName: 
+      internalID: 0
       firstFrame: 385
       lastFrame: 430
       wrapMode: 0
@@ -348,6 +756,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -360,13 +769,22 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.4342505
+        functionName: MeleeAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_attack_3
       takeName: 
+      internalID: 0
       firstFrame: 435
       lastFrame: 480
       wrapMode: 0
@@ -374,6 +792,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -386,13 +805,22 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.40672812
+        functionName: MeleeAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_attack_4
       takeName: 
+      internalID: 0
       firstFrame: 485
       lastFrame: 530
       wrapMode: 0
@@ -400,6 +828,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -416,9 +845,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_hit_1
       takeName: 
+      internalID: 0
       firstFrame: 535
       lastFrame: 555
       wrapMode: 0
@@ -426,6 +857,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -442,9 +874,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_hit_2
       takeName: 
+      internalID: 0
       firstFrame: 560
       lastFrame: 580
       wrapMode: 0
@@ -452,6 +886,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -468,9 +903,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_death
       takeName: 
+      internalID: 0
       firstFrame: 585
       lastFrame: 630
       wrapMode: 0
@@ -478,6 +915,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -494,9 +932,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_move_left_root_motion
       takeName: 
+      internalID: 0
       firstFrame: 634
       lastFrame: 694
       wrapMode: 2
@@ -504,6 +944,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -520,9 +961,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_move_right_root_motion
       takeName: 
+      internalID: 0
       firstFrame: 699
       lastFrame: 759
       wrapMode: 2
@@ -530,6 +973,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -546,9 +990,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_move_right
       takeName: 
+      internalID: 0
       firstFrame: 764
       lastFrame: 824
       wrapMode: 2
@@ -556,6 +1002,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -572,9 +1019,11 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: CBDragonSnake_move_left
       takeName: 
+      internalID: 0
       firstFrame: 829
       lastFrame: 889
       wrapMode: 2
@@ -582,6 +1031,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -598,44 +1048,78 @@ ModelImporter:
       transformMask: []
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
