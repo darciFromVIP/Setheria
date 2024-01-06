@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: This crate full of books is worth 40 Knowledge. Turn it in your Workshop
     to get Knowledge.
-  grade: 0
+  grade: 2
   itemType: 16
   sprite: {fileID: 21300000, guid: 3bd8ce301c7a20e4ca428a114882ec9c, type: 3}
   stackable: 0
@@ -27,6 +27,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []
