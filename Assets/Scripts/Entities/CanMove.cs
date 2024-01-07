@@ -51,7 +51,8 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             transform.position = startingLocation;
         if (!(isOwned || (entity is not PlayerCharacter && isServer)) || baseMovementSpeed == 0)
             return;
-        animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
+        if (animator)
+            animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
     }
     public void MoveTo(Vector3 destination)
     {
