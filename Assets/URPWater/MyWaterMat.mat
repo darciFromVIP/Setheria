@@ -16,6 +16,7 @@ Material:
   - _ALPHA_MASK_ON
   - _CAPS_SCATTERING_ON
   - _CAUSTICSMODE_3D
+  - _CAUSTICS_ON
   - _COLORMODE_COLORS
   - _DISPLACEMENTMODE_GERSTNER
   - _DISPLACEMENT_MASK_ON
@@ -94,7 +95,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapB:
-        m_Texture: {fileID: 2800000, guid: e5ffaaa802ba34040991e3c4d48ec850, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2e3a046d93e62f447801d0e060ad4643, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMapFar:
@@ -142,14 +143,14 @@ Material:
     - _CapsScatteringIntensity: 1
     - _CapsScatteringRangeMax: 1
     - _CapsScatteringRangeMin: 0
-    - _Caustics: 0
+    - _Caustics: 1
     - _CausticsAngleMask: 0
     - _CausticsDirectionMask: 0
     - _CausticsDistortion: 0.351
-    - _CausticsEnd: 3.64
-    - _CausticsIntensity: 0.54
+    - _CausticsEnd: 3.72
+    - _CausticsIntensity: 0.56
     - _CausticsMode: 1
-    - _CausticsStart: 3.58
+    - _CausticsStart: 6.92
     - _CausticsTiling3D: 0.5
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -158,13 +159,13 @@ Material:
     - _CullMode: 2
     - _CutOff: 0.5
     - _Cutoff: 0.5
-    - _DepthEnd: 1.13
+    - _DepthEnd: 2.48
     - _DepthStart: 0.26
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DispMask: 1
     - _DisplacementMode: 1
-    - _Distortion: 27
+    - _Distortion: 58
     - _DoubleSided: 0
     - _DstBlend: 0
     - _DynamicDisplacement: 0.0005
@@ -172,13 +173,13 @@ Material:
     - _DynamicFoam: 0
     - _DynamicNormal: 4
     - _EdgeFade: 1
-    - _EdgeSize: -0.83
+    - _EdgeSize: 0.18
     - _EnvironmentReflections: 1
     - _FlowIntensity: 0.12
     - _FlowSpeed: 10
     - _Foam: 1
     - _FoamCapsIntensity: 0.61
-    - _FoamCapsRangeMax: 1.078656
+    - _FoamCapsRangeMax: 0.9122926
     - _FoamCapsRangeMin: 0
     - _FoamDistortion: 0.28
     - _FoamRippleDistance: 0.48
@@ -197,8 +198,8 @@ Material:
     - _Metallic: 0
     - _NormalFar: 0
     - _NormalFarDistance: 100
-    - _NormalMapAIntensity: 0.8
-    - _NormalMapBIntensity: 1
+    - _NormalMapAIntensity: 0.322
+    - _NormalMapBIntensity: 0.21
     - _NormalMapFarIntensity: 1
     - _NormalsMode: 0
     - _OcclusionStrength: 1
@@ -216,7 +217,7 @@ Material:
     - _ScatteringIntensity: 2.01
     - _ScatteringRangeMax: 1.1730773
     - _ScatteringRangeMin: 0
-    - _Smoothness: 0.97
+    - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpeedMul: 0
@@ -241,20 +242,20 @@ Material:
     - _CausticsSpeed: {r: 1, g: 1, b: -0.2, a: -0.33}
     - _CausticsSpeed3D: {r: 1, g: 1, b: 1, a: 1}
     - _CausticsTiling: {r: 0.2, g: 0.2, b: 0.3, a: 0.3}
-    - _Color: {r: 0.59126914, g: 0.87782604, b: 0.9716981, a: 1}
-    - _DepthColor: {r: 0.14509797, g: 0.3588024, b: 0.57647055, a: 1}
+    - _Color: {r: 0.5133945, g: 0.7188226, b: 0.7830189, a: 1}
+    - _DepthColor: {r: 0.11031505, g: 0.21591222, b: 0.3490566, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlowTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _FoamColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0.6039216}
+    - _FoamColor: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 0.6039216}
     - _FoamTiling: {r: 0.81, g: 0.88, b: 1, a: 1}
     - _GerstnerWaveA: {r: 0.84712195, g: -0.53139853, b: 0.66, a: 6.55}
     - _GerstnerWaveB: {r: 0, g: 1, b: 0.05, a: 4}
     - _GerstnerWaveC: {r: 1, g: 0, b: 0.05, a: 4}
     - _GerstnerWaveD: {r: 1, g: 0, b: 0.05, a: 4}
-    - _NormalMapASpeeds: {r: 0.5, g: 0.5, b: 1, a: 1}
-    - _NormalMapATilings: {r: 1, g: 1, b: 1, a: 1}
+    - _NormalMapASpeeds: {r: 0.5, g: 0.5, b: 1.2, a: 1.2}
+    - _NormalMapATilings: {r: 2, g: 2, b: 2, a: 2}
     - _NormalMapBSpeeds: {r: 1, g: 1, b: 1, a: 1}
-    - _NormalMapBTilings: {r: 1, g: 1, b: 1, a: 1}
+    - _NormalMapBTilings: {r: 2, g: 2, b: 1, a: 1}
     - _NormalMapFarSpeeds: {r: 1, g: 1, b: 1, a: 1}
     - _NormalMapFarTilings: {r: 1, g: 1, b: 0.5, a: 0.5}
     - _RefractionKey1: {r: -1, g: -1, b: -1, a: -1}

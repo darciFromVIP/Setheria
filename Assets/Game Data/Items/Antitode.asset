@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Shell
+  m_Name: Antitode
   m_EditorClassIdentifier: 
-  description: 'Open it using an equipped Handicraft Tool or use it as a crafting
-    material.
+  description: 'Use to cure poisons or in crafting.
 
     __________________________________
 
-    Armory, Consumables'
-  grade: 0
+    Active
+    Item, Cooldown: 10 seconds'
+  grade: 1
   itemType: 0
-  sprite: {fileID: 21300000, guid: d673a3cda5b31674d82bd28895c1d0c0, type: 3}
+  sprite: {fileID: 21300000, guid: b7ee99c616ff6ce48ac70731d5b65c93, type: 3}
   stackable: 1
-  usage:
-  - {fileID: 11400000, guid: 09738cf7572877c49b255d98845c969e, type: 2}
-  usageCooldown: 0
-  cooldownGroup: 0
+  usage: []
+  usageCooldown: 10
+  cooldownGroup: 1
   passiveBuffs: []
   value: 0
   destroyItemOnUse: 0

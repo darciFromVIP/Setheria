@@ -358,7 +358,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.70873785, y: 0.70873785, z: 0.70873785}
+  m_LocalScale: {x: 1.1791573, y: 1.1791573, z: 1.1791573}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1292822451270812652}
@@ -472,7 +472,16 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   itemDatabase: {fileID: 11400000, guid: 21c965b5672c11e48892e8a6384c3290, type: 2}
-  itemDropsTable: []
+  itemDropsTable:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: b64f9a4d378dd7b4195ca5923da3393a, type: 2}
+        stacks: 2
+      chance: 50
+    - item:
+        itemData: {fileID: 11400000, guid: b64f9a4d378dd7b4195ca5923da3393a, type: 2}
+        stacks: 3
+      chance: 50
   fishingQuestEvent: {fileID: 0}
 --- !u!114 &6297087839700961011
 MonoBehaviour:

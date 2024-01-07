@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Shell
+  m_Name: Coconut
   m_EditorClassIdentifier: 
-  description: 'Open it using an equipped Handicraft Tool or use it as a crafting
-    material.
+  description: 'You must open it using an equipped Handicraft Tool first!
 
     __________________________________
 
-    Armory, Consumables'
-  grade: 0
+    Food,
+    Consumables'
+  grade: 1
   itemType: 0
-  sprite: {fileID: 21300000, guid: d673a3cda5b31674d82bd28895c1d0c0, type: 3}
+  sprite: {fileID: 21300000, guid: c4b97aa2c0c3c8440b786125c05f0a0a, type: 3}
   stackable: 1
   usage:
-  - {fileID: 11400000, guid: 09738cf7572877c49b255d98845c969e, type: 2}
+  - {fileID: 11400000, guid: 0cb41e5b611a42c4b97cc065d59c0d4b, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []

@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Shell
+  m_Name: Opened Coconut
   m_EditorClassIdentifier: 
-  description: 'Open it using an equipped Handicraft Tool or use it as a crafting
-    material.
+  description: 'Eating this restores +5<sprite=12>.
 
     __________________________________
 
-    Armory, Consumables'
-  grade: 0
+    Food'
+  grade: 1
   itemType: 0
-  sprite: {fileID: 21300000, guid: d673a3cda5b31674d82bd28895c1d0c0, type: 3}
+  sprite: {fileID: 21300000, guid: d8f8d87659c5a9c4b8384574a16be303, type: 3}
   stackable: 1
   usage:
-  - {fileID: 11400000, guid: 09738cf7572877c49b255d98845c969e, type: 2}
+  - {fileID: 11400000, guid: 5ea5dfd5ddb295c468b0c52e2047cf8e, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
