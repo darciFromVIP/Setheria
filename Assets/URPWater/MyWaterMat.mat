@@ -19,13 +19,14 @@ Material:
   - _COLORMODE_COLORS
   - _DISPLACEMENTMODE_GERSTNER
   - _DISPLACEMENT_MASK_ON
+  - _DYNAMIC_EFFECTS_ON
   - _EDGEFADE_ON
   - _FOAM_ON
   - _FOAM_WHITECAPS_ON
   - _NORMALSMODE_SINGLE
-  - _REFLECTIONMODE_REALTIME
   - _WORLD_UV
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _REFLECTIONMODE_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -146,7 +147,7 @@ Material:
     - _CausticsDirectionMask: 0
     - _CausticsDistortion: 0.351
     - _CausticsEnd: 3.64
-    - _CausticsIntensity: -3.75
+    - _CausticsIntensity: 0.54
     - _CausticsMode: 1
     - _CausticsStart: 3.58
     - _CausticsTiling3D: 0.5
@@ -157,27 +158,27 @@ Material:
     - _CullMode: 2
     - _CutOff: 0.5
     - _Cutoff: 0.5
-    - _DepthEnd: 1.89
-    - _DepthStart: 0.11
+    - _DepthEnd: 1.13
+    - _DepthStart: 0.26
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DispMask: 1
     - _DisplacementMode: 1
-    - _Distortion: 24
+    - _Distortion: 27
     - _DoubleSided: 0
     - _DstBlend: 0
-    - _DynamicDisplacement: -0.44
-    - _DynamicEffects: 0
+    - _DynamicDisplacement: 0.0005
+    - _DynamicEffects: 1
     - _DynamicFoam: 0
-    - _DynamicNormal: 0.35
+    - _DynamicNormal: 4
     - _EdgeFade: 1
-    - _EdgeSize: 0.61
+    - _EdgeSize: -0.83
     - _EnvironmentReflections: 1
     - _FlowIntensity: 0.12
     - _FlowSpeed: 10
     - _Foam: 1
-    - _FoamCapsIntensity: 2.05
-    - _FoamCapsRangeMax: 0.46551728
+    - _FoamCapsIntensity: 0.61
+    - _FoamCapsRangeMax: 1.078656
     - _FoamCapsRangeMin: 0
     - _FoamDistortion: 0.28
     - _FoamRippleDistance: 0.48
@@ -196,7 +197,7 @@ Material:
     - _Metallic: 0
     - _NormalFar: 0
     - _NormalFarDistance: 100
-    - _NormalMapAIntensity: 0.47
+    - _NormalMapAIntensity: 0.8
     - _NormalMapBIntensity: 1
     - _NormalMapFarIntensity: 1
     - _NormalsMode: 0
@@ -209,13 +210,13 @@ Material:
     - _ReflectionFresnel: 9.9
     - _ReflectionFresnelNormal: 0.59
     - _ReflectionIntensity: 0.39
-    - _ReflectionMode: 3
+    - _ReflectionMode: 0
     - _ReflectionRoughness: 0.49
     - _Scattering: 0
-    - _ScatteringIntensity: 1
+    - _ScatteringIntensity: 2.01
     - _ScatteringRangeMax: 1.1730773
     - _ScatteringRangeMin: 0
-    - _Smoothness: 1
+    - _Smoothness: 0.97
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpeedMul: 0
@@ -224,12 +225,12 @@ Material:
     - _WaveAmplitude: 0.23
     - _WaveCount: 32
     - _WaveEffectsBoost: 0.7
-    - _WaveEndDistance: 1000
+    - _WaveEndDistance: 100
     - _WaveLength: 1.65
     - _WaveNormal: 0.61
     - _WaveSpeed: 11.21
     - _WaveStartDistance: 0
-    - _WaveSteepness: 1
+    - _WaveSteepness: 0.76
     - _WorkflowMode: 1
     - _WorldUV: 1
     - _ZWrite: 1
@@ -240,11 +241,11 @@ Material:
     - _CausticsSpeed: {r: 1, g: 1, b: -0.2, a: -0.33}
     - _CausticsSpeed3D: {r: 1, g: 1, b: 1, a: 1}
     - _CausticsTiling: {r: 0.2, g: 0.2, b: 0.3, a: 0.3}
-    - _Color: {r: 0.6581524, g: 0.8157376, b: 0.9622642, a: 1}
-    - _DepthColor: {r: 0.14509802, g: 0.3394357, b: 0.5764706, a: 1}
+    - _Color: {r: 0.59126914, g: 0.87782604, b: 0.9716981, a: 1}
+    - _DepthColor: {r: 0.14509797, g: 0.3588024, b: 0.57647055, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlowTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _FoamColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 0.6039216}
+    - _FoamColor: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 0.6039216}
     - _FoamTiling: {r: 0.81, g: 0.88, b: 1, a: 1}
     - _GerstnerWaveA: {r: 0.84712195, g: -0.53139853, b: 0.66, a: 6.55}
     - _GerstnerWaveB: {r: 0, g: 1, b: 0.05, a: 4}
@@ -264,7 +265,7 @@ Material:
     - _RefractionKey6: {r: -1, g: -1, b: -1, a: -1}
     - _RefractionKey7: {r: -1, g: -1, b: -1, a: -1}
     - _RefractionKey8: {r: -1, g: -1, b: -1, a: -1}
-    - _ScatteringColor: {r: 0.028301895, g: 0, b: 0, a: 1}
+    - _ScatteringColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.990566, g: 0.990566, b: 0.990566, a: 0.44705883}
     - _UnderWaterColor: {r: 0.21226415, g: 0.46418187, b: 0.8490566, a: 0.1764706}
   m_BuildTextureStacks: []
