@@ -10,21 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Sunken Box
+  m_Name: Copper Gathering Tool
   m_EditorClassIdentifier: 
-  description: Pulled out of water box containing something interesting. Use to open
-    it with an equipped Handicraft Tool.
-  grade: 2
-  itemType: 0
-  sprite: {fileID: 21300000, guid: a7fb1314512799f42a4326a0a8b252c9, type: 3}
+  description: 'Helpful instrument used to gather materials.
+
+    __________________________________
+
+    Equipable,
+    Gathering Tool'
+  grade: 0
+  itemType: 12
+  sprite: {fileID: 21300000, guid: 74f0f964da264c647b930e5aa0a2dea3, type: 3}
   stackable: 0
-  usage:
-  - {fileID: 11400000, guid: 888be582b789c76439b8bb49a789b6d9, type: 2}
+  usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   value: 2
-  destroyItemOnUse: 1
+  destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
