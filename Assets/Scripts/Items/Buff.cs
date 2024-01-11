@@ -267,7 +267,7 @@ public class BSlow : Buff
 {
     public BSlow(float value, Character targetEntity)
     {
-        buffType = BuffType.Speed;
+        buffType = BuffType.Slow;
         this.value = value;
         this.targetEntity = targetEntity;
         targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(-value);

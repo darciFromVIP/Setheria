@@ -109,7 +109,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (currentStacks < requiredStacks)
             image.color = new Color(0.5f, 0.5f, 0.5f);
         draggable = false;
-        GetComponent<Button>().interactable = false;
+        GetComponent<Button>().interactable = true;
+        GetComponent<Button>().onClick.AddListener(ShowRecipeOfThisItem);
         GetComponent<TooltipTrigger>().SetText(item.name, item.description, item.sprite);
         newItemNotification.SetActive(false);
     }
@@ -385,5 +386,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         List<RaycastResult> raysastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raysastResults);
         return raysastResults;
+    }
+    private void ShowRecipeOfThisItem()
+    {
+        FindObjectOfType<ManualScreen>(true).ShowRecipeByItem(item);
     }
 }

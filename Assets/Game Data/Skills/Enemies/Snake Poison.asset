@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fadc67feae4c96489d64339dc362544, type: 3}
+  m_Name: Snake Poison
+  m_EditorClassIdentifier: 
+  castingEntity: {fileID: 0}
+  icon: {fileID: 0}
+  cooldown: 10
+  manaCost: 0
+  sound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  description: 
+  requiredTalent: {fileID: 0}
+  requiredTalentLevel: 0
+  unlocked: 1
+  Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []
+  range: 1.5
+  poisonBuff: {fileID: 11400000, guid: 088d504c31d9ac349bd26b78261d02c5, type: 2}
+  slowBuff: {fileID: 11400000, guid: f45ea9b1b0e6d114ba469d08e87cad94, type: 2}
+  projectile: {fileID: 4533246921958147235, guid: 79bd197935df4384c9f8e2f43d8cc2e3,
+    type: 3}

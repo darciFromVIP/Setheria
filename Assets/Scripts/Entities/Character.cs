@@ -17,10 +17,18 @@ public class Character : Entity
     public LayerMask enemyLayers;
     public LayerMask allyLayers;
     public BuffDatabase buffDatabase;
+    public bool canCastSkills;
+
+    public float cooldown1;
+    public float cooldown2;
+    public float cooldown3;
+    public float cooldown4;
+    public float cooldown5;
 
     [HideInInspector] public UnityEvent Stun_Begin = new();
     [HideInInspector] public UnityEvent Stun_End = new();
     [HideInInspector] public UnityEvent Stop_Acting = new();
+    [HideInInspector] public UnityEvent Resume_Acting = new();
     [HideInInspector] public UnityEvent<string, Buff> Buff_Added = new();
 
     protected int animHash_Skill1 = Animator.StringToHash("Skill1");
@@ -32,6 +40,18 @@ public class Character : Entity
     protected override void Start()
     {
         base.Start();
+        canCastSkills = TryGetComponent(out EnemySkills enemySkills);
+        if (cooldown1 > 0)
+            cooldown1 -= Time.deltaTime;
+        if (cooldown2 > 0)
+            cooldown2 -= Time.deltaTime;
+        if (cooldown3 > 0)
+            cooldown3 -= Time.deltaTime;
+        if (cooldown4 > 0)
+            cooldown4 -= Time.deltaTime;
+        if (cooldown5 > 0)
+            cooldown5 -= Time.deltaTime;
+
         if (TryGetComponent(out CanAttack attackComp))
         {
             attackComp.Target_Acquired.AddListener(RotateTargetAcquired);
@@ -121,6 +141,46 @@ public class Character : Entity
     private void StopActing()
     {
         Stop_Acting.Invoke();
+    }
+
+    public void StartCooldown1()
+    {
+        cooldown1 = GetComponent<EnemyCharacter>().skills[0].cooldown;
+        Resume_Acting.Invoke();
+        RpcResumeActing();
+    }
+    public void StartCooldown2()
+    {
+        cooldown2 = GetComponent<EnemyCharacter>().skills[1].cooldown;
+        Resume_Acting.Invoke();
+        RpcResumeActing();
+    }
+    public void StartCooldown3()
+    {
+        cooldown3 = GetComponent<EnemyCharacter>().skills[2].cooldown;
+        Resume_Acting.Invoke();
+        RpcResumeActing();
+    }
+    public void StartCooldown4()
+    {
+        cooldown4 = GetComponent<EnemyCharacter>().skills[3].cooldown;
+        Resume_Acting.Invoke();
+        RpcResumeActing();
+    }
+    public void StartCooldown5()
+    {
+        cooldown5 = GetComponent<EnemyCharacter>().skills[4].cooldown;
+        Resume_Acting.Invoke();
+        RpcResumeActing();
+    }
+    [ClientRpc]
+    private void RpcResumeActing()
+    {
+        Resume_Acting.Invoke();
+    }
+    public bool IsAnyCooldownTicking()
+    {
+        return cooldown1 > 0 || cooldown2 > 0 || cooldown3 > 0 || cooldown4 > 0 || cooldown5 > 0;
     }
     [Command(requiresAuthority = false)]
     public void CmdAddBuff(string buff, NetworkConnectionToClient conn = null)
@@ -270,10 +330,6 @@ public class Character : Entity
     }
     private void RemoveBuff(string buffName)
     {
-        if (isServer)
-            Debug.Log("Remove Buff Is Server");
-        if (isClient)
-            Debug.Log("Remove Buff Is Client");
         var buff = buffDatabase.GetBuffByName(buffName);
         if (buff == null)
             return;
@@ -288,6 +344,15 @@ public class Character : Entity
                 break;
             }
         }
+    }
+    public bool HasBuff(string name)
+    {
+        foreach (var item in buffs)
+        {
+            if (item.name == name)
+                return true;
+        }
+        return false;
     }
     [Command(requiresAuthority = false)]
     public void CmdStunCharacter()

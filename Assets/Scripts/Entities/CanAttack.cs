@@ -39,6 +39,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private CanMove moveComp;
     private NetworkAnimator netAnim;
     private Entity entity;
+    private Character character;
+    private int currentSkillIndex = 0;
 
     public EventReference attackSound;
 
@@ -67,12 +69,6 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                 aggro.Target_Found.AddListener(RpcTargetAcquired);
         }
         moveComp = GetComponent<CanMove>();
-        if (TryGetComponent(out Character character))
-        {
-            character.Stop_Acting.AddListener(CmdStopActing);
-            character.Stun_Begin.AddListener(CmdStopActing);
-            character.Stun_End.AddListener(CmdResumeActing);
-        }
         if (TryGetComponent(out HasHealth hpComp))
         {
             hpComp.On_Death.AddListener(TargetLost);
@@ -85,6 +81,14 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             {
                 player.Enemy_Clicked.AddListener(CmdTargetAcquired);
             }
+        }
+        character = GetComponent<Character>();
+        if (character)
+        {
+            character.Resume_Acting.AddListener(CmdResumeActing);
+            character.Stop_Acting.AddListener(CmdStopActing);
+            character.Stun_Begin.AddListener(CmdStopActing);
+            character.Stun_End.AddListener(CmdResumeActing);
         }
         netAnim = GetComponent<NetworkAnimator>();
         entity = GetComponent<Character>();
@@ -148,6 +152,15 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             }
             else if (moveComp)
                 moveComp.RpcMoveTo(enemyTarget.transform.position);
+
+            if (!character.IsAnyCooldownTicking() && character.canCastSkills)
+            {
+                character.skills[currentSkillIndex].Execute(character);
+
+                currentSkillIndex++;
+                if (currentSkillIndex >= character.skills.Count)
+                    currentSkillIndex = 0;
+            }
         }
     }
     [ClientRpc]
@@ -182,7 +195,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (random < baseCriticalChance)
             modifier = 1 + (baseCriticalDamage / 100);
         if (enemyTarget)
-            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier, false, GetComponent<NetworkIdentity>(), modifier > 1 ? true : false);
+            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier, false, GetComponent<NetworkIdentity>(), modifier > 1 ? true : false, true);
         Attacked();
         RpcSetCanAct(true);
     }

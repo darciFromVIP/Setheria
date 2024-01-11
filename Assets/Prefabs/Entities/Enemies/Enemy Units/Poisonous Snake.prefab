@@ -165,6 +165,17 @@ PrefabInstance:
       propertyPath: xpGranted
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skills.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skills.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: edacfd28ac2c88e4b89597d49691b3d3,
+        type: 2}
     - target: {fileID: 97580777487625474, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -185,6 +196,11 @@ PrefabInstance:
       propertyPath: basePower
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: projectileLaunchPoint
+      value: 
+      objectReference: {fileID: 441041396253420995}
     - target: {fileID: 3983356041049155800, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_Name
@@ -348,6 +364,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: -3256823627033387997}
+    - targetCorrespondingSourceObject: {fileID: 3983356041049155800, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4250134934099437596}
   m_SourcePrefab: {fileID: 100100000, guid: 62dd6bfcf469b0545b58ab83e6ae4abb, type: 3}
 --- !u!4 &343920133369621379 stripped
 Transform:
@@ -376,6 +396,21 @@ MonoBehaviour:
   wanderInterval: 10
   wanderRange: 20
   rangeFromStart: 1
+--- !u!114 &4250134934099437596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343920133369621380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df728ae7b0aa5ce43b4be94befd0f53f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &7611871902374696861 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6494381524655264961, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,

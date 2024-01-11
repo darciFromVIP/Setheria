@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Antitode
+  m_Name: Antidote
   m_EditorClassIdentifier: 
   description: 'Use to cure poisons or in crafting.
 
@@ -22,7 +22,8 @@ MonoBehaviour:
   itemType: 0
   sprite: {fileID: 21300000, guid: b7ee99c616ff6ce48ac70731d5b65c93, type: 3}
   stackable: 1
-  usage: []
+  usage:
+  - {fileID: 11400000, guid: 87b6987fc5105064481dd0b82f31fbd1, type: 2}
   usageCooldown: 10
   cooldownGroup: 1
   passiveBuffs: []

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class Skill : ScriptableObject
 {
-    protected Character castingEntity;
+    [HideInInspector] public Character castingEntity;
     [Header("General Settings")]
     public Sprite icon;
     public float cooldown;
@@ -19,6 +19,7 @@ public class Skill : ScriptableObject
     [HideInInspector] public bool unlocked = true;
 
     public UnityEvent<string> Description_Updated = new();
+
     public virtual void ExecuteOnStart(Character self)
     {
 

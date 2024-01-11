@@ -144,6 +144,10 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     {
         StartCoroutine(MoveWithinRangeCoro(target, range));
     }
+    public void MoveWithinRangeEnemy(Transform target, float range)
+    {
+        StartCoroutine(MoveWithinRangeCoroEnemy(target, range));
+    }
     private IEnumerator MoveWithinRangeCoro(Transform target, float range)
     {
         MoveTo(target.position);
@@ -155,6 +159,19 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
                 Moved_Within_Range.RemoveAllListeners();
                 yield break;
             }
+            if (Vector3.Distance(transform.position, target.position) <= range)
+                break;
+            yield return null;
+        }
+        Stop();
+        Moved_Within_Range.Invoke();
+        Moved_Within_Range.RemoveAllListeners();
+    }
+    private IEnumerator MoveWithinRangeCoroEnemy(Transform target, float range)
+    {
+        while (true)
+        {
+            MoveTo(target.position);
             if (Vector3.Distance(transform.position, target.position) <= range)
                 break;
             yield return null;

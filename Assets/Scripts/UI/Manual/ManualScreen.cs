@@ -275,4 +275,17 @@ public class ManualScreen : MonoBehaviour, WindowedUI
             explorationButton.SetText("Exploration", "");
         }
     }
+    public void ShowRecipeByItem(ItemScriptable item)
+    {
+        if (!manualScreen.activeSelf)
+        {
+            ShowWindow();
+        }
+        var recipe = recipeDatabase.GetRecipeByName(item.name);
+        if (recipe != null) 
+        {
+            if (recipe.unlocked && recipe.visible)
+                GetComponentInChildren<RecipeDetail>(true).UpdateDetails(recipe, false);
+        }
+    }
 }

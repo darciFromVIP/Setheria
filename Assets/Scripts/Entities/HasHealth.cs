@@ -51,7 +51,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
                 if (healthRegen > 0)
                     RpcHealDamage(healthRegen, true);
                 else if (healthRegen < 0)
-                    RpcTakeDamage(-healthRegen, true, GetComponent<NetworkIdentity>(), false);
+                    RpcTakeDamage(-healthRegen, true, GetComponent<NetworkIdentity>(), false, false);
             }
         }
     }
@@ -75,16 +75,16 @@ public class HasHealth : NetworkBehaviour, ISaveable
         Health_Changed.Invoke(health, maxHealth);
     }
     [Command]
-    public void CmdTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical)
+    public void CmdTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting)
     {
-        RpcTakeDamage(damage, ignoreArmor, owner, isCritical);
+        RpcTakeDamage(damage, ignoreArmor, owner, isCritical, interruptCrafting);
     }
     [ClientRpc]
-    public void RpcTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical)
+    public void RpcTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting)
     {
-        TakeDamage(damage, ignoreArmor, owner, isCritical);
+        TakeDamage(damage, ignoreArmor, owner, isCritical, interruptCrafting);
     }
-    public void TakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical)
+    public void TakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting)
     {
         if (health < 0)
             return;
@@ -101,7 +101,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         }
         if (isInvulnerable)
             return;
-        if (TryGetComponent(out PlayerController player))
+        if (TryGetComponent(out PlayerController player) && interruptCrafting)
         {
             if (player.state == PlayerState.Working)
                 player.ChangeState(PlayerState.None);
