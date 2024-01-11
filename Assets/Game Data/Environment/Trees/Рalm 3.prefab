@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3959097761255468574}
   - component: {fileID: 3627187763599713558}
   - component: {fileID: 3815288193516771719}
+  - component: {fileID: 8495734294506987079}
+  - component: {fileID: 8343061698906590407}
   m_Layer: 0
   m_Name: "\u0420alm 3"
   m_TagString: Untagged
@@ -123,3 +125,49 @@ MonoBehaviour:
   storedPrefabBackupGUID: 8b477bcf2928f4048bafa17862bfc00d
   storedPreset: Tools/I Made It/Using Unity Shaders;Trees
   storedOverrides: Mesh/Use Automatic Tree Masks;
+--- !u!136 &8495734294506987079
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564270337379296470}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.11
+  m_Height: 1.2015557
+  m_Direction: 1
+  m_Center: {x: -0.07, y: 0.5, z: -0.05}
+--- !u!136 &8343061698906590407
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564270337379296470}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Height: 1.2015557
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.51, z: 0.05}
