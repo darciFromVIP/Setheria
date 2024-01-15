@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3032665198852705496}
   - component: {fileID: 3032665198855634528}
   - component: {fileID: 3032665198854743950}
-  - component: {fileID: 6737239494519966050}
   m_Layer: 8
   m_Name: pine tree
   m_TagString: Untagged
@@ -26,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3032665198852507266}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.011054069, y: 0.54995555, z: -0.22648019}
   m_LocalScale: {x: 1.2309495, y: 1.2309495, z: 1.2309495}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3032665198852778830}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3032665198855634528
 MeshFilter:
@@ -85,18 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6737239494519966050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3032665198852507266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8df05deefdf6094982b674e91534d81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3032665198852524096
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,13 +108,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3032665198852524096}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.16210662, y: -0.015071561, z: 0.09041868}
   m_LocalScale: {x: 1.2309495, y: 1.2309495, z: 1.2309495}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3032665198852778830}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3167687113313017868
 MeshRenderer:
@@ -183,7 +170,6 @@ GameObject:
   - component: {fileID: 3032665198852778830}
   - component: {fileID: 3350178725727603740}
   - component: {fileID: 1705211543124744595}
-  - component: {fileID: 2206937527771781582}
   m_Layer: 8
   m_Name: Pine Tree v1
   m_TagString: Untagged
@@ -198,6 +184,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3032665198852557604}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10.602591, y: 10.602591, z: 10.602589}
@@ -206,7 +193,6 @@ Transform:
   - {fileID: 3032665198852803618}
   - {fileID: 3032665198852705496}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &3350178725727603740
 CapsuleCollider:
@@ -274,15 +260,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2206937527771781582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3032665198852557604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8df05deefdf6094982b674e91534d81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2031085058865859349}
   - component: {fileID: 4308583993615155167}
   - component: {fileID: 2752630435295658666}
-  - component: {fileID: 1143643040756646225}
   - component: {fileID: 2234256503267394222}
   m_Layer: 8
   m_Name: Tree 1 Little
@@ -110,19 +109,6 @@ CapsuleCollider:
   m_Height: 0.2
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.08}
---- !u!114 &1143643040756646225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2363217863737794058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8df05deefdf6094982b674e91534d81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToHide: {fileID: 6749756141498293211}
 --- !u!114 &2234256503267394222
 MonoBehaviour:
   m_ObjectHideFlags: 0

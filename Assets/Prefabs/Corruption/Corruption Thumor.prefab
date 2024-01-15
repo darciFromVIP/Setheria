@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1e5c426a54e8b064cae7f5aeb5b01d66,
         type: 3}
       propertyPath: m_Name
-      value: CorruptionCellExport
+      value: Corruption Thumor
       objectReference: {fileID: 0}
     - target: {fileID: 8330141449710006793, guid: 1e5c426a54e8b064cae7f5aeb5b01d66,
         type: 3}
@@ -101,6 +101,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5091172635744629836}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e5c426a54e8b064cae7f5aeb5b01d66,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8104977127384240945}
   m_SourcePrefab: {fileID: 100100000, guid: 1e5c426a54e8b064cae7f5aeb5b01d66, type: 3}
 --- !u!1 &3897116160568162052 stripped
 GameObject:
@@ -129,3 +133,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8104977127384240945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3897116160568162052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f2b2bc46159624891753b50dd8dc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8208055339277901003}
   - component: {fileID: 6200376546108680193}
   - component: {fileID: 2122484376492692274}
-  - component: {fileID: 6776320314684682451}
   - component: {fileID: 2505918784437520367}
   m_Layer: 8
   m_Name: Tree 1 Slope
@@ -110,19 +109,6 @@ CapsuleCollider:
   m_Height: 8.48
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 2.96}
---- !u!114 &6776320314684682451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5552047659203103188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8df05deefdf6094982b674e91534d81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToHide: {fileID: 8047946868750544162}
 --- !u!114 &2505918784437520367
 MonoBehaviour:
   m_ObjectHideFlags: 0

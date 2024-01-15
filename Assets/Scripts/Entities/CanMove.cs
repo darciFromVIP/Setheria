@@ -63,7 +63,15 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             if (path.status == NavMeshPathStatus.PathComplete)
                 agent.path = path;
             else
-                agent.SetDestination(destination);
+            {
+                Vector3 tempVector = destination;
+                do
+                {
+                    tempVector = Vector3.MoveTowards(tempVector, transform.position, 1);
+                    NavMesh.CalculatePath(transform.position, tempVector, agent.areaMask, path);
+                } while (path.corners.Length <= 0);
+                agent.path = path;
+            }
         }
     }
     [ClientRpc]

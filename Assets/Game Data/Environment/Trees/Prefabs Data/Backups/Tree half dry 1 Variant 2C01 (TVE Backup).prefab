@@ -71,7 +71,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ae12900931453104ca8d0e07cf9bfc98,
         type: 3}
       propertyPath: m_Name
-      value: Tree half dry 1 Variant
+      value: Tree half dry 1 Variant 2C01 (TVE Backup)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ae12900931453104ca8d0e07cf9bfc98,
         type: 3}
@@ -111,10 +111,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8894986057634284246}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae12900931453104ca8d0e07cf9bfc98,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6726786754196647873}
   m_SourcePrefab: {fileID: 100100000, guid: ae12900931453104ca8d0e07cf9bfc98, type: 3}
 --- !u!1 &1019360347433929448 stripped
 GameObject:
@@ -145,22 +141,3 @@ CapsuleCollider:
   m_Height: 5.69
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 2}
---- !u!114 &6726786754196647873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1019360347433929448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8df05deefdf6094982b674e91534d81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToHide: {fileID: 6311801372337789858}
---- !u!1 &6311801372337789858 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6159819195323411483, guid: ae12900931453104ca8d0e07cf9bfc98,
-    type: 3}
-  m_PrefabInstance: {fileID: 208316789432924089}
-  m_PrefabAsset: {fileID: 0}

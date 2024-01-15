@@ -13,6 +13,7 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     public UnityEvent On_Death = new();
 
     public GameObject hudCircle;
+    private bool hudCircleToggled = false;
     public VFXDatabase vfxDatabase;
     protected virtual void Start()
     {
@@ -30,6 +31,8 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     }
     protected virtual void OnMouseOver()
     {
+        if (hudCircleToggled)
+            return;
         var bar = GetComponentInChildren<EntityStatusBar>(true);
         if (bar)
         { 
@@ -41,6 +44,8 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     }
     protected virtual void OnMouseExit()
     {
+        if (hudCircleToggled)
+            return;
         var bar = GetComponentInChildren<EntityStatusBar>(true);
         if (bar)
         {
@@ -49,6 +54,11 @@ public class Entity : NetworkBehaviour, IUsesAnimator
         }
         else
             hudCircle.SetActive(false);
+    }
+    public void ToggleHUDCircle(bool value)
+    {
+        hudCircleToggled = value;
+        hudCircle.SetActive(value);
     }
 
     [Command(requiresAuthority = false)]

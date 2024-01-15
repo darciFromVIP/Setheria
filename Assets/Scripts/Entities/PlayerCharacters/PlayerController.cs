@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using FoW;
 using UnityEngine.EventSystems;
 using System.Linq;
+using HighlightPlus;
 
 public enum PlayerState
 {
@@ -32,6 +33,7 @@ public class PlayerController : NetworkBehaviour
     private GameObject clickEffect;
     private SettingsManager settingsManager;
     public InputEnabledScriptable inputEnabled;
+    private Character targetedCharacter;
 
 
     public float cooldown1;
@@ -216,6 +218,8 @@ public class PlayerController : NetworkBehaviour
                     {
                         if (Vector3.Distance(transform.position, ship.transform.position) < 10)
                             ship.GetComponent<CanMove>().MoveTo(transform.position);
+                        else
+                            FindObjectOfType<SystemMessages>().AddMessage("The ship is too far away!");
                     }
                 }
             }
@@ -226,10 +230,20 @@ public class PlayerController : NetworkBehaviour
                     if (character.TryGetComponent(out HasHealth hp))
                     {
                         FindObjectOfType<CharacterHoverDetail>().Show(character, true);
+                        character.ToggleHUDCircle(true);
+                        targetedCharacter = character;
                     }
                 }
                 else
+                {
                     FindObjectOfType<CharacterHoverDetail>().Hide(true);
+                    if (targetedCharacter)
+                    {
+                        targetedCharacter.ToggleHUDCircle(false);
+                        targetedCharacter.GetComponent<HighlightEffect>().isSelected = false;
+                        targetedCharacter.GetComponent<HighlightEffect>().highlighted = false;
+                    }
+                }
             }
         }
         
@@ -395,7 +409,7 @@ public class PlayerController : NetworkBehaviour
             {
                 yield break;
             }
-            if (ContainsCollider(collider) || moveComp.HasReachedDestination())
+            if (ContainsCollider(collider) /*|| moveComp.HasReachedDestination()*/)
                 break;
             yield return null;
         }

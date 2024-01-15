@@ -16,8 +16,6 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     private Vector3 followOffset;
     private PlayerCharacter localPlayerCharacter;
     [SerializeField] private bool cameraMouseControl = true;
-    private List<InCameraWay> objectsInTheWay = new();
-    private List<InCameraWay> objectsAlreadyTurnedOff = new();
     private bool isFollowing = false;
     private bool isKeyPressed = false;
     private float cooldownTime = 0.2f; // Adjust this value as needed
@@ -61,34 +59,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     {
         if (!localPlayerCharacter || !inputEnabled.inputEnabled)
             return;
-        //Turn Off Objects near the Camera
-        objectsInTheWay.Clear();
-        //foreach (var item in Physics.CapsuleCastAll(cam.transform.position + cam.transform.right * 0.2f, cam.transform.position - cam.transform.right * 0.2f, 3, localPlayerCharacter.transform.position - cam.transform.position, 30))
-        foreach (var item in Physics.RaycastAll(cam.transform.position, localPlayerCharacter.transform.position - cam.transform.position, 50))
-        {
-            if (item.collider.TryGetComponent(out InCameraWay obstacle))
-            {
-                if (!objectsInTheWay.Contains(obstacle))
-                    objectsInTheWay.Add(obstacle);
-            }
-        }
-        foreach (var item in objectsInTheWay)
-        {
-            if (!objectsAlreadyTurnedOff.Contains(item))
-            {
-                item.TurnOff();
-                objectsAlreadyTurnedOff.Add(item);
-            }    
-        }
-        for (int i = 0; i < objectsAlreadyTurnedOff.Count; i++)
-        {
-            if (!objectsInTheWay.Contains(objectsAlreadyTurnedOff[i]))
-            {
-                objectsAlreadyTurnedOff[i].TurnOn();
-                objectsAlreadyTurnedOff.Remove(objectsAlreadyTurnedOff[i]);
-            }
-        }
-
+       
         Vector3 rottarget = transform.rotation.eulerAngles;
         Vector3 pos = transform.position;
 
