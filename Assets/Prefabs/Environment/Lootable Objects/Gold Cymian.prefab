@@ -119,6 +119,11 @@ PrefabInstance:
       propertyPath: m_VertexColorAlwaysGammaSpace
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5293658121465408505, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.size
@@ -166,6 +171,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: df7a2ab289b52ac45ace238057e4ff3a,
         type: 2}
+    - target: {fileID: 8627531288678635897, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: rmsCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Name
@@ -262,36 +272,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6936030046535924995, guid: f909669298ab5e745b6201715dd56f51,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 542255622019673633}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f909669298ab5e745b6201715dd56f51, type: 3}
---- !u!1 &4352398706517674665 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6936030046535924995, guid: f909669298ab5e745b6201715dd56f51,
-    type: 3}
-  m_PrefabInstance: {fileID: 6640391643192014762}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &542255622019673633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4352398706517674665}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!4 &4352398706517776009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6936030046535688483, guid: f909669298ab5e745b6201715dd56f51,

@@ -128,6 +128,11 @@ PrefabInstance:
       propertyPath: _assetId
       value: 2157346097
       objectReference: {fileID: 0}
+    - target: {fileID: 5293658121465408505, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7829215815847071476, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Enabled
@@ -180,6 +185,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8196a9deb0b604443a71880fe0c85755,
         type: 2}
+    - target: {fileID: 8627531288678635897, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: rmsCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8929349934978510982, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Enabled
@@ -496,11 +506,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 89234209121525298, guid: dadd26cd50ed34c469a24c4510ee4963,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8416853814692949892}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dadd26cd50ed34c469a24c4510ee4963, type: 3}
 --- !u!4 &2456510283154270653 stripped
 Transform:
@@ -508,30 +514,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2909767021987179829}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2980423881823712007 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 89234209121525298, guid: dadd26cd50ed34c469a24c4510ee4963,
-    type: 3}
-  m_PrefabInstance: {fileID: 2909767021987179829}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8416853814692949892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2980423881823712007}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1001 &8222802142354690166
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -28,6 +28,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1807610728678924395, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: rmsCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2147243026206446150, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
       propertyPath: itemData
@@ -94,6 +99,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.596
       objectReference: {fileID: 0}
+    - target: {fileID: 3807047279680566977, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4930539091251683831, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5065034373139137611, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
       propertyPath: m_Name
@@ -108,6 +123,11 @@ PrefabInstance:
         type: 3}
       propertyPath: objectName
       value: Seaweed
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923065364704132365, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: rmsCount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -196,11 +216,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5442089062682271982, guid: d39347c4a0d600e41ba7ba7c58fdbcd8,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8957646772231334736}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d39347c4a0d600e41ba7ba7c58fdbcd8, type: 3}
 --- !u!4 &2794139137673513067 stripped
 Transform:
@@ -208,27 +224,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7353033738714657343}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3282303967718773457 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5442089062682271982, guid: d39347c4a0d600e41ba7ba7c58fdbcd8,
-    type: 3}
-  m_PrefabInstance: {fileID: 7353033738714657343}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8957646772231334736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3282303967718773457}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []

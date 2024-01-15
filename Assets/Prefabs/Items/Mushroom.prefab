@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1807610728678924395, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: rmsCount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2147243026206446150, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
       propertyPath: itemData
@@ -114,6 +119,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.918
       objectReference: {fileID: 0}
+    - target: {fileID: 3807047279680566977, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4930539091251683831, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5065034373139137611, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
       propertyPath: m_Name
@@ -128,6 +143,11 @@ PrefabInstance:
         type: 3}
       propertyPath: objectName
       value: Mushroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923065364704132365, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: rmsCount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -231,36 +251,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6788207123040812952, guid: 9d47ced64b1eb334dbd73e6bd7f84205,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5671847415970022453}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d47ced64b1eb334dbd73e6bd7f84205, type: 3}
---- !u!1 &244704242150073431 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6788207123040812952, guid: 9d47ced64b1eb334dbd73e6bd7f84205,
-    type: 3}
-  m_PrefabInstance: {fileID: 6724388125813857231}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5671847415970022453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 244704242150073431}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!4 &589564296729640685 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6160747016209032482, guid: 9d47ced64b1eb334dbd73e6bd7f84205,

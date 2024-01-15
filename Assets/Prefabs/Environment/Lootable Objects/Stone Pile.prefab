@@ -118,6 +118,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.32
       objectReference: {fileID: 0}
+    - target: {fileID: 5293658121465408505, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7829215815847071476, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Enabled
@@ -207,6 +212,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: bd5a5039329c9cb4db787f752d56c230,
         type: 2}
+    - target: {fileID: 8627531288678635897, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: rmsCount
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8929349934978510982, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Enabled
@@ -336,10 +346,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3636356671639310218}
-    - targetCorrespondingSourceObject: {fileID: 5139091448358088360, guid: 31c60133b6e6b9c4fad4474d21b3e35d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6370455053861306953}
   m_SourcePrefab: {fileID: 100100000, guid: 31c60133b6e6b9c4fad4474d21b3e35d, type: 3}
 --- !u!1 &2244469254747322265 stripped
 GameObject:
@@ -380,24 +386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68581d5f1ee9e314db146941ca19e150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6370455053861306953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2244469254747322265}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!4 &7938395275150820838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3917732441285942487, guid: 31c60133b6e6b9c4fad4474d21b3e35d,

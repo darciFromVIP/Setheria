@@ -166,36 +166,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4328648384838010813, guid: 7066745b1fdfe9a43976ad9e54163827,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 903845306992775202}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7066745b1fdfe9a43976ad9e54163827, type: 3}
---- !u!1 &3233517661800812553 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4328648384838010813, guid: 7066745b1fdfe9a43976ad9e54163827,
-    type: 3}
-  m_PrefabInstance: {fileID: 1210819501487052724}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &903845306992775202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3233517661800812553}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!4 &5059828821967763859 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6266106229075717671, guid: 7066745b1fdfe9a43976ad9e54163827,
@@ -219,6 +191,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807610728678924395, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: rmsCount
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2147243026206446150, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
@@ -291,6 +268,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3807047279680566977, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4930539091251683831, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5065034373139137611, guid: d42cc2249f7425d44b8e4823b3453df6,
         type: 3}
       propertyPath: m_Name
@@ -305,6 +292,11 @@ PrefabInstance:
         type: 3}
       propertyPath: objectName
       value: Hardwood
+      objectReference: {fileID: 0}
+    - target: {fileID: 8923065364704132365, guid: d42cc2249f7425d44b8e4823b3453df6,
+        type: 3}
+      propertyPath: rmsCount
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
