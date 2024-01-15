@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
+  m_Name: Scrap Boots
+  m_EditorClassIdentifier: 
+  description: 'Fully repaired boots now ready to wear.
+
+    __________________________________
+
+    +5%<sprite=16>
+
+    __________________________________
+
+    Equipable,
+    Feet'
+  grade: 0
+  itemType: 5
+  sprite: {fileID: 21300000, guid: 9a35489288a9b7948a45f220dbe63149, type: 3}
+  stackable: 0
+  usage: []
+  usageCooldown: 0
+  cooldownGroup: 0
+  passiveBuffs:
+  - {fileID: 11400000, guid: 0c0b70091921f8d4b8f6c1d0b34988dc, type: 2}
+  value: 0
+  destroyItemOnUse: 0
+  resourceCost: 0
+  knowledgeCost: 0
+  unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
+  Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
+    m_PersistentCalls:
+      m_Calls: []
