@@ -9689,7 +9689,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf4b415ecf394fa48bfe0ece185cf7d9, type: 2}
+  - {fileID: 2100000, guid: eb96327aca2e2254f9fb029043f7c3e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9752,7 +9752,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cf4b415ecf394fa48bfe0ece185cf7d9, type: 2}
+      objectReference: {fileID: 2100000, guid: eb96327aca2e2254f9fb029043f7c3e1, type: 2}
     - target: {fileID: 3638283437146297504, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9892,6 +9892,36 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startSize.minScalar
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key1.a
+      value: 0.58431375
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key2.a
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.m_ColorSpace
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9206061202660715775, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
