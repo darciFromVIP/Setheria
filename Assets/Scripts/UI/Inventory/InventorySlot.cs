@@ -25,6 +25,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             {
                 if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
                 {
+                    slot.UnequipItem();
                     var player = FindObjectOfType<GameManager>().localPlayerCharacter;
                     foreach (var item in inventoryItem.item.passiveBuffs)
                     {

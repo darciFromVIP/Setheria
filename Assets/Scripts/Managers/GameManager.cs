@@ -36,6 +36,10 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     {
         FindObjectOfType<NetworkedSaveLoad>().CmdSave();
     }
+    public void LoadGame()
+    {
+        FindObjectOfType<NetworkedSaveLoad>().CmdLoad();
+    }
     public void ExitToMainMenu()
     {
         FindObjectOfType<InventoryManager>().DestroyAllItems();

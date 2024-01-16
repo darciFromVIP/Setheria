@@ -21,7 +21,7 @@ MonoBehaviour:
     Equipable,
     Chest'
   grade: 0
-  itemType: 2
+  itemType: 4
   sprite: {fileID: 21300000, guid: 3449082af01fdf84e9fbf7f77654e4ee, type: 3}
   stackable: 0
   usage: []
@@ -35,6 +35,13 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

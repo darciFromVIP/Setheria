@@ -10,9 +10,8 @@ public class SaveDataWorldServer
 
 
     public SaveDataWorldServer() { }
-    public SaveDataWorldServer(string name, int seed)
+    public SaveDataWorldServer(string name)
     {
         worldSaveData.worldName = name;
-        worldSaveData.worldSeed = seed;
     }
 }

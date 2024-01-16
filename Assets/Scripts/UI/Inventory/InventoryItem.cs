@@ -305,6 +305,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         var slot = FindObjectOfType<InventoryManager>(true).GetFreeSlot();
         if (slot)
         {
+            transform.parent.GetComponent<CharacterGearSlot>().UnequipItem();
             transform.SetParent(slot);
             var player = FindObjectOfType<GameManager>().localPlayerCharacter;
             foreach (var item in item.passiveBuffs)

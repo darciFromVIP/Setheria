@@ -68,6 +68,11 @@ public class WorldGenerator : MonoBehaviour
             } 
         }
         yield return new WaitUntil(IsMainSceneLoaded);
+        yield return StartCoroutine(LoadWorldState(state));
+        Debug.Log("Scene Loaded");
+    }
+    public IEnumerator LoadWorldState(SaveDataWorld state)
+    {
         if (NetworkServer.active)
             LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
         FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
@@ -75,7 +80,6 @@ public class WorldGenerator : MonoBehaviour
             yield return null;
         FindObjectOfType<GameManager>().ChangeResources(state.resources);
         FindObjectOfType<GameManager>().ChangeKnowledge(state.knowledge);
-        Debug.Log("Scene Loaded");
     }
     private void LoadWorldObjects(Dictionary<string, Dictionary<string, SaveDataWorldObject>> worldObjects)
     {

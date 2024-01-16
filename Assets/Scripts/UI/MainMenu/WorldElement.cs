@@ -8,16 +8,14 @@ using System.IO;
 public class WorldElement : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI seedText;
     private string filePath;
     private void Awake()
     {
         GetComponent<Button>().onClick.AddListener(PlayThisWorld);
     }
-    public void UpdateElement(string worldName, int worldSeed, string path)
+    public void UpdateElement(string worldName, string path)
     {
         nameText.text = worldName;
-        seedText.text = "Seed: " + worldSeed.ToString();
         filePath = path;
     }
     public void PlayThisWorld()

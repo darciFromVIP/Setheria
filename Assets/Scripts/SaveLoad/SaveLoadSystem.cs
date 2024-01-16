@@ -37,7 +37,8 @@ public class SaveLoadSystem : MonoBehaviour
     private IEnumerator SavingCoro()
     {
         saveFinished = false;
-        SaveFileWorld(SaveStateWorld());
+        currentWorldDataServer = SaveStateWorld();
+        SaveFileWorld(currentWorldDataServer);
         SavePlayerStates();
         yield return StartCoroutine(SavePlayerFiles());
         saveFinished = true;

@@ -123,6 +123,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
 
         LoadCharacter();
     }
+    public void LoadCharacterFromServer()
+    {
+        StartCoroutine(LoadCharacterCoro());
+    }
     [Command]
     protected void LoadCharacter()
     {

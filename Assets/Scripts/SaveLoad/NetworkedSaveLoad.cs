@@ -20,4 +20,18 @@ public class NetworkedSaveLoad : NetworkBehaviour
     {
         saveLoadSystem.SavePlayerState(saveData);
     }
+    [Command(requiresAuthority = false)]    
+    public void CmdLoad()                   // not functional enough
+    {
+        RpcLoad(saveLoadSystem.currentWorldDataServer.worldSaveData);
+        foreach (var item in FindObjectsOfType<PlayerCharacter>())
+        {
+            item.LoadCharacterFromServer();
+        }
+    }
+    [ClientRpc]
+    private void RpcLoad(SaveDataWorld state)
+    {
+        StartCoroutine(FindObjectOfType<WorldGenerator>().LoadWorldState(state));
+    }
 }

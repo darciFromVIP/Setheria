@@ -46,5 +46,10 @@ public class CharacterGearSlot : MonoBehaviour, IDropHandler
         {
             player.CmdAddBuff(item.name);
         }
+        GetComponent<TooltipTrigger>().enabled = false;
+    }
+    public void UnequipItem()
+    {
+        GetComponent<TooltipTrigger>().enabled = true;
     }
 }
