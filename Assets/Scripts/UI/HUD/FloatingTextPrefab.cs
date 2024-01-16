@@ -40,7 +40,7 @@ public class FloatingTextPrefab : MonoBehaviour
                 textMesh.color = Color.green;
                 break;
             case FloatingTextType.Fishing:
-                textMesh.color = Color.blue;
+                textMesh.color = new Color(0, 1, 1);
                 break;
             case FloatingTextType.Cooking:
                 textMesh.color = Color.red;

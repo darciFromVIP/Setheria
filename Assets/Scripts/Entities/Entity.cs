@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class Entity : NetworkBehaviour, IUsesAnimator
 {
     public NetworkAnimator animator;
+    private bool dead = false;
 
     protected int animHash_Death = Animator.StringToHash("Death");
 
@@ -74,6 +75,8 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     }
     protected virtual void OnDeath()
     {
+        if (dead)
+            return;
         if (animator)
         {
             foreach (var item in GetComponentsInChildren<Animator>())
@@ -91,6 +94,7 @@ public class Entity : NetworkBehaviour, IUsesAnimator
         else
             gameObject.SetActive(false);
         On_Death.Invoke();
+        dead = true;
     }
     private IEnumerator CorpseDecay()
     {

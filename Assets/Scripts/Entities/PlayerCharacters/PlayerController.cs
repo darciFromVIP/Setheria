@@ -514,7 +514,7 @@ public class PlayerController : NetworkBehaviour
         if (moveComp.agent.enabled)
             ChangeState(PlayerState.None);
         else
-            ChangeState(PlayerState.Busy);
+            ChangeState(PlayerState.OutOfGame);
         Work_Finished.Invoke();
         Work_Finished.RemoveAllListeners();
         Work_Cancelled.RemoveAllListeners();

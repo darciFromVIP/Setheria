@@ -32,7 +32,11 @@ public class ShipController : NetworkBehaviour
     private void OnTriggerEnter(Collider other)
     {
         collidingColliders.Add(other);
-        Debug.Log(other.name);
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (!collidingColliders.Contains(other))
+            collidingColliders.Add(other);
     }
     private void OnTriggerExit(Collider other)
     {
@@ -46,24 +50,26 @@ public class ShipController : NetworkBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, shipMask))
             {
-                clickEffect.transform.position = hit.point;
-                clickEffect.GetComponent<ParticleSystem>().Play();
-                moveComp.MoveTo(hit.point);
-
                 if (hit.collider.TryGetComponent(out Item item))
                 {
                     StartCoroutine(pickupComp.GoToPickup(item));
                 }
-                if (hit.collider is TerrainCollider)
+                else if (hit.collider is TerrainCollider)
                 {
                     StartCoroutine(GoToUnload(hit.point));
                 }
-                if (hit.collider.TryGetComponent(out IInteractable interactable))
+                else if (hit.collider.TryGetComponent(out IInteractable interactable))
                 {
                     if (hit.collider.TryGetComponent(out SchoolOfFish fishing))
                         StartCoroutine(GoToInteract(fishing.interactionCollider, interactable));
                     else
                         StartCoroutine(GoToInteract(hit.collider, interactable));
+                }
+                else
+                {
+                    clickEffect.transform.position = hit.point;
+                    clickEffect.GetComponent<ParticleSystem>().Play();
+                    moveComp.MoveTo(hit.point);
                 }
             }
         }
@@ -91,19 +97,15 @@ public class ShipController : NetworkBehaviour
         var originDest = moveComp.agent.destination;
         while (true)
         {
-            Debug.Log(originDest);
-            Debug.Log(moveComp.agent.destination);
             if (Vector3.Distance(originDest, moveComp.agent.destination) > 2.5f)
             {
                 yield break;
             }
-            Debug.Log("Going to Interact");
-            if (ContainsCollider(collider) || moveComp.HasReachedDestination())
+            if (ContainsCollider(collider))
                 break;
             yield return null;
         }
         moveComp.Stop();
-        Debug.Log("Interacting");
         interactable.Interact(shipComp.crew[0]);
     }
     private bool ContainsCollider(Collider colliderToCompare)
