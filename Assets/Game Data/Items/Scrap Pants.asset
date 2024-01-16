@@ -10,17 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Silver Key
+  m_Name: Scrap Pants
   m_EditorClassIdentifier: 
-  description: This interesting key must open something...
-  grade: 1
-  itemType: 0
-  sprite: {fileID: 21300000, guid: 30b8057c8fe88074da16319261888424, type: 3}
+  description: '+50<sprite=5>
+
+    +50<sprite=4>
+
+    __________________________________
+
+    Equipable,
+    Chest'
+  grade: 0
+  itemType: 2
+  sprite: {fileID: 21300000, guid: 3449082af01fdf84e9fbf7f77654e4ee, type: 3}
   stackable: 0
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
-  passiveBuffs: []
+  passiveBuffs:
+  - {fileID: 11400000, guid: 42b91eb1fa958cd4b8b3d5b0274557a8, type: 2}
+  - {fileID: 11400000, guid: 69cda73cd1b3bd746a9dd66247e0a1c1, type: 2}
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
