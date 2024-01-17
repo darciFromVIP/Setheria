@@ -22,8 +22,6 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     private SettingsManager settingsManager;
     public InputEnabledScriptable inputEnabled;
 
-    public EventScriptable Character_Stats_Screen_Toggled;
-
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         playerCharacter = player;
@@ -58,8 +56,6 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         if (Input.GetKeyDown(settingsManager.settings.characterScreen))
         {
             ToggleWindow();
-            if (window.activeSelf)
-                CheckIfStatsAreOpened();
         }
         if (Input.GetKeyDown(settingsManager.settings.manual) && window.activeSelf)
             HideWindow();
@@ -69,9 +65,16 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(!window.activeSelf);
         if (window.activeSelf)
+        {
+            if (currentOpenedWindow.name != "CharacterStatsWindow")
+                FindObjectOfType<InventoryScreen>().HideWindowWithoutSound();
             characterSkills.HideGraphics();
+        }
         else
+        {
             characterSkills.ShowGraphics();
+            FindObjectOfType<InventoryScreen>().ShowWindowWithoutSound();
+        }
         GetComponentInChildren<TalentScreen>(true).UpdateTalents();
     }
     public void HideWindow()
@@ -79,12 +82,15 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         characterSkills.ShowGraphics();
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(false);
+        FindObjectOfType<InventoryScreen>().ShowWindowWithoutSound();
     }
     public void ShowWindow()
     {
         characterSkills.HideGraphics();
         FindObjectOfType<Tooltip>(true).Hide();
         window.SetActive(true);
+        if (currentOpenedWindow.name != "CharacterStatsWindow")
+            FindObjectOfType<InventoryScreen>().HideWindowWithoutSound();
     }
 
     public bool IsActive()
@@ -209,14 +215,6 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     {
         base.OpenAnotherWindow(window);
         GetComponentInChildren<TalentScreen>(true).UpdateTalents();
-        CheckIfStatsAreOpened();
-    }
-    private void CheckIfStatsAreOpened()
-    {
-        if (currentOpenedWindow.name == "CharacterStatsWindow")
-            Character_Stats_Screen_Toggled.boolEvent.Invoke(true);
-        else
-            Character_Stats_Screen_Toggled.boolEvent.Invoke(false);
     }
     public List<InventoryItem> GetEquippedGear()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
 using UnityEditor;
+using HighlightPlus;
 
 public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
 {

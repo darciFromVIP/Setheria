@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -87,7 +88,6 @@ namespace HighlightPlus {
         void OnEnable() {
             Init();
         }
-
         private void OnValidate() {
             if (currentTriggerMode != triggerMode) {
                 UpdateTriggers();
@@ -143,6 +143,7 @@ namespace HighlightPlus {
                     }
                 }
             }
+            Init();
         }
 
 
