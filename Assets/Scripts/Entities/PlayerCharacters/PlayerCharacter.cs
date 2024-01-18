@@ -466,7 +466,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             yield return null;
         }
         CmdAddItemToInventory(itemToGive.item.name, itemToGive.stacks, player.netIdentity);
-        Destroy(itemToGive.gameObject);
+        itemToGive.DestroyItem();
     }
     [Command]
     public void CmdAddItemToInventory(string item, int stacks, NetworkIdentity targetPlayer)

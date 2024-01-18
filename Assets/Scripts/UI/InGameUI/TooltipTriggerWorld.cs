@@ -8,23 +8,10 @@ public class TooltipTriggerWorld : MonoBehaviour
     public string objectName;
     public string keybindLabel;
     public KeybindType keybindType;
-    private void OnMouseOver()
+    public void Show(TooltipWorld tooltip)
     {
         if (FogOfWarTeam.GetTeam(0).GetFogValue(transform.position) >= 255 / 1.2f)
             return;
-        var eventData = new PointerEventData(EventSystem.current);
-        eventData.position = Input.mousePosition;
-        List<RaycastResult> results = new();
-        EventSystem.current.RaycastAll(eventData, results);
-        if (results.Count > 0)
-        {
-            FindObjectOfType<TooltipWorld>(true).Hide();
-            return;
-        }
-        FindObjectOfType<TooltipWorld>(true).Show(objectName, keybindType, keybindLabel);
-    }
-    private void OnMouseExit()
-    {
-        FindObjectOfType<TooltipWorld>(true).Hide();
+        tooltip.Show(objectName, keybindType, keybindLabel);
     }
 }

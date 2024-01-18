@@ -8,11 +8,13 @@ public class CursorRaycaster : NetworkBehaviour
 {
     private CustomCursor cursor;
     private PlayerController player;
+    private TooltipWorld tooltip;
     public LayerMask layerMask;
     private void Start()
     {
         cursor = FindObjectOfType<CustomCursor>();
         player = GetComponent<PlayerController>();
+        tooltip = FindObjectOfType<TooltipWorld>(true);
     }
     private void FixedUpdate()
     {
@@ -31,6 +33,13 @@ public class CursorRaycaster : NetworkBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
+            if (hit.collider.TryGetComponent(out TooltipTriggerWorld trigger))
+            {
+                trigger.Show(tooltip);
+            }
+            else
+                tooltip.Hide();
+
             if (player.castingState == CastingState.EnemyOnly || player.castingState == CastingState.Both || player.castingState == CastingState.BothExceptSelf && hit.collider.TryGetComponent(out EnemyCharacter enemyy))
                 cursor.SetEnemyCastingCursor();
             else if (player.state != PlayerState.Casting && hit.collider.TryGetComponent(out EnemyCharacter enemy))

@@ -137,8 +137,13 @@ public class Character : Entity
         animator.SetTrigger(animHash_Skill5);
         StopActing();
     }
-    [ClientRpc]
     private void StopActing()
+    {
+        Stop_Acting.Invoke();
+        RpcStopActing();
+    }
+    [ClientRpc]
+    private void RpcStopActing()
     {
         Stop_Acting.Invoke();
     }

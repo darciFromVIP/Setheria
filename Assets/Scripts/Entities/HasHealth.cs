@@ -86,7 +86,6 @@ public class HasHealth : NetworkBehaviour, ISaveable
     }
     public void TakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting)
     {
-        Debug.Log(name + " has health: " + health);
         if (health <= 0)
             return;
         if (TryGetComponent(out CanAttack attack) && owner.netId != GetComponent<NetworkIdentity>().netId)
