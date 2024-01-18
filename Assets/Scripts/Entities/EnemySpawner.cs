@@ -71,6 +71,8 @@ public class EnemySpawner : NetworkBehaviour
         }
         if (attackPoint == Vector3.zero)
             return;
+        if (enemySpawnTable.Count <= 0)
+            return;
         int random;
         int temp;
         foreach (var item in enemySpawnTable)

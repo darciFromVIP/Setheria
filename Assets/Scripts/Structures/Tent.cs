@@ -5,6 +5,10 @@ using Mirror;
 public class Tent : NetworkBehaviour
 {
     public List<PlayerCharacter> restingPlayers = new List<PlayerCharacter>();
+    private void Start()
+    {
+        FindObjectOfType<SystemMessages>().AddMessage("Beware of wild creatures attacking your base!", MsgType.Notice);
+    }
 
     [Command(requiresAuthority = false)]
     public void CmdRestPlayer(NetworkIdentity player)
