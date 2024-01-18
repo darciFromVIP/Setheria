@@ -37,6 +37,12 @@ public class StructureScreen : MonoBehaviour, WindowedUI
             var option = Instantiate(structureOptionPrefab, structureOptionsList);
             option.Initialize(item.icon, item);
         }
+        for (int i = 0; i < 10 - structure.structureOptions.Count; i++)
+        {
+            var option = Instantiate(structureOptionPrefab, structureOptionsList);
+            option.GetComponent<Button>().enabled = false;
+            option.GetComponent<TooltipTrigger>().enabled = false;
+        }
         window.SetActive(true);
     }
     public void HideWindow()

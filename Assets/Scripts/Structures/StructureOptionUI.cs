@@ -158,6 +158,35 @@ public class StructureOptionUI : MonoBehaviour
                 else
                     FindObjectOfType<SystemMessages>().AddMessage("You are not resting right now!");
                 break;
+            case StructureAction.Repair:
+                if (FindObjectOfType<GameManager>().GetResources() == 0)
+                {
+                    FindObjectOfType<SystemMessages>().AddMessage("You have not enough Resources!");
+                    return;
+                }
+                var healthToRepair = currentStructure.GetComponent<HasHealth>().GetFinalMaxHealth() - currentStructure.GetComponent<HasHealth>().GetHealth();
+                if (healthToRepair == 0)
+                {
+                    FindObjectOfType<SystemMessages>().AddMessage("This structure is fully repaired!");
+                    return;
+                }
+                int toolLevel = 0;
+                foreach (var item in FindObjectOfType<CharacterScreen>().GetEquippedGear())
+                {
+                    if (item.item.itemType == ItemType.HandicraftTool)
+                        toolLevel = item.item.value;
+                }
+                if (toolLevel == 0)
+                {
+                    FindObjectOfType<SystemMessages>().AddMessage("You don't have a Handicraft Tool equipped!");
+                    return;
+                }
+                var player6 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
+                player6.Repair_Tick.AddListener(currentStructure.RepairStructure);
+                float temp = Mathf.Ceil(healthToRepair / (toolLevel * 10));
+                float temp2 = FindObjectOfType<GameManager>().GetResources();
+                player6.CmdStartWorking(temp2 < temp ? temp2 : temp);
+                break;
             default:
                 break;
         }

@@ -15,4 +15,8 @@ public class DestroyAfterAnimation : MonoBehaviour
     {
         GetComponentInParent<LootableObject>().CmdDestroyOnServer();
     }
+    public void DestroySpawnerParentOnServer()
+    {
+        GetComponentInParent<EnemySpawner>().CmdDestroy();
+    }
 }

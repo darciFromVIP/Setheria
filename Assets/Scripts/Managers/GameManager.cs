@@ -12,8 +12,10 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
 {
     public TextMeshProUGUI resourcesText, knowledgeText;
     [SyncVar(hook = nameof(ResourceHook))]
+    [SerializeField]
     private int resources = 0;
     [SyncVar(hook = nameof(KnowledgeHook))]
+    [SerializeField]
     private int knowledge = 0;
 
     private bool inputEnabled = true;

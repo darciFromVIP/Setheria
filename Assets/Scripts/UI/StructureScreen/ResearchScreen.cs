@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class ResearchScreen : MonoBehaviour, WindowedUI
@@ -52,6 +53,7 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
         {
             item.UpdateRecipe();
         }
+        researchBTN.GetComponentInChildren<TextMeshProUGUI>().text = "Research<sprite=1>" + currentTier * 20;
     }
     public void UnlockRandomRecipe()
     {  
@@ -60,10 +62,10 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
         {
             result = recipes[Random.Range(0, recipes.Count)];
         } while (result.recipe.tier != currentTier || result.recipe.unlocked);
-        result.recipe.UnlockRecipe();
         FindObjectOfType<AcquiredItems>().ItemResearched(result.recipe.resultItem);
         FindObjectOfType<GameManager>().ChangeKnowledge(-currentTier * 20);
         researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && recipes.Count > 0 && !allResearchesDone;
+        result.recipe.UnlockRecipe();
     }
     public void CheckTier()
     {

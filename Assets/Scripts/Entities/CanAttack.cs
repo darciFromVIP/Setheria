@@ -2,6 +2,7 @@ using FMODUnity;
 using Mirror;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public enum AttackType
@@ -25,6 +26,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private float finalAttackSpeed;
     public float attackSpeedTimer = 0;
     [SerializeField] private float attackRange;
+    private float additionalRange = 0;
     [SerializeField] private float baseCooldownReduction = 0;
     private float gearCooldownReduction = 0;
     private float finalCooldownReduction;
@@ -123,7 +125,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                     return;
                 }
             }
-            if (Vector3.Distance(transform.position, enemyTarget.transform.position) <= (attackRange > moveComp.agent.stoppingDistance ? attackRange : moveComp.agent.stoppingDistance))
+            if (Vector3.Distance(transform.position, enemyTarget.transform.position) <= (attackRange > moveComp.agent.stoppingDistance ? attackRange : moveComp.agent.stoppingDistance) + additionalRange)
             {
                 moveComp.Stop();
                 if (attackSpeedTimer <= 0)
@@ -284,7 +286,13 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                 enemyTarget.Target_Received.Invoke(hp);
             enemyTarget.On_Death.AddListener(CmdTargetLost);
             Target_Acquired.Invoke(target);
-            float temp = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;
+            float temp = 0;
+            additionalRange = 0;
+            if (!enemyTarget.TryGetComponent(out NavMeshObstacle obstacle))
+                temp = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;
+            else
+                additionalRange = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;
+
             if (moveComp)
             {
                 if (temp > attackRange)

@@ -5,6 +5,7 @@ using Mirror;
 using UnityEngine.UI;
 using TMPro;
 using HighlightPlus;
+using UnityEngine.Events;
 
 public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerCharacter, ISaveable
 {
@@ -33,6 +34,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     public Slider refreshProgressBar;
     public TextMeshProUGUI remainingChargesText;
     public EventScriptable Player_Event;
+    public UnityEvent<LootableObject> Object_Destroyed = new();
     private void Start()
     {
         tooltip = GetComponent<TooltipTriggerWorld>();
@@ -176,6 +178,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     [Command(requiresAuthority = false)]
     private void CmdDestroyObject()
     {
+        Object_Destroyed.Invoke(this);
         RpcDestroyObject();
     }
     [ClientRpc]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
+[System.Serializable]
 public class EnemyCharacter : Character, ISaveable
 {
     [SerializeField] private int xpGranted;

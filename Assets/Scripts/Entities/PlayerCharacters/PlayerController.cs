@@ -55,6 +55,7 @@ public class PlayerController : NetworkBehaviour
     [HideInInspector] public UnityEvent Work_Cancelled = new();
     [HideInInspector] public UnityEvent Work_Finished = new();
     [HideInInspector] public UnityEvent Resume_Acting = new();
+    [HideInInspector] public UnityEvent<float> Repair_Tick = new();
 
     private void Start()
     {
@@ -496,6 +497,16 @@ public class PlayerController : NetworkBehaviour
         moveComp.Stop();
         ChangeState(PlayerState.Working);
         playerCharacter.animator.animator.SetBool("Interact", true);
+
+        //Preparation for repairing
+        float repairInterval = 0;
+        float repairAmount = 0;
+        foreach (var item in FindObjectOfType<CharacterScreen>().GetEquippedGear())
+        {
+            if (item.item.itemType == ItemType.HandicraftTool)
+                repairAmount = item.item.value * 10;
+        }
+
         while (duration > 0)
         {
             if (state != PlayerState.Working)
@@ -504,8 +515,15 @@ public class PlayerController : NetworkBehaviour
                 Work_Cancelled.Invoke();
                 Work_Finished.RemoveAllListeners();
                 Work_Cancelled.RemoveAllListeners();
+                Repair_Tick.RemoveAllListeners();
                 playerCharacter.animator.animator.SetBool("Interact", false);
                 yield break;
+            }
+            repairInterval += Time.deltaTime;
+            if (repairInterval >= 0.97f)
+            {
+                Repair_Tick.Invoke(repairAmount);
+                repairInterval = 0;
             }
             duration -= Time.deltaTime;
             Working_Event.Invoke(duration);
@@ -518,6 +536,7 @@ public class PlayerController : NetworkBehaviour
         Work_Finished.Invoke();
         Work_Finished.RemoveAllListeners();
         Work_Cancelled.RemoveAllListeners();
+        Repair_Tick.RemoveAllListeners();
         playerCharacter.animator.animator.SetBool("Interact", false);
     }
     public bool IsPointerOverGameObject()
@@ -540,5 +559,9 @@ public class PlayerController : NetworkBehaviour
         }
 
         return false;
+    }
+    public List<Collider> GetColliders()
+    {
+        return collidingColliders;
     }
 }

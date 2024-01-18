@@ -67,4 +67,9 @@ public class Structure : Entity, ISaveable, IInteractable
     {
         FindObjectOfType<AudioManager>().BuildingDestroyed(transform.position);
     }
+    public void RepairStructure(float amount)
+    {
+        GetComponent<HasHealth>().HealDamage(amount, false);
+        FindObjectOfType<GameManager>().ChangeResources(-1);
+    }
 }
