@@ -635,7 +635,7 @@ NavMeshObstacle:
   m_Shape: 0
   m_Extents: {x: 1.1, y: 1.075, z: 1.1}
   m_MoveThreshold: 0.1
-  m_Carve: 1
+  m_Carve: 0
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.27, y: 0, z: 0}
   m_TimeToStationary: 0.5
@@ -678,10 +678,10 @@ MonoBehaviour:
   oneTimeLoot: 1
   destroyOnLoot: 1
   lootable: 1
-  toolRequirement: 12
-  toolLevelRequirement: 1
-  professionRequired: 5
-  professionExperienceRequired: 10
+  toolRequirement: 0
+  toolLevelRequirement: 0
+  professionRequired: 0
+  professionExperienceRequired: 0
   effectsToHide: []
   anim: {fileID: 0}
   lootableName: <sprite=17> Ruins
@@ -1021,6 +1021,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Loot Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316823297637578971, guid: f57c7553d3e08b344b5d9fc058020524,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
