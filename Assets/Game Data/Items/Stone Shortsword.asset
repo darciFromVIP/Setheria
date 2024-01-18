@@ -20,8 +20,6 @@ MonoBehaviour:
 
     +1<sprite=3>
 
-    +2<sprite=7>
-
     __________________________________
 
     Equipable,
@@ -34,7 +32,6 @@ MonoBehaviour:
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: cc6047d831b28764d961da8eb9385a9b, type: 2}
   - {fileID: 11400000, guid: 8d476df06e4e7a34ba013fa258bf1ecb, type: 2}
   - {fileID: 11400000, guid: daf38c5c1e452a047b790c5ce1091077, type: 2}
   value: 0
@@ -42,6 +39,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []
