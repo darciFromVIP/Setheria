@@ -174,6 +174,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         if (attackSpeedTimer > 0 || !canAct)
             return;
+        Attacked();
         canAct = false;                                 //RPC is too slow so we're doing it again on the server
         RpcSetCanAct(false);
         int random = Random.Range(0, 4);

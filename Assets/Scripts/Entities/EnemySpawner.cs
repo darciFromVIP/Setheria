@@ -106,6 +106,7 @@ public class EnemySpawner : NetworkBehaviour
                 if (item.TryGetComponent(out Wander wander))
                     wander.enabled = false;
                 item.GetComponent<CanMove>().MoveTo(attackPoint);
+                item.campRadius = 99999;
             }
         }
     }
