@@ -89,6 +89,7 @@ public class Projectile : NetworkBehaviour
             if (Vector3.Distance(transform.position, data.targetedEntity.transform.position) < 0.5)
             {
                 ProjectileImpact();
+                break;
             }
             yield return null;
         }
@@ -101,6 +102,7 @@ public class Projectile : NetworkBehaviour
             if (Vector3.Distance(transform.position, data.targetPoint) < 0.5)
             {
                 ProjectileImpact();
+                break;
             }
             yield return null;
         }
@@ -118,6 +120,7 @@ public class Projectile : NetworkBehaviour
             if (Vector3.Distance(transform.position, startingPos) > data.skillshotRange)
             {
                 ProjectileImpact();
+                break;
             }
             yield return null;
         }
@@ -209,6 +212,10 @@ public class Projectile : NetworkBehaviour
     }
     private IEnumerator DelayedDestroy()
     {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
         yield return new WaitForSeconds(2);
         NetworkServer.Destroy(gameObject);
     }
