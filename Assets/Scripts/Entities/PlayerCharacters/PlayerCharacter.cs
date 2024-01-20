@@ -457,12 +457,14 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         moveComp.MoveTo(player.transform.position);
         var originDest = moveComp.agent.destination;
-        while (!moveComp.HasReachedDestination())
+        while (true)
         {
             if (originDest != moveComp.agent.destination)
             {
                 yield break;
             }
+            if (playerController.ContainsCollider(player.GetComponent<Collider>()))
+                break;
             yield return null;
         }
         CmdAddItemToInventory(itemToGive.item.name, itemToGive.stacks, player.netIdentity);
@@ -715,6 +717,18 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         moveComp.agent.enabled = true;
         moveComp.Stop();
         FindObjectOfType<CameraTarget>().Teleport(transform.position);
+        CmdPrintLocation();
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdPrintLocation()
+    {
+        Debug.Log("Server Location of " + name + ": " + transform.position);
+        RpcPrintLocation();
+    }
+    [ClientRpc]
+    private void RpcPrintLocation()
+    {
+        Debug.Log("Client Location of " + name + ": " + transform.position);
     }
     public void UpdateManualCategories()
     {

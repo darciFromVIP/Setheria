@@ -410,14 +410,14 @@ public class PlayerController : NetworkBehaviour
             {
                 yield break;
             }
-            if (ContainsCollider(collider) /*|| moveComp.HasReachedDestination()*/)
+            if (ContainsCollider(collider))
                 break;
             yield return null;
         }
         moveComp.Stop();
         interactable.Interact(playerCharacter);
     }
-    private bool ContainsCollider(Collider colliderToCompare)
+    public bool ContainsCollider(Collider colliderToCompare)
     {
         return collidingColliders.Contains(colliderToCompare);
     }

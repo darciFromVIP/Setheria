@@ -676,7 +676,7 @@ MonoBehaviour:
   xpGranted: 30
   maxCharges: 0
   oneTimeLoot: 1
-  destroyOnLoot: 1
+  destroyOnLoot: 0
   lootable: 1
   toolRequirement: 0
   toolLevelRequirement: 0
@@ -689,6 +689,9 @@ MonoBehaviour:
   refreshProgressBar: {fileID: 2071052980636620062}
   remainingChargesText: {fileID: 2373316213450876285}
   Player_Event: {fileID: 11400000, guid: cd12b9089334303458b84dfa92efc12f, type: 2}
+  Object_Destroyed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7929684349248396451
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,6 +34,10 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public UnityEvent<HasHealth> Target_Received = new();
     [System.NonSerialized]
     public UnityEvent<HasHealth> Received_Target_Lost = new();
+    [System.NonSerialized]
+    public UnityEvent<NetworkIdentity> Damage_Taken = new();
+    [System.NonSerialized]
+    public UnityEvent<NetworkIdentity, float> Damage_Taken_Amount = new();
     private void Start()
     {
         health = maxHealth;
@@ -90,13 +94,11 @@ public class HasHealth : NetworkBehaviour, ISaveable
             return;
         if (TryGetComponent(out CanAttack attack) && owner.netId != GetComponent<NetworkIdentity>().netId)
         {
-            if (TryGetComponent(out EnemyCharacter enemy) && attack.enemyTarget == null || 
+            if (TryGetComponent(out EnemyCharacter enemy) || 
                 GetComponent<CanMove>().agent.velocity.magnitude == 0 && TryGetComponent(out PlayerCharacter playerCharacter) && attack.enemyTarget == null)
             {
-                if (isServer)
-                    attack.RpcTargetAcquired(owner);
-                else
-                    attack.CmdTargetAcquired(owner);
+                Damage_Taken_Amount.Invoke(owner, damage);
+                Damage_Taken.Invoke(owner);
             }
         }
         if (isInvulnerable)

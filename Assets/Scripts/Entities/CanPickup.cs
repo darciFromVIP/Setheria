@@ -6,9 +6,11 @@ public class CanPickup : MonoBehaviour
 {
     private Item itemToPickup;
     private CanMove canMoveComp;
+    private PlayerController playerController;
     private void Start()
     {
         canMoveComp = GetComponent<CanMove>();
+        playerController = GetComponent<PlayerController>();
     }
     public IEnumerator GoToPickup(Item item)
     {
@@ -24,7 +26,7 @@ public class CanPickup : MonoBehaviour
                 itemToPickup = null;
                 yield break;
             }
-            if (canMoveComp.HasReachedDestination())
+            if (playerController.ContainsCollider(item.GetComponent<Collider>()))
                 break;
             yield return null;
         }

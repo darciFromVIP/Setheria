@@ -32,6 +32,7 @@ public class EnemySpawner : NetworkBehaviour
     private Vector3 attackPoint;
     private float timer;
     private bool activated = false;
+    private bool foundStructure = false;
     private void Start()
     {
         if (isServer)
@@ -53,10 +54,27 @@ public class EnemySpawner : NetworkBehaviour
     }
     private void Update()
     {
-        if (!isServer || !activated)
-            return;
         if (timer < timeIntervalBetweenSpawns)
             timer += Time.deltaTime;
+        if (timer > 1 && !foundStructure)
+        {
+            attackPoint = Vector3.zero;
+            foreach (var item in FindObjectsOfType<Structure>(true))
+            {
+                if (Vector3.Distance(item.transform.position, transform.position) <= activeRange)
+                    attackPoint = item.transform.position;
+            }
+            if (attackPoint == Vector3.zero)
+            {
+                timer = 0;
+                return;
+            }
+            else
+                foundStructure = true;
+        }
+        if (!isServer || !activated || !foundStructure)
+            return;
+        
         if (timer >= timeIntervalBetweenSpawns)
             SpawnEnemies();
     }
@@ -71,6 +89,7 @@ public class EnemySpawner : NetworkBehaviour
         }
         if (attackPoint == Vector3.zero)
             return;
+        
         if (enemySpawnTable.Count <= 0)
             return;
         int random;

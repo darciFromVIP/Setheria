@@ -74,6 +74,10 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (TryGetComponent(out HasHealth hpComp))
         {
             hpComp.On_Death.AddListener(TargetLost);
+            if (isServer)
+                hpComp.Damage_Taken.AddListener(RpcTargetAcquired);
+            else
+                hpComp.Damage_Taken.AddListener(CmdTargetAcquired);
         }
         if (TryGetComponent(out PlayerController player))
         {

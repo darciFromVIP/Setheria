@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Mirror;
+using System.Linq;
+
 public class HasAggro : NetworkBehaviour
 {
     [SerializeField] private float aggroRange;
@@ -13,6 +15,7 @@ public class HasAggro : NetworkBehaviour
     public EventScriptable BeastKilledEvent;
     private LayerMask enemyLayers;
     private LayerMask allyLayers;
+    private Dictionary<NetworkIdentity, float> aggroList = new();
 
     [System.NonSerialized]
     public UnityEvent<NetworkIdentity> Target_Found = new();
@@ -23,13 +26,17 @@ public class HasAggro : NetworkBehaviour
         allyLayers = GetComponent<Character>().allyLayers;
         if (BeastKilledEvent)
             GetComponent<HasHealth>().On_Death.AddListener(BeastKilledEventInvoke);
+        if (TryGetComponent(out HasHealth hp))
+        {
+            hp.Damage_Taken_Amount.AddListener(DamageTaken);
+        }
     }
 
     private IEnumerator CheckForTargets()
     {
         while (true)
         {
-            if (enabled)
+            if (enabled && aggroList.Count == 0)
             {
                 Collider[] targets = new Collider[5];
                 Physics.OverlapSphereNonAlloc(transform.position, aggroRange, targets, enemyLayers);
@@ -82,6 +89,28 @@ public class HasAggro : NetworkBehaviour
             }
             yield return new WaitForSeconds(1);
         }
+    }
+    private void DamageTaken(NetworkIdentity enemy, float damageAmount)
+    {
+        int multiplier = 1;
+        if (enemy.TryGetComponent(out PlayerCharacter player))
+        {
+            if (player.TryGetComponent(out Shapeshifter shapeshifter))
+            {
+                if (shapeshifter.defaultModel.gameObject.activeSelf)
+                    multiplier = 3;
+            }
+            else if (false)                    //Add tank players here
+            {
+                multiplier = 3;
+            }
+
+        }
+        if (aggroList.ContainsKey(enemy))
+            aggroList[enemy] += damageAmount * multiplier;
+        else
+            aggroList.Add(enemy, damageAmount * multiplier);
+        Target_Found.Invoke(aggroList.OrderByDescending(pair => pair.Value).Take(1).ToList()[0].Key);
     }
     private void BeastKilledEventInvoke()
     {
