@@ -17,14 +17,14 @@ public struct EnemySpawnChance
     public int chance;
 }
 [System.Serializable]
-public class EnemySpawner : NetworkBehaviour
+public class EnemySpawner : NetworkBehaviour, ISaveable
 {
     [Tooltip("How much time elapses between each wave spawn.")]
     public float timeIntervalBetweenSpawns;
     [Tooltip("A player building must be within this range in order to activate the cave.")]
     public float activeRange;
     [Tooltip("What obstacles need to be destroyed in order to activate the cave?")]
-    public List<LootableObject> objectsToBeDestroyed = new List<LootableObject>();
+    public List<LootableObject> objectsToBeDestroyed = new List<LootableObject>();              // May need to save this as well
     [Tooltip("What enemies will spawn from the cave?")]
     public List<EnemySpawnChances> enemySpawnTable;
     public Transform spawnPoint;
@@ -147,5 +147,23 @@ public class EnemySpawner : NetworkBehaviour
     public void CmdDestroy()
     {
         NetworkServer.Destroy(gameObject);
+    }
+
+    public SaveDataWorldObject SaveState()
+    {
+        return new SaveDataWorldObject
+        {
+            floatData1 = timer,
+        };
+    }
+
+    public void LoadState(SaveDataWorldObject state)
+    {
+        timer = state.floatData1;
+        foreach (var item in FindObjectsOfType<EnemyCharacter>())
+        {
+            if (item.GetComponent<HasHealth>().GetBaseMaxHealth() == boss.GetComponent<HasHealth>().GetBaseMaxHealth() && Vector3.Distance(transform.position, item.transform.position) <= 5)
+                item.On_Death.AddListener(DestroySpawner);
+        }
     }
 }

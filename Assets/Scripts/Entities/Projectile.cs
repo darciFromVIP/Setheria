@@ -205,6 +205,11 @@ public class Projectile : NetworkBehaviour
         if (impactParticlePrefab)
             Instantiate(impactParticlePrefab, transform.position, Quaternion.identity);
         if (isServer)
-           NetworkServer.Destroy(gameObject);
+            StartCoroutine(DelayedDestroy());
+    }
+    private IEnumerator DelayedDestroy()
+    {
+        yield return new WaitForSeconds(2);
+        NetworkServer.Destroy(gameObject);
     }
 }

@@ -144,7 +144,12 @@ PrefabInstance:
     - target: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_Name
-      value: Torch
+      value: Totem
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200417114718641109, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2570879823870083452, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -152,6 +157,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8410550173736624105, guid: da2c14413b3e0fb4bbe7cccfcf035cac,
         type: 3}
+    - target: {fileID: 3230380952282825245, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: rmsCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3570985794274343471, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_IsActive
@@ -458,7 +468,8 @@ MonoBehaviour:
   structureOptions:
   - {fileID: 11400000, guid: 914a6f718d2228947a51df4f57638aae, type: 2}
   - {fileID: 11400000, guid: c60c51bea0c77c64799aa8ff424b70fb, type: 2}
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: 8f3eea30e0906fc44821c691f7a86e79, type: 2}
   entityDatabase: {fileID: 0}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 767815694d8d48f4985a4746894968ff, type: 2}
