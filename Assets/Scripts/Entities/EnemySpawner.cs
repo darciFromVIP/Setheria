@@ -126,6 +126,7 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
                     wander.enabled = false;
                 item.GetComponent<CanMove>().MoveTo(attackPoint);
                 item.campRadius = 99999;
+                item.GetComponent<HasAggro>().CheckForStructures();
             }
         }
     }

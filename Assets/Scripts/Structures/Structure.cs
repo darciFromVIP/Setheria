@@ -11,10 +11,13 @@ public class Structure : Entity, ISaveable, IInteractable
     public Transform unitSpawnPoint;
     public StructureScriptable structureData;
     public int demolishCost;
+    private float notificationTimer = 0;
 
     protected override void Start()
     {
         base.Start();
+        if (notificationTimer > 0)
+            notificationTimer -= Time.deltaTime;
         structureData.Structure_Built.Invoke(structureData);
         FindObjectOfType<AudioManager>().BuildingFinished(transform.position);
         GetComponent<TooltipTriggerWorld>().objectName = structureData.name;
@@ -25,6 +28,7 @@ public class Structure : Entity, ISaveable, IInteractable
                 item.ExecuteOnStart(this);
             }
         }
+        GetComponent<HasHealth>().Damage_Taken.AddListener(StructureUnderAttack);
     }
     public virtual void LoadState(SaveDataWorldObject state)
     {
@@ -71,5 +75,10 @@ public class Structure : Entity, ISaveable, IInteractable
     {
         GetComponent<HasHealth>().HealDamage(amount, false);
         FindObjectOfType<GameManager>().ChangeResources(-1);
+    }
+    private void StructureUnderAttack(NetworkIdentity enemy)
+    {
+        notificationTimer = 10;
+        FindObjectOfType<SystemMessages>().AddMessage("Your base is under attack!", MsgType.Notice);
     }
 }

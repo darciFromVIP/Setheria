@@ -116,4 +116,31 @@ public class HasAggro : NetworkBehaviour
     {
         BeastKilledEvent.voidEvent.Invoke();
     }
+    public void CheckForStructures()
+    {
+        StartCoroutine(CheckForStructuresCoro());
+    }
+    private IEnumerator CheckForStructuresCoro()
+    {
+        float timer = 10;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                timer = 10;
+                if (!GetComponent<CanAttack>().enemyTarget)
+                {
+                    var attackPoint = Vector3.zero;
+                    foreach (var item in FindObjectsOfType<Structure>(true))
+                    {
+                        attackPoint = item.transform.position;
+                        break;
+                    }
+                    GetComponent<CanMove>().MoveTo(attackPoint);
+                }
+            }
+            yield return null;
+        }
+    }
 }

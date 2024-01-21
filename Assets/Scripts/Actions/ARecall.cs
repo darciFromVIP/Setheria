@@ -21,7 +21,7 @@ public class ARecall : ActionTemplate
     }
     public override bool TestExecute()
     {
-        if (FindObjectOfType<GameManager>().localPlayerCharacter.IsReturnPointValid())
+        if (FindObjectOfType<GameManager>().localPlayerCharacter.IsReturnPointValid() && FindObjectOfType<Tent>())
             return true;
         else
         {

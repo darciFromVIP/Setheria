@@ -33,6 +33,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     [SerializeField] private AttackType attackType;
     public bool canAct = true;
     private bool isDelayingTargetLost = false;
+    private bool isStunned = false;
 
     public GameObject projectilePrefab;
     public Transform projectileLaunchPoint;
@@ -93,8 +94,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         {
             character.Resume_Acting.AddListener(CmdResumeActing);
             character.Stop_Acting.AddListener(CmdStopActing);
-            character.Stun_Begin.AddListener(CmdStopActing);
-            character.Stun_End.AddListener(CmdResumeActing);
+            character.Stun_Begin.AddListener(CmdStunBegin);
+            character.Stun_End.AddListener(CmdStunEnd);
         }
         netAnim = GetComponent<NetworkAnimator>();
         entity = GetComponent<Character>();
@@ -109,7 +110,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (attackSpeedTimer > 0)
             attackSpeedTimer -= Time.deltaTime;
 
-        if (enemyTarget && canAct && !isDelayingTargetLost)
+        if (enemyTarget && canAct && !isDelayingTargetLost && !isStunned)
         {
             if (!moveComp.agent.isOnNavMesh)
             {
@@ -178,7 +179,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         if (attackSpeedTimer > 0 || !canAct)
             return;
-        Attacked();
+        Attacked();                                     //This is a fix against getting stuck
         canAct = false;                                 //RPC is too slow so we're doing it again on the server
         RpcSetCanAct(false);
         int random = Random.Range(0, 4);
@@ -254,6 +255,20 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         Stop_Acting.Invoke();
         RpcSetCanAct(false);
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdStunBegin()
+    {
+        Stop_Acting.Invoke();
+        RpcSetCanAct(false);
+        isStunned = true;
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdStunEnd()
+    {
+        Resume_Acting.Invoke();
+        RpcSetCanAct(true);
+        isStunned = false;
     }
     [Command(requiresAuthority = false)]
     public void CmdResumeActing()
