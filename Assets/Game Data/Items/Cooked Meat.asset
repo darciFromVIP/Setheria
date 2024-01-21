@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Cooked Meat
   m_EditorClassIdentifier: 
-  description: 'Eating this restores +7<sprite=12>.
+  description: 'Eating this restores +6<sprite=12>.
 
     __________________________________
 
@@ -22,7 +22,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: c98177af5ee4691428227c6a933f5a43, type: 3}
   stackable: 1
   usage:
-  - {fileID: 11400000, guid: a4907513d044f3f4492811ad4ca7b5aa, type: 2}
+  - {fileID: 11400000, guid: 8556a85ecfb919d468d8c3bff51cd180, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -31,6 +31,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []
