@@ -27,6 +27,7 @@ Material:
   - _FOAM_WHITECAPS_ON
   - _NORMALSMODE_SINGLE
   - _NORMAL_FAR_ON
+  - _ORTHO_ON
   - _WORLD_UV
   m_InvalidKeywords:
   - _REFLECTIONMODE_OFF
@@ -205,7 +206,7 @@ Material:
     - _NormalMapFarIntensity: 0.365
     - _NormalsMode: 0
     - _OcclusionStrength: 1
-    - _Orthographic: 0
+    - _Orthographic: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1

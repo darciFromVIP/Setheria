@@ -13,11 +13,14 @@ public class Structure : Entity, ISaveable, IInteractable
     public int demolishCost;
     private float notificationTimer = 0;
 
+    private void Update()
+    {
+        if (notificationTimer > 0)
+            notificationTimer -= Time.deltaTime;
+    }
     protected override void Start()
     {
         base.Start();
-        if (notificationTimer > 0)
-            notificationTimer -= Time.deltaTime;
         structureData.Structure_Built.Invoke(structureData);
         FindObjectOfType<AudioManager>().BuildingFinished(transform.position);
         GetComponent<TooltipTriggerWorld>().objectName = structureData.name;
@@ -78,6 +81,8 @@ public class Structure : Entity, ISaveable, IInteractable
     }
     private void StructureUnderAttack(NetworkIdentity enemy)
     {
+        if (notificationTimer > 0)
+            return;
         notificationTimer = 10;
         FindObjectOfType<SystemMessages>().AddMessage("Your base is under attack!", MsgType.Notice);
     }

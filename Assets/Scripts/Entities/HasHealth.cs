@@ -92,15 +92,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
     {
         if (health <= 0)
             return;
-        if (TryGetComponent(out CanAttack attack) && owner.netId != GetComponent<NetworkIdentity>().netId)
-        {
-            if (TryGetComponent(out EnemyCharacter enemy) || 
-                GetComponent<CanMove>().agent.velocity.magnitude == 0 && TryGetComponent(out PlayerCharacter playerCharacter) && attack.enemyTarget == null)
-            {
-                Damage_Taken_Amount.Invoke(owner, damage);
-                Damage_Taken.Invoke(owner);
-            }
-        }
+        Damage_Taken_Amount.Invoke(owner, damage);
+        Damage_Taken.Invoke(owner);
         if (isInvulnerable)
             return;
         if (TryGetComponent(out PlayerController player) && interruptCrafting)

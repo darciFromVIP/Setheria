@@ -30,6 +30,8 @@ public class HasAggro : NetworkBehaviour
         {
             hp.Damage_Taken_Amount.AddListener(DamageTaken);
         }
+        if (TryGetComponent(out CanAttack attack))
+            attack.Target_Lost.AddListener(TargetLost);
     }
 
     private IEnumerator CheckForTargets()
@@ -89,6 +91,10 @@ public class HasAggro : NetworkBehaviour
             }
             yield return new WaitForSeconds(1);
         }
+    }
+    private void TargetLost()
+    {
+        aggroList.Clear();
     }
     private void DamageTaken(NetworkIdentity enemy, float damageAmount)
     {
