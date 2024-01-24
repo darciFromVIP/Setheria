@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Fresh Meat
   m_EditorClassIdentifier: 
-  description: 'Cook this at a Campfire to make it edible.
+  description: '__________________________________
+
+    Cook this at a Campfire to
+    make it edible.
 
     __________________________________
 
@@ -30,6 +33,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

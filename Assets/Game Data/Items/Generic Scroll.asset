@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Generic Scroll
   m_EditorClassIdentifier: 
-  description: Used in crafting.
+  description: '__________________________________
+
+    Used in crafting.'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 3bbd99494f6dddb4f8a52638989645f5, type: 3}
@@ -26,3 +28,13 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
+  Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
+    m_PersistentCalls:
+      m_Calls: []

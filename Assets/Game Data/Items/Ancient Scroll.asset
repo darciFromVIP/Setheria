@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Ancient Scroll
   m_EditorClassIdentifier: 
-  description: '.....those ..ne Pillars.....
+  description: '__________________________________
 
-    we must ..... how .. get
+    .....those ..ne Pillars.....
+
+    we
+    must ..... how .. get
 
     energy.......'
   grade: 0
@@ -30,6 +33,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

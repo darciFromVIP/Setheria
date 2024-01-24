@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Grease
   m_EditorClassIdentifier: 
-  description: Used in Armory to produce various gear.
+  description: '__________________________________
+
+    Used in Armory to produce
+    various gear.'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 9eb70e5b2f707cf428b68a4f67b34648, type: 3}
@@ -26,6 +29,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []
