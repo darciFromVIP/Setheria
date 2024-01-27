@@ -280,9 +280,13 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     private void UpdateTooltip(int profession)
     {
         if (profession >= professionExperienceRequired)
+        {
             tooltip.objectName = lootableName + " <color=green>(" + professionExperienceRequired + ")";
+        }
         else
+        {
             tooltip.objectName = lootableName + " <color=red>(" + professionExperienceRequired + ")";
+        }
     }
 
     public SaveDataWorldObject SaveState()

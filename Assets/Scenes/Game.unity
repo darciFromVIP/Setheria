@@ -19497,10 +19497,10 @@ RectTransform:
   - {fileID: 474524457}
   m_Father: {fileID: 1236666245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1471.4001, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &624052777
 MonoBehaviour:
@@ -19509,7 +19509,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624052775}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -19522,7 +19522,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 21b51d179844ceb41a9b063f1ab3c119, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31511,9 +31511,9 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras:
-  - {fileID: 1422606688}
   - {fileID: 286390701}
   - {fileID: 293705729}
+  - {fileID: 1422606688}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -37615,6 +37615,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapWindow: {fileID: 624052775}
+  mapCamera: {fileID: 1422606691}
+  fowMap: {fileID: 1723170028}
+  mapIconPrefab: {fileID: 6251603001547809474, guid: b2a3326286435e04094396bbf27692f4,
+    type: 3}
 --- !u!1 &1237779770
 GameObject:
   m_ObjectHideFlags: 0
@@ -43795,7 +43799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &1422606688
 Camera:
   m_ObjectHideFlags: 0
@@ -43831,7 +43835,7 @@ Camera:
   far clip plane: 705.5
   field of view: 60
   orthographic: 1
-  orthographic size: 583.7
+  orthographic size: 59.524734
   m_Depth: 1.08
   m_CullingMask:
     serializedVersion: 2
@@ -43900,7 +43904,7 @@ Transform:
   m_GameObject: {fileID: 1422606687}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2928, y: 544, z: -100}
+  m_LocalPosition: {x: 2668.4, y: 62.3, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43918,6 +43922,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69db8e17ed65bc44c82f041a75520e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapMinX: 2042
+  mapMaxX: 3962
+  mapMinY: 0
+  mapMaxY: 1080
 --- !u!224 &1424889818 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9161690028175925860, guid: 271e455e08b1d8143a52030a681d46b0,
@@ -52536,10 +52544,10 @@ RectTransform:
   m_Father: {fileID: 474524457}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 1080, y: 1080}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1723170029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69693,10 +69701,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 6606966809229913894}
   - {fileID: 293705732}
-  - {fileID: 1422606690}
-  - {fileID: 314364845}
   - {fileID: 2093921657}
+  - {fileID: 1422606690}
   - {fileID: 305914541}
+  - {fileID: 314364845}
   - {fileID: 1110854681}
   - {fileID: 100059081}
   - {fileID: 160232396}

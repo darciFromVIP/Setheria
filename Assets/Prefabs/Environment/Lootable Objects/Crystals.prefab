@@ -248,6 +248,11 @@ PrefabInstance:
       propertyPath: _assetId
       value: 1211563715
       objectReference: {fileID: 0}
+    - target: {fileID: 5293658121465408505, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.size
@@ -295,9 +300,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a,
         type: 2}
+    - target: {fileID: 8627531288678635897, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: rmsCount
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Name
+      value: Crystals
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014643280106428938, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: mapTooltipText
       value: Crystals
       objectReference: {fileID: 0}
     m_RemovedComponents: []

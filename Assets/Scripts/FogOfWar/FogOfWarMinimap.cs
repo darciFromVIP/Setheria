@@ -60,7 +60,7 @@ namespace FoW
                 _pixels[i] = new Color32((byte)r, (byte)g, (byte)b, (byte)a);
 			}
 
-            // units
+           /* // units
             byte opponentminvisibility = (byte)(opponentMinFogStrength * 255);
             for (int i = 0; i < FogOfWarUnit.registeredUnits.Count; ++i)
             {
@@ -73,7 +73,7 @@ namespace FoW
 
             // camera
             if (camera != null)
-                DrawIconOnMap(fow, camera.transform.position, cameraColor);
+                DrawIconOnMap(fow, camera.transform.position, cameraColor);*/
 
             // apply to texture
             _texture.SetPixels32(_pixels);

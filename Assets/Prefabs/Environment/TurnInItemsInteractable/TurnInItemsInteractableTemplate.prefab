@@ -265,6 +265,8 @@ GameObject:
   - component: {fileID: 3161037805545595649}
   - component: {fileID: 564431457798514224}
   - component: {fileID: 1797561102721756200}
+  - component: {fileID: 8060640818864485945}
+  - component: {fileID: 2854329186086110351}
   m_Layer: 0
   m_Name: TurnInItemsInteractableTemplate
   m_TagString: Untagged
@@ -605,6 +607,36 @@ MonoBehaviour:
   singleSelection: 0
   toggle: 0
   keepSelection: 1
+--- !u!114 &8060640818864485945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810923609589089185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4279cc879e63e54abea7e28da8292fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapIcon: {fileID: 21300000, guid: fe9198dfe7158774d8ca3c0f8e3907ce, type: 3}
+--- !u!114 &2854329186086110351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3810923609589089185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e790a7cab88cbe0469aef7a442bca56d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  minFogStrength: 0.8
+  Visibility_Changed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4502185918002607813
 GameObject:
   m_ObjectHideFlags: 0
