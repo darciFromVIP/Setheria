@@ -9,19 +9,30 @@ public class WorldMap : MonoBehaviour
     public GameObject mapWindow;
     public MapCamera mapCamera;
     public RectTransform fowMap;
-    public GameObject mapIconPrefab;
+    public GameObject mapIconPrefab, mapCameraButtons, mapButtonsWindow;
 
+    private SettingsManager settingsManager;
     private GameObject ownedHeroIcon;
+    private void Start()
+    {
+        settingsManager = FindObjectOfType<SettingsManager>();
+    }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(settingsManager.settings.map))
         {
-            mapCamera.gameObject.SetActive(!mapCamera.gameObject.activeSelf);
-            mapWindow.SetActive(!mapWindow.activeSelf);
-            FindObjectOfType<Tooltip>(true).Hide();
-            FindObjectOfType<TooltipWorld>(true).Hide();
+            ToggleWindow();
         }
 
+    }
+    public void ToggleWindow()
+    {
+        mapCamera.gameObject.SetActive(!mapCamera.gameObject.activeSelf);
+        mapCameraButtons.gameObject.SetActive(!mapCameraButtons.gameObject.activeSelf);
+        mapButtonsWindow.gameObject.SetActive(!mapButtonsWindow.gameObject.activeSelf);
+        mapWindow.SetActive(!mapWindow.activeSelf);
+        FindObjectOfType<Tooltip>(true).Hide();
+        FindObjectOfType<TooltipWorld>(true).Hide();
     }
     public GameObject SpawnIconOnMap(Sprite icon, string tooltipString, Vector2 positionInFog, bool isOwnedHero = false)
     {

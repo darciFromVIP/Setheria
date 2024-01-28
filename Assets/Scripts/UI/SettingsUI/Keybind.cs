@@ -6,7 +6,7 @@ using TMPro;
 public enum KeybindType
 {
     None, Move, Target, Interact, CharacterScreen, Manual, Inventory, CameraLock, PassiveSkill, Skill1, Skill2, Skill3, Skill4, CameraUp, CameraDown, CameraLeft, CameraRight, 
-    ActiveItem1, ActiveItem2, ActiveItem3, ActiveItem4, ActiveItem5, ActiveItem6, ActiveItem7, ActiveItem8, CameraRotLeft, CameraRotRight
+    ActiveItem1, ActiveItem2, ActiveItem3, ActiveItem4, ActiveItem5, ActiveItem6, ActiveItem7, ActiveItem8, CameraRotLeft, CameraRotRight, Map
 }
 public class Keybind : MonoBehaviour
 {
@@ -109,6 +109,9 @@ public class Keybind : MonoBehaviour
                 break;
             case KeybindType.CameraRotRight:
                 settingsManager.Key_Pressed.AddListener(settingsManager.ChangeCameraRotRightKey);
+                break;
+            case KeybindType.Map:
+                settingsManager.Key_Pressed.AddListener(settingsManager.ChangeMapKey);
                 break;
             default:
                 break;

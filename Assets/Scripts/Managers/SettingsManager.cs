@@ -14,7 +14,7 @@ public struct KeyData
 public class Settings
 {
     public KeyCode move, target, interact, characterScreen, manual, inventory, cameraLock, passiveSkill, skill1, skill2, skill3, skill4, cameraUp, cameraDown, cameraLeft, cameraRight,
-        activeItem1, activeItem2, activeItem3, activeItem4, activeItem5, activeItem6, activeItem7, activeItem8, cameraRotLeft, cameraRotRight;
+        activeItem1, activeItem2, activeItem3, activeItem4, activeItem5, activeItem6, activeItem7, activeItem8, cameraRotLeft, cameraRotRight, map;
     public float masterVolume, musicVolume, ambienceVolume, SFXVolume;
     public Settings()
     {
@@ -44,6 +44,7 @@ public class Settings
         activeItem6 = KeyCode.F6;
         activeItem7 = KeyCode.F7;
         activeItem8 = KeyCode.F8;
+        map = KeyCode.M;
         masterVolume = 1.0f;
         musicVolume = 1.0f;
         ambienceVolume = 1.0f;
@@ -543,6 +544,8 @@ public class SettingsManager : MonoBehaviour
                 return GetDataByKey(settings.cameraRotLeft);
             case KeybindType.CameraRotRight:
                 return GetDataByKey(settings.cameraRotRight);
+            case KeybindType.Map:
+                return GetDataByKey(settings.map);
             default:
                 break;
         }
@@ -695,6 +698,11 @@ public class SettingsManager : MonoBehaviour
     public void ChangeCameraRotRightKey(KeyCode key)
     {
         settings.cameraRotRight = key;
+        KeyChanged();
+    }
+    public void ChangeMapKey(KeyCode key)
+    {
+        settings.map = key;
         KeyChanged();
     }
     private void KeyChanged()
