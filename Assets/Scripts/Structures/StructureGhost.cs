@@ -15,19 +15,31 @@ public class StructureGhost : MonoBehaviour
     protected virtual void Awake()
     {
         col = GetComponent<Collider>();
+        FindObjectOfType<CameraTarget>().zoomEnabled = false;
+    }
+    private void OnDestroy()
+    {
+        FindObjectOfType<CameraTarget>().zoomEnabled = true;
     }
     protected virtual void Update()
     {
-        List<Vector3> points = new();
-        points.Add(new Vector3(col.bounds.center.x, col.bounds.center.y, col.bounds.center.z));
-        points.Add(new Vector3(col.bounds.center.x + col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z));
-        points.Add(new Vector3(col.bounds.center.x - col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z));
-        points.Add(new Vector3(col.bounds.center.x, col.bounds.center.y, col.bounds.center.z + col.bounds.size.z / 2));
-        points.Add(new Vector3(col.bounds.center.x, col.bounds.center.y, col.bounds.center.z - col.bounds.size.z / 2));
-        points.Add(new Vector3(col.bounds.center.x + col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z + col.bounds.size.z / 2));
-        points.Add(new Vector3(col.bounds.center.x + col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z - col.bounds.size.z / 2));
-        points.Add(new Vector3(col.bounds.center.x - col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z + col.bounds.size.z / 2));
-        points.Add(new Vector3(col.bounds.center.x - col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z - col.bounds.size.z / 2));
+        if (Input.mouseScrollDelta.y < 0)
+            transform.Rotate(Vector3.up, -5);
+        if (Input.mouseScrollDelta.y > 0)
+            transform.Rotate(Vector3.up, 5);
+
+        List<Vector3> points = new()
+        {
+            new Vector3(col.bounds.center.x, col.bounds.center.y, col.bounds.center.z),
+            new Vector3(col.bounds.center.x + col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z),
+            new Vector3(col.bounds.center.x - col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z),
+            new Vector3(col.bounds.center.x, col.bounds.center.y, col.bounds.center.z + col.bounds.size.z / 2),
+            new Vector3(col.bounds.center.x, col.bounds.center.y, col.bounds.center.z - col.bounds.size.z / 2),
+            new Vector3(col.bounds.center.x + col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z + col.bounds.size.z / 2),
+            new Vector3(col.bounds.center.x + col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z - col.bounds.size.z / 2),
+            new Vector3(col.bounds.center.x - col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z + col.bounds.size.z / 2),
+            new Vector3(col.bounds.center.x - col.bounds.size.x / 2, col.bounds.center.y, col.bounds.center.z - col.bounds.size.z / 2)
+        };
 
         for (int i = 0; i < points.Count; i++)
         {

@@ -36,6 +36,7 @@ public class Structure : Entity, ISaveable, IInteractable
     public virtual void LoadState(SaveDataWorldObject state)
     {
         transform.position = new Vector3(state.positionX, state.positionY, state.positionZ);
+        transform.rotation = new Quaternion(state.rotationX, state.rotationY, state.rotationZ, state.rotationW);
     }
     public virtual SaveDataWorldObject SaveState()
     {
@@ -44,7 +45,11 @@ public class Structure : Entity, ISaveable, IInteractable
             name = structureItem.name,
             positionX = transform.position.x,
             positionY = transform.position.y,
-            positionZ = transform.position.z
+            positionZ = transform.position.z,
+            rotationX = transform.rotation.x,
+            rotationY = transform.rotation.y,
+            rotationZ = transform.rotation.z,
+            rotationW = transform.rotation.w
         };
     }
 

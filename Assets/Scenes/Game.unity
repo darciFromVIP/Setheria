@@ -23,9 +23,9 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.21026169, g: 0.9754392, b: 0.990566, a: 1}
   m_AmbientEquatorColor: {r: 0.745283, g: 0.6834035, b: 0.14413491, a: 1}
   m_AmbientGroundColor: {r: 0.24725151, g: 0.8396226, b: 0.027723404, a: 1}
-  m_AmbientIntensity: 1.23
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.19873622, g: 0.20294659, b: 0.20754719, a: 1}
+  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 3f698c5d47507d54db2dcb930054532e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -33,12 +33,12 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
-  m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0.795
+  m_DefaultReflectionResolution: 256
+  m_ReflectionBounces: 5
+  m_ReflectionIntensity: 0.287
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.41667163, g: 0.4466144, b: 0.37923345, a: 0.795}
+  m_IndirectSpecularColor: {r: 0.15042108, g: 0.16123061, b: 0.13690566, a: 0.287}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -38510,7 +38510,7 @@ MonoBehaviour:
     FieldOfView: 30.663284
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 50
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -68149,7 +68149,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 50
   field of view: 30.663284
   orthographic: 0
   orthographic size: 5
@@ -70079,6 +70079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMouseControl: 1
+  zoomEnabled: 1
   camBounds: {fileID: 1001301542}
   cam: {fileID: 1262146509}
   inputEnabled: {fileID: 11400000, guid: 0fff680439f954342ba97bf786eb6020, type: 2}

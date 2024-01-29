@@ -21,6 +21,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     private bool isKeyPressed = false;
     private float cooldownTime = 0.2f; // Adjust this value as needed
     private float lastKeyPressTime = 0f;
+    public bool zoomEnabled = true;
 
     public Collider camBounds;
 
@@ -140,19 +141,23 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
 
         float playerHeight = transform.position.y;
         //float groundLevel = Terrain.activeTerrain.SampleHeight(pos);  //Height based on Terrain
-        
-        Vector3 zoomDir = followOffset.normalized;
-        if (!localPlayerCharacter.GetComponent<PlayerController>().IsPointerOverGameObject())
+
+        if (zoomEnabled)
         {
-            if (Input.mouseScrollDelta.y < 0)
-                followOffset += zoomDir;
-            if (Input.mouseScrollDelta.y > 0)
-                followOffset -= zoomDir;
+            Vector3 zoomDir = followOffset.normalized;
+            if (!localPlayerCharacter.GetComponent<PlayerController>().IsPointerOverGameObject())
+            {
+                if (Input.mouseScrollDelta.y < 0)
+                    followOffset += zoomDir;
+                if (Input.mouseScrollDelta.y > 0)
+                    followOffset -= zoomDir;
+            }
+            if (followOffset.magnitude < cameraZoomMin)
+                followOffset = zoomDir * cameraZoomMin;
+            if (followOffset.magnitude > cameraZoomMax)
+                followOffset = zoomDir * cameraZoomMax;
         }
-        if (followOffset.magnitude < cameraZoomMin)
-            followOffset = zoomDir * cameraZoomMin;
-        if (followOffset.magnitude > cameraZoomMax)
-            followOffset = zoomDir * cameraZoomMax;
+
         pos.y = Mathf.Clamp(Mathf.Lerp(pos.y, playerHeight, Time.deltaTime * 10), pos.y - 0.1f, pos.y + 0.1f);
         transform.rotation = Quaternion.Euler(rottarget);
 
