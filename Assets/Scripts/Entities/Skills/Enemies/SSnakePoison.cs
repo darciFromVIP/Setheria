@@ -38,8 +38,9 @@ public class SSnakePoison : Skill
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(castingEntity.GetComponent<CanAttack>().enemyTarget.transform.position);
     }
-    private void Cast()
+    protected override void Cast()
     {
+        base.Cast();
         if (castingEntity.isServer)
             castingEntity.GetComponent<EnemySkills>().CastSnakePoison();
         Character enemy = castingEntity.GetComponent<Character>();

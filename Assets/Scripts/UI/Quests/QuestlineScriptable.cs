@@ -29,7 +29,10 @@ public class QuestlineScriptable : ScriptableObject
         questList[currentQuestIndex].Quest_Complete.RemoveAllListeners();
         currentQuestIndex++;
         if (currentQuestIndex >= questList.Count)
+        {
             Questline_Complete.Invoke(name);
+            currentQuestIndex = 0;
+        }
         else
         {
             questList[currentQuestIndex].Quest_Complete.RemoveListener(QuestComplete);

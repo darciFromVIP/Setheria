@@ -32,7 +32,6 @@ public class ObjectMapIcon : MonoBehaviour
         }
         var pos = fow.WorldPositionToFogPosition(transform.position);
         map = FindObjectOfType<WorldMap>(true);
-        Debug.Log(map);
         bool isOwnedHero = false;
         if (TryGetComponent(out PlayerCharacter character))
             if (character.isOwned)
@@ -44,10 +43,15 @@ public class ObjectMapIcon : MonoBehaviour
 
     private void ToggleIconOnMap(bool value)
     {
-        iconInstance.SetActive(value);
+        if (iconInstance != null)
+            iconInstance.SetActive(value);
     }
     public void DestroyIcon()
     {
         Destroy(iconInstance);
+    }
+    private void OnDestroy()
+    {
+        DestroyIcon();
     }
 }

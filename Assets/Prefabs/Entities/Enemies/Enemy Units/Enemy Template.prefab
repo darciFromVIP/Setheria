@@ -356,6 +356,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   minFogStrength: 0.75
+  Visibility_Changed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-3490918185169162281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +391,7 @@ MonoBehaviour:
     m_Bits: 64
   buffDatabase: {fileID: 11400000, guid: 96ab774cc8ae8814c8a735af9af2ddaa, type: 2}
   canCastSkills: 0
+  skillIndicator: {fileID: 0}
   cooldown1: 0
   cooldown2: 0
   cooldown3: 0

@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: _assetId
       value: 1620625972
       objectReference: {fileID: 0}
+    - target: {fileID: 2068845740216138705, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: rmsCount
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2102998502438239144, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_Size.x
@@ -354,7 +359,9 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.692
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3983356041049155806, guid: 62dd6bfcf469b0545b58ab83e6ae4abb, type: 3}
+    - {fileID: 3983356041049155803, guid: 62dd6bfcf469b0545b58ab83e6ae4abb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,

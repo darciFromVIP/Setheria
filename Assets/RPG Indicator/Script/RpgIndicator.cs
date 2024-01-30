@@ -212,7 +212,7 @@ namespace RPG_Indicator
             }
             if (player == null)
             {
-                player = GameObject.FindWithTag("Player").transform;
+                player = GetComponentInParent<PlayerCharacter>().transform;
             }
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -233,7 +233,7 @@ namespace RPG_Indicator
             }
             if (player == null)
             {
-                player = GameObject.FindWithTag("Player").transform;
+                player = GetComponentInParent<PlayerCharacter>().transform;
             }
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);

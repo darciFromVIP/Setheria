@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
 using UnityEngine.ProBuilder.Shapes;
+using RPG_Indicator;
 
 public class Character : Entity
 {
@@ -18,6 +19,7 @@ public class Character : Entity
     public LayerMask allyLayers;
     public BuffDatabase buffDatabase;
     public bool canCastSkills;
+    public RpgIndicator skillIndicator;
 
     public float cooldown1;
     public float cooldown2;
@@ -40,6 +42,7 @@ public class Character : Entity
     protected override void Start()
     {
         base.Start();
+        skillIndicator = GetComponentInChildren<RpgIndicator>(true);
         canCastSkills = TryGetComponent(out EnemySkills enemySkills);
         if (cooldown1 > 0)
             cooldown1 -= Time.deltaTime;

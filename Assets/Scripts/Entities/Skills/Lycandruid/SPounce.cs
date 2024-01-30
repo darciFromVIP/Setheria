@@ -22,11 +22,13 @@ public class SPounce : Skill
         base.Execute(self);
         self.GetComponent<PlayerController>().Enemy_Left_Clicked.AddListener(MoveWithinRange);
         self.GetComponent<PlayerController>().ChangeCastingState(CastingState.EnemyOnly);
+        castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
     }
     public override void StopExecute()
     {
         castingEntity.GetComponent<PlayerController>().Enemy_Left_Clicked.RemoveListener(MoveWithinRange);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
+        castingEntity.skillIndicator.InterruptCasting();
     }
     private void MoveWithinRange(EnemyCharacter enemy)
     {
@@ -50,8 +52,9 @@ public class SPounce : Skill
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
+        castingEntity.skillIndicator.Casting(0);
     }
-    private void Cast()
+    protected override void Cast()
     {
         castingEntity.StartCoroutine(Jump());
     }
@@ -72,6 +75,7 @@ public class SPounce : Skill
     }
     private void CastEffect()
     {
+        base.Cast();
         if (castingEntity.isServer)
             castingEntity.GetComponent<Lycandruid>().CastPounce();
         PlayerController player = castingEntity.GetComponent<PlayerController>();

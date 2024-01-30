@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.AI;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IDropHandler, IPointerDownHandler
 {
@@ -260,7 +261,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             transform.SetParent(parentAfterDrag);
             transform.position = parentAfterDrag.position;
 
-            if (parentAfterDrag.TryGetComponent(out StashSlot slot))
+            if (parentAfterDrag.TryGetComponent(out StashSlot slot) || parentAfterDrag.TryGetComponent(out CharacterGearSlot characterGearSlot))
                 return;
 
             List<RaycastResult> results = new();
@@ -273,7 +274,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             {
                 if (hit.collider is TerrainCollider)
                 {
-                    StartCoroutine(FindObjectOfType<GameManager>().localPlayerCharacter.GoToDropItem(this, hit.point));
+                    NavMeshPath path = new();
+                    var playerCharacter = FindObjectOfType<GameManager>().localPlayerCharacter;
+                    NavMesh.CalculatePath(playerCharacter.transform.position, hit.point, playerCharacter.GetComponent<CanMove>().agent.areaMask, path);
+                    if (path.status != NavMeshPathStatus.PathComplete)
+                        FindObjectOfType<SystemMessages>().AddMessage("Invalid position.");
+                    else
+                        StartCoroutine(playerCharacter.GoToDropItem(this, hit.point));
                 }
                 if (hit.collider.TryGetComponent(out PlayerCharacter player))
                 {

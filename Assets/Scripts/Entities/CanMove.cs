@@ -56,7 +56,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     }
     public void MoveTo(Vector3 destination)
     {
-        if (agent)
+        if (agent.isOnNavMesh)
         {
             NavMeshPath path = new();
             NavMesh.CalculatePath(transform.position, destination, agent.areaMask, path);
@@ -91,7 +91,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     }
     public void Stop()
     {
-        if (agent)
+        if (agent.isOnNavMesh)
             agent.destination = transform.position;
     }
     public void ResumeAgent()
@@ -101,7 +101,8 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     }
     public void StopAgent()
     {
-        agent.isStopped = true;
+        if (agent.isOnNavMesh)
+            agent.isStopped = true;
     }
     private void StunBegin()
     {

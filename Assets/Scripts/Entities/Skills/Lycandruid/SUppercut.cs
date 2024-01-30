@@ -27,6 +27,7 @@ public class SUppercut : Skill
         base.Execute(self);
         self.GetComponent<PlayerController>().Enemy_Left_Clicked.AddListener(MoveWithinRange);
         self.GetComponent<PlayerController>().ChangeCastingState(CastingState.EnemyOnly);
+        castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
     }
 
     public override void ExecuteOnStart(Character self)
@@ -37,6 +38,7 @@ public class SUppercut : Skill
     {
         castingEntity.GetComponent<PlayerController>().Enemy_Left_Clicked.RemoveListener(MoveWithinRange);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
+        castingEntity.skillIndicator.InterruptCasting();
     }
     private void MoveWithinRange(EnemyCharacter enemy)
     {
@@ -65,9 +67,11 @@ public class SUppercut : Skill
         castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
         if (castingEntity.isServer)
             castingEntity.GetComponent<Character>().CastSkill3();
+        castingEntity.skillIndicator.Casting(0);
     }
-    private void Cast()
+    protected override void Cast()
     {
+        base.Cast();
         if (castingEntity.isServer)
             castingEntity.GetComponent<Lycandruid>().CastUppercut();
         PlayerController player = castingEntity.GetComponent<PlayerController>();

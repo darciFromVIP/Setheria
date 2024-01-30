@@ -29,9 +29,12 @@ public class SBattleCry : Skill
         movementBuff.value = movementFinal;
         attackSpeedBuff.value = attackSpeedFinal;
         self.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
+        castingEntity.skillIndicator.ShowRadius(range, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
+        castingEntity.skillIndicator.Casting(1.26f);
     }
-    private void Cast()
+    protected override void Cast()
     {
+        base.Cast();
         if (castingEntity.isServer)
             castingEntity.GetComponent<Lycandruid>().CastBattleCry();
         PlayerController player = castingEntity.GetComponent<PlayerController>();

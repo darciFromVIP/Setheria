@@ -15,10 +15,13 @@ public class SFlowerPowerHeal : Skill
 
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
+        castingEntity.skillIndicator.ShowRadius(range, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
+        castingEntity.skillIndicator.Casting(1.23f);
         
     }
-    private void Cast()
+    protected override void Cast()
     {
+        base.Cast();
         if (castingEntity.isServer)
             castingEntity.GetComponent<Alkestia>().CastFlowerPowerHeal();
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);

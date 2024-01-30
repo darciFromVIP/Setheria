@@ -31,6 +31,8 @@ public class CanPickup : MonoBehaviour
             yield return null;
         }
         canMoveComp.Stop();
+        if (itemToPickup == null)
+            yield break;
         FindObjectOfType<AudioManager>().ItemPickUp(transform.position);
         FindObjectOfType<InventoryManager>(true).AddItem(itemToPickup);
         FindObjectOfType<TooltipWorld>(true).Hide();

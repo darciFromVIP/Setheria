@@ -26,6 +26,7 @@ public class SGreenDust : Skill
         base.Execute(self);
         self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCast);
         self.GetComponent<PlayerController>().ChangeCastingState(CastingState.BothExceptSelf);
+        self.skillIndicator.ShowArea(aoeRadius, range, true, RPG_Indicator.RpgIndicator.IndicatorColor.Neutral, 0);
     }
     public override void ExecuteOnStart(Character self)
     {
@@ -35,6 +36,7 @@ public class SGreenDust : Skill
     {
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
+        castingEntity.skillIndicator.InterruptCasting();
     }
     private void StartCast(Vector3 point)
     {
@@ -47,9 +49,11 @@ public class SGreenDust : Skill
         castingEntity.GetComponent<CharacterVFXReference>().skill2.SetActive(true);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(point);
+        castingEntity.skillIndicator.Casting(0.8f);
     }
-    private void Cast()
+    protected override void Cast()
     {
+        base.Cast();
         if (castingEntity.isServer)
             castingEntity.GetComponent<ForestProtector>().CastGreenDust();
         PlayerController player = castingEntity.GetComponent<PlayerController>();

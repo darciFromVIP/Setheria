@@ -33,6 +33,8 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
     private float timer;
     private bool activated = false;
     private bool foundStructure = false;
+    private bool isNight = false;
+    private DayNightCycle dayNight;
     private void Start()
     {
         if (isServer)
@@ -43,6 +45,9 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
             }
             if (objectsToBeDestroyed.Count == 0)
                 activated = true;
+            dayNight = FindObjectOfType<DayNightCycle>();
+            dayNight.Night_Started.AddListener(NightStarted);
+            dayNight.Day_Started.AddListener(DayStarted);
         }
     }
     private void ReduceRequirement(LootableObject objectDestroyed)
@@ -51,6 +56,18 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
             objectsToBeDestroyed.Remove(objectDestroyed);
         if (objectsToBeDestroyed.Count == 0)
             activated = true;
+    }
+    private void NightStarted()
+    {
+        isNight = true;
+        if (!isServer || !activated || !foundStructure)
+            return;
+        if (FindObjectOfType<DayNightCycle>().daysAlive >= 2)
+            SpawnEnemies();
+    }
+    private void DayStarted()
+    {
+        isNight = false;
     }
     private void Update()
     {
@@ -75,8 +92,8 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
         if (!isServer || !activated || !foundStructure)
             return;
         
-        if (timer >= timeIntervalBetweenSpawns)
-            SpawnEnemies();
+        /*if (timer >= timeIntervalBetweenSpawns)
+            SpawnEnemies();*/
     }
     private void SpawnEnemies()
     {

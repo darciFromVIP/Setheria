@@ -79,7 +79,9 @@ public class HasAggro : NetworkBehaviour
                         {
                             if (item)
                             {
-                                item.GetComponent<HasAggro>().Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
+                                if (item.TryGetComponent(out CanAttack attackComp))
+                                    if (attackComp.enemyTarget == null)
+                                        item.GetComponent<HasAggro>().Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
                             }
                         }
                     }
@@ -98,6 +100,8 @@ public class HasAggro : NetworkBehaviour
     }
     private void DamageTaken(NetworkIdentity enemy, float damageAmount)
     {
+        if (enemy == GetComponent<NetworkIdentity>())
+            return;
         int multiplier = 1;
         if (enemy.TryGetComponent(out PlayerCharacter player))
         {
@@ -116,7 +120,8 @@ public class HasAggro : NetworkBehaviour
             aggroList[enemy] += damageAmount * multiplier;
         else
             aggroList.Add(enemy, damageAmount * multiplier);
-        Target_Found.Invoke(aggroList.OrderByDescending(pair => pair.Value).Take(1).ToList()[0].Key);
+        var topAggro = aggroList.OrderByDescending(pair => pair.Value).Take(1).ToList()[0].Key;
+        Target_Found.Invoke(topAggro);
     }
     private void BeastKilledEventInvoke()
     {

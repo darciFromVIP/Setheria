@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using TMPro;
+using UnityEngine.Events;
+
 public class DayNightCycle : MonoBehaviour, ISaveable
 {
     public Light directionalLight;
@@ -11,13 +13,16 @@ public class DayNightCycle : MonoBehaviour, ISaveable
     public DayNightCycleScriptable uiData;
     public List<PostProcessingDataScriptable> data = new();
 
-    private int daysAlive = 0;
+    public int daysAlive = 0;
     private float timer = 0;
     private float progressPercentage = 0;
     private int currentIndex = 0;
     private int maxIndex;
 
     private int multiplier = 1;
+
+    public UnityEvent Night_Started = new();
+    public UnityEvent Day_Started = new();
 
     public void LoadState(SaveDataWorldObject state)
     {
@@ -69,9 +74,17 @@ public class DayNightCycle : MonoBehaviour, ISaveable
             else
                 currentIndex++;
             if (currentIndex == 0)
+            {
                 FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Day);
+                Day_Started.Invoke();
+            }
             else if (currentIndex == 2)
+            {
                 FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Night);
+                Night_Started.Invoke();
+                uiData.daysAliveText.text = "Night Falls!";
+                uiData.daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
+            }
 
             if (volume.profile.TryGet(out Tonemapping tonemapping))
             {

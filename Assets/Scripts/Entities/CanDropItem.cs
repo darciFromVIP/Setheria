@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.AI;
+
 [System.Serializable]
 public struct ItemDropChances
 {
@@ -43,15 +45,25 @@ public class CanDropItem : NetworkBehaviour
                     Vector3 finalPos = transform.position;
                     while (true)
                     {
-                        Vector3 pos = transform.position + new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2));
+                        Vector3 pos = transform.position + new Vector3(Random.Range(-2f, 2f), 0, Random.Range(-2f, 2f));
                         RaycastHit hit;
                         if (Physics.Raycast(new Ray(pos + Vector3.up, Vector3.down), out hit, 3, LayerMask.GetMask("Default", "Water")))
                         {
                             pos = hit.point;
                         }
-                        if (Mathf.Abs(finalPos.y - pos.y) < 1)
+                        if (TryGetComponent(out CanMove moveComp))
                         {
-                            finalPos = pos;
+                            NavMeshPath path = new();
+                            moveComp.agent.CalculatePath(pos, path);
+                            if (Mathf.Abs(finalPos.y - pos.y) < 1 && path.status == NavMeshPathStatus.PathComplete)
+                            {
+                                finalPos = pos;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            finalPos = transform.position;
                             break;
                         }
                     }

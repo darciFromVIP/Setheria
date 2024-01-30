@@ -34,6 +34,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     public bool canAct = true;
     private bool isDelayingTargetLost = false;
     private bool isStunned = false;
+    public bool isCasting = false;
 
     public GameObject projectilePrefab;
     public Transform projectileLaunchPoint;
@@ -75,10 +76,6 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (TryGetComponent(out HasHealth hpComp))
         {
             hpComp.On_Death.AddListener(TargetLost);
-            if (isServer)
-                hpComp.Damage_Taken.AddListener(RpcTargetAcquired);
-            else
-                hpComp.Damage_Taken.AddListener(CmdTargetAcquired);
         }
         if (TryGetComponent(out PlayerController player))
         {
@@ -110,12 +107,15 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (attackSpeedTimer > 0)
             attackSpeedTimer -= Time.deltaTime;
 
-        if (enemyTarget && canAct && !isDelayingTargetLost && !isStunned)
+        if (enemyTarget && canAct && !isCasting && !isDelayingTargetLost && !isStunned)
         {
-            if (!moveComp.agent.isOnNavMesh)
+            if (moveComp)
             {
-                TargetLost();
-                return;
+                if (!moveComp.agent.isOnNavMesh)
+                {
+                    TargetLost();
+                    return;
+                }
             }
             if (enemyTarget.GetComponent<HasHealth>().GetHealth() <= 0)
             {
@@ -130,9 +130,15 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                     return;
                 }
             }
-            if (Vector3.Distance(transform.position, enemyTarget.transform.position) <= (attackRange > moveComp.agent.stoppingDistance ? attackRange : moveComp.agent.stoppingDistance) + additionalRange)
+            float stoppingDistance = 0;
+            if (moveComp)
             {
-                moveComp.Stop();
+                stoppingDistance = moveComp.agent.stoppingDistance;
+            }
+            if (Vector3.Distance(transform.position, enemyTarget.transform.position) <= (attackRange > stoppingDistance ? attackRange : stoppingDistance) + additionalRange)
+            {
+                if (moveComp)
+                    moveComp.Stop();
                 if (attackSpeedTimer <= 0)
                 {
                     if (netAnim)
@@ -305,7 +311,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             if (TryGetComponent(out HasHealth hp))
                 enemyTarget.Target_Received.Invoke(hp);
             enemyTarget.On_Death.AddListener(CmdTargetLost);
-            Target_Acquired.Invoke(target);
+            Target_Acquired.Invoke(enemyTarget.GetComponent<NetworkIdentity>());
             float temp = 0;
             additionalRange = 0;
             if (!enemyTarget.TryGetComponent(out NavMeshObstacle obstacle))

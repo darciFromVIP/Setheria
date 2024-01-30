@@ -28,9 +28,16 @@ public class Skill : ScriptableObject
     {
 
     }
+    protected virtual void Cast()
+    {
+        if (castingEntity.TryGetComponent(out CanAttack attackComp))
+            attackComp.isCasting = false;
+    }
     public virtual void Execute(Character self)
     {
         castingEntity = self;
+        if (castingEntity.TryGetComponent(out CanAttack attackComp))
+            attackComp.isCasting = true;
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         if (player)
         {

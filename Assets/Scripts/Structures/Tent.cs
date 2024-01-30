@@ -5,9 +5,10 @@ using Mirror;
 public class Tent : NetworkBehaviour
 {
     public List<PlayerCharacter> restingPlayers = new List<PlayerCharacter>();
+    public TutorialDataScriptable tutorialAfterBuild;
     private void Start()
     {
-        FindObjectOfType<SystemMessages>().AddMessage("Beware of wild creatures attacking your base!", MsgType.Notice);
+        FindObjectOfType<Tutorial>(true).QueueNewTutorial(tutorialAfterBuild);
     }
 
     [Command(requiresAuthority = false)]

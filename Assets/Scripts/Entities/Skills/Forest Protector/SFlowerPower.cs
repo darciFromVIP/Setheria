@@ -26,6 +26,7 @@ public class SFlowerPower : Skill
         base.Execute(self);
         self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCast);
         self.GetComponent<PlayerController>().ChangeCastingState(CastingState.None);
+        castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
     }
     public override void ExecuteOnStart(Character self)
     {
@@ -35,6 +36,7 @@ public class SFlowerPower : Skill
     {
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveListener(Cast);
+        castingEntity.skillIndicator.InterruptCasting();
     }
     private void StartCast(Vector3 point)
     {
@@ -46,9 +48,11 @@ public class SFlowerPower : Skill
             castingEntity.GetComponent<Character>().CastSkill5();
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(point);
+        castingEntity.skillIndicator.Casting(2);
     }
-    private void Cast()
+    protected override void Cast()
     {
+        base.Cast();
         if (castingEntity.isServer)
             castingEntity.GetComponent<CanHavePets>().SpawnPet(flowerPrefab.name, actualPoint, timedLife, finalDamage);
         PlayerController player = castingEntity.GetComponent<PlayerController>();
