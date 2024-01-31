@@ -21,13 +21,14 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     protected int animHash_Run = Animator.StringToHash("Run");
 
     public UnityEvent Moved_Within_Range = new();
-    private void Start()
+    private void Awake()
     {
         entity = GetComponent<Entity>();
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = baseMovementSpeed;
         if (!animator)
             animator = GetComponentInChildren<Animator>();
+        agent.speed = baseMovementSpeed;
+
         if (TryGetComponent(out Character character))
         {
             character.Stop_Acting.AddListener(StopAgent);

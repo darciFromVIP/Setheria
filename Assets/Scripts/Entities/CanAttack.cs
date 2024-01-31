@@ -185,7 +185,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         if (attackSpeedTimer > 0 || !canAct)
             return;
-        Attacked();                                     //This is a fix against getting stuck
+        attackSpeedTimer = 1;                           //This is a fix against multiattacks
         canAct = false;                                 //RPC is too slow so we're doing it again on the server
         RpcSetCanAct(false);
         int random = Random.Range(0, 4);
@@ -206,8 +206,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             FindObjectOfType<AudioManager>().PlayOneShot(attackSound, transform.position);
         float modifier = 1;
         var random = Random.Range(0f, 100f);
-        if (random < baseCriticalChance)
-            modifier = 1 + (baseCriticalDamage / 100);
+        if (random < GetFinalCritChance())
+            modifier = 1 + (GetFinalCritDamage() / 100);
         if (enemyTarget)
             enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier, false, GetComponent<NetworkIdentity>(), modifier > 1 ? true : false, true);
         Attacked();
@@ -235,8 +235,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         float modifier = 1;
         var random = Random.Range(0f, 100f);
-        if (random < baseCriticalChance)
-            modifier = 1 + (baseCriticalDamage / 100);
+        if (random < GetFinalCritChance())
+            modifier = 1 + (GetFinalCritDamage() / 100);
         Entity owner;
         if (TryGetComponent(out Pet pet))
             owner = pet.petOwner.GetComponent<Entity>();
@@ -294,6 +294,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void TargetAcquired(NetworkIdentity target)
     {
+        if (GetComponent<HasHealth>().GetHealth() <= 0)
+            return;
         enemyTarget = target.GetComponent<HasHealth>();
         if (!enemyTarget)
             if (target.TryGetComponent(out Pet pet))
@@ -626,7 +628,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public float GetCooldownReductionModifier()
     {
-        return 1 - (baseCooldownReduction / 100);
+        return 1 - (GetFinalCooldownReduction() / 100);
     }
 
     public void SetNewAnimator(Animator animator)

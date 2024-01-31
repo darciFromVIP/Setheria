@@ -6,6 +6,8 @@ using UnityEngine;
 public class ObjectMapIcon : MonoBehaviour
 {
     public Sprite mapIcon;
+    [Tooltip("Fill this only for player characters!")]
+    public Sprite ownedMapIcon;
     public string mapTooltipText;
 
     private FogOfWarTeam fow;
@@ -36,7 +38,9 @@ public class ObjectMapIcon : MonoBehaviour
         if (TryGetComponent(out PlayerCharacter character))
             if (character.isOwned)
                 isOwnedHero = true;
-        iconInstance = map.SpawnIconOnMap(mapIcon, mapTooltipText, pos, isOwnedHero);
+        
+        iconInstance = map.SpawnIconOnMap(isOwnedHero ? ownedMapIcon : mapIcon, mapTooltipText, pos, isOwnedHero);
+
         if (TryGetComponent(out HideInFog fog))
             ToggleIconOnMap(false);
     }

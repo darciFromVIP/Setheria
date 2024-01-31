@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using Unity.VisualScripting;
-
+[System.Serializable]
+public struct EnemySpawnChancesWithDay
+{
+    public List<EnemySpawnChances> enemySpawnTable;
+    public int endingDay;
+}
 [System.Serializable]
 public struct EnemySpawnChances
 {
@@ -19,21 +24,20 @@ public struct EnemySpawnChance
 [System.Serializable]
 public class EnemySpawner : NetworkBehaviour, ISaveable
 {
-    [Tooltip("How much time elapses between each wave spawn.")]
-    public float timeIntervalBetweenSpawns;
+    [Tooltip("How much time elapses before the wave spawns once night starts.")]
+    public float timeInterval;
     [Tooltip("A player building must be within this range in order to activate the cave.")]
     public float activeRange;
     [Tooltip("What obstacles need to be destroyed in order to activate the cave?")]
     public List<LootableObject> objectsToBeDestroyed = new List<LootableObject>();              // May need to save this as well
     [Tooltip("What enemies will spawn from the cave?")]
-    public List<EnemySpawnChances> enemySpawnTable;
+    public List<EnemySpawnChancesWithDay> enemySpawns;
     public Transform spawnPoint;
     public EnemyCharacter boss;
     private Vector3 attackPoint;
     private float timer;
     private bool activated = false;
     private bool foundStructure = false;
-    private bool isNight = false;
     private DayNightCycle dayNight;
     private void Start()
     {
@@ -47,7 +51,6 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
                 activated = true;
             dayNight = FindObjectOfType<DayNightCycle>();
             dayNight.Night_Started.AddListener(NightStarted);
-            dayNight.Day_Started.AddListener(DayStarted);
         }
     }
     private void ReduceRequirement(LootableObject objectDestroyed)
@@ -59,21 +62,18 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
     }
     private void NightStarted()
     {
-        isNight = true;
-        if (!isServer || !activated || !foundStructure)
-            return;
-        if (FindObjectOfType<DayNightCycle>().daysAlive >= 2)
-            SpawnEnemies();
+        if (dayNight.daysAlive >= 1)
+            StartCoroutine(StartTimer());
     }
-    private void DayStarted()
+    private IEnumerator StartTimer()
     {
-        isNight = false;
-    }
-    private void Update()
-    {
-        if (timer < timeIntervalBetweenSpawns)
+        while (timer < timeInterval)
+        {
             timer += Time.deltaTime;
-        if (timer > 1 && !foundStructure)
+            yield return null;
+        }
+        timer = 0;
+        if (!foundStructure)
         {
             attackPoint = Vector3.zero;
             foreach (var item in FindObjectsOfType<Structure>(true))
@@ -84,20 +84,19 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
             if (attackPoint == Vector3.zero)
             {
                 timer = 0;
-                return;
+                yield break;
             }
             else
                 foundStructure = true;
         }
+
         if (!isServer || !activated || !foundStructure)
-            return;
-        
-        /*if (timer >= timeIntervalBetweenSpawns)
-            SpawnEnemies();*/
+            yield break;
+
+        SpawnEnemies();
     }
     private void SpawnEnemies()
     {
-        timer = 0;
         attackPoint = Vector3.zero;
         foreach (var item in FindObjectsOfType<Structure>(true))
         {
@@ -107,21 +106,28 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
         if (attackPoint == Vector3.zero)
             return;
         
-        if (enemySpawnTable.Count <= 0)
+        if (enemySpawns.Count <= 0)
             return;
         int random;
         int temp;
-        foreach (var item in enemySpawnTable)
+        foreach (var item in enemySpawns)
         {
-            random = Random.Range(0, 100);
-            temp = 0;
-            foreach (var item2 in item.enemySpawnChances)
+            if (dayNight.daysAlive <= item.endingDay)
             {
-                temp += item2.chance;
-                if (random >= temp - item2.chance && random < temp)
+                foreach (var item2 in item.enemySpawnTable)
                 {
-                    StartCoroutine(CmdSpawnEnemies(item2.enemy, item2.amount));
+                    random = Random.Range(0, 100);
+                    temp = 0;
+                    foreach (var item3 in item2.enemySpawnChances)
+                    {
+                        temp += item3.chance;
+                        if (random >= temp - item3.chance && random < temp)
+                        {
+                            StartCoroutine(CmdSpawnEnemies(item3.enemy, item3.amount));
+                        }
+                    }
                 }
+                break;
             }
         }
     }
@@ -140,7 +146,7 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
             foreach (var item in spawnedEnemies)
             {
                 if (item.TryGetComponent(out Wander wander))
-                    wander.enabled = false;
+                    Destroy(wander);
                 item.GetComponent<CanMove>().MoveTo(attackPoint);
                 item.campRadius = 99999;
                 item.GetComponent<HasAggro>().CheckForStructures();

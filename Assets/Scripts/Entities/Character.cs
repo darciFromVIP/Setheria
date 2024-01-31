@@ -313,6 +313,7 @@ public class Character : Entity
                 animator.SetTrigger("Death");
             }
         }
+        UpdateSkills();
     }
     [Command(requiresAuthority = false)]
     public void CmdRemoveBuff(string buffName, NetworkConnectionToClient conn = null)
@@ -352,6 +353,7 @@ public class Character : Entity
                 break;
             }
         }
+        UpdateSkills();
     }
     public bool HasBuff(string name)
     {

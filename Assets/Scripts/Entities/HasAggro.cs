@@ -32,8 +32,14 @@ public class HasAggro : NetworkBehaviour
         }
         if (TryGetComponent(out CanAttack attack))
             attack.Target_Lost.AddListener(TargetLost);
+        GetComponent<HasHealth>().On_Death.AddListener(DisableScript);
     }
-
+    private void DisableScript()
+    {
+        StopAllCoroutines();
+        GetComponent<CanAttack>().TargetLost();
+        enabled = false;
+    }
     private IEnumerator CheckForTargets()
     {
         while (true)
@@ -81,7 +87,9 @@ public class HasAggro : NetworkBehaviour
                             {
                                 if (item.TryGetComponent(out CanAttack attackComp))
                                     if (attackComp.enemyTarget == null)
+                                    {
                                         item.GetComponent<HasAggro>().Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
+                                    }
                             }
                         }
                     }
@@ -100,7 +108,7 @@ public class HasAggro : NetworkBehaviour
     }
     private void DamageTaken(NetworkIdentity enemy, float damageAmount)
     {
-        if (enemy == GetComponent<NetworkIdentity>())
+        if (enemy == GetComponent<NetworkIdentity>() || GetComponent<HasHealth>().GetHealth() <= 0)
             return;
         int multiplier = 1;
         if (enemy.TryGetComponent(out PlayerCharacter player))

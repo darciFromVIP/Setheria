@@ -10,6 +10,7 @@ public class SDefensiveStance : Skill
     private void OnValidate()
     {
         aggroedEnemies.Clear();
+        enabled = true;
     }
     public override void Execute(Character self)
     {

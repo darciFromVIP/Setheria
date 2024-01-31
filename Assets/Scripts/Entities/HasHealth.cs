@@ -129,6 +129,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         else
             baseMaxHealth = amount;
         UpdateMaxHealth();
+        AdjustHealthToMaxHealth(GetFinalMaxHealth() - amount);
     }
     [Command]
     public void CmdChangeGearMaxHealth(float amount)
@@ -144,11 +145,19 @@ public class HasHealth : NetworkBehaviour, ISaveable
     {
         gearMaxHealth += amount;
         UpdateMaxHealth();
+        AdjustHealthToMaxHealth(GetFinalMaxHealth() - amount);
     }
     private void UpdateMaxHealth()
     {
         maxHealth = baseMaxHealth + gearMaxHealth;
         Health_Changed.Invoke(health, maxHealth);
+    }
+    private void AdjustHealthToMaxHealth(float previousMaxHealth)
+    {
+        if (previousMaxHealth > GetFinalMaxHealth())
+            return;
+        var percentage = GetHealth() / previousMaxHealth;
+        CmdSetHealth(GetFinalMaxHealth() * percentage);
     }
     [Command]
     public void CmdChangeBaseHealthRegen(float amount)
@@ -247,6 +256,16 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public float GetFinalHealthRegen()
     {
         return healthRegen;
+    }
+    [Command]
+    public void CmdSetHealth(float value)
+    {
+        RpcSetHealth(value);
+    }
+    [ClientRpc]
+    public void RpcSetHealth(float value)
+    {
+        SetHealth(value);
     }
     public void SetHealth(float value)
     {
