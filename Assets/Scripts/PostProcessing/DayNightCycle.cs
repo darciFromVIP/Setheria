@@ -52,7 +52,7 @@ public class DayNightCycle : MonoBehaviour, ISaveable
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.L))
         {
-            multiplier = 50;
+            multiplier = 20;
         }
         if (Input.GetKeyUp(KeyCode.L))
         {
@@ -63,6 +63,16 @@ public class DayNightCycle : MonoBehaviour, ISaveable
             return;
         if (timer >= data[currentIndex].timeStamp)
         {
+            if (currentIndex == maxIndex)
+            {
+                currentIndex = 0;
+                timer = 0;
+                daysAlive++;
+                uiData.daysAliveText.text = "Day " + daysAlive;
+                uiData.daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
+            }
+            else
+                currentIndex++;
             if (currentIndex == 0)
             {
                 FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Day);
@@ -75,17 +85,6 @@ public class DayNightCycle : MonoBehaviour, ISaveable
                 uiData.daysAliveText.text = "Night Falls!";
                 uiData.daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
             }
-
-            if (currentIndex == maxIndex)
-            {
-                currentIndex = 0;
-                timer = 0;
-                daysAlive++;
-                uiData.daysAliveText.text = "Day " + daysAlive;
-                uiData.daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
-            }
-            else
-                currentIndex++;
 
             if (volume.profile.TryGet(out Tonemapping tonemapping))
             {
