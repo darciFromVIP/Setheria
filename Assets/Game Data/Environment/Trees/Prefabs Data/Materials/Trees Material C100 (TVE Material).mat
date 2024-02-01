@@ -13,6 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - TVE_ALPHA_CLIP
+  - TVE_EMISSIVE
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
@@ -125,14 +126,14 @@ Material:
     - _DetailValue: 1
     - _EmissiveFlagMode: 0
     - _EmissiveIntensityMode: 0
-    - _EmissiveIntensityValue: 1
-    - _EmissiveMode: 0
-    - _EmissivePhaseValue: 1
-    - _EmissiveTexMaxValue: 1
+    - _EmissiveIntensityValue: 2
+    - _EmissiveMode: 1
+    - _EmissivePhaseValue: 0.784
+    - _EmissiveTexMaxValue: 0.601852
     - _EmissiveTexMinValue: 0
     - _EnvironmentReflections: 1
     - _ExtrasPositionMode: 0
-    - _FadeCameraValue: 1
+    - _FadeCameraValue: 0
     - _FadeConstantValue: 0
     - _FadeGlancingValue: 0
     - _GlobalAlpha: 1
@@ -253,7 +254,7 @@ Material:
     - _VertexOcclusionOverlayMode: 0
     - _VertexPivotMode: 0
     - _VertexVariationMode: 1
-    - _emissive_intensity_value: 1
+    - _emissive_intensity_value: 2
     - _render_coverage: 0
     - _render_cull: 0
     - _render_dst: 0
@@ -265,8 +266,8 @@ Material:
     - _DetailMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _DetailMeshRemap: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 1.5289519, g: 1.9023625, b: 2.1185474, a: 1}
-    - _EmissiveTexRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissiveColor: {r: 0.49364057, g: 1.9914285, b: 2.828427, a: 1}
+    - _EmissiveTexRemap: {r: 0, g: 0.601852, b: 0, a: 0}
     - _EmissiveUVs: {r: 1, g: 1, b: 0, a: 0}
     - _GradientColorOne: {r: 1, g: 1, b: 1, a: 1}
     - _GradientColorTwo: {r: 1, g: 1, b: 1, a: 1}

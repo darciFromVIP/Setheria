@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400164, guid: 002df1702d8b20445936f4efbc61c947, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.40985513
+      value: 0.44959483
       objectReference: {fileID: 0}
     - target: {fileID: 400164, guid: 002df1702d8b20445936f4efbc61c947, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.40985513
+      value: 0.44959483
       objectReference: {fileID: 0}
     - target: {fileID: 400164, guid: 002df1702d8b20445936f4efbc61c947, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.40985513
+      value: 0.44959483
       objectReference: {fileID: 0}
     - target: {fileID: 400164, guid: 002df1702d8b20445936f4efbc61c947, type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: 13700000, guid: 002df1702d8b20445936f4efbc61c947, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 50726d89f0a64c04db13803a9394a51f, type: 2}
+      objectReference: {fileID: 2100000, guid: cfdd13e90abe3d3468a7fa0ea51cb9dd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -157,7 +157,7 @@ PrefabInstance:
     - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: level
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -172,7 +172,7 @@ PrefabInstance:
     - target: {fileID: 693041487305289382, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: _assetId
-      value: 3367357549
+      value: 2275195533
       objectReference: {fileID: 0}
     - target: {fileID: 2068845740216138705, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -192,7 +192,7 @@ PrefabInstance:
     - target: {fileID: 3983356041049155800, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_Name
-      value: Viper
+      value: Chares
       objectReference: {fileID: 0}
     - target: {fileID: 3983356041049155803, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -353,6 +353,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3144660385147311779}
+    - targetCorrespondingSourceObject: {fileID: 3983356041049155800, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2504781923525202538}
   m_SourcePrefab: {fileID: 100100000, guid: 62dd6bfcf469b0545b58ab83e6ae4abb, type: 3}
 --- !u!114 &2958159289138598907 stripped
 MonoBehaviour:
@@ -387,6 +391,21 @@ MonoBehaviour:
   wanderInterval: 8
   wanderRange: 8
   rangeFromStart: 1
+--- !u!114 &-2504781923525202538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4929869922347724770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4279cc879e63e54abea7e28da8292fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapIcon: {fileID: 21300000, guid: 3742e3ae79adbb843935e916df32b886, type: 3}
+  ownedMapIcon: {fileID: 0}
+  mapTooltipText: Chares (Boss)
 --- !u!4 &4929869922347724773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
