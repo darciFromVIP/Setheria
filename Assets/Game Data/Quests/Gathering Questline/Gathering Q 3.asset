@@ -13,14 +13,10 @@ MonoBehaviour:
   m_Name: Gathering Q 3
   m_EditorClassIdentifier: 
   active: 0
-  label: Find unknown plants.
+  label: Craft Shabby Sac.
   synchronizedQuest: 0
   requiredItems:
-  - itemData: {fileID: 11400000, guid: c24df273115bd324c9052ab14ba4c576, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: a8bc1728e509cca45bb7f5f95205187b, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 8196a9deb0b604443a71880fe0c85755, type: 2}
+  - itemData: {fileID: 11400000, guid: 6af60e23b2b93c242a4c4fa015a85420, type: 2}
     stacks: 1
   requiredItemType: 0
   requiredItemTypeAmount: 0
@@ -35,8 +31,9 @@ MonoBehaviour:
   customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
-    rewardAmount: 30
+    rewardAmount: 10
     itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

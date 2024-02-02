@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Gathering Q 6
+  m_Name: Gathering Q 12
   m_EditorClassIdentifier: 
   active: 0
-  label: Collect a pure Crystal.
+  label: Find natural sources of energy.
   synchronizedQuest: 0
   requiredItems:
-  - itemData: {fileID: 11400000, guid: bc713de8271117249a9f00941267a367, type: 2}
-    stacks: 1
+  - itemData: {fileID: 11400000, guid: df7a2ab289b52ac45ace238057e4ff3a, type: 2}
+    stacks: 3
   requiredItemType: 0
   requiredItemTypeAmount: 0
   requiredStructures: []
@@ -31,8 +31,9 @@ MonoBehaviour:
   customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
-    rewardAmount: 400
+    rewardAmount: 50
     itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

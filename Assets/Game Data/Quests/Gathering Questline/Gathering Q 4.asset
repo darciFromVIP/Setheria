@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Gathering Q 4
   m_EditorClassIdentifier: 
   active: 0
-  label: Collect Silver Ore.
+  label: Cut down Saplings.
   synchronizedQuest: 0
   requiredItems:
-  - itemData: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
-    stacks: 1
+  - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
+    stacks: 3
   requiredItemType: 0
   requiredItemTypeAmount: 0
   requiredStructures: []
@@ -31,8 +31,8 @@ MonoBehaviour:
   customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
-    rewardAmount: 20
-    itemReward: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
+    rewardAmount: 10
+    itemReward: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

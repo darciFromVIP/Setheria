@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Gathering Q 5
   m_EditorClassIdentifier: 
   active: 0
-  label: Find natural sources of energy.
+  label: Find better quality Ore.
   synchronizedQuest: 0
   requiredItems:
-  - itemData: {fileID: 11400000, guid: 259866ad2fbffe245b24c7bae99eea3e, type: 2}
-    stacks: 3
+  - itemData: {fileID: 11400000, guid: bd5a5039329c9cb4db787f752d56c230, type: 2}
+    stacks: 1
   requiredItemType: 0
   requiredItemTypeAmount: 0
   requiredStructures: []
@@ -31,8 +31,9 @@ MonoBehaviour:
   customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
-    rewardAmount: 50
-    itemReward: {fileID: 11400000, guid: 2a8974aad52e27a49b69e4ef1cfafffc, type: 2}
+    rewardAmount: 15
+    itemReward: {fileID: 11400000, guid: bd5a5039329c9cb4db787f752d56c230, type: 2}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

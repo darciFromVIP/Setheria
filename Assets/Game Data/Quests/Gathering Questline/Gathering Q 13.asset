@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Gathering Q 7
+  m_Name: Gathering Q 13
   m_EditorClassIdentifier: 
   active: 0
   label: Collect a pure Crystal.
@@ -32,7 +32,8 @@ MonoBehaviour:
   rewards:
   - rewardType: 2
     rewardAmount: 400
-    itemReward: {fileID: 0}
+    itemReward: {fileID: 11400000, guid: 2a8974aad52e27a49b69e4ef1cfafffc, type: 2}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []
