@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Mana Potion
   m_EditorClassIdentifier: 
-  description: 'Use to restore 100 MP.
+  description: '__________________________________
+
+    Use to restore 100 MP.
 
     __________________________________
 
+    Consumables
+
     Active
-    Item, Cooldown: 10 seconds'
+    Item, Potion, Cooldown: 10 seconds'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 06f81d02dfe7fa742a87b519348b9589, type: 3}
@@ -32,6 +36,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

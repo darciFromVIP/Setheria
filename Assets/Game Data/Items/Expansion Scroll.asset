@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Expansion Scroll
   m_EditorClassIdentifier: 
-  description: Used in crafting. Can be bought at Workshop's Resource Shop.
+  description: '__________________________________
+
+    Used in crafting. Can be
+    bought at Workshop''s Resource Shop.
+
+    __________________________________
+
+    Alchemy'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 894174623cfaef1499bbd2f513ce8f31, type: 3}
@@ -26,6 +33,7 @@ MonoBehaviour:
   resourceCost: 15
   knowledgeCost: 5
   unlocked: 0
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

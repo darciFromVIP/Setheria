@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Shiny Berries
   m_EditorClassIdentifier: 
-  description: 'Shiny and sweet. Can be eaten to restore +1 <sprite=12> and +10 HP.
+  description: '__________________________________
 
-    Used
-    in Alchemy.'
+    Shiny and sweet. Can be eaten
+    to restore <color=#FFD000>+1</color> <sprite=12> and <color=#FFD000>+10 HP</color>.
+
+    __________________________________
+
+    Alchemy,
+    Food'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: efbe843b32b315c46a0fdc5a5668251c, type: 3}
@@ -31,6 +36,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

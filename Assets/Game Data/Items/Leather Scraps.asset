@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Leather Scraps
   m_EditorClassIdentifier: 
-  description: Used in crafting or Hide production.
+  description: '__________________________________
+
+    Used in crafting or <color=#FFD000>Hide</color>
+    production.
+
+    __________________________________
+
+    Material, Armory'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 72061f3047c09d64dbdc73773b9e3b06, type: 3}
@@ -26,6 +33,13 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

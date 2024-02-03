@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Damaged Boots
   m_EditorClassIdentifier: 
-  description: 'This item is too damaged. You can either fix or dismantle it.
+  description: '__________________________________
 
-
-    Used
-    in Armory
+    This item is too damaged.
+    You can either fix or dismantle it.
 
     __________________________________
 
-    Requirements for dismantle:
-    Handicraft Tool'
+    Requirements
+    for dismantle: Handicraft Tool
+
+    Armory'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: dd267e9c74238a043a3742d485b1bb7a, type: 3}
@@ -36,6 +37,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

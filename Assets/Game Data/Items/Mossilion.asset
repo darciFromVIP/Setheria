@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Mossilion
   m_EditorClassIdentifier: 
-  description: 'This smelly fish looking like moss could taste better cooked. It
-    also produces more Fish Oil.
+  description: '__________________________________
+
+    This smelly fish looking
+    like moss could taste better cooked. It also produces more <color=#FFD000>Fish
+    Oil</color>.
 
     __________________________________
 
-    Fishing,
-    Cooking'
+    Fishing, Alchemy, Cooking'
   grade: 0
   itemType: 18
   sprite: {fileID: 21300000, guid: 2fd56f04e5b70a0459ae729fffdc5f11, type: 3}
@@ -32,6 +34,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

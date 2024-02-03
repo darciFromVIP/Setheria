@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Magic Dust
   m_EditorClassIdentifier: 
-  description: Used in Alchemy.
+  description: '__________________________________
+
+    Used in Alchemy.
+
+    __________________________________
+
+    Material'
   grade: 1
   itemType: 0
   sprite: {fileID: 21300000, guid: 5c001cd9f596a5242854d6b9a439048b, type: 3}
@@ -26,6 +32,13 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
     m_PersistentCalls:
       m_Calls: []

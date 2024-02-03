@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aba134766a2ad43aa892d3fee24343, type: 3}
   m_Name: Entangling Roots
   m_EditorClassIdentifier: 
+  castingEntity: {fileID: 0}
   icon: {fileID: 21300000, guid: 0672104aca1241d44aab0e0e6d1d72b3, type: 3}
   cooldown: 15
   manaCost: 50
@@ -22,16 +23,24 @@ MonoBehaviour:
       Data3: -1097624403
       Data4: 1338211184
     Path: event:/World Sounds/Heroes/Entangling Roots
-  description: 
+  description: '<sprite=10>15,0 <sprite=4>50
+
+    Summons roots from the ground to
+    entangle a target enemy, inflicting Bleed (reduces <sprite=1> by <color=orange>11,90</color>
+    (10 + 10% <sprite=3>)) and Rooted (stuns the target). Lasts 8 seconds.'
   requiredTalent: {fileID: 11400000, guid: 00e9394e5f56e054f88281ff4cb4dbfe, type: 2}
   requiredTalentLevel: 1
   unlocked: 1
-  range: 7
+  Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []
+  range: 6
   baseDuration: 8
   baseDamage: 10
   damageScalingStat: 12
   damageScalingValue: 0.1
   stunBuff: {fileID: 11400000, guid: feb651365e827b240b996ede8f4d879b, type: 2}
   damageBuff: {fileID: 11400000, guid: 2dce1bb7a56eb244eac501f7ef02dee1, type: 2}
+  enemy: {fileID: 0}
   projectile: {fileID: 6622377285814243879, guid: 431de6386af26904a8035b9a94d81393,
     type: 3}

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Leather Pocket
   m_EditorClassIdentifier: 
-  description: 'This larger pocket extends your inventory by 4 slots.
+  description: '__________________________________
+
+    This larger pocket extends
+    your inventory by 4 slots.
 
     __________________________________
 
@@ -32,6 +35,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []
