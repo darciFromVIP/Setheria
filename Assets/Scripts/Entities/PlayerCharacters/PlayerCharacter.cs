@@ -79,10 +79,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         base.Start();
         healthComp = GetComponent<HasHealth>();
+
         manaComp = GetComponent<HasMana>();
         moveComp = GetComponent<CanMove>();
         attackComp = GetComponent<CanAttack>();
         playerController = GetComponent<PlayerController>();
+        if (healthComp)
+        {
+            healthComp.Damage_Taken.AddListener(Provoked);
+        }
         if (isOwned)
         {
             foreach (var item in introductoryTutorial)
@@ -96,6 +101,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             if (item.hero == hero)
                 item.SetButtonInteractability(false);
         }
+    }
+    private void Provoked(NetworkIdentity enemy)
+    {
+        if (moveComp.agent.velocity.magnitude <= 0.01f)
+            attackComp.TargetAcquired(enemy);
     }
     protected IEnumerator UpdatePlayer()
     {

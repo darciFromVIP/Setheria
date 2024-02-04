@@ -3,12 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum IconSize
+{
+    Medium, Small, Large
+}
+
 public class ObjectMapIcon : MonoBehaviour
 {
     public Sprite mapIcon;
     [Tooltip("Fill this only for player characters!")]
     public Sprite ownedMapIcon;
     public string mapTooltipText;
+    public IconSize iconSize;
 
     private FogOfWarTeam fow;
     private GameObject iconInstance;
@@ -39,7 +45,7 @@ public class ObjectMapIcon : MonoBehaviour
             if (character.isOwned)
                 isOwnedHero = true;
         
-        iconInstance = map.SpawnIconOnMap(isOwnedHero ? ownedMapIcon : mapIcon, mapTooltipText, pos, isOwnedHero);
+        iconInstance = map.SpawnIconOnMap(isOwnedHero ? ownedMapIcon : mapIcon, mapTooltipText, pos, iconSize, isOwnedHero);
 
         if (TryGetComponent(out HideInFog fog))
             ToggleIconOnMap(false);

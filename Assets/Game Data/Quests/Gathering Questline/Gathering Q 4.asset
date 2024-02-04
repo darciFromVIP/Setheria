@@ -15,9 +15,7 @@ MonoBehaviour:
   active: 0
   label: Cut down Saplings.
   synchronizedQuest: 0
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
-    stacks: 3
+  requiredItems: []
   requiredItemType: 0
   requiredItemTypeAmount: 0
   requiredStructures: []
@@ -25,14 +23,15 @@ MonoBehaviour:
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
+  requiredCustom1: 3
   currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  custom1Requirement: 'Saplings Cut: '
+  customEvent: {fileID: 11400000, guid: b7e77a49f9596eb4d8f1786addbbff91, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 10
     itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

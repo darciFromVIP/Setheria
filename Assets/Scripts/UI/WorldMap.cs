@@ -34,12 +34,25 @@ public class WorldMap : MonoBehaviour
         FindObjectOfType<Tooltip>(true).Hide();
         FindObjectOfType<TooltipWorld>(true).Hide();
     }
-    public GameObject SpawnIconOnMap(Sprite icon, string tooltipString, Vector2 positionInFog, bool isOwnedHero = false)
+    public GameObject SpawnIconOnMap(Sprite icon, string tooltipString, Vector2 positionInFog, IconSize iconSize, bool isOwnedHero = false)
     {
         var instance = Instantiate(mapIconPrefab, fowMap);
         UpdatePositionOfIcon(instance, positionInFog);
         instance.GetComponent<Image>().sprite = icon;
         instance.GetComponent<TooltipTrigger>().SetText(tooltipString, "");
+        switch (iconSize)
+        {
+            case IconSize.Small:
+                instance.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                break;
+            case IconSize.Medium:
+                break;
+            case IconSize.Large:
+                instance.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+                break;
+            default:
+                break;
+        }
         if (isOwnedHero)
             ownedHeroIcon = instance;
         return instance;

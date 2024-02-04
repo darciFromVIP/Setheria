@@ -20,6 +20,7 @@ public class WorldElement : MonoBehaviour
     }
     public void PlayThisWorld()
     {
+        FindObjectOfType<LoadingScreen>().LoadOperation("Starting server...");
         FindObjectOfType<SaveLoadSystem>().SetCurrentWorld(filePath);
         Debug.Log("Current World Loaded");
         SteamLobby.instance.HostLobby();

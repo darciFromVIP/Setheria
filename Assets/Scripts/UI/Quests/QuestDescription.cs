@@ -58,4 +58,9 @@ public class QuestDescription : MonoBehaviour
             QuestCompleted();
         }
     }
+    public void ToggleHide()
+    {
+        objectives.gameObject.SetActive(!objectives.gameObject.activeSelf);
+        rewards.gameObject.SetActive(!rewards.gameObject.activeSelf);
+    }
 }
