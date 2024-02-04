@@ -75,7 +75,7 @@ public class RecipeScriptable : ScriptableObject
             if (item.Value == false)
                 return;
         }
-        UnlockRecipe();
+        FindObjectOfType<GameManager>().CmdUnlockRecipe(name);
     }
     public void UnlockRecipe()
     {

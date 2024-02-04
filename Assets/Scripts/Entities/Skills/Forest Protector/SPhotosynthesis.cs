@@ -35,6 +35,7 @@ public class SPhotosynthesis : Skill
 
     public override void StopExecute()
     {
+        base.StopExecute();
         castingEntity.skillIndicator.InterruptCasting();
     }
 

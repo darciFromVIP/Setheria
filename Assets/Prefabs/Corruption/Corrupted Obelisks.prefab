@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: -3083202995572739237}
   - component: {fileID: -5405089020364217218}
   - component: {fileID: 5716261481595373992}
+  - component: {fileID: 2920094859970524774}
   m_Layer: 0
   m_Name: Corrupted Obelisks
   m_TagString: Untagged
@@ -136,6 +137,23 @@ MonoBehaviour:
   mapIcon: {fileID: 21300000, guid: b9ecbbb8f00e98c449e577e2668d3141, type: 3}
   ownedMapIcon: {fileID: 0}
   mapTooltipText: Corruption
+--- !u!114 &2920094859970524774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6368498806176662917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e790a7cab88cbe0469aef7a442bca56d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  minFogStrength: 0.8
+  Visibility_Changed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &556334527077491828
 PrefabInstance:
   m_ObjectHideFlags: 0

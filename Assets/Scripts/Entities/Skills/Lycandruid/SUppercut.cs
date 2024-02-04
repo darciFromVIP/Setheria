@@ -36,6 +36,7 @@ public class SUppercut : Skill
 
     public override void StopExecute()
     {
+        base.StopExecute();
         castingEntity.GetComponent<PlayerController>().Enemy_Left_Clicked.RemoveListener(MoveWithinRange);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
         castingEntity.skillIndicator.InterruptCasting();

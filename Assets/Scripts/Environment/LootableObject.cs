@@ -34,7 +34,10 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     public Slider refreshProgressBar;
     public TextMeshProUGUI remainingChargesText;
     public EventScriptable Player_Event;
+    [Tooltip("Only fill this if this object is involved in a quest.")]
+    public EventScriptable Quest_Event;
     public UnityEvent<LootableObject> Object_Destroyed = new();
+
     private void Start()
     {
         tooltip = GetComponent<TooltipTriggerWorld>();
@@ -166,7 +169,8 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         remainingChargesText.text = currentCharges + "/" + maxCharges;
         if (currentCharges <= 0)
         {
-            
+            if (Quest_Event)
+                Quest_Event.voidEvent.Invoke();
             remainingChargesText.gameObject.SetActive(false);
             CmdUpdateLootability(false);
             if (!oneTimeLoot)
@@ -216,7 +220,10 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         }
         var outline = GetComponentInChildren<HighlightTrigger>();
         if (outline)
+        {
+            outline.highlightEffect.highlighted = false;
             outline.enabled = lootable;
+        }
     }
     [Command(requiresAuthority = false)]
     private void CmdStartRefreshTimer()

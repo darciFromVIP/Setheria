@@ -48,7 +48,8 @@ public class Skill : ScriptableObject
     }
     public virtual void StopExecute()
     {
-
+        if (castingEntity.TryGetComponent(out CanAttack attackComp))
+            attackComp.isCasting = false;
     }
     public virtual void UpdateDescription()
     {

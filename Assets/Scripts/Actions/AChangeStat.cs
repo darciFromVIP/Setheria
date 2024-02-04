@@ -13,7 +13,7 @@ public class AChangeStat : ActionTemplate
     public GameObject vfx;
     public override void ActionFinished()
     {
-        
+        Action_Finished.Invoke();
     }
 
     public override void Execute()
@@ -24,7 +24,7 @@ public class AChangeStat : ActionTemplate
             player.ChangeStat(stat, amount);
             if (vfx)
                 player.CmdSpawnVfx(vfx.name);
-            Action_Finished.Invoke();
+            ActionFinished();
         }
         else
             Debug.Log("Insufficient Action Execution");

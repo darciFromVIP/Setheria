@@ -27,6 +27,7 @@ public class SRejuvenation : Skill
 
     public override void StopExecute()
     {
+        base.StopExecute();
         castingEntity.GetComponent<PlayerController>().Ally_Left_Clicked.RemoveListener(MoveWithinRange);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveListener(Cast);

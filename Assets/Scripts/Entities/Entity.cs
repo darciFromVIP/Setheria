@@ -31,6 +31,8 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     }
     protected virtual void OnMouseOver()
     {
+        if (hudCircle == null)
+            return;
         if (hudCircleToggled)
             return;
         var bar = GetComponentInChildren<EntityStatusBar>(true);
@@ -44,6 +46,8 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     }
     protected virtual void OnMouseExit()
     {
+        if (hudCircle == null)
+            return;
         if (hudCircleToggled)
             return;
         var bar = GetComponentInChildren<EntityStatusBar>(true);
@@ -85,7 +89,8 @@ public class Entity : NetworkBehaviour, IUsesAnimator
                 item.enabled = false;
             }
             GetComponent<Collider>().enabled = false;
-            GetComponent<NavMeshAgent>().enabled = false;
+            if (TryGetComponent(out NavMeshAgent agent))
+                agent.enabled = false;
             StartCoroutine(CorpseDecay());
         }
         else

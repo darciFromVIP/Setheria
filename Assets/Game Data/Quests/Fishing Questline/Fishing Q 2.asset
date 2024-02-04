@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fishing Q 2
   m_EditorClassIdentifier: 
   active: 0
-  label: Catch any Fish!
+  label: Go fishing!
   synchronizedQuest: 0
   requiredItems: []
   requiredItemType: 0
@@ -25,12 +25,13 @@ MonoBehaviour:
   currentKnowledge: 0
   requiredCustom1: 1
   currentCustom1: 0
-  custom1Requirement: 'Fish caught: '
-  customEvent: {fileID: 11400000, guid: 3fc6c6ec4fa97894e814e8186f21b4b2, type: 2}
+  custom1Requirement: 'Spots Fished Out: '
+  customEvent: {fileID: 11400000, guid: eb2eefde1f03be1448438cf8b1d0d432, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 10
     itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

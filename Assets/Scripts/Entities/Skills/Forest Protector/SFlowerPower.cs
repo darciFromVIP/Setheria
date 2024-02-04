@@ -34,6 +34,7 @@ public class SFlowerPower : Skill
     }
     public override void StopExecute()
     {
+        base.StopExecute();
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveListener(Cast);
         castingEntity.skillIndicator.InterruptCasting();

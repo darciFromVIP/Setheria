@@ -294,8 +294,9 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void TargetAcquired(NetworkIdentity target)
     {
-        if (GetComponent<HasHealth>().GetHealth() <= 0)
-            return;
+        if (TryGetComponent(out HasHealth hasHealth))
+            if (hasHealth.GetHealth() <= 0)
+                return;
         enemyTarget = target.GetComponent<HasHealth>();
         if (!enemyTarget)
             if (target.TryGetComponent(out Pet pet))

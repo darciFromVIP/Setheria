@@ -34,6 +34,7 @@ public class SGreenDust : Skill
     }
     public override void StopExecute()
     {
+        base.StopExecute();
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
         castingEntity.skillIndicator.InterruptCasting();

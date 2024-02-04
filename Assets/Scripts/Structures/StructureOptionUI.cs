@@ -32,11 +32,29 @@ public class StructureOptionUI : MonoBehaviour
     {
         if (currentStructure)
         {
-            if (currentStructure.TryGetComponent(out Well well))
+            if (currentStructure.TryGetComponent(out Well well) && structureOption.structureAction == StructureAction.DrawWater)
             {
-                cooldownSlider.gameObject.SetActive(true);
-                cooldownSlider.maxValue = well.waterCooldown;
-                cooldownSlider.value = well.GetWaterTimer();
+                if (well.GetWaterTimer() > 0)
+                {
+                    GetComponent<Button>().interactable = false;
+                    cooldownSlider.gameObject.SetActive(true);
+                    cooldownSlider.maxValue = well.waterCooldown;
+                    cooldownSlider.value = well.GetWaterTimer();
+                }
+                else
+                    GetComponent<Button>().interactable = true;
+            }
+            else if (currentStructure.TryGetComponent(out Tent tent) && structureOption.structureAction == StructureAction.Rest)
+            {
+                if (tent.GetRestCooldown() > 0)
+                {
+                    GetComponent<Button>().interactable = false;
+                    cooldownSlider.gameObject.SetActive(true);
+                    cooldownSlider.maxValue = tent.restCooldown;
+                    cooldownSlider.value = tent.GetRestCooldown();
+                }
+                else
+                    GetComponent<Button>().interactable = true;
             }
             else
                 cooldownSlider.gameObject.SetActive(false);
@@ -119,15 +137,10 @@ public class StructureOptionUI : MonoBehaviour
                 player2.Work_Finished.AddListener(SetReturnPoint);
                 break;
             case StructureAction.DrawWater:
-                if (currentStructure.GetComponent<Well>().GetWaterTimer() > 0)
-                    FindObjectOfType<SystemMessages>().AddMessage("There is no water in the Well!");
-                else
-                {
-                    var player3 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
-                    player3.CmdStartWorking(2);
-                    player3.Work_Finished.RemoveListener(DrawWater);
-                    player3.Work_Finished.AddListener(DrawWater);
-                }
+                var player3 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
+                player3.CmdStartWorking(2);
+                player3.Work_Finished.RemoveListener(DrawWater);
+                player3.Work_Finished.AddListener(DrawWater);
                 break;
             case StructureAction.Rest:
                 var player4 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
@@ -136,6 +149,7 @@ public class StructureOptionUI : MonoBehaviour
                 else
                 {
                     var tent = currentStructure.GetComponent<Tent>();
+                    tent.StartRestCooldown();
                     tent.CmdRestPlayer(player4.GetComponent<NetworkIdentity>());
                     if (player4.isOwned)
                         FindObjectOfType<TentButton>().ShowBTN(currentStructure);

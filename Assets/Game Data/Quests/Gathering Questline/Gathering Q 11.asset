@@ -32,7 +32,11 @@ MonoBehaviour:
   rewards:
   - rewardType: 2
     rewardAmount: 20
+    itemReward: {fileID: 0}
+  - rewardType: 3
+    rewardAmount: 1
     itemReward: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

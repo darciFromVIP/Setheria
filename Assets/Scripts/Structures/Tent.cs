@@ -6,6 +6,15 @@ public class Tent : NetworkBehaviour
 {
     public List<PlayerCharacter> restingPlayers = new List<PlayerCharacter>();
     public TutorialDataScriptable tutorialAfterBuild;
+    public float restCooldown;
+    private float restTimer;
+    private void Update()
+    {
+        if (restTimer > 0)
+        {
+            restTimer -= Time.deltaTime;
+        }
+    }
     private void Start()
     {
         FindObjectOfType<Tutorial>(true).QueueNewTutorial(tutorialAfterBuild);
@@ -38,5 +47,13 @@ public class Tent : NetworkBehaviour
         playerCharacter.EnableCharacter();
         playerCharacter.GetComponent<HasMana>().ChangeGearManaRegen(-3);
         playerCharacter.ChangeHungerIntervalMultiplier(-1);
+    }
+    public void StartRestCooldown()
+    {
+        restTimer = restCooldown;
+    }
+    public float GetRestCooldown()
+    {
+        return restTimer;
     }
 }

@@ -161,12 +161,12 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     item.Action_Finished.RemoveAllListeners();
                     item.Action_Finished.AddListener(DestroyItem);
                 }
-                item.Execute();
                 if (this.item.usageCooldown > 0)
                 {
                     item.Action_Finished.RemoveAllListeners();
                     item.Action_Finished.AddListener(StartCooldown);
                 }
+                item.Execute();
                 used = true;
             }
             else

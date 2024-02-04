@@ -49,6 +49,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1797561102721756200, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1815974454113220715, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
       propertyPath: m_Center.y
@@ -258,6 +263,12 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8060640818864485945, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
+      propertyPath: mapIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 40559c193520af844bc3092bb58ab769,
+        type: 3}
+    - target: {fileID: 8060640818864485945, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
       propertyPath: mapTooltipText
       value: Treasure Chest
       objectReference: {fileID: 0}
@@ -317,10 +328,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8669837912000563908}
-    - targetCorrespondingSourceObject: {fileID: 3810923609589089185, guid: d53377f057764634697b6d036b46f8ab,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1497337123438134281}
   m_SourcePrefab: {fileID: 100100000, guid: d53377f057764634697b6d036b46f8ab, type: 3}
 --- !u!1 &2821651740538025998 stripped
 GameObject:
@@ -376,21 +383,6 @@ MonoBehaviour:
         stacks: 1
       chance: 100
   fishingQuestEvent: {fileID: 0}
---- !u!114 &1497337123438134281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2821651740538025998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4279cc879e63e54abea7e28da8292fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapIcon: {fileID: 21300000, guid: 40559c193520af844bc3092bb58ab769, type: 3}
-  ownedMapIcon: {fileID: 0}
-  mapTooltipText: Treasure Chest
 --- !u!4 &5682573076324167240 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6707853813746013671, guid: d53377f057764634697b6d036b46f8ab,

@@ -48,15 +48,17 @@ public class EnemyCharacter : Character, ISaveable
     {
         aggroComp.enabled = false;
         attackComp.TargetLost();
-        moveComp.MoveTo(startingPosition);
+        if (moveComp)
+            moveComp.MoveTo(startingPosition);
         hpComp.HealDamage(10000000, true);
         hpComp.SetInvulnerability(true);
         StartCoroutine(CheckCampReturn());
     }
     protected IEnumerator CheckCampReturn()
     {
-        while (!moveComp.HasReachedDestination())
-            yield return null;
+        if (moveComp)
+            while (!moveComp.HasReachedDestination())
+                yield return null;
         hpComp.SetInvulnerability(false);
         aggroComp.enabled = true;
     }

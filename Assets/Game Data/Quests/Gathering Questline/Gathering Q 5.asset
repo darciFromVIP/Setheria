@@ -30,9 +30,12 @@ MonoBehaviour:
   custom1Requirement: 
   customEvent: {fileID: 0}
   rewards:
+  - rewardType: 3
+    rewardAmount: 1
+    itemReward: {fileID: 11400000, guid: bd5a5039329c9cb4db787f752d56c230, type: 2}
   - rewardType: 2
     rewardAmount: 15
-    itemReward: {fileID: 11400000, guid: bd5a5039329c9cb4db787f752d56c230, type: 2}
+    itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
