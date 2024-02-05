@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-
+using UnityEngine.Events;
 [System.Serializable]
 public class EnemyCharacter : Character, ISaveable
 {
@@ -16,6 +16,8 @@ public class EnemyCharacter : Character, ISaveable
     protected CanMove moveComp;
     protected HasAggro aggroComp;
     protected HasHealth hpComp;
+
+    public EventScriptable Enemy_Death;
     protected override void Start()
     {
         base.Start();
@@ -80,6 +82,8 @@ public class EnemyCharacter : Character, ISaveable
             {
                 item.RpcAddXp(xpGranted / xpReceivers.Count);
             }
+            if (Enemy_Death)
+                Enemy_Death.voidEvent.Invoke();
         }
     }
     public SaveDataWorldObject SaveState()

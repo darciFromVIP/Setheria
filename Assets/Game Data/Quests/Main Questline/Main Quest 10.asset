@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
+  m_Name: Main Quest 10
+  m_EditorClassIdentifier: 
+  active: 0
+  label: Beat the Fairy Queen
+  synchronizedQuest: 1
+  requiredItems: []
+  requiredItemType: 0
+  requiredItemTypeAmount: 0
+  requiredStructures: []
+  requiredResources: 0
+  currentResources: 0
+  requiredKnowledge: 0
+  currentKnowledge: 0
+  requiredCustom1: 1
+  currentCustom1: 0
+  custom1Requirement: 'Forest Queen slain: '
+  customEvent: {fileID: 11400000, guid: 9cc51fee7b720f74b8a385c2919eef70, type: 2}
+  rewards:
+  - rewardType: 2
+    rewardAmount: 200
+    itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
+  Quest_Complete:
+    m_PersistentCalls:
+      m_Calls: []
+  Quest_Updated:
+    m_PersistentCalls:
+      m_Calls: []

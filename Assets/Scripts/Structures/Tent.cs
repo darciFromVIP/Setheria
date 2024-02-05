@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.Events;
 public class Tent : NetworkBehaviour
 {
     public List<PlayerCharacter> restingPlayers = new List<PlayerCharacter>();
     public TutorialDataScriptable tutorialAfterBuild;
     public float restCooldown;
     private float restTimer;
+
+    public UnityEvent Stopped_Resting = new();
     private void Update()
     {
         if (restTimer > 0)
@@ -42,6 +45,7 @@ public class Tent : NetworkBehaviour
     [ClientRpc]
     private void RpcStopRestPlayer(NetworkIdentity player)
     {
+        Stopped_Resting.Invoke();
         var playerCharacter = player.GetComponent<PlayerCharacter>();
         restingPlayers.Remove(playerCharacter);
         playerCharacter.EnableCharacter();

@@ -216,7 +216,7 @@ namespace RPG_Indicator
             }
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit raycastHit, 2000, layermask))
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, layermask))
             {
                 Vector3 targetPos = (player.position + raycastHit.point) / 2;
                 Vector3 Distance = targetPos - player.position;
@@ -237,7 +237,7 @@ namespace RPG_Indicator
             }
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit raycastHit, 2000, layermask))
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, layermask))
             {
 
                 Vector3 targetPos = raycastHit.point - transform.position;

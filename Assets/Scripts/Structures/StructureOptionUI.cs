@@ -149,7 +149,7 @@ public class StructureOptionUI : MonoBehaviour
                 else
                 {
                     var tent = currentStructure.GetComponent<Tent>();
-                    tent.StartRestCooldown();
+                    tent.Stopped_Resting.AddListener(TentStoppedResting);
                     tent.CmdRestPlayer(player4.GetComponent<NetworkIdentity>());
                     if (player4.isOwned)
                         FindObjectOfType<TentButton>().ShowBTN(currentStructure);
@@ -240,6 +240,14 @@ public class StructureOptionUI : MonoBehaviour
             player.professions.AddCooking(1);
             inventory.AddItem(new SaveDataItem() { name = "Cooked Fish", stacks = item.stacks });
             inventory.RemoveItem(new ItemRecipeInfo() { itemData = item.item, stacks = item.stacks });
+        }
+    }
+    private void TentStoppedResting()
+    {
+        if (currentStructure.TryGetComponent(out Tent tent))
+        {
+            tent.StartRestCooldown();
+            tent.Stopped_Resting.RemoveAllListeners();
         }
     }
     private void SetReturnPoint()

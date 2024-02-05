@@ -148,6 +148,12 @@ PrefabInstance:
       propertyPath: campRadius
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: Enemy_Death
+      value: 
+      objectReference: {fileID: 11400000, guid: 9cc51fee7b720f74b8a385c2919eef70,
+        type: 2}
     - target: {fileID: 97580777487625474, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -323,6 +329,7 @@ MonoBehaviour:
   mapIcon: {fileID: 21300000, guid: 3742e3ae79adbb843935e916df32b886, type: 3}
   ownedMapIcon: {fileID: 0}
   mapTooltipText: Forest Queen (Boss)
+  iconSize: 0
 --- !u!4 &7467588874755935644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,

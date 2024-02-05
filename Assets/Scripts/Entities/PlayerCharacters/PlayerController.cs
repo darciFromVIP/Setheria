@@ -403,7 +403,7 @@ public class PlayerController : NetworkBehaviour
     {
         moveComp.MoveTo(collider.transform.position);
         var originDest = moveComp.agent.destination;
-        yield return new WaitForSeconds(0.2f);
+        //yield return new WaitForSeconds(0.2f);
         while (true)
         {
             if (originDest != moveComp.agent.destination)

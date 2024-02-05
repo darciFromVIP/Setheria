@@ -104,7 +104,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     private void Provoked(NetworkIdentity enemy)
     {
-        if (moveComp.agent.velocity.magnitude <= 0.01f)
+        if (moveComp.agent.velocity.magnitude <= 0.01f && !enemy.GetComponent<PlayerCharacter>())
             attackComp.TargetAcquired(enemy);
     }
     protected IEnumerator UpdatePlayer()
