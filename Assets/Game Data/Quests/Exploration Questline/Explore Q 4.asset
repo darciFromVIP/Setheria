@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Gathering Q 14
+  m_Name: Explore Q 4
   m_EditorClassIdentifier: 
   active: 0
-  label: Collect a pure Crystal.
+  label: Gather more Resources and Knowledge.
   synchronizedQuest: 0
   requiredItems: []
   requiredItemType: 0
   requiredItemTypeAmount: 0
   requiredStructures: []
-  requiredResources: 0
+  requiredResources: 300
   currentResources: 0
-  requiredKnowledge: 0
+  requiredKnowledge: 150
   currentKnowledge: 0
-  requiredCustom1: 1
+  requiredCustom1: 0
   currentCustom1: 0
-  custom1Requirement: 'Collected Crystal:'
-  customEvent: {fileID: 11400000, guid: 6840120b2ec54c04a85280df3dbb5796, type: 2}
+  custom1Requirement: 
+  customEvent: {fileID: 0}
   rewards:
   - rewardType: 2
-    rewardAmount: 400
+    rewardAmount: 200
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:

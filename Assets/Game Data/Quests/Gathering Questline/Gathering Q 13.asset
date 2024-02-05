@@ -15,9 +15,7 @@ MonoBehaviour:
   active: 0
   label: Collect a pure Crystal.
   synchronizedQuest: 0
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: bc713de8271117249a9f00941267a367, type: 2}
-    stacks: 1
+  requiredItems: []
   requiredItemType: 0
   requiredItemTypeAmount: 0
   requiredStructures: []
@@ -25,10 +23,10 @@ MonoBehaviour:
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
+  requiredCustom1: 1
   currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  custom1Requirement: 'Collected Crystal:'
+  customEvent: {fileID: 11400000, guid: 6840120b2ec54c04a85280df3dbb5796, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 400

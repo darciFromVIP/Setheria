@@ -15,9 +15,7 @@ MonoBehaviour:
   active: 0
   label: Find and collect Flax.
   synchronizedQuest: 0
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: a8bc1728e509cca45bb7f5f95205187b, type: 2}
-    stacks: 1
+  requiredItems: []
   requiredItemType: 0
   requiredItemTypeAmount: 0
   requiredStructures: []
@@ -25,10 +23,10 @@ MonoBehaviour:
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
+  requiredCustom1: 1
   currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  custom1Requirement: 'Collected Flax:'
+  customEvent: {fileID: 11400000, guid: 7011e97ca58007c49879ef3cb523084c, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 10

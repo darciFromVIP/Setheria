@@ -15,9 +15,7 @@ MonoBehaviour:
   active: 0
   label: Find natural sources of energy.
   synchronizedQuest: 0
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: df7a2ab289b52ac45ace238057e4ff3a, type: 2}
-    stacks: 3
+  requiredItems: []
   requiredItemType: 0
   requiredItemTypeAmount: 0
   requiredStructures: []
@@ -25,13 +23,13 @@ MonoBehaviour:
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
+  requiredCustom1: 3
   currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  custom1Requirement: 'Collected Cymian:'
+  customEvent: {fileID: 11400000, guid: eed0b7fa491ef79409ae54117329ec77, type: 2}
   rewards:
   - rewardType: 2
-    rewardAmount: 50
+    rewardAmount: 70
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:
