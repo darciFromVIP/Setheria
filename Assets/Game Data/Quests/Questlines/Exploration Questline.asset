@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Exploration Questline
   m_EditorClassIdentifier: 
   currentQuestIndex: 0
+  synchronized: 0
   questList:
   - {fileID: 11400000, guid: 6f9a96c590b823940879a8e0fa70a0c3, type: 2}
+  - {fileID: 11400000, guid: 42e6e65ea1e705442bcb86b3d72c992a, type: 2}
+  - {fileID: 11400000, guid: 0838286d6880afc49bd5aa67e8032453, type: 2}
+  - {fileID: 11400000, guid: 2b40e99bced326746b2b992d250dbf0c, type: 2}
   questsPath: Assets/Game Data/Quests/Exploration Questline
   Quest_Complete:
     m_PersistentCalls:
