@@ -9182,55 +9182,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1171253834}
-    - target: {fileID: 1641804943343142125, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 49.586494
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641804943343142125, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 19.581757
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641804943343142125, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 92.888275
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641804943343142125, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 47.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641804943343142125, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -13.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641804943343142125, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 11.4
-      objectReference: {fileID: 0}
     - target: {fileID: 3329485000817697540, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
         type: 3}
       propertyPath: m_Name
       value: Main Menu Water
-      objectReference: {fileID: 0}
-    - target: {fileID: 8535197282319711379, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8535197282319711379, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8535197282319711379, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8535197282319711379, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
         type: 3}
@@ -9282,18 +9237,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9156730611033981916, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 817dd5c158b980046868f68a86842bdf, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8535197282319711379, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1477573074}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a8d1cc4be094d44ca0448b0001dd5be, type: 3}
 --- !u!4 &712779725 stripped
@@ -29981,37 +29927,6 @@ MonoBehaviour:
   WaveRotations: {x: 0, y: 0, z: 0}
   WaveRotationsSpeed: 0.3
   AxisOffsetSpeed: {x: 0, y: 0, z: 0}
---- !u!1 &1477573073
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1477573074}
-  m_Layer: 4
-  m_Name: Game object (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1477573074
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1477573073}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.028182888, y: -0, z: -0, w: 0.9996028}
-  m_LocalPosition: {x: 97.5, y: -13.9, z: 11.3}
-  m_LocalScale: {x: 49.586494, y: 19.581757, z: 92.888275}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 712779725}
-  m_LocalEulerAnglesHint: {x: 3.23, y: 0, z: 0}
 --- !u!1 &1494105434
 GameObject:
   m_ObjectHideFlags: 0
