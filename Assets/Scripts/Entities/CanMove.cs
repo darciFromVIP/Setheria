@@ -60,13 +60,12 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     [Command(requiresAuthority = false)]
     public void CmdMoveTo(Vector3 destination)
     {
-        if (TryGetComponent(out NetworkAnimator networkAnimator))
-        {
-            if (networkAnimator.syncDirection == SyncDirection.ServerToClient)
-                MoveTo(destination);
-            else
-                RpcMoveTo(destination);
-        }
+        RpcMoveTo(destination);
+    }
+    [ClientRpc]
+    public void RpcMoveTo(Vector3 destination)
+    {
+        MoveTo(destination);
     }
     public void MoveTo(Vector3 destination)
     {
@@ -87,11 +86,6 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
                 agent.path = path;
             }
         }
-    }
-    [ClientRpc]
-    public void RpcMoveTo(Vector3 destination)
-    {
-        MoveTo(destination);
     }
     private IEnumerator CheckPathEnd()
     {
