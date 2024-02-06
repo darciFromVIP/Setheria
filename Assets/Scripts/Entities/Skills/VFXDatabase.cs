@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+[System.Serializable]
 [CreateAssetMenu(menuName = "Databases/VFX Database")]
 public class VFXDatabase : ScriptableObject
 {
-    public List<GameObject> vfx;
+    [SerializeField] public List<GameObject> vfx;
     
     public GameObject GetVFXByName(string name)
     {
@@ -15,6 +15,7 @@ public class VFXDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
+        hideFlags = HideFlags.HideAndDontSave;
         LoadVFXIntoDatabase();
     }
     [ContextMenu("Load VFX Into Database")]

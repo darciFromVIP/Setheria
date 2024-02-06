@@ -42,6 +42,7 @@ public class QuestManager : NetworkBehaviour
                     quest = item2;
             }
         }
+        Debug.Log(quest.name + " new quest");
         quest.SetQuestActive(true);
         var questInstance = Instantiate(questDescriptionPrefab, contentUI);
         questInstance.Initialize(quest);
@@ -256,6 +257,7 @@ public class QuestManager : NetworkBehaviour
     public QuestScriptable NewQuestline(string questlineName, int questIndex = 0)
     {
         QuestlineScriptable questline = questlineDatabase.GetQuestlineByName(questlineName);
+        Debug.Log(questline.name + " new questline");
         questlines.Add(questline);
         if (questline.synchronized)
         {

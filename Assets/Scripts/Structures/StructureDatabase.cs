@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+[System.Serializable]
 [CreateAssetMenu(menuName = "Databases/Structure Database")]
 public class StructureDatabase : ScriptableObject
 {
-    public List<Structure> structures;
+    [SerializeField] public List<Structure> structures;
 
     public Structure GetStructureByName(string name)
     {
@@ -14,6 +15,7 @@ public class StructureDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
+        hideFlags = HideFlags.HideAndDontSave;
         LoadStructuresIntoDatabase();
     }
     [ContextMenu("Load Structures Into Database")]

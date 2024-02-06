@@ -11,6 +11,7 @@ public struct CurrentWorldSetMessage : NetworkMessage
 {
     public SaveDataWorld currentWorldData;
 }
+[System.Serializable]
 public class MyNetworkManager : NetworkManager
 {
     public SaveLoadSystem saveLoad;

@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+[System.Serializable]
 [CreateAssetMenu(menuName = "Databases/Item Grade Database")]
 public class ItemGradeDatabase : ScriptableObject
 {
-    public List<Sprite> grades;
+    [SerializeField] public List<Sprite> grades;
 
     public Sprite GetBorderByName(string name)
     {
@@ -15,6 +16,7 @@ public class ItemGradeDatabase : ScriptableObject
     private void OnEnable()
     {
         LoadItemsIntoDatabase();
+        hideFlags = HideFlags.HideAndDontSave;
     }
     [ContextMenu("Load Items Into Database")]
     public void LoadItemsIntoDatabase()

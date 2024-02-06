@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+[System.Serializable]
 [CreateAssetMenu(menuName = "Databases/Questline Database")]
 public class QuestlineDatabase : ScriptableObject
 {
-    public List<QuestlineScriptable> questlines;
+    [SerializeField] public List<QuestlineScriptable> questlines;
 
     public QuestlineScriptable GetQuestlineByName(string name)
     {
@@ -14,6 +15,7 @@ public class QuestlineDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
+        hideFlags = HideFlags.HideAndDontSave;
         LoadQuestlinesIntoDatabase();
     }
     [ContextMenu("Load Questlines Into Database")]

@@ -20,7 +20,7 @@ public class Tent : NetworkBehaviour
     }
     private void Start()
     {
-        FindObjectOfType<Tutorial>(true).QueueNewTutorial(tutorialAfterBuild);
+        FindObjectOfType<Tutorial>(true).QueueTentTutorial(tutorialAfterBuild);
     }
 
     [Command(requiresAuthority = false)]

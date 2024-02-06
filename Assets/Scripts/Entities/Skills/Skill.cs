@@ -61,7 +61,8 @@ public class Skill : ScriptableObject
     public void SetCastingEntity(Character self)
     {
         castingEntity = self;
-        UpdateDescription();
+        if (self is PlayerCharacter)
+            UpdateDescription();
     }
     protected float GetScalingStatValue(PlayerStat stat)
     {

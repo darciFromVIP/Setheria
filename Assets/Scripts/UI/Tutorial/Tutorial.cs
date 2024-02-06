@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Tutorial : MonoBehaviour
+public class Tutorial : MonoBehaviour, ISaveable
 {
     public GameObject window;
     public TextMeshProUGUI label, description;
     public Animator gifAnimator;
-    
+
+    private bool tentTutorialShown;
     private Queue<TutorialDataScriptable> tutorialDataStack = new();
     private bool isCoroutineRunning = false;
 
@@ -22,6 +22,13 @@ public class Tutorial : MonoBehaviour
     public bool IsTutorialDisabled()
     {
         return isTutorialDisabled;
+    }
+    public void QueueTentTutorial(TutorialDataScriptable tutData)
+    {
+        if (tentTutorialShown)
+            return;
+        tentTutorialShown = true;
+        QueueNewTutorial(tutData);
     }
     public void QueueNewTutorial(TutorialDataScriptable tutData)
     {
@@ -58,5 +65,15 @@ public class Tutorial : MonoBehaviour
         {
             StartCoroutine(DelayedSetNewWindow());
         }
+    }
+
+    public SaveDataWorldObject SaveState()
+    {
+        return new SaveDataWorldObject { boolData1 = tentTutorialShown };
+    }
+
+    public void LoadState(SaveDataWorldObject state)
+    {
+        tentTutorialShown = state.boolData1;
     }
 }

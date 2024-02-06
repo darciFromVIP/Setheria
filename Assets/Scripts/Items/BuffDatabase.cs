@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+[System.Serializable]
 [CreateAssetMenu(menuName = "Databases/Buff Scriptable Database")]
 public class BuffDatabase : ScriptableObject
 {
-    public List<BuffScriptable> buffs;
+    [SerializeField] public List<BuffScriptable> buffs;
 
 
     public BuffScriptable GetBuffByName(string name)
@@ -16,6 +17,7 @@ public class BuffDatabase : ScriptableObject
     private void OnEnable()
     {
         LoadItemsIntoDatabase();
+        hideFlags = HideFlags.HideAndDontSave;
     }
     [ContextMenu("Load Items Into Database")]
     public void LoadItemsIntoDatabase()

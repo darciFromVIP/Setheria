@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+[System.Serializable]
 [CreateAssetMenu(menuName = "Databases/Item Prefab Database")]
 public class ItemPrefabDatabase : ScriptableObject
 {
-    public List<Item> items;
+    [SerializeField] public List<Item> items;
 
     public Item GetItemByName(string name)
     {
@@ -14,6 +15,7 @@ public class ItemPrefabDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
+        hideFlags = HideFlags.HideAndDontSave;
         LoadItemsIntoDatabase();
     }
     [ContextMenu("Load Items Into Database")]

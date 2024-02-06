@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+[System.Serializable]
 [CreateAssetMenu(menuName = "Databases/Recipe Database")]
 public class RecipeDatabase : ScriptableObject
 {
-    public List<RecipeScriptable> allRecipes;
-    public List<RecipeScriptable> survivalRecipes;
-    public List<RecipeScriptable> structureRecipes;
-    public List<RecipeScriptable> alchemyRecipes;
-    public List<RecipeScriptable> fishingRecipes;
-    public List<RecipeScriptable> armoryRecipes;
-    public List<RecipeScriptable> cookingRecipes;
-    public List<RecipeScriptable> explorationRecipes;
+    [SerializeField] public List<RecipeScriptable> allRecipes;
+    [SerializeField] public List<RecipeScriptable> survivalRecipes;
+    [SerializeField] public List<RecipeScriptable> structureRecipes;
+    [SerializeField] public List<RecipeScriptable> alchemyRecipes;
+    [SerializeField] public List<RecipeScriptable> fishingRecipes;
+    [SerializeField] public List<RecipeScriptable> armoryRecipes;
+    [SerializeField] public List<RecipeScriptable> cookingRecipes;
+    [SerializeField] public List<RecipeScriptable> explorationRecipes;
     public RecipeScriptable GetRecipeByName(string name)
     {
         return allRecipes.Find((x) => x.name == name);
@@ -20,6 +21,7 @@ public class RecipeDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
+        hideFlags = HideFlags.HideAndDontSave;
         LoadItemsIntoDatabase();
     }
     [ContextMenu("Load Recipes Into Database")]

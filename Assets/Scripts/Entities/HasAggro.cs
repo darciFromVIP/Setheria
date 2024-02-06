@@ -29,10 +29,10 @@ public class HasAggro : NetworkBehaviour
         if (TryGetComponent(out HasHealth hp))
         {
             hp.Damage_Taken_Amount.AddListener(DamageTaken);
+            hp.On_Death.AddListener(DisableScript);
         }
         if (TryGetComponent(out CanAttack attack))
             attack.Target_Lost.AddListener(TargetLost);
-        GetComponent<HasHealth>().On_Death.AddListener(DisableScript);
     }
     private void DisableScript()
     {

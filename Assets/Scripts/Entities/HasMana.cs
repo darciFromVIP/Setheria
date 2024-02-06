@@ -84,6 +84,7 @@ public class HasMana : NetworkBehaviour
     {
         baseMaxMana += amount;
         UpdateMaxMana();
+        AdjustManaToMaxMana(GetFinalMaxMana() - amount);
     }
     [Command]
     public void CmdChangeGearMaxMana(float amount)
@@ -99,11 +100,19 @@ public class HasMana : NetworkBehaviour
     {
         gearMaxMana += amount;
         UpdateMaxMana();
+        AdjustManaToMaxMana(GetFinalMaxMana() - amount);
     }
     private void UpdateMaxMana()
     {
         maxMana = baseMaxMana + gearMaxMana;
         Mana_Changed.Invoke(mana, maxMana);
+    }
+    private void AdjustManaToMaxMana(float previousMaxMana)
+    {
+        if (previousMaxMana > GetFinalMaxMana())
+            return;
+        var percentage = GetMana() / previousMaxMana;
+        CmdSetMana(GetFinalMaxMana() * percentage);
     }
     [Command]
     public void CmdChangeBaseManaRegen(float amount)
@@ -160,15 +169,26 @@ public class HasMana : NetworkBehaviour
     {
         return manaRegen;
     }
+    [Command]
+    public void CmdSetMana(float value)
+    {
+        RpcSetMana(value);
+    }
+    [ClientRpc]
+    public void RpcSetMana(float value)
+    {
+        SetMana(value);
+    }
     public void SetMana(float value)
     {
         mana = value;
+        Mana_Changed.Invoke(GetMana(), GetFinalMaxMana());
     }
     public void SetMaxMana(float value)
     {
         baseMaxMana = value;
         UpdateMaxMana();
-        Mana_Changed.Invoke(mana, maxMana);
+        Mana_Changed.Invoke(GetMana(), GetFinalMaxMana());
     }
     public void SetBaseManaRegen(float value)
     {

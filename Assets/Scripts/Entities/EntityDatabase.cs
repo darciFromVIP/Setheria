@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+[System.Serializable]
 [CreateAssetMenu(menuName = "Databases/Entity Database")]
 public class EntityDatabase : ScriptableObject
 {
-    public List<Entity> entities;
+    [SerializeField] public List<Entity> entities;
 
     public Entity GetEntityByName(string name)
     {
@@ -15,6 +15,7 @@ public class EntityDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
+        hideFlags = HideFlags.HideAndDontSave;
         LoadEntitiesIntoDatabase();
     }
     [ContextMenu("Load Entities Into Database")]

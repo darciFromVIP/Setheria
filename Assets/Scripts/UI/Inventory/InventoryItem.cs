@@ -264,6 +264,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             if (parentAfterDrag.TryGetComponent(out StashSlot slot) || parentAfterDrag.TryGetComponent(out CharacterGearSlot characterGearSlot))
                 return;
 
+            if (FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>().state != PlayerState.None)
+                return;
+
             List<RaycastResult> results = new();
             EventSystem.current.RaycastAll(eventData, results);
             if (results.Count > 0)

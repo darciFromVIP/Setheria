@@ -654,6 +654,11 @@ PrefabInstance:
       propertyPath: circleRadius
       value: 4.65
       objectReference: {fileID: 0}
+    - target: {fileID: 6677551501297419170, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: rmsCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7774137498489909179, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -712,12 +717,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4952204330415723922}
   m_SourcePrefab: {fileID: 100100000, guid: cf1fd752683bedf41b6bd4eae6622612, type: 3}
---- !u!1 &1136062562879204474 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3570985794274343471, guid: cf1fd752683bedf41b6bd4eae6622612,
-    type: 3}
-  m_PrefabInstance: {fileID: 4488587210391082581}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2464085923947891766 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
@@ -743,7 +742,7 @@ MonoBehaviour:
   On_Death:
     m_PersistentCalls:
       m_Calls: []
-  hudCircle: {fileID: 1136062562879204474}
+  hudCircle: {fileID: 0}
   vfxDatabase: {fileID: 0}
   structureItem: {fileID: 11400000, guid: c1c19e88d55514748b3a55507fbdc8c5, type: 2}
   structureOptions:
