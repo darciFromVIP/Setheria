@@ -905,6 +905,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9014643280106428938, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
+      propertyPath: mapIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 1841eafca0312d741b75c0d4e083956a,
+        type: 3}
+    - target: {fileID: 9014643280106428938, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
       propertyPath: mapTooltipText
       value: Heartstone
       objectReference: {fileID: 0}
@@ -948,10 +954,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 216194301611544425}
-    - targetCorrespondingSourceObject: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -23915674319048475}
   m_SourcePrefab: {fileID: 100100000, guid: f87e8e15654f0d1439fa30e59ccad342, type: 3}
 --- !u!1 &1019484493514164481 stripped
 GameObject:
@@ -1011,21 +1013,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-23915674319048475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1019484493514164481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4279cc879e63e54abea7e28da8292fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapIcon: {fileID: 21300000, guid: 1841eafca0312d741b75c0d4e083956a, type: 3}
-  ownedMapIcon: {fileID: 0}
-  mapTooltipText: Heartstone
 --- !u!4 &7238720859854677413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,

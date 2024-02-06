@@ -458,6 +458,7 @@ MonoBehaviour:
   refreshProgressBar: {fileID: 5647387607280405362}
   remainingChargesText: {fileID: 8218471359694666513}
   Player_Event: {fileID: 11400000, guid: cd12b9089334303458b84dfa92efc12f, type: 2}
+  Quest_Event: {fileID: 0}
   Object_Destroyed:
     m_PersistentCalls:
       m_Calls: []
@@ -754,6 +755,7 @@ MonoBehaviour:
   mapIcon: {fileID: 21300000, guid: 330361fd91bc70d4eb52ef6cf4d7cc42, type: 3}
   ownedMapIcon: {fileID: 0}
   mapTooltipText: Fruited Palm
+  iconSize: 0
 --- !u!114 &1116731127511708775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,6 +1301,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shine Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 976365683102791067, guid: b46344c8183999644b38ae37a7077b00,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1247321321033999987, guid: b46344c8183999644b38ae37a7077b00,
         type: 3}
