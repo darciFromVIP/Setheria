@@ -183,7 +183,7 @@ public class PlayerController : NetworkBehaviour
             {
                 if (hit.collider.CompareTag("Ground"))                         
                 {
-                    moveComp.CmdMoveTo(hit.point);
+                    moveComp.MoveTo(hit.point);
                     attackComp.CmdTargetLost();
                 }
             }
@@ -401,7 +401,7 @@ public class PlayerController : NetworkBehaviour
     }
     private IEnumerator GoToInteract(Collider collider, IInteractable interactable)
     {
-        moveComp.CmdMoveTo(collider.transform.position);
+        moveComp.MoveTo(collider.transform.position);
         var originDest = moveComp.agent.destination;
         //yield return new WaitForSeconds(0.2f);
         while (true)

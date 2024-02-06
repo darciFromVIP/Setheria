@@ -50,22 +50,15 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     {
         if (baseMovementSpeed == 0)
             transform.position = startingLocation;
-        if (isServer && GetComponent<PlayerCharacter>())
-            Debug.Log(name + " " + agent.velocity.magnitude);
         if (animator)
-            animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
+            CmdSetAgentVelocity();
         if (!(isOwned || (entity is not PlayerCharacter && isServer)) || baseMovementSpeed == 0)
             return;
     }
     [Command(requiresAuthority = false)]
-    public void CmdMoveTo(Vector3 destination)
+    private void CmdSetAgentVelocity()
     {
-        RpcMoveTo(destination);
-    }
-    [ClientRpc]
-    public void RpcMoveTo(Vector3 destination)
-    {
-        MoveTo(destination);
+        animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
     }
     public void MoveTo(Vector3 destination)
     {
@@ -86,6 +79,11 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
                 agent.path = path;
             }
         }
+    }
+    [ClientRpc]
+    public void RpcMoveTo(Vector3 destination)
+    {
+        MoveTo(destination);
     }
     private IEnumerator CheckPathEnd()
     {
