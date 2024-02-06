@@ -50,6 +50,8 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     {
         if (baseMovementSpeed == 0)
             transform.position = startingLocation;
+        if (isServer && GetComponent<PlayerCharacter>())
+            Debug.Log(name + " " + agent.velocity.magnitude);
         if (animator)
             animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
         if (!(isOwned || (entity is not PlayerCharacter && isServer)) || baseMovementSpeed == 0)
