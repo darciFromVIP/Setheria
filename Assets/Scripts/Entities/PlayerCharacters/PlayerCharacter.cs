@@ -461,6 +461,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             yield return null;    
         }
         moveComp.Stop();
+        moveComp.CmdStop();
         CreateItem(new SaveDataItem() { name = itemToDrop.item.name, stacks = itemToDrop.stacks }, destination);
         itemToDrop.DestroyItem();
     }
@@ -479,6 +480,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 break;
             yield return null;
         }
+        moveComp.Stop();
+        moveComp.CmdStop();
         CmdAddItemToInventory(itemToGive.item.name, itemToGive.stacks, player.netIdentity);
         itemToGive.DestroyItem();
     }

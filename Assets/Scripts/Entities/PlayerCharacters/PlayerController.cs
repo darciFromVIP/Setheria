@@ -417,6 +417,7 @@ public class PlayerController : NetworkBehaviour
             yield return null;
         }
         moveComp.Stop();
+        moveComp.CmdStop();
         interactable.Interact(playerCharacter);
     }
     public bool ContainsCollider(Collider colliderToCompare)

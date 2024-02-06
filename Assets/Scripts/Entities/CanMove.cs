@@ -97,6 +97,16 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
         animator.SetBool(animHash_Run, false);
         animator.SetBool(animHash_Walk, false);
     }
+    [Command(requiresAuthority = false)]
+    public void CmdStop()
+    {
+        RpcStop();
+    }
+    [ClientRpc]
+    public void RpcStop()
+    {
+        Stop();
+    }
     public void Stop()
     {
         if (agent.isOnNavMesh)
