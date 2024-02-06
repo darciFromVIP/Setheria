@@ -57,6 +57,17 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
         if (!(isOwned || (entity is not PlayerCharacter && isServer)) || baseMovementSpeed == 0)
             return;
     }
+    [Command(requiresAuthority = false)]
+    public void CmdMoveTo(Vector3 destination)
+    {
+        if (TryGetComponent(out NetworkAnimator networkAnimator))
+        {
+            if (networkAnimator.syncDirection == SyncDirection.ServerToClient)
+                MoveTo(destination);
+            else
+                RpcMoveTo(destination);
+        }
+    }
     public void MoveTo(Vector3 destination)
     {
         if (agent.isOnNavMesh)

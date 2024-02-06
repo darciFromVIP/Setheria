@@ -447,7 +447,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     public IEnumerator GoToDropItem(InventoryItem itemToDrop, Vector3 destination)
     {
-        moveComp.MoveTo(destination);
+        moveComp.CmdMoveTo(destination);
         var originDest = moveComp.agent.destination;
         while (true)
         {
@@ -465,7 +465,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     public IEnumerator GoToGiveItem(InventoryItem itemToGive, PlayerCharacter player)
     {
-        moveComp.MoveTo(player.transform.position);
+        moveComp.CmdMoveTo(player.transform.position);
         var originDest = moveComp.agent.destination;
         while (true)
         {
