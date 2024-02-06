@@ -407,7 +407,8 @@ PrefabInstance:
       propertyPath: syncDirection
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1094240375776113113, guid: 36b01e57100ea254d9149e8306d6dd8f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7082070339115388359, guid: 36b01e57100ea254d9149e8306d6dd8f,
@@ -978,6 +979,7 @@ MonoBehaviour:
   mapIcon: {fileID: 0}
   ownedMapIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   mapTooltipText: 
+  iconSize: 0
 --- !u!4 &4712205572119561756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7082070339115388359, guid: 36b01e57100ea254d9149e8306d6dd8f,
