@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Provisional Gathering Tool
   m_EditorClassIdentifier: 
-  description: 'Helpful instrument used to gather materials.
+  description: '__________________________________
+
+    Helpful instrument used to
+    gather materials.
 
     __________________________________
 
-    Equipable,
-    Gathering Tool'
+    Equipable, Gathering
+    Tool'
   grade: 0
   itemType: 12
   sprite: {fileID: 21300000, guid: dccf5053d37504c49b993b8fc0bd4359, type: 3}
@@ -31,6 +34,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

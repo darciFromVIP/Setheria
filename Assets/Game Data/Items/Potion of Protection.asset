@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Potion of Protection
   m_EditorClassIdentifier: 
-  description: 'Use to gain +2 Armor for 1h. This effect can be stacked.
+  description: '__________________________________
+
+    Use to gain +2 Armor for
+    1h. This effect can be stacked.
 
     __________________________________
 
@@ -32,6 +35,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []
