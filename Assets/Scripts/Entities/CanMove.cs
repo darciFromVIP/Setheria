@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(NetworkTransform))]
 public class CanMove : NetworkBehaviour, IUsesAnimator
@@ -51,14 +52,19 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
         if (baseMovementSpeed == 0)
             transform.position = startingLocation;
         if (animator)
-            CmdSetAgentVelocity(agent.velocity.magnitude);
+            animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
         if (!(isOwned || (entity is not PlayerCharacter && isServer)) || baseMovementSpeed == 0)
             return;
     }
     [Command(requiresAuthority = false)]
-    private void CmdSetAgentVelocity(float velocity)
+    public void CmdMoveTo(Vector3 destination)
     {
-        animator.SetFloat("AgentVelocity", velocity);
+        RpcMoveTo(destination);
+    }
+    [ClientRpc]
+    public void RpcMoveTo(Vector3 destination)
+    {
+        MoveTo(destination);
     }
     public void MoveTo(Vector3 destination)
     {
@@ -80,11 +86,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             }
         }
     }
-    [ClientRpc]
-    public void RpcMoveTo(Vector3 destination)
-    {
-        MoveTo(destination);
-    }
+
     private IEnumerator CheckPathEnd()
     {
         yield return new WaitForSeconds(1f);
