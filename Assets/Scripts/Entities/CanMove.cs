@@ -53,8 +53,6 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             transform.position = startingLocation;
         if (animator)
             animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
-        if (!(isOwned || (entity is not PlayerCharacter && isServer)) || baseMovementSpeed == 0)
-            return;
     }
     [Command(requiresAuthority = false)]
     public void CmdMoveTo(Vector3 destination)
@@ -101,18 +99,19 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     public void CmdStop()
     {
         RpcStop();
-        agent.destination = transform.position;
     }
     [ClientRpc]
     public void RpcStop()
     {
         Stop();
-        agent.destination = transform.position;
     }
     public void Stop()
     {
         if (agent.isOnNavMesh)
+        {
             agent.destination = transform.position;
+            animator.SetFloat("AgentVelocity", 0);
+        }
     }
     public void ResumeAgent()
     {
