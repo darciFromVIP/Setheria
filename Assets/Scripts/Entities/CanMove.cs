@@ -49,6 +49,8 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     }
     private void Update()
     {
+        if (isServer && GetComponent<PlayerCharacter>())
+            Debug.Log(name + " " + agent.velocity.magnitude);
         if (baseMovementSpeed == 0)
             transform.position = startingLocation;
         if (animator)
@@ -99,6 +101,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     public void CmdStop()
     {
         RpcStop();
+        Stop();
     }
     [ClientRpc]
     public void RpcStop()
