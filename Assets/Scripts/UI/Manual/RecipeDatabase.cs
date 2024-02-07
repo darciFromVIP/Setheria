@@ -21,7 +21,6 @@ public class RecipeDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
-        hideFlags = HideFlags.HideAndDontSave;
         LoadItemsIntoDatabase();
     }
     [ContextMenu("Load Recipes Into Database")]

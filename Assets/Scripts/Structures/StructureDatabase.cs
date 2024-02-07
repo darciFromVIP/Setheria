@@ -15,7 +15,6 @@ public class StructureDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
-        hideFlags = HideFlags.HideAndDontSave;
         LoadStructuresIntoDatabase();
     }
     [ContextMenu("Load Structures Into Database")]

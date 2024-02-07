@@ -15,7 +15,6 @@ public class EntityDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
-        hideFlags = HideFlags.HideAndDontSave;
         LoadEntitiesIntoDatabase();
     }
     [ContextMenu("Load Entities Into Database")]

@@ -16,7 +16,6 @@ public class ItemScriptableDatabase : ScriptableObject
     private void OnEnable()
     {
         LoadItemsIntoDatabase();
-        hideFlags = HideFlags.HideAndDontSave;
     }
     [ContextMenu("Load Items Into Database")]
     public void LoadItemsIntoDatabase()

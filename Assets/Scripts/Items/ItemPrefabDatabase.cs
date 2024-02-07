@@ -15,7 +15,6 @@ public class ItemPrefabDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
-        hideFlags = HideFlags.HideAndDontSave;
         LoadItemsIntoDatabase();
     }
     [ContextMenu("Load Items Into Database")]

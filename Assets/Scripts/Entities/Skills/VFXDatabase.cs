@@ -15,7 +15,6 @@ public class VFXDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
-        hideFlags = HideFlags.HideAndDontSave;
         LoadVFXIntoDatabase();
     }
     [ContextMenu("Load VFX Into Database")]

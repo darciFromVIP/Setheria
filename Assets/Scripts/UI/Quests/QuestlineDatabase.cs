@@ -15,7 +15,6 @@ public class QuestlineDatabase : ScriptableObject
 #if UNITY_EDITOR
     private void OnEnable()
     {
-        hideFlags = HideFlags.HideAndDontSave;
         LoadQuestlinesIntoDatabase();
     }
     [ContextMenu("Load Questlines Into Database")]
