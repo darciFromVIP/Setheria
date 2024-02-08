@@ -53,7 +53,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             transform.position = startingLocation;
         if (animator)
         {
-            if ((GetComponent<NetworkAnimator>().clientAuthority && isClient) || (!GetComponent<NetworkAnimator>().clientAuthority && isServer))
+            if ((GetComponent<NetworkAnimator>().clientAuthority && isOwned) || (!GetComponent<NetworkAnimator>().clientAuthority && isServer))
             {
                 animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
             }
