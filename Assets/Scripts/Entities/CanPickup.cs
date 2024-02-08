@@ -1,8 +1,9 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CanPickup : MonoBehaviour
+public class CanPickup : NetworkBehaviour
 {
     private Item itemToPickup;
     private CanMove canMoveComp;
@@ -12,11 +13,16 @@ public class CanPickup : MonoBehaviour
         canMoveComp = GetComponent<CanMove>();
         playerController = GetComponent<PlayerController>();
     }
-    public IEnumerator GoToPickup(Item item)
+    [Command(requiresAuthority = false)]
+    public void CmdGoToPickup(NetworkIdentity item)
+    {
+        StartCoroutine(GoToPickup(item));
+    }
+    public IEnumerator GoToPickup(NetworkIdentity item)
     {
         if (itemToPickup == item)
             yield break;
-        itemToPickup = item;
+        itemToPickup = item.GetComponent<Item>();
         canMoveComp.MoveTo(item.transform.position);
         var originDest = canMoveComp.agent.destination;
         while (true)
