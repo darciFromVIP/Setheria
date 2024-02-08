@@ -518,10 +518,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     healthComp.CmdTakeDamage(modifier, true, GetComponent<NetworkIdentity>(), false, true);
                 break;
             case PlayerStat.MaxHealth:
-                healthComp.ChangeBaseMaxHealth(modifier);
+                healthComp.CmdChangeBaseMaxHealth(modifier);
                 break;
             case PlayerStat.HealthRegen:
-                healthComp.ChangeBaseHealthRegen(modifier);
+                healthComp.CmdChangeBaseHealthRegen(modifier);
                 break;
             case PlayerStat.Mana:
                 if (modifier > 0)
@@ -556,25 +556,25 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 GetComponent<CanMove>().ChangeBonusMovementSpeed(modifier);
                 break;
             case PlayerStat.Power:
-                GetComponent<CanAttack>().ChangePower(modifier);
+                GetComponent<CanAttack>().CmdChangePower(modifier);
                 break;
             case PlayerStat.AttackSpeed:
-                GetComponent<CanAttack>().ChangeBonusAttackSpeed(modifier);
+                GetComponent<CanAttack>().CmdChangeBonusAttackSpeed(modifier);
                 break;
             case PlayerStat.CriticalChance:
-                GetComponent<CanAttack>().ChangeCriticalChance(modifier);
+                GetComponent<CanAttack>().CmdChangeCriticalChance(modifier);
                 break;
             case PlayerStat.CriticalDamage:
-                GetComponent<CanAttack>().ChangeCriticalDamage(modifier);
+                GetComponent<CanAttack>().CmdChangeCriticalDamage(modifier);
                 break;
             case PlayerStat.Armor:
-                GetComponent<HasHealth>().ChangeArmor(modifier);
+                GetComponent<HasHealth>().CmdChangeArmor(modifier);
                 break;
             case PlayerStat.CooldownReduction:
-                GetComponent<CanAttack>().ChangeCooldownReduction(modifier);
+                GetComponent<CanAttack>().CmdChangeCooldownReduction(modifier);
                 break;
             case PlayerStat.Level:
-                AddXp(maxXp - xp);
+                CmdAddXp(maxXp - xp);
                 break;
             default:
                 break;

@@ -23,7 +23,10 @@ public class Wander : MonoBehaviour
         if (canAttackComp)
         {
             canAttackComp.Target_Acquired.AddListener(PauseWander);
-            canAttackComp.Target_Lost.AddListener(ResumeWander);
+        }
+        if (TryGetComponent(out EnemyCharacter enemyCharacter))
+        {
+            enemyCharacter.Returned_To_Camp.AddListener(ResumeWander);
         }
         StartCoroutine(StartWander());
     }

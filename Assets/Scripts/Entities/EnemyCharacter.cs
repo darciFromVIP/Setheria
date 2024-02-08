@@ -18,6 +18,7 @@ public class EnemyCharacter : Character, ISaveable
     protected HasHealth hpComp;
 
     public EventScriptable Enemy_Death;
+    public UnityEvent Returned_To_Camp = new();
     protected override void Start()
     {
         base.Start();
@@ -61,7 +62,7 @@ public class EnemyCharacter : Character, ISaveable
         if (moveComp)
             while (!moveComp.HasReachedDestination())
                 yield return null;
-        Debug.Log("Returned");
+        Returned_To_Camp.Invoke();
         hpComp.SetInvulnerability(false);
         aggroComp.enabled = true;
     }
