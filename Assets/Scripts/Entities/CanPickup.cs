@@ -13,16 +13,11 @@ public class CanPickup : NetworkBehaviour
         canMoveComp = GetComponent<CanMove>();
         playerController = GetComponent<PlayerController>();
     }
-    [Command(requiresAuthority = false)]
-    public void CmdGoToPickup(NetworkIdentity item)
-    {
-        StartCoroutine(GoToPickup(item));
-    }
-    public IEnumerator GoToPickup(NetworkIdentity item)
+    public IEnumerator GoToPickup(Item item)
     {
         if (itemToPickup == item)
             yield break;
-        itemToPickup = item.GetComponent<Item>();
+        itemToPickup = item;
         canMoveComp.MoveTo(item.transform.position);
         var originDest = canMoveComp.agent.destination;
         while (true)
@@ -39,15 +34,10 @@ public class CanPickup : NetworkBehaviour
         canMoveComp.Stop();
         if (itemToPickup == null)
             yield break;
-        PickUpItem(connectionToClient, item);
-        itemToPickup = null;
-    }
-    [TargetRpc]
-    private void PickUpItem(NetworkConnection conn, NetworkIdentity item)
-    {
         FindObjectOfType<AudioManager>().ItemPickUp(transform.position);
-        FindObjectOfType<InventoryManager>(true).AddItem(item.GetComponent<Item>());
+        FindObjectOfType<InventoryManager>(true).AddItem(itemToPickup);
         FindObjectOfType<TooltipWorld>(true).Hide();
-        item.GetComponent<Item>().DestroyItem();
+        itemToPickup.DestroyItem();
+        itemToPickup = null;
     }
 }

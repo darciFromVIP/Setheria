@@ -184,7 +184,6 @@ public class PlayerController : NetworkBehaviour
                 if (hit.collider.CompareTag("Ground"))                         
                 {
                     moveComp.MoveTo(hit.point);
-                    moveComp.CmdMoveTo(hit.point);
                     attackComp.CmdTargetLost();
                 }
             }
@@ -208,7 +207,7 @@ public class PlayerController : NetworkBehaviour
                 }
                 if (hit.collider.TryGetComponent(out Item item))
                 {
-                    pickupComp.CmdGoToPickup(item.GetComponent<NetworkIdentity>());
+                    StartCoroutine(pickupComp.GoToPickup(item));
                 }
                 if (hit.collider.TryGetComponent(out IInteractable interactable))
                 {
@@ -403,7 +402,6 @@ public class PlayerController : NetworkBehaviour
     private IEnumerator GoToInteract(Collider collider, IInteractable interactable)
     {
         moveComp.MoveTo(collider.transform.position);
-        moveComp.CmdMoveTo(collider.transform.position);
         var originDest = moveComp.agent.destination;
         //yield return new WaitForSeconds(0.2f);
         while (true)
@@ -417,7 +415,6 @@ public class PlayerController : NetworkBehaviour
             yield return null;
         }
         moveComp.Stop();
-        moveComp.CmdStop();
         interactable.Interact(playerCharacter);
     }
     public bool ContainsCollider(Collider colliderToCompare)

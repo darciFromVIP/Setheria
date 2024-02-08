@@ -59,12 +59,6 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             }
         }
     }
-    [Command(requiresAuthority = false)]
-    public void CmdMoveTo(Vector3 destination)
-    {
-        /*RpcMoveTo(destination);
-        MoveTo(destination);*/
-    }
     [ClientRpc]
     public void RpcMoveTo(Vector3 destination)
     {
@@ -100,17 +94,6 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
         }
         animator.SetBool(animHash_Run, false);
         animator.SetBool(animHash_Walk, false);
-    }
-    [Command(requiresAuthority = false)]
-    public void CmdStop()
-    {
-        /*RpcStop();
-        Stop();*/
-    }
-    [ClientRpc]
-    public void RpcStop()
-    {
-        //Stop();
     }
     public void Stop()
     {
