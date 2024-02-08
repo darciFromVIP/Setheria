@@ -31,6 +31,7 @@ public class CanPickup : MonoBehaviour
             yield return null;
         }
         canMoveComp.Stop();
+        canMoveComp.CmdStop();
         if (itemToPickup == null)
             yield break;
         FindObjectOfType<AudioManager>().ItemPickUp(transform.position);
