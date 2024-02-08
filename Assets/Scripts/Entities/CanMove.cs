@@ -54,12 +54,15 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
         if (baseMovementSpeed == 0)
             transform.position = startingLocation;
         if (animator)
-            animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
+        {
+            if ((GetComponent<NetworkAnimator>().syncDirection == SyncDirection.ClientToServer && isClient) || (GetComponent<NetworkAnimator>().syncDirection == SyncDirection.ServerToClient && isServer))
+                animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
+        }
     }
     [Command(requiresAuthority = false)]
     public void CmdMoveTo(Vector3 destination)
     {
-        RpcMoveTo(destination);
+        //RpcMoveTo(destination);
     }
     [ClientRpc]
     public void RpcMoveTo(Vector3 destination)
@@ -100,13 +103,13 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     [Command(requiresAuthority = false)]
     public void CmdStop()
     {
-        RpcStop();
-        Stop();
+        /*RpcStop();
+        Stop();*/
     }
     [ClientRpc]
     public void RpcStop()
     {
-        Stop();
+        //Stop();
     }
     public void Stop()
     {
