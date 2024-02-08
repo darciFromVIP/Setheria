@@ -17,7 +17,8 @@ public class SRejuvenation : Skill
         base.Execute(self);
         self.GetComponent<PlayerController>().Ally_Left_Clicked.AddListener(MoveWithinRange);
         self.GetComponent<PlayerController>().ChangeCastingState(CastingState.AllyOnly);
-        castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
     }
 
     public override void ExecuteOnStart(Character self)
@@ -31,7 +32,8 @@ public class SRejuvenation : Skill
         castingEntity.GetComponent<PlayerController>().Ally_Left_Clicked.RemoveListener(MoveWithinRange);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveListener(Cast);
-        castingEntity.skillIndicator.InterruptCasting();
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.InterruptCasting();
     }
     private void MoveWithinRange(PlayerCharacter ally)
     {
@@ -54,7 +56,8 @@ public class SRejuvenation : Skill
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(ally.transform.position);
-        castingEntity.skillIndicator.Casting(0.86f);
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.Casting(0.86f);
     }
     protected override void Cast()
     {

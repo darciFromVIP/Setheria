@@ -20,8 +20,11 @@ public class SCallOfTheWild : Skill
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         self.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.AddListener(Cast);
-        castingEntity.skillIndicator.ShowRadius(1, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
-        castingEntity.skillIndicator.Casting(2.36f);
+        if (castingEntity.isOwned)
+        {
+            castingEntity.skillIndicator.ShowRadius(1, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
+            castingEntity.skillIndicator.Casting(2.36f);
+        }
     }
     protected override void Cast()
     {

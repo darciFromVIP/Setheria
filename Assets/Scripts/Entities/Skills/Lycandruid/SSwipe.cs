@@ -25,7 +25,8 @@ public class SSwipe : Skill
         base.Execute(self);
         self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCast);
         self.GetComponent<PlayerController>().ChangeCastingState(CastingState.EnemyOnly);
-        castingEntity.skillIndicator.ShowArea(aoeRadius, range, true, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.ShowArea(aoeRadius, range, true, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
     }
     public override void ExecuteOnStart(Character self)
     {
@@ -36,7 +37,8 @@ public class SSwipe : Skill
         base.StopExecute();
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
-        castingEntity.skillIndicator.InterruptCasting();
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.InterruptCasting();
     }
     private void StartCast(Vector3 point)
     {
@@ -50,7 +52,8 @@ public class SSwipe : Skill
         castingEntity.GetComponent<Character>().RotateToPoint(point);
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill2();
-        castingEntity.skillIndicator.Casting(0.43f);
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.Casting(0.43f);
     }
     protected override void Cast()
     {

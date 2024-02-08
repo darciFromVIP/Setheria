@@ -61,6 +61,7 @@ public class EnemyCharacter : Character, ISaveable
         if (moveComp)
             while (!moveComp.HasReachedDestination())
                 yield return null;
+        Debug.Log("Returned");
         hpComp.SetInvulnerability(false);
         aggroComp.enabled = true;
     }

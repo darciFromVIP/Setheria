@@ -29,8 +29,11 @@ public class SBattleCry : Skill
         movementBuff.value = movementFinal;
         attackSpeedBuff.value = attackSpeedFinal;
         self.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
-        castingEntity.skillIndicator.ShowRadius(range, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
-        castingEntity.skillIndicator.Casting(1.26f);
+        if (castingEntity.isOwned)
+        {
+            castingEntity.skillIndicator.ShowRadius(range, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
+            castingEntity.skillIndicator.Casting(1.26f);
+        }
     }
     protected override void Cast()
     {

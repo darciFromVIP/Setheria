@@ -30,8 +30,11 @@ public class SRoar : Skill
         attackSpeedReductionBuff.duration = baseDuration;
         movementReductionBuff.value = movementFinalReduction;
         attackSpeedReductionBuff.value = attackSpeedFinalReduction;
-        castingEntity.skillIndicator.ShowRadius(range, false, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
-        castingEntity.skillIndicator.Casting(1.5f);
+        if (castingEntity.isOwned)
+        {
+            castingEntity.skillIndicator.ShowRadius(range, false, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
+            castingEntity.skillIndicator.Casting(1.5f);
+        }
     }
     protected override void Cast()
     {

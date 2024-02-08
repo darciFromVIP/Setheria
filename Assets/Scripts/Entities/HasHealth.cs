@@ -20,7 +20,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     private float gearArmor = 0;
     private float finalArmor;
 
-    private bool isInvulnerable;
+    [SerializeField] private bool isInvulnerable;
 
     [System.NonSerialized]
     public UnityEvent<float, float> Health_Changed = new();

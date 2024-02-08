@@ -16,8 +16,11 @@ public class SPhotosynthesis : Skill
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         if (castingEntity.isOwned)
             self.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
-        castingEntity.skillIndicator.ShowRadius(1, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
-        castingEntity.skillIndicator.Casting(2.13f);
+        if (castingEntity.isOwned)
+        {
+            castingEntity.skillIndicator.ShowRadius(1, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
+            castingEntity.skillIndicator.Casting(2.13f);
+        }
     }
     protected override void Cast()
     {
@@ -36,7 +39,6 @@ public class SPhotosynthesis : Skill
     public override void StopExecute()
     {
         base.StopExecute();
-        castingEntity.skillIndicator.InterruptCasting();
     }
 
     public override void UpdateDescription()
