@@ -12,6 +12,8 @@ public class Pet : NetworkBehaviour
     
     public void StartTimedLife(float time, CanHavePets owner)
     {
+        if (isClient)
+            Debug.Log(name);
         petOwner = owner;
         StartCoroutine(TimedLife(time));
         if (TryGetComponent(out CanMove canMove))

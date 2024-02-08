@@ -555,6 +555,27 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             case PlayerStat.MovementSpeed:
                 GetComponent<CanMove>().ChangeBonusMovementSpeed(modifier);
                 break;
+            case PlayerStat.Power:
+                GetComponent<CanAttack>().ChangePower(modifier);
+                break;
+            case PlayerStat.AttackSpeed:
+                GetComponent<CanAttack>().ChangeBonusAttackSpeed(modifier);
+                break;
+            case PlayerStat.CriticalChance:
+                GetComponent<CanAttack>().ChangeCriticalChance(modifier);
+                break;
+            case PlayerStat.CriticalDamage:
+                GetComponent<CanAttack>().ChangeCriticalDamage(modifier);
+                break;
+            case PlayerStat.Armor:
+                GetComponent<HasHealth>().ChangeArmor(modifier);
+                break;
+            case PlayerStat.CooldownReduction:
+                GetComponent<CanAttack>().ChangeCooldownReduction(modifier);
+                break;
+            case PlayerStat.Level:
+                AddXp(maxXp - xp);
+                break;
             default:
                 break;
         }

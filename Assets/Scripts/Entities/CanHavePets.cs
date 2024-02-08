@@ -32,6 +32,8 @@ public class CanHavePets : NetworkBehaviour
     public void DespawnPet(Entity pet, bool deathAnimation)
     {
         spawnedPets.Remove(pet);
+        if (!isServer)
+            return;
         if (deathAnimation)
             pet.RpcOnDeath();
         else
