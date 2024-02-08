@@ -52,7 +52,7 @@ public class ShipController : NetworkBehaviour
             {
                 if (hit.collider.TryGetComponent(out Item item))
                 {
-                    pickupComp.CmdGoToPickup(item.GetComponent<NetworkIdentity>());
+                    StartCoroutine(pickupComp.GoToPickup(item));
                 }
                 else if (hit.collider is TerrainCollider)
                 {
