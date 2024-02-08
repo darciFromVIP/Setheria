@@ -55,8 +55,7 @@ public class Projectile : NetworkBehaviour
         this.data = data;
         StartCoroutine(WaitForServerLoad());
     }
-    [ClientRpc]
-    private void RpcPlaySound(EventReference sound)
+    private void PlaySound(EventReference sound)
     {
         FindObjectOfType<AudioManager>().PlayOneShot(sound, transform.position);
     }
@@ -67,7 +66,7 @@ public class Projectile : NetworkBehaviour
             yield return null;
         }
         if (!launchSound.IsNull)
-            RpcPlaySound(launchSound);
+            PlaySound(launchSound);
         switch (data.projectileTravel)
         {
             case ProjectileTravelType.Skillshot:
@@ -133,7 +132,7 @@ public class Projectile : NetworkBehaviour
     private void ProjectileImpact()
     {
         if (!launchSound.IsNull)
-            RpcPlaySound(impactSound);
+            PlaySound(impactSound);
         var targets = new List<HasHealth>();
         switch (data.projectileImpact)
         {
