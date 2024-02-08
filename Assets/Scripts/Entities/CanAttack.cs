@@ -212,10 +212,10 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void MeleeAttack()                           //This reacts to animations, that are run on both the server and client
     {
-        if (!isServer)
-            return;
         if (!attackSound.IsNull)
             FindObjectOfType<AudioManager>().PlayOneShot(attackSound, transform.position);
+        if (!isServer)
+            return;
         float modifier = 1;
         var random = Random.Range(0f, 100f);
         if (random < GetFinalCritChance())

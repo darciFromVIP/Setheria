@@ -53,9 +53,14 @@ public class Projectile : NetworkBehaviour
     public void InitializeProjectile(ProjectileData data)
     {
         if (!launchSound.IsNull)
-            FindObjectOfType<AudioManager>().PlayOneShot(launchSound, transform.position);
+            RpcPlaySound(launchSound);
         this.data = data;
         StartCoroutine(WaitForServerLoad());
+    }
+    [ClientRpc]
+    private void RpcPlaySound(EventReference sound)
+    {
+        FindObjectOfType<AudioManager>().PlayOneShot(sound, transform.position);
     }
     private IEnumerator WaitForServerLoad()
     {
@@ -128,7 +133,7 @@ public class Projectile : NetworkBehaviour
     private void ProjectileImpact()
     {
         if (!launchSound.IsNull)
-            FindObjectOfType<AudioManager>().PlayOneShot(impactSound, transform.position);
+            RpcPlaySound(impactSound);
         var targets = new List<HasHealth>();
         switch (data.projectileImpact)
         {
@@ -205,17 +210,20 @@ public class Projectile : NetworkBehaviour
                     break;
             }
         }
-        if (impactParticlePrefab)
-            Instantiate(impactParticlePrefab, transform.position, Quaternion.identity);
+        if (impactParticlePrefab && isServer)
+        {
+            var particle = Instantiate(impactParticlePrefab, transform.position, Quaternion.identity);
+            NetworkServer.Spawn(particle);
+        }
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
         if (isServer)
             StartCoroutine(DelayedDestroy());
     }
     private IEnumerator DelayedDestroy()
     {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            transform.GetChild(i).gameObject.SetActive(false);
-        }
         yield return new WaitForSeconds(2);
         NetworkServer.Destroy(gameObject);
     }
