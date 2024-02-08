@@ -213,7 +213,7 @@ public class Character : Entity
     {
         AddBuff(buff);
     }
-    protected virtual void AddBuff(string buff)
+    public virtual void AddBuff(string buff)
     {
         Buff buffInstance = null;
         var buffScriptable = buffDatabase.GetBuffByName(buff);

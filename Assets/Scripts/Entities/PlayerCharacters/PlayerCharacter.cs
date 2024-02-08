@@ -621,7 +621,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         }
         return true;
     }
-    protected override void AddBuff(string buff)
+    public override void AddBuff(string buff)
     {
         base.AddBuff(buff);
         UpdateSkills();

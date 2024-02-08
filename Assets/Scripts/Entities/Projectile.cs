@@ -200,7 +200,10 @@ public class Projectile : NetworkBehaviour
                     foreach (var item in entities)
                     {
                         if (isServer)
+                        {
+                            item.GetComponent<Character>().AddBuff(data.buff.name);
                             item.GetComponent<Character>().RpcAddBuff(data.buff.name);
+                        }
                     }
                     break;
                 default:
