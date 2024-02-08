@@ -49,7 +49,7 @@ public class SRejuvenation : Skill
     }
     private void StartCasting()
     {
-        if (castingEntity.isServer)
+        if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill3();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);

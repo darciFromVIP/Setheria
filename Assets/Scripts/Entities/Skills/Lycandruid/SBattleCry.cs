@@ -20,7 +20,7 @@ public class SBattleCry : Skill
     public override void Execute(Character self)
     {
         base.Execute(self);
-        if (castingEntity.isServer)
+        if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill4();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);

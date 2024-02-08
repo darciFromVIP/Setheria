@@ -47,7 +47,7 @@ public class SPounce : Skill
     }
     private void StartCasting()
     {
-        if (castingEntity.isServer)
+        if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill3();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);

@@ -48,7 +48,7 @@ public class SSwipe : Skill
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(point);
-        if (castingEntity.isServer)
+        if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill2();
         castingEntity.skillIndicator.Casting(0.43f);
     }

@@ -21,7 +21,7 @@ public class SWildRage : Skill
         cooldownReductionBuff.duration = baseDuration;
         maxHPBuff.value = maxHPFinal;
         cooldownReductionBuff.value = cooldownReductionBase;
-        if (castingEntity.isServer)
+        if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill5();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
