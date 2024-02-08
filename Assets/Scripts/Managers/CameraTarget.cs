@@ -43,6 +43,13 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
             if (item.name == "CameraZoom")
                 item.onValueChanged.AddListener(CameraZoomChanged);
         }
+        StartCoroutine(WaitForGlobalStartingPoint());
+    }
+    private IEnumerator WaitForGlobalStartingPoint()
+    {
+        var worldGen = FindObjectOfType<WorldGenerator>();
+        while (worldGen.globalStartingPoint == null)
+            yield return null;
         Teleport(FindObjectOfType<WorldGenerator>().globalStartingPoint);
     }
     private void CameraSpeedChanged(float value)
