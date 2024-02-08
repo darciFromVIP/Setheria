@@ -45,8 +45,6 @@ public class SSwipe : Skill
         actualPoint = Vector3.MoveTowards(castingEntity.transform.position, point, range);
         bleedingBuff.value = finalBleedDamage;
         bleedingBuff.duration = baseDuration;
-        if (castingEntity.isServer)
-            Debug.Log(bleedingBuff.value);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);

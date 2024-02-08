@@ -41,6 +41,7 @@ public class Skill : ScriptableObject
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         if (player)
         {
+            UpdateDescription();
             player.SetCurrentSkill(this);
             player.ChangeState(PlayerState.Casting);
             player.Ground_Left_Clicked.RemoveAllListeners();
