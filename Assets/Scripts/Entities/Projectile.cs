@@ -201,16 +201,12 @@ public class Projectile : NetworkBehaviour
                     {
                         if (isServer)
                             item.GetComponent<Character>().RpcAddBuff(data.buff.name);
-                        else
-                            item.GetComponent<Character>().CmdAddBuff(data.buff.name);
                     }
                     break;
                 default:
                     break;
             }
         }
-        if (isClient)
-            Debug.Log(name);
         if (impactParticlePrefab)
         {
             Instantiate(impactParticlePrefab, transform.position, Quaternion.identity);
