@@ -210,10 +210,11 @@ public class Projectile : NetworkBehaviour
                     break;
             }
         }
-        if (impactParticlePrefab && isServer)
+        if (isClient)
+            Debug.Log(name);
+        if (impactParticlePrefab)
         {
-            var particle = Instantiate(impactParticlePrefab, transform.position, Quaternion.identity);
-            NetworkServer.Spawn(particle);
+            Instantiate(impactParticlePrefab, transform.position, Quaternion.identity);
         }
         for (int i = 0; i < transform.childCount; i++)
         {
