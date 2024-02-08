@@ -53,7 +53,7 @@ public class SEntanglingRoots : Skill
         damageBuff.value = finalDamage;
         damageBuff.duration = baseDuration;
         stunBuff.duration = baseDuration;
-        if (castingEntity.isServer)
+        if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill4();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);

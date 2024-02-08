@@ -140,6 +140,7 @@ public class Character : Entity
         animator.SetTrigger(animHash_Skill5);
         StopActing();
     }
+    [Command(requiresAuthority = false)]
     private void StopActing()
     {
         Stop_Acting.Invoke();
