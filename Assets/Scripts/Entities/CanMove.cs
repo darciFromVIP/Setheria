@@ -62,8 +62,8 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     [Command(requiresAuthority = false)]
     public void CmdMoveTo(Vector3 destination)
     {
-        RpcMoveTo(destination);
-        MoveTo(destination);
+        /*RpcMoveTo(destination);
+        MoveTo(destination);*/
     }
     [ClientRpc]
     public void RpcMoveTo(Vector3 destination)
@@ -104,20 +104,19 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     [Command(requiresAuthority = false)]
     public void CmdStop()
     {
-        RpcStop();
-        Stop();
+        /*RpcStop();
+        Stop();*/
     }
     [ClientRpc]
     public void RpcStop()
     {
-        Stop();
+        //Stop();
     }
     public void Stop()
     {
         if (agent.isOnNavMesh)
         {
             agent.destination = transform.position;
-            animator.SetFloat("AgentVelocity", 0);
         }
     }
     public void ResumeAgent()
