@@ -41,6 +41,7 @@ public class SaveLoadSystem : MonoBehaviour
         SaveFileWorld(currentWorldDataServer);
         SavePlayerStates();
         yield return StartCoroutine(SavePlayerFiles());
+        FindObjectOfType<SystemMessages>().AddMessage("Game saved successfully!", MsgType.Positive);
         saveFinished = true;
     }    
     public void SetCurrentWorld(string fullPath)

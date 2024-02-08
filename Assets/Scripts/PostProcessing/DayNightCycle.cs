@@ -78,6 +78,7 @@ public class DayNightCycle : MonoBehaviour, ISaveable
             {
                 FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Day);
                 Day_Started.Invoke();
+                FindObjectOfType<SaveLoadSystem>().Save();
             }
             else if (currentIndex == 3)
             {
@@ -86,6 +87,7 @@ public class DayNightCycle : MonoBehaviour, ISaveable
                 uiData.daysAliveText.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
                 uiData.daysAliveText.text = "Night Falls!";
                 uiData.daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
+                FindObjectOfType<SaveLoadSystem>().Save();
             }
 
             if (volume.profile.TryGet(out Tonemapping tonemapping))
