@@ -49,12 +49,15 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     }
     private void Update()
     {
-        if (isServer && GetComponent<PlayerCharacter>())
-            Debug.Log(name + " " + agent.velocity.magnitude);
         if (baseMovementSpeed == 0)
             transform.position = startingLocation;
-        if (animator && isServer)
-            animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
+        if (animator)
+        {
+            if ((GetComponent<NetworkAnimator>().clientAuthority && isClient) || (!GetComponent<NetworkAnimator>().clientAuthority && isServer))
+            {
+                animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
+            }
+        }
     }
     [Command(requiresAuthority = false)]
     public void CmdMoveTo(Vector3 destination)

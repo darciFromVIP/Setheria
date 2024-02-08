@@ -133,13 +133,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1094240375776113113, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
-      propertyPath: syncDirection
+      propertyPath: syncInterval
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1094240375776113113, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
+      propertyPath: syncDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094240375776113113, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
       propertyPath: clientAuthority
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2336697941723691912, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
