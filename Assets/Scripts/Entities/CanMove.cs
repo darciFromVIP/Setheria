@@ -53,7 +53,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             Debug.Log(name + " " + agent.velocity.magnitude);
         if (baseMovementSpeed == 0)
             transform.position = startingLocation;
-        if (animator)
+        if (animator && isServer)
             animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
     }
     [Command(requiresAuthority = false)]

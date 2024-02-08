@@ -37,7 +37,7 @@ public class CanPickup : NetworkBehaviour
             yield return null;
         }
         canMoveComp.Stop();
-        canMoveComp.CmdStop();
+        //canMoveComp.RpcStop();
         if (itemToPickup == null)
             yield break;
         FindObjectOfType<AudioManager>().ItemPickUp(transform.position);
