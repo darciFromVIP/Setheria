@@ -40,14 +40,14 @@ public class CanPickup : NetworkBehaviour
         if (itemToPickup == null)
             yield break;
         PickUpItem(connectionToClient, item);
-        itemToPickup.DestroyItem();
         itemToPickup = null;
     }
     [TargetRpc]
     private void PickUpItem(NetworkConnection conn, NetworkIdentity item)
     {
         FindObjectOfType<AudioManager>().ItemPickUp(transform.position);
-        FindObjectOfType<InventoryManager>(true).AddItem(itemToPickup);
+        FindObjectOfType<InventoryManager>(true).AddItem(item.GetComponent<Item>());
         FindObjectOfType<TooltipWorld>(true).Hide();
+        item.GetComponent<Item>().DestroyItem();
     }
 }
