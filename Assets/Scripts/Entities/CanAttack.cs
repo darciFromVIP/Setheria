@@ -4,6 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public enum AttackType
 {
@@ -245,6 +246,21 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     private void SpawnProjectile()
     {
+        GameObject projectile = Instantiate(projectilePrefab.gameObject, projectileLaunchPoint.position, Quaternion.identity);
+        NetworkServer.Spawn(projectile);
+        StartCoroutine(WaitForProjectileLoad(projectile.GetComponent<NetworkIdentity>()));
+    }
+    private IEnumerator WaitForProjectileLoad(NetworkIdentity proj)
+    {
+        while (!(proj.isClient || proj.isServer))
+        {
+            yield return null;
+        }
+        RpcInitializeProjectile(proj);
+    }
+    [ClientRpc]
+    private void RpcInitializeProjectile(NetworkIdentity proj)
+    {
         float modifier = 1;
         var random = Random.Range(0f, 100f);
         if (random < GetFinalCritChance())
@@ -254,19 +270,17 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             owner = pet.petOwner.GetComponent<Entity>();
         else
             owner = GetComponent<Entity>();
-        GameObject projectile = Instantiate(projectilePrefab.gameObject, projectileLaunchPoint.position, Quaternion.identity);
-        projectile.GetComponent<Projectile>().InitializeProjectile(new ProjectileData() 
-        { 
-            effectValue = GetFinalPower() * modifier, 
-            projectileTravel = ProjectileTravelType.EntityTargeted, 
-            projectileImpact = ProjectileImpactType.Single, 
-            impactEffect = ProjectileImpactEffect.Damage, 
-            speed = 10, 
+        proj.GetComponent<Projectile>().InitializeProjectile(new ProjectileData()
+        {
+            effectValue = GetFinalPower() * modifier,
+            projectileTravel = ProjectileTravelType.EntityTargeted,
+            projectileImpact = ProjectileImpactType.Single,
+            impactEffect = ProjectileImpactEffect.Damage,
+            speed = 10,
             owner = owner,
             targetedEntity = enemyTarget,
             isCritical = modifier > 1 ? true : false
         });
-        NetworkServer.Spawn(projectile);
     }
     [Command(requiresAuthority = false)]
     public void CmdStopActing()

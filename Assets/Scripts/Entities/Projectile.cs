@@ -52,8 +52,6 @@ public class Projectile : NetworkBehaviour
     }
     public void InitializeProjectile(ProjectileData data)
     {
-        if (!launchSound.IsNull)
-            RpcPlaySound(launchSound);
         this.data = data;
         StartCoroutine(WaitForServerLoad());
     }
@@ -68,6 +66,8 @@ public class Projectile : NetworkBehaviour
         {
             yield return null;
         }
+        if (!launchSound.IsNull)
+            RpcPlaySound(launchSound);
         switch (data.projectileTravel)
         {
             case ProjectileTravelType.Skillshot:
