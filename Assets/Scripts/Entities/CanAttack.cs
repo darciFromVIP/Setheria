@@ -188,6 +188,18 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         attackSpeedTimer = 1;                           //This is a fix against multiattacks
         canAct = false;                                 //RPC is too slow so we're doing it again on the server
         RpcSetCanAct(false);
+        if (netAnim.clientAuthority)
+            ClientAttack(connectionToClient);
+        else
+            AttackAnimation();
+    }
+    [TargetRpc]
+    private void ClientAttack(NetworkConnection conn)
+    {
+        AttackAnimation();
+    }
+    private void AttackAnimation()
+    {
         int random = Random.Range(0, 4);
         if (random == 0)
             netAnim.SetTrigger(animHash_Attack1);
