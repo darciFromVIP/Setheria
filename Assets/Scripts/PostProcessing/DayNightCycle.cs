@@ -74,6 +74,13 @@ public class DayNightCycle : MonoBehaviour, ISaveable
             }
             else
                 currentIndex++;
+
+            if (volume.profile.TryGet(out Tonemapping tonemapping))
+            {
+                tonemapping.mode.Override(data[currentIndex].mode);
+            }
+            progressPercentage = 0;
+
             if (currentIndex == 0)
             {
                 FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Day);
@@ -89,12 +96,6 @@ public class DayNightCycle : MonoBehaviour, ISaveable
                 uiData.daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
                 FindObjectOfType<SaveLoadSystem>().Save();
             }
-
-            if (volume.profile.TryGet(out Tonemapping tonemapping))
-            {
-                tonemapping.mode.Override(data[currentIndex].mode);
-            }
-            progressPercentage = 0;
         }
         else
         {

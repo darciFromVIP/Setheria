@@ -90,6 +90,8 @@ public class EnemyCharacter : Character, ISaveable
     }
     public SaveDataWorldObject SaveState()
     {
+        if (hpComp.GetHealth() <= 0)
+            return null;
         return new SaveDataWorldObject
         {
             positionX = transform.position.x,
@@ -101,6 +103,14 @@ public class EnemyCharacter : Character, ISaveable
 
     public void LoadState(SaveDataWorldObject state)
     {
+        if (state == null)
+            if (isServer)
+            {
+                NetworkServer.Destroy(gameObject);
+                return;
+            }
+            else
+                return;
         if (!isServer)
             GetComponent<NetworkTransform>().CmdTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));
         else

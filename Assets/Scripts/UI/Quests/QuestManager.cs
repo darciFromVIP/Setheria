@@ -124,16 +124,16 @@ public class QuestManager : NetworkBehaviour
         }
     }
     [Command(requiresAuthority = false)]
-    public void CmdReduceCustom1Requirement(string questName, int amount)
+    public void CmdReduceCustomRequirement(string questName, string identifierString, int amount)
     {
-        RpcReduceCustom1Requirement(questName, amount);
+        RpcReduceCustomRequirement(questName, identifierString, amount);
     }
     [ClientRpc]
-    private void RpcReduceCustom1Requirement(string questName, int amount)
+    private void RpcReduceCustomRequirement(string questName, string identifierString, int amount)
     {
-        ReduceCustom1Requirement(questName, amount);
+        ReduceCustomRequirement(questName, identifierString, amount);
     }
-    public void ReduceCustom1Requirement(string questName, int amount)
+    public void ReduceCustomRequirement(string questName, string identifierString, int amount)
     {
         QuestlineScriptable[] temp = new QuestlineScriptable[questlines.Count];
         questlines.CopyTo(temp);
@@ -143,7 +143,11 @@ public class QuestManager : NetworkBehaviour
             {
                 if (item2.name == questName)
                 {
-                    item2.ReduceCustom1Requirement(amount);
+                    foreach (var item3 in item2.customRequirements)
+                    {
+                        if (item3.requirementText == identifierString)
+                            item3.ReduceCustomRequirement(amount);
+                    }
                 }
             }
         }
@@ -284,14 +288,7 @@ public class QuestManager : NetworkBehaviour
         {
             if (item.synchronized)
             {
-                List<string> names = new();
-                List<int> values = new();
-                foreach (var item2 in item.questList[item.currentQuestIndex].requiredStructuresDic)
-                {
-                    names.Add(item2.Key);
-                    values.Add(item2.Value ? 1 : 0);
-                }
-                result.Add(new QuestlineSaveable { questlineName = item.name, currentQuestIndex = item.currentQuestIndex, questRequirementsNames = names, questRequirementsValues = values, synchronized = item.synchronized });
+                result.Add(SaveQuestline(item));
             }
         }
         return result;
@@ -304,23 +301,7 @@ public class QuestManager : NetworkBehaviour
             {
                 if (item.synchronized)
                 {
-                    var quest = NewQuestline(item.questlineName, item.currentQuestIndex);
-                    for (int i = 0; i < item.questRequirementsNames.Count; i++)
-                    {
-                        foreach (var item3 in quest.requiredStructuresDic.ToList())
-                        {
-                            if (item.questRequirementsNames[i] == item3.Key)
-                            {
-                                bool value;
-                                if (item.questRequirementsValues[i] == 0)
-                                    value = false;
-                                else
-                                    value = true;
-                                quest.requiredStructuresDic[item3.Key] = value;
-                            }
-                        }
-                    }
-                    quest.Quest_Updated.Invoke();
+                    LoadQuestline(item);
                 }
             }
         }
@@ -339,14 +320,7 @@ public class QuestManager : NetworkBehaviour
         {
             if (!item.synchronized)
             {
-                List<string> names = new();
-                List<int> values = new();
-                foreach (var item2 in item.questList[item.currentQuestIndex].requiredStructuresDic)
-                {
-                    names.Add(item2.Key);
-                    values.Add(item2.Value ? 1 : 0);
-                }
-                result.Add(new QuestlineSaveable { questlineName = item.name, currentQuestIndex = item.currentQuestIndex, questRequirementsNames = names, questRequirementsValues = values, synchronized = item.synchronized });
+                result.Add(SaveQuestline(item));
             }
         }
         return result;
@@ -359,25 +333,84 @@ public class QuestManager : NetworkBehaviour
             {
                 if (!item.synchronized)
                 {
-                    var quest = NewQuestline(item.questlineName, item.currentQuestIndex);
-                    for (int i = 0; i < item.questRequirementsNames.Count; i++)
-                    {
-                        foreach (var item3 in quest.requiredStructuresDic.ToList())
-                        {
-                            if (item.questRequirementsNames[i] == item3.Key)
-                            {
-                                bool value;
-                                if (item.questRequirementsValues[i] == 0)
-                                    value = false;
-                                else
-                                    value = true;
-                                quest.requiredStructuresDic[item3.Key] = value;
-                            }
-                        }
-                    }
-                    quest.Quest_Updated.Invoke();
+                    LoadQuestline(item);
                 }
             }
         }
+    }
+    private QuestlineSaveable SaveQuestline(QuestlineScriptable item)
+    {
+        List<string> names = new();
+        List<int> values = new();
+        foreach (var item2 in item.questList[item.currentQuestIndex].requiredStructuresDic)
+        {
+            names.Add(item2.Key);
+            values.Add(item2.Value ? 1 : 0);
+        }
+        /*foreach (var item2 in item.questList[item.currentQuestIndex].requiredItemsDic)
+        {
+            names.Add(item2.Key);
+            values.Add(item2.Value);
+        }*/
+        foreach (var item2 in item.questList[item.currentQuestIndex].customRequirements)
+        {
+            names.Add(item2.requirementText);
+            values.Add(item2.currentValue);
+        }
+        /*foreach (var item2 in item.questList[item.currentQuestIndex].requiredItemTypes)
+        {
+            names.Add(item2.requiredItemType.ToString());
+            values.Add(item2.currentItemTypeAmount);
+        }*/
+        names.Add("Resources");
+        values.Add(item.questList[item.currentQuestIndex].currentResources);
+        names.Add("Knowledge");
+        values.Add(item.questList[item.currentQuestIndex].currentKnowledge);
+        return new QuestlineSaveable { questlineName = item.name, currentQuestIndex = item.currentQuestIndex, questRequirementsNames = names, questRequirementsValues = values, synchronized = item.synchronized };
+    }
+    private void LoadQuestline(QuestlineSaveable item)
+    {
+        var quest = NewQuestline(item.questlineName, item.currentQuestIndex);
+        for (int i = 0; i < item.questRequirementsNames.Count; i++)
+        {
+            foreach (var item3 in quest.requiredStructuresDic.ToList())
+            {
+                if (item.questRequirementsNames[i] == item3.Key)
+                {
+                    bool value;
+                    if (item.questRequirementsValues[i] == 0)
+                        value = false;
+                    else
+                        value = true;
+                    quest.requiredStructuresDic[item3.Key] = value;
+                }
+            }
+            /*foreach (var item3 in quest.requiredItemsDic.ToList())
+            {
+                if (item.questRequirementsNames[i] == item3.Key)
+                {
+                    quest.requiredItemsDic[item3.Key] = item.questRequirementsValues[i];
+                }
+            }*/
+            foreach (var item3 in quest.customRequirements)
+            {
+                if (item.questRequirementsNames[i] == item3.requirementText)
+                {
+                    item3.currentValue = item.questRequirementsValues[i];
+                }
+            }
+            /*foreach (var item3 in quest.requiredItemTypes)
+            {
+                if (item.questRequirementsNames[i] == item3.requiredItemType.ToString())
+                {
+                    item3.currentItemTypeAmount = item.questRequirementsValues[i];
+                }
+            }*/
+            if (item.questRequirementsNames[i] == "Knowledge")
+                quest.currentKnowledge = item.questRequirementsValues[i];
+            if (item.questRequirementsNames[i] == "Resources")
+                quest.currentResources = item.questRequirementsValues[i];
+        }
+        quest.Quest_Updated.Invoke();
     }
 }

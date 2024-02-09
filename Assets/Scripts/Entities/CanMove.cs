@@ -53,10 +53,11 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             transform.position = startingLocation;
         if (animator)
         {
-            if ((GetComponent<NetworkAnimator>().clientAuthority && isOwned) || (!GetComponent<NetworkAnimator>().clientAuthority && isServer))
-            {
-                animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
-            }
+            if (TryGetComponent(out NetworkAnimator netAnim))
+                if ((netAnim.clientAuthority && isOwned) || (!netAnim.clientAuthority && isServer))
+                {
+                    animator.SetFloat("AgentVelocity", agent.velocity.magnitude);
+                }
         }
     }
     [ClientRpc]
@@ -75,12 +76,17 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             else
             {
                 Vector3 tempVector = destination;
+                float timeOut = 1;
                 do
                 {
                     tempVector = Vector3.MoveTowards(tempVector, transform.position, 1);
                     NavMesh.CalculatePath(transform.position, tempVector, agent.areaMask, path);
-                } while (path.corners.Length <= 0);
-                agent.path = path;
+                    timeOut -= Time.deltaTime;
+                } while (path.corners.Length <= 0 && timeOut > 0);
+                if (path.status != NavMeshPathStatus.PathComplete)
+                    Stop();
+                else
+                    agent.path = path;
             }
         }
     }

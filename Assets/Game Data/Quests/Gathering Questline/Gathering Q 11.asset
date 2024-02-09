@@ -12,23 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Gathering Q 11
   m_EditorClassIdentifier: 
-  active: 0
-  label: Find and mine Crystal Pile
+  active: 1
+  label: Find and mine Crystal Piles.
   synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
     stacks: 1
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 3
-  currentCustom1: 0
-  custom1Requirement: 'Crystal Piles:'
-  customEvent: {fileID: 11400000, guid: 681f81582832b9741a92cfa2d97a92dc, type: 2}
+  customRequirements:
+  - requiredValue: 3
+    currentValue: 0
+    requirementText: 'Crystal Piles mined: '
+    customEvents:
+    - {fileID: 11400000, guid: 681f81582832b9741a92cfa2d97a92dc, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 50

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-public class Ship : Character, IInteractable
+public class Ship : Character, IInteractable, ISaveable
 {
     public int crewCapacity = 1;
     public List<PlayerCharacter> crew = new();
+    [Tooltip("This has to match the prefab's name! For saving purposes")]
+    public string nameOfShip;
 
     private ShipController shipController;
     protected override void Start()
@@ -53,5 +55,26 @@ public class Ship : Character, IInteractable
             crew.Remove(crew[i]);
         } 
         shipController.enabled = false;
+    }
+
+    public SaveDataWorldObject SaveState()
+    {
+        return new SaveDataWorldObject
+        {
+            positionX = transform.position.x,
+            positionY = transform.position.y,
+            positionZ = transform.position.z,
+            rotationW = transform.rotation.w,
+            rotationX = transform.rotation.x,
+            rotationY = transform.rotation.y,  
+            rotationZ = transform.rotation.z,
+            name = nameOfShip,
+        };
+    }
+
+    public void LoadState(SaveDataWorldObject state)
+    {
+        transform.position = new Vector3(state.positionX, state.positionY, state.positionZ);
+        transform.rotation = new Quaternion(state.rotationX, state.rotationY, state.rotationZ, state.rotationW);
     }
 }

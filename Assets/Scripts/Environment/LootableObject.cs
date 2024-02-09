@@ -184,7 +184,6 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     [Command(requiresAuthority = false)]
     private void CmdDestroyObject()
     {
-        Object_Destroyed.Invoke(this);
         RpcDestroyObject();
     }
     [ClientRpc]
@@ -197,6 +196,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     }
     public void CmdDestroyOnServer()
     {
+        Object_Destroyed.Invoke(this);
         if (isServer)
             NetworkServer.Destroy(gameObject);
     }
@@ -212,7 +212,8 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         if (effectsToHide.Count > 0)
             foreach (var item in effectsToHide)
             {
-                item.SetActive(lootable);
+                if (item != null)
+                    item.SetActive(lootable);
             }
         GetComponent<Collider>().enabled = lootable;
         var players = FindObjectsOfType<PlayerController>();
@@ -300,6 +301,8 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
 
     public SaveDataWorldObject SaveState()
     {
+        if (!lootable && oneTimeLoot)
+            return null;
         return new SaveDataWorldObject
         {
              intData1 = currentCharges,
@@ -310,12 +313,22 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
 
     public void LoadState(SaveDataWorldObject state)
     {
-        RpcUpdateLootability(state.boolData1);
+        if (state == null)
+            if (isServer)
+            {
+                CmdDestroyOnServer();
+                return;
+            }
+            else
+                return;
+        CmdUpdateLootability(state.boolData1);
         currentCharges = state.intData1;
-        if (currentCharges == 0 && refreshTimer > 0)
+        if (currentCharges <= 0 && state.floatData1 > 0)
         {
+            Debug.Log(refreshTimer);
             refreshTimer = state.floatData1;
-            StartCoroutine(StartRefreshTimer(true));
+            if (refreshTimer > 0)
+                StartCoroutine(StartRefreshTimer(true));
         }
     }
 }

@@ -9,7 +9,60 @@ public enum QuestRewardType
 {
     Resources, Knowledge, XP, Item, Unknown
 }
-[System.Serializable]
+[Serializable]
+public class RequiredItemType
+{
+    [Tooltip("Any item of this type will count towards the count.")]
+    public ItemType requiredItemType;
+    [Tooltip("The count of required items of the same type.")]
+    public int requiredItemTypeAmount;
+    [HideInInspector] public int currentItemTypeAmount;
+    [HideInInspector] public List<string> validItemTypeNames = new();
+}
+[Serializable]
+public class CustomRequirement
+{
+    [Tooltip("Required custom value to be acquired by means coded specifically.")]
+    public int requiredValue;
+    [HideInInspector] public int currentValue;
+    [Tooltip("Text representation of the custom requirement (displayed in quest)")]
+    public string requirementText;
+    [Tooltip("Events to listen to such as Fishing Quest Event")]
+    public List<EventScriptable> customEvents;
+
+    private QuestManager questManager;
+    private QuestScriptable questScriptable;
+
+    public void SetUpReferences(QuestManager questManager, QuestScriptable questScriptable)
+    {
+        this.questScriptable = questScriptable;
+        this.questManager = questManager;
+    }
+    public void CmdReduceCustomRequirement()
+    {
+        questManager.CmdReduceCustomRequirement(questScriptable.name, requirementText, 1);
+    }
+    public void ReduceCustomRequirement()
+    {
+        currentValue += 1;
+        questScriptable.CheckQuestCompletion();
+    }
+    public void CmdReduceCustomRequirement(int amount)
+    {
+        questManager.CmdReduceCustomRequirement(questScriptable.name, requirementText, amount);
+    }
+    public void ReduceCustomRequirement(int amount)
+    {
+        currentValue += amount;
+        questScriptable.CheckQuestCompletion();
+    }
+    public void AddCustomRequirement(int amount)
+    {
+        currentValue -= amount;
+        questScriptable.CheckQuestCompletion();
+    }
+}
+[Serializable]
 public struct QuestReward
 {
     public QuestRewardType rewardType;
@@ -27,12 +80,8 @@ public class QuestScriptable : ScriptableObject, IComparable
     [Tooltip("List of required items.")]
     public List<ItemRecipeInfo> requiredItems = new();
     [HideInInspector] public Dictionary<string, int> requiredItemsDic = new();
-    [Tooltip("Any item of this type will count towards the count.")]
-    public ItemType requiredItemType;
-    [Tooltip("The count of required items of the same type.")]
-    public int requiredItemTypeAmount;
-    private int currentItemTypeAmount;
-    private List<string> validItemTypeNames = new();
+    [Tooltip("List of required item types.")]
+    public List<RequiredItemType> requiredItemTypes = new();
     [Tooltip("Structures required to be built.")]
     public List<StructureScriptable> requiredStructures = new();
     [HideInInspector] public Dictionary<string, bool> requiredStructuresDic = new();
@@ -42,13 +91,8 @@ public class QuestScriptable : ScriptableObject, IComparable
     [Tooltip("Required knowledge to be collected.")]
     public int requiredKnowledge;
     [HideInInspector] public int currentKnowledge;
-    [Tooltip("Required custom value to be acquired by means coded specifically. Do not fill this unless you know what interacts with this.")]
-    public int requiredCustom1;
-    [HideInInspector] public int currentCustom1;
-    [Tooltip("Text representation of the custom requirement (displayed in quest)")]
-    public string custom1Requirement;
-    [Tooltip("Event to listen to such as Fishing Quest Event")]
-    public EventScriptable customEvent;
+    [Tooltip("Custom requirements such as lootable objects looted, monsters killed or story events.")]
+    public List<CustomRequirement> customRequirements = new();
 
     [Tooltip("Quest rewards. Always fill only one reward per list element.")]
     public List<QuestReward> rewards;
@@ -65,16 +109,26 @@ public class QuestScriptable : ScriptableObject, IComparable
         active = value;
         requiredItemsDic.Clear();
         requiredStructuresDic.Clear();
-        validItemTypeNames.Clear();
         currentResources = 0;
         currentKnowledge = 0;
-        currentCustom1 = 0;
+        foreach (var item in customRequirements)
+        {
+            item.currentValue = 0;
+        }
+        foreach (var item in requiredItemTypes)
+        {
+            item.currentItemTypeAmount = 0;
+            item.validItemTypeNames.Clear();
+        }
         if (active)
         {
             var gm = FindObjectOfType<GameManager>();
             questManager = FindObjectOfType<QuestManager>();
 
-            currentItemTypeAmount = 0;
+            foreach (var item in customRequirements)
+            {
+                item.SetUpReferences(questManager, this);
+            }
 
             if (requiredResources > 0)
             {
@@ -90,10 +144,13 @@ public class QuestScriptable : ScriptableObject, IComparable
 
             if (synchronizedQuest)
             {
-                if (customEvent)
+                foreach (var item in customRequirements)
                 {
-                    customEvent.voidEvent.RemoveListener(CmdReduceCustom1Requirement);
-                    customEvent.voidEvent.AddListener(CmdReduceCustom1Requirement);
+                    foreach (var item2 in item.customEvents)
+                    {
+                        item2.voidEvent.RemoveListener(item.CmdReduceCustomRequirement);
+                        item2.voidEvent.AddListener(item.CmdReduceCustomRequirement);
+                    }
                 }
                 foreach (var item in requiredItems)
                 {
@@ -109,25 +166,30 @@ public class QuestScriptable : ScriptableObject, IComparable
                     item.Structure_Built.AddListener(CmdReduceStructureRequirement);
                     requiredStructuresDic.Add(item.name, false);
                 }
-                if (requiredItemType != ItemType.None)
+                foreach (var item2 in requiredItemTypes)
+                {
                     foreach (var item in questManager.itemDatabase.items)
                     {
-                        if (item.itemType == requiredItemType)
+                        if (item.itemType == item2.requiredItemType)
                         {
                             item.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
                             item.Item_Stacks_Lost.RemoveListener(CmdIncreaseItemRequirement);
                             item.Item_Stacks_Acquired.AddListener(CmdReduceItemRequirement);
                             item.Item_Stacks_Lost.AddListener(CmdIncreaseItemRequirement);
-                            validItemTypeNames.Add(item.name);
+                            item2.validItemTypeNames.Add(item.name);
                         }
                     }
+                }                    
             }
             else
             {
-                if (customEvent)
+                foreach (var item in customRequirements)
                 {
-                    customEvent.voidEvent.RemoveListener(ReduceCustom1Requirement);
-                    customEvent.voidEvent.AddListener(ReduceCustom1Requirement);
+                    foreach (var item2 in item.customEvents)
+                    {
+                        item2.voidEvent.RemoveListener(item.ReduceCustomRequirement);
+                        item2.voidEvent.AddListener(item.ReduceCustomRequirement);
+                    }
                 }
                 foreach (var item in requiredItems)
                 {
@@ -143,18 +205,20 @@ public class QuestScriptable : ScriptableObject, IComparable
                     item.Structure_Built.AddListener(ReduceStructureRequirement);
                     requiredStructuresDic.Add(item.name, false);
                 }
-                if (requiredItemType != ItemType.None)
+                foreach (var item2 in requiredItemTypes)
+                {
                     foreach (var item in questManager.itemDatabase.items)
                     {
-                        if (item.itemType == requiredItemType)
+                        if (item.itemType == item2.requiredItemType)
                         {
                             item.Item_Stacks_Acquired.RemoveListener(ReduceItemRequirement);
                             item.Item_Stacks_Lost.RemoveListener(IncreaseItemRequirement);
                             item.Item_Stacks_Acquired.AddListener(ReduceItemRequirement);
                             item.Item_Stacks_Lost.AddListener(IncreaseItemRequirement);
-                            validItemTypeNames.Add(item.name);
+                            item2.validItemTypeNames.Add(item.name);
                         }
                     }
+                }
             }
             if (requiredItemsDic.Count > 0)
             {
@@ -181,8 +245,13 @@ public class QuestScriptable : ScriptableObject, IComparable
             {
                 gm.Knowledge_Added.RemoveListener(ReduceKnowledgeRequirement);
                 gm.Resources_Added.RemoveListener(ReduceResourceRequirement);
-                if (customEvent)
-                    customEvent.voidEvent.RemoveListener(CmdReduceCustom1Requirement);
+                foreach (var item in customRequirements)
+                {
+                    foreach (var item2 in item.customEvents)
+                    {
+                        item2.voidEvent.RemoveListener(item.CmdReduceCustomRequirement);
+                    }
+                }
                 foreach (var item in requiredItems)
                 {
                     item.itemData.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
@@ -192,20 +261,27 @@ public class QuestScriptable : ScriptableObject, IComparable
                 {
                     item.Structure_Built.RemoveListener(CmdReduceStructureRequirement);
                 }
-                if (requiredItemType != ItemType.None)
+                foreach (var item2 in requiredItemTypes)
+                {
                     foreach (var item in questManager.itemDatabase.items)
                     {
-                        if (item.itemType == requiredItemType)
+                        if (item.itemType == item2.requiredItemType)
                         {
                             item.Item_Stacks_Acquired.RemoveListener(CmdReduceItemRequirement);
                             item.Item_Stacks_Lost.RemoveListener(CmdIncreaseItemRequirement);
                         }
                     }
+                }
             }
             else
             {
-                if (customEvent)
-                    customEvent.voidEvent.RemoveListener(ReduceCustom1Requirement);
+                foreach (var item in customRequirements)
+                {
+                    foreach (var item2 in item.customEvents)
+                    {
+                        item2.voidEvent.RemoveListener(item.ReduceCustomRequirement);
+                    }
+                }
                 foreach (var item in requiredItems)
                 {
                     item.itemData.Item_Stacks_Acquired.RemoveListener(ReduceItemRequirement);
@@ -215,15 +291,17 @@ public class QuestScriptable : ScriptableObject, IComparable
                 {
                     item.Structure_Built.RemoveListener(ReduceStructureRequirement);
                 }
-                if (requiredItemType != ItemType.None)
+                foreach (var item2 in requiredItemTypes)
+                {
                     foreach (var item in questManager.itemDatabase.items)
                     {
-                        if (item.itemType == requiredItemType)
+                        if (item.itemType == item2.requiredItemType)
                         {
                             item.Item_Stacks_Acquired.RemoveListener(ReduceItemRequirement);
                             item.Item_Stacks_Lost.RemoveListener(IncreaseItemRequirement);
                         }
                     }
+                }
             }
         }
     }
@@ -273,10 +351,16 @@ public class QuestScriptable : ScriptableObject, IComparable
                 CheckQuestCompletion();
             }
         }
-        else if (validItemTypeNames.Contains(itemName))
+        else
         {
-            currentItemTypeAmount += stacks;
-            CheckQuestCompletion();
+            foreach (var item in requiredItemTypes)
+            {
+                if (item.validItemTypeNames.Contains(itemName))
+                {
+                    item.currentItemTypeAmount += stacks;
+                    CheckQuestCompletion();
+                }
+            }
         }
     }
     private void CmdIncreaseItemRequirement(ItemScriptable itemLost, int stacks)
@@ -302,10 +386,16 @@ public class QuestScriptable : ScriptableObject, IComparable
                 requiredItemsDic[itemLost.name] = 0;
             CheckQuestCompletion();
         }
-        else if (validItemTypeNames.Contains(itemName))
+        else
         {
-            currentItemTypeAmount -= stacks;
-            CheckQuestCompletion();
+            foreach (var item in requiredItemTypes)
+            {
+                if (item.validItemTypeNames.Contains(itemName))
+                {
+                    item.currentItemTypeAmount -= stacks;
+                    CheckQuestCompletion();
+                }
+            }
         }
     }
     private void ReduceResourceRequirement(int amount)
@@ -320,30 +410,7 @@ public class QuestScriptable : ScriptableObject, IComparable
             currentKnowledge += amount;
         CheckQuestCompletion();
     }
-    private void CmdReduceCustom1Requirement()
-    {
-        questManager.CmdReduceCustom1Requirement(name, 1);
-    }
-    private void ReduceCustom1Requirement()
-    {
-        currentCustom1 += 1;
-        CheckQuestCompletion();
-    }
-    private void CmdReduceCustom1Requirement(int amount)
-    {
-        questManager.CmdReduceCustom1Requirement(name, amount);
-    }
-    public void ReduceCustom1Requirement(int amount)
-    {
-        currentCustom1 += amount;
-        CheckQuestCompletion();
-    }
-    public void AddCustom1Requirement(int amount)
-    {
-        currentCustom1 -= amount;
-        CheckQuestCompletion();
-    }
-    private void CheckQuestCompletion()
+    public void CheckQuestCompletion()
     {
         Quest_Updated.Invoke();
         foreach (var item in requiredItems)
@@ -360,10 +427,16 @@ public class QuestScriptable : ScriptableObject, IComparable
             return;
         if (currentResources < requiredResources)
             return;
-        if (currentCustom1 < requiredCustom1)
-            return;
-        if (currentItemTypeAmount < requiredItemTypeAmount)
-            return;
+        foreach (var item in customRequirements)
+        {
+            if (item.currentValue < item.requiredValue)
+                return;
+        }
+        foreach (var item in requiredItemTypes)
+        {
+            if (item.currentItemTypeAmount < item.requiredItemTypeAmount)
+                return;
+        }
         QuestComplete();
     }
     public void QuestComplete()
@@ -383,12 +456,12 @@ public class QuestScriptable : ScriptableObject, IComparable
             if (isCompleted)
                 result += "</s>";
         }
-        if (requiredItemTypeAmount > 0)
+        foreach (var item in requiredItemTypes)
         {
-            bool isCompleted = currentItemTypeAmount >= requiredItemTypeAmount;
+            bool isCompleted = item.currentItemTypeAmount >= item.requiredItemTypeAmount;
             if (isCompleted)
                 result += "<s>";
-            result += "Obtain any " + requiredItemType.ToString() + " " + currentItemTypeAmount + "/" + requiredItemTypeAmount + "\n";
+            result += "Obtain any " + item.requiredItemType.ToString() + " " + item.currentItemTypeAmount + "/" + item.requiredItemTypeAmount + "\n";
             if (isCompleted)
                 result += "</s>";
         }
@@ -419,12 +492,12 @@ public class QuestScriptable : ScriptableObject, IComparable
             if (isCompleted)
                 result += "</s>";
         }
-        if (requiredCustom1 > 0)
+        foreach (var item in customRequirements)
         {
-            bool isCompleted = currentCustom1 >= requiredCustom1;
+            bool isCompleted = item.currentValue >= item.requiredValue;
             if (isCompleted)
                 result += "<s>";
-            result += custom1Requirement + currentCustom1 + "/" + requiredCustom1 + "\n";
+            result += item.requirementText + item.currentValue + "/" + item.requiredValue + "\n";
             if (isCompleted)
                 result += "</s>";
         }

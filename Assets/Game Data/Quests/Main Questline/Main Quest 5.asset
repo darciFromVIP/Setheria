@@ -16,17 +16,17 @@ MonoBehaviour:
   label: Gear up to fight in the wild.
   synchronizedQuest: 1
   requiredItems: []
-  requiredItemType: 6
-  requiredItemTypeAmount: 1
+  requiredItemTypes:
+  - requiredItemType: 6
+    requiredItemTypeAmount: 1
+    currentItemTypeAmount: 0
+    validItemTypeNames: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 3
     rewardAmount: 1

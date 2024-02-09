@@ -12,13 +12,10 @@ public class Pet : NetworkBehaviour
     
     public void StartTimedLife(float time, CanHavePets owner)
     {
-        if (isClient)
-            Debug.Log(name);
         petOwner = owner;
         StartCoroutine(TimedLife(time));
         if (TryGetComponent(out CanMove canMove))
-            if (canMove.baseMovementSpeed > 0)
-                StartCoroutine(MovementOrder());
+            StartCoroutine(MovementOrder());
         if (!soundOnSpawn.IsNull)
             FindObjectOfType<AudioManager>().PlayOneShot(soundOnSpawn, transform.position);
     }
@@ -41,13 +38,23 @@ public class Pet : NetworkBehaviour
     }
     private IEnumerator MovementOrder()
     {
-        GetComponent<CanMove>().MoveTo(petOwner.transform.position + new Vector3(Random.Range(-6, 6), 0, Random.Range(-6, 6)));
+        var moveComp = GetComponent<CanMove>();
+        moveComp.MoveTo(petOwner.transform.position + new Vector3(Random.Range(-6, 6), 0, Random.Range(-6, 6)));
         float period = 3;
         float timer = period;
         while (timer > 0)
         {
             timer -= Time.deltaTime;
             yield return null;
+        }
+        if (isServer)
+        {
+            if (moveComp.agent.pathStatus != UnityEngine.AI.NavMeshPathStatus.PathComplete || Vector3.Distance(transform.position, petOwner.transform.position) > 12)
+            {
+                moveComp.agent.enabled = false;
+                transform.position = petOwner.transform.position;
+                moveComp.agent.enabled = true;
+            }
         }
         StartCoroutine(MovementOrder());
     }

@@ -16,17 +16,20 @@ MonoBehaviour:
   label: Go fishing!
   synchronizedQuest: 0
   requiredItems: []
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 1
-  currentCustom1: 0
-  custom1Requirement: 'Spots Fished Out: '
-  customEvent: {fileID: 11400000, guid: eb2eefde1f03be1448438cf8b1d0d432, type: 2}
+  customRequirements:
+  - requiredValue: 1
+    currentValue: 0
+    requirementText: 'Spots fished out: '
+    customEvents:
+    - {fileID: 11400000, guid: 8218fed27f4d1c8418e61d48a1b6c5dc, type: 2}
+    - {fileID: 11400000, guid: eb2eefde1f03be1448438cf8b1d0d432, type: 2}
+    - {fileID: 11400000, guid: 9a2a1627ec929054c95a2d86268b5406, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 10

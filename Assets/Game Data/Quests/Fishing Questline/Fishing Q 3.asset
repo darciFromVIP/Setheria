@@ -16,21 +16,23 @@ MonoBehaviour:
   label: Fish hunter!
   synchronizedQuest: 0
   requiredItems: []
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 5
-  currentCustom1: 0
-  custom1Requirement: 'Fish caught: '
-  customEvent: {fileID: 11400000, guid: 3fc6c6ec4fa97894e814e8186f21b4b2, type: 2}
+  customRequirements:
+  - requiredValue: 5
+    currentValue: 0
+    requirementText: 'Fish caught: '
+    customEvents:
+    - {fileID: 11400000, guid: 3fc6c6ec4fa97894e814e8186f21b4b2, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 20
     itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

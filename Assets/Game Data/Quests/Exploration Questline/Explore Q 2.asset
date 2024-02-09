@@ -12,21 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Explore Q 2
   m_EditorClassIdentifier: 
-  active: 0
-  label: 'Investigate Ruins:'
+  active: 1
+  label: Find ancient Ruins.
   synchronizedQuest: 0
   requiredItems: []
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 3
-  currentCustom1: 0
-  custom1Requirement: 'Destroyed Ruins:'
-  customEvent: {fileID: 11400000, guid: db0040439177284469b54c42f3d725d2, type: 2}
+  customRequirements:
+  - requiredValue: 3
+    currentValue: 0
+    requirementText: 'Ruins investigated: '
+    customEvents:
+    - {fileID: 11400000, guid: db0040439177284469b54c42f3d725d2, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 70

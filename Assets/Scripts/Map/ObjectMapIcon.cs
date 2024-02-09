@@ -1,7 +1,9 @@
 using FoW;
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum IconSize
 {
@@ -48,7 +50,12 @@ public class ObjectMapIcon : MonoBehaviour
         iconInstance = map.SpawnIconOnMap(isOwnedHero ? ownedMapIcon : mapIcon, mapTooltipText, pos, iconSize, isOwnedHero);
 
         if (TryGetComponent(out HideInFog fog))
-            ToggleIconOnMap(false);
+        {
+            if (fow.GetFogValue(transform.position) < fog.minFogStrength * 255)
+                ToggleIconOnMap(true);
+            else
+                ToggleIconOnMap(false);
+        }
     }
 
     private void ToggleIconOnMap(bool value)

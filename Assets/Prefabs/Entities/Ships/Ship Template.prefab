@@ -5440,6 +5440,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6846274607372228495}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4754506416389541859}
   m_SourcePrefab: {fileID: 100100000, guid: 36b01e57100ea254d9149e8306d6dd8f, type: 3}
 --- !u!4 &2913504394842974162 stripped
 Transform:
@@ -5520,6 +5524,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 420020f17ba54ad4ea2181e063854785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &8065220989339300529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5552,6 +5559,7 @@ MonoBehaviour:
     m_Bits: 0
   buffDatabase: {fileID: 0}
   canCastSkills: 0
+  skillIndicator: {fileID: 0}
   cooldown1: 0
   cooldown2: 0
   cooldown3: 0
@@ -5574,6 +5582,7 @@ MonoBehaviour:
       m_Calls: []
   crewCapacity: 1
   crew: []
+  nameOfShip: 
 --- !u!114 &4671957087248021334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5781,6 +5790,19 @@ MonoBehaviour:
   singleSelection: 0
   toggle: 0
   keepSelection: 1
+--- !u!114 &4754506416389541859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913504394842974165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84704bedf9eb6d14ab0b003806971c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!1 &8731704956966985613 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3678164197958677912, guid: 36b01e57100ea254d9149e8306d6dd8f,
