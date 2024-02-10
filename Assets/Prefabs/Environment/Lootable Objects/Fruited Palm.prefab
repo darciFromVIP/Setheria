@@ -402,11 +402,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.59, y: 3.055, z: 0.59}
+  m_Extents: {x: 0.59, y: 2.58, z: 0.59}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 2.01, z: 0}
+  m_Center: {x: 0, y: 1.4, z: 0}
   m_TimeToStationary: 0.5
 --- !u!114 &9210290197613650327
 MonoBehaviour:
@@ -1507,32 +1507,32 @@ PrefabInstance:
     - target: {fileID: 6483839097324919303, guid: b46344c8183999644b38ae37a7077b00,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 1.3
+      value: 1.67
       objectReference: {fileID: 0}
     - target: {fileID: 6483839097324919303, guid: b46344c8183999644b38ae37a7077b00,
         type: 3}
       propertyPath: ShapeModule.m_Scale.y
-      value: 1.53
+      value: 2.05
       objectReference: {fileID: 0}
     - target: {fileID: 6483839097324919303, guid: b46344c8183999644b38ae37a7077b00,
         type: 3}
       propertyPath: ShapeModule.m_Scale.z
-      value: 23.03
+      value: 23.95
       objectReference: {fileID: 0}
     - target: {fileID: 6483839097324919303, guid: b46344c8183999644b38ae37a7077b00,
         type: 3}
       propertyPath: InitialModule.maxNumParticles
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6483839097324919303, guid: b46344c8183999644b38ae37a7077b00,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6483839097324919303, guid: b46344c8183999644b38ae37a7077b00,
         type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6483839097324919303, guid: b46344c8183999644b38ae37a7077b00,
         type: 3}

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3480648087948779423}
   - component: {fileID: 2291832294722073434}
   - component: {fileID: 7765140508718627234}
-  - component: {fileID: 1065819978187838334}
   - component: {fileID: 6725416489810725658}
   m_Layer: 0
   m_Name: "\u0420alm 5"
@@ -109,28 +108,6 @@ CapsuleCollider:
   m_Height: 1.2015557
   m_Direction: 1
   m_Center: {x: 0, y: 0.54, z: 0}
---- !u!64 &1065819978187838334
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6767730753029240976}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 21a80214a93ab574db5b846350270d8f, type: 2}
 --- !u!114 &6725416489810725658
 MonoBehaviour:
   m_ObjectHideFlags: 0
