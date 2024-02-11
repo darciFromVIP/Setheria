@@ -15,6 +15,7 @@ public class WorldGenerator : MonoBehaviour
 
     public ItemPrefabDatabase itemDatabase;
     public StructureDatabase structureDatabase;
+    public EntityDatabase entityDatabase;
 
     public SaveDataWorld lastLoadedWorldState;
 
@@ -76,10 +77,13 @@ public class WorldGenerator : MonoBehaviour
         if (NetworkServer.active)
             LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
         FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
-        while (FindObjectOfType<GameManager>() == null)
-            yield return null;
-        FindObjectOfType<GameManager>().ChangeResources(state.resources);
-        FindObjectOfType<GameManager>().ChangeKnowledge(state.knowledge);
+        if (NetworkServer.active)
+        {
+            while (FindObjectOfType<GameManager>() == null)
+                yield return null;
+            FindObjectOfType<GameManager>().ChangeResources(state.resources);
+            FindObjectOfType<GameManager>().ChangeKnowledge(state.knowledge);
+        }
     }
     private void LoadWorldObjects(Dictionary<string, Dictionary<string, SaveDataWorldObject>> worldObjects)
     {
@@ -107,6 +111,8 @@ public class WorldGenerator : MonoBehaviour
                     temp = itemDatabase.GetItemByName(item2.Value.name).gameObject;
                 if (item2.Key == typeof(Structure).ToString())
                     temp = structureDatabase.GetStructureByName(item2.Value.name).gameObject;
+                if (item2.Key == typeof(Entity).ToString())
+                    temp = entityDatabase.GetEntityByName(item2.Value.name).gameObject;
                 if (temp)
                 {
                     var spawnedObject = Instantiate(temp, Vector3.zero, temp.transform.rotation);

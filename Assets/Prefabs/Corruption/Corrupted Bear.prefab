@@ -236,6 +236,11 @@ PrefabInstance:
       propertyPath: _assetId
       value: 1671524898
       objectReference: {fileID: 0}
+    - target: {fileID: 2068845740216138705, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: rmsCount
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: power
@@ -496,9 +501,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4279cc879e63e54abea7e28da8292fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   mapIcon: {fileID: 21300000, guid: b9ecbbb8f00e98c449e577e2668d3141, type: 3}
   ownedMapIcon: {fileID: 0}
   mapTooltipText: Corruption
+  iconSize: 0
 --- !u!1001 &1669479077887021223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -591,6 +600,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -145.057
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617169453595294778, guid: 051b257861ac163419247260223dca36,
+        type: 3}
+      propertyPath: _assetId
+      value: 1671524898
       objectReference: {fileID: 0}
     - target: {fileID: 8595120861544293960, guid: 051b257861ac163419247260223dca36,
         type: 3}
@@ -727,7 +741,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -174.719
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5716261481595373992, guid: 051b257861ac163419247260223dca36, type: 3}
+    - {fileID: 6617169453595294778, guid: 051b257861ac163419247260223dca36, type: 3}
+    - {fileID: 2920094859970524774, guid: 051b257861ac163419247260223dca36, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

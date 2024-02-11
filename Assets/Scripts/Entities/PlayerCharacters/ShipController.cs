@@ -42,6 +42,10 @@ public class ShipController : NetworkBehaviour
     {
         collidingColliders.Remove(other);
     }
+    public bool ContainsCollider(Collider colliderToCompare)
+    {
+        return collidingColliders.Contains(colliderToCompare);
+    }
     private void InputHandle()
     {
         if (Input.GetKeyDown(settingsManager.settings.move))
@@ -107,11 +111,5 @@ public class ShipController : NetworkBehaviour
         }
         moveComp.Stop();
         interactable.Interact(shipComp.crew[0]);
-    }
-    private bool ContainsCollider(Collider colliderToCompare)
-    {
-        if (collidingColliders.Contains(colliderToCompare))
-            Debug.Log("Contains collider");
-        return collidingColliders.Contains(colliderToCompare);
     }
 }

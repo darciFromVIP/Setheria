@@ -320,6 +320,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void TargetAcquired(NetworkIdentity target)
     {
+        if (!target)
+            return;
         if (TryGetComponent(out HasHealth hasHealth))
             if (hasHealth.GetHealth() <= 0)
                 return;

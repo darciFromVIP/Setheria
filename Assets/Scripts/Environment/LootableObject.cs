@@ -176,7 +176,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             if (!oneTimeLoot)
                 CmdStartRefreshTimer();
             else if (TryGetComponent(out ObjectMapIcon mapIcon))
-                mapIcon.DestroyIcon();
+                mapIcon.CmdDestroyIcon();
             if (destroyOnLoot)
                 CmdDestroyObject();
         }

@@ -8,10 +8,12 @@ public class CanPickup : NetworkBehaviour
     private Item itemToPickup;
     private CanMove canMoveComp;
     private PlayerController playerController;
+    private ShipController shipController;
     private void Start()
     {
         canMoveComp = GetComponent<CanMove>();
         playerController = GetComponent<PlayerController>();
+        shipController = GetComponent<ShipController>();
     }
     public IEnumerator GoToPickup(Item item)
     {
@@ -27,17 +29,23 @@ public class CanPickup : NetworkBehaviour
                 itemToPickup = null;
                 yield break;
             }
-            if (playerController.ContainsCollider(item.GetComponent<Collider>()))
-                break;
+            if (shipController)
+                if (shipController.ContainsCollider(item.GetComponent<Collider>()))
+                    break;
+            if (playerController)
+                if (playerController.ContainsCollider(item.GetComponent<Collider>()))
+                    break;
             yield return null;
         }
         canMoveComp.Stop();
+        FindObjectOfType<AudioManager>().ItemPickUp(transform.position);
         if (itemToPickup == null)
             yield break;
-        FindObjectOfType<AudioManager>().ItemPickUp(transform.position);
-        FindObjectOfType<InventoryManager>(true).AddItem(itemToPickup);
+        if (itemToPickup)
+            FindObjectOfType<InventoryManager>(true).AddItem(itemToPickup);
         FindObjectOfType<TooltipWorld>(true).Hide();
-        itemToPickup.DestroyItem();
+        if (itemToPickup)
+            itemToPickup.DestroyItem();
         itemToPickup = null;
     }
 }

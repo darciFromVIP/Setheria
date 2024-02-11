@@ -13,10 +13,10 @@ public class SAura : Skill
         base.ExecuteOnStart(self);
         var collider = self.transform.Find("Aura").GetComponent<SphereCollider>();
         collider.radius = radius;
-        collider.GetComponent<AuraEventReceiver>().On_Trigger_Enter.AddListener(OnTriggerEnter);
+        collider.GetComponent<AuraEventReceiver>().On_Trigger_Stay.AddListener(OnTriggerStay);
         collider.GetComponent<AuraEventReceiver>().On_Trigger_Exit.AddListener(OnTriggerExit);
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (layerMask == (layerMask | (1 << other.gameObject.layer)))
         {

@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 public class AuraEventReceiver : MonoBehaviour
 {
-    public UnityEvent<Collider> On_Trigger_Enter = new();
+    public UnityEvent<Collider> On_Trigger_Stay = new();
     public UnityEvent<Collider> On_Trigger_Exit = new();
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        On_Trigger_Enter.Invoke(other);
+        On_Trigger_Stay.Invoke(other);
     }
     private void OnTriggerExit(Collider other)
     {

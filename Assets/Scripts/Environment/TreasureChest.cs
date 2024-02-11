@@ -33,7 +33,7 @@ public class TreasureChest : NetworkBehaviour
     {
         looted = true;
         GetComponent<TooltipTriggerWorld>().objectName = "Treasure Chest (Looted)";
-        GetComponent<ObjectMapIcon>().DestroyIcon();
+        GetComponent<ObjectMapIcon>().CmdDestroyIcon();
         turnInComp.interactable = false;
     }
 }

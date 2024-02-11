@@ -1,5 +1,6 @@
 using FoW;
 using JetBrains.Annotations;
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public enum IconSize
     Medium, Small, Large
 }
 
-public class ObjectMapIcon : MonoBehaviour
+public class ObjectMapIcon : NetworkBehaviour
 {
     public Sprite mapIcon;
     [Tooltip("Fill this only for player characters!")]
@@ -63,12 +64,18 @@ public class ObjectMapIcon : MonoBehaviour
         if (iconInstance != null)
             iconInstance.SetActive(value);
     }
-    public void DestroyIcon()
+    [Command(requiresAuthority = false)]
+    public void CmdDestroyIcon()
+    {
+        RpcDestroyIcon();
+    }
+    [ClientRpc]
+    private void RpcDestroyIcon()
     {
         Destroy(iconInstance);
     }
     private void OnDestroy()
     {
-        DestroyIcon();
+        CmdDestroyIcon();
     }
 }
