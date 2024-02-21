@@ -206,7 +206,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 attackComp.SetPower(item.power);
                 attackComp.SetCriticalChance(item.criticalChance);
                 attackComp.SetCriticalDamage(item.criticalDamage);
-                attackComp.SetBaseAttackSpeed(item.attackSpeed);
+                //attackComp.SetBaseAttackSpeed(item.attackSpeed);
                 attackComp.SetAttackRange(item.attackRange);
                 healthComp.SetArmor(item.armor);
                 attackComp.SetCooldownReduction(item.cooldownReduction);
@@ -343,7 +343,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             power = attackComp.GetBasePower(),
             criticalChance = attackComp.GetBaseCritChance(),
             criticalDamage = attackComp.GetBaseCritDamage(),
-            attackSpeed = attackComp.GetBaseAttackSpeed(),
+            //attackSpeed = attackComp.GetBaseAttackSpeed(),
             attackRange = attackComp.GetAttackRange(),
             armor = healthComp.GetBaseArmor(),
             cooldownReduction = attackComp.GetBaseCooldownReduction(),
@@ -559,7 +559,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 GetComponent<CanAttack>().CmdChangePower(modifier);
                 break;
             case PlayerStat.AttackSpeed:
-                GetComponent<CanAttack>().CmdChangeBonusAttackSpeed(modifier);
+                GetComponent<CanAttack>().CmdChangeAttackSpeedMultiplier(modifier);
                 break;
             case PlayerStat.CriticalChance:
                 GetComponent<CanAttack>().CmdChangeCriticalChance(modifier);
@@ -717,7 +717,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         attAttackSpeed += value;
         ChangeAttributePoints(-value);
-        attackComp.CmdChangeBonusAttackSpeed(value * 0.03f);
+        attackComp.CmdChangeAttackSpeedMultiplier(value * 0.03f);
     }
     public void AddCooldownReductionAttribute(int value)
     {

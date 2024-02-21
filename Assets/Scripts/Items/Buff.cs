@@ -193,15 +193,30 @@ public class BAttackSpeed : Buff
 {
     public BAttackSpeed(float value, Character targetEntity)
     {
-        buffType = BuffType.AttackSpeed;
+        buffType = BuffType.AttackSpeedMultiplier;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<CanAttack>().ChangeGearAttackSpeed(value);
+        targetEntity.GetComponent<CanAttack>().ChangeAttackSpeedMultiplier(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeGearAttackSpeed(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeAttackSpeedMultiplier(-value);
+    }
+}
+public class BBaseAttackSpeed : Buff
+{
+    public BBaseAttackSpeed(float value, Character targetEntity)
+    {
+        buffType = BuffType.BaseAttackSpeed;
+        this.value = value;
+        this.targetEntity = targetEntity;
+        targetEntity.GetComponent<CanAttack>().SetBaseAttackSpeed(value);
+    }
+    public override void BuffExpired()
+    {
+        base.BuffExpired();
+        targetEntity.GetComponent<CanAttack>().ChangeAttackSpeedToDefault();
     }
 }
 public class BAttackRange : Buff

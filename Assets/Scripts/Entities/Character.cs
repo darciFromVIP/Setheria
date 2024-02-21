@@ -261,7 +261,7 @@ public class Character : Entity
             case BuffType.CriticalDamage:
                 buffInstance = new BCriticalDamage(buffScriptable.value, this);
                 break;
-            case BuffType.AttackSpeed:
+            case BuffType.AttackSpeedMultiplier:
                 buffInstance = new BAttackSpeed(buffScriptable.value, this);
                 break;
             case BuffType.CooldownReduction:

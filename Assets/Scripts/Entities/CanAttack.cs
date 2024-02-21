@@ -4,7 +4,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public enum AttackType
 {
@@ -22,8 +21,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private float gearCriticalDamage = 0;
     private float finalCriticalDamage;
     [SerializeField] private float baseAttackSpeed = 0;
-    private float bonusAttackSpeed = 0;
-    private float gearAttackSpeed = 0;
+    private float defaultAttackSpeed = 0;
+    private float attackSpeedMultiplier = 0;
     private float finalAttackSpeed;
     public float attackSpeedTimer = 0;
     [SerializeField] private float attackRange;
@@ -98,6 +97,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         netAnim = GetComponent<NetworkAnimator>();
         entity = GetComponent<Character>();
         SetBaseAttackSpeed(baseAttackSpeed);
+        SetDefaultAttackSpeed(baseAttackSpeed);
         SetPower(basePower);
     }
     private void Update()
@@ -560,41 +560,35 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         Critical_Damage_Changed.Invoke(finalCriticalDamage);
     }
     [Command(requiresAuthority = false)]
-    public void CmdChangeBonusAttackSpeed(float value)
+    public void CmdChangeAttackSpeedMultiplier(float value)
     {
-        RpcChangeBonusAttackSpeed(value);
+        RpcChangeAttackSpeedMultiplier(value);
     }
     [ClientRpc]
-    public void RpcChangeBonusAttackSpeed(float value)
+    public void RpcChangeAttackSpeedMultiplier(float value)
     {
-        ChangeBonusAttackSpeed(value);
+        ChangeAttackSpeedMultiplier(value);
     }
-    public void ChangeBonusAttackSpeed(float value)
+    public void ChangeAttackSpeedMultiplier(float value)
     {
-        bonusAttackSpeed += value;
-        finalAttackSpeed = baseAttackSpeed * (1 + bonusAttackSpeed + gearAttackSpeed);
-        Attack_Speed_Changed.Invoke(finalAttackSpeed);
-    }
-    [Command(requiresAuthority = false)]
-    public void CmdChangeGearAttackSpeed(float value)
-    {
-        RpcChangeGearAttackSpeed(value);
-    }
-    [ClientRpc]
-    public void RpcChangeGearAttackSpeed(float value)
-    {
-        ChangeGearAttackSpeed(value);
-    }
-    public void ChangeGearAttackSpeed(float value)
-    {
-        gearAttackSpeed += value;
-        finalAttackSpeed = baseAttackSpeed * (1 + bonusAttackSpeed + gearAttackSpeed);
+        attackSpeedMultiplier += value;
+        finalAttackSpeed = baseAttackSpeed * (1 - attackSpeedMultiplier);
         Attack_Speed_Changed.Invoke(finalAttackSpeed);
     }
     public void SetBaseAttackSpeed(float value)
     {
         baseAttackSpeed = value;
-        finalAttackSpeed = baseAttackSpeed * (1 + bonusAttackSpeed);
+        finalAttackSpeed = baseAttackSpeed * (1 - attackSpeedMultiplier);
+        Attack_Speed_Changed.Invoke(finalAttackSpeed);
+    }
+    public void SetDefaultAttackSpeed(float value)
+    {
+        defaultAttackSpeed = value;
+    }
+    public void ChangeAttackSpeedToDefault()
+    {
+        baseAttackSpeed = defaultAttackSpeed;
+        finalAttackSpeed = baseAttackSpeed * (1 - attackSpeedMultiplier);
         Attack_Speed_Changed.Invoke(finalAttackSpeed);
     }
     [Command(requiresAuthority = false)]
