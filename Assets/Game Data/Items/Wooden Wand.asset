@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
+  m_Name: Wooden Wand
+  m_EditorClassIdentifier: 
+  description: 'Hand-made ranged magic small weapon, useful in battle.
+
+    __________________________________
+
+    Wand
+
+    1,2s
+    attack speed
+
+    +3%<sprite=10>
+
+    __________________________________
+
+    Equipable,
+    Weapon'
+  grade: 0
+  itemType: 6
+  sprite: {fileID: 21300000, guid: 0514d9bfc14a1a7499410bad322a6f9e, type: 3}
+  stackable: 0
+  usage: []
+  usageCooldown: 0
+  cooldownGroup: 0
+  passiveBuffs:
+  - {fileID: 11400000, guid: cd02cf6db6e798f44bf55148b28913a1, type: 2}
+  - {fileID: 11400000, guid: 31d28257b65f30a43bde6d9e2df88add, type: 2}
+  value: 0
+  destroyItemOnUse: 0
+  resourceCost: 0
+  knowledgeCost: 0
+  unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
+  Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
+    m_PersistentCalls:
+      m_Calls: []

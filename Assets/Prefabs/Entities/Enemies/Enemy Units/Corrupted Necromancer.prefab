@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: attackRange
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: baseAttackSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3983356041049155800, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_Name
@@ -123,6 +128,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[0].chance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[0].item.stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253334633496895401, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[0].item.itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f1b11d515ab05048a319301ae769ca5,
+        type: 2}
     - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: armor
@@ -132,6 +163,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHealth
       value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739984666673075569, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6494381524655264961, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}

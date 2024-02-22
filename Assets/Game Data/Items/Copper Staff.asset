@@ -12,21 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Copper Staff
   m_EditorClassIdentifier: 
-  description: '__________________________________
-
-    Better quality weapon, useful
-    in battle.
-
-    __________________________________
-
-    +6<sprite=3>
-
-    +3%<sprite=7>
-
-    __________________________________
-
-    Equipable,
-    Weapon'
+  description: "__________________________________\nBetter quality weapon, useful
+    in battle.\n__________________________________\nStaff \n1,9s attack speec\n+10<sprite=3>\n+3%<sprite=7>\n__________________________________\nEquipable,
+    Weapon"
   grade: 0
   itemType: 6
   sprite: {fileID: 21300000, guid: 5ba127ba355d4024da29a358bb337cb3, type: 3}
@@ -37,6 +25,7 @@ MonoBehaviour:
   passiveBuffs:
   - {fileID: 11400000, guid: d3bfcf019dfa6ed4c988d1cfbc26bd2f, type: 2}
   - {fileID: 11400000, guid: 5a13fac846a75f74d95d177270cbd037, type: 2}
+  - {fileID: 11400000, guid: deed51db8d47bc043a0d241a8d2967c3, type: 2}
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0

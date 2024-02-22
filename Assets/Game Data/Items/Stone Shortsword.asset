@@ -16,6 +16,11 @@ MonoBehaviour:
 
     __________________________________
 
+    Sword
+
+    1,5s
+    attack speed
+
     +5%<sprite=9>
 
     +1<sprite=3>
@@ -32,8 +37,8 @@ MonoBehaviour:
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: 8d476df06e4e7a34ba013fa258bf1ecb, type: 2}
   - {fileID: 11400000, guid: daf38c5c1e452a047b790c5ce1091077, type: 2}
+  - {fileID: 11400000, guid: dd35a647da7ec1f4ea4bf07fa05e0cbe, type: 2}
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
