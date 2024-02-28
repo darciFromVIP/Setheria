@@ -312,3 +312,18 @@ public class BCooldownReduction : Buff
         targetEntity.GetComponent<CanAttack>().ChangeGearCooldownReduction(-value);
     }
 }
+public class BPowerScaling : Buff
+{
+    public BPowerScaling(float value, Character targetEntity)
+    {
+        buffType = BuffType.PowerScaling;
+        this.value = value;
+        this.targetEntity = targetEntity;
+        targetEntity.GetComponent<CanAttack>().SetPowerScaling(value);
+    }
+    public override void BuffExpired()
+    {
+        base.BuffExpired();
+        targetEntity.GetComponent<CanAttack>().SetPowerScaling(1);
+    }
+}

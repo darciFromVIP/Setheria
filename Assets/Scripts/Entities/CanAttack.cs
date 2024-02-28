@@ -14,6 +14,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     [SerializeField] private float basePower;
     private float gearPower = 0;
     private float finalPower;
+    [SerializeField] private float powerScaling = 1;
     [SerializeField] private float baseCriticalChance = 0f;
     private float gearCriticalChance = 0;
     private float finalCriticalChance;
@@ -222,7 +223,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (random < GetFinalCritChance())
             modifier = 1 + (GetFinalCritDamage() / 100);
         if (enemyTarget)
-            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier, false, GetComponent<NetworkIdentity>(), modifier > 1 ? true : false, true);
+            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier * GetPowerScaling(), false, GetComponent<NetworkIdentity>(), modifier > 1 ? true : false, true);
         Attacked();
         RpcSetCanAct(true);
     }
@@ -272,7 +273,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             owner = GetComponent<Entity>();
         proj.GetComponent<Projectile>().InitializeProjectile(new ProjectileData()
         {
-            effectValue = GetFinalPower() * modifier,
+            effectValue = GetFinalPower() * modifier * GetPowerScaling(),
             projectileTravel = ProjectileTravelType.EntityTargeted,
             projectileImpact = ProjectileImpactType.Single,
             impactEffect = ProjectileImpactEffect.Damage,
@@ -653,7 +654,24 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         return 1 - (GetFinalCooldownReduction() / 100);
     }
-
+    [Command(requiresAuthority = false)]
+    public void CmdSetPowerScaling(float value)
+    {
+        RpcSetPowerScaling(value);
+    }
+    [ClientRpc]
+    public void RpcSetPowerScaling(float value)
+    {
+        SetPowerScaling(value);
+    }
+    public void SetPowerScaling(float value)
+    {
+        powerScaling = value;
+    }
+    public float GetPowerScaling()
+    {
+        return powerScaling;
+    }
     public void SetNewAnimator(Animator animator)
     {
         netAnim.animator = animator;

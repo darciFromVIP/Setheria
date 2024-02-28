@@ -276,6 +276,12 @@ public class Character : Entity
             case BuffType.Speed:
                 buffInstance = new BSpeed(buffScriptable.value, this);
                 break;
+            case BuffType.BaseAttackSpeed:
+                buffInstance = new BBaseAttackSpeed(buffScriptable.value, this);
+                break;
+            case BuffType.PowerScaling:
+                buffInstance = new BPowerScaling(buffScriptable.value, this);
+                break;
             default:
                 break;
         }
