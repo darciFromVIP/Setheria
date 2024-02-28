@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f1c97f892915049bc43d207d0aaea9, type: 3}
+  m_Name: Upgrade Tent
+  m_EditorClassIdentifier: 
+  structureAction: 3
+  description: 'Upgrades the Tent into House.
+
+
+    Requirements: Workshop, 200 Resources'
+  icon: {fileID: 21300000, guid: eacbe2c5c2d5cd8488d3c0cd4f9fc726, type: 3}
+  craftingRecipes: []
+  soldItems: []
+  professionRequired: 0
+  professionLevelRequired: 0
+  requiredStructures:
+  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  requiredStructureLevels: 01000000
+  requiredResources: 200

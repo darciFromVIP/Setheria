@@ -23,6 +23,28 @@ public class StructureOptionUI : MonoBehaviour
             GetComponent<TooltipTrigger>().enabled = false;
         this.structureOption = structureOption;
 
+        var structures = FindObjectsOfType<Structure>(true);
+        bool unlocked = true;
+        for (int i = 0; i < structureOption.requiredStructures.Count; i++)
+        {
+            unlocked = false;
+            foreach (var structure in structures)
+            {
+                if (structureOption.requiredStructures[i] == structure.structureData)
+                {
+                    if (structureOption.requiredStructureLevels[i] == structure.currentLevel + 1)
+                    {
+                        unlocked = true;
+                    }
+                }
+            }
+            if (!unlocked)
+                break;
+        }
+        GetComponent<Button>().interactable = unlocked;
+
+        if (structureOption.requiredResources > FindObjectOfType<GameManager>().GetResources())
+            GetComponent<Button>().interactable = false;
         if (FindObjectOfType<GameManager>().localPlayerCharacter.professions.GetProfessionExperience(structureOption.professionRequired) < structureOption.professionLevelRequired)
             GetComponent<Button>().interactable = false;
         if (!FindObjectOfType<InventoryManager>(true).GetItemOfName("Everstone") && structureOption.structureAction == StructureAction.SetReturnPoint)
@@ -75,6 +97,7 @@ public class StructureOptionUI : MonoBehaviour
                 FindObjectOfType<ShopScreen>().ShowScreen(structureOption.soldItems);
                 break;
             case StructureAction.Upgrade:
+                currentStructure.CmdUpgradeStructure();
                 break;
             case StructureAction.Demolish:
                 var gameManager = FindObjectOfType<GameManager>();

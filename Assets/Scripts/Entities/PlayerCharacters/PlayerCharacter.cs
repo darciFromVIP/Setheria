@@ -43,7 +43,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     protected int attPower = 0;
     protected int attCriticalChance = 0;
     protected int attCriticalDamage = 0;
-    protected int attAttackSpeed = 0;
     protected int attCooldownReduction = 0;
 
     public TalentTreesReference refTalentTrees;
@@ -206,7 +205,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 attackComp.SetPower(item.power);
                 attackComp.SetCriticalChance(item.criticalChance);
                 attackComp.SetCriticalDamage(item.criticalDamage);
-                //attackComp.SetBaseAttackSpeed(item.attackSpeed);
                 attackComp.SetAttackRange(item.attackRange);
                 healthComp.SetArmor(item.armor);
                 attackComp.SetCooldownReduction(item.cooldownReduction);
@@ -343,7 +341,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             power = attackComp.GetBasePower(),
             criticalChance = attackComp.GetBaseCritChance(),
             criticalDamage = attackComp.GetBaseCritDamage(),
-            //attackSpeed = attackComp.GetBaseAttackSpeed(),
             attackRange = attackComp.GetAttackRange(),
             armor = healthComp.GetBaseArmor(),
             cooldownReduction = attackComp.GetBaseCooldownReduction(),
@@ -712,12 +709,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         attCriticalDamage += value;
         ChangeAttributePoints(-value);
         attackComp.CmdChangeCriticalDamage(value * 1);
-    }
-    public void AddAttackSpeedAttribute(int value)
-    {
-        attAttackSpeed += value;
-        ChangeAttributePoints(-value);
-        attackComp.CmdChangeAttackSpeedMultiplier(value * 0.03f);
     }
     public void AddCooldownReductionAttribute(int value)
     {

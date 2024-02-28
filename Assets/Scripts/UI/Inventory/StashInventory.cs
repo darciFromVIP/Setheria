@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
+
 public class StashInventory : MonoBehaviour, WindowedUI
 {
     public List<StashSlot> stashSlots = new();
@@ -118,6 +120,18 @@ public class StashInventory : MonoBehaviour, WindowedUI
                 result.Add(item.GetComponentInChildren<InventoryItem>(true));
         }
         return result;
+    }
+    public void ExtendInventoryUpTo(int finalSlots)
+    {
+        int currentSlots = 0;
+        foreach (var item in stashSlots)
+        {
+            if (item.isUnlocked)
+            {
+                currentSlots++;
+            }
+        }
+        ExtendInventory(finalSlots - currentSlots);
     }
     public void ExtendInventory(int value)
     {

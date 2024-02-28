@@ -11,7 +11,7 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
 
     private PlayerCharacter playerCharacter;
 
-    public TextMeshProUGUI powerText, attackSpeedText, criticalChanceText, criticalDamageText, cooldownReductionText, healthText, healthRegenText, manaText, manaRegenText, armorText;
+    public TextMeshProUGUI powerText, criticalChanceText, criticalDamageText, cooldownReductionText, healthText, healthRegenText, manaText, manaRegenText, armorText;
     public TextMeshProUGUI levelText, xpText, attributePointsText, nameText;
     public Slider xpSlider;
     public Transform modelPoint;
@@ -32,7 +32,6 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         player.Attributes_Changed.AddListener(UpdateAttributes);
         var attackComp = player.GetComponent<CanAttack>();
         attackComp.Power_Changed.AddListener(UpdatePower);
-        attackComp.Attack_Speed_Changed.AddListener(UpdateAttackSpeed);
         attackComp.Critical_Chance_Changed.AddListener(UpdateCriticalChance);
         attackComp.Critical_Damage_Changed.AddListener(UpdateCriticalDamage);
         attackComp.Cooldown_Reduction_Changed.AddListener(UpdateCooldownReduction);
@@ -111,10 +110,6 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     {
         powerText.text = ((int)value).ToString();
     }
-    private void UpdateAttackSpeed(float value)
-    {
-        attackSpeedText.text = value.ToString("F2");
-    }
     private void UpdateCriticalChance(float value)
     {
         criticalChanceText.text = value.ToString("F2") + "%";
@@ -189,10 +184,6 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     public void CritDamageAtt()
     {
         playerCharacter.AddCriticalDamageAttribute(1);
-    }
-    public void AttackSpeedAtt()
-    {
-        playerCharacter.AddAttackSpeedAttribute(1);
     }
     public void CooldownReductionAtt()
     {

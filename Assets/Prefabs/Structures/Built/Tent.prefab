@@ -115,6 +115,11 @@ PrefabInstance:
       propertyPath: m_Extents.z
       value: 1.58
       objectReference: {fileID: 0}
+    - target: {fileID: 5699578080327757190, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: raycastCamera
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_RootOrder
@@ -139,6 +144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: circleRadius
       value: 2.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677551501297419170, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: rmsCount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8499384513985673298, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -229,13 +239,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0216c833e7417a4459ed35dce4d25176, type: 2}
   - {fileID: 11400000, guid: a72990daabd3b1046b9fd17847b0600e, type: 2}
   - {fileID: 11400000, guid: 60ccbd9dc7b7a4e4791424444dd3b91f, type: 2}
+  - {fileID: 11400000, guid: b4184a78f1097ed41b79142ed18f23a1, type: 2}
   - {fileID: 11400000, guid: 914a6f718d2228947a51df4f57638aae, type: 2}
   - {fileID: 11400000, guid: c60c51bea0c77c64799aa8ff424b70fb, type: 2}
   skills: []
   entityDatabase: {fileID: 0}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
+  structureLevels:
+  - model: {fileID: 8432307454107584755}
+    hp: 0
+  - model: {fileID: 8432307454107584755}
+    hp: 400
+  upgradeVFX: {fileID: 770946888318576012}
   demolishCost: 10
+  currentLevel: 0
+  Structure_Upgraded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8059923044068854560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +274,7 @@ MonoBehaviour:
   syncInterval: 0
   restingPlayers: []
   tutorialAfterBuild: {fileID: 11400000, guid: f848db4f6865e434c825dc9205c3e83b, type: 2}
+  stashSlotsPerLevel: 120000001e000000
   restCooldown: 30
   Stopped_Resting:
     m_PersistentCalls:
@@ -386,6 +408,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 285a280c4751bb2489777a4cea3d29e2, type: 3}
+--- !u!198 &770946888318576012 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5907244771436698750, guid: 285a280c4751bb2489777a4cea3d29e2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6577590605523679730}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8044375560582190006 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3813167064294271556, guid: 285a280c4751bb2489777a4cea3d29e2,
@@ -480,6 +508,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81828034e7e86d4b8bb18ff7557c10f, type: 3}
+--- !u!1 &8432307454107584755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e81828034e7e86d4b8bb18ff7557c10f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8774414114165044642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9101284845308760649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e81828034e7e86d4b8bb18ff7557c10f,
