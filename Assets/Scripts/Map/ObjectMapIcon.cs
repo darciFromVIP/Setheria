@@ -70,7 +70,7 @@ public class ObjectMapIcon : NetworkBehaviour
         RpcDestroyIcon();
     }
     [ClientRpc]
-    private void RpcDestroyIcon()
+    public void RpcDestroyIcon()
     {
         Destroy(iconInstance);
     }

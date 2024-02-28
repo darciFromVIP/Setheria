@@ -17,6 +17,5 @@ public class StructureOption : ScriptableObject
     public TalentTreeType professionRequired;
     public int professionLevelRequired;
     public List<StructureScriptable> requiredStructures = new();
-    public List<int> requiredStructureLevels;
     public int requiredResources;
 }

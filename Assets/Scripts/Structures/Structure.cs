@@ -2,14 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using UnityEngine.Events;
 
-[System.Serializable] 
-public struct StructureLevelData
-{
-    public GameObject model;
-    public float hp;
-}
 public class Structure : Entity, ISaveable, IInteractable
 {
     public ItemScriptable structureItem;
@@ -18,13 +11,9 @@ public class Structure : Entity, ISaveable, IInteractable
     public EntityDatabase entityDatabase;
     public Transform unitSpawnPoint;
     public StructureScriptable structureData;
-    public List<StructureLevelData> structureLevels = new();
-    public ParticleSystem upgradeVFX;
+    public Structure upgradePrefab;
     public int demolishCost;
     private float notificationTimer = 0;
-    public int currentLevel = 0;
-
-    public UnityEvent<int> Structure_Upgraded = new();
 
     private void Update()
     {
@@ -50,7 +39,6 @@ public class Structure : Entity, ISaveable, IInteractable
     {
         transform.position = new Vector3(state.positionX, state.positionY, state.positionZ);
         transform.rotation = new Quaternion(state.rotationX, state.rotationY, state.rotationZ, state.rotationW);
-        UpgradeStructure(state.intData1);
     }
     public virtual SaveDataWorldObject SaveState()
     {
@@ -64,7 +52,6 @@ public class Structure : Entity, ISaveable, IInteractable
             rotationY = transform.rotation.y,
             rotationZ = transform.rotation.z,
             rotationW = transform.rotation.w,
-            intData1 = currentLevel
         };
     }
 
@@ -109,41 +96,10 @@ public class Structure : Entity, ISaveable, IInteractable
     [Command(requiresAuthority = false)]
     public void CmdUpgradeStructure()
     {
-        RpcUpgradeStructure();
-    }
-    [ClientRpc]
-    public void RpcUpgradeStructure()
-    {
-        UpgradeStructure();
-    }
-    public void UpgradeStructure()
-    {
-        structureLevels[currentLevel].model.SetActive(false);
-        currentLevel++;
-        OnUpgrade();
-    }
-    [Command(requiresAuthority = false)]
-    public void CmdUpgradeStructure(int level)
-    {
-        RpcUpgradeStructure(level);
-    }
-    [ClientRpc]
-    public void RpcUpgradeStructure(int level)
-    {
-        UpgradeStructure(level);
-    }
-    public void UpgradeStructure(int level)
-    {
-        structureLevels[currentLevel].model.SetActive(false);
-        currentLevel = level;
-        OnUpgrade();
-    }
-    private void OnUpgrade()
-    {
-        structureLevels[currentLevel].model.SetActive(true);
-        GetComponent<HasHealth>().SetBaseMaxHealth(structureLevels[currentLevel].hp);
-        GetComponent<HasHealth>().SetHealth(structureLevels[currentLevel].hp);
-        upgradeVFX.Play();
-        Structure_Upgraded.Invoke(currentLevel);
+        if (TryGetComponent(out ObjectMapIcon icon))
+            icon.RpcDestroyIcon();
+        var instance = Instantiate(upgradePrefab, transform.position, transform.rotation);
+        NetworkServer.Spawn(instance.gameObject);
+        NetworkServer.Destroy(gameObject);
     }
 }

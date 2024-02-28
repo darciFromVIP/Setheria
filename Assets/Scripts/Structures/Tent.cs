@@ -7,9 +7,9 @@ public class Tent : NetworkBehaviour
 {
     public List<PlayerCharacter> restingPlayers = new List<PlayerCharacter>();
     public TutorialDataScriptable tutorialAfterBuild;
-    public List<int> stashSlotsPerLevel = new();
     public float restCooldown;
     private float restTimer;
+    public int stashSlots;
 
     public UnityEvent Stopped_Resting = new();
     private void Update()
@@ -19,10 +19,10 @@ public class Tent : NetworkBehaviour
             restTimer -= Time.deltaTime;
         }
     }
-    private void Start()
+    protected virtual void Start()
     {
-        FindObjectOfType<Tutorial>(true).QueueTentTutorial(tutorialAfterBuild);
-        GetComponent<Structure>().Structure_Upgraded.AddListener(CmdUpgradeStash);
+        if (tutorialAfterBuild)
+            FindObjectOfType<Tutorial>(true).QueueTentTutorial(tutorialAfterBuild);
     }
 
     [Command(requiresAuthority = false)]
@@ -61,15 +61,5 @@ public class Tent : NetworkBehaviour
     public float GetRestCooldown()
     {
         return restTimer;
-    }
-    [Command(requiresAuthority = false)]
-    private void CmdUpgradeStash(int level)
-    {
-        RpcUpgradeStash(level);
-    }
-    [ClientRpc]
-    private void RpcUpgradeStash(int level)
-    {
-        FindObjectOfType<StashInventory>().ExtendInventoryUpTo(stashSlotsPerLevel[level]);
     }
 }

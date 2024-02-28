@@ -32,10 +32,7 @@ public class StructureOptionUI : MonoBehaviour
             {
                 if (structureOption.requiredStructures[i] == structure.structureData)
                 {
-                    if (structureOption.requiredStructureLevels[i] == structure.currentLevel + 1)
-                    {
-                        unlocked = true;
-                    }
+                    unlocked = true;
                 }
             }
             if (!unlocked)
@@ -97,7 +94,9 @@ public class StructureOptionUI : MonoBehaviour
                 FindObjectOfType<ShopScreen>().ShowScreen(structureOption.soldItems);
                 break;
             case StructureAction.Upgrade:
+                FindObjectOfType<StructureScreen>().HideWindow();
                 currentStructure.CmdUpgradeStructure();
+                FindObjectOfType<GameManager>().ChangeResources(-structureOption.requiredResources);
                 break;
             case StructureAction.Demolish:
                 var gameManager = FindObjectOfType<GameManager>();
