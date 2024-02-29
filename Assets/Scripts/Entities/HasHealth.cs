@@ -11,6 +11,9 @@ public class HasHealth : NetworkBehaviour, ISaveable
     private float maxHealth;
     private float baseMaxHealth;
     private float gearMaxHealth = 0;
+    private float corruptedHealth = 0;
+    private float corruption = 0;
+    private float corruptionResistance = 0;
     [SerializeField]
     private float healthRegen = 0.25f;
     private float baseHealthRegen;
@@ -24,6 +27,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
 
     [System.NonSerialized]
     public UnityEvent<float, float> Health_Changed = new();
+    [System.NonSerialized]
+    public UnityEvent<float, float> Corrupted_Health_Changed = new();
     [System.NonSerialized]
     public UnityEvent<float> Health_Regen_Changed = new();
     [System.NonSerialized]
@@ -56,6 +61,14 @@ public class HasHealth : NetworkBehaviour, ISaveable
                     RpcHealDamage(healthRegen, true);
                 else if (healthRegen < 0)
                     RpcTakeDamage(-healthRegen, true, GetComponent<NetworkIdentity>(), false, false);
+                if (corruption > 0)
+                {
+                    float actualCorruption = corruption - corruptionResistance;
+                    if (actualCorruption > 0)
+                    {
+                        ChangeCorruptedHealth(actualCorruption);
+                    }
+                }
             }
         }
     }
@@ -147,9 +160,32 @@ public class HasHealth : NetworkBehaviour, ISaveable
         UpdateMaxHealth();
         AdjustHealthToMaxHealth(GetFinalMaxHealth() - amount);
     }
+    [Command]
+    public void CmdChangeCorruptedHealth(float amount)
+    {
+        RpcChangeCorruptedHealth(amount);
+    }
+    [ClientRpc]
+    public void RpcChangeCorruptedHealth(float amount)
+    {
+        ChangeCorruptedHealth(amount);
+    }
+    public void ChangeCorruptedHealth(float amount)
+    {
+        corruptedHealth += amount;
+        if (corruptedHealth < 0)
+            corruptedHealth = 0;
+        while (GetFinalMaxHealth() - corruptedHealth < 1)
+        {
+            corruptedHealth -= 0.1f;
+        }
+        UpdateMaxHealth();
+        Corrupted_Health_Changed.Invoke(baseMaxHealth + gearMaxHealth, corruptedHealth);
+        AdjustHealthToMaxHealth(GetFinalMaxHealth() - amount);
+    }
     private void UpdateMaxHealth()
     {
-        maxHealth = baseMaxHealth + gearMaxHealth;
+        maxHealth = baseMaxHealth + gearMaxHealth - corruptedHealth;
         Health_Changed.Invoke(health, maxHealth);
     }
     private void AdjustHealthToMaxHealth(float previousMaxHealth)
@@ -157,7 +193,10 @@ public class HasHealth : NetworkBehaviour, ISaveable
         if (previousMaxHealth > GetFinalMaxHealth())
             return;
         var percentage = GetHealth() / previousMaxHealth;
-        CmdSetHealth(GetFinalMaxHealth() * percentage);
+        if (percentage < 1)
+            CmdSetHealth(GetFinalMaxHealth() * percentage);
+        else
+            CmdSetHealth(GetFinalMaxHealth());
     }
     [Command]
     public void CmdChangeBaseHealthRegen(float amount)
@@ -297,6 +336,22 @@ public class HasHealth : NetworkBehaviour, ISaveable
         baseArmor = value;
         finalArmor = baseArmor + gearArmor;
         Armor_Changed.Invoke(finalArmor);
+    }
+    public void SetCorruptionResistance(float value)
+    {
+        corruptionResistance = value;
+    }
+    public void ChangeCorruption(float value)
+    {
+        corruption += value;
+    }
+    public float GetCorruptedHealth()
+    {
+        return corruptedHealth;
+    }
+    public float GetCorruption()
+    {
+        return corruption;
     }
     private void OnDeath()
     {

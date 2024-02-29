@@ -28,9 +28,12 @@ public class SaveDataPlayer
     public float health;
     public float baseMaxHealth;
     public float baseHealthRegen;
+    public float corruptedHealth;
+    public float corruption;
     public float mana;
     public float baseMaxMana;
     public float baseManaRegen;
+    public float corruptedMana;
     public float power;
     public float criticalChance;
     public float criticalDamage;

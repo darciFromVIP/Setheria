@@ -23,9 +23,12 @@ public class Structure : Entity, ISaveable, IInteractable
     protected override void Start()
     {
         base.Start();
-        structureData.Structure_Built.Invoke(structureData);
-        FindObjectOfType<AudioManager>().BuildingFinished(transform.position);
-        GetComponent<TooltipTriggerWorld>().objectName = structureData.name;
+        if (structureData)
+        {
+            structureData.Structure_Built.Invoke(structureData);
+            FindObjectOfType<AudioManager>().BuildingFinished(transform.position);
+            GetComponent<TooltipTriggerWorld>().objectName = structureData.name;
+        }
         if (isServer)
         {
             foreach (var item in skills)
@@ -33,7 +36,8 @@ public class Structure : Entity, ISaveable, IInteractable
                 item.ExecuteOnStart(this);
             }
         }
-        GetComponent<HasHealth>().Damage_Taken.AddListener(StructureUnderAttack);
+        if (TryGetComponent(out HasHealth hp))
+            hp.Damage_Taken.AddListener(StructureUnderAttack);
     }
     public virtual void LoadState(SaveDataWorldObject state)
     {

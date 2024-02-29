@@ -11,8 +11,9 @@ public class SAura : Skill
     public override void ExecuteOnStart(Structure self)
     {
         base.ExecuteOnStart(self);
-        var collider = self.transform.Find("Aura").GetComponent<SphereCollider>();
-        collider.radius = radius;
+        var collider = self.transform.Find("Aura").GetComponent<Collider>();
+        if (collider is SphereCollider)
+            (collider as SphereCollider).radius = radius;
         collider.GetComponent<AuraEventReceiver>().On_Trigger_Stay.AddListener(OnTriggerStay);
         collider.GetComponent<AuraEventReceiver>().On_Trigger_Exit.AddListener(OnTriggerExit);
     }

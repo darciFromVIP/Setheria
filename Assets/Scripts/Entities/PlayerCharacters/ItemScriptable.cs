@@ -12,12 +12,12 @@ public enum ItemType
 }
 public enum CooldownGroup
 {
-    None, HealingPotions, ManaPotions
+    None, HealingPotions, ManaPotions, CorruptionPotions
 }
 [CreateAssetMenu(menuName = "Item")]
 public class ItemScriptable : ScriptableObject
 {
-    [TextArea(3, 3)]
+    [TextArea(6, 6)]
     public string description;
     public ItemGrade grade;
     public ItemType itemType;

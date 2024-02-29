@@ -62,7 +62,6 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
         {
             result = recipes[Random.Range(0, recipes.Count)];
         } while (result.recipe.tier != currentTier || result.recipe.unlocked);
-        FindObjectOfType<AcquiredItems>().ItemResearched(result.recipe.resultItem);
         FindObjectOfType<GameManager>().ChangeKnowledge(-currentTier * 20);
         researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && recipes.Count > 0 && !allResearchesDone;
         FindObjectOfType<GameManager>().CmdUnlockRecipe(result.recipe.name);

@@ -199,9 +199,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 healthComp.SetBaseMaxHealth(item.baseMaxHealth);
                 healthComp.SetHealth(item.health);
                 healthComp.SetBaseHealthRegen(item.baseHealthRegen);
+                healthComp.ChangeCorruptedHealth(item.corruptedHealth);
                 manaComp.SetMaxMana(item.baseMaxMana);
                 manaComp.SetMana(item.mana);
                 manaComp.SetBaseManaRegen(item.baseManaRegen);
+                manaComp.ChangeCorruptedMana(item.corruptedMana);
                 attackComp.SetPower(item.power);
                 attackComp.SetCriticalChance(item.criticalChance);
                 attackComp.SetCriticalDamage(item.criticalDamage);
@@ -335,9 +337,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             health = healthComp.GetHealth(),
             baseMaxHealth = healthComp.GetBaseMaxHealth(),
             baseHealthRegen = healthComp.GetBaseHealthRegen(),
+            corruptedHealth = healthComp.GetCorruptedHealth(),
             mana = manaComp.GetMana(),
             baseMaxMana = manaComp.GetBaseMaxMana(),
             baseManaRegen = manaComp.GetBaseManaRegen(),
+            corruptedMana = manaComp.GetCorruptedMana(),
             power = attackComp.GetBasePower(),
             criticalChance = attackComp.GetBaseCritChance(),
             criticalDamage = attackComp.GetBaseCritDamage(),
@@ -573,6 +577,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             case PlayerStat.Level:
                 CmdAddXp(maxXp - xp);
                 break;
+            case PlayerStat.CorruptedHealthMana:
+                GetComponent<HasHealth>().CmdChangeCorruptedHealth(modifier);
+                GetComponent<HasMana>().CmdChangeCorruptedMana(modifier);
+                break;
             default:
                 break;
         }
@@ -612,6 +620,38 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             case PlayerStat.Knowledge:
                 if (modifier < 0)
                     return FindObjectOfType<GameManager>().TestSubtractKnowledge(-(int)modifier);
+                break;
+            case PlayerStat.ActiveItemSlot:
+                break;
+            case PlayerStat.AttributePoint:
+                break;
+            case PlayerStat.Power:
+                break;
+            case PlayerStat.AttackSpeed:
+                break;
+            case PlayerStat.CriticalChance:
+                break;
+            case PlayerStat.CriticalDamage:
+                break;
+            case PlayerStat.Armor:
+                break;
+            case PlayerStat.CooldownReduction:
+                break;
+            case PlayerStat.MovementSpeed:
+                break;
+            case PlayerStat.Level:
+                break;
+            case PlayerStat.CorruptedHealthMana:
+                if (GetComponent<HasHealth>().GetCorruptedHealth() <= 0)
+                {
+                    FindObjectOfType<SystemMessages>().AddMessage("You are not corrupted!");
+                    return false;
+                }
+                if (GetComponent<HasMana>().GetCorruptedMana() <= 0)
+                {
+                    FindObjectOfType<SystemMessages>().AddMessage("You are not corrupted!");
+                    return false;
+                }
                 break;
             default:
                 break;

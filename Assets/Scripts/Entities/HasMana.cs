@@ -9,6 +9,9 @@ public class HasMana : NetworkBehaviour
     [SyncVar] [SerializeField] private float maxMana;
     [SyncVar] [SerializeField] private float baseMaxMana;
     [SyncVar] [SerializeField] private float gearMaxMana = 0;
+    [SyncVar] [SerializeField] private float corruptedMana = 0;
+    [SyncVar] [SerializeField] private float corruption = 0;
+    [SyncVar] [SerializeField] private float corruptionResistance = 0;
     [SyncVar] [SerializeField] private float manaRegen = 0.15f;
     [SyncVar] private float baseManaRegen = 0;
     [SyncVar] private float gearManaRegen = 0;
@@ -16,6 +19,8 @@ public class HasMana : NetworkBehaviour
 
     [System.NonSerialized]
     public UnityEvent<float, float> Mana_Changed = new();
+    [System.NonSerialized]
+    public UnityEvent<float, float> Corrupted_Mana_Changed = new();
     [System.NonSerialized]
     public UnityEvent<float> Mana_Regen_Changed = new();
 
@@ -33,6 +38,14 @@ public class HasMana : NetworkBehaviour
             {
                 manaRegenTimer = 0;
                 RpcRestoreMana(manaRegen);
+                if (corruption > 0)
+                {
+                    float actualCorruption = corruption - corruptionResistance;
+                    if (actualCorruption > 0)
+                    {
+                        ChangeCorruptedMana(actualCorruption);
+                    }
+                }
             }
         }
     }
@@ -102,9 +115,32 @@ public class HasMana : NetworkBehaviour
         UpdateMaxMana();
         AdjustManaToMaxMana(GetFinalMaxMana() - amount);
     }
+    [Command]
+    public void CmdChangeCorruptedMana(float amount)
+    {
+        RpcChangeCorruptedMana(amount);
+    }
+    [ClientRpc]
+    public void RpcChangeCorruptedMana(float amount)
+    {
+        ChangeCorruptedMana(amount);
+    }
+    public void ChangeCorruptedMana(float amount)
+    {
+        corruptedMana += amount;
+        if (corruptedMana < 0)
+            corruptedMana = 0;
+        while (GetFinalMaxMana() - corruptedMana < 1)
+        {
+            corruptedMana -= 0.1f;
+        }
+        UpdateMaxMana();
+        Corrupted_Mana_Changed.Invoke(baseMaxMana + gearMaxMana, corruptedMana);
+        AdjustManaToMaxMana(GetFinalMaxMana() - amount);
+    }
     private void UpdateMaxMana()
     {
-        maxMana = baseMaxMana + gearMaxMana;
+        maxMana = baseMaxMana + gearMaxMana - corruptedMana;
         Mana_Changed.Invoke(mana, maxMana);
     }
     private void AdjustManaToMaxMana(float previousMaxMana)
@@ -112,7 +148,10 @@ public class HasMana : NetworkBehaviour
         if (previousMaxMana > GetFinalMaxMana())
             return;
         var percentage = GetMana() / previousMaxMana;
-        CmdSetMana(GetFinalMaxMana() * percentage);
+        if (percentage < 1)
+            CmdSetMana(GetFinalMaxMana() * percentage);
+        else
+            CmdSetMana(GetFinalMaxMana());
     }
     [Command]
     public void CmdChangeBaseManaRegen(float amount)
@@ -168,6 +207,18 @@ public class HasMana : NetworkBehaviour
     public float GetFinalManaRegen()
     {
         return manaRegen;
+    }
+    public float GetCorruptedMana()
+    {
+        return corruptedMana;
+    }
+    public void SetCorruptionResistance(float value)
+    {
+        corruptionResistance = value;
+    }
+    public void ChangeCorruption(float value)
+    {
+        corruption += value;
     }
     [Command]
     public void CmdSetMana(float value)

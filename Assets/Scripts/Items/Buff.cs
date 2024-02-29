@@ -327,3 +327,37 @@ public class BPowerScaling : Buff
         targetEntity.GetComponent<CanAttack>().SetPowerScaling(1);
     }
 }
+public class BCorruptionResistance : Buff
+{
+    public BCorruptionResistance(float value, Character targetEntity)
+    {
+        buffType = BuffType.CorruptionResistance;
+        this.value = value;
+        this.targetEntity = targetEntity;
+        targetEntity.GetComponent<HasHealth>().SetCorruptionResistance(value);
+        targetEntity.GetComponent<HasMana>().SetCorruptionResistance(value);
+    }
+    public override void BuffExpired()
+    {
+        base.BuffExpired();
+        targetEntity.GetComponent<HasHealth>().SetCorruptionResistance(0);
+        targetEntity.GetComponent<HasMana>().SetCorruptionResistance(0);
+    }
+}
+public class BCorruption : Buff
+{
+    public BCorruption(float value, Character targetEntity)
+    {
+        buffType = BuffType.Corruption;
+        this.value = value;
+        this.targetEntity = targetEntity;
+        targetEntity.GetComponent<HasHealth>().ChangeCorruption(value);
+        targetEntity.GetComponent<HasMana>().ChangeCorruption(value);
+    }
+    public override void BuffExpired()
+    {
+        base.BuffExpired();
+        targetEntity.GetComponent<HasHealth>().ChangeCorruption(-value);
+        targetEntity.GetComponent<HasMana>().ChangeCorruption(-value);
+    }
+}

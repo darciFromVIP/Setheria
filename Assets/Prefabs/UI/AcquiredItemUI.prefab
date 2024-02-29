@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2299297672590381604}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -172,7 +171,6 @@ RectTransform:
   - {fileID: 3253446838796463137}
   - {fileID: 8510942188208224302}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -257,6 +255,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 3766542617627043203}
   text: {fileID: 5254869735335970069}
+  recipeUnlockMaterial: {fileID: 2100000, guid: a9092d751400fb04eb69cae137fe25fa,
+    type: 2}
 --- !u!95 &4595708259100833576
 Animator:
   serializedVersion: 5
@@ -277,6 +277,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3236532554767814806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,7 +336,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2299297672590381604}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

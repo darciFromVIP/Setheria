@@ -282,6 +282,12 @@ public class Character : Entity
             case BuffType.PowerScaling:
                 buffInstance = new BPowerScaling(buffScriptable.value, this);
                 break;
+            case BuffType.CorruptionResistance:
+                buffInstance = new BCorruptionResistance(buffScriptable.value, this);
+                break;
+            case BuffType.Corruption:
+                buffInstance = new BCorruption(buffScriptable.value, this);
+                break;
             default:
                 break;
         }

@@ -7,6 +7,7 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
 {
     public TextMeshProUGUI hpText, mpText, levelText;
     public Slider hpSlider, mpSlider, xpSlider;
+    public LayoutElement corruptedHp, corruptedMp;
     public Slider cdASlider, cdDSlider, cdQSlider, cdWSlider, cdESlider, cdRSlider;
     public TextMeshProUGUI textCdA, textCdD, textCdQ, textCdW, textCdE, textCdR;
     public List<Image> skills = new();
@@ -35,7 +36,9 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         player.Xp_Changed.AddListener(UpdateXP);
         player.Level_Up.AddListener(UpdateLevel);
         player.GetComponent<HasHealth>().Health_Changed.AddListener(UpdateHealth);
+        player.GetComponent<HasHealth>().Corrupted_Health_Changed.AddListener(UpdateCorruptedHealth);
         player.GetComponent<HasMana>().Mana_Changed.AddListener(UpdateMana);
+        player.GetComponent<HasMana>().Corrupted_Mana_Changed.AddListener(UpdateCorruptedMana);
         player.Skills_Changed.AddListener(UpdateSkills);
         UpdateSkills(player.skills);
         playerController.GetComponent<CanAttack>().Has_Attacked.AddListener(StartCooldownA);
@@ -53,6 +56,12 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         hpSlider.maxValue = maxHealth;
         hpSlider.value = currentHealth;
     }
+    private void UpdateCorruptedHealth(float maxHealth, float corruptedHealth)
+    {
+        float percentage = corruptedHealth / maxHealth;
+        var maxWidth = hpSlider.GetComponent<LayoutElement>().flexibleWidth;
+        corruptedHp.preferredWidth = maxWidth * percentage;
+    }
     private void UpdateMana(float currentMana, float maxMana)
     {
         mpText.text = (int)currentMana + "/" + (int)maxMana;
@@ -66,6 +75,12 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
             else 
                 skills[i].color = new Color(1f, 1f, 1f);
         }
+    }
+    private void UpdateCorruptedMana(float maxMana, float corruptedMana)
+    {
+        float percentage = corruptedMana / maxMana;
+        var maxWidth = mpSlider.GetComponent<LayoutElement>().flexibleWidth;
+        corruptedMp.preferredWidth = maxWidth * percentage;
     }
     private void UpdateXP(int currentXp, int maxXp)
     {

@@ -10,7 +10,7 @@ public enum IconSize
 {
     Medium, Small, Large
 }
-
+[RequireComponent(typeof(NetworkIdentity))]
 public class ObjectMapIcon : NetworkBehaviour
 {
     public Sprite mapIcon;

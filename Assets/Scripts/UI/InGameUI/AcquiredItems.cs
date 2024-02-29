@@ -11,9 +11,9 @@ public class AcquiredItems : MonoBehaviour
         var instance = Instantiate(prefab, transform);
         instance.UpdateUI(itemData.itemData.sprite, itemData.stacks + "x " + itemData.itemData.name);
     }
-    public void ItemResearched(ItemRecipeInfo itemData)
+    public void RecipeUnlocked(ItemRecipeInfo itemData)
     {
         var instance = Instantiate(prefab, transform);
-        instance.UpdateUI(itemData.itemData.sprite, itemData.itemData.name + " researched!");
+        instance.UpdateUI(itemData.itemData.sprite, itemData.itemData.name + " unlocked!", true);
     }
 }

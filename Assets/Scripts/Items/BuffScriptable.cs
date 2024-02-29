@@ -5,7 +5,9 @@ using UnityEngine;
 public enum BuffType
 {
     Bleed, Slow, Stun, Regen, Fear,
-    MaxHealth, MaxMana, ManaRegen, InventorySlots, Power, CriticalChance, CriticalDamage, AttackSpeedMultiplier, Armor, CooldownReduction, AttackRange, Speed, BaseAttackSpeed, PowerScaling
+    MaxHealth, MaxMana, ManaRegen, InventorySlots, Power, 
+    CriticalChance, CriticalDamage, AttackSpeedMultiplier, Armor, CooldownReduction, AttackRange, Speed, BaseAttackSpeed, 
+    PowerScaling, CorruptionResistance, Corruption
 }
 [CreateAssetMenu(menuName = "Buff")]
 public class BuffScriptable : ScriptableObject

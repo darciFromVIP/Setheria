@@ -89,6 +89,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 case CooldownGroup.ManaPotions:
                     gameManager.Mana_Potions_Cooldown.AddListener(UpdateCooldown);
                     break;
+                case CooldownGroup.CorruptionPotions:
+                    gameManager.Corruption_Potions_Cooldown.AddListener(UpdateCooldown);
+                    break;
                 default:
                     break;
             }
