@@ -5,18 +5,19 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using TMPro;
 using UnityEngine.Events;
+using Mirror;
 
-public class DayNightCycle : MonoBehaviour, ISaveable
+public class DayNightCycle : NetworkBehaviour, ISaveable
 {
     public Light directionalLight;
     public Volume volume;
     public DayNightCycleScriptable uiData;
     public List<PostProcessingDataScriptable> data = new();
 
-    public int daysAlive = 0;
-    [SerializeField] private float timer = 0;
-    private float progressPercentage = 0;
-    private int currentIndex = 0;
+    [SyncVar] public int daysAlive = 0;
+    [SyncVar][SerializeField] private float timer = 0;
+    [SyncVar] private float progressPercentage = 0;
+    [SyncVar] private int currentIndex = 0;
     private int maxIndex;
 
     private int multiplier = 1;
@@ -59,7 +60,7 @@ public class DayNightCycle : MonoBehaviour, ISaveable
             multiplier = 1;
         }
 #endif
-        if (uiData.sphere == null || uiData.daysAliveText == null)
+        if (uiData.sphere == null || uiData.daysAliveText == null || !isServer)
             return;
         if (timer >= data[currentIndex].timeStamp)
         {

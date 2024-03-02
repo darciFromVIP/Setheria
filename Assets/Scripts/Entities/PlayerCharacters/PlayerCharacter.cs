@@ -248,7 +248,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     foreach (var item2 in item.inventory)
                     {
                         manager.AddItem(item2);
-                        Debug.Log("Adding item " + item2.name);
                     }
                     talentTrees.talentPoints = 0;
                     if (item.talentTrees != null)

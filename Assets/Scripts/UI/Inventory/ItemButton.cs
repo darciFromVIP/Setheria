@@ -54,7 +54,6 @@ public class ItemButton : Button
                             this.item.transform.SetParent(this.item.parentAfterDrag);
                             this.item.transform.position = this.item.parentAfterDrag.position;
                             FindObjectOfType<Tooltip>(true).Hide();
-                            Debug.Log("Equipping Bag");
                             break;
                         }
                     }
