@@ -22,8 +22,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private float gearCriticalDamage = 0;
     private float finalCriticalDamage;
     [SerializeField] private float baseAttackSpeed = 0;
-    private float defaultAttackSpeed = 0;
-    private float attackSpeedMultiplier = 0;
+    [SerializeField] private float defaultAttackSpeed = 0;
+    [SerializeField] private float attackSpeedMultiplier = 0;
     private float finalAttackSpeed;
     public float attackSpeedTimer = 0;
     [SerializeField] private float attackRange;
@@ -238,12 +238,12 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     private void Attacked()
     {
-        attackSpeedTimer = 5 / finalAttackSpeed;
+        attackSpeedTimer = finalAttackSpeed;
         Has_Attacked.Invoke();
     }
     public float GetAttackCooldown()
     {
-        return 5 / finalAttackSpeed;
+        return finalAttackSpeed;
     }
     private void SpawnProjectile()
     {

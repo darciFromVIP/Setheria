@@ -14,10 +14,10 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
     public DayNightCycleScriptable uiData;
     public List<PostProcessingDataScriptable> data = new();
 
-    [SyncVar] public int daysAlive = 0;
+    [SyncVar][SerializeField] public int daysAlive = 0;
     [SyncVar][SerializeField] private float timer = 0;
-    [SyncVar] private float progressPercentage = 0;
-    [SyncVar] private int currentIndex = 0;
+    [SyncVar][SerializeField] private float progressPercentage = 0;
+    [SyncVar][SerializeField] private int currentIndex = 0;
     private int maxIndex;
 
     private int multiplier = 1;
