@@ -44,7 +44,10 @@ public class CharacterGearSlot : MonoBehaviour, IDropHandler
         }
         foreach (var item in inventoryItem.item.passiveBuffs)
         {
-            player.CmdAddBuff(item.name);
+            if (item.buffType == BuffType.InventorySlots)
+                player.AddBuff(item.name);
+            else
+                player.CmdAddBuff(item.name);
         }
         GetComponent<TooltipTrigger>().enabled = false;
     }

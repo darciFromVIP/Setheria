@@ -238,6 +238,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 }
                 if (isOwned)
                 {
+                    FindObjectOfType<QuestManager>(true).LoadStateUnsynchronized(item.unsyncedQuestlines);
                     var manager = FindObjectOfType<InventoryManager>(true);
                     foreach (var item3 in item.equippedGear)
                     {
@@ -247,6 +248,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     foreach (var item2 in item.inventory)
                     {
                         manager.AddItem(item2);
+                        Debug.Log("Adding item " + item2.name);
                     }
                     talentTrees.talentPoints = 0;
                     if (item.talentTrees != null)
@@ -260,7 +262,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                             talentTrees.talentTrees.Add(new TalentTree(item2.treeType, item2.talents));
                         }
                     }
-                    FindObjectOfType<QuestManager>(true).LoadStateUnsynchronized(item.unsyncedQuestlines);
                     if (item.positionX != 0 && item.positionY != 0 && item.positionZ != 0)
                         FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
                 }
@@ -286,13 +287,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             items.Add(new SaveDataItem { name = item.item.name, stacks = item.stacks });
         }
-
-        var charScreen = FindObjectOfType<CharacterScreen>(true).GetEquippedGear();
         List<SaveDataItem> gear = new();
-        foreach (var item in charScreen)
-        {
-            gear.Add(new SaveDataItem { name = item.item.name, stacks = item.stacks });
-        }
         var inventoryScreen = FindObjectOfType<InventoryScreen>(true);
         foreach (var item in inventoryScreen.GetComponentsInChildren<CharacterGearSlot>(true))
         {
@@ -302,6 +297,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 gear.Add(new SaveDataItem { name = bag.item.name, stacks = bag.stacks });
             }
 
+        }
+        var charScreen = FindObjectOfType<CharacterScreen>(true).GetEquippedGear();
+        foreach (var item in charScreen)
+        {
+            gear.Add(new SaveDataItem { name = item.item.name, stacks = item.stacks });
         }
         var questManager = FindObjectOfType<QuestManager>(true);
         List<QuestlineSaveable> questlines = new();

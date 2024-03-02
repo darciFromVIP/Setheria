@@ -347,21 +347,11 @@ public class QuestManager : NetworkBehaviour
             names.Add(item2.Key);
             values.Add(item2.Value ? 1 : 0);
         }
-        /*foreach (var item2 in item.questList[item.currentQuestIndex].requiredItemsDic)
-        {
-            names.Add(item2.Key);
-            values.Add(item2.Value);
-        }*/
         foreach (var item2 in item.questList[item.currentQuestIndex].customRequirements)
         {
             names.Add(item2.requirementText);
             values.Add(item2.currentValue);
         }
-        /*foreach (var item2 in item.questList[item.currentQuestIndex].requiredItemTypes)
-        {
-            names.Add(item2.requiredItemType.ToString());
-            values.Add(item2.currentItemTypeAmount);
-        }*/
         names.Add("Resources");
         values.Add(item.questList[item.currentQuestIndex].currentResources);
         names.Add("Knowledge");
@@ -385,13 +375,6 @@ public class QuestManager : NetworkBehaviour
                     quest.requiredStructuresDic[item3.Key] = value;
                 }
             }
-            /*foreach (var item3 in quest.requiredItemsDic.ToList())
-            {
-                if (item.questRequirementsNames[i] == item3.Key)
-                {
-                    quest.requiredItemsDic[item3.Key] = item.questRequirementsValues[i];
-                }
-            }*/
             foreach (var item3 in quest.customRequirements)
             {
                 if (item.questRequirementsNames[i] == item3.requirementText)
@@ -399,13 +382,6 @@ public class QuestManager : NetworkBehaviour
                     item3.currentValue = item.questRequirementsValues[i];
                 }
             }
-            /*foreach (var item3 in quest.requiredItemTypes)
-            {
-                if (item.questRequirementsNames[i] == item3.requiredItemType.ToString())
-                {
-                    item3.currentItemTypeAmount = item.questRequirementsValues[i];
-                }
-            }*/
             if (item.questRequirementsNames[i] == "Knowledge")
                 quest.currentKnowledge = item.questRequirementsValues[i];
             if (item.questRequirementsNames[i] == "Resources")
