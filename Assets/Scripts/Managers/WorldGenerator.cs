@@ -37,19 +37,6 @@ public class WorldGenerator : MonoBehaviour
     private IEnumerator CreateGameWorldCoro(SaveDataWorld state)
     {
         lastLoadedWorldState = state;
-        Debug.Log("Synced questlines: " + state.syncedQuestlines.Count);
-        foreach (var item in state.syncedQuestlines)
-        {
-            foreach (var item2 in item.questRequirementsNames)
-            {
-                Debug.Log(item2);
-            }
-        }
-        Debug.Log("Stash items: " + state.stash.Count);
-        foreach (var item in state.stash)
-        {
-            Debug.Log(item.name + " " + item.stacks);
-        }
         int random;
         UnityEngine.Random.InitState(state.worldSeed);
         List<Vector3> dic = new() { new Vector3(0, 0, 0), new Vector3(0, 0, 600), new Vector3(600, 0, 0), new Vector3(600, 0, 600) };
