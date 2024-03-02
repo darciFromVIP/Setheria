@@ -60,7 +60,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
             multiplier = 1;
         }
 #endif
-        if (uiData.sphere == null || uiData.daysAliveText == null || !isServer)
+        if (uiData.sphere == null || uiData.daysAliveText == null)
             return;
         if (timer >= data[currentIndex].timeStamp)
         {
@@ -119,8 +119,11 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
                 gamma.gain.Override(Vector4.Lerp(currentIndex == 0 ? data[maxIndex].gain : data[currentIndex - 1].gain, data[currentIndex].gain, progressPercentage));
             }
 
-            timer += multiplier * Time.deltaTime;
-            progressPercentage += multiplier * Time.deltaTime / (currentIndex == 0 ? data[currentIndex].timeStamp : data[currentIndex].timeStamp - data[currentIndex - 1].timeStamp);
+            if (isServer)
+            {
+                timer += multiplier * Time.deltaTime;
+                progressPercentage += multiplier * Time.deltaTime / (currentIndex == 0 ? data[currentIndex].timeStamp : data[currentIndex].timeStamp - data[currentIndex - 1].timeStamp);
+            }
         }
     }
 }
