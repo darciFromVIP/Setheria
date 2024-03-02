@@ -15,7 +15,16 @@ public class StashInventory : MonoBehaviour, WindowedUI
     {
         window.SetActive(true);
         InitializeInventory();
-        foreach (var item in FindObjectOfType<WorldGenerator>().lastLoadedWorldState.stash)
+        StartCoroutine(WaitForSaveData());
+    }
+    private IEnumerator WaitForSaveData()
+    {
+        var worldGen = FindObjectOfType<WorldGenerator>();
+        while (worldGen.lastLoadedWorldState == null)
+        {
+            yield return null;
+        }
+        foreach (var item in worldGen.lastLoadedWorldState.stash)
         {
             AddItem(item);
         }
