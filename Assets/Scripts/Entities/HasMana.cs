@@ -49,7 +49,7 @@ public class HasMana : NetworkBehaviour
             }
         }
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdRestoreMana(float amount)
     {
         RpcRestoreMana(amount);
@@ -83,7 +83,7 @@ public class HasMana : NetworkBehaviour
             mana = 0;
         Mana_Changed.Invoke(mana, maxMana);
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeBaseMaxMana(float amount)
     {
         RpcChangeBaseMaxMana(amount);
@@ -99,7 +99,7 @@ public class HasMana : NetworkBehaviour
         UpdateMaxMana();
         AdjustManaToMaxMana(GetFinalMaxMana() - amount);
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeGearMaxMana(float amount)
     {
         RpcChangeGearMaxMana(amount);
@@ -115,7 +115,7 @@ public class HasMana : NetworkBehaviour
         UpdateMaxMana();
         AdjustManaToMaxMana(GetFinalMaxMana() - amount);
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeCorruptedMana(float amount)
     {
         RpcChangeCorruptedMana(amount);
@@ -153,7 +153,7 @@ public class HasMana : NetworkBehaviour
         else
             CmdSetMana(GetFinalMaxMana());
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeBaseManaRegen(float amount)
     {
         RpcChangeBaseManaRegen(amount);
@@ -168,7 +168,7 @@ public class HasMana : NetworkBehaviour
         baseManaRegen += amount;
         UpdateManaRegen();
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeGearManaRegen(float amount)
     {
         RpcChangeGearManaRegen(amount);
@@ -220,7 +220,7 @@ public class HasMana : NetworkBehaviour
     {
         corruption += value;
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdSetMana(float value)
     {
         RpcSetMana(value);

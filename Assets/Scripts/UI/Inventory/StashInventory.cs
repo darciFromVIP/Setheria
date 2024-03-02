@@ -26,7 +26,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
         }
         foreach (var item in worldGen.lastLoadedWorldState.stash)
         {
-            AddItem(item);
+            AddItemOnClient(item);
         }
         window.SetActive(false);
     }
@@ -48,9 +48,9 @@ public class StashInventory : MonoBehaviour, WindowedUI
     }
     public bool AddItem(Item item)
     {
-        return AddItem(item.itemData, item.stacks);
+        return CmdAddItem(item.itemData, item.stacks);
     }
-    public bool AddItem(ItemScriptable item, int stacks)
+    public bool CmdAddItem(ItemScriptable item, int stacks)
     {
         if (item.stackable)
         {
@@ -78,13 +78,26 @@ public class StashInventory : MonoBehaviour, WindowedUI
         FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
         return false;
     }
+    public bool AddItemOnClient(ItemScriptable item, int stacks)
+    {
+        foreach (var slot in stashSlots)
+        {
+            if (slot.isFree && slot.isUnlocked)
+            {
+                slot.SpawnNewItem(item.name, stacks);
+                slot.isFree = false;
+                return true;
+            }
+        }
+        return false;
+    }
     public bool AddItem(ItemRecipeInfo itemData)
     {
-        return AddItem(itemData.itemData, itemData.stacks);
+        return CmdAddItem(itemData.itemData, itemData.stacks);
     }
-    public bool AddItem(SaveDataItem itemData)
+    public bool AddItemOnClient(SaveDataItem itemData)
     {
-        return AddItem(itemDatabase.GetItemByName(itemData.name), itemData.stacks);
+        return AddItemOnClient(itemDatabase.GetItemByName(itemData.name), itemData.stacks);
     }
     public void RemoveItem(ItemRecipeInfo itemToDestroy)
     {

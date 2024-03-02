@@ -301,7 +301,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             if (inventoryManagerParent && stashInventory)                       // To Stash
             {
-                if (stashInventory.AddItem(item, stacks))    
+                if (stashInventory.CmdAddItem(item, stacks))    
                     DestroyItem();
             }
             else if (stashInventoryParent && inventoryManager)                  // To Inventory

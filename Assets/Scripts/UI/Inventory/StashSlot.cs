@@ -43,6 +43,10 @@ public class StashSlot : NetworkBehaviour, IDropHandler
     [ClientRpc]
     private void RpcSpawnNewItem(string itemName, int stacks)
     {
+        SpawnNewItem(itemName, stacks);
+    }
+    public void SpawnNewItem(string itemName, int stacks)
+    {
         var newItem = Instantiate(inventoryItemPrefab, transform);
         newItem.GetComponent<InventoryItem>().InitializeItem(itemDatabase.GetItemByName(itemName), stacks);
         isFree = false;

@@ -72,7 +72,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
             }
         }
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdHealDamage(float heal, bool isRegen)
     {
         RpcHealDamage(heal, isRegen);
@@ -91,7 +91,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
             health = maxHealth;
         Health_Changed.Invoke(health, maxHealth);
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting)
     {
         RpcTakeDamage(damage, ignoreArmor, owner, isCritical, interruptCrafting);
@@ -125,7 +125,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
             OnDeath();
         Health_Changed.Invoke(health, maxHealth);
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeBaseMaxHealth(float amount)
     {
         RpcChangeBaseMaxHealth(amount);
@@ -144,7 +144,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         UpdateMaxHealth();
         AdjustHealthToMaxHealth(GetFinalMaxHealth() - amount);
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeGearMaxHealth(float amount)
     {
         RpcChangeGearMaxHealth(amount);
@@ -160,7 +160,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         UpdateMaxHealth();
         AdjustHealthToMaxHealth(GetFinalMaxHealth() - amount);
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeCorruptedHealth(float amount)
     {
         RpcChangeCorruptedHealth(amount);
@@ -198,7 +198,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         else
             CmdSetHealth(GetFinalMaxHealth());
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeBaseHealthRegen(float amount)
     {
         RpcChangeBaseHealthRegen(amount);
@@ -216,7 +216,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
             baseHealthRegen = amount;
         UpdateHealthRegen();
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeGearHealthRegen(float amount)
     {
         RpcChangeGearHealthRegen(amount);
@@ -236,7 +236,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         healthRegen = baseHealthRegen + gearHealthRegen;
         Health_Regen_Changed.Invoke(healthRegen);
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeArmor(float amount)
     {
         RpcChangeArmor(amount);
@@ -252,7 +252,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         finalArmor = baseArmor + gearArmor;
         Armor_Changed.Invoke(finalArmor);
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdChangeGearArmor(float amount)
     {
         RpcChangeGearArmor(amount);
@@ -296,7 +296,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     {
         return healthRegen;
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdSetHealth(float value)
     {
         RpcSetHealth(value);
