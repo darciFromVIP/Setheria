@@ -21,9 +21,9 @@ MonoBehaviour:
     1,5s
     attack speed
 
-    +5%<sprite=9>
+    70% basic attack scaling
 
-    +1<sprite=3>
+    +2<sprite=3>
 
     __________________________________
 
@@ -38,8 +38,9 @@ MonoBehaviour:
   cooldownGroup: 0
   passiveBuffs:
   - {fileID: 11400000, guid: daf38c5c1e452a047b790c5ce1091077, type: 2}
+  - {fileID: 11400000, guid: daf38c5c1e452a047b790c5ce1091077, type: 2}
   - {fileID: 11400000, guid: dd35a647da7ec1f4ea4bf07fa05e0cbe, type: 2}
-  - {fileID: 11400000, guid: 11b9fe19487b2ce4f890fe6177d78084, type: 2}
+  - {fileID: 11400000, guid: d42c50944b0223a46ae7b5c3c0414f10, type: 2}
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
