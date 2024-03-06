@@ -27,7 +27,7 @@ Material:
   - TransparentBackfaceDebugDisplay
   - TransparentDepthPrepass
   - TransparentDepthPostpass
-  m_LockedProperties: 
+  m_LockedProperties: _SubsurfaceShadowValue
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -128,8 +128,8 @@ Material:
     - _EmissiveIntensityMode: 0
     - _EmissiveIntensityValue: 2
     - _EmissiveMode: 1
-    - _EmissivePhaseValue: 0.784
-    - _EmissiveTexMaxValue: 0.601852
+    - _EmissivePhaseValue: 0.883
+    - _EmissiveTexMaxValue: 0.6339805
     - _EmissiveTexMinValue: 0
     - _EnvironmentReflections: 1
     - _ExtrasPositionMode: 0
@@ -164,10 +164,10 @@ Material:
     - _LayerVertexValue: 0
     - _MainAlbedoValue: 1
     - _MainColorMode: 0
-    - _MainMaskMaxValue: 1
+    - _MainMaskMaxValue: 0.40562248
     - _MainMaskMinValue: 0
     - _MainNormalValue: -2.66
-    - _MainOcclusionValue: 0.513
+    - _MainOcclusionValue: 0.453
     - _MainSmoothnessValue: 0
     - _MessageGlobalsVariation: 0
     - _MessageMainMask: 0
@@ -248,9 +248,9 @@ Material:
     - _TransShadow: 1
     - _TransStrength: 2
     - _VertexDynamicMode: 0
-    - _VertexOcclusionColorsMode: 0
-    - _VertexOcclusionMaxValue: 1
-    - _VertexOcclusionMinValue: 0
+    - _VertexOcclusionColorsMode: 1
+    - _VertexOcclusionMaxValue: 0.14859441
+    - _VertexOcclusionMinValue: 0.052208833
     - _VertexOcclusionOverlayMode: 0
     - _VertexPivotMode: 0
     - _VertexVariationMode: 1
@@ -267,14 +267,14 @@ Material:
     - _DetailMeshRemap: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0.49364057, g: 1.9914285, b: 2.828427, a: 1}
-    - _EmissiveTexRemap: {r: 0, g: 0.601852, b: 0, a: 0}
+    - _EmissiveTexRemap: {r: 0, g: 0.6339805, b: 0, a: 0}
     - _EmissiveUVs: {r: 1, g: 1, b: 0, a: 0}
-    - _GradientColorOne: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientColorOne: {r: 0, g: 0, b: 0, a: 1}
     - _GradientColorTwo: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientMaskRemap: {r: 0, g: 1, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainColorTwo: {r: 1, g: 1, b: 1, a: 1}
-    - _MainMaskRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _MainMaskRemap: {r: 0, g: 0.40562248, b: 0, a: 0}
     - _MainUVs: {r: 1, g: 1, b: 0, a: 0}
     - _MaxBoundsInfo: {r: 1, g: 1, b: 1, a: 1}
     - _MotionHighlightColor: {r: 0, g: 0, b: 0, a: 0}
@@ -286,8 +286,8 @@ Material:
     - _SecondUVs: {r: 1, g: 1, b: 0, a: 0}
     - _SubsurfaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _SubsurfaceDiffusion_Asset: {r: 0, g: 0, b: 0, a: 0}
-    - _VertexOcclusionColor: {r: 1, g: 1, b: 1, a: 0.5019608}
-    - _VertexOcclusionRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _VertexOcclusionColor: {r: 0.15170045, g: 1.1261138, b: 0.12217274, a: 0.5019608}
+    - _VertexOcclusionRemap: {r: 0.052208833, g: 0.14859441, b: 0, a: 0}
     - _render_normals: {r: -1, g: -1, b: -1, a: 0}
     - _second_uvs_mode: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
