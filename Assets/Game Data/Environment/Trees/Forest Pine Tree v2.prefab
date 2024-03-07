@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1023833510613400726}
   - component: {fileID: 1023833510625104278}
   - component: {fileID: 1023833510615688432}
+  - component: {fileID: 9038576956190281145}
   m_Layer: 0
   m_Name: Forest Pine Tree v2
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1023833510615589462}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 111.59, y: 84.43952, z: 51.18}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.109615, y: 1.109615, z: 1.109615}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023833510615589462}
-  m_Mesh: {fileID: 4300000, guid: c869d248c07099445b26f966a64c3672, type: 3}
+  m_Mesh: {fileID: 4300000, guid: c82e8ce7f4bea1347ad061ddf22c61cf, type: 2}
 --- !u!23 &1023833510613400726
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1717ff6d95da8e64590fe1ed6c63933e, type: 2}
+  - {fileID: 2100000, guid: 4aa75e7f73bfe644eba5dbb5c7131137, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,3 +130,19 @@ CapsuleCollider:
   m_Height: 8.39
   m_Direction: 1
   m_Center: {x: 0, y: 2.36, z: 0}
+--- !u!114 &9038576956190281145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023833510615589462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089e7123bacb77a429df24ec08d2d672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  styledBanner: 0
+  storedPrefabBackupGUID: 1a64cc3bb2da22e43a03b3f7afde00e5
+  storedPreset: Tools/I Made It/Using I Made It Shaders;Use Baked Mesh Masks
+  storedOverrides: Mesh/Use Automatic Tree Masks;

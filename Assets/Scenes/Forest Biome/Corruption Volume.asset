@@ -14,6 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 4102761402688669492}
+  - {fileID: 7874608380598199374}
+  - {fileID: 3709372497511057621}
+--- !u!114 &3709372497511057621
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
+  m_Name: Vignette
+  m_EditorClassIdentifier: 
+  active: 1
+  color:
+    m_OverrideState: 1
+    m_Value: {r: 0.8018868, g: 0.06430225, b: 0.06430225, a: 1}
+  center:
+    m_OverrideState: 1
+    m_Value: {x: 0.51, y: 0.2}
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.741
+  smoothness:
+    m_OverrideState: 1
+    m_Value: 0.634
+  rounded:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &4102761402688669492
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -28,17 +58,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   postExposure:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -2.69
   contrast:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -69
   colorFilter:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
+    m_Value: {r: 5.186077, g: 3.8895578, b: 3.8895578, a: 1}
   hueShift:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -11
   saturation:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: -39
+--- !u!114 &7874608380598199374
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
+  m_Name: ChromaticAberration
+  m_EditorClassIdentifier: 
+  active: 1
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1
