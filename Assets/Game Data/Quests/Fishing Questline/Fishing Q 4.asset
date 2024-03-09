@@ -14,25 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Craft some Fish Oil.
+  description: 
+  icon: {fileID: 21300000, guid: 47b55e5e7fc63b44995eb35009cb5486, type: 3}
   synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: d2ee37198e487974a9388ac815a63333, type: 2}
     stacks: 2
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 2
     rewardAmount: 20
     itemReward: {fileID: 11400000, guid: d2ee37198e487974a9388ac815a63333, type: 2}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

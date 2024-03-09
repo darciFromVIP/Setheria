@@ -14,19 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Gather more Resources and Knowledge.
+  description: 
+  icon: {fileID: 21300000, guid: 82b70194344ad754c9f45f8686d4b994, type: 3}
   synchronizedQuest: 0
   requiredItems: []
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 300
   currentResources: 0
   requiredKnowledge: 150
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 2
     rewardAmount: 200

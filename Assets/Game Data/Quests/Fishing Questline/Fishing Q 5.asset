@@ -14,25 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Catch and open an Old Box.
+  description: 
+  icon: {fileID: 21300000, guid: 47b55e5e7fc63b44995eb35009cb5486, type: 3}
   synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: 808adcef69c09114dbc4d38baeda0ad6, type: 2}
     stacks: 1
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 2
     rewardAmount: 20
     itemReward: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

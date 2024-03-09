@@ -14,20 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Explore the ocean!
+  description: 'The damned water is everywhere! I need to explore every part of this
+    world in order to expand my overview. I''m sure that I''ll find something interesting
+    and find out more about this land.
+
+
+    The question is: Can I build a ship?
+    Well, to do that, I need a shipyard.'
+  icon: {fileID: 21300000, guid: c11e8a150de2fcc40b6dfbc138facd18, type: 3}
   synchronizedQuest: 1
   requiredItems: []
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures:
   - {fileID: 11400000, guid: 382748be377ccbb4d8c79f98652e2ab5, type: 2}
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 2
     rewardAmount: 50
@@ -35,6 +39,7 @@ MonoBehaviour:
   - rewardType: 1
     rewardAmount: 10
     itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

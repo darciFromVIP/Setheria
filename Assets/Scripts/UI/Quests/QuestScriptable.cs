@@ -1,4 +1,4 @@
-using Mirror;
+﻿using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -75,6 +75,11 @@ public class QuestScriptable : ScriptableObject, IComparable
     [HideInInspector] public bool active;
     [Tooltip("Name of the quest - this will be displayed in the game.")]
     public string label;
+    [TextArea(6, 6)]
+    [Tooltip("Description shown in the quest log.")]
+    public string description;
+    [Tooltip("Icon shown in the quest log.")]
+    public Sprite icon;
     [Tooltip("Does this quest progress across all players?")]
     public bool synchronizedQuest = true;
     [Tooltip("List of required items.")]
@@ -503,11 +508,15 @@ public class QuestScriptable : ScriptableObject, IComparable
         }
         return result;
     }
-    public string GetRewardsText()
+    public string GetRewardsText(bool withCommas)
     {
         string result = "Rewards: ";
+        if (!withCommas)
+            result += "\n";
         foreach (var item in rewards)
         {
+            if (!withCommas)
+                result += "■ ";
             switch (item.rewardType)
             {
                 case QuestRewardType.Resources:
@@ -532,7 +541,10 @@ public class QuestScriptable : ScriptableObject, IComparable
             {
                 result += item.rewardAmount;
                 if (rewards.IndexOf(item) != rewards.Count - 1)
-                    result += ", ";
+                    if (withCommas)
+                        result += ", ";
+                    else
+                        result += "\n";
             }
         }
         return result;

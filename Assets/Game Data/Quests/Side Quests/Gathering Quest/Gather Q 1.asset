@@ -12,23 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Gather Q 1
   m_EditorClassIdentifier: 
-  active: 0
-  label: Be (un)welcome, stranger. Try to survive.
+  active: 1
+  label: Basics of survival
+  description: 'In order to build a shelter, I''ll need to create a tool to gather
+    materials effectively.
+
+
+    Combining a wooden stick and a stone should do the
+    trick.
+
+
+    The only thing that I got left is the Manual (N), where I''ll keep
+    track of all recipes.'
+  icon: {fileID: 21300000, guid: dccf5053d37504c49b993b8fc0bd4359, type: 3}
   synchronizedQuest: 1
   requiredItems:
   - itemData: {fileID: 11400000, guid: eed769246a0eca54dbd15b977acd3832, type: 2}
     stacks: 1
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 3
     rewardAmount: 1
@@ -36,6 +43,7 @@ MonoBehaviour:
   - rewardType: 2
     rewardAmount: 15
     itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

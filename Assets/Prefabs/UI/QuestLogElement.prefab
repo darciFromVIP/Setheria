@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 468034894454557649}
   - component: {fileID: 1098825267952726305}
   - component: {fileID: 1922188561991231225}
+  - component: {fileID: 8070661737739647818}
   m_Layer: 5
   m_Name: QuestLogElement
   m_TagString: Untagged
@@ -296,6 +297,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8070661737739647818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4424989375138743788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d667abee7f758478a4a1623f88bf95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 7314836488810084349}
+  label: {fileID: 4713662788146792539}
+  toggleTracking: {fileID: 7418428185725564375}
 --- !u!1 &4464261459889727361
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,15 @@ MonoBehaviour:
   m_Name: Main Quest 7
   m_EditorClassIdentifier: 
   active: 0
-  label: Collect materials.
+  label: No more ooga booga!
+  description: 'Is it just me or I''m living as the ancient cave men did? Come on,
+    I''m better than that! I''ll build a place where I''ll stockpile my stuff and
+    create new technologies based on the materials of this world.
+
+
+    P.S.: I hope
+    I''ll find Moonaris too.'
+  icon: {fileID: 21300000, guid: 72061f3047c09d64dbdc73773b9e3b06, type: 3}
   synchronizedQuest: 1
   requiredItems:
   - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
@@ -24,17 +32,13 @@ MonoBehaviour:
     stacks: 4
   - itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
     stacks: 4
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:

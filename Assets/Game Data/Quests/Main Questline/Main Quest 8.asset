@@ -14,20 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Advance your technologies.
+  description: Finally, I can build this ultimate piece of art! But don't laugh too
+    hard, please. We'll need this, I promise!
+  icon: {fileID: 21300000, guid: e97e50f4fad5eda45bbb99507c64dd97, type: 3}
   synchronizedQuest: 1
   requiredItems: []
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures:
   - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 0
     rewardAmount: 10
@@ -35,6 +34,7 @@ MonoBehaviour:
   - rewardType: 1
     rewardAmount: 10
     itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

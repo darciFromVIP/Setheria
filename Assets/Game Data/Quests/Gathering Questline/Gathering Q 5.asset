@@ -14,21 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Find better quality Ore.
+  description: 
+  icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
   synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: bd5a5039329c9cb4db787f752d56c230, type: 2}
     stacks: 1
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 3
     rewardAmount: 1

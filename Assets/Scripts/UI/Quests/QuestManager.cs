@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class QuestManager : NetworkBehaviour
 {
-    private List<QuestlineScriptable> questlines = new();
+    public List<QuestlineScriptable> questlines = new();
     public List<QuestlineScriptable> beginnerQuestlines = new();
     public Transform contentUI;
     public QuestDescription questDescriptionPrefab;
@@ -42,10 +43,17 @@ public class QuestManager : NetworkBehaviour
                     quest = item2;
             }
         }
-        Debug.Log(quest.name + " new quest");
         quest.SetQuestActive(true);
         var questInstance = Instantiate(questDescriptionPrefab, contentUI);
         questInstance.Initialize(quest);
+        int count = 0;
+        foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
+        {
+            if (item.gameObject.activeSelf)
+                count++;
+        }
+        if (count >= 4)
+            ToggleQuestTracking(quest, false);
         return quest;
     }
     [Command(requiresAuthority = false)]
@@ -388,5 +396,22 @@ public class QuestManager : NetworkBehaviour
                 quest.currentResources = item.questRequirementsValues[i];
         }
         quest.Quest_Updated.Invoke();
+    }
+    public void ToggleQuestTracking(QuestScriptable questData, bool value)
+    {
+        foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
+        {
+            if (item.questData == questData)
+                item.gameObject.SetActive(value);
+        }
+    }
+    public bool GetQuestTracking(QuestScriptable questData)
+    {
+        foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
+        {
+            if (item.questData == questData)
+                return item.gameObject.activeSelf;
+        }
+        return false;
     }
 }

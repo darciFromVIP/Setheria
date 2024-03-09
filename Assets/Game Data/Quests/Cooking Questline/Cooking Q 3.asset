@@ -14,25 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Cook some fish.
+  description: 
+  icon: {fileID: 21300000, guid: b5f4b4f65ee4dab4eb97df0eb0302e23, type: 3}
   synchronizedQuest: 0
   requiredItems:
   - itemData: {fileID: 11400000, guid: f23074d28c51c584bb68e8864779818e, type: 2}
     stacks: 3
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 2
     rewardAmount: 50
     itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

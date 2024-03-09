@@ -13,22 +13,22 @@ MonoBehaviour:
   m_Name: Main Quest 6
   m_EditorClassIdentifier: 
   active: 0
-  label: Build Totem.
+  label: Guarding lights.
+  description: I think the beasts will start attacking my sanctuary soon. I need
+    to create more sources of light to be ready for them. At least I'll feel safer
+    around them.
+  icon: {fileID: 21300000, guid: 18dc36883df3035469523c4df10a8d04, type: 3}
   synchronizedQuest: 1
   requiredItems:
   - itemData: {fileID: 11400000, guid: 084e2b6017fd1f94695aa56411411b3c, type: 2}
     stacks: 1
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 2
     rewardAmount: 20

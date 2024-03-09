@@ -13,21 +13,20 @@ MonoBehaviour:
   m_Name: Main Quest 2
   m_EditorClassIdentifier: 
   active: 1
-  label: Open Manual (N) and click on Structures tab. Craft Tent and build it.
+  label: Time to build a shelter.
+  description: Now I should have everything to build a Tent. I should consult my
+    Manual to make sure I do.
+  icon: {fileID: 21300000, guid: eacbe2c5c2d5cd8488d3c0cd4f9fc726, type: 3}
   synchronizedQuest: 1
   requiredItems: []
-  requiredItemType: 0
-  requiredItemTypeAmount: 0
+  requiredItemTypes: []
   requiredStructures:
   - {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  requiredCustom1: 0
-  currentCustom1: 0
-  custom1Requirement: 
-  customEvent: {fileID: 0}
+  customRequirements: []
   rewards:
   - rewardType: 1
     rewardAmount: 5

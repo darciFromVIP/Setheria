@@ -12,7 +12,6 @@ public class QuestDescription : MonoBehaviour
     public Material mainQuestMaterial;
 
     private Transform parent;
-
     public void Initialize(QuestScriptable data)
     {
         if (data.name.Contains("Main"))
@@ -48,19 +47,23 @@ public class QuestDescription : MonoBehaviour
         {
             label.text = questData.label;
             objectives.text = questData.GetObjectivesText();
-            rewards.text = questData.GetRewardsText();
+            rewards.text = questData.GetRewardsText(true);
         }
         else
         {
             label.text = questData.label;
             objectives.text = "Complete!";
-            rewards.text = questData.GetRewardsText();
+            rewards.text = questData.GetRewardsText(true);
             QuestCompleted();
         }
     }
-    public void ToggleHide()
+    public void ToggleCollapse()
     {
         objectives.gameObject.SetActive(!objectives.gameObject.activeSelf);
         rewards.gameObject.SetActive(!rewards.gameObject.activeSelf);
+    }
+    public void ToggleTracking()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
     }
 }
