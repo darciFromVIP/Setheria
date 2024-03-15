@@ -25,7 +25,7 @@ public class QuestLog : MonoBehaviour
             }
         }
         if (description.text == "")
-            ShowQuestDetails(questLog.transform.GetChild(0).GetComponent<QuestLogElement>(true).questData);
+            ShowQuestDetails(questLog.transform.GetChild(0).GetComponent<QuestLogElement>().questData);
     }
     public void ShowQuestDetails(QuestScriptable questData)
     {
