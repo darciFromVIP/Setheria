@@ -82,6 +82,11 @@ public class ShipController : NetworkBehaviour
     {
         moveComp.MoveTo(position);
         var originDest = moveComp.agent.destination;
+        if (Vector3.Distance(transform.position, originDest) > 20)
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("Target location is too far!");
+            yield break;
+        }
         while (true)
         {
             if (originDest != moveComp.agent.destination)

@@ -46,14 +46,14 @@ public class QuestManager : NetworkBehaviour
         quest.SetQuestActive(true);
         var questInstance = Instantiate(questDescriptionPrefab, contentUI);
         questInstance.Initialize(quest);
-        int count = 0;
+        /*int count = 0;
         foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
         {
             if (item.gameObject.activeSelf)
                 count++;
         }
         if (count >= 4)
-            ToggleQuestTracking(quest, false);
+            ToggleQuestTracking(quest, false);*/
         return quest;
     }
     [Command(requiresAuthority = false)]

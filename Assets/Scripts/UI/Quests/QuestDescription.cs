@@ -43,6 +43,7 @@ public class QuestDescription : MonoBehaviour
     }
     public void UpdateUI()
     {
+        Debug.Log("Quest active: " + questData.active);
         if (questData.active)
         {
             label.text = questData.label;
