@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using HighlightPlus;
 using UnityEngine.Events;
+using FMODUnity;
 
 public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerCharacter, ISaveable
 {
@@ -24,6 +25,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     public int professionExperienceRequired;
     public List<GameObject> effectsToHide = new();
     public Animator anim;
+    public EventReference soundOnDestroy, soundOnLooting;
 
     public string lootableName;
     public string unlootableName;
@@ -116,6 +118,8 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         interactingPlayer.CmdStartWorking(lootDuration);
         interactingPlayer.Work_Finished.AddListener(GiveLoot);
         interactingPlayer.Work_Cancelled.AddListener(ForgetInteractingPlayer);
+        if (!soundOnLooting.IsNull)
+            FindObjectOfType<AudioManager>().PlayOneShot(soundOnLooting, transform.position);
     }
     private void ForgetInteractingPlayer()
     {
@@ -167,6 +171,8 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         currentCharges--;
         remainingChargesText.gameObject.SetActive(true);
         remainingChargesText.text = currentCharges + "/" + maxCharges;
+        if (!soundOnDestroy.IsNull)
+            FindObjectOfType<AudioManager>().PlayOneShot(soundOnDestroy, transform.position);
         if (currentCharges <= 0)
         {
             if (Quest_Event)

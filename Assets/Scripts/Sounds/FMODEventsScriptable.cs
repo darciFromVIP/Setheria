@@ -18,6 +18,7 @@ public class FMODEventsScriptable : ScriptableObject
     public EventReference QuestAccepted;
     public EventReference QuestComplete;
     public EventReference ToolBreak;
+    public EventReference UnlockRecipe;
     [Header("Hero Sounds")]
     public EventReference LevelUp;
     [Header("World Sounds")]

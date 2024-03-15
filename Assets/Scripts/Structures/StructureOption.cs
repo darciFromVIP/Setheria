@@ -9,7 +9,7 @@ public enum StructureAction
 public class StructureOption : ScriptableObject
 {
     public StructureAction structureAction;
-    [TextArea(3, 3)]
+    [TextArea(8, 8)]
     public string description;
     public Sprite icon;
     public List<RecipeScriptable> craftingRecipes;

@@ -19,7 +19,10 @@ public class Skill : ScriptableObject
     [HideInInspector] public bool unlocked = true;
 
     public UnityEvent<string> Description_Updated = new();
+    public virtual void ExecuteOnStart(Transform self)
+    {
 
+    }
     public virtual void ExecuteOnStart(Character self)
     {
 

@@ -1015,6 +1015,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 396763906757269663, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: objectName
+      value: Corrupted Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 396763906757269663, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: keybindLabel
+      value: Destroy
+      objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: xpGranted
@@ -1028,7 +1038,7 @@ PrefabInstance:
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: unlootableName
-      value: Corrupted Entity
+      value: Corrupted Core
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -1186,7 +1196,18 @@ PrefabInstance:
     - target: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_Name
-      value: Corrupted Entity
+      value: Corrupted Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014643280106428938, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: mapIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: 36e923d7e887f2943aa2d300725faf72,
+        type: 3}
+    - target: {fileID: 9014643280106428938, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: mapTooltipText
+      value: Corrupted Core
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1203,48 +1224,8 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7316255243036791626}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 418583336486946784}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f87e8e15654f0d1439fa30e59ccad342, type: 3}
---- !u!1 &1518131696433273991 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
-    type: 3}
-  m_PrefabInstance: {fileID: 7581211409075903290}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &418583336486946784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518131696433273991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aff22ebbd191db742b2f08bd1de1d166, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  animator: {fileID: 0}
-  On_Death:
-    m_PersistentCalls:
-      m_Calls: []
-  hudCircle: {fileID: 0}
-  vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
-  structureItem: {fileID: 0}
-  structureOptions: []
-  skills:
-  - {fileID: 11400000, guid: 4a762e1b2542d5c48897b5fdb70a3682, type: 2}
-  entityDatabase: {fileID: 0}
-  unitSpawnPoint: {fileID: 0}
-  structureData: {fileID: 0}
-  upgradePrefab: {fileID: 0}
-  demolishCost: 0
 --- !u!4 &9169761258065227811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,

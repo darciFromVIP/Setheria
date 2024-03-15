@@ -13,11 +13,8 @@ MonoBehaviour:
   m_Name: Upgrade Tent
   m_EditorClassIdentifier: 
   structureAction: 3
-  description: 'Upgrades the Tent into Cottage.
-
-
-    Requirements: Campfire, Workshop,
-    200 Resources'
+  description: "Upgrades the Tent into Cottage.\n\nRequirements: \n\u25A0 Campfire\n\u25A0
+    Workshop\n\u25A0 Totem\n\u25A0 Well\n\u25A0 200 Resources"
   icon: {fileID: 21300000, guid: eacbe2c5c2d5cd8488d3c0cd4f9fc726, type: 3}
   craftingRecipes: []
   soldItems: []
@@ -26,4 +23,6 @@ MonoBehaviour:
   requiredStructures:
   - {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}
   - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  - {fileID: 11400000, guid: 767815694d8d48f4985a4746894968ff, type: 2}
+  - {fileID: 11400000, guid: 8b497a35dbd6ffe46921b06c141e395a, type: 2}
   requiredResources: 200

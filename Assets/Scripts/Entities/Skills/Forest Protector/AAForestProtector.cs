@@ -8,7 +8,7 @@ public class AAForestProtector : Skill
     {
         var attackComp = castingEntity.GetComponent<CanAttack>();
         description = GetTextIconByStat(PlayerStat.AttackSpeed) + attackComp.GetAttackCooldown().ToString("F2") + "\nYour basic attack deals <color=orange>" 
-            + attackComp.GetFinalPower() + "</color> (" + "100%" + GetTextIconByStat(PlayerStat.Power) + ") damage.";
+            + attackComp.GetFinalPower() * attackComp.GetPowerScaling() + "</color> (" + attackComp.GetPowerScaling() * 100 + "%" + GetTextIconByStat(PlayerStat.Power) + ") damage.";
         base.UpdateDescription();
     }
 }

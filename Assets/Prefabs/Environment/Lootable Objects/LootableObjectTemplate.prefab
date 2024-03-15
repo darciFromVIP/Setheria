@@ -686,6 +686,20 @@ MonoBehaviour:
   professionExperienceRequired: 0
   effectsToHide: []
   anim: {fileID: 0}
+  soundOnDestroy:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  soundOnLooting:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   lootableName: <sprite=17> Ruins
   unlootableName: 
   refreshProgressBar: {fileID: 2071052980636620062}
@@ -1112,7 +1126,7 @@ PrefabInstance:
     - target: {fileID: 8316823297637578971, guid: f57c7553d3e08b344b5d9fc058020524,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

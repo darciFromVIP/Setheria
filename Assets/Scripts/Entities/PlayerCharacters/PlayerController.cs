@@ -56,6 +56,7 @@ public class PlayerController : NetworkBehaviour
     [HideInInspector] public UnityEvent Work_Finished = new();
     [HideInInspector] public UnityEvent Resume_Acting = new();
     [HideInInspector] public UnityEvent<float> Repair_Tick = new();
+    [HideInInspector] public UnityEvent Work_Tick = new();
 
     private void Start()
     {
@@ -522,6 +523,7 @@ public class PlayerController : NetworkBehaviour
             repairInterval += Time.deltaTime;
             if (repairInterval >= 0.97f)
             {
+                Work_Tick.Invoke();
                 Repair_Tick.Invoke(repairAmount);
                 repairInterval = 0;
             }

@@ -126,6 +126,10 @@ public class AudioManager : MonoBehaviour
     {
         PlayOneShot(fmodEventsDatabase.ItemCrafted, worldPos);
     }
+    public void RecipeUnlocked()
+    {
+        PlayOneShot(fmodEventsDatabase.UnlockRecipe, default);
+    }
     public EventInstance CreateEventInstance(EventReference eventReference)
     {
         EventInstance instance = RuntimeManager.CreateInstance(eventReference);

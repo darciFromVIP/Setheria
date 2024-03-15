@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{5aa7e3c0-cc41-4cf1-bb44-60f5bef5f627}">
 		<property name="name">
-			<value>UI Unlock Active Item Slot</value>
+			<value>UI Unlock Recipe</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -100,6 +100,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{6c863c3b-6b99-47e6-956c-d136cd1a3bc3}" />
 	<object class="SingleSound" id="{48cfd2e3-5b94-4bda-981f-f3acc9692edb}">
+		<property name="volume">
+			<value>-9</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{e18a8189-1695-4e98-9059-edfe01429db0}</destination>
 		</relationship>
