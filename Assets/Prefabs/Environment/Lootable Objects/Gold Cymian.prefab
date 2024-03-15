@@ -158,7 +158,7 @@ PrefabInstance:
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -168,6 +168,11 @@ PrefabInstance:
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[0].chance
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[1].chance
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
@@ -182,6 +187,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[1].item.stacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
       propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].item.itemData
       value: 
       objectReference: {fileID: 11400000, guid: df7a2ab289b52ac45ace238057e4ff3a,
@@ -191,6 +201,12 @@ PrefabInstance:
       propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[0].item.itemData
       value: 
       objectReference: {fileID: 11400000, guid: df7a2ab289b52ac45ace238057e4ff3a,
+        type: 2}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[1].item.itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 21ee9a24c89b74d45acd86c0ea8c7c32,
         type: 2}
     - target: {fileID: 8627531288678635897, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}

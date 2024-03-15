@@ -80,8 +80,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClipValue: 0.099
-    - _AlphaCutoff: 0.099
+    - _AlphaClipValue: 0
+    - _AlphaCutoff: 0
     - _AlphaVariationValue: 0.5
     - _CategoryDetail: 1
     - _CategoryEmissive: 1
@@ -103,7 +103,7 @@ Material:
     - _ColorsMaskValue: 1
     - _ColorsPositionMode: 0
     - _ColorsVariationValue: 1
-    - _Cutoff: 0.099
+    - _Cutoff: 0
     - _DetailAlphaMode: 1
     - _DetailBlendMaxValue: 0.6
     - _DetailBlendMinValue: 0.4
@@ -157,8 +157,8 @@ Material:
     - _IsSubsurfaceShader: 1
     - _IsTVEShader: 1
     - _IsVersion: 1230
-    - _LayerColorsValue: 0
-    - _LayerExtrasValue: 0
+    - _LayerColorsValue: 1
+    - _LayerExtrasValue: 1
     - _LayerMotionValue: 0
     - _LayerVertexValue: 0
     - _MainAlbedoValue: 1
@@ -238,13 +238,13 @@ Material:
     - _SubsurfaceMaskValue: 1
     - _SubsurfaceNormalValue: 0
     - _SubsurfaceScatteringValue: 2
-    - _SubsurfaceShadowValue: 1
+    - _SubsurfaceShadowValue: 0.417
     - _SubsurfaceValue: 1
     - _TransAmbient: 0.2
     - _TransDirect: 1
     - _TransNormal: 0
     - _TransScattering: 8
-    - _TransShadow: 1
+    - _TransShadow: 0.417
     - _TransStrength: 2
     - _VertexDynamicMode: 0
     - _VertexOcclusionColorsMode: 0
@@ -260,7 +260,7 @@ Material:
     - _render_src: 1
     - _render_zw: 1
     m_Colors:
-    - _Color: {r: 0, g: 0.2735849, b: 0, a: 1}
+    - _Color: {r: 0.03270737, g: 0.3301887, b: 0.03270737, a: 1}
     - _DetailBlendRemap: {r: 0, g: 0, b: 0, a: 0}
     - _DetailMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _DetailMeshRemap: {r: 0, g: 0, b: 0, a: 0}
@@ -268,10 +268,10 @@ Material:
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveTexRemap: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveUVs: {r: 1, g: 1, b: 0, a: 0}
-    - _GradientColorOne: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientColorOne: {r: 0.9950495, g: 1, b: 0, a: 1}
     - _GradientColorTwo: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientMaskRemap: {r: 0, g: 0, b: 0, a: 0}
-    - _MainColor: {r: 0, g: 0.2735849, b: 0, a: 1}
+    - _GradientMaskRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _MainColor: {r: 0.03270737, g: 0.3301887, b: 0.03270737, a: 1}
     - _MainColorTwo: {r: 1, g: 1, b: 1, a: 1}
     - _MainMaskRemap: {r: 0, g: 0.24444446, b: 0, a: 0}
     - _MainUVs: {r: 1, g: 1, b: 0, a: 0}

@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ed52c26fa4b2f24e854f5ffb72a17c0, type: 3}
-  m_Name: Unlock Art of War
+  m_Script: {fileID: 11500000, guid: 1c38cf51309ecbe4ca070d2cf5aa62bf, type: 3}
+  m_Name: Health +75
   m_EditorClassIdentifier: 
   Action_Finished:
     m_PersistentCalls:
       m_Calls: []
-  unlockedRecipe: {fileID: 11400000, guid: 92365dabbf88ac24a92c1d4ec42d6cd3, type: 2}
-  unlockedItems: []
+  stat: 0
+  amount: 75
+  vfx: {fileID: 194934588760521617, guid: 66f637becfb6818478fbbba52e5861a4, type: 3}

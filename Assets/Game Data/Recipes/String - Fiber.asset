@@ -10,28 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
-  m_Name: Provisional Gathering Tool
+  m_Name: String - Fiber
   m_EditorClassIdentifier: 
   recipeCategory: 0
-  priority: 0
+  priority: 5
   resultItem:
-    itemData: {fileID: 11400000, guid: eed769246a0eca54dbd15b977acd3832, type: 2}
+    itemData: {fileID: 11400000, guid: d875889d60fcee947a6acb613c9c2ace, type: 2}
     stacks: 1
   componentItems:
-  - itemData: {fileID: 11400000, guid: 4d1a97fe5fe98534aa7b3e2b8debfdbb, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
-    stacks: 1
+  - itemData: {fileID: 11400000, guid: 21ee9a24c89b74d45acd86c0ea8c7c32, type: 2}
+    stacks: 3
   resourceCost: 0
-  unlocked: 1
-  visible: 1
+  unlocked: 0
+  visible: 0
   freshlyUnlocked: 0
   requiredStructure: {fileID: 0}
-  craftingDuration: 3
-  xpGranted: 15
+  craftingDuration: 1
+  xpGranted: 10
   tier: 0
   recipeItem: {fileID: 0}
-  requiredItems: []
+  requiredItems:
+  - {fileID: 11400000, guid: 21ee9a24c89b74d45acd86c0ea8c7c32, type: 2}
   requiredStructures: []
   requiredProfession: 0
   requiredProfessionExperience: 0
