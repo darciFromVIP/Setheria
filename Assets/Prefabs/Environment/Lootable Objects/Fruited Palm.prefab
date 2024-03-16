@@ -434,6 +434,20 @@ MonoBehaviour:
   - {fileID: 5680145290067354820}
   - {fileID: 0}
   anim: {fileID: 0}
+  soundOnDestroy:
+    Guid:
+      Data1: -713904105
+      Data2: 1330006653
+      Data3: -1228084049
+      Data4: -1026474001
+    Path: event:/World Sounds/Vocational Activities/Sapling Destroy
+  soundOnLooting:
+    Guid:
+      Data1: -1523487577
+      Data2: 1182270579
+      Data3: 2079329976
+      Data4: -303898327
+    Path: event:/World Sounds/Vocational Activities/Plant Gather
   lootableName: <sprite=18> Fruited Palm
   unlootableName: Palm
   refreshProgressBar: {fileID: 5647387607280405362}
@@ -733,6 +747,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4279cc879e63e54abea7e28da8292fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   mapIcon: {fileID: 21300000, guid: 330361fd91bc70d4eb52ef6cf4d7cc42, type: 3}
   ownedMapIcon: {fileID: 0}
   mapTooltipText: Fruited Palm
