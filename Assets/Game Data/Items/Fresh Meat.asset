@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    Cook this at a Campfire to
-    make it edible.
+    Cook this at a <color=#FFD000>Campfire</color>
+    to make it edible.
 
     __________________________________
 
@@ -28,6 +28,7 @@ MonoBehaviour:
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0

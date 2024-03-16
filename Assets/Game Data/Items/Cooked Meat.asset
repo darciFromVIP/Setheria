@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    Eating this restores +6<sprite=12>.
+    Eating this restores <color=#FFD000>+6</color><sprite=12>.
 
     __________________________________
 
@@ -28,6 +28,7 @@ MonoBehaviour:
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0

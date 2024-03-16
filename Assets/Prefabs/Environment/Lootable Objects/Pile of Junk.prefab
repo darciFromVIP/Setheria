@@ -757,12 +757,12 @@ PrefabInstance:
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: soundOnDestroy.Path
-      value: event:/World Sounds/Vocational Activities/Pile of Junk Mine
+      value: event:/World Sounds/Vocational Activities/Building Destroyed
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: soundOnLooting.Path
-      value: event:/World Sounds/Vocational Activities/Building Destroyed
+      value: event:/World Sounds/Vocational Activities/Pile of Junk Mine
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -772,42 +772,42 @@ PrefabInstance:
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: soundOnDestroy.Guid.Data1
-      value: -1783431608
-      objectReference: {fileID: 0}
-    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
-        type: 3}
-      propertyPath: soundOnDestroy.Guid.Data2
-      value: 1170164177
-      objectReference: {fileID: 0}
-    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
-        type: 3}
-      propertyPath: soundOnDestroy.Guid.Data3
-      value: -76582269
-      objectReference: {fileID: 0}
-    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
-        type: 3}
-      propertyPath: soundOnDestroy.Guid.Data4
-      value: 2087369288
-      objectReference: {fileID: 0}
-    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
-        type: 3}
-      propertyPath: soundOnLooting.Guid.Data1
       value: 489985110
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
-      propertyPath: soundOnLooting.Guid.Data2
+      propertyPath: soundOnDestroy.Guid.Data2
       value: 1250436392
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
-      propertyPath: soundOnLooting.Guid.Data3
+      propertyPath: soundOnDestroy.Guid.Data3
       value: 1020628157
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
-      propertyPath: soundOnLooting.Guid.Data4
+      propertyPath: soundOnDestroy.Guid.Data4
       value: 929530294
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: soundOnLooting.Guid.Data1
+      value: -1783431608
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: soundOnLooting.Guid.Data2
+      value: 1170164177
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: soundOnLooting.Guid.Data3
+      value: -76582269
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: soundOnLooting.Guid.Data4
+      value: 2087369288
       objectReference: {fileID: 0}
     - target: {fileID: 814786273153173831, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
