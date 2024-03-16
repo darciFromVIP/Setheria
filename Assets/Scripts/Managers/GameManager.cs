@@ -23,6 +23,7 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     public UnityEvent<float> Healing_Potions_Cooldown = new();
     public UnityEvent<float> Mana_Potions_Cooldown = new();
     public UnityEvent<float> Corruption_Potions_Cooldown = new();
+    public UnityEvent<float> Blowpipe_Cooldown = new();
     public UnityEvent<int> Resources_Added = new();
     public UnityEvent<int> Knowledge_Added = new();
     public EventScriptable Player_Event;
@@ -125,6 +126,9 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
             case CooldownGroup.CorruptionPotions:
                 StartCoroutine(CooldownCoroCorruptionPotions(cd));
                 break;
+            case CooldownGroup.Blowpipe:
+                StartCoroutine(CooldownCoroBlowpipe(cd));
+                break;
             default:
                 break;
         }
@@ -170,6 +174,16 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
         {
             timer -= Time.deltaTime;
             Corruption_Potions_Cooldown.Invoke(timer);
+            yield return null;
+        }
+    }
+    private IEnumerator CooldownCoroBlowpipe(float cd)
+    {
+        float timer = cd;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            Blowpipe_Cooldown.Invoke(timer);
             yield return null;
         }
     }

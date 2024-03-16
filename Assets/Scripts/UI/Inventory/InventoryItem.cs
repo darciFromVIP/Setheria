@@ -78,9 +78,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             GetComponent<Button>().interactable = true;
             GetComponent<Button>().onClick.AddListener(UseItem);
         }
+        var gameManager = FindObjectOfType<GameManager>();
         if (item.cooldownGroup != CooldownGroup.None)
         {
-            var gameManager = FindObjectOfType<GameManager>();
             switch (item.cooldownGroup)
             {
                 case CooldownGroup.HealingPotions:
@@ -92,9 +92,16 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 case CooldownGroup.CorruptionPotions:
                     gameManager.Corruption_Potions_Cooldown.AddListener(UpdateCooldown);
                     break;
+                case CooldownGroup.Blowpipe:
+                    gameManager.Blowpipe_Cooldown.AddListener(UpdateCooldown);
+                    break;
                 default:
                     break;
             }
+        }
+        foreach (var item1 in item.activeSkills)
+        {
+            item1.ExecuteOnStart(item);
         }
         newItemNotification.SetActive(triggerNewItemNotif);
     }
@@ -174,6 +181,12 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
             else
                 break;
+        }
+        foreach (var item in item.activeSkills)
+        {
+            item.Skill_Casted.RemoveAllListeners();
+            item.Skill_Casted.AddListener(StartCooldown);
+            item.Execute(FindObjectOfType<GameManager>().localPlayerCharacter);
         }
         if (used && item.stackable)
         {
@@ -339,6 +352,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnDrop(PointerEventData eventData)
     {
         var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+        if (transform.parent.TryGetComponent(out CharacterGearSlot backpackSlot))
+        {
+            if (backpackSlot.itemType == ItemType.Backpack && inventoryItem.item.itemType != ItemType.Backpack)
+                return;
+        }
         if (inventoryItem)
         {
             if (inventoryItem.item == item && item.stackable)

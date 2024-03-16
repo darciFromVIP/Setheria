@@ -12,7 +12,7 @@ public enum ItemType
 }
 public enum CooldownGroup
 {
-    None, HealingPotions, ManaPotions, CorruptionPotions
+    None, HealingPotions, ManaPotions, CorruptionPotions, Blowpipe
 }
 [CreateAssetMenu(menuName = "Item")]
 public class ItemScriptable : ScriptableObject
@@ -27,6 +27,7 @@ public class ItemScriptable : ScriptableObject
     public float usageCooldown;
     public CooldownGroup cooldownGroup;
     public List<BuffScriptable> passiveBuffs;
+    public List<Skill> activeSkills;
     [Tooltip("Miscellaneous Value - For Tools: Level of Tool, For Items worth Resources/Knowledge: How much of them is it worth")]
     public int value;
     public bool destroyItemOnUse = false;

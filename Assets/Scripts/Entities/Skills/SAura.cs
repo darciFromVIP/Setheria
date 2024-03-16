@@ -17,6 +17,15 @@ public class SAura : Skill
         collider.GetComponent<AuraEventReceiver>().On_Trigger_Stay.AddListener(OnTriggerStay);
         collider.GetComponent<AuraEventReceiver>().On_Trigger_Exit.AddListener(OnTriggerExit);
     }
+    public override void ExecuteOnStart(Structure self)
+    {
+        base.ExecuteOnStart(self);
+        var collider = self.transform.Find("Aura").GetComponent<Collider>();
+        if (collider is SphereCollider)
+            (collider as SphereCollider).radius = radius;
+        collider.GetComponent<AuraEventReceiver>().On_Trigger_Stay.AddListener(OnTriggerStay);
+        collider.GetComponent<AuraEventReceiver>().On_Trigger_Exit.AddListener(OnTriggerExit);
+    }
     private void OnTriggerStay(Collider other)
     {
         if (layerMask == (layerMask | (1 << other.gameObject.layer)))

@@ -26,6 +26,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     public List<GameObject> effectsToHide = new();
     public Animator anim;
     public EventReference soundOnDestroy, soundOnLooting;
+    public List<Skill> skills = new();
 
     public string lootableName;
     public string unlootableName;
@@ -45,6 +46,13 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         tooltip = GetComponent<TooltipTriggerWorld>();
         Player_Event.playerEvent.AddListener(SetLocalPlayerCharacter);
         currentCharges = maxCharges;
+        if (isServer)
+        {
+            foreach (var item in skills)
+            {
+                item.ExecuteOnStart(transform);
+            }
+        }
     }
     public void Interact(PlayerCharacter player)
     {

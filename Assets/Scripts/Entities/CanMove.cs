@@ -192,11 +192,14 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     }
     private IEnumerator MoveWithinRangeCoroEnemy(Transform target, float range)
     {
+        Vector3 originalTargetPosition = target.position;
         while (true)
         {
             MoveTo(target.position);
             if (Vector3.Distance(transform.position, target.position) <= range)
                 break;
+            if (Vector3.Distance(originalTargetPosition, target.position) > 10)
+                yield break;
             yield return null;
         }
         Stop();

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
-using UnityEngine.ProBuilder.Shapes;
 using RPG_Indicator;
 
 public class Character : Entity
@@ -20,6 +19,7 @@ public class Character : Entity
     public BuffDatabase buffDatabase;
     public bool canCastSkills;
     public RpgIndicator skillIndicator;
+    private bool isStunned;
 
     public float cooldown1;
     public float cooldown2;
@@ -87,6 +87,8 @@ public class Character : Entity
     }
     protected void RotateToTarget()
     {
+        if (isStunned)
+            return;
         Vector3 targetDir = new Vector3(rotateTarget.position.x, 0, rotateTarget.position.z) - new Vector3(transform.position.x, 0, transform.position.z);
         float step = baseRotateSpeed * Time.deltaTime;
         Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0f);
@@ -288,6 +290,9 @@ public class Character : Entity
             case BuffType.Corruption:
                 buffInstance = new BCorruption(buffScriptable.value, this);
                 break;
+            case BuffType.Sleep:
+                buffInstance = new BSleep(buffScriptable.value, this);
+                break;
             default:
                 break;
         }
@@ -389,6 +394,7 @@ public class Character : Entity
     }
     public void StunCharacter()
     {
+        isStunned = true;
         Stun_Begin.Invoke();
     }
     [Command(requiresAuthority = false)]
@@ -403,7 +409,24 @@ public class Character : Entity
     }
     public void UnstunCharacter()
     {
+        isStunned = false;
         Stun_End.Invoke();
+    }
+    public void SleepCharacter()
+    {
+        StunCharacter();
+        GetComponent<HasHealth>().Damage_Taken.AddListener(WakeupCharacter);
+    }
+    public void WakeupCharacter(NetworkIdentity source)
+    {
+        UnstunCharacter();
+        RemoveBuff("Sleeping");
+        GetComponent<HasHealth>().Damage_Taken.RemoveListener(WakeupCharacter);
+    }
+    public void WakeupCharacter()
+    {
+        UnstunCharacter();
+        GetComponent<HasHealth>().Damage_Taken.RemoveListener(WakeupCharacter);
     }
     public void UpdateSkills()
     {

@@ -361,3 +361,18 @@ public class BCorruption : Buff
         targetEntity.GetComponent<HasMana>().ChangeCorruption(-value);
     }
 }
+public class BSleep : Buff
+{
+    public BSleep(float value, Character targetEntity)
+    {
+        buffType = BuffType.Sleep;
+        this.value = value;
+        this.targetEntity = targetEntity;
+        targetEntity.SleepCharacter();
+    }
+    public override void BuffExpired()
+    {
+        base.BuffExpired();
+        targetEntity.WakeupCharacter();
+    }
+}

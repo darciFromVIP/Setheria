@@ -517,6 +517,7 @@ public class PlayerController : NetworkBehaviour
                 Work_Finished.RemoveAllListeners();
                 Work_Cancelled.RemoveAllListeners();
                 Repair_Tick.RemoveAllListeners();
+                Work_Tick.RemoveAllListeners();
                 playerCharacter.animator.animator.SetBool("Interact", false);
                 yield break;
             }
@@ -538,6 +539,7 @@ public class PlayerController : NetworkBehaviour
         Work_Finished.Invoke();
         Work_Finished.RemoveAllListeners();
         Work_Cancelled.RemoveAllListeners();
+        Work_Tick.RemoveAllListeners();
         Repair_Tick.RemoveAllListeners();
         playerCharacter.animator.animator.SetBool("Interact", false);
     }

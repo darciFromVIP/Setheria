@@ -19,6 +19,7 @@ public class Skill : ScriptableObject
     [HideInInspector] public bool unlocked = true;
 
     public UnityEvent<string> Description_Updated = new();
+    public UnityEvent Skill_Casted = new();
     public virtual void ExecuteOnStart(Transform self)
     {
 
@@ -28,6 +29,10 @@ public class Skill : ScriptableObject
 
     }
     public virtual void ExecuteOnStart(Structure self)
+    {
+
+    }
+    public virtual void ExecuteOnStart(ItemScriptable self)
     {
 
     }

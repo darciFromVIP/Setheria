@@ -472,6 +472,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8134647102158625850}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3413180929182580926}
   m_SourcePrefab: {fileID: 100100000, guid: 36b01e57100ea254d9149e8306d6dd8f, type: 3}
 --- !u!1 &1163892065405435459 stripped
 GameObject:
@@ -554,6 +558,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   Repair_Tick:
+    m_PersistentCalls:
+      m_Calls: []
+  Work_Tick:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &-6483757213030810733
@@ -710,6 +717,9 @@ MonoBehaviour:
   maxMana: 200
   baseMaxMana: 0
   gearMaxMana: 0
+  corruptedMana: 0
+  corruption: 0
+  corruptionResistance: 0
   manaRegen: 0.15
 --- !u!114 &5796838637901551782
 MonoBehaviour:
@@ -983,10 +993,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4279cc879e63e54abea7e28da8292fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   mapIcon: {fileID: 0}
   ownedMapIcon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   mapTooltipText: 
   iconSize: 0
+--- !u!114 &3413180929182580926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4712205572119561755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b03b4299c5797d408b9b06ac6b3cc4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  blowpipeSkill: {fileID: 11400000, guid: 27fa47b5719f88446ae2e014adab5964, type: 2}
 --- !u!4 &4712205572119561756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7082070339115388359, guid: 36b01e57100ea254d9149e8306d6dd8f,

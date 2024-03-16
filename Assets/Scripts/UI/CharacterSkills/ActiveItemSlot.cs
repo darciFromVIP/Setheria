@@ -100,7 +100,7 @@ public class ActiveItemSlot : MonoBehaviour, IDropHandler
             if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot)
                 || (inventoryItem.parentAfterDrag.TryGetComponent(out InventorySlot inventorySlot) && inventoryItem.item.itemType == ItemType.None))
             {
-                if (inventoryItem.item.usage.Count > 0)
+                if (inventoryItem.item.usage.Count > 0 || inventoryItem.item.activeSkills.Count > 0)
                     Initialize(inventoryItem);
             }
         }
