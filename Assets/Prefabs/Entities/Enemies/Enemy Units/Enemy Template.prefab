@@ -150,6 +150,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7082070339115388354, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
+      propertyPath: m_Radius
+      value: 0.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 7082070339115388354, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
       propertyPath: m_Center.y
       value: 1
       objectReference: {fileID: 0}
@@ -417,6 +422,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   campRadius: 20
+  Enemy_Death: {fileID: 0}
+  Returned_To_Camp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &258174092570948812
 MonoBehaviour:
   m_ObjectHideFlags: 0

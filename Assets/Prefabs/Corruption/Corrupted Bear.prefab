@@ -214,7 +214,7 @@ PrefabInstance:
     - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: xpGranted
-      value: 150
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 97580777487625474, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -249,7 +249,7 @@ PrefabInstance:
     - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: basePower
-      value: 23
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -427,7 +427,12 @@ PrefabInstance:
     - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: maxHealth
-      value: 900
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: healthRegen
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5739984666673075569, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}

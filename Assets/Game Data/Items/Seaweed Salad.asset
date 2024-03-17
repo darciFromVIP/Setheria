@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Seaweed Salad
   m_EditorClassIdentifier: 
-  description: 'Perfectly prepared fresh healthy salad. Restores +7<sprite=12>.
+  description: 'Perfectly prepared fresh healthy salad. Restores +8<sprite=12>.
 
     __________________________________
 
@@ -23,9 +23,11 @@ MonoBehaviour:
   stackable: 1
   usage:
   - {fileID: 11400000, guid: a4907513d044f3f4492811ad4ca7b5aa, type: 2}
+  - {fileID: 11400000, guid: a3aada3403dc0a942962f7c73aa912ed, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0

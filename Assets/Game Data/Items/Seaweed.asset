@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Seaweed
   m_EditorClassIdentifier: 
   description: "__________________________________\nBetter than nothing. Are you
-    hungry? Eat this to restore <color=#FFD000>+1</color><sprite=12>. \nUsed in Alchemy.\n__________________________________\nAlchemy,
+    hungry? Eat this to restore <color=#FFD000>+2</color><sprite=12>. \nUsed in Alchemy.\n__________________________________\nAlchemy,
     Cooking, Food\n"
   grade: 0
   itemType: 0
@@ -21,9 +21,11 @@ MonoBehaviour:
   stackable: 1
   usage:
   - {fileID: 11400000, guid: a3aada3403dc0a942962f7c73aa912ed, type: 2}
+  - {fileID: 11400000, guid: a3aada3403dc0a942962f7c73aa912ed, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
