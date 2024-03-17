@@ -364,7 +364,7 @@ public class Character : Entity
         buffs.CopyTo(temp);
         foreach (var item in temp)
         {
-            if (item.value == buff.value && item.buffType == buff.buffType)
+            if (item.name == buff.name)
             {
                 item.BuffExpired();
                 buffs.Remove(item);

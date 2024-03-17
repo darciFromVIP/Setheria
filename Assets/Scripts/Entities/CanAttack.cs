@@ -12,8 +12,8 @@ public enum AttackType
 public class CanAttack : NetworkBehaviour, IUsesAnimator
 {
     [SerializeField] private float basePower;
-    private float gearPower = 0;
-    private float finalPower;
+    [SerializeField] private float gearPower = 0;
+    [SerializeField] private float finalPower;
     [SerializeField] private float powerScaling = 1;
     [SerializeField] private float baseCriticalChance = 0f;
     private float gearCriticalChance = 0;

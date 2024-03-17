@@ -22,6 +22,7 @@ public abstract class Buff
     }
     public virtual void BuffExpired()
     {
+        UnityEngine.Debug.Log(name + " expired");
         Buff_Expired.Invoke();
         if (targetEntity)
         {
@@ -34,6 +35,7 @@ public abstract class Buff
         durationTimer = duration;
         while (durationTimer > 0)
         {
+            UnityEngine.Debug.Log(durationTimer);
             sound.set3DAttributes(new ATTRIBUTES_3D
             {
                 position = new VECTOR { x = targetEntity.transform.position.x, y = targetEntity.transform.position.y, z = targetEntity.transform.position.z },
