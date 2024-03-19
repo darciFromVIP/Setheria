@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
+  m_Name: 1 Miraculous Water
+  m_EditorClassIdentifier: 
+  active: 0
+  label: The Fountain of Gods
+  description: "Please, God, forgive me. Help me find the fountain. I don't have
+    much time and I can only do it with your help. Accompany me and protect me because
+    the most difficult test awaits me. \nMy withering heart leads me into darkness,
+    but I'm sure there's a light at the end to cleanse my weeping soul!\n"
+  icon: {fileID: 21300000, guid: 3bbd99494f6dddb4f8a52638989645f5, type: 3}
+  synchronizedQuest: 1
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: 3e82d8b8d88b73d4e91c975166db31d0, type: 2}
+    stacks: 1
+  requiredItemTypes: []
+  requiredStructures: []
+  requiredResources: 0
+  currentResources: 0
+  requiredKnowledge: 0
+  currentKnowledge: 0
+  customRequirements: []
+  rewards:
+  - rewardType: 2
+    rewardAmount: 15
+    itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
+  Quest_Complete:
+    m_PersistentCalls:
+      m_Calls: []
+  Quest_Updated:
+    m_PersistentCalls:
+      m_Calls: []
