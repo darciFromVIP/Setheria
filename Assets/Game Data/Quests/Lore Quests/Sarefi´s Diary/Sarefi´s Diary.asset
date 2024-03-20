@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
+  m_Name: "Sarefi\xB4s Diary"
+  m_EditorClassIdentifier: 
+  active: 1
+  label: The Fountain of Gods
+  description: 'I own a journal that talks about some kind of powerful Stones that
+    play a big role in this world. According to the diary, a kind of vague energy
+    circulates in them.
+
+
+
+    I will also try to touch one and see what happens.
+
+
+'
+  icon: {fileID: 21300000, guid: 3bbd99494f6dddb4f8a52638989645f5, type: 3}
+  synchronizedQuest: 1
+  requiredItems: []
+  requiredItemTypes:
+  - requiredItemType: 0
+    requiredItemTypeAmount: 0
+    currentItemTypeAmount: 0
+    validItemTypeNames:
+    - Ancient Crate
+    - Ancient Fragment
+    - Ancient Key of Serpents
+    - Ancient Scroll
+    - Antidote
+    - Art of War
+    - Baked Mushrooms
+    - Bandage
+    - Beginner's Guide to Alchemy
+    - Beginner's Guide to Cooking
+    - Beginner's Guide to Exploration
+    - Beginner's Guide to Fishing
+    - Beginner's Guide to Gathering
+    - Blowpipe
+    - Bones
+    - Boss Bait
+    - Campfire
+    - CheatItem
+    - Cloth
+    - Coconut
+    - Cooked Egg
+    - Cooked Fish
+    - Cooked Meat
+    - Cooked Seafood
+    - Copper Ore
+    - Cottage
+    - Crystal
+    - Damaged Boots
+    - Egg
+    - Empty Vial
+    - Essence of Moonaris
+    - Essence of Power
+    - Everstone
+    - Fish Oil
+    - Flax
+    - Fresh Meat
+    - Generic Scroll
+    - Gold Cymian
+    - Grease
+    - Hardwood
+    - Healing Potion
+    - Hide
+    - Iron Ore
+    - Leather Scraps
+    - Magic Dust
+    - Mana Potion
+    - Meal
+    - Miraculous Water
+    - Mushroom Soup
+    - Mushroom
+    - Old Box
+    - Old Notes I
+    - Old Notes II
+    - Opened Coconut
+    - Paper
+    - Pearl
+    - Pergamen
+    - Plant Fiber
+    - Potion of Protection
+    - Recipe - Art of War
+    - Recipe - Copper Handicraft Tool
+    - Recipe - Copper Staff
+    - Recipe - Copper Sword
+    - Recipe - Copperglow Wand
+    - Recipe - Create Hide
+    - Recipe - Create Resources
+    - Recipe - Create String
+    - Recipe - Everstone
+    - Recipe - Leather Pocket
+    - Recipe - Mushroom Soup
+    - Recipe - Necklace of the Sea
+    - Recipe - Seaweed Salad
+    - Recipe - Theria Motes
+    - Rope
+    - "Sarefi\xB4s Diary"
+    - Sawdust
+    - Seafood
+    - Seaweed Salad
+    - Seaweed
+    - Seed
+    - Shell
+    - Shiny Berries
+    - Shipyard
+    - Silver Key
+    - Silver Ore
+    - Snake Head
+    - Spellbloom Berries
+    - Stone
+    - String
+    - Sunken Box
+    - Talons
+    - Tent
+    - Theria Motes
+    - Totem
+    - Tropical Food
+    - Water
+    - Well
+    - Wooden Stick
+    - Workshop
+  requiredStructures: []
+  requiredResources: 0
+  currentResources: 0
+  requiredKnowledge: 0
+  currentKnowledge: 0
+  customRequirements:
+  - requiredValue: 1
+    currentValue: 0
+    requirementText: 'Heartstone Touched:'
+    customEvents:
+    - {fileID: 11400000, guid: ca7e84dfa0c8a60469597b1406d29e47, type: 2}
+  rewards:
+  - rewardType: 2
+    rewardAmount: 100
+    itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
+  Quest_Complete:
+    m_PersistentCalls:
+      m_Calls: []
+  Quest_Updated:
+    m_PersistentCalls:
+      m_Calls: []
