@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
+  m_Name: Copper Fishing Rod
+  m_EditorClassIdentifier: 
+  description: '__________________________________
+
+    Quality fishing rod.
+
+    __________________________________
+
+    Equipable,
+    Fishing Rod'
+  grade: 1
+  itemType: 14
+  sprite: {fileID: 21300000, guid: b28abd457e799b14b91b2ed1516eb4f7, type: 3}
+  stackable: 0
+  usage: []
+  usageCooldown: 0
+  cooldownGroup: 0
+  passiveBuffs: []
+  activeSkills: []
+  value: 2
+  destroyItemOnUse: 0
+  resourceCost: 0
+  knowledgeCost: 0
+  unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
+  Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
+    m_PersistentCalls:
+      m_Calls: []

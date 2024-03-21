@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Silver Ring
   m_EditorClassIdentifier: 
-  description: 'It perfectly fits on the finger!
+  description: '__________________________________
+
+    It perfectly fits on the
+    finger!
 
     __________________________________
 
     +5%<sprite=7>
 
-    +1
-    <sprite=1>'
+    +1 <sprite=1>
+
+    __________________________________
+
+    Equipable,
+    Ring'
   grade: 1
   itemType: 9
   sprite: {fileID: 21300000, guid: d9a956c835d592b4ab3d646ac720118e, type: 3}
@@ -30,11 +37,13 @@ MonoBehaviour:
   passiveBuffs:
   - {fileID: 11400000, guid: 33ceaaa914b54a04c97e45109a66277c, type: 2}
   - {fileID: 11400000, guid: 1a258636f60781949af3da8253267bc7, type: 2}
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []
