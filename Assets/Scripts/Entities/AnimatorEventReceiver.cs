@@ -48,4 +48,16 @@ public class AnimatorEventReceiver : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    public void DestroyParent()
+    {
+        Destroy(transform.parent.gameObject);
+    }
+    public void DestroyLootableParentOnServer()
+    {
+        GetComponentInParent<LootableObject>().CmdDestroyOnServer();
+    }
+    public void DestroySpawnerParentOnServer()
+    {
+        GetComponentInParent<EnemySpawner>().CmdDestroy();
+    }
 }

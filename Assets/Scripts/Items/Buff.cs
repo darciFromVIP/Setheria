@@ -22,7 +22,6 @@ public abstract class Buff
     }
     public virtual void BuffExpired()
     {
-        UnityEngine.Debug.Log(name + " expired");
         Buff_Expired.Invoke();
         if (targetEntity)
         {

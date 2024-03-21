@@ -274,11 +274,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6049885608195919667, guid: 68bc91ff799579e47bd43dd4d8ad204f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6368515985853724088}
+      addedObject: {fileID: 467245858503428376}
     - targetCorrespondingSourceObject: {fileID: 6049885608195919667, guid: 68bc91ff799579e47bd43dd4d8ad204f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 467245858503428376}
+      addedObject: {fileID: 6902313480474937145}
     - targetCorrespondingSourceObject: {fileID: 1783224225930718814, guid: 68bc91ff799579e47bd43dd4d8ad204f,
         type: 3}
       insertIndex: -1
@@ -315,18 +315,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6368515985853724088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2157644532220736057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68581d5f1ee9e314db146941ca19e150, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!208 &467245858503428376
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -343,6 +331,33 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -1.11, y: 3.37, z: 1.1}
   m_TimeToStationary: 0.5
+--- !u!114 &6902313480474937145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2157644532220736057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2548a9c5830ee43970166dba0cbd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skill1_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill2_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill3_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill4_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill5_Casted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5040860375527875409 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 860266009884286555, guid: 68bc91ff799579e47bd43dd4d8ad204f,

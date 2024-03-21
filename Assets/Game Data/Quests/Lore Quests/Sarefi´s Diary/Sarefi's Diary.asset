@@ -10,34 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: 1 Miraculous Water
+  m_Name: Sarefi's Diary
   m_EditorClassIdentifier: 
   active: 1
   label: The Fountain of Gods
-  description: 'I found notes describe the path of an inhabitant of this world.
+  description: 'I own a journal that talks about some kind of powerful Stones that
+    play a big role in this world. According to the diary, a kind of vague energy
+    circulates in them.
 
 
-    Apparently,
-    it is some kind of disease that plagued this world. However, Ettein also mentioned
-    something that could save him. Should I follow his path and learn more? What
-    if he leads me right to Moonaris?
+
+    I will also try to touch one and see what happens.
+
 
 '
   icon: {fileID: 21300000, guid: 3bbd99494f6dddb4f8a52638989645f5, type: 3}
   synchronizedQuest: 1
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: 3e82d8b8d88b73d4e91c975166db31d0, type: 2}
-    stacks: 1
+  requiredItems: []
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  customRequirements: []
+  customRequirements:
+  - requiredValue: 1
+    currentValue: 0
+    requirementText: 'Heartstone Touched:'
+    customEvents:
+    - {fileID: 11400000, guid: ca7e84dfa0c8a60469597b1406d29e47, type: 2}
   rewards:
   - rewardType: 2
-    rewardAmount: 15
+    rewardAmount: 100
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:

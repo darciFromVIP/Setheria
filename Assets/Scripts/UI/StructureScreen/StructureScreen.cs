@@ -12,11 +12,6 @@ public class StructureScreen : MonoBehaviour, WindowedUI
     public Transform structureOptionsList;
     public StructureOptionUI structureOptionPrefab;
     public Structure currentStructure;
-    private void Start()
-    {
-        ShowWindow();
-        HideWindow();
-    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))

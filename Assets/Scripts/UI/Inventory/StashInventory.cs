@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class StashInventory : MonoBehaviour, WindowedUI
 {
     public List<StashSlot> stashSlots = new();
     public GameObject window;
+    public bool loaded = false;
 
     public InventoryItem inventoryItemPrefab;
 
@@ -29,6 +29,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
             AddItemOnClient(item);
         }
         window.SetActive(false);
+        GetComponentInParent<StructureScreen>(true).HideWindow();
     }
     public void ShowWindow()
     {
@@ -78,11 +79,11 @@ public class StashInventory : MonoBehaviour, WindowedUI
         FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
         return false;
     }
-    public bool AddItemOnClient(ItemScriptable item, int stacks)
+    public bool AddItemOnClient(ItemScriptable item, int stacks, bool isLoading = false)
     {
         foreach (var slot in stashSlots)
         {
-            if (slot.isFree && slot.isUnlocked)
+            if ((slot.isFree && slot.isUnlocked) || (isLoading && slot.isFree))
             {
                 slot.SpawnNewItem(item.name, stacks);
                 slot.isFree = false;
@@ -97,7 +98,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     }
     public bool AddItemOnClient(SaveDataItem itemData)
     {
-        return AddItemOnClient(itemDatabase.GetItemByName(itemData.name), itemData.stacks);
+        return AddItemOnClient(itemDatabase.GetItemByName(itemData.name), itemData.stacks, true);
     }
     public void RemoveItem(ItemRecipeInfo itemToDestroy)
     {

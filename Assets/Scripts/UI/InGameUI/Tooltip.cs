@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 public class Tooltip : MonoBehaviour
 {
     public Image spriteImage, keybindImage;
@@ -19,6 +21,8 @@ public class Tooltip : MonoBehaviour
     }
     private void Update()
     {
+        if (!IsPointerOverUIElement())
+            Hide();
         Vector2 position = Input.mousePosition;
         float pivotX = position.x < Screen.width / 2 ? 0 : 1;
         float pivotY = position.y < Screen.width / 2 ? 0 : 1.2f;
@@ -55,5 +59,14 @@ public class Tooltip : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+    //Returns 'true' if we touched or hovering on Unity UI element.
+    public bool IsPointerOverUIElement()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raysastResults);
+        return raysastResults.Count > 0;
     }
 }

@@ -271,7 +271,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (draggable)
+        if (draggable && parentAfterDrag != null)
         {
             image.raycastTarget = true;
             transform.SetParent(parentAfterDrag);

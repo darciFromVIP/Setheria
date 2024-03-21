@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using FMODUnity;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 [System.Serializable]
 public enum Hero
@@ -240,6 +241,21 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 {
                     FindObjectOfType<QuestManager>(true).LoadStateUnsynchronized(item.unsyncedQuestlines);
                     var manager = FindObjectOfType<InventoryManager>(true);
+                    if (item.unlockedItems.Count > 0)
+                    {
+                        for (int i = 0; i < manager.itemDatabase.items.Count; i++)
+                        {
+                            manager.itemDatabase.items[i].unlocked = item.unlockedItems[i];
+                        }
+                    }
+                    if (item.unlockedRecipes.Count > 0)
+                    { 
+                        var recipes = FindObjectOfType<GameManager>().recipeDatabase.allRecipes;
+                        for (int i = 0; i < recipes.Count; i++)
+                        {
+                            recipes[i].unlocked = item.unlockedRecipes[i];
+                        }
+                    }
                     foreach (var item3 in item.equippedGear)
                     {
                         var gearItem = manager.AddItem(item3);
@@ -286,6 +302,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             items.Add(new SaveDataItem { name = item.item.name, stacks = item.stacks });
         }
+
         List<SaveDataItem> gear = new();
         var inventoryScreen = FindObjectOfType<InventoryScreen>(true);
         foreach (var item in inventoryScreen.GetComponentsInChildren<CharacterGearSlot>(true))
@@ -308,7 +325,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             questlines.Add(item);
         }
-
+        List<bool> unlockedItems = new();
+        foreach (var item in questManager.itemDatabase.items)
+        {
+            unlockedItems.Add(item.unlocked);
+        }
+        List<bool> unlockedRecipes = new();
+        foreach (var item in FindObjectOfType<GameManager>().recipeDatabase.allRecipes)
+        {
+            unlockedRecipes.Add(item.unlocked);
+        }
         var controller = GetComponent<PlayerController>();
 
         FindObjectOfType<NetworkedSaveLoad>().CmdSavePlayerState( new SaveDataPlayer {
@@ -354,7 +380,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             cooldown5 = controller.cooldown5,
             talentTrees = talentTrees,
             professions = professions,
-            unsyncedQuestlines = questlines
+            unsyncedQuestlines = questlines,
+            unlockedItems = unlockedItems,
+            unlockedRecipes = unlockedRecipes,
         });
     }
     public PlayerCharacter GetLocalPlayerCharacter()

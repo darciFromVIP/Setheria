@@ -49,6 +49,8 @@ public class SaveDataPlayer
     public TalentTrees talentTrees;
     public Professions professions;
     public List<QuestlineSaveable> unsyncedQuestlines = new();
+    public List<bool> unlockedItems = new();
+    public List<bool> unlockedRecipes = new();
 
     public SaveDataPlayer() { }
     public SaveDataPlayer(Hero hero)

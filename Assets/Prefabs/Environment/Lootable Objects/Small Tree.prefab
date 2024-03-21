@@ -820,7 +820,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2363217863737794058, guid: af8afaf82433c6947b0e1b23484c7d6f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7609851912756909425}
+      addedObject: {fileID: 4719238735220729872}
   m_SourcePrefab: {fileID: 100100000, guid: af8afaf82433c6947b0e1b23484c7d6f, type: 3}
 --- !u!4 &4932001785668578969 stripped
 Transform:
@@ -855,7 +855,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7609851912756909425
+--- !u!114 &4719238735220729872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -864,6 +864,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 5708925861251413027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68581d5f1ee9e314db146941ca19e150, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f2548a9c5830ee43970166dba0cbd08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skill1_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill2_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill3_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill4_Casted:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill5_Casted:
+    m_PersistentCalls:
+      m_Calls: []

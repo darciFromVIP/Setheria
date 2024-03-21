@@ -7,6 +7,8 @@ using TMPro;
 using HighlightPlus;
 using UnityEngine.Events;
 using FMODUnity;
+using FMOD.Studio;
+using FMOD;
 
 public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerCharacter, ISaveable
 {
@@ -26,6 +28,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     public List<GameObject> effectsToHide = new();
     public Animator anim;
     public EventReference soundOnDestroy, soundOnLooting;
+    public EventInstance lootSoundInstance;
     public List<Skill> skills = new();
 
     public string lootableName;
@@ -127,11 +130,26 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         interactingPlayer.Work_Finished.AddListener(GiveLoot);
         interactingPlayer.Work_Cancelled.AddListener(ForgetInteractingPlayer);
         if (!soundOnLooting.IsNull)
-            FindObjectOfType<AudioManager>().PlayOneShot(soundOnLooting, transform.position);
+        {
+            lootSoundInstance = FindObjectOfType<AudioManager>().CreateEventInstance(soundOnLooting);
+            lootSoundInstance.set3DAttributes(new ATTRIBUTES_3D
+            {
+                position = new VECTOR { x = transform.position.x, y = transform.position.y, z = transform.position.z },
+                forward = new VECTOR { x = transform.forward.x, y = transform.forward.y, z = transform.forward.z },
+                up = new VECTOR { x = transform.up.x, y = transform.up.y, z = transform.up.z },
+                velocity = new VECTOR { x = 0, y = 0, z = 0 }
+            });
+            lootSoundInstance.start();
+        }
     }
     private void ForgetInteractingPlayer()
     {
         CmdSetInteractingPlayer(null);
+        if (lootSoundInstance.isValid())
+        {
+            lootSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            lootSoundInstance.release();
+        }
     }
     [Command(requiresAuthority = false)]
     private void CmdSetInteractingPlayer(NetworkBehaviour player)
@@ -181,6 +199,11 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         remainingChargesText.text = currentCharges + "/" + maxCharges;
         if (!soundOnDestroy.IsNull)
             FindObjectOfType<AudioManager>().PlayOneShot(soundOnDestroy, transform.position);
+        if (lootSoundInstance.isValid())
+        {
+            lootSoundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            lootSoundInstance.release();
+        }
         if (currentCharges <= 0)
         {
             if (Quest_Event)
@@ -339,7 +362,6 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         currentCharges = state.intData1;
         if (currentCharges <= 0 && state.floatData1 > 0)
         {
-            Debug.Log(refreshTimer);
             refreshTimer = state.floatData1;
             if (refreshTimer > 0)
                 StartCoroutine(StartRefreshTimer(true));

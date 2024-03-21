@@ -21,6 +21,11 @@ public class AStartQuestline : ActionTemplate
 
     public override bool TestExecute()
     {
+        if (FindObjectOfType<QuestManager>().questlines.Contains(questlineStarted))
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("You already accepted this questline!");
+            return false;
+        }
         return true;
     }
 }

@@ -14,6 +14,16 @@ public class Cottage : Tent
     [ClientRpc]
     private void RpcUpgradeStash()
     {
-        FindObjectOfType<StashInventory>(true).ExtendInventoryUpTo(stashSlots);
+        StartCoroutine(WaitForStashToLoad());
+    }
+    private IEnumerator WaitForStashToLoad()
+    {
+        var stash = FindObjectOfType<StashInventory>(true);
+        while (stash == null)
+        {
+            stash = FindObjectOfType<StashInventory>(true);
+            yield return null;
+        }
+        stash.ExtendInventoryUpTo(stashSlots);
     }
 }
