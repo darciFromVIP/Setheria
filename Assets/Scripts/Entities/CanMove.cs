@@ -12,7 +12,6 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     [HideInInspector] public NavMeshAgent agent;
     public float baseMovementSpeed;
     private float bonusMovementSpeed = 1;
-    private Entity entity;
     private Animator animator;
 
     private bool stunned;
@@ -24,7 +23,6 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     public UnityEvent Moved_Within_Range = new();
     private void Awake()
     {
-        entity = GetComponent<Entity>();
         agent = GetComponent<NavMeshAgent>();
         if (!animator)
             animator = GetComponentInChildren<Animator>();
@@ -193,6 +191,8 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     private IEnumerator MoveWithinRangeCoroEnemy(Transform target, float range)
     {
         Vector3 originalTargetPosition = target.position;
+        if (TryGetComponent(out HasHealth hp))
+            hp.On_Death.AddListener(OnDeath);
         while (true)
         {
             MoveTo(target.position);
@@ -221,5 +221,10 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     public void SetNewAnimator(Animator animator)
     {
         this.animator = animator;
+    }
+    public void OnDeath()
+    {
+        StopAllCoroutines();
+        Moved_Within_Range.RemoveAllListeners();
     }
 }

@@ -59,11 +59,11 @@ public class SaveDataPlayer
         {
             case Hero.Lycandruid:
                 name = "Wolferius the Lycandruid";
-                health = 400;
-                baseMaxHealth = 400;
+                health = 250;
+                baseMaxHealth = 250;
                 baseHealthRegen = 0.6f;
-                mana = 200;
-                baseMaxMana = 200;
+                mana = 150;
+                baseMaxMana = 150;
                 baseManaRegen = 0.25f;
                 power = 15;
                 criticalChance = 0;
@@ -75,11 +75,11 @@ public class SaveDataPlayer
                 break;
             case Hero.ForestProtector:
                 name = "Nirri the Forest Protector";
-                health = 300;
-                baseMaxHealth = 300;
+                health = 150;
+                baseMaxHealth = 150;
                 baseHealthRegen = 0.25f;
-                mana = 300;
-                baseMaxMana = 300;
+                mana = 250;
+                baseMaxMana = 250;
                 baseManaRegen = 0.6f;
                 power = 10;
                 criticalChance = 0;

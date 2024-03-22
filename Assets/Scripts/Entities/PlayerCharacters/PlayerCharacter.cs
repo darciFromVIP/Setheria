@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using FMODUnity;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 [System.Serializable]
 public enum Hero

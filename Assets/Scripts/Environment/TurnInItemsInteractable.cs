@@ -16,6 +16,7 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
     public InventoryItem inventoryItemPrefab;
 
     public UnityEvent Items_Turned_In = new();
+    public EventScriptable Quest_Event;
 
     public Animator animator;
     public PlayerController player;
@@ -79,6 +80,8 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
         if (animator)
             CmdSetAnimation();
         Items_Turned_In.Invoke();
+        if (Quest_Event != null)
+            Quest_Event.voidEvent.Invoke();
         GetComponent<Collider>().enabled = false;
         interactable = false;
         var outline = GetComponentInChildren<HighlightTrigger>();
