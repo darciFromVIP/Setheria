@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Sticks (TVE Material)
   m_Shader: {fileID: 4800000, guid: 6e6307b56f9201d40ad738f21cf03495, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - TVE_ALPHA_CLIP
   m_InvalidKeywords:
@@ -29,6 +31,7 @@ Material:
   - TransparentDepthPostpass
   - TransparentBackface
   - MOTIONVECTORS
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -336,6 +339,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _AORemapMax: 1
@@ -343,11 +358,11 @@ Material:
     - _ATDistance: 1
     - _AdvancedCat: 0
     - _AlbedoAffectEmissive: 0
-    - _AlphaClipValue: 0.5
-    - _AlphaCutoff: 0.5
+    - _AlphaClipValue: 0
+    - _AlphaCutoff: 0
     - _AlphaCutoffEnable: 1
-    - _AlphaCutoffPostpass: 0.5
-    - _AlphaCutoffPrepass: 0.5
+    - _AlphaCutoffPostpass: 0
+    - _AlphaCutoffPrepass: 0
     - _AlphaCutoffValue: 0.5
     - _AlphaFeatherValue: 0.5
     - _Anisotropy: 0
@@ -390,7 +405,7 @@ Material:
     - _ColorsPositionMode: 0
     - _CullMode: 0
     - _CullModeForward: 0
-    - _Cutoff: 0.5
+    - _Cutoff: 0
     - _DepthOffset: 0
     - _DepthOffsetEnable: 0
     - _DetailAlbedoScale: 1
@@ -467,8 +482,9 @@ Material:
     - _EnableSpecularOcclusion: 0
     - _EnableWind: 0
     - _EnergyConservingSpecularColor: 1
+    - _EnvironmentReflections: 1
     - _ExtrasPositionMode: 0
-    - _FadeCameraValue: 1
+    - _FadeCameraValue: 0
     - _FadeCat: 0
     - _FadeConstantValue: 0
     - _FadeSpace: 0
@@ -611,6 +627,9 @@ Material:
     - _PerspectiveCat: 0
     - _PivotsMessage: 0
     - _PreRefractionPass: 0
+    - _QueueControl: -1
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
     - _ReceiveSpace: 0
     - _RefractionMode: 0
     - _RefractionModel: 0
@@ -817,8 +836,10 @@ Material:
     - _SecondMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _SecondUVs: {r: 1, g: 1, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SubsurfaceDiffusion_Asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
-    - _SubsurfaceDiffusion_asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
+    - _SubsurfaceDiffusion_Asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37,
+        a: 0.00018220427}
+    - _SubsurfaceDiffusion_asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37,
+        a: 0.00018220427}
     - _SubsurfaceMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _TransmittanceColor: {r: 1, g: 1, b: 1, a: 1}
