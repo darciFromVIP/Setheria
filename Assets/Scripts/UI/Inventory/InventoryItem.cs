@@ -46,9 +46,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             parentAfterDrag = transform.parent;
             stashInventoryParent = null;
             inventoryManagerParent = null;
-            stashInventoryParent = GetComponentInParent<StashInventory>(true);
-            inventoryManagerParent = GetComponentInParent<InventoryManager>(true);
-            stashInventory = FindObjectOfType<StashInventory>(true);
+            stashInventoryParent = GetComponentInParent<StashInventory>();
+            inventoryManagerParent = GetComponentInParent<InventoryManager>();
+            stashInventory = FindObjectOfType<StashInventory>();
             inventoryManager = FindObjectOfType<InventoryManager>(true);
         }
     }
@@ -310,6 +310,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     private void QuickItemTransfer()
     {
+        if (stashInventory == null)
+            return;
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Mouse0) && !Input.GetKey(KeyCode.LeftControl))
         {
             if (inventoryManagerParent && stashInventory)                       // To Stash

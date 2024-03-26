@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Shabby Sac
   m_EditorClassIdentifier: 
-  description: 'Extends your inventory by 3 slots.
+  description: 'Extends your inventory by 4 slots.
 
     __________________________________
 
@@ -27,11 +27,13 @@ MonoBehaviour:
   cooldownGroup: 0
   passiveBuffs:
   - {fileID: 11400000, guid: 506a51377a8240548a6c57b90912a5c1, type: 2}
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []
