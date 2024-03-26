@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
     private List<WindowedUI> windowedUIs = new();
     public GameObject menuWindow;
     public GameObject dayNightSphere;
-    public TextMeshProUGUI dayText;
+    public TextMeshProUGUI dayAnimatedText, dayText;
     public DayNightCycleScriptable dayNightUI;
 
     public InputEnabledScriptable inputEnabled;
@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
             windowedUIs.Add(item.GetComponent<WindowedUI>());
         }
         dayNightUI.sphere = dayNightSphere;
+        dayNightUI.daysAliveAnimatedText = dayAnimatedText;
         dayNightUI.daysAliveText = dayText;
         inputEnabled.inputEnabled = true;
     }

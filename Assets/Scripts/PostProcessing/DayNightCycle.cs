@@ -14,7 +14,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
     public DayNightCycleScriptable uiData;
     public List<PostProcessingDataScriptable> data = new();
 
-    [SyncVar][SerializeField] public int daysAlive = 0;
+    [SyncVar][SerializeField] public int daysAlive = 1;
     [SyncVar][SerializeField] private float timer = 0;
     [SyncVar][SerializeField] private float progressPercentage = 0;
     [SyncVar][SerializeField] private int currentIndex = 0;
@@ -31,6 +31,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
         currentIndex = state.intData2;
         timer = state.floatData1;
         progressPercentage = state.floatData2;
+        uiData.daysAliveText.text = "Day " + daysAlive;
     }
 
     public SaveDataWorldObject SaveState()
@@ -47,6 +48,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
     private void Start()
     {
         maxIndex = data.Count - 1;
+        daysAlive = 1;
     }
     private void Update()
     {
@@ -60,7 +62,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
             multiplier = 1;
         }
 #endif
-        if (uiData.sphere == null || uiData.daysAliveText == null)
+        if (uiData.sphere == null || uiData.daysAliveAnimatedText == null)
             return;
         if (timer >= data[currentIndex].timeStamp)
         {
@@ -69,9 +71,10 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
                 currentIndex = 0;
                 timer = 0;
                 daysAlive++;
-                uiData.daysAliveText.transform.localScale = new Vector3(1, 1, 1);
+                uiData.daysAliveAnimatedText.transform.localScale = new Vector3(1, 1, 1);
+                uiData.daysAliveAnimatedText.text = "Day " + daysAlive;
+                uiData.daysAliveAnimatedText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
                 uiData.daysAliveText.text = "Day " + daysAlive;
-                uiData.daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
             }
             else
                 currentIndex++;
@@ -92,9 +95,9 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
             {
                 FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Night);
                 Night_Started.Invoke();
-                uiData.daysAliveText.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
-                uiData.daysAliveText.text = "Night Falls!";
-                uiData.daysAliveText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
+                uiData.daysAliveAnimatedText.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+                uiData.daysAliveAnimatedText.text = "Night Falls!";
+                uiData.daysAliveAnimatedText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
                 FindObjectOfType<SaveLoadSystem>().Save();
             }
         }

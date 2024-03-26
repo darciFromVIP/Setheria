@@ -7,5 +7,5 @@ using UnityEngine;
 public class DayNightCycleScriptable : ScriptableObject
 {
     public GameObject sphere;
-    public TextMeshProUGUI daysAliveText;
+    public TextMeshProUGUI daysAliveAnimatedText, daysAliveText;
 }

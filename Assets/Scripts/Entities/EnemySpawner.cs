@@ -62,7 +62,7 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
     }
     private void NightStarted()
     {
-        if (dayNight.daysAlive >= 1)
+        if (dayNight.daysAlive >= 2)
             StartCoroutine(StartTimer());
     }
     private IEnumerator StartTimer()

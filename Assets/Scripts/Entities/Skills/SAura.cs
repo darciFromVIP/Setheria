@@ -28,6 +28,8 @@ public class SAura : Skill
     }
     private void OnTriggerStay(Collider other)
     {
+        if (other == null)
+            return;
         if (layerMask == (layerMask | (1 << other.gameObject.layer)))
         {
             if (other.TryGetComponent(out Character character))
@@ -41,6 +43,8 @@ public class SAura : Skill
     }
     private void OnTriggerExit(Collider other)
     {
+        if (other == null)
+            return;
         if (layerMask == (layerMask | (1 << other.gameObject.layer)))
         {
             if (other.TryGetComponent(out Character character))
