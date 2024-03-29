@@ -128,8 +128,11 @@ public class HasMana : NetworkBehaviour
     public void ChangeCorruptedMana(float amount)
     {
         corruptedMana += amount;
+        var cap = GetFinalMaxMana() * 0.7f;
         if (corruptedMana < 0)
             corruptedMana = 0;
+        if (corruptedMana > cap)
+            corruptedMana = cap;
         while (GetFinalMaxMana() - corruptedMana < 1)
         {
             corruptedMana -= 0.1f;

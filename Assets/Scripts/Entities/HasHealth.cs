@@ -173,8 +173,11 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public void ChangeCorruptedHealth(float amount)
     {
         corruptedHealth += amount;
+        var cap = GetFinalMaxHealth() * 0.7f;
         if (corruptedHealth < 0)
             corruptedHealth = 0;
+        if (corruptedHealth > cap)
+            corruptedHealth = cap;
         while (GetFinalMaxHealth() - corruptedHealth < 1)
         {
             corruptedHealth -= 0.1f;
