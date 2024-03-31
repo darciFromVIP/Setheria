@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using Mirror;
+using HighlightPlus;
+using static UnityEditor.Progress;
+
 public class CursorRaycaster : NetworkBehaviour
 {
     private CustomCursor cursor;
     private PlayerController player;
     private TooltipWorld tooltip;
+    private List<HighlightEffect> effects = new();
     public LayerMask layerMask;
     private void Start()
     {
@@ -33,6 +37,24 @@ public class CursorRaycaster : NetworkBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
+            if (hit.collider.TryGetComponent(out HighlightEffect effect))
+            {
+                if (!effects.Contains(effect))
+                {
+                    effects.Add(effect);
+                    effect.highlighted = true;
+                }
+            }
+
+            for (int i = 0; i < effects.Count; i++)
+            {
+                if (effect != effects[i])
+                {
+                    effects[i].highlighted = false;
+                    effects.Remove(effects[i]);
+                }
+            }
+            
             if (hit.collider.TryGetComponent(out TooltipTriggerWorld trigger))
             {
                 trigger.Show(tooltip);

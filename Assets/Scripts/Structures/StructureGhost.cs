@@ -7,6 +7,7 @@ public class StructureGhost : MonoBehaviour
 {
     public bool canBuild = true;
     public List<Image> canBuildGraphic;
+    public Image arrowGraphic;
     public LayerMask obstacleLayers;
     protected List<Collider> collisions = new();
     protected Collider col;
@@ -53,7 +54,8 @@ public class StructureGhost : MonoBehaviour
                 if (angle > 2)
                 {
                     canBuild = false;
-                    canBuildGraphic[i].color = Color.red;
+                    canBuildGraphic[i].color = new Color(1, 0, 0, 0.1f);
+                    arrowGraphic.color = new Color(1, 0, 0, 0.1f);
                     break;
                 }
                 else
@@ -61,14 +63,16 @@ public class StructureGhost : MonoBehaviour
                     if (collisions.Count == 0)
                     {
                         canBuild = true;
-                        canBuildGraphic[i].color = Color.green;
+                        canBuildGraphic[i].color = new Color(0, 1, 0, 0.1f);
+                        arrowGraphic.color = new Color(0, 1, 0, 0.1f);
                     }
                 }
             }
             else
             {
                 canBuild = false;
-                canBuildGraphic[i].color = Color.red;
+                canBuildGraphic[i].color = new Color(1, 0, 0, 0.1f);
+                arrowGraphic.color = new Color(1, 0, 0, 0.1f);
                 break;
             }
         }
@@ -81,7 +85,8 @@ public class StructureGhost : MonoBehaviour
             canBuild = false;
             foreach (var item in canBuildGraphic)
             {
-                item.color = Color.red;
+                item.color = new Color(1, 0, 0, 0.1f);
+                arrowGraphic.color = new Color(1, 0, 0, 0.1f);
             }
         }
         if (other.CompareTag("Water"))
@@ -96,7 +101,8 @@ public class StructureGhost : MonoBehaviour
             canBuild = false;
             foreach (var item in canBuildGraphic)
             {
-                item.color = Color.green;
+                item.color = new Color(0, 1, 0, 0.1f);
+                arrowGraphic.color = new Color(0, 1, 0, 0.1f);
             }
         }
         if (other.CompareTag("Water"))

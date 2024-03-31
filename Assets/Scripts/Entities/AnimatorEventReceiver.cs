@@ -60,4 +60,8 @@ public class AnimatorEventReceiver : MonoBehaviour
     {
         GetComponentInParent<EnemySpawner>().CmdDestroy();
     }
+    public void DestroyTurnInItemsInteractableParentOnServer()
+    {
+        GetComponentInParent<TurnInItemsInteractable>().CmdDestroy();
+    }
 }

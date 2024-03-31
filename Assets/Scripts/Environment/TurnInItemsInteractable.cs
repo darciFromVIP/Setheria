@@ -112,4 +112,9 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
         if (!interactable)
             ItemsTurnedIn();
     }
+    [Command(requiresAuthority = false)]
+    public void CmdDestroy()
+    {
+        NetworkServer.Destroy(gameObject);
+    }
 }

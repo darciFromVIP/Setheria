@@ -4,10 +4,12 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UIElements;
+
 public class EntityStatusBar : MonoBehaviour
 {
-    [SerializeField] private Slider healthBar;
-    [SerializeField] private Slider manaBar;
+    [SerializeField] private UnityEngine.UI.Slider healthBar, manaBar;
+    [SerializeField] private LayoutElement corruptedHp, corruptedMp;
     [SerializeField] private GameObject levelBar;
     [SerializeField] private TextMeshProUGUI levelText;
     private void Start()
@@ -64,6 +66,7 @@ public class EntityStatusBar : MonoBehaviour
         healthBar.maxValue = hp.GetBaseMaxHealth();
         healthBar.value = hp.GetHealth();
         hp.Health_Changed.AddListener(ChangeHealthStatus);
+        hp.Corrupted_Health_Changed.AddListener(ChangeCorruptedHealthStatus);
     }
     private void InitializeMpBar(PlayerCharacter player)
     {
@@ -76,16 +79,29 @@ public class EntityStatusBar : MonoBehaviour
         manaBar.maxValue = mp.GetBaseMaxMana();
         manaBar.value = mp.GetMana();
         mp.Mana_Changed.AddListener(ChangeManaStatus);
+        mp.Corrupted_Mana_Changed.AddListener(ChangeCorruptedManaStatus);
     }
     private void ChangeHealthStatus(float currentHealth, float maxHealth)
     {
         healthBar.value = currentHealth;
         healthBar.maxValue = maxHealth;
     }
+    private void ChangeCorruptedHealthStatus(float maxHealth, float corruptedHealth)
+    {
+        float percentage = corruptedHealth / maxHealth;
+        var maxWidth = healthBar.GetComponent<LayoutElement>().flexibleWidth;
+        corruptedHp.preferredWidth = maxWidth * percentage;
+    }
     private void ChangeManaStatus(float currentMana, float currentMaxMana)
     {
         manaBar.value = currentMana;
         manaBar.maxValue = currentMaxMana;
+    }
+    private void ChangeCorruptedManaStatus(float maxMana, float corruptedMana)
+    {
+        float percentage = corruptedMana / maxMana;
+        var maxWidth = manaBar.GetComponent<LayoutElement>().flexibleWidth;
+        corruptedMp.preferredWidth = maxWidth * percentage;
     }
     private void InitializeXpBar(PlayerCharacter player)
     {

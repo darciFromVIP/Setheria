@@ -11,6 +11,7 @@ public class ARecall : ActionTemplate
     public override void Execute()
     {
         var player = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
+        player.GetComponent<PlayerCharacter>().CmdSpawnRecallVFX();
         player.CmdStartWorking(6);
         player.Work_Finished.AddListener(CastFinished);
     }

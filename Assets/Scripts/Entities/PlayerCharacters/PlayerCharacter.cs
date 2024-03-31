@@ -70,6 +70,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     protected CanMove moveComp;
     protected CanAttack attackComp;
     protected PlayerController playerController;
+    protected GameObject recallVFX;
     [SerializeField] protected GameObject spotlight;
     [SerializeField] protected GameObject levelUpEffect;
     public EventReference levelUpSound;
@@ -253,6 +254,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                         for (int i = 0; i < recipes.Count; i++)
                         {
                             recipes[i].unlocked = item.unlockedRecipes[i];
+                            recipes[i].visible = item.unlockedRecipes[i];
                         }
                     }
                     foreach (var item3 in item.equippedGear)
@@ -789,6 +791,18 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public bool IsReturnPointValid()
     {
         return returnPoint != Vector3.zero;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdSpawnRecallVFX()
+    {
+        recallVFX = Instantiate(vfxDatabase.GetVFXByName("Recall"), transform.position, Quaternion.identity);
+        GetComponent<PlayerController>().Work_Cancelled.AddListener(DestroyRecallVFX);
+        NetworkServer.Spawn(recallVFX);
+    }
+    private void DestroyRecallVFX()
+    {
+        NetworkServer.Destroy(recallVFX);
+        GetComponent<PlayerController>().Work_Cancelled.RemoveListener(DestroyRecallVFX);
     }
     public void Recall()
     {

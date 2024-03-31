@@ -10,7 +10,6 @@ public class ActiveItemSkills : NetworkBehaviour
     [Command(requiresAuthority = false)]
     public void CmdCastBlowpipe(NetworkIdentity enemy)
     {
-        Debug.Log("Casting Blowpipe");
         var proj = Instantiate(blowpipeSkill.projectile, transform.position + Vector3.up * 2, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
