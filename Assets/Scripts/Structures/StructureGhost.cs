@@ -55,7 +55,7 @@ public class StructureGhost : MonoBehaviour
                 {
                     canBuild = false;
                     canBuildGraphic[i].color = new Color(1, 0, 0, 0.1f);
-                    arrowGraphic.color = new Color(1, 0, 0, 0.1f);
+                    arrowGraphic.color = new Color(1, 0, 0, 1);
                     break;
                 }
                 else
@@ -64,7 +64,7 @@ public class StructureGhost : MonoBehaviour
                     {
                         canBuild = true;
                         canBuildGraphic[i].color = new Color(0, 1, 0, 0.1f);
-                        arrowGraphic.color = new Color(0, 1, 0, 0.1f);
+                        arrowGraphic.color = new Color(0, 1, 0, 1);
                     }
                 }
             }
@@ -72,7 +72,7 @@ public class StructureGhost : MonoBehaviour
             {
                 canBuild = false;
                 canBuildGraphic[i].color = new Color(1, 0, 0, 0.1f);
-                arrowGraphic.color = new Color(1, 0, 0, 0.1f);
+                arrowGraphic.color = new Color(1, 0, 0, 1);
                 break;
             }
         }
@@ -86,7 +86,7 @@ public class StructureGhost : MonoBehaviour
             foreach (var item in canBuildGraphic)
             {
                 item.color = new Color(1, 0, 0, 0.1f);
-                arrowGraphic.color = new Color(1, 0, 0, 0.1f);
+                arrowGraphic.color = new Color(1, 0, 0, 1);
             }
         }
         if (other.CompareTag("Water"))
@@ -102,7 +102,7 @@ public class StructureGhost : MonoBehaviour
             foreach (var item in canBuildGraphic)
             {
                 item.color = new Color(0, 1, 0, 0.1f);
-                arrowGraphic.color = new Color(0, 1, 0, 0.1f);
+                arrowGraphic.color = new Color(0, 1, 0, 1);
             }
         }
         if (other.CompareTag("Water"))

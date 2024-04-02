@@ -5,7 +5,6 @@ using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using Mirror;
 using HighlightPlus;
-using static UnityEditor.Progress;
 
 public class CursorRaycaster : NetworkBehaviour
 {
@@ -50,7 +49,10 @@ public class CursorRaycaster : NetworkBehaviour
             {
                 if (effect != effects[i])
                 {
-                    effects[i].highlighted = false;
+                    if (effects[i] != null)
+                    {
+                        effects[i].highlighted = false;
+                    }
                     effects.Remove(effects[i]);
                 }
             }

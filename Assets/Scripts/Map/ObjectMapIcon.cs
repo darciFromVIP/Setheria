@@ -74,8 +74,4 @@ public class ObjectMapIcon : NetworkBehaviour
     {
         Destroy(iconInstance);
     }
-    private void OnDestroy()
-    {
-        CmdDestroyIcon();
-    }
 }
