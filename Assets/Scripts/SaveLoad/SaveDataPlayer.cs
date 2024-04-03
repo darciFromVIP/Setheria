@@ -51,6 +51,7 @@ public class SaveDataPlayer
     public List<QuestlineSaveable> unsyncedQuestlines = new();
     public List<bool> unlockedItems = new();
     public List<bool> unlockedRecipes = new();
+    public List<BuffSaveable> activebuffs = new();
 
     public SaveDataPlayer() { }
     public SaveDataPlayer(Hero hero)

@@ -223,7 +223,12 @@ public class Character : Entity
             return;
         foreach (var item in buffs)
         {
-            if (item.name == buff && !buffScriptable.stackable)
+            if (item.name == buff && buffScriptable.stackable)
+            {
+                item.IncreaseStacks();
+                return;
+            }
+            else if (item.name == buff && !buffScriptable.stackable)
                 return;
         }
         switch (buffScriptable.buffType)

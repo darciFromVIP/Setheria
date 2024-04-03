@@ -8,6 +8,7 @@ public class Well : NetworkBehaviour
     public float waterCooldown;
     private float waterTimer;
     public ItemScriptable waterItem;
+    public int waterStacks;
     private void Update()
     {
         if (waterTimer > 0)

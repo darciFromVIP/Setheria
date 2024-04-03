@@ -16,10 +16,18 @@ public class QuestlineScriptable : ScriptableObject
     [HideInInspector] public UnityEvent<string> Questline_Complete = new();
     private void OnEnable()
     {
+        Initialize();
+    }
+    public void Initialize()
+    {
 #if UNITY_EDITOR
         if (questsPath != "")
             LoadQuestsIntoQuestline();
 #endif
+        foreach (var item in questList)
+        {
+            item.Quest_Complete.RemoveAllListeners();
+        }
         currentQuestIndex = 0;
         questList[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
     }

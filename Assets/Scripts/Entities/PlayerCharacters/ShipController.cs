@@ -93,7 +93,7 @@ public class ShipController : NetworkBehaviour
             {
                 yield break;
             }
-            if (Vector3.Distance(transform.position, moveComp.agent.destination) < 2)
+            if (Vector3.Distance(transform.position, moveComp.agent.destination) < 1.5f)
                 break;
             yield return null;
         }

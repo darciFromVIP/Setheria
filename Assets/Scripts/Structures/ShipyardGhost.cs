@@ -22,19 +22,22 @@ public class ShipyardGhost : StructureGhost
                 canBuild = false;
                 foreach (var item in canBuildGraphic)
                 {
-                    item.color = Color.red;
+                    item.color = new Color(1, 0, 0, 0.1f);
                 }
+                arrowGraphic.color = new Color(1, 0, 0, 1);
                 return;
             }
-            List<Vector3> circlePoints = new();
-            circlePoints.Add(hit.point + Vector3.forward * 4);
-            circlePoints.Add(hit.point + Vector3.forward * 2 + Vector3.right * 2);
-            circlePoints.Add(hit.point + Vector3.right * 4);
-            circlePoints.Add(hit.point - Vector3.forward * 2 + Vector3.right * 2);
-            circlePoints.Add(hit.point - Vector3.forward * 4);
-            circlePoints.Add(hit.point - Vector3.forward * 2 - Vector3.right * 2);
-            circlePoints.Add(hit.point - Vector3.right * 4);
-            circlePoints.Add(hit.point + Vector3.forward * 2 - Vector3.right * 2);
+            List<Vector3> circlePoints = new()
+            {
+                hit.point + Vector3.forward * 4,
+                hit.point + Vector3.forward * 2 + Vector3.right * 2,
+                hit.point + Vector3.right * 4,
+                hit.point - Vector3.forward * 2 + Vector3.right * 2,
+                hit.point - Vector3.forward * 4,
+                hit.point - Vector3.forward * 2 - Vector3.right * 2,
+                hit.point - Vector3.right * 4,
+                hit.point + Vector3.forward * 2 - Vector3.right * 2
+            };
 
             Vector3 deepestPoint = transform.position;
             foreach (var item in circlePoints)
@@ -58,16 +61,18 @@ public class ShipyardGhost : StructureGhost
                 canBuild = true;
                 foreach (var item in canBuildGraphic)
                 {
-                    item.color = Color.green;
+                    item.color = new Color(0, 1, 0, 0.1f);
                 }
+                arrowGraphic.color = new Color(0, 1, 0, 1);
             }
             else
             {
                 canBuild = false;
                 foreach (var item in canBuildGraphic)
                 {
-                    item.color = Color.red;
+                    item.color = new Color(1, 0, 0, 0.1f);
                 }
+                arrowGraphic.color = new Color(1, 0, 0, 1);
             }
         }
     }

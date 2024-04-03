@@ -8,9 +8,9 @@ public class BuffUI : MonoBehaviour
 {
     private Image image;
     private TooltipTrigger tooltipTrigger;
-    private TextMeshProUGUI durationText;
+    public TextMeshProUGUI durationText, stacksText;
     private Slider slider;
-    private Buff currentBuffInstance;
+    public Buff currentBuffInstance;
     public BuffDatabase buffDatabase;
 
     private void Awake()
@@ -18,7 +18,6 @@ public class BuffUI : MonoBehaviour
         image = GetComponent<Image>();
         tooltipTrigger = GetComponent<TooltipTrigger>();
         slider = GetComponentInChildren<Slider>();
-        durationText = GetComponentInChildren<TextMeshProUGUI>();
     }
     private void Update()
     {
@@ -26,6 +25,11 @@ public class BuffUI : MonoBehaviour
         {
             durationText.text = currentBuffInstance.durationTimer.ToString("F0");
             slider.value = currentBuffInstance.durationTimer;
+            if (currentBuffInstance.stacks > 1)
+            {
+                stacksText.gameObject.SetActive(true);
+                stacksText.text = currentBuffInstance.stacks.ToString();
+            }
         }
     }
     private void BuffExpired()

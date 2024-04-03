@@ -278,6 +278,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                             talentTrees.talentTrees.Add(new TalentTree(item2.treeType, item2.talents));
                         }
                     }
+                    foreach (var item5 in item.activebuffs)
+                    {
+                        AddBuff(item5.name);
+                        StartCoroutine(WaitForBuff(item5));
+                    }
                     if (item.positionX != 0 && item.positionY != 0 && item.positionZ != 0)
                         FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
                 }
@@ -291,6 +296,27 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         Character_Loaded.Invoke(this);
         if (isOwned)
             StartCoroutine(UpdatePlayer());
+    }
+    private IEnumerator WaitForBuff(BuffSaveable buff)
+    {
+        bool buffIsThere = false;
+
+        while (!buffIsThere)
+        {
+            foreach (var item in buffs)
+            {
+                if (item.name == buff.name)
+                {
+                    item.durationTimer = buff.remainingDuration;
+                    for (int i = 1; i < buff.stacks; i++)
+                    {
+                        item.IncreaseStacks();
+                    }
+                    buffIsThere = true;
+                }
+            }
+            yield return null;
+        }
     }
     [TargetRpc]
     public void SaveState(NetworkConnection conn, NetworkIdentity player)
@@ -335,6 +361,14 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         foreach (var item in FindObjectOfType<GameManager>().recipeDatabase.allRecipes)
         {
             unlockedRecipes.Add(item.unlocked);
+        }
+        List<BuffSaveable> activeBuffs = new();
+        foreach (var item in buffs)
+        {
+            if (item.durationTimer > 0)
+            {
+                activeBuffs.Add(new BuffSaveable() { name = item.name, stacks = item.stacks, remainingDuration = item.durationTimer });
+            }
         }
         var controller = GetComponent<PlayerController>();
 
@@ -384,6 +418,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             unsyncedQuestlines = questlines,
             unlockedItems = unlockedItems,
             unlockedRecipes = unlockedRecipes,
+            activebuffs = activeBuffs
         });
     }
     public PlayerCharacter GetLocalPlayerCharacter()

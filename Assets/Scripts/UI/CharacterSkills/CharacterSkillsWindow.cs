@@ -7,15 +7,37 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
 {
     public TextMeshProUGUI hpText, mpText, levelText;
     public Slider hpSlider, mpSlider, xpSlider;
+    public Image hpAnimationFill, mpAnimationFill;
     public LayoutElement corruptedHp, corruptedMp;
     public Slider cdASlider, cdDSlider, cdQSlider, cdWSlider, cdESlider, cdRSlider;
     public TextMeshProUGUI textCdA, textCdD, textCdQ, textCdW, textCdE, textCdR;
     public List<Image> skills = new();
     public Sprite lockedSkill;
     public AvailablePointsBTN attributePointsBTN, talentPointsBTN;
+    private float healthLerpTimer = 0, manaLerpTimer = 0;
+    private float healthFraction, manaFraction;
+    private float chipTimer = 2;
 
     private PlayerController playerController;
-
+    private void Update()
+    {
+        if (healthLerpTimer < chipTimer)
+        {
+            healthLerpTimer += Time.deltaTime;
+        }
+        if (manaLerpTimer < chipTimer)
+        {
+            manaLerpTimer += Time.deltaTime;
+        }
+        if (hpAnimationFill.fillAmount != healthFraction && healthLerpTimer >= 0)
+        {
+            hpAnimationFill.fillAmount = Mathf.Lerp(hpAnimationFill.fillAmount, healthFraction, healthLerpTimer / chipTimer);
+        }
+        if (mpAnimationFill.fillAmount != manaFraction && manaLerpTimer >= 0)
+        {
+            mpAnimationFill.fillAmount = Mathf.Lerp(mpAnimationFill.fillAmount, manaFraction, manaLerpTimer / chipTimer);
+        }
+    }
     public void HideGraphics()
     {
         foreach (var item in GetComponentsInChildren<Transform>(true))
@@ -52,9 +74,20 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     private void UpdateHealth(float currentHealth, float maxHealth)
     {
+        if (Mathf.Abs(hpSlider.value - currentHealth) > 5)
+            healthLerpTimer = -1;
         hpText.text = (int)currentHealth + "/" + (int)maxHealth;
         hpSlider.maxValue = maxHealth;
         hpSlider.value = currentHealth;
+        healthFraction = currentHealth / maxHealth;
+        if (hpAnimationFill.fillAmount > healthFraction)
+        {
+            hpAnimationFill.color = Color.red;
+        }
+        else if (hpAnimationFill.fillAmount < healthFraction)
+        {
+            hpAnimationFill.color = Color.green;
+        }
     }
     private void UpdateCorruptedHealth(float maxHealth, float corruptedHealth)
     {
@@ -64,6 +97,8 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     private void UpdateMana(float currentMana, float maxMana)
     {
+        if (Mathf.Abs(mpSlider.value - currentMana) > 5)
+            manaLerpTimer = -1;
         mpText.text = (int)currentMana + "/" + (int)maxMana;
         mpSlider.maxValue = maxMana;
         mpSlider.value = currentMana;
@@ -74,6 +109,15 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
                 skills[i].color = new Color(0.3f, 0.3f, 0.3f);
             else 
                 skills[i].color = new Color(1f, 1f, 1f);
+        }
+        manaFraction = currentMana / maxMana;
+        if (mpAnimationFill.fillAmount > manaFraction)
+        {
+            mpAnimationFill.color = Color.red;
+        }
+        else if (mpAnimationFill.fillAmount < manaFraction)
+        {
+            mpAnimationFill.color = Color.green;
         }
     }
     private void UpdateCorruptedMana(float maxMana, float corruptedMana)

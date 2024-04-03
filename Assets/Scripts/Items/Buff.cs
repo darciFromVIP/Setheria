@@ -4,17 +4,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+[System.Serializable]
+public class BuffSaveable
+{
+    public string name;
+    public float stacks, remainingDuration;
+}
 public abstract class Buff
 {
     public string name;
     public BuffType buffType;
     public float value;
     public float durationTimer;
+    public float stacks = 1;
     public Character targetEntity;
     public GameObject effect;
     public EventInstance sound;
 
     public UnityEvent Buff_Expired = new();
+    public Buff()
+    {
+        stacks = 1;
+    }
     public virtual void SetSound(EventInstance soundInstance)
     {
         sound = soundInstance;
@@ -46,6 +57,10 @@ public abstract class Buff
         }
         BuffExpired();
     }
+    public virtual void IncreaseStacks()
+    {
+        stacks++;
+    }
 }
 public class BMaxHealth : Buff
 {
@@ -59,7 +74,12 @@ public class BMaxHealth : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasHealth>().ChangeGearMaxHealth(-value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearMaxHealth(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<HasHealth>().ChangeGearMaxHealth(value);
     }
 }
 public class BMaxMana : Buff
@@ -74,7 +94,12 @@ public class BMaxMana : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasMana>().ChangeGearMaxMana(-value);
+        targetEntity.GetComponent<HasMana>().ChangeGearMaxMana(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<HasMana>().ChangeGearMaxMana(value);
     }
 }
 public class BManaRegen : Buff
@@ -89,7 +114,12 @@ public class BManaRegen : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasMana>().ChangeBaseManaRegen(-value);
+        targetEntity.GetComponent<HasMana>().ChangeBaseManaRegen(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<HasMana>().ChangeBaseManaRegen(value);
     }
 }
 public class BBleed : Buff
@@ -104,7 +134,12 @@ public class BBleed : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(-value);
     }
 }
 public class BRegen : Buff
@@ -121,7 +156,12 @@ public class BRegen : Buff
         base.BuffExpired();
         if (sound.isValid())
             sound.setParameterByNameWithLabel("Rejuvenation", "End");
-        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(-value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(value);
     }
 }
 public class BInventorySlots : Buff
@@ -156,7 +196,12 @@ public class BPower : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeGearPower(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearPower(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeGearPower(value);
     }
 }
 public class BCriticalChance : Buff
@@ -171,7 +216,12 @@ public class BCriticalChance : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalChance(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalChance(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalChance(value);
     }
 }
 public class BCriticalDamage : Buff
@@ -186,7 +236,12 @@ public class BCriticalDamage : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalDamage(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalDamage(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalDamage(value);
     }
 }
 public class BAttackSpeed : Buff
@@ -201,7 +256,12 @@ public class BAttackSpeed : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeAttackSpeedMultiplier(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeAttackSpeedMultiplier(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeAttackSpeedMultiplier(value);
     }
 }
 public class BBaseAttackSpeed : Buff
@@ -231,7 +291,12 @@ public class BAttackRange : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeAttackRange(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeAttackRange(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeAttackRange(value);
     }
 }
 public class BArmor : Buff
@@ -246,7 +311,12 @@ public class BArmor : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasHealth>().ChangeGearArmor(-value);
+        targetEntity.GetComponent<HasHealth>().ChangeGearArmor(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<HasHealth>().ChangeGearArmor(value);
     }
 }
 public class BStun : Buff
@@ -277,7 +347,13 @@ public class BSpeed : Buff
     {
         base.BuffExpired();
         if (targetEntity.GetComponent<CanMove>() != null)
-            targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(-value);
+            targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        if (targetEntity.GetComponent<CanMove>() != null)
+            targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(value);
     }
 }
 public class BSlow : Buff
@@ -294,7 +370,13 @@ public class BSlow : Buff
     {
         base.BuffExpired();
         if (targetEntity.GetComponent<CanMove>() != null)
-            targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(value);
+            targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        if (targetEntity.GetComponent<CanMove>() != null)
+            targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(-value);
     }
 }
 public class BCooldownReduction : Buff
@@ -309,7 +391,12 @@ public class BCooldownReduction : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeGearCooldownReduction(-value);
+        targetEntity.GetComponent<CanAttack>().ChangeGearCooldownReduction(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeGearCooldownReduction(value);
     }
 }
 public class BPowerScaling : Buff
@@ -357,8 +444,14 @@ public class BCorruption : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasHealth>().ChangeCorruption(-value);
-        targetEntity.GetComponent<HasMana>().ChangeCorruption(-value);
+        targetEntity.GetComponent<HasHealth>().ChangeCorruption(-value * stacks);
+        targetEntity.GetComponent<HasMana>().ChangeCorruption(-value * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetEntity.GetComponent<HasHealth>().ChangeCorruption(value);
+        targetEntity.GetComponent<HasMana>().ChangeCorruption(value);
     }
 }
 public class BSleep : Buff

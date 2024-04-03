@@ -280,7 +280,6 @@ public class StructureOptionUI : MonoBehaviour
     private void DrawWater()
     {
         currentStructure.GetComponent<Well>().CmdStartWaterCooldown();
-        FindObjectOfType<InventoryManager>(true).AddItem(new ItemRecipeInfo { itemData = currentStructure.GetComponent<Well>().waterItem, stacks = 1 });
-
+        FindObjectOfType<InventoryManager>(true).AddItem(new ItemRecipeInfo { itemData = currentStructure.GetComponent<Well>().waterItem, stacks = currentStructure.GetComponent<Well>().waterStacks });
     }
 }

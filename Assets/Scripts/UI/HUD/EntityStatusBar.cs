@@ -4,17 +4,39 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.UIElements;
 
 public class EntityStatusBar : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.UI.Slider healthBar, manaBar;
+    [SerializeField] private Slider healthBar, manaBar;
+    [SerializeField] private Image hpAnimationFill, mpAnimationFill;
     [SerializeField] private LayoutElement corruptedHp, corruptedMp;
     [SerializeField] private GameObject levelBar;
     [SerializeField] private TextMeshProUGUI levelText;
+    private float healthLerpTimer = 0, manaLerpTimer = 0;
+    private float healthFraction, manaFraction;
+    private float chipTimer = 2;
     private void Start()
     {
         Initialize();
+    }
+    private void Update()
+    {
+        if (healthLerpTimer < chipTimer)
+        {
+            healthLerpTimer += Time.deltaTime;
+        }
+        if (manaLerpTimer < chipTimer)
+        {
+            manaLerpTimer += Time.deltaTime;
+        }
+        if (hpAnimationFill.fillAmount != healthFraction && healthLerpTimer >= 0)
+        {
+            hpAnimationFill.fillAmount = Mathf.Lerp(hpAnimationFill.fillAmount, healthFraction, healthLerpTimer / chipTimer);
+        }
+        if (mpAnimationFill.fillAmount != manaFraction && manaLerpTimer >= 0)
+        {
+            mpAnimationFill.fillAmount = Mathf.Lerp(mpAnimationFill.fillAmount, manaFraction, manaLerpTimer / chipTimer);
+        }
     }
     private void Initialize()                           
     {                                                           
@@ -83,8 +105,19 @@ public class EntityStatusBar : MonoBehaviour
     }
     private void ChangeHealthStatus(float currentHealth, float maxHealth)
     {
+        if (Mathf.Abs(healthBar.value - currentHealth) > 5)
+            healthLerpTimer = -1;
         healthBar.value = currentHealth;
         healthBar.maxValue = maxHealth;
+        healthFraction = currentHealth / maxHealth;
+        if (hpAnimationFill.fillAmount > healthFraction)
+        {
+            hpAnimationFill.color = Color.red;
+        }
+        else if (hpAnimationFill.fillAmount < healthFraction)
+        {
+            hpAnimationFill.color = Color.green;
+        }
     }
     private void ChangeCorruptedHealthStatus(float maxHealth, float corruptedHealth)
     {
@@ -94,8 +127,19 @@ public class EntityStatusBar : MonoBehaviour
     }
     private void ChangeManaStatus(float currentMana, float currentMaxMana)
     {
+        if (Mathf.Abs(manaBar.value - currentMana) > 5)
+            manaLerpTimer = -1;
         manaBar.value = currentMana;
         manaBar.maxValue = currentMaxMana;
+        manaFraction = currentMana / currentMaxMana;
+        if (mpAnimationFill.fillAmount > manaFraction)
+        {
+            mpAnimationFill.color = Color.red;
+        }
+        else if (mpAnimationFill.fillAmount < manaFraction)
+        {
+            mpAnimationFill.color = Color.green;
+        }
     }
     private void ChangeCorruptedManaStatus(float maxMana, float corruptedMana)
     {

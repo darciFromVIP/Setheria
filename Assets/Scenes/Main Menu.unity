@@ -14800,6 +14800,7 @@ GameObject:
   m_Component:
   - component: {fileID: 900269445}
   - component: {fileID: 900269444}
+  - component: {fileID: 900269446}
   m_Layer: 0
   m_Name: Initialization
   m_TagString: Untagged
@@ -14841,6 +14842,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &900269446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900269443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1e0845eab9cda448ce2b52c7ceb4c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questlineDatabase: {fileID: 11400000, guid: 11486169a34f32544b389e52e655aefb, type: 2}
 --- !u!1 &904791221
 GameObject:
   m_ObjectHideFlags: 0

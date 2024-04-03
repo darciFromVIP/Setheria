@@ -135,7 +135,8 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     }
     public void StartIndependentCooldown(UnityAction<float> updateFunc, float cd)
     {
-        StartCoroutine(StartCooldown(updateFunc, cd));
+        if (updateFunc != null)
+            StartCoroutine(StartCooldown(updateFunc, cd));
     }
     private IEnumerator StartCooldown(UnityAction<float> updateFunc, float cd)
     {

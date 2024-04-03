@@ -187,6 +187,46 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.79
       objectReference: {fileID: 0}
+    - target: {fileID: 4028765264805265213, guid: e7f5430ea8553bd47b74c581f963c5a5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028765264805265213, guid: e7f5430ea8553bd47b74c581f963c5a5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028765264805265213, guid: e7f5430ea8553bd47b74c581f963c5a5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028765264805265213, guid: e7f5430ea8553bd47b74c581f963c5a5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028765264805265213, guid: e7f5430ea8553bd47b74c581f963c5a5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028765264805265213, guid: e7f5430ea8553bd47b74c581f963c5a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028765264805265213, guid: e7f5430ea8553bd47b74c581f963c5a5,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.859
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028765264805265213, guid: e7f5430ea8553bd47b74c581f963c5a5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 5106304033672105173, guid: e7f5430ea8553bd47b74c581f963c5a5,
         type: 3}
       propertyPath: m_Name
@@ -289,6 +329,7 @@ MonoBehaviour:
   - {fileID: 1454645403639939272}
   - {fileID: 6359883730290788329}
   - {fileID: 5352156063066798032}
+  arrowGraphic: {fileID: 4701089287810695792}
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 89
@@ -319,6 +360,18 @@ MonoBehaviour:
 --- !u!114 &3973896025202035363 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5874711913955601787, guid: e7f5430ea8553bd47b74c581f963c5a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7395251700511352792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4701089287810695792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2854343119230264744, guid: e7f5430ea8553bd47b74c581f963c5a5,
     type: 3}
   m_PrefabInstance: {fileID: 7395251700511352792}
   m_PrefabAsset: {fileID: 0}
