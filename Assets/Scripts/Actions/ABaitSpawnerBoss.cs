@@ -26,9 +26,12 @@ public class ABaitSpawnerBoss : ActionTemplate
         var player = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
         foreach (var item in player.GetColliders())
         {
-            if (item.TryGetComponent(out EnemySpawner spawner))
+            if (item != null)
             {
-                return true;
+                if (item.TryGetComponent(out EnemySpawner spawner))
+                {
+                    return true;
+                }
             }
         }
         FindObjectOfType<SystemMessages>().AddMessage("You aren't standing near a Cave!");

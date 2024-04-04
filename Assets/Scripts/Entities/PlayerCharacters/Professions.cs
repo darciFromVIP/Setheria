@@ -29,17 +29,17 @@ public class Professions
         cooking = 0;
         fishing = 0;
         exploration = 0;
-        maxGathering = 50;
-        maxAlchemy = 50;
-        maxCooking = 50;
-        maxFishing = 50;
-        maxExploration = 50;
+        maxGathering = 200;
+        maxAlchemy = 200;
+        maxCooking = 200;
+        maxFishing = 200;
+        maxExploration = 200;
         gatheringMilestone = 25;
         alchemyMilestone = 25;
         cookingMilestone = 25;
         fishingMilestone = 25;
         explorationMilestone = 25;
-        largeProfMilestones = new List<int> { 50, 75, 100 };
+        largeProfMilestones = new List<int> { 50, 75, 100, 125, 150, 175, 200 };
         this.player = player;
     }
 

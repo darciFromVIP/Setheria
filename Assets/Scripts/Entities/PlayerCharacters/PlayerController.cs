@@ -566,6 +566,13 @@ public class PlayerController : NetworkBehaviour
     }
     public List<Collider> GetColliders()
     {
+        Collider[] array = new Collider[collidingColliders.Count];
+        collidingColliders.CopyTo(array);
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] == null)
+                collidingColliders.Remove(collidingColliders[i]);
+        }
         return collidingColliders;
     }
 }
