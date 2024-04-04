@@ -7,13 +7,13 @@ using TMPro;
 
 public class EntityStatusBar : MonoBehaviour
 {
-    [SerializeField] private Slider healthBar, manaBar;
-    [SerializeField] private Image hpAnimationFill, mpAnimationFill;
+    [SerializeField] private Slider healthBar, manaBar, hpAnimationFill, mpAnimationFill;
     [SerializeField] private LayoutElement corruptedHp, corruptedMp;
     [SerializeField] private GameObject levelBar;
     [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private Color takeDamageColor = Color.red, healDamageColor = Color.green;
     private float healthLerpTimer = 0, manaLerpTimer = 0;
-    private float healthFraction, manaFraction;
+    private float currentHealth, currentMana;
     private float chipTimer = 2;
     private void Start()
     {
@@ -29,13 +29,21 @@ public class EntityStatusBar : MonoBehaviour
         {
             manaLerpTimer += Time.deltaTime;
         }
-        if (hpAnimationFill.fillAmount != healthFraction && healthLerpTimer >= 0)
+        if (hpAnimationFill.value > currentHealth && healthLerpTimer >= 0)
         {
-            hpAnimationFill.fillAmount = Mathf.Lerp(hpAnimationFill.fillAmount, healthFraction, healthLerpTimer / chipTimer);
+            hpAnimationFill.value = Mathf.Lerp(hpAnimationFill.value, currentHealth, healthLerpTimer / chipTimer);
         }
-        if (mpAnimationFill.fillAmount != manaFraction && manaLerpTimer >= 0)
+        if (healthBar.value < currentHealth && healthLerpTimer >= 0)
         {
-            mpAnimationFill.fillAmount = Mathf.Lerp(mpAnimationFill.fillAmount, manaFraction, manaLerpTimer / chipTimer);
+            healthBar.value = Mathf.Lerp(healthBar.value, currentHealth, healthLerpTimer / chipTimer);
+        }
+        if (mpAnimationFill.value > currentMana && manaLerpTimer >= 0)
+        {
+            mpAnimationFill.value = Mathf.Lerp(mpAnimationFill.value, currentMana, manaLerpTimer / chipTimer);
+        }
+        if (manaBar.value < currentMana && manaLerpTimer >= 0)
+        {
+            manaBar.value = Mathf.Lerp(manaBar.value, currentMana, manaLerpTimer / chipTimer);
         }
     }
     private void Initialize()                           
@@ -105,18 +113,34 @@ public class EntityStatusBar : MonoBehaviour
     }
     private void ChangeHealthStatus(float currentHealth, float maxHealth)
     {
-        if (Mathf.Abs(healthBar.value - currentHealth) > 5)
-            healthLerpTimer = -1;
-        healthBar.value = currentHealth;
+        healthLerpTimer = 0;
         healthBar.maxValue = maxHealth;
-        healthFraction = currentHealth / maxHealth;
-        if (hpAnimationFill.fillAmount > healthFraction)
+        hpAnimationFill.maxValue = maxHealth;
+        this.currentHealth = currentHealth;
+        if (healthBar.value - currentHealth < 0)
         {
-            hpAnimationFill.color = Color.red;
+            if (hpAnimationFill.value > currentHealth)
+                healthBar.value = currentHealth;
+            else
+            {
+                hpAnimationFill.value = currentHealth;
+                hpAnimationFill.fillRect.GetComponent<Image>().color = healDamageColor;
+            }
         }
-        else if (hpAnimationFill.fillAmount < healthFraction)
+        else if (healthBar.value - currentHealth > 0)
         {
-            hpAnimationFill.color = Color.green;
+            if (healthBar.value < currentHealth)
+                hpAnimationFill.value = currentHealth;
+            else
+            {
+                healthBar.value = currentHealth;
+                hpAnimationFill.fillRect.GetComponent<Image>().color = takeDamageColor;
+            }
+        }
+        else
+        {
+            healthBar.value = currentHealth;
+            hpAnimationFill.value = currentHealth;
         }
     }
     private void ChangeCorruptedHealthStatus(float maxHealth, float corruptedHealth)
@@ -127,18 +151,34 @@ public class EntityStatusBar : MonoBehaviour
     }
     private void ChangeManaStatus(float currentMana, float currentMaxMana)
     {
-        if (Mathf.Abs(manaBar.value - currentMana) > 5)
-            manaLerpTimer = -1;
-        manaBar.value = currentMana;
+        manaLerpTimer = 0f;
         manaBar.maxValue = currentMaxMana;
-        manaFraction = currentMana / currentMaxMana;
-        if (mpAnimationFill.fillAmount > manaFraction)
+        mpAnimationFill.maxValue = currentMaxMana;
+        this.currentMana = currentMana;
+        if (manaBar.value - currentMana < 0)
         {
-            mpAnimationFill.color = Color.red;
+            if (mpAnimationFill.value > currentMana)
+                manaBar.value = currentMana;
+            else
+            {
+                mpAnimationFill.value = currentMana;
+                mpAnimationFill.fillRect.GetComponent<Image>().color = healDamageColor;
+            }
         }
-        else if (mpAnimationFill.fillAmount < manaFraction)
+        else if (manaBar.value - currentMana > 0)
         {
-            mpAnimationFill.color = Color.green;
+            if (manaBar.value < currentMana)
+                mpAnimationFill.value = currentMana;
+            else
+            {
+                manaBar.value = currentMana;
+                mpAnimationFill.fillRect.GetComponent<Image>().color = takeDamageColor;
+            }
+        }
+        else
+        {
+            manaBar.value = currentMana;
+            mpAnimationFill.value = currentMana;
         }
     }
     private void ChangeCorruptedManaStatus(float maxMana, float corruptedMana)

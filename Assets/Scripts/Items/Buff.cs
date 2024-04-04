@@ -181,7 +181,12 @@ public class BInventorySlots : Buff
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetInventory.ReduceInventory((int)value);
+        targetInventory.ReduceInventory((int)(value * stacks));
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+        targetInventory.ExtendInventory((int)value);
     }
 }
 public class BPower : Buff

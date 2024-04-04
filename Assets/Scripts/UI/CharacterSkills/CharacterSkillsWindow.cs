@@ -5,17 +5,17 @@ using UnityEngine.UI;
 using TMPro;
 public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
 {
-    public TextMeshProUGUI hpText, mpText, levelText;
-    public Slider hpSlider, mpSlider, xpSlider;
-    public Image hpAnimationFill, mpAnimationFill;
+    public TextMeshProUGUI hpText, mpText, levelText, healthRegenText, manaRegenText;
+    public Slider hpSlider, mpSlider, xpSlider, hpAnimationFill, mpAnimationFill;
     public LayoutElement corruptedHp, corruptedMp;
     public Slider cdASlider, cdDSlider, cdQSlider, cdWSlider, cdESlider, cdRSlider;
     public TextMeshProUGUI textCdA, textCdD, textCdQ, textCdW, textCdE, textCdR;
     public List<Image> skills = new();
     public Sprite lockedSkill;
     public AvailablePointsBTN attributePointsBTN, talentPointsBTN;
+    public Color takeDamageColor = Color.red, healDamageColor = Color.green;
     private float healthLerpTimer = 0, manaLerpTimer = 0;
-    private float healthFraction, manaFraction;
+    private float currentHealth, currentMana;
     private float chipTimer = 2;
 
     private PlayerController playerController;
@@ -29,13 +29,21 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             manaLerpTimer += Time.deltaTime;
         }
-        if (hpAnimationFill.fillAmount != healthFraction && healthLerpTimer >= 0)
+        if (hpAnimationFill.value > currentHealth && healthLerpTimer >= 0)
         {
-            hpAnimationFill.fillAmount = Mathf.Lerp(hpAnimationFill.fillAmount, healthFraction, healthLerpTimer / chipTimer);
+            hpAnimationFill.value = Mathf.Lerp(hpAnimationFill.value, currentHealth, healthLerpTimer / chipTimer);
         }
-        if (mpAnimationFill.fillAmount != manaFraction && manaLerpTimer >= 0)
+        if (hpSlider.value < currentHealth && healthLerpTimer >= 0)
         {
-            mpAnimationFill.fillAmount = Mathf.Lerp(mpAnimationFill.fillAmount, manaFraction, manaLerpTimer / chipTimer);
+            hpSlider.value = Mathf.Lerp(hpSlider.value, currentHealth, healthLerpTimer / chipTimer);
+        }
+        if (mpAnimationFill.value > currentMana && manaLerpTimer >= 0)
+        {
+            mpAnimationFill.value = Mathf.Lerp(mpAnimationFill.value, currentMana, manaLerpTimer / chipTimer);
+        }
+        if (mpSlider.value < currentMana && manaLerpTimer >= 0)
+        {
+            mpSlider.value = Mathf.Lerp(mpSlider.value, currentMana, manaLerpTimer / chipTimer);
         }
     }
     public void HideGraphics()
@@ -58,8 +66,10 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         player.Xp_Changed.AddListener(UpdateXP);
         player.Level_Up.AddListener(UpdateLevel);
         player.GetComponent<HasHealth>().Health_Changed.AddListener(UpdateHealth);
+        player.GetComponent<HasHealth>().Health_Regen_Changed.AddListener(UpdateHealthRegen);
         player.GetComponent<HasHealth>().Corrupted_Health_Changed.AddListener(UpdateCorruptedHealth);
         player.GetComponent<HasMana>().Mana_Changed.AddListener(UpdateMana);
+        player.GetComponent<HasMana>().Mana_Regen_Changed.AddListener(UpdateManaRegen);
         player.GetComponent<HasMana>().Corrupted_Mana_Changed.AddListener(UpdateCorruptedMana);
         player.Skills_Changed.AddListener(UpdateSkills);
         UpdateSkills(player.skills);
@@ -72,22 +82,57 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         attributePointsBTN.Initialize(player);
         talentPointsBTN.Initialize(player);
     }
+    public void SetHealthMana(float health, float maxHealth, float mana, float maxMana)
+    {
+        hpAnimationFill.maxValue = maxHealth;
+        hpAnimationFill.value = health;
+        hpSlider.maxValue = maxHealth;
+        hpSlider.value = health;
+        mpAnimationFill.maxValue = maxMana;
+        mpAnimationFill.value = mana;
+        mpSlider.maxValue = maxMana;
+        mpSlider.value = mana;
+    }
     private void UpdateHealth(float currentHealth, float maxHealth)
     {
-        if (Mathf.Abs(hpSlider.value - currentHealth) > 5)
-            healthLerpTimer = -1;
-        hpText.text = (int)currentHealth + "/" + (int)maxHealth;
+        healthLerpTimer = 0f;
         hpSlider.maxValue = maxHealth;
-        hpSlider.value = currentHealth;
-        healthFraction = currentHealth / maxHealth;
-        if (hpAnimationFill.fillAmount > healthFraction)
+        hpAnimationFill.maxValue = maxHealth;
+        this.currentHealth = currentHealth;
+        hpText.text = (int)currentHealth + "/" + (int)maxHealth;
+        if (hpSlider.value - currentHealth < 0)
         {
-            hpAnimationFill.color = Color.red;
+            if (hpAnimationFill.value > currentHealth)
+                hpSlider.value = currentHealth;
+            else
+            {
+                hpAnimationFill.value = currentHealth;
+                hpAnimationFill.fillRect.GetComponent<Image>().color = healDamageColor;
+            }
         }
-        else if (hpAnimationFill.fillAmount < healthFraction)
+        else if (hpSlider.value - currentHealth > 0)
         {
-            hpAnimationFill.color = Color.green;
+            if (hpSlider.value < currentHealth)
+                hpAnimationFill.value = currentHealth;
+            else
+            {
+                hpSlider.value = currentHealth;
+                hpAnimationFill.fillRect.GetComponent<Image>().color = takeDamageColor;
+            }
         }
+        else
+        {
+            hpSlider.value = currentHealth;
+            hpAnimationFill.value = currentHealth;
+        }
+    }
+    private void UpdateHealthRegen(float regen)
+    {
+        if (regen > 0)
+            healthRegenText.text = "+";
+        else
+            healthRegenText.text = "-";
+        healthRegenText.text += regen;
     }
     private void UpdateCorruptedHealth(float maxHealth, float corruptedHealth)
     {
@@ -97,28 +142,52 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     private void UpdateMana(float currentMana, float maxMana)
     {
-        if (Mathf.Abs(mpSlider.value - currentMana) > 5)
-            manaLerpTimer = -1;
-        mpText.text = (int)currentMana + "/" + (int)maxMana;
+        manaLerpTimer = 0f;
         mpSlider.maxValue = maxMana;
-        mpSlider.value = currentMana;
+        mpAnimationFill.maxValue = maxMana;
+        this.currentMana = currentMana;
+        mpText.text = (int)currentMana + "/" + (int)maxMana;
         var player = playerController.GetComponent<PlayerCharacter>();
         for (int i = 0; i < skills.Count; i++)
         {
             if (currentMana < player.skills[i].manaCost)
                 skills[i].color = new Color(0.3f, 0.3f, 0.3f);
-            else 
+            else
                 skills[i].color = new Color(1f, 1f, 1f);
         }
-        manaFraction = currentMana / maxMana;
-        if (mpAnimationFill.fillAmount > manaFraction)
+        if (mpSlider.value - currentMana < 0)
         {
-            mpAnimationFill.color = Color.red;
+            if (mpAnimationFill.value > currentMana)
+                mpSlider.value = currentMana;
+            else
+            {
+                mpAnimationFill.value = currentMana;
+                mpAnimationFill.fillRect.GetComponent<Image>().color = healDamageColor;
+            }
         }
-        else if (mpAnimationFill.fillAmount < manaFraction)
+        else if (mpSlider.value - currentMana > 0)
         {
-            mpAnimationFill.color = Color.green;
+            if (mpSlider.value < currentMana)
+                mpAnimationFill.value = currentMana;
+            else
+            {
+                mpSlider.value = currentMana;
+                mpAnimationFill.fillRect.GetComponent<Image>().color = takeDamageColor;
+            }
         }
+        else
+        {
+            mpSlider.value = currentMana;
+            mpAnimationFill.value = currentMana;
+        }
+    }
+    private void UpdateManaRegen(float regen)
+    {
+        if (regen > 0)
+            manaRegenText.text = "+";
+        else
+            manaRegenText.text = "-";
+        manaRegenText.text += regen;
     }
     private void UpdateCorruptedMana(float maxMana, float corruptedMana)
     {

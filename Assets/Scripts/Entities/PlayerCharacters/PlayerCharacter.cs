@@ -205,6 +205,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 manaComp.SetMana(item.mana);
                 manaComp.SetBaseManaRegen(item.baseManaRegen);
                 manaComp.ChangeCorruptedMana(item.corruptedMana);
+                FindObjectOfType<CharacterSkillsWindow>().SetHealthMana(item.health, item.baseMaxHealth, item.mana, item.baseMaxMana);
                 attackComp.SetPower(item.power);
                 attackComp.SetCriticalChance(item.criticalChance);
                 attackComp.SetCriticalDamage(item.criticalDamage);
