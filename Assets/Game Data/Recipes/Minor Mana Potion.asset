@@ -10,19 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
-  m_Name: Healing Potion
+  m_Name: Minor Mana Potion
   m_EditorClassIdentifier: 
   recipeCategory: 2
-  priority: 2
+  priority: 3
   resultItem:
-    itemData: {fileID: 11400000, guid: 89e0450b1efcb47468eea28970d5e38a, type: 2}
+    itemData: {fileID: 11400000, guid: 131260af6be2fd74c99807c53399b443, type: 2}
     stacks: 1
   componentItems:
-  - itemData: {fileID: 11400000, guid: c24df273115bd324c9052ab14ba4c576, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 58f80bf90a34df540a593a32c63665ae, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: c71fe4510bdeb4542bea85166544c79b, type: 2}
+  - itemData: {fileID: 11400000, guid: 259866ad2fbffe245b24c7bae99eea3e, type: 2}
+    stacks: 2
+  - itemData: {fileID: 11400000, guid: ca8eaf79a2fea974cbdc803918c8cabb, type: 2}
     stacks: 1
   resourceCost: 0
   unlocked: 0
@@ -31,12 +29,14 @@ MonoBehaviour:
   requiredStructure: {fileID: 0}
   craftingDuration: 3
   xpGranted: 10
-  tier: 2
-  recipeItem: {fileID: 11400000, guid: 7e6b1fb684e160f4caa74507d250a86b, type: 2}
-  requiredItems: []
-  requiredStructures: []
+  tier: 0
+  recipeItem: {fileID: 0}
+  requiredItems:
+  - {fileID: 11400000, guid: 259866ad2fbffe245b24c7bae99eea3e, type: 2}
+  requiredStructures:
+  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
   requiredProfession: 3
-  requiredProfessionExperience: 15
+  requiredProfessionExperience: 3
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    Use to restore 100 MP.
+    Use to restore <color=#FFD000>200
+    </color>MP.
 
     __________________________________
 
@@ -24,13 +25,15 @@ MonoBehaviour:
     Item, Potion, Cooldown: 10 seconds'
   grade: 0
   itemType: 0
-  sprite: {fileID: 21300000, guid: 06f81d02dfe7fa742a87b519348b9589, type: 3}
+  sprite: {fileID: 21300000, guid: 21fd1f12f7b93ac4c9de2ce7a0f94bd0, type: 3}
   stackable: 1
   usage:
+  - {fileID: 11400000, guid: d0ba74c26fa8c934c84a63044c43d201, type: 2}
   - {fileID: 11400000, guid: d0ba74c26fa8c934c84a63044c43d201, type: 2}
   usageCooldown: 10
   cooldownGroup: 2
   passiveBuffs: []
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0

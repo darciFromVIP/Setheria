@@ -10,21 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Recipe - Create String
+  m_Name: Minor Mana Potion
   m_EditorClassIdentifier: 
-  description: Unlocks the new knowledge about tailoring. Create String from Cloth.
-  grade: 1
+  description: '__________________________________
+
+    Use to restore <color=#FFD000>100
+    </color>MP.
+
+    __________________________________
+
+    Consumables
+
+    Active
+    Item, Potion, Cooldown: 10 seconds'
+  grade: 0
   itemType: 0
-  sprite: {fileID: 21300000, guid: 3bbd99494f6dddb4f8a52638989645f5, type: 3}
-  stackable: 0
+  sprite: {fileID: 21300000, guid: 06f81d02dfe7fa742a87b519348b9589, type: 3}
+  stackable: 1
   usage:
-  - {fileID: 11400000, guid: 15b8c5456ab7b184a9e1ea371aabc967, type: 2}
-  usageCooldown: 0
-  cooldownGroup: 0
+  - {fileID: 11400000, guid: d0ba74c26fa8c934c84a63044c43d201, type: 2}
+  usageCooldown: 10
+  cooldownGroup: 2
   passiveBuffs: []
   activeSkills: []
   value: 0
-  destroyItemOnUse: 1
+  destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1

@@ -10,21 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Recipe - Create String
+  m_Name: Minor Healing Potion
   m_EditorClassIdentifier: 
-  description: Unlocks the new knowledge about tailoring. Create String from Cloth.
-  grade: 1
+  description: '__________________________________
+
+    Use to restore 150 HP.
+
+    __________________________________
+
+    Consumables
+
+    Active
+    Item, Potion, Cooldown: 10 seconds'
+  grade: 0
   itemType: 0
-  sprite: {fileID: 21300000, guid: 3bbd99494f6dddb4f8a52638989645f5, type: 3}
-  stackable: 0
+  sprite: {fileID: 21300000, guid: 05681f42c543e7f4f9b4c82700657e6e, type: 3}
+  stackable: 1
   usage:
-  - {fileID: 11400000, guid: 15b8c5456ab7b184a9e1ea371aabc967, type: 2}
-  usageCooldown: 0
-  cooldownGroup: 0
+  - {fileID: 11400000, guid: f2be973a70f9a464b9c7b7b0d62b22b0, type: 2}
+  usageCooldown: 10
+  cooldownGroup: 1
   passiveBuffs: []
-  activeSkills: []
   value: 0
-  destroyItemOnUse: 1
+  destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
