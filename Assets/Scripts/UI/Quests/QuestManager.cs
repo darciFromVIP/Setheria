@@ -268,8 +268,8 @@ public class QuestManager : NetworkBehaviour
     public QuestScriptable NewQuestline(string questlineName, int questIndex = 0)
     {
         QuestlineScriptable questline = questlineDatabase.GetQuestlineByName(questlineName);
-        Debug.Log(questline.name + " new questline");
         questlines.Add(questline);
+        questline.LoadQuestline(questIndex);
         if (questline.synchronized)
         {
             if (isServer)

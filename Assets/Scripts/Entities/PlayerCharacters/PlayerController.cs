@@ -354,6 +354,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill1()
     {
         RpcExecuteSkill1();
+        GetComponent<CanAttack>().isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill1()
@@ -364,6 +365,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill2()
     {
         RpcExecuteSkill2();
+        GetComponent<CanAttack>().isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill2()
@@ -374,6 +376,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill3()
     {
         RpcExecuteSkill3();
+        GetComponent<CanAttack>().isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill3()
@@ -384,6 +387,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill4()
     {
         RpcExecuteSkill4();
+        GetComponent<CanAttack>().isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill4()
@@ -394,6 +398,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill5()
     {
         RpcExecuteSkill5();
+        GetComponent<CanAttack>().isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill5()

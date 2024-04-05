@@ -28,7 +28,11 @@ public class QuestlineScriptable : ScriptableObject
         {
             item.Quest_Complete.RemoveAllListeners();
         }
-        currentQuestIndex = 0;
+        LoadQuestline(0);
+    }
+    public void LoadQuestline(int index)
+    {
+        currentQuestIndex = index;
         questList[currentQuestIndex].Quest_Complete.AddListener(QuestComplete);
     }
     private void QuestComplete()
