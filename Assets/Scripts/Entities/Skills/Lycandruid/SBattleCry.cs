@@ -34,6 +34,7 @@ public class SBattleCry : Skill
             castingEntity.skillIndicator.ShowRadius(range, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
             castingEntity.skillIndicator.Casting(1.26f);
         }
+        StartCasting();
     }
     protected override void Cast()
     {

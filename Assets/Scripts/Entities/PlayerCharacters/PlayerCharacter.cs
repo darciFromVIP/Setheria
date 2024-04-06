@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using Steamworks;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using FMODUnity;
-using UnityEngine.UIElements;
 
 [System.Serializable]
 public enum Hero
@@ -295,6 +293,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         Debug.Log("Character Loaded!");
         isLoaded = true;
         Character_Loaded.Invoke(this);
+        healthComp.ChangeCorruptedHealth(0);
+        manaComp.ChangeCorruptedMana(0);
         if (isOwned)
             StartCoroutine(UpdatePlayer());
     }

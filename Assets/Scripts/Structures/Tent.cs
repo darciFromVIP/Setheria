@@ -36,7 +36,7 @@ public class Tent : NetworkBehaviour
         var playerCharacter = player.GetComponent<PlayerCharacter>();
         restingPlayers.Add(playerCharacter);
         playerCharacter.DisableCharacter();
-        playerCharacter.GetComponent<HasMana>().ChangeGearManaRegen(3);
+        playerCharacter.GetComponent<HasMana>().ChangeGearManaRegen(5 + (playerCharacter.GetComponent<HasMana>().GetFinalMaxMana() * 0.01f));
         playerCharacter.ChangeHungerIntervalMultiplier(1);
     }
     [Command(requiresAuthority = false)]
@@ -51,7 +51,7 @@ public class Tent : NetworkBehaviour
         var playerCharacter = player.GetComponent<PlayerCharacter>();
         restingPlayers.Remove(playerCharacter);
         playerCharacter.EnableCharacter();
-        playerCharacter.GetComponent<HasMana>().ChangeGearManaRegen(-3);
+        playerCharacter.GetComponent<HasMana>().ChangeGearManaRegen(-(5 + (playerCharacter.GetComponent<HasMana>().GetFinalMaxMana() * 0.01f)));
         playerCharacter.ChangeHungerIntervalMultiplier(-1);
     }
     public void StartRestCooldown()

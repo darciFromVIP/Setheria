@@ -59,10 +59,14 @@ public class StashInventory : MonoBehaviour, WindowedUI
             {
                 if (slot.transform.childCount > 0)
                 {
-                    if (slot.GetComponentInChildren<InventoryItem>(true).item == item)
+                    var inventoryItem = slot.GetComponentInChildren<InventoryItem>(true);
+                    if (inventoryItem != null)
                     {
-                        slot.CmdChangeStacks(stacks);
-                        return true;
+                        if (inventoryItem.item == item)
+                        {
+                            slot.CmdChangeStacks(stacks);
+                            return true;
+                        }
                     }
                 }
             }
@@ -107,17 +111,20 @@ public class StashInventory : MonoBehaviour, WindowedUI
             if (item.transform.childCount > 0)
             {
                 var temp = item.GetComponentInChildren<InventoryItem>(true);
-                if (temp.item == itemToDestroy.itemData)
+                if (temp != null)
                 {
-                    if (temp.item.stackable)
+                    if (temp.item == itemToDestroy.itemData)
                     {
-                        temp.ChangeStacks(-itemToDestroy.stacks);
-                    }
-                    else
-                    {
-                        temp.transform.SetParent(null);
-                        Destroy(temp.gameObject);
-                        item.isFree = true;
+                        if (temp.item.stackable)
+                        {
+                            temp.ChangeStacks(-itemToDestroy.stacks);
+                        }
+                        else
+                        {
+                            temp.transform.SetParent(null);
+                            Destroy(temp.gameObject);
+                            item.isFree = true;
+                        }
                     }
                 }
             }
@@ -140,7 +147,11 @@ public class StashInventory : MonoBehaviour, WindowedUI
         foreach (var item in stashSlots)
         {
             if (item.transform.childCount > 0)
-                result.Add(item.GetComponentInChildren<InventoryItem>(true));
+            {
+                var inventoryItem = item.GetComponentInChildren<InventoryItem>(true);
+                if (inventoryItem != null)
+                    result.Add(inventoryItem);
+            }
         }
         return result;
     }

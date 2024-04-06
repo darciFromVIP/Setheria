@@ -47,8 +47,9 @@ public class SPounce : Skill
             StartCasting();
         }
     }
-    private void StartCasting()
+    protected override void StartCasting()
     {
+        base.StartCasting();
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill3();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);

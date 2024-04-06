@@ -57,8 +57,9 @@ public class SUppercut : Skill
             StartCasting();
         }
     }
-    private void StartCasting()
+    protected override void StartCasting()
     {
+        base.StartCasting();
         armorReductionBuff.duration = baseDuration;
         damageReductionBuff.duration = baseDuration;
         armorReductionBuff.value = armorFinalReduction;

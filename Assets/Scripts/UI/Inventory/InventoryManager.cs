@@ -31,13 +31,16 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
             {
                 if (slot.transform.childCount > 0)
                 {
-                    if (slot.GetComponentInChildren<InventoryItem>(true).item == item)
-                    {
-                        result = slot.GetComponentInChildren<InventoryItem>(true);
-                        result.ChangeStacks(stacks);
-                        item.Item_Stacks_Acquired.Invoke(item, stacks);
-                        FindObjectOfType<AcquiredItems>().ItemAcquired(new ItemRecipeInfo { itemData = item, stacks = stacks });
-                        return result;
+                    var inventoryItem = slot.GetComponentInChildren<InventoryItem>(true);
+                    if (inventoryItem != null)
+                    { if (inventoryItem.item == item)
+                        {
+                            result = slot.GetComponentInChildren<InventoryItem>(true);
+                            result.ChangeStacks(stacks);
+                            item.Item_Stacks_Acquired.Invoke(item, stacks);
+                            FindObjectOfType<AcquiredItems>().ItemAcquired(new ItemRecipeInfo { itemData = item, stacks = stacks });
+                            return result;
+                        }
                     }
                 }
             }
@@ -77,19 +80,22 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
             if (item.transform.childCount > 0)
             {
                 var temp = item.GetComponentInChildren<InventoryItem>(true);
-                if (temp.item == itemToDestroy.itemData)
+                if (temp != null)
                 {
-                    if (temp.item.stackable)
+                    if (temp.item == itemToDestroy.itemData)
                     {
-                        temp.ChangeStacks(-itemToDestroy.stacks);
+                        if (temp.item.stackable)
+                        {
+                            temp.ChangeStacks(-itemToDestroy.stacks);
+                        }
+                        else
+                        {
+                            itemToDestroy.itemData.Item_Stacks_Lost.Invoke(itemToDestroy.itemData, 1);
+                            temp.transform.SetParent(null);
+                            Destroy(temp.gameObject);
+                        }
+                        break;
                     }
-                    else
-                    {
-                        itemToDestroy.itemData.Item_Stacks_Lost.Invoke(itemToDestroy.itemData, 1);
-                        temp.transform.SetParent(null);
-                        Destroy(temp.gameObject);
-                    }
-                    break;
                 }
             }
         }
@@ -112,7 +118,11 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
         foreach (var item in inventorySlots)
         {
             if (item.transform.childCount > 0)
-                result.Add(item.GetComponentInChildren<InventoryItem>(true));
+            {
+                var inventoryItem = item.GetComponentInChildren<InventoryItem>(true);
+                if (inventoryItem != null)
+                    result.Add(inventoryItem);
+            }
         }
         return result;
     }
@@ -124,8 +134,11 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
             if (item.transform.childCount > 0)
             {
                 var temp = item.transform.GetChild(0).GetComponent<InventoryItem>();
-                if (temp.item.name == name)
-                    result = temp;
+                if (temp != null)
+                {
+                    if (temp.item.name == name)
+                        result = temp;
+                }
             }
         }
         return result;

@@ -354,7 +354,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill1()
     {
         RpcExecuteSkill1();
-        GetComponent<CanAttack>().isCasting = true;
+        attackComp.isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill1()
@@ -365,7 +365,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill2()
     {
         RpcExecuteSkill2();
-        GetComponent<CanAttack>().isCasting = true;
+        attackComp.isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill2()
@@ -376,7 +376,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill3()
     {
         RpcExecuteSkill3();
-        GetComponent<CanAttack>().isCasting = true;
+        attackComp.isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill3()
@@ -387,7 +387,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill4()
     {
         RpcExecuteSkill4();
-        GetComponent<CanAttack>().isCasting = true;
+        attackComp.isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill4()
@@ -398,7 +398,7 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill5()
     {
         RpcExecuteSkill5();
-        GetComponent<CanAttack>().isCasting = true;
+        attackComp.isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill5()
@@ -409,7 +409,6 @@ public class PlayerController : NetworkBehaviour
     {
         moveComp.MoveTo(collider.transform.position);
         var originDest = moveComp.agent.destination;
-        //yield return new WaitForSeconds(0.2f);
         while (true)
         {
             if (originDest != moveComp.agent.destination)

@@ -17,7 +17,7 @@ public class SFlowerPowerHeal : Skill
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
         castingEntity.skillIndicator.ShowRadius(range, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
         castingEntity.skillIndicator.Casting(1.23f);
-        
+        StartCasting();
     }
     protected override void Cast()
     {

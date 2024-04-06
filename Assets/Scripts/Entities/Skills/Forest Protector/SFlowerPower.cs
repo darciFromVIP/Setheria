@@ -24,7 +24,7 @@ public class SFlowerPower : Skill
     public override void Execute(Character self)
     {
         base.Execute(self);
-        self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCast);
+        self.GetComponent<PlayerController>().Ground_Left_Clicked.AddListener(StartCasting);
         self.GetComponent<PlayerController>().ChangeCastingState(CastingState.None);
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
@@ -36,17 +36,18 @@ public class SFlowerPower : Skill
     public override void StopExecute()
     {
         base.StopExecute();
-        castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
+        castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCasting);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveListener(Cast);
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.InterruptCasting();
     }
-    private void StartCast(Vector3 point)
+    protected override void StartCasting(Vector3 point)
     {
+        base.StartCasting(point);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         actualPoint = Vector3.MoveTowards(castingEntity.transform.position, point, range);
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
-        castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCast);
+        castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCasting);
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill5();
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.AddListener(Cast);

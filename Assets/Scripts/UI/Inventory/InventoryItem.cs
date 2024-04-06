@@ -19,6 +19,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private RectTransform rect;
     private bool draggable = true;
     public bool usable = true;
+    private GameObject tempObject = null;
 
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public ItemScriptable item;
@@ -257,6 +258,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             image.raycastTarget = false;
             parentAfterDrag = transform.parent;
+            if (parentAfterDrag.TryGetComponent(out InventorySlot slot) && tempObject == null && parentAfterDrag != null)
+            {
+                tempObject = new GameObject();
+                tempObject.transform.SetParent(parentAfterDrag);
+            }
             transform.SetParent(transform.root);
             rect.anchorMin = new Vector2(0, 0);
             rect.anchorMax = new Vector2(0, 0);
@@ -271,6 +277,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (tempObject)
+            Destroy(tempObject);
         if (draggable && parentAfterDrag != null)
         {
             image.raycastTarget = true;

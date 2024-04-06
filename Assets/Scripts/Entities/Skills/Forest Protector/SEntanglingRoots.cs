@@ -50,8 +50,9 @@ public class SEntanglingRoots : Skill
             StartCasting();
         }
     }
-    private void StartCasting()
+    protected override void StartCasting()
     {
+        base.StartCasting();
         damageBuff.value = finalDamage;
         damageBuff.duration = baseDuration;
         stunBuff.duration = baseDuration;

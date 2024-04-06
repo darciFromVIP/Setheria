@@ -61,11 +61,32 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 380841323910737760, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -2.098
+      objectReference: {fileID: 0}
+    - target: {fileID: 380841323910737760, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 3.533
+      objectReference: {fileID: 0}
+    - target: {fileID: 380841323910737760, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.06899977
+      objectReference: {fileID: 0}
     - target: {fileID: 564431457798514224, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
       propertyPath: rmsCount
       value: 36
       objectReference: {fileID: 0}
+    - target: {fileID: 1272008274804297142, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53a62c38b79687544a318bc1862301e2,
+        type: 3}
     - target: {fileID: 1781081502767462174, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -86,10 +107,40 @@ PrefabInstance:
       propertyPath: m_Extents.x
       value: 7.65
       objectReference: {fileID: 0}
+    - target: {fileID: 1897027469364695227, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 3.4605
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897027469364695227, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.42953
+      objectReference: {fileID: 0}
     - target: {fileID: 3046292292109503198, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
       propertyPath: m_text
       value: Repair the Bridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046292292109503198, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046292292109503198, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046292292109503198, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046292292109503198, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3424164063009273840, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
@@ -147,6 +198,11 @@ PrefabInstance:
         type: 3}
       propertyPath: objectName
       value: Broken Bridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686262267761380507, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6476503386913762803, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
@@ -208,6 +264,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6918000272394797307, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1c50b4d805aebba488f0946d2fc8b09b,
+        type: 3}
     - target: {fileID: 8060640818864485945, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
       propertyPath: mapIcon
@@ -218,6 +280,26 @@ PrefabInstance:
         type: 3}
       propertyPath: mapTooltipText
       value: Broken Bridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437771889153660796, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -4.503
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437771889153660796, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -7.668
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437771889153660796, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.006000042
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437771889153660796, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

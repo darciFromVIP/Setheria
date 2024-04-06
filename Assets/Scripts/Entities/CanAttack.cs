@@ -185,7 +185,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void Attack()
     {
-        if (attackSpeedTimer > 0 || !canAct)
+        if (attackSpeedTimer > 0 || !canAct || isCasting)
             return;
         attackSpeedTimer = 1;                           //This is a fix against multiattacks
         canAct = false;                                 //RPC is too slow so we're doing it again on the server

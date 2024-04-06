@@ -25,6 +25,7 @@ public class SCallOfTheWild : Skill
             castingEntity.skillIndicator.ShowRadius(1, false, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
             castingEntity.skillIndicator.Casting(2.36f);
         }
+        StartCasting();
     }
     protected override void Cast()
     {

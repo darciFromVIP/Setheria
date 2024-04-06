@@ -75,6 +75,18 @@ public class StructureOptionUI : MonoBehaviour
                 else
                     GetComponent<Button>().interactable = true;
             }
+            else if (currentStructure.TryGetComponent(out Shipyard shipyard) && structureOption.structureAction == StructureAction.CallShips)
+            {
+                if (shipyard.callShipsTimer > 0)
+                {
+                    GetComponent<Button>().interactable = false;
+                    cooldownSlider.gameObject.SetActive(true);
+                    cooldownSlider.maxValue = shipyard.callShipsCooldown;
+                    cooldownSlider.value = shipyard.callShipsTimer;
+                }
+                else
+                    GetComponent<Button>().interactable = true;
+            }
             else
                 cooldownSlider.gameObject.SetActive(false);
         }
@@ -94,6 +106,12 @@ public class StructureOptionUI : MonoBehaviour
                 FindObjectOfType<ShopScreen>().ShowScreen(structureOption.soldItems);
                 break;
             case StructureAction.Upgrade:
+                if (currentStructure.TryGetComponent(out Tent tent2))
+                    if (tent2.restingPlayers.Count > 0)
+                    {
+                        FindObjectOfType<SystemMessages>().AddMessage("You can't upgrade this structure while someone is resting here!");
+                        return;
+                    }
                 FindObjectOfType<StructureScreen>().HideWindow();
                 currentStructure.CmdUpgradeStructure();
                 FindObjectOfType<GameManager>().ChangeResources(-structureOption.requiredResources);
@@ -222,6 +240,9 @@ public class StructureOptionUI : MonoBehaviour
                 float temp = Mathf.Ceil(healthToRepair / (toolLevel * 10));
                 float temp2 = FindObjectOfType<GameManager>().GetResources();
                 player6.CmdStartWorking(temp2 < temp ? temp2 : temp);
+                break;
+            case StructureAction.CallShips:
+                currentStructure.GetComponent<Shipyard>().CallShips();
                 break;
             default:
                 break;

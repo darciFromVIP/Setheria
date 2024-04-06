@@ -128,18 +128,15 @@ public class HasMana : NetworkBehaviour
     public void ChangeCorruptedMana(float amount)
     {
         corruptedMana += amount;
-        var cap = GetFinalMaxMana() * 0.7f;
+        var cap = (baseMaxMana + gearMaxMana) * 0.7f;
         if (corruptedMana < 0)
             corruptedMana = 0;
         if (corruptedMana > cap)
             corruptedMana = cap;
-        while (GetFinalMaxMana() - corruptedMana < 1)
-        {
-            corruptedMana -= 0.1f;
-        }
         UpdateMaxMana();
         Corrupted_Mana_Changed.Invoke(baseMaxMana + gearMaxMana, corruptedMana);
-        AdjustManaToMaxMana(GetFinalMaxMana() - amount);
+        if (corruptedMana != cap)
+            AdjustManaToMaxMana(GetFinalMaxMana() + amount);
     }
     private void UpdateMaxMana()
     {
@@ -148,8 +145,6 @@ public class HasMana : NetworkBehaviour
     }
     private void AdjustManaToMaxMana(float previousMaxMana)
     {
-        if (previousMaxMana > GetFinalMaxMana())
-            return;
         var percentage = GetMana() / previousMaxMana;
         if (percentage < 1)
             CmdSetMana(GetFinalMaxMana() * percentage);

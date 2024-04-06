@@ -230,10 +230,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 6366153106874677371, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366153106874677371, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6537390957117573919, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: circleRadius
       value: 2.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 6677551501297419170, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: rmsCount
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7704550234824818578, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -414,7 +429,7 @@ MonoBehaviour:
   syncInterval: 0
   restingPlayers: []
   tutorialAfterBuild: {fileID: 0}
-  restCooldown: 30
+  restCooldown: 90
   stashSlots: 42
   Stopped_Resting:
     m_PersistentCalls:

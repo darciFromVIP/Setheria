@@ -35,6 +35,7 @@ public class SRoar : Skill
             castingEntity.skillIndicator.ShowRadius(range, false, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
             castingEntity.skillIndicator.Casting(1.5f);
         }
+        StartCasting();
     }
     protected override void Cast()
     {

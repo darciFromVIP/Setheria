@@ -125,6 +125,10 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
             hpSlider.value = currentHealth;
             hpAnimationFill.value = currentHealth;
         }
+        if (currentHealth == maxHealth)
+            healthRegenText.gameObject.SetActive(false);
+        else
+            healthRegenText.gameObject.SetActive(true);
     }
     private void UpdateHealthRegen(float regen)
     {
@@ -132,7 +136,7 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
             healthRegenText.text = "+";
         else
             healthRegenText.text = "-";
-        healthRegenText.text += regen;
+        healthRegenText.text += regen.ToString("F2");
     }
     private void UpdateCorruptedHealth(float maxHealth, float corruptedHealth)
     {
@@ -180,6 +184,10 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
             mpSlider.value = currentMana;
             mpAnimationFill.value = currentMana;
         }
+        if (currentMana == maxMana)
+            manaRegenText.gameObject.SetActive(false);
+        else
+            manaRegenText.gameObject.SetActive(true);
     }
     private void UpdateManaRegen(float regen)
     {
@@ -187,7 +195,7 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
             manaRegenText.text = "+";
         else
             manaRegenText.text = "-";
-        manaRegenText.text += regen;
+        manaRegenText.text += regen.ToString("F2");
     }
     private void UpdateCorruptedMana(float maxMana, float corruptedMana)
     {

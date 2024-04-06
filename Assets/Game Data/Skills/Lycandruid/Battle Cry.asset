@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 900cceb4f3cfb6c4d9d120cd42247995, type: 3}
   m_Name: Battle Cry
   m_EditorClassIdentifier: 
+  castingEntity: {fileID: 0}
   icon: {fileID: 21300000, guid: ebb309885ddc4724fa302c4f2d4b911c, type: 3}
   cooldown: 15
   manaCost: 40
@@ -26,17 +27,23 @@ MonoBehaviour:
 
     Wolferius howls, granting himself
     and nearby allies Speed (increases <sprite=16> by <color=orange>21%</color> (20%
-    + 1*<sprite=13>)) and Energized (increases <sprite=9> by <color=orange>11%</color>
-    (10% + 1*<sprite=13>)). Lasts 8 seconds.'
+    + 1*<sprite=13>)) and Energized (increases <sprite=9> by <color=orange>31%</color>
+    (30% + 1*<sprite=13>)). Lasts 8 seconds.'
   requiredTalent: {fileID: 11400000, guid: 832a64175df6f1a4a815eecb74813275, type: 2}
   requiredTalentLevel: 1
   unlocked: 0
+  Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []
+  Skill_Casted:
+    m_PersistentCalls:
+      m_Calls: []
   range: 7
   baseDuration: 8
   movementBase: 0.2
   movementScalingStat: 19
   movementScalingValue: 0.01
-  attackSpeedBase: 0.1
+  attackSpeedBase: 0.3
   attackSpeedScalingStat: 19
   attackSpeedScalingValue: 0.01
   movementBuff: {fileID: 11400000, guid: 5df86fd4f783e854e9bb477a01b0240e, type: 2}

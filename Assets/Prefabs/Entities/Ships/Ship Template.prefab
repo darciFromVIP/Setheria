@@ -5118,6 +5118,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3003671068570471936, guid: 5a2a2ba95570a6545b0faedc7a293dc1,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3003671068570471936, guid: 5a2a2ba95570a6545b0faedc7a293dc1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3500146229671306538, guid: 5a2a2ba95570a6545b0faedc7a293dc1,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5358,6 +5368,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7792582145211125927, guid: 5a2a2ba95570a6545b0faedc7a293dc1,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792582145211125927, guid: 5a2a2ba95570a6545b0faedc7a293dc1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8636592497285462484, guid: 5a2a2ba95570a6545b0faedc7a293dc1,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5590,6 +5610,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4754506416389541859}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8551011942329262333}
   m_SourcePrefab: {fileID: 100100000, guid: 36b01e57100ea254d9149e8306d6dd8f, type: 3}
 --- !u!4 &2913504394842974162 stripped
 Transform:
@@ -5918,6 +5942,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 
+--- !u!114 &8551011942329262333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913504394842974165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4279cc879e63e54abea7e28da8292fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  mapIcon: {fileID: 21300000, guid: e72b87d4d701ae241a71b2cf7bad496c, type: 3}
+  ownedMapIcon: {fileID: 0}
+  mapTooltipText: 
+  iconSize: 0
 --- !u!1 &8731704956966985613 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3678164197958677912, guid: 36b01e57100ea254d9149e8306d6dd8f,
