@@ -191,6 +191,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     private void AdjustHealthToMaxHealth(float previousMaxHealth)
     {
         var percentage = GetHealth() / previousMaxHealth;
+        Debug.Log(percentage + "% " + GetHealth() + "/" + GetFinalMaxHealth());
         if (percentage < 1)
             CmdSetHealth(GetFinalMaxHealth() * percentage);
         else

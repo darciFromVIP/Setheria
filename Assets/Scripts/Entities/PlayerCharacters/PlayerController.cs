@@ -354,7 +354,6 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill1()
     {
         RpcExecuteSkill1();
-        attackComp.isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill1()
@@ -365,7 +364,6 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill2()
     {
         RpcExecuteSkill2();
-        attackComp.isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill2()
@@ -376,7 +374,6 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill3()
     {
         RpcExecuteSkill3();
-        attackComp.isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill3()
@@ -387,7 +384,6 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill4()
     {
         RpcExecuteSkill4();
-        attackComp.isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill4()
@@ -398,7 +394,6 @@ public class PlayerController : NetworkBehaviour
     public void CmdExecuteSkill5()
     {
         RpcExecuteSkill5();
-        attackComp.isCasting = true;
     }
     [ClientRpc]
     private void RpcExecuteSkill5()

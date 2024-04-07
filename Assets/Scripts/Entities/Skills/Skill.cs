@@ -39,7 +39,7 @@ public class Skill : ScriptableObject
     protected virtual void StartCasting()
     {
         if (castingEntity.TryGetComponent(out CanAttack attackComp))
-            attackComp.isCasting = true;
+            attackComp.CmdSetCasting(true);
     }
     protected virtual void StartCasting(Vector3 point)
     {
@@ -48,7 +48,7 @@ public class Skill : ScriptableObject
     protected virtual void Cast()
     {
         if (castingEntity.TryGetComponent(out CanAttack attackComp))
-            attackComp.isCasting = false;
+            attackComp.CmdSetCasting(false);
         if (castingEntity.TryGetComponent(out PlayerController player))
             player.SetCurrentSkill(null);
     }
@@ -67,7 +67,7 @@ public class Skill : ScriptableObject
     public virtual void StopExecute()
     {
         if (castingEntity.TryGetComponent(out CanAttack attackComp))
-            attackComp.isCasting = false;
+            attackComp.CmdSetCasting(false);
     }
     public virtual void UpdateDescription()
     {

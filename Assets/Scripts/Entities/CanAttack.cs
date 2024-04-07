@@ -183,6 +183,11 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         canAct = value;
     }
+    [Command(requiresAuthority = false)]
+    public void CmdSetCasting(bool value)
+    {
+        isCasting = value;
+    }
     public void Attack()
     {
         if (attackSpeedTimer > 0 || !canAct || isCasting)

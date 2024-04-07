@@ -23,6 +23,8 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
             if (inventoryItem)
             {
+                if (inventoryItem.parentAfterDrag == null)
+                    return;
                 if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
                 {
                     slot.UnequipItem();

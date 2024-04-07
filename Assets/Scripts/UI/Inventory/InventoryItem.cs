@@ -271,14 +271,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (draggable)
+        if (draggable && !Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.LeftShift))
             rect.anchoredPosition = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (tempObject)
-            Destroy(tempObject);
+        DestroyTempObject();
         if (draggable && parentAfterDrag != null)
         {
             image.raycastTarget = true;
@@ -315,6 +314,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 }
             }
         }
+    }
+    public void DestroyTempObject()
+    {
+        if (tempObject)
+            Destroy(tempObject);
     }
     private void QuickItemTransfer()
     {
@@ -362,6 +366,12 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnDrop(PointerEventData eventData)
     {
         var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+        if (inventoryItem == null)
+            return;
+        if (inventoryItem.parentAfterDrag == null)
+            return;
+        if (inventoryItem == this)
+            return;
         if (transform.parent.TryGetComponent(out CharacterGearSlot backpackSlot))
         {
             if (backpackSlot.itemType == ItemType.Backpack && inventoryItem.item.itemType != ItemType.Backpack)
@@ -381,6 +391,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 {
                     stashSlot.CmdDeleteItemOnClients();
                 }
+                inventoryItem.DestroyTempObject();
                 inventoryItem.DestroyItem();
             }
             else if (!Input.GetKey(KeyCode.LeftShift))
