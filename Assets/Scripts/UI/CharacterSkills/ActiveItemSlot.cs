@@ -16,7 +16,7 @@ public class ActiveItemSlot : MonoBehaviour, IDropHandler
     public TextMeshProUGUI stackText, cooldownText, keybindText;
     public Slider cooldownSlider;
 
-    private InventoryItem reference;
+    public InventoryItem reference;
     private TooltipTrigger tooltip;
     public InputEnabledScriptable inputEnabled;
 

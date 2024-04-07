@@ -5,22 +5,23 @@ using UnityEngine;
 public class SWildRage : Skill
 {
     public float baseDuration;
-    public float maxHPBase;
-    [HideInInspector] public float maxHPFinal;
-    public PlayerStat maxHPScalingStat;
-    public float maxHPScalingValue;
-    public float cooldownReductionBase;
-    public BuffScriptable maxHPBuff;
-    public BuffScriptable cooldownReductionBuff;
+    [HideInInspector] public float durationFinal;
+    public PlayerStat durationScalingStat;
+    public float durationScalingValue;
+    public float hpRegenBase;
+    [HideInInspector] public float hpRegenFinal;
+    public PlayerStat hpRegenScalingStat;
+    public float hpRegenScalingValue;
+    public BuffScriptable invulnerabilityBuff;
+    public BuffScriptable healthRegenBuff;
     public Projectile projectile;
     public override void Execute(Character self)
     {
         base.Execute(self);
         castingEntity = self;
-        maxHPBuff.duration = baseDuration;
-        cooldownReductionBuff.duration = baseDuration;
-        maxHPBuff.value = maxHPFinal;
-        cooldownReductionBuff.value = cooldownReductionBase;
+        invulnerabilityBuff.duration = durationFinal;
+        healthRegenBuff.duration = durationFinal;
+        healthRegenBuff.value = hpRegenFinal;
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill5();
         castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
@@ -47,14 +48,13 @@ public class SWildRage : Skill
     }
     public override void UpdateDescription()
     {
-        maxHPFinal = maxHPBase + GetScalingStatValue(maxHPScalingStat) * maxHPScalingValue;
-        maxHPBuff.duration = baseDuration;
+        hpRegenFinal = hpRegenBase + GetScalingStatValue(hpRegenScalingStat) * hpRegenScalingValue;
+        durationFinal = baseDuration + GetScalingStatValue(durationScalingStat) * durationScalingValue;
+        invulnerabilityBuff.duration = durationFinal;
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
-            + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nWolferius enters enraged state, granting himself Fortitude (increases "
-            + GetTextIconByStat(PlayerStat.MaxHealth) + " by <color=orange>" + maxHPFinal + "</color> (" + maxHPBase + " + "
-            + (maxHPScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(maxHPScalingStat) + ")) and Haste (increases "
-            + GetTextIconByStat(PlayerStat.CooldownReduction) + " by <color=orange>" + cooldownReductionBase + "%</color>)." +
-            " Lasts " + maxHPBuff.duration + " seconds.";
+            + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nWolferius enters enraged state, granting himself Invulnerability and Invigoration (increases "
+            + GetTextIconByStat(PlayerStat.HealthRegen) + " by <color=orange>" + hpRegenFinal + "%</color> (" + hpRegenBase + " + " + (hpRegenScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(hpRegenScalingStat) + ")." +
+            " Lasts <color=orange>" + invulnerabilityBuff.duration + "</color> (" + baseDuration + " + " + (durationScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(durationScalingStat) + ")." + " seconds.";
         base.UpdateDescription();
     }
 }

@@ -474,3 +474,19 @@ public class BSleep : Buff
         targetEntity.WakeupCharacter();
     }
 }
+public class BInvulnerability : Buff
+{
+    public BInvulnerability(float value, Character targetEntity)
+    {
+        buffType = BuffType.Invulnerability;
+        this.value = value;
+        this.targetEntity = targetEntity;
+        targetEntity.GetComponent<HasHealth>().SetInvulnerability(true);
+    }
+    public override void BuffExpired()
+    {
+        base.BuffExpired();
+        targetEntity.GetComponent<HasHealth>().SetInvulnerability(false);
+
+    }
+}

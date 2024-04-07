@@ -52,6 +52,7 @@ public class SaveDataPlayer
     public List<bool> unlockedItems = new();
     public List<bool> unlockedRecipes = new();
     public List<BuffSaveable> activebuffs = new();
+    public List<SaveDataItem> activeItems = new();
 
     public SaveDataPlayer() { }
     public SaveDataPlayer(Hero hero)
@@ -69,7 +70,6 @@ public class SaveDataPlayer
                 power = 15;
                 criticalChance = 0;
                 criticalDamage = 50;
-                attackSpeed = 4f;
                 attackRange = 1.5f;
                 armor = 0;
                 cooldownReduction = 0;
@@ -85,7 +85,6 @@ public class SaveDataPlayer
                 power = 10;
                 criticalChance = 0;
                 criticalDamage = 50;
-                attackSpeed = 4f;
                 attackRange = 7;
                 armor = 0;
                 cooldownReduction = 0;

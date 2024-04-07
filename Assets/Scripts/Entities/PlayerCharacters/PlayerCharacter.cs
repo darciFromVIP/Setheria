@@ -265,6 +265,18 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     {
                         manager.AddItem(item2);
                     }
+                    if (item.activeItems.Count > 0)
+                    {
+                        var activeItemsBar = FindObjectOfType<ActiveItemsBar>(true);
+                        for (int i = 0; i < activeItemsBar.transform.childCount; i++)
+                        {
+                            if (item.activeItems[i] != null)
+                            {
+                                var inventoryItem = manager.GetItemOfName(item.activeItems[i].name);
+                                activeItemsBar.transform.GetChild(i).GetComponent<ActiveItemSlot>().Initialize(inventoryItem);
+                            }
+                        }
+                    }
                     talentTrees.talentPoints = 0;
                     if (item.talentTrees != null)
                     {
@@ -371,8 +383,20 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 activeBuffs.Add(new BuffSaveable() { name = item.name, stacks = item.stacks, remainingDuration = item.durationTimer });
             }
         }
-        var controller = GetComponent<PlayerController>();
+        List<SaveDataItem> activeItems = new();
+        var activeItemsBar = FindObjectOfType<ActiveItemsBar>(true);
+        for (int i = 0; i < activeItemsBar.transform.childCount; i++)
+        {
+            var item = activeItemsBar.transform.GetChild(i).GetComponent<ActiveItemSlot>().reference;
+            if (item != null)
+            {
+                activeItems.Add(new SaveDataItem() { name = item.item.name, stacks = item.stacks });
+            }
+            else
+                activeItems.Add(null);
+        }
 
+        var controller = GetComponent<PlayerController>();
         FindObjectOfType<NetworkedSaveLoad>().CmdSavePlayerState( new SaveDataPlayer {
             positionX = transform.position.x,
             positionY = transform.position.y,
@@ -419,7 +443,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             unsyncedQuestlines = questlines,
             unlockedItems = unlockedItems,
             unlockedRecipes = unlockedRecipes,
-            activebuffs = activeBuffs
+            activebuffs = activeBuffs,
+            activeItems = activeItems
         });
     }
     public PlayerCharacter GetLocalPlayerCharacter()

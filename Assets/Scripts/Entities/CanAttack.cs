@@ -202,6 +202,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     private void AttackAnimation()
     {
+        netAnim.animator.speed = 1.5f / GetFinalAttackSpeed();
         int random = Random.Range(0, 4);
         if (random == 0)
             netAnim.SetTrigger(animHash_Attack1);
@@ -239,6 +240,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private void Attacked()
     {
         attackSpeedTimer = finalAttackSpeed;
+        netAnim.animator.speed = 1;
         Has_Attacked.Invoke();
     }
     public float GetAttackCooldown()

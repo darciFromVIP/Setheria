@@ -298,6 +298,9 @@ public class Character : Entity
             case BuffType.Sleep:
                 buffInstance = new BSleep(buffScriptable.value, this);
                 break;
+            case BuffType.Invulnerability:
+                buffInstance = new BInvulnerability(buffScriptable.value, this);
+                break;
             default:
                 break;
         }

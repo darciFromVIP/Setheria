@@ -189,7 +189,7 @@ public class Lycandruid : NetworkBehaviour
             projectileTravel = ProjectileTravelType.Instant,
             projectileImpact = ProjectileImpactType.Single,
             impactEffect = ProjectileImpactEffect.Buff,
-            buff = skill.maxHPBuff,
+            buff = skill.invulnerabilityBuff,
             targetedEntity = GetComponent<HasHealth>()
         });
         var proj2 = Instantiate(skill.projectile, transform.position, Quaternion.identity);
@@ -198,7 +198,7 @@ public class Lycandruid : NetworkBehaviour
             projectileTravel = ProjectileTravelType.Instant,
             projectileImpact = ProjectileImpactType.Single,
             impactEffect = ProjectileImpactEffect.Buff,
-            buff = skill.cooldownReductionBuff,
+            buff = skill.healthRegenBuff,
             targetedEntity = GetComponent<HasHealth>()
         });
         NetworkServer.Spawn(proj.gameObject);
