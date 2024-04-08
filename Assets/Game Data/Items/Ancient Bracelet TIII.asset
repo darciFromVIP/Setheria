@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Ancient Bracelet T5
+  m_Name: Ancient Bracelet TIII
   m_EditorClassIdentifier: 
   description: '__________________________________
 
@@ -18,18 +18,18 @@ MonoBehaviour:
 
     __________________________________
 
-    +15<sprite=3>
-
-    +150<sprite=5>
-
-    +100<sprite=4>
-
-    +2%<sprite=7>
+    This
+    item provides some protection against the corruption
 
     __________________________________
 
-    This
-    item provides some protection against the corruption
+    +6<sprite=3>
+
+    +50<sprite=5>
+
+    ???
+
+    ???
 
     __________________________________
 
@@ -43,13 +43,9 @@ MonoBehaviour:
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: d3bfcf019dfa6ed4c988d1cfbc26bd2f, type: 2}
-  - {fileID: 11400000, guid: f97b1c74c59a1a548927d8e539b61d35, type: 2}
-  - {fileID: 11400000, guid: b7949b47f0a5bc649963c2e2d8ee82c8, type: 2}
-  - {fileID: 11400000, guid: 93e9db49a73c4a5439ed71dcbc788328, type: 2}
+  - {fileID: 11400000, guid: a4d7773d6cade0e40a8cb8a116f90475, type: 2}
   - {fileID: 11400000, guid: 42b91eb1fa958cd4b8b3d5b0274557a8, type: 2}
-  - {fileID: 11400000, guid: a5f32c115b41313418789ac02dfdd19c, type: 2}
-  activeSkills: []
+  - {fileID: 11400000, guid: 297f03c6f2142304686fe845e94bb5ab, type: 2}
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0

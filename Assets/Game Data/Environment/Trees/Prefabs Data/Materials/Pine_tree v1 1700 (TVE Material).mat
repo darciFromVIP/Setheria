@@ -142,8 +142,8 @@ Material:
     - _GlobalOverlay: 1
     - _GlobalSize: 1
     - _GlobalWetness: 1
-    - _GradientMaxValue: 0.28070176
-    - _GradientMinValue: 0
+    - _GradientMaxValue: 0.99999994
+    - _GradientMinValue: 0.99999994
     - _HasEmissive: 1
     - _HasGradient: 1
     - _HasOcclusion: 1
@@ -250,7 +250,7 @@ Material:
     - _VertexDynamicMode: 0
     - _VertexOcclusionColorsMode: 0
     - _VertexOcclusionMaxValue: 1
-    - _VertexOcclusionMinValue: 0.779661
+    - _VertexOcclusionMinValue: 1
     - _VertexOcclusionOverlayMode: 0
     - _VertexPivotMode: 0
     - _VertexVariationMode: 1
@@ -269,9 +269,9 @@ Material:
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveTexRemap: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveUVs: {r: 1, g: 1, b: 0, a: 0}
-    - _GradientColorOne: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+    - _GradientColorOne: {r: 1, g: 1, b: 1, a: 1}
     - _GradientColorTwo: {r: 6.883181, g: 0.40773663, b: 0, a: 1}
-    - _GradientMaskRemap: {r: 0, g: 0.28070176, b: 0, a: 0}
+    - _GradientMaskRemap: {r: 1, g: 1, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainColorTwo: {r: 1, g: 1, b: 1, a: 1}
     - _MainMaskRemap: {r: 0, g: 0.92397666, b: 0, a: 0}
@@ -280,14 +280,14 @@ Material:
     - _MotionHighlightColor: {r: 0, g: 0, b: 0, a: 0}
     - _NoiseMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _RimLightRemap: {r: 0, g: 0, b: 0, a: 0}
-    - _SecondColor: {r: 0.2524475, g: 0.5754717, b: 0.39964837, a: 1}
+    - _SecondColor: {r: 0.27189392, g: 0.8867924, b: 0.2988384, a: 1}
     - _SecondColorTwo: {r: 0.10758907, g: 0.3584906, b: 0.028746892, a: 1}
     - _SecondMaskRemap: {r: 0, g: 0.21052629, b: 0, a: 0}
     - _SecondUVs: {r: 1, g: 1, b: 0, a: 0}
     - _SubsurfaceColor: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
     - _SubsurfaceDiffusion_Asset: {r: 0, g: 0, b: 0, a: 0}
-    - _VertexOcclusionColor: {r: 0.10006815, g: 0.6792453, b: 0.06087574, a: 0.5019608}
-    - _VertexOcclusionRemap: {r: 0.779661, g: 1, b: 0, a: 0}
+    - _VertexOcclusionColor: {r: 0.27053273, g: 1, b: 0.2216981, a: 0.5019608}
+    - _VertexOcclusionRemap: {r: 1, g: 1, b: 0, a: 0}
     - _render_normals: {r: -1, g: -1, b: -1, a: 0}
     - _second_uvs_mode: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
