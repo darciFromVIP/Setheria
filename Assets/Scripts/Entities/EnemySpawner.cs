@@ -184,6 +184,8 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
     public void LoadState(SaveDataWorldObject state)
     {
         timer = state.floatData1;
+        if (dayNight.IsNight())
+            NightStarted();
         foreach (var item in FindObjectsOfType<EnemyCharacter>())
         {
             if (item.GetComponent<HasHealth>().GetBaseMaxHealth() == boss.GetComponent<HasHealth>().GetBaseMaxHealth() && Vector3.Distance(transform.position, item.transform.position) <= 5)

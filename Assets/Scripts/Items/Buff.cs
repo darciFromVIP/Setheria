@@ -61,6 +61,10 @@ public abstract class Buff
     {
         stacks++;
     }
+    public virtual void DecreaseStacks()
+    {
+        stacks--;
+    }
 }
 public class BMaxHealth : Buff
 {
@@ -80,6 +84,11 @@ public class BMaxHealth : Buff
     {
         base.IncreaseStacks();
         targetEntity.GetComponent<HasHealth>().ChangeGearMaxHealth(value);
+    }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<HasHealth>().ChangeGearMaxHealth(-value);
     }
 }
 public class BMaxMana : Buff
@@ -101,6 +110,11 @@ public class BMaxMana : Buff
         base.IncreaseStacks();
         targetEntity.GetComponent<HasMana>().ChangeGearMaxMana(value);
     }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<HasMana>().ChangeGearMaxMana(-value);
+    }
 }
 public class BManaRegen : Buff
 {
@@ -121,6 +135,11 @@ public class BManaRegen : Buff
         base.IncreaseStacks();
         targetEntity.GetComponent<HasMana>().ChangeBaseManaRegen(value);
     }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<HasMana>().ChangeBaseManaRegen(-value);
+    }
 }
 public class BBleed : Buff
 {
@@ -140,6 +159,11 @@ public class BBleed : Buff
     {
         base.IncreaseStacks();
         targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(-value);
+    }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(value);
     }
 }
 public class BRegen : Buff
@@ -162,6 +186,11 @@ public class BRegen : Buff
     {
         base.IncreaseStacks();
         targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(value);
+    }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<HasHealth>().ChangeGearHealthRegen(-value);
     }
 }
 public class BInventorySlots : Buff
@@ -188,6 +217,11 @@ public class BInventorySlots : Buff
         base.IncreaseStacks();
         targetInventory.ExtendInventory((int)value);
     }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetInventory.ReduceInventory((int)value);
+    }
 }
 public class BPower : Buff
 {
@@ -207,6 +241,11 @@ public class BPower : Buff
     {
         base.IncreaseStacks();
         targetEntity.GetComponent<CanAttack>().ChangeGearPower(value);
+    }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeGearPower(-value);
     }
 }
 public class BCriticalChance : Buff
@@ -228,6 +267,11 @@ public class BCriticalChance : Buff
         base.IncreaseStacks();
         targetEntity.GetComponent<CanAttack>().ChangeGearCriticalChance(value);
     }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalChance(-value);
+    }
 }
 public class BCriticalDamage : Buff
 {
@@ -248,6 +292,11 @@ public class BCriticalDamage : Buff
         base.IncreaseStacks();
         targetEntity.GetComponent<CanAttack>().ChangeGearCriticalDamage(value);
     }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeGearCriticalDamage(-value);
+    }
 }
 public class BAttackSpeed : Buff
 {
@@ -267,6 +316,11 @@ public class BAttackSpeed : Buff
     {
         base.IncreaseStacks();
         targetEntity.GetComponent<CanAttack>().ChangeAttackSpeedMultiplier(value);
+    }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeAttackSpeedMultiplier(-value);
     }
 }
 public class BBaseAttackSpeed : Buff
@@ -303,6 +357,11 @@ public class BAttackRange : Buff
         base.IncreaseStacks();
         targetEntity.GetComponent<CanAttack>().ChangeAttackRange(value);
     }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeAttackRange(-value);
+    }
 }
 public class BArmor : Buff
 {
@@ -322,6 +381,11 @@ public class BArmor : Buff
     {
         base.IncreaseStacks();
         targetEntity.GetComponent<HasHealth>().ChangeGearArmor(value);
+    }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<HasHealth>().ChangeGearArmor(-value);
     }
 }
 public class BStun : Buff
@@ -360,6 +424,12 @@ public class BSpeed : Buff
         if (targetEntity.GetComponent<CanMove>() != null)
             targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(value);
     }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        if (targetEntity.GetComponent<CanMove>() != null)
+            targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(-value);
+    }
 }
 public class BSlow : Buff
 {
@@ -383,6 +453,12 @@ public class BSlow : Buff
         if (targetEntity.GetComponent<CanMove>() != null)
             targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(-value);
     }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        if (targetEntity.GetComponent<CanMove>() != null)
+            targetEntity.GetComponent<CanMove>().ChangeBonusMovementSpeed(value);
+    }
 }
 public class BCooldownReduction : Buff
 {
@@ -402,6 +478,11 @@ public class BCooldownReduction : Buff
     {
         base.IncreaseStacks();
         targetEntity.GetComponent<CanAttack>().ChangeGearCooldownReduction(value);
+    }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<CanAttack>().ChangeGearCooldownReduction(-value);
     }
 }
 public class BPowerScaling : Buff
@@ -458,6 +539,12 @@ public class BCorruption : Buff
         targetEntity.GetComponent<HasHealth>().ChangeCorruption(value);
         targetEntity.GetComponent<HasMana>().ChangeCorruption(value);
     }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+        targetEntity.GetComponent<HasHealth>().ChangeCorruption(-value);
+        targetEntity.GetComponent<HasMana>().ChangeCorruption(-value);
+    }
 }
 public class BSleep : Buff
 {
@@ -487,6 +574,5 @@ public class BInvulnerability : Buff
     {
         base.BuffExpired();
         targetEntity.GetComponent<HasHealth>().SetInvulnerability(false);
-
     }
 }

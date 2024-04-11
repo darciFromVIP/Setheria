@@ -28,4 +28,5 @@ public class FMODEventsScriptable : ScriptableObject
     public EventReference ItemPickUp;
     public EventReference ResourcesCollected;
     public EventReference ItemCrafted;
+    public EventReference EatFood;
 }

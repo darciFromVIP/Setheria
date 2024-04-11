@@ -15,7 +15,7 @@ public class AGiveBuff : ActionTemplate
         var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         foreach (var item in buffsToApply)
         {
-            player.AddBuff(item.name);
+            player.CmdAddBuff(item.name);
         }
         ActionFinished();
     }

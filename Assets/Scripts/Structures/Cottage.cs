@@ -8,12 +8,6 @@ public class Cottage : Tent
     protected override void Start()
     {
         base.Start();
-        if (isServer)
-            RpcUpgradeStash();
-    }
-    [ClientRpc]
-    private void RpcUpgradeStash()
-    {
         StartCoroutine(WaitForStashToLoad());
     }
     private IEnumerator WaitForStashToLoad()

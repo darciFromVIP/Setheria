@@ -8,7 +8,6 @@ public class SaveDataWorldServer
     public SaveDataWorld worldSaveData = new();
     public Dictionary<string, Dictionary<string, SaveDataWorldObject>> worldObjects = new();
 
-
     public SaveDataWorldServer() { }
     public SaveDataWorldServer(string name)
     {

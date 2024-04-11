@@ -17,13 +17,15 @@ public class CanPickup : NetworkBehaviour
     }
     public IEnumerator GoToPickup(Item item)
     {
-        if (itemToPickup == item)
+        if (itemToPickup == item || item == null)
             yield break;
         itemToPickup = item;
         canMoveComp.MoveTo(item.transform.position);
         var originDest = canMoveComp.agent.destination;
         while (true)
         {
+            if (item == null)
+                yield break;
             if (originDest != canMoveComp.agent.destination)
             {
                 itemToPickup = null;

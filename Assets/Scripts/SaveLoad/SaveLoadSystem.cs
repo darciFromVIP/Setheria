@@ -213,6 +213,19 @@ public class SaveLoadSystem : MonoBehaviour
             return null;
         }
         SaveDataWorldServer state = new();
+        var questManager = FindObjectOfType<QuestManager>(true);
+        List<bool> unlockedItems = new();
+        foreach (var item in questManager.itemDatabase.items)
+        {
+            unlockedItems.Add(item.unlocked);
+        }
+        List<bool> unlockedRecipes = new();
+        foreach (var item in FindObjectOfType<GameManager>().recipeDatabase.allRecipes)
+        {
+            unlockedRecipes.Add(item.unlocked);
+        }
+        state.worldSaveData.unlockedItems = unlockedItems;
+        state.worldSaveData.unlockedRecipes = unlockedRecipes;
         state.worldSaveData.worldName = currentWorldDataServer.worldSaveData.worldName;
         state.worldSaveData.worldSeed = currentWorldDataServer.worldSaveData.worldSeed;
         state.worldSaveData.fogOfWar = new byte[FoW.FogOfWarTeam.GetTeam(0).mapResolution.x * FoW.FogOfWarTeam.GetTeam(0).mapResolution.y];

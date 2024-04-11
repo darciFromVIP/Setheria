@@ -130,6 +130,10 @@ public class AudioManager : MonoBehaviour
     {
         PlayOneShot(fmodEventsDatabase.UnlockRecipe, default);
     }
+    public void EatFood(Vector3 position)
+    {
+        PlayOneShot(fmodEventsDatabase.EatFood, position);
+    }
     public EventInstance CreateEventInstance(EventReference eventReference)
     {
         EventInstance instance = RuntimeManager.CreateInstance(eventReference);

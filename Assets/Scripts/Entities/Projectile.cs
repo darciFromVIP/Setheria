@@ -89,6 +89,8 @@ public class Projectile : NetworkBehaviour
     {
         while (true)
         {
+            if (data.targetedEntity == null)
+                yield break;
             transform.position = Vector3.MoveTowards(transform.position, data.targetedEntity.transform.position, Time.deltaTime * data.speed);
             if (Vector3.Distance(transform.position, data.targetedEntity.transform.position) < 0.5)
             {

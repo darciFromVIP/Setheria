@@ -177,11 +177,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     }
                 }
                 moveComp.agent.enabled = false;
+                GetComponent<NetworkTransform>().enabled = false;
                 if (item.positionX == 0 && item.positionY == 0 && item.positionZ == 0)
                     GetComponent<NetworkTransform>().CmdTeleport(FindObjectOfType<WorldGenerator>().globalStartingPoint.position);
                 else
                     GetComponent<NetworkTransform>().CmdTeleport(new Vector3(item.positionX, item.positionY, item.positionZ));
                 transform.rotation = new Quaternion(item.rotationX, item.rotationY, item.rotationZ, item.rotationW);
+                GetComponent<NetworkTransform>().enabled = true;
                 moveComp.agent.enabled = true;
                 returnPoint = new Vector3(item.everstonePointX, item.everstonePointY, item.everstonePointZ);
                 heroName = item.name;
@@ -240,22 +242,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 {
                     FindObjectOfType<QuestManager>(true).LoadStateUnsynchronized(item.unsyncedQuestlines);
                     var manager = FindObjectOfType<InventoryManager>(true);
-                    if (item.unlockedItems.Count > 0)
-                    {
-                        for (int i = 0; i < manager.itemDatabase.items.Count; i++)
-                        {
-                            manager.itemDatabase.items[i].unlocked = item.unlockedItems[i];
-                        }
-                    }
-                    if (item.unlockedRecipes.Count > 0)
-                    { 
-                        var recipes = FindObjectOfType<GameManager>().recipeDatabase.allRecipes;
-                        for (int i = 0; i < recipes.Count; i++)
-                        {
-                            recipes[i].unlocked = item.unlockedRecipes[i];
-                            recipes[i].visible = item.unlockedRecipes[i];
-                        }
-                    }
                     foreach (var item3 in item.equippedGear)
                     {
                         var gearItem = manager.AddItem(item3);
@@ -293,6 +279,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     {
                         AddBuff(item5.name);
                         StartCoroutine(WaitForBuff(item5));
+                    }
+                    foreach (var item6 in skills)
+                    {
+                        item6.ExecuteOnStart(this);
                     }
                     if (item.positionX != 0 && item.positionY != 0 && item.positionZ != 0)
                         FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
@@ -365,16 +355,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             questlines.Add(item);
         }
-        List<bool> unlockedItems = new();
-        foreach (var item in questManager.itemDatabase.items)
-        {
-            unlockedItems.Add(item.unlocked);
-        }
-        List<bool> unlockedRecipes = new();
-        foreach (var item in FindObjectOfType<GameManager>().recipeDatabase.allRecipes)
-        {
-            unlockedRecipes.Add(item.unlocked);
-        }
         List<BuffSaveable> activeBuffs = new();
         foreach (var item in buffs)
         {
@@ -441,8 +421,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             talentTrees = talentTrees,
             professions = professions,
             unsyncedQuestlines = questlines,
-            unlockedItems = unlockedItems,
-            unlockedRecipes = unlockedRecipes,
             activebuffs = activeBuffs,
             activeItems = activeItems
         });
@@ -591,7 +569,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (amount > 0)
         {
             if (showTextToOthers)
+            {
                 FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
+                FindObjectOfType<AudioManager>().EatFood(transform.position);
+            }
             else
                 FindObjectOfType<FloatingText>().SpawnText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
         }
@@ -795,19 +776,19 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         attMaxHealth += value;
         ChangeAttributePoints(-value);
-        healthComp.ChangeBaseMaxHealth(value * 15);
+        healthComp.CmdChangeBaseMaxHealth(value * 15);
     }
     public void AddHealthRegenAttribute(int value)
     {
         attHealthRegen += value;
         ChangeAttributePoints(-value);
-        healthComp.ChangeBaseHealthRegen(value * 0.1f);
+        healthComp.CmdChangeBaseHealthRegen(value * 0.1f);
     }
     public void AddArmorAttribute(int value)
     {
         attArmor += value;
         ChangeAttributePoints(-value);
-        healthComp.ChangeArmor(value * 0.5f);
+        healthComp.CmdChangeArmor(value * 0.5f);
     }
     public void AddMaxManaAttribute(int value)
     {

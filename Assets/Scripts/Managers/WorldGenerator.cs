@@ -5,6 +5,7 @@ using System;
 using UnityEngine.SceneManagement;
 using Mirror;
 using UnityEngine.AI;
+using static UnityEditor.Progress;
 
 public class WorldGenerator : MonoBehaviour
 {
@@ -83,6 +84,23 @@ public class WorldGenerator : MonoBehaviour
                 yield return null;
             FindObjectOfType<GameManager>().ChangeResources(state.resources);
             FindObjectOfType<GameManager>().ChangeKnowledge(state.knowledge);
+        }
+        var manager = FindObjectOfType<InventoryManager>(true);
+        if (state.unlockedItems.Count > 0)
+        {
+            for (int i = 0; i < manager.itemDatabase.items.Count; i++)
+            {
+                manager.itemDatabase.items[i].unlocked = state.unlockedItems[i];
+            }
+        }
+        if (state.unlockedRecipes.Count > 0)
+        {
+            var recipes = FindObjectOfType<GameManager>().recipeDatabase.allRecipes;
+            for (int i = 0; i < recipes.Count; i++)
+            {
+                recipes[i].unlocked = state.unlockedRecipes[i];
+                recipes[i].visible = state.unlockedRecipes[i];
+            }
         }
     }
     private void LoadWorldObjects(Dictionary<string, Dictionary<string, SaveDataWorldObject>> worldObjects)

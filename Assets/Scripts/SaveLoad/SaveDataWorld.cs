@@ -12,4 +12,6 @@ public class SaveDataWorld
     public List<QuestlineSaveable> syncedQuestlines;
     public int resources, knowledge;
     public List<SaveDataItem> stash = new();
+    public List<bool> unlockedItems = new();
+    public List<bool> unlockedRecipes = new();
 }

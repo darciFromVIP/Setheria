@@ -12,7 +12,7 @@ public class Character : Entity
     public int level;
     protected Transform rotateTarget;
 
-    [HideInInspector] public List<Buff> buffs = new();
+    public List<Buff> buffs = new();
     public List<Skill> skills = new();
     public LayerMask enemyLayers;
     public LayerMask allyLayers;
@@ -374,8 +374,13 @@ public class Character : Entity
         {
             if (item.name == buff.name)
             {
-                item.BuffExpired();
-                buffs.Remove(item);
+                if (item.stacks > 1)
+                    item.DecreaseStacks();
+                else
+                {
+                    item.BuffExpired();
+                    buffs.Remove(item);
+                }
                 break;
             }
         }

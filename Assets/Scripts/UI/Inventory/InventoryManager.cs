@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
@@ -25,6 +26,8 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
     public InventoryItem AddItem(ItemScriptable item, int stacks, bool stackable = true)
     {
         InventoryItem result = null;
+        if (item == null)
+            return result;
         if (item.stackable && stackable)
         {
             foreach (var slot in inventorySlots)

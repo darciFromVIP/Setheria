@@ -66,7 +66,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
                     float actualCorruption = corruption - corruptionResistance;
                     if (actualCorruption > 0)
                     {
-                        ChangeCorruptedHealth(actualCorruption);
+                        RpcChangeCorruptedHealth(actualCorruption);
                     }
                 }
             }

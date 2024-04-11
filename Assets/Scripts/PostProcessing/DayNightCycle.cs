@@ -50,6 +50,10 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
         maxIndex = data.Count - 1;
         daysAlive = 1;
     }
+    public bool IsNight()
+    {
+        return currentIndex >= 3;
+    }
     private void Update()
     {
 #if UNITY_EDITOR
@@ -89,7 +93,8 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
             {
                 FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Day);
                 Day_Started.Invoke();
-                FindObjectOfType<SaveLoadSystem>().Save();
+                if (isServer)
+                    FindObjectOfType<SaveLoadSystem>().Save();
             }
             else if (currentIndex == 3)
             {
@@ -98,7 +103,8 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
                 uiData.daysAliveAnimatedText.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
                 uiData.daysAliveAnimatedText.text = "Night Falls!";
                 uiData.daysAliveAnimatedText.GetComponent<Animator>().SetTrigger("FadeInAndOut");
-                FindObjectOfType<SaveLoadSystem>().Save();
+                if (isServer)
+                    FindObjectOfType<SaveLoadSystem>().Save();
             }
         }
         else

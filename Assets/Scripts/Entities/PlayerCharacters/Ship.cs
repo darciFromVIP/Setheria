@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+
 public class Ship : Character, IInteractable, ISaveable
 {
     public int crewCapacity = 1;
@@ -23,7 +24,11 @@ public class Ship : Character, IInteractable, ISaveable
     public void CmdInteract(PlayerCharacter player, NetworkConnectionToClient conn = null)
     {
         if (crew.Count == 0)
+        {
+            if (isOwned)
+                netIdentity.RemoveClientAuthority();
             netIdentity.AssignClientAuthority(conn);
+        }
         RpcInteract(player);
     }
     [ClientRpc]
@@ -74,7 +79,15 @@ public class Ship : Character, IInteractable, ISaveable
 
     public void LoadState(SaveDataWorldObject state)
     {
-        transform.position = new Vector3(state.positionX, state.positionY, state.positionZ);
+        var moveComp = GetComponent<CanMove>();
+        moveComp.agent.enabled = false;
+        GetComponent<NetworkTransform>().enabled = false;
+        if (state.positionX == 0 && state.positionY == 0 && state.positionZ == 0)
+            GetComponent<NetworkTransform>().CmdTeleport(FindObjectOfType<Shipyard>().GetComponent<Structure>().unitSpawnPoint.position);
+        else
+            GetComponent<NetworkTransform>().CmdTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));
         transform.rotation = new Quaternion(state.rotationX, state.rotationY, state.rotationZ, state.rotationW);
+        GetComponent<NetworkTransform>().enabled = true;
+        moveComp.agent.enabled = true;
     }
 }

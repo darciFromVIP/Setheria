@@ -207,7 +207,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     private void AttackAnimation()
     {
-        netAnim.animator.speed = 1.5f / GetFinalAttackSpeed();
+        RpcSetAnimationSpeed(1.5f / GetFinalAttackSpeed());
         int random = Random.Range(0, 4);
         if (random == 0)
             netAnim.SetTrigger(animHash_Attack1);
@@ -217,6 +217,11 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             netAnim.SetTrigger(animHash_Attack3);
         if (random == 3)
             netAnim.SetTrigger(animHash_Attack4);
+    }
+    [ClientRpc]
+    private void RpcSetAnimationSpeed(float speed)
+    {
+        netAnim.animator.speed = speed;
     }
     public void MeleeAttack()                           //This reacts to animations, that are run on both the server and client
     {
@@ -245,7 +250,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private void Attacked()
     {
         attackSpeedTimer = finalAttackSpeed;
-        netAnim.animator.speed = 1;
+        RpcSetAnimationSpeed(1);
         Has_Attacked.Invoke();
     }
     public float GetAttackCooldown()

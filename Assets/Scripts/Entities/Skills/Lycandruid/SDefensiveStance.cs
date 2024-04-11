@@ -5,13 +5,6 @@ using UnityEngine;
 public class SDefensiveStance : Skill
 {
     private HasHealth selfCharacter;
-    private List<HasHealth> aggroedEnemies = new();
-    private bool enabled = true;
-    private void OnValidate()
-    {
-        aggroedEnemies.Clear();
-        enabled = true;
-    }
     public override void Execute(Character self)
     {
         castingEntity = self;
@@ -25,52 +18,21 @@ public class SDefensiveStance : Skill
     {
         base.ExecuteOnStart(self);
         selfCharacter = self.GetComponent<HasHealth>();
-        selfCharacter.Target_Received.AddListener(AddEnemy);
-        selfCharacter.Received_Target_Lost.AddListener(RemoveEnemy);
-    }
-    private void AddEnemy(HasHealth enemy)
-    {
-        if (!aggroedEnemies.Contains(enemy))
-        {
-            aggroedEnemies.Add(enemy);
-            if (!enabled)
-                return;
-            selfCharacter.ChangeGearArmor(1);
-        }
-    }
-    private void RemoveEnemy(HasHealth enemy)
-    {
-        if (aggroedEnemies.Contains(enemy))
-        {
-            aggroedEnemies.Remove(enemy);
-            if (!enabled)
-                return;
-            selfCharacter.ChangeGearArmor(-1);
-        }
+        TogglePassive(true);
     }
     public void TogglePassive(bool value)
     {
-        enabled = value;
         if (value)
-        {
-            foreach (var item in aggroedEnemies)
-            {
-                selfCharacter.ChangeGearArmor(1);
-            }
-        }
+            selfCharacter.ChangeGearArmor(0.5f * selfCharacter.GetComponent<Character>().level);
         else
-        {
-            foreach (var item in aggroedEnemies)
-            {
-                selfCharacter.ChangeGearArmor(-1);
-            }
-        }
+            selfCharacter.ChangeGearArmor(-0.5f * selfCharacter.GetComponent<Character>().level); 
     }
     public override void UpdateDescription()
     {
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
-            + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nPassive: Wolferius gains 1 " + GetTextIconByStat(PlayerStat.Armor) + " per enemy targeting him." +
-            "\n\nActive: Shapeshifts into a wolf.";
+            + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nPassive: Wolferius gains <color=orange>" + (0.5f * selfCharacter.GetComponent<Character>().level)
+            + GetTextIconByStat(PlayerStat.Armor) + "</color> (0.5 * " + GetTextIconByStat(PlayerStat.Level) + ")" + " permanently. Not active in wolf form!" 
+            +  "\n\nActive: Shapeshifts into a wolf.";
         base.UpdateDescription();
     }
 }

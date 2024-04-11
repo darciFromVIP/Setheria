@@ -1,18 +1,25 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BrokenBridge : MonoBehaviour, ISaveable
+public class BrokenBridge : NetworkBehaviour, ISaveable
 {
     public GameObject brokenModel;
     public GameObject repairedModel;
 
     private void Start()
     {
-        GetComponent<TurnInItemsInteractable>().Items_Turned_In.AddListener(RepairBridge);
+        GetComponent<TurnInItemsInteractable>().Items_Turned_In.AddListener(CmdRepairBridge);
     }
-    private void RepairBridge()
+    [Command(requiresAuthority = false)]
+    private void CmdRepairBridge()
+    {
+        RpcRepairBridge();
+    }
+    [ClientRpc]
+    private void RpcRepairBridge()
     {
         brokenModel.SetActive(false);
         repairedModel.SetActive(true);
@@ -31,6 +38,6 @@ public class BrokenBridge : MonoBehaviour, ISaveable
     public void LoadState(SaveDataWorldObject state)
     {
         if (state.boolData1)
-            RepairBridge();
+            CmdRepairBridge();
     }
 }
