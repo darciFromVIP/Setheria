@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Scrap Gloves
   m_EditorClassIdentifier: 
-  description: '+1<sprite=0>
+  description: '+0,20<sprite=1>
 
-    +50<sprite=5>
+    +25<sprite=5>
 
     __________________________________
 
@@ -22,14 +22,15 @@ MonoBehaviour:
     Hands'
   grade: 0
   itemType: 3
-  sprite: {fileID: 21300000, guid: 340644629fe9e9f4c93bfc9a3d978590, type: 3}
+  sprite: {fileID: 21300000, guid: f56f7e09d9dc64c458fd30378178d9a0, type: 3}
   stackable: 0
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: 99aab7de98c924e4ebb142ed86a01acf, type: 2}
-  - {fileID: 11400000, guid: 42b91eb1fa958cd4b8b3d5b0274557a8, type: 2}
+  - {fileID: 11400000, guid: 864d40fe18bc6e34f86b31c64c2fd1bf, type: 2}
+  - {fileID: 11400000, guid: e4e426ea19887c54fbb56ed42a662451, type: 2}
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0

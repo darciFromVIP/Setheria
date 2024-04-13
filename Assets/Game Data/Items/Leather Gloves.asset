@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Leather Gloves
   m_EditorClassIdentifier: 
-  description: '+2<sprite=0>
+  description: '+0,40<sprite=1>
 
-    +100<sprite=5>
+    +50<sprite=5>
 
     __________________________________
 
@@ -28,8 +28,9 @@ MonoBehaviour:
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: 93361adbe6005e24f833de083cb78474, type: 2}
-  - {fileID: 11400000, guid: f97b1c74c59a1a548927d8e539b61d35, type: 2}
+  - {fileID: 11400000, guid: 0aab4817e2c00fe42beb5afc7ddf5db9, type: 2}
+  - {fileID: 11400000, guid: 42b91eb1fa958cd4b8b3d5b0274557a8, type: 2}
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
