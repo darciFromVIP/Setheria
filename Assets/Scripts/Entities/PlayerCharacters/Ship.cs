@@ -83,9 +83,9 @@ public class Ship : Character, IInteractable, ISaveable
         moveComp.agent.enabled = false;
         GetComponent<NetworkTransform>().enabled = false;
         if (state.positionX == 0 && state.positionY == 0 && state.positionZ == 0)
-            GetComponent<NetworkTransform>().CmdTeleport(FindObjectOfType<Shipyard>().GetComponent<Structure>().unitSpawnPoint.position);
+            transform.position = FindObjectOfType<Shipyard>().GetComponent<Structure>().unitSpawnPoint.position;
         else
-            GetComponent<NetworkTransform>().CmdTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));
+            transform.position = new Vector3(state.positionX, state.positionY, state.positionZ);
         transform.rotation = new Quaternion(state.rotationX, state.rotationY, state.rotationZ, state.rotationW);
         GetComponent<NetworkTransform>().enabled = true;
         moveComp.agent.enabled = true;

@@ -31,8 +31,10 @@ public class SSnakePoison : Skill
     {
         base.StopExecute();
     }
-    private void StartCasting()
+    protected override void StartCasting()
     {
+        base.StartCasting();
+        Debug.Log("Started Casting");
         if (castingEntity.GetComponent<CanAttack>().enemyTarget == null)
         {
             castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
@@ -45,12 +47,14 @@ public class SSnakePoison : Skill
     }
     protected override void Cast()
     {
-        base.Cast();
+        base.Cast(); 
+        Debug.Log("Casting");
         if (castingEntity.isServer)
             castingEntity.GetComponent<EnemySkills>().CastSnakePoison();
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
         Character enemy = castingEntity.GetComponent<Character>();
-        FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.GetComponent<CanAttack>().enemyTarget.transform.position);
+        if (!sound.IsNull)
+            FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.GetComponent<CanAttack>().enemyTarget.transform.position);
         enemy.StartCooldown1();
         enemy.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
     }

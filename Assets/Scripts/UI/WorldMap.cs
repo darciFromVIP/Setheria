@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WorldMap : MonoBehaviour
+public class WorldMap : MonoBehaviour, WindowedUI
 {
     public GameObject mapWindow;
     public MapCamera mapCamera;
@@ -23,16 +23,13 @@ public class WorldMap : MonoBehaviour
         {
             ToggleWindow();
         }
-
     }
     public void ToggleWindow()
     {
-        mapCamera.gameObject.SetActive(!mapCamera.gameObject.activeSelf);
-        mapCameraButtons.gameObject.SetActive(!mapCameraButtons.gameObject.activeSelf);
-        mapButtonsWindow.gameObject.SetActive(!mapButtonsWindow.gameObject.activeSelf);
-        mapWindow.SetActive(!mapWindow.activeSelf);
-        FindObjectOfType<Tooltip>(true).Hide();
-        FindObjectOfType<TooltipWorld>(true).Hide();
+        if (IsActive())
+            HideWindow();
+        else
+            ShowWindow();
     }
     public GameObject SpawnIconOnMap(Sprite icon, string tooltipString, Vector2 positionInFog, IconSize iconSize, bool isOwnedHero = false)
     {
@@ -65,5 +62,30 @@ public class WorldMap : MonoBehaviour
         var xPos = fowMap.rect.width * xPercent;
         var yPos = fowMap.rect.height * yPercent;
         icon.transform.SetLocalPositionAndRotation(new Vector2(xPos, yPos), Quaternion.identity);
+    }
+
+    public void ShowWindow()
+    {
+        mapCamera.gameObject.SetActive(true);
+        mapCameraButtons.gameObject.SetActive(true);
+        mapButtonsWindow.gameObject.SetActive(true);
+        mapWindow.SetActive(true);
+        FindObjectOfType<Tooltip>(true).Hide();
+        FindObjectOfType<TooltipWorld>(true).Hide();
+    }
+
+    public void HideWindow()
+    {
+        mapCamera.gameObject.SetActive(false);
+        mapCameraButtons.gameObject.SetActive(false);
+        mapButtonsWindow.gameObject.SetActive(false);
+        mapWindow.SetActive(false);
+        FindObjectOfType<Tooltip>(true).Hide();
+        FindObjectOfType<TooltipWorld>(true).Hide();
+    }
+
+    public bool IsActive()
+    {
+        return mapWindow.activeSelf;
     }
 }

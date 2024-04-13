@@ -63,7 +63,7 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     {
         MoveTo(destination);
     }
-    public void MoveTo(Vector3 destination)
+    public NavMeshPathStatus MoveTo(Vector3 destination)
     {
         if (agent.isOnNavMesh)
         {
@@ -86,9 +86,10 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
                 else
                     agent.path = path;
             }
+            return path.status;
         }
+        return NavMeshPathStatus.PathInvalid;
     }
-
     private IEnumerator CheckPathEnd()
     {
         yield return new WaitForSeconds(1f);

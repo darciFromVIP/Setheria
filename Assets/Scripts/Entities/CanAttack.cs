@@ -45,7 +45,6 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private NetworkAnimator netAnim;
     private Entity entity;
     private Character character;
-    private int currentSkillIndex = 0;
 
     public EventReference attackSound;
 
@@ -167,15 +166,6 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             }
             else if (moveComp)
                 moveComp.RpcMoveTo(enemyTarget.transform.position);
-
-            if (!character.IsAnyCooldownTicking() && character.canCastSkills)
-            {
-                character.skills[currentSkillIndex].Execute(character);
-
-                currentSkillIndex++;
-                if (currentSkillIndex >= character.skills.Count)
-                    currentSkillIndex = 0;
-            }
         }
     }
     [ClientRpc]
@@ -362,6 +352,10 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                 temp = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;
             else
                 additionalRange = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;
+
+            var elevationDifference = transform.position.y - enemyTarget.transform.position.y;
+            if (elevationDifference > 0)
+                additionalRange += elevationDifference;
 
             if (moveComp)
             {

@@ -415,6 +415,7 @@ public class PlayerController : NetworkBehaviour
             yield return null;
         }
         moveComp.Stop();
+        playerCharacter.RotateToPoint(collider.transform.position);
         interactable.Interact(playerCharacter);
     }
     public bool ContainsCollider(Collider colliderToCompare)
@@ -570,7 +571,10 @@ public class PlayerController : NetworkBehaviour
         for (int i = 0; i < array.Length; i++)
         {
             if (array[i] == null)
-                collidingColliders.Remove(collidingColliders[i]);
+            {
+                if (collidingColliders.Contains(array[i]))
+                    collidingColliders.Remove(collidingColliders[i]);
+            }
         }
         return collidingColliders;
     }

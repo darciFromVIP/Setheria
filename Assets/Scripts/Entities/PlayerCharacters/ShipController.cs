@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(CanMove), typeof(CanPickup))]
 public class ShipController : NetworkBehaviour
@@ -80,7 +81,19 @@ public class ShipController : NetworkBehaviour
     }
     private IEnumerator GoToUnload(Vector3 position)
     {
-        moveComp.MoveTo(position);
+        NavMeshHit hit = new();
+        var isAreaWalkable = NavMesh.SamplePosition(position, out hit, 0.5f, FindObjectOfType<PlayerController>().movementLayerMask);
+        if (!isAreaWalkable)
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("This area is not walkable!");
+            yield break;
+        }
+        var pathStatus = moveComp.MoveTo(position);
+        if (pathStatus != NavMeshPathStatus.PathComplete || Mathf.Abs(position.y - transform.position.y) > 1)
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("Can't reach that destination!");
+            yield break;
+        }
         var originDest = moveComp.agent.destination;
         if (Vector3.Distance(transform.position, originDest) > 20)
         {
@@ -98,7 +111,7 @@ public class ShipController : NetworkBehaviour
             yield return null;
         }
         moveComp.Stop();
-        shipComp.UnloadCrew(position);
+        shipComp.UnloadCrew(transform.position + transform.forward);
     }
     private IEnumerator GoToInteract(Collider collider, IInteractable interactable)
     {

@@ -35,6 +35,9 @@ public class AUseWithTool : ActionTemplate
 
     public override bool TestExecute()
     {
-        return FindObjectOfType<CharacterScreen>(true).CheckToolLevel(toolType, requiredLevel);
+        bool value = FindObjectOfType<CharacterScreen>(true).CheckToolLevel(toolType, requiredLevel);
+        if (!value)
+            FindObjectOfType<SystemMessages>().AddMessage("You need to equip a " + toolType.ToString() + " of level " + requiredLevel + " to open this!");
+        return value;
     }
 }

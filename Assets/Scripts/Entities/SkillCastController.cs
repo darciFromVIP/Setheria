@@ -17,10 +17,13 @@ public class SkillCastController : MonoBehaviour
     }
     private void StartCasting(NetworkIdentity enemy)
     {
+        if (hasTarget)
+            return;
         hasTarget = true;
         if (!isCasting)
         {
             currentIndex = 0;
+            Debug.Log("Starting Coroutine");
             StartCoroutine("Casting");
         }
     }
@@ -31,11 +34,11 @@ public class SkillCastController : MonoBehaviour
     }
     private IEnumerator DelayedStopCasting()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         if (!hasTarget)
         {
-            StopCoroutine("Casting");
             isCasting = false;
+            StopAllCoroutines();
         }
     }
     private IEnumerator Casting()

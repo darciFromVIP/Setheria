@@ -5,7 +5,6 @@ using System;
 using UnityEngine.SceneManagement;
 using Mirror;
 using UnityEngine.AI;
-using static UnityEditor.Progress;
 
 public class WorldGenerator : MonoBehaviour
 {
@@ -129,7 +128,7 @@ public class WorldGenerator : MonoBehaviour
                     temp = itemDatabase.GetItemByName(item2.Value.name).gameObject;
                 if (item2.Key == typeof(Structure).ToString())
                     temp = structureDatabase.GetStructureByName(item2.Value.name).gameObject;
-                if (item2.Key == typeof(Entity).ToString())
+                if (item2.Key == typeof(Ship).ToString() || item2.Key == typeof(EnemyCharacter).ToString())
                     temp = entityDatabase.GetEntityByName(item2.Value.name).gameObject;
                 if (temp)
                 {

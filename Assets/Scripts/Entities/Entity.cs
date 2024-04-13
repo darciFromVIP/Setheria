@@ -95,6 +95,7 @@ public class Entity : NetworkBehaviour, IUsesAnimator
         }
         else
             gameObject.SetActive(false);
+        Debug.Log("Dead");
         On_Death.Invoke();
     }
     private IEnumerator CorpseDecay()

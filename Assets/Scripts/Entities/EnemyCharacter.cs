@@ -10,6 +10,8 @@ public class EnemyCharacter : Character, ISaveable
     [SerializeField] private LayerMask xpReceiverMask;
     [Tooltip("After chasing a player beyond this range, the enemy returns to its camp ignoring the player.")]
     public float campRadius;
+    [Tooltip("This is for saving and loading purposes. Use the same name as the prefab name.")]
+    public string nameOfEnemy;
     protected Vector3 startingPosition;
 
     protected CanAttack attackComp;
@@ -97,7 +99,8 @@ public class EnemyCharacter : Character, ISaveable
             positionX = transform.position.x,
             positionY = transform.position.y,
             positionZ = transform.position.z,
-            floatData1 = GetComponent<HasHealth>().GetHealth()
+            floatData1 = GetComponent<HasHealth>().GetHealth(),
+            name = nameOfEnemy
         };
     }
 

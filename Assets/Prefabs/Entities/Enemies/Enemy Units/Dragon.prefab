@@ -160,6 +160,11 @@ PrefabInstance:
       propertyPath: xpGranted
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: nameOfEnemy
+      value: Dragon
+      objectReference: {fileID: 0}
     - target: {fileID: 97580777487625474, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -418,9 +423,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4279cc879e63e54abea7e28da8292fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   mapIcon: {fileID: 21300000, guid: 3742e3ae79adbb843935e916df32b886, type: 3}
   ownedMapIcon: {fileID: 0}
   mapTooltipText: Chares (Boss)
+  iconSize: 0
 --- !u!4 &5188269694897958655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3983356041049155807, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
