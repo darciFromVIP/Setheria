@@ -197,7 +197,10 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     private void AttackAnimation()
     {
-        RpcSetAnimationSpeed(1.5f / GetFinalAttackSpeed());
+        if (isServer)
+            RpcSetAnimationSpeed(1.5f / GetFinalAttackSpeed());
+        else
+            CmdSetAnimationSpeed(1.5f / GetFinalAttackSpeed());
         int random = Random.Range(0, 4);
         if (random == 0)
             netAnim.SetTrigger(animHash_Attack1);
@@ -207,6 +210,11 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             netAnim.SetTrigger(animHash_Attack3);
         if (random == 3)
             netAnim.SetTrigger(animHash_Attack4);
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdSetAnimationSpeed(float speed)
+    {
+        RpcSetAnimationSpeed(speed);
     }
     [ClientRpc]
     private void RpcSetAnimationSpeed(float speed)
