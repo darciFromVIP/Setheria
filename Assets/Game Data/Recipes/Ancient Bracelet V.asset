@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
+  m_Name: Ancient Bracelet V
+  m_EditorClassIdentifier: 
+  recipeCategory: 4
+  priority: 104
+  resultItem:
+    itemData: {fileID: 11400000, guid: bf1a07b5d5587954a81f0f0a3aab5086, type: 2}
+    stacks: 1
+  componentItems:
+  - itemData: {fileID: 11400000, guid: a0b5dda13b42cc148900266b7c8d4927, type: 2}
+    stacks: 7
+  - itemData: {fileID: 11400000, guid: 1f1b11d515ab05048a319301ae769ca5, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: 054b84838b845c1469c0639bf1297a77, type: 2}
+    stacks: 1
+  resourceCost: 0
+  unlocked: 0
+  visible: 0
+  freshlyUnlocked: 0
+  requiredStructure: {fileID: 0}
+  craftingDuration: 1
+  xpGranted: 15
+  tier: 0
+  recipeItem: {fileID: 0}
+  requiredItems:
+  - {fileID: 11400000, guid: 054b84838b845c1469c0639bf1297a77, type: 2}
+  requiredStructures: []
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

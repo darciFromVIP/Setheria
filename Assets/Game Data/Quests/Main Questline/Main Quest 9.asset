@@ -13,20 +13,15 @@ MonoBehaviour:
   m_Name: Main Quest 9
   m_EditorClassIdentifier: 
   active: 0
-  label: Explore the ocean!
-  description: 'The damned water is everywhere! I need to explore every part of this
-    world in order to expand my overview. I''m sure that I''ll find something interesting
-    and find out more about this land.
-
-
-    The question is: Can I build a ship?
-    Well, to do that, I need a shipyard.'
-  icon: {fileID: 21300000, guid: c11e8a150de2fcc40b6dfbc138facd18, type: 3}
+  label: Advance your technologies.
+  description: "Upgrade Tent to Cottage.\n\u25A0Extends the Stash\r\n\u25A0Unlocks
+    new recipes\r\n"
+  icon: {fileID: 21300000, guid: ac20673568d62794681891aa4cd77a27, type: 3}
   synchronizedQuest: 1
   requiredItems: []
   requiredItemTypes: []
   requiredStructures:
-  - {fileID: 11400000, guid: 382748be377ccbb4d8c79f98652e2ab5, type: 2}
+  - {fileID: 11400000, guid: 8d29d2f2d555223459b16e12d1fa08b2, type: 2}
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
@@ -34,10 +29,7 @@ MonoBehaviour:
   customRequirements: []
   rewards:
   - rewardType: 2
-    rewardAmount: 50
-    itemReward: {fileID: 0}
-  - rewardType: 1
-    rewardAmount: 10
+    rewardAmount: 70
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:
