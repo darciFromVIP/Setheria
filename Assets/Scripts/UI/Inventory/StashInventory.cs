@@ -18,7 +18,6 @@ public class StashInventory : MonoBehaviour, WindowedUI
     {
         foreach (var item in FindObjectOfType<WorldGenerator>().lastLoadedWorldState.stash)
         {
-            Debug.Log(item.name + " stacks: " + item.stacks);
             AddItemOnClient(item);
         }
         window.SetActive(false);

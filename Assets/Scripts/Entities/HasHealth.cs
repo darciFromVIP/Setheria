@@ -185,7 +185,6 @@ public class HasHealth : NetworkBehaviour, ISaveable
         Corrupted_Health_Changed.Invoke(baseMaxHealth + gearMaxHealth, corruptedHealth);
         if (corruptedHealth != cap)
             AdjustHealthToMaxHealth(GetFinalMaxHealth() + amount);
-        Debug.Log(name + ", Corrupted Health: " + corruptedHealth + ", Max Health: " + GetFinalMaxHealth());
     }
     private void UpdateMaxHealth()
     {
@@ -195,7 +194,6 @@ public class HasHealth : NetworkBehaviour, ISaveable
     private void AdjustHealthToMaxHealth(float previousMaxHealth)
     {
         var percentage = GetHealth() / previousMaxHealth;
-        Debug.Log(percentage + "% " + GetHealth() + "/" + GetFinalMaxHealth());
         if (percentage < 1)
             CmdSetHealth(GetFinalMaxHealth() * percentage);
         else

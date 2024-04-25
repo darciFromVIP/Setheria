@@ -197,6 +197,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 ChangeHunger(item.hunger, false);
                 hungerInterval = item.hungerInterval;
                 ChangeHungerIntervalMultiplier(1);
+                Debug.Log("Saved health: " + item.baseMaxHealth);
                 healthComp.SetBaseMaxHealth(item.baseMaxHealth);
                 healthComp.SetHealth(item.health);
                 healthComp.SetBaseHealthRegen(item.baseHealthRegen);
