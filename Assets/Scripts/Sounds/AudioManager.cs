@@ -4,6 +4,8 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Progress;
+
 public enum AmbienceParameter
 {
     Day, Night
@@ -147,6 +149,8 @@ public class AudioManager : MonoBehaviour
             item.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             item.release();
         }
+        currentAmbienceInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        currentAmbienceInstance.release();
     }
     public void ChangeMasterVolume(float value)
     {

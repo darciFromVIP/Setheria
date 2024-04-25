@@ -89,6 +89,7 @@ public class WorldGenerator : MonoBehaviour
         {
             for (int i = 0; i < manager.itemDatabase.items.Count; i++)
             {
+                Debug.Log(manager.itemDatabase.items[i].name + " is unlocked: " + state.unlockedItems[i]);
                 manager.itemDatabase.items[i].unlocked = state.unlockedItems[i];
             }
         }
@@ -97,6 +98,7 @@ public class WorldGenerator : MonoBehaviour
             var recipes = FindObjectOfType<GameManager>().recipeDatabase.allRecipes;
             for (int i = 0; i < recipes.Count; i++)
             {
+                Debug.Log(recipes[i].name + " is unlocked: " + state.unlockedRecipes[i]);
                 recipes[i].unlocked = state.unlockedRecipes[i];
                 recipes[i].visible = state.unlockedRecipes[i];
             }
