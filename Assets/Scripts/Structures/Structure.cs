@@ -85,10 +85,15 @@ public class Structure : Entity, ISaveable, IInteractable
     {
         FindObjectOfType<AudioManager>().BuildingDestroyed(transform.position);
     }
-    public void RepairStructure(float amount)
+    [Command(requiresAuthority = false)]
+    public void CmdRepairStructure(float amount)
+    {
+        RpcRepairStructure(amount);
+        FindObjectOfType<GameManager>().ChangeResources(-1);
+    }
+    private void RpcRepairStructure(float amount)
     {
         GetComponent<HasHealth>().HealDamage(amount, false);
-        FindObjectOfType<GameManager>().ChangeResources(-1);
     }
     private void StructureUnderAttack(NetworkIdentity enemy)
     {

@@ -576,6 +576,8 @@ public class PlayerController : NetworkBehaviour
                     collidingColliders.Remove(collidingColliders[i]);
             }
         }
-        return collidingColliders;
+        List<Collider> result = new List<Collider>();
+        collidingColliders.CopyTo(result);
+        return result;
     }
 }

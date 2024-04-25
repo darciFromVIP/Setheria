@@ -82,11 +82,25 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
         Items_Turned_In.Invoke();
         if (Quest_Event != null)
             Quest_Event.voidEvent.Invoke();
-        GetComponent<Collider>().enabled = false;
         interactable = false;
+        CmdTurnOffCollider();
         var outline = GetComponentInChildren<HighlightTrigger>();
         if (outline)
             outline.enabled = interactable;
+        if (TryGetComponent(out ObjectMapIcon mapIcon))
+        {
+            mapIcon.CmdToggleCheckmark();
+        }
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdTurnOffCollider()
+    {
+        RpcTurnOffCollider();
+    }
+    [ClientRpc]
+    private void RpcTurnOffCollider()
+    {
+        GetComponent<Collider>().enabled = false;
     }
     [Command(requiresAuthority = false)]
     private void CmdSetAnimation()
@@ -115,6 +129,10 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
     [Command(requiresAuthority = false)]
     public void CmdDestroy()
     {
+        if (TryGetComponent(out ObjectMapIcon mapIcon))
+        {
+            mapIcon.RpcDestroyIcon();
+        }
         NetworkServer.Destroy(gameObject);
     }
 }

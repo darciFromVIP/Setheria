@@ -236,7 +236,7 @@ public class StructureOptionUI : MonoBehaviour
                     return;
                 }
                 var player6 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
-                player6.Repair_Tick.AddListener(currentStructure.RepairStructure);
+                player6.Repair_Tick.AddListener(currentStructure.CmdRepairStructure);
                 float temp = Mathf.Ceil(healthToRepair / (toolLevel * 10));
                 float temp2 = FindObjectOfType<GameManager>().GetResources();
                 player6.CmdStartWorking(temp2 < temp ? temp2 : temp);

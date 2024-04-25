@@ -212,10 +212,10 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             CmdUpdateLootability(false);
             if (!oneTimeLoot)
                 CmdStartRefreshTimer();
-            else if (TryGetComponent(out ObjectMapIcon mapIcon))
-                mapIcon.CmdDestroyIcon();
             if (destroyOnLoot)
+            {
                 CmdDestroyObject();
+            }
         }
     }
     [Command(requiresAuthority = false)]
@@ -263,6 +263,13 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         {
             outline.highlightEffect.highlighted = false;
             outline.enabled = lootable;
+        }
+        if (TryGetComponent(out ObjectMapIcon mapIcon))
+        {
+            if (oneTimeLoot && !destroyOnLoot)
+                mapIcon.CmdToggleCheckmark();
+            else if (destroyOnLoot)
+                mapIcon.CmdDestroyIcon();
         }
     }
     [Command(requiresAuthority = false)]

@@ -29,10 +29,9 @@ public class CameraRenderTexture : MonoBehaviour
         byte[] bytes = image.EncodeToJPG();
         DestroyImmediate(image);
 
-        string d = System.Environment.GetFolderPath(
-               System.Environment.SpecialFolder.Desktop) + "/Maps";
+        string d = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/Maps";
         Directory.CreateDirectory(d);
-        File.WriteAllBytes(d + fileCounter + ".jpg", bytes);
+        File.WriteAllBytes(d + "/" + fileCounter + ".jpg", bytes);
         fileCounter++;
     }
 }

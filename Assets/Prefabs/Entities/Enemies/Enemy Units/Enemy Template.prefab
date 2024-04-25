@@ -13,6 +13,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 968362111573096751, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 968362111573096751, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1625754416585789532, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -218,6 +228,16 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: dc3fc934e8ec76a41ba1ff9d4049e48b, type: 2}
+    - target: {fileID: 5258989357617670024, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258989357617670024, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5520711907254279831, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -551,7 +571,7 @@ MonoBehaviour:
   skills: []
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 2056
+    m_Bits: 2184
   allyLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -583,6 +603,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   campRadius: 20
+  nameOfEnemy: 
   Enemy_Death: {fileID: 0}
   Returned_To_Camp:
     m_PersistentCalls:

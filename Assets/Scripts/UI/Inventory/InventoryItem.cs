@@ -211,6 +211,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     
     private void UpdateCooldown(float cd)
     {
+        if (cooldownSlider is null)
+            return;
         if (cd > 0)
         {
             usable = false;

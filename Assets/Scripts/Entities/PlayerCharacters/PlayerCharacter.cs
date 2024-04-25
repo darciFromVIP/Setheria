@@ -735,10 +735,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     public void BoardShip()
     {
+        GetComponent<ObjectMapIcon>().CmdToggleIconOnMap(false);
         DisableCharacter();
     }
     public void UnboardShip(Vector3 position)
     {
+        GetComponent<ObjectMapIcon>().CmdToggleIconOnMap(true);
         transform.position = position;
         EnableCharacter();
     }

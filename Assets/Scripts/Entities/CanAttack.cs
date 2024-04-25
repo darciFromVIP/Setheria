@@ -36,6 +36,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private bool isDelayingTargetLost = false;
     private bool isStunned = false;
     public bool isCasting = false;
+    public bool flyingUnit = false;
 
     public GameObject projectilePrefab;
     public Transform projectileLaunchPoint;
@@ -361,9 +362,12 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             else
                 additionalRange = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;
 
-            var elevationDifference = transform.position.y - enemyTarget.transform.position.y;
-            if (elevationDifference > 0)
-                additionalRange += elevationDifference;
+            if (flyingUnit)
+            {
+                var elevationDifference = transform.position.y - enemyTarget.transform.position.y;
+                if (elevationDifference > 0)
+                    additionalRange += elevationDifference;
+            }
 
             if (moveComp)
             {

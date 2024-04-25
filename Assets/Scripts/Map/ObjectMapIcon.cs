@@ -58,7 +58,16 @@ public class ObjectMapIcon : NetworkBehaviour
                 ToggleIconOnMap(false);
         }
     }
-
+    [Command(requiresAuthority = false)]
+    public void CmdToggleIconOnMap(bool value)
+    {
+        RpcToggleIconOnMap(value);
+    }
+    [ClientRpc]
+    public void RpcToggleIconOnMap(bool value)
+    {
+        ToggleIconOnMap(value);
+    }
     private void ToggleIconOnMap(bool value)
     {
         if (iconInstance != null)
@@ -74,4 +83,16 @@ public class ObjectMapIcon : NetworkBehaviour
     {
         Destroy(iconInstance);
     }
+    [Command(requiresAuthority = false)]
+    public void CmdToggleCheckmark()
+    {
+        RpcToggleCheckmark();
+    }
+    [ClientRpc]
+    public void RpcToggleCheckmark()
+    {
+        if (iconInstance)
+            iconInstance.GetComponent<MapIconPrefab>().ToggleCheckmark();
+    }
+
 }
