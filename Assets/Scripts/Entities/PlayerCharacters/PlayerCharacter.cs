@@ -286,12 +286,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     }
                     if (item.positionX != 0 && item.positionY != 0 && item.positionZ != 0)
                         FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
+                    UpdateManualCategories();
                 }
             }
         }
         if (isOwned)
             UpdateSkills();
-        UpdateManualCategories();
         Debug.Log("Character Loaded!");
         isLoaded = true;
         Character_Loaded.Invoke(this);
