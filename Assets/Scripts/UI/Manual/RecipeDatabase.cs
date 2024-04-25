@@ -43,7 +43,6 @@ public class RecipeDatabase : ScriptableObject
             var character = AssetDatabase.LoadAssetAtPath<RecipeScriptable>(SOpath);
             tempRecipes.Add(character);
         }
-        Debug.Log("Loading recipes into database");
         foreach (var item in tempRecipes)
         {
             if (item.name != "Tent" && item.name != "Provisional Gathering Tool")
