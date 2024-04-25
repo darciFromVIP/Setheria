@@ -179,9 +179,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 moveComp.agent.enabled = false;
                 GetComponent<NetworkTransformUnreliable>().enabled = false;
                 if (item.positionX == 0 && item.positionY == 0 && item.positionZ == 0)
-                    GetComponent<NetworkTransformUnreliable>().CmdTeleport(FindObjectOfType<WorldGenerator>().globalStartingPoint.position);
+                    transform.position = FindObjectOfType<WorldGenerator>().globalStartingPoint.position;
                 else
-                    GetComponent<NetworkTransformUnreliable>().CmdTeleport(new Vector3(item.positionX, item.positionY, item.positionZ));
+                    transform.position = new Vector3(item.positionX, item.positionY, item.positionZ);
                 transform.rotation = new Quaternion(item.rotationX, item.rotationY, item.rotationZ, item.rotationW);
                 GetComponent<NetworkTransformUnreliable>().enabled = true;
                 moveComp.agent.enabled = true;

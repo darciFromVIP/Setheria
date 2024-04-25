@@ -25,8 +25,7 @@ public class Ship : Character, IInteractable, ISaveable
     {
         if (crew.Count == 0)
         {
-            if (isOwned)
-                netIdentity.RemoveClientAuthority();
+            netIdentity.RemoveClientAuthority();
             netIdentity.AssignClientAuthority(conn);
         }
         RpcInteract(player);
