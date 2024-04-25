@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,6 @@ public class StashInventory : MonoBehaviour, WindowedUI
 {
     public List<StashSlot> stashSlots = new();
     public GameObject window;
-    public bool loaded = false;
 
     public InventoryItem inventoryItemPrefab;
 
@@ -15,16 +13,10 @@ public class StashInventory : MonoBehaviour, WindowedUI
     {
         window.SetActive(true);
         InitializeInventory();
-        StartCoroutine(WaitForSaveData());
     }
-    private IEnumerator WaitForSaveData()
+    public void LoadStash()
     {
-        var worldGen = FindObjectOfType<WorldGenerator>();
-        while (worldGen.lastLoadedWorldState == null)
-        {
-            yield return null;
-        }
-        foreach (var item in worldGen.lastLoadedWorldState.stash)
+        foreach (var item in FindObjectOfType<WorldGenerator>().lastLoadedWorldState.stash)
         {
             Debug.Log(item.name + " stacks: " + item.stacks);
             AddItemOnClient(item);

@@ -103,6 +103,7 @@ public class WorldGenerator : MonoBehaviour
                 recipes[i].visible = state.unlockedRecipes[i];
             }
         }
+        FindObjectOfType<StashInventory>(true).LoadStash();
     }
     private void LoadWorldObjects(Dictionary<string, Dictionary<string, SaveDataWorldObject>> worldObjects)
     {
