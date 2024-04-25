@@ -77,12 +77,13 @@ public class WorldGenerator : MonoBehaviour
         if (NetworkServer.active)
             LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
         FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
+        var gameManager = FindObjectOfType<GameManager>();
         if (NetworkServer.active)
         {
-            while (FindObjectOfType<GameManager>() == null)
+            while (gameManager == null)
                 yield return null;
-            FindObjectOfType<GameManager>().ChangeResources(state.resources);
-            FindObjectOfType<GameManager>().ChangeKnowledge(state.knowledge);
+            gameManager.ChangeResources(state.resources);
+            gameManager.ChangeKnowledge(state.knowledge);
         }
         var manager = FindObjectOfType<InventoryManager>(true);
         if (state.unlockedItems.Count > 0)
@@ -95,7 +96,12 @@ public class WorldGenerator : MonoBehaviour
         }
         if (state.unlockedRecipes.Count > 0)
         {
-            var recipes = FindObjectOfType<GameManager>().recipeDatabase.allRecipes;
+            while (gameManager == null)
+            {
+                gameManager = FindObjectOfType<GameManager>();
+                yield return null;
+            }
+            var recipes = gameManager.recipeDatabase.allRecipes;
             for (int i = 0; i < recipes.Count; i++)
             {
                 Debug.Log(recipes[i].name + " is unlocked: " + state.unlockedRecipes[i]);
