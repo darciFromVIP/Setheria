@@ -6,7 +6,7 @@ using Mirror;
 using UnityEngine.Events;
 using Unity.VisualScripting;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(NetworkTransform))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class CanMove : NetworkBehaviour, IUsesAnimator
 {
     [HideInInspector] public NavMeshAgent agent;

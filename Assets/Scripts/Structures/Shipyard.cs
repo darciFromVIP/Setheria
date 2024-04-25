@@ -24,7 +24,7 @@ public class Shipyard : MonoBehaviour
         foreach (var item in FindObjectsOfType<Ship>())
         {
             item.GetComponent<CanMove>().agent.enabled = false;
-            item.GetComponent<NetworkTransform>().CmdTeleport(point);
+            item.GetComponent<NetworkTransformUnreliable>().CmdTeleport(point);
             item.GetComponent<CanMove>().agent.enabled = true;
         }
     }

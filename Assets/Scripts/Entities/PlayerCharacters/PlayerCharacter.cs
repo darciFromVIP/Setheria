@@ -177,13 +177,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     }
                 }
                 moveComp.agent.enabled = false;
-                GetComponent<NetworkTransform>().enabled = false;
+                GetComponent<NetworkTransformUnreliable>().enabled = false;
                 if (item.positionX == 0 && item.positionY == 0 && item.positionZ == 0)
-                    GetComponent<NetworkTransform>().CmdTeleport(FindObjectOfType<WorldGenerator>().globalStartingPoint.position);
+                    GetComponent<NetworkTransformUnreliable>().CmdTeleport(FindObjectOfType<WorldGenerator>().globalStartingPoint.position);
                 else
-                    GetComponent<NetworkTransform>().CmdTeleport(new Vector3(item.positionX, item.positionY, item.positionZ));
+                    GetComponent<NetworkTransformUnreliable>().CmdTeleport(new Vector3(item.positionX, item.positionY, item.positionZ));
                 transform.rotation = new Quaternion(item.rotationX, item.rotationY, item.rotationZ, item.rotationW);
-                GetComponent<NetworkTransform>().enabled = true;
+                GetComponent<NetworkTransformUnreliable>().enabled = true;
                 moveComp.agent.enabled = true;
                 returnPoint = new Vector3(item.everstonePointX, item.everstonePointY, item.everstonePointZ);
                 heroName = item.name;
@@ -850,7 +850,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         moveComp.agent.enabled = false;
         StartCoroutine(DelayedRecallEnd());
-        GetComponent<NetworkTransform>().CmdTeleport(returnPoint);
+        GetComponent<NetworkTransformUnreliable>().CmdTeleport(returnPoint);
     }
     protected IEnumerator DelayedRecallEnd()
     {

@@ -34,4 +34,9 @@ public class NetworkedSaveLoad : NetworkBehaviour
     {
         StartCoroutine(FindObjectOfType<WorldGenerator>().LoadWorldState(state));
     }
+    [ClientRpc]
+    public void RpcSaveSuccessful()
+    {
+        FindObjectOfType<SystemMessages>().AddMessage("Game saved successfully!", MsgType.Positive);
+    }
 }

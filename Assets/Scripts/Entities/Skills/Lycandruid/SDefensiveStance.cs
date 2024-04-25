@@ -17,7 +17,13 @@ public class SDefensiveStance : Skill
     {
         base.ExecuteOnStart(self);
         castingEntity = self;
+        (self as PlayerCharacter).Level_Up.AddListener(LevelUp);
         TogglePassive(true);
+    }
+    private void LevelUp(int level)
+    {
+        if (castingEntity.GetComponent<Shapeshifter>().shapeshiftedModel.gameObject.activeSelf)
+            castingEntity.GetComponent<HasHealth>().ChangeGearArmor(0.5f);
     }
     public void TogglePassive(bool value)
     {

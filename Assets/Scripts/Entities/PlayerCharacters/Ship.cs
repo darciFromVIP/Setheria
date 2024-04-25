@@ -81,13 +81,13 @@ public class Ship : Character, IInteractable, ISaveable
     {
         var moveComp = GetComponent<CanMove>();
         moveComp.agent.enabled = false;
-        GetComponent<NetworkTransform>().enabled = false;
+        GetComponent<NetworkTransformUnreliable>().enabled = false;
         if (state.positionX == 0 && state.positionY == 0 && state.positionZ == 0)
             transform.position = FindObjectOfType<Shipyard>().GetComponent<Structure>().unitSpawnPoint.position;
         else
             transform.position = new Vector3(state.positionX, state.positionY, state.positionZ);
         transform.rotation = new Quaternion(state.rotationX, state.rotationY, state.rotationZ, state.rotationW);
-        GetComponent<NetworkTransform>().enabled = true;
+        GetComponent<NetworkTransformUnreliable>().enabled = true;
         moveComp.agent.enabled = true;
     }
 }

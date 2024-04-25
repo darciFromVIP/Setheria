@@ -43,7 +43,7 @@ public class HasMana : NetworkBehaviour
                     float actualCorruption = corruption - corruptionResistance;
                     if (actualCorruption > 0)
                     {
-                        ChangeCorruptedMana(actualCorruption);
+                        RpcChangeCorruptedMana(actualCorruption);
                     }
                 }
             }

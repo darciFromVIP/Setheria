@@ -115,9 +115,9 @@ public class EnemyCharacter : Character, ISaveable
             else
                 return;
         if (!isServer)
-            GetComponent<NetworkTransform>().CmdTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));
+            GetComponent<NetworkTransformUnreliable>().CmdTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));
         else
-            GetComponent<NetworkTransform>().RpcTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));
+            GetComponent<NetworkTransformUnreliable>().RpcTeleport(new Vector3(state.positionX, state.positionY, state.positionZ));
         GetComponent<HasHealth>().SetHealth(state.floatData1);
     }
 }

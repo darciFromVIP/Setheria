@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
+using FMOD.Studio;
+using UnityEngine.UIElements;
+
 public class HasHealth : NetworkBehaviour, ISaveable
 {
     private float health;
@@ -182,6 +185,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         Corrupted_Health_Changed.Invoke(baseMaxHealth + gearMaxHealth, corruptedHealth);
         if (corruptedHealth != cap)
             AdjustHealthToMaxHealth(GetFinalMaxHealth() + amount);
+        Debug.Log(name + ", Corrupted Health: " + corruptedHealth + ", Max Health: " + GetFinalMaxHealth());
     }
     private void UpdateMaxHealth()
     {
