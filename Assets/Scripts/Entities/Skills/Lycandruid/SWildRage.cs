@@ -53,7 +53,7 @@ public class SWildRage : Skill
         invulnerabilityBuff.duration = durationFinal;
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
             + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nWolferius enters enraged state, granting himself Invulnerability and Invigoration (increases "
-            + GetTextIconByStat(PlayerStat.HealthRegen) + " by <color=orange>" + hpRegenFinal + "%</color> (" + hpRegenBase + " + " + (hpRegenScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(hpRegenScalingStat) + ")." +
+            + GetTextIconByStat(PlayerStat.HealthRegen) + " by <color=orange>" + hpRegenFinal.ToString("F1") + "</color> (" + hpRegenBase + " + " + (hpRegenScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(hpRegenScalingStat) + ")." +
             " Lasts <color=orange>" + invulnerabilityBuff.duration + "</color> (" + baseDuration + " + " + (durationScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(durationScalingStat) + ")." + " seconds.";
         base.UpdateDescription();
     }
