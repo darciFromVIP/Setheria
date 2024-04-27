@@ -125,9 +125,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     public override void OnStartAuthority()
     {
-        base.OnStartAuthority();
-        if (!isOwned)
-            return;        
+        base.OnStartAuthority();    
 
         LoadCharacter();
     }
