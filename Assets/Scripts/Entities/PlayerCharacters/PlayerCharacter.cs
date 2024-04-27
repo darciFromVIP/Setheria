@@ -99,6 +99,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             if (item.hero == hero)
                 item.SetButtonInteractability(false);
         }
+        if (!isOwned)
+            LoadCharacter();
     }
     private void Provoked(NetworkIdentity enemy)
     {
@@ -133,7 +135,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         StartCoroutine(LoadCharacterCoro());
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     protected void LoadCharacter()
     {
         StartCoroutine(LoadCharacterCoro());
