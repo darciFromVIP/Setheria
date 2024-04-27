@@ -4,7 +4,6 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
 
 public enum AmbienceParameter
 {

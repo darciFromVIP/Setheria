@@ -56,6 +56,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [SyncVar] public bool isLoaded = false;
     [System.NonSerialized] public UnityEvent Hunger_Changed = new();
     [System.NonSerialized] public UnityEvent<int> Attributes_Changed = new();
+    [System.NonSerialized] public UnityEvent<int> AttHealth_Changed = new();
+    [System.NonSerialized] public UnityEvent<int> AttHealthRegen_Changed = new();
+    [System.NonSerialized] public UnityEvent<int> AttArmor_Changed = new();
+    [System.NonSerialized] public UnityEvent<int> AttMana_Changed = new();
+    [System.NonSerialized] public UnityEvent<int> AttManaRegen_Changed = new();
+    [System.NonSerialized] public UnityEvent<int> AttPower_Changed = new();
+    [System.NonSerialized] public UnityEvent<int> AttCritChance_Changed = new();
+    [System.NonSerialized] public UnityEvent<int> AttCritDmg_Changed = new();
+    [System.NonSerialized] public UnityEvent<int> AttCDR_Changed = new();
     [System.NonSerialized] public UnityEvent<List<Skill>> Skills_Changed = new();
 
     public ItemPrefabDatabase itemDatabase;
@@ -99,7 +108,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             if (item.hero == hero)
                 item.SetButtonInteractability(false);
         }
-        if (!isOwned)
+        if (!isOwned && !NetworkServer.active)                      // Sync other players' characters when the client connects
             LoadCharacter();
     }
     private void Provoked(NetworkIdentity enemy)
@@ -192,12 +201,20 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 xp = item.xp;
                 maxXp = item.maxXp;
                 ChangeAttributePoints(item.attributePoints);
+                attPower = item.attPower;
+                attMaxMana = item.attMana;
+                attManaRegen = item.attManaRegen;
+                attMaxHealth = item.attHealth;
+                attHealthRegen = item.attHealthRegen;
+                attCooldownReduction = item.attCooldownReduction;
+                attArmor = item.attArmor;
+                attCriticalChance = item.attCritChance;
+                attCriticalDamage = item.attCritDamage;
                 Xp_Changed.Invoke(xp, maxXp);
                 maxHunger = item.maxHunger;
                 ChangeHunger(item.hunger, false);
                 hungerInterval = item.hungerInterval;
                 ChangeHungerIntervalMultiplier(1);
-                Debug.Log("Saved health: " + item.baseMaxHealth);
                 healthComp.SetBaseMaxHealth(item.baseMaxHealth);
                 healthComp.SetHealth(item.health);
                 healthComp.SetBaseHealthRegen(item.baseHealthRegen);
@@ -241,6 +258,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 }
                 if (isOwned)
                 {
+                    AttPower_Changed.Invoke(attPower);
+                    AttArmor_Changed.Invoke(attArmor);
+                    AttCDR_Changed.Invoke(attCooldownReduction);
+                    AttCritChance_Changed.Invoke(attCriticalChance);
+                    AttCritDmg_Changed.Invoke(attCriticalDamage);
+                    AttHealthRegen_Changed.Invoke(attHealthRegen);
+                    AttHealth_Changed.Invoke(attMaxHealth);
+                    AttManaRegen_Changed.Invoke(attManaRegen);
+                    AttMana_Changed.Invoke(attMaxMana);
+
                     FindObjectOfType<QuestManager>(true).LoadStateUnsynchronized(item.unsyncedQuestlines);
                     var manager = FindObjectOfType<InventoryManager>(true);
                     foreach (var item3 in item.equippedGear)
@@ -394,6 +421,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             maxXp = maxXp,
             xp = xp,
             attributePoints = attributePoints,
+            attArmor = attArmor,
+            attCritChance = attCriticalChance,
+            attCritDamage = attCriticalDamage,
+            attHealth = attMaxHealth,
+            attCooldownReduction = attCooldownReduction,
+            attHealthRegen = attHealthRegen,
+            attMana = attMaxMana,
+            attManaRegen = attManaRegen,
+            attPower = attPower,
             name = heroName,
             inventory = items,
             equippedGear = gear,
@@ -780,54 +816,63 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         attMaxHealth += value;
         ChangeAttributePoints(-value);
         healthComp.CmdChangeBaseMaxHealth(value * 15);
+        AttHealth_Changed.Invoke(attMaxHealth);
     }
     public void AddHealthRegenAttribute(int value)
     {
         attHealthRegen += value;
         ChangeAttributePoints(-value);
         healthComp.CmdChangeBaseHealthRegen(value * 0.1f);
+        AttHealthRegen_Changed.Invoke(attHealthRegen);
     }
     public void AddArmorAttribute(int value)
     {
         attArmor += value;
         ChangeAttributePoints(-value);
         healthComp.CmdChangeArmor(value * 0.5f);
+        AttArmor_Changed.Invoke(attArmor);
     }
     public void AddMaxManaAttribute(int value)
     {
         attMaxMana += value;
         ChangeAttributePoints(-value);
         manaComp.CmdChangeBaseMaxMana(value * 15);
+        AttMana_Changed.Invoke(attMaxMana);
     }
     public void AddManaRegenAttribute(int value)
     {
         attManaRegen += value;
         ChangeAttributePoints(-value);
         manaComp.CmdChangeBaseManaRegen(value * 0.1f);
+        AttManaRegen_Changed.Invoke(attManaRegen);
     }
     public void AddPowerAttribute(int value)
     {
         attPower += value;
         ChangeAttributePoints(-value);
         attackComp.CmdChangePower(value * 1);
+        AttPower_Changed.Invoke(attPower);
     }
     public void AddCriticalChanceAttribute(int value)
     {
         attCriticalChance += value;
         ChangeAttributePoints(-value);
         attackComp.CmdChangeCriticalChance(value * 0.5f);
+        AttCritChance_Changed.Invoke(attCriticalChance);
     }
     public void AddCriticalDamageAttribute(int value)
     {
         attCriticalDamage += value;
         ChangeAttributePoints(-value);
         attackComp.CmdChangeCriticalDamage(value * 1);
+        AttCritDmg_Changed.Invoke(attCriticalDamage);
     }
     public void AddCooldownReductionAttribute(int value)
     {
         attCooldownReduction += value;
         ChangeAttributePoints(-value);
         attackComp.CmdChangeCooldownReduction(1f);
+        AttCDR_Changed.Invoke(attCooldownReduction);
     }
     public void SetReturnPoint()
     {

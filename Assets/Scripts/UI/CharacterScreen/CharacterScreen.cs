@@ -13,6 +13,7 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
 
     public TextMeshProUGUI powerText, criticalChanceText, criticalDamageText, cooldownReductionText, healthText, healthRegenText, manaText, manaRegenText, armorText;
     public TextMeshProUGUI levelText, xpText, attributePointsText, nameText;
+    public TextMeshProUGUI attPowerText, attCritChanceText, attCritDmgText, attCDRText, attMaxHealthText, attHealthRegenText, attMaxManaText, attManaRegenText, attArmorText;
     public Slider xpSlider;
     public Transform modelPoint;
     public HeroModelDatabase modelDatabase;
@@ -30,6 +31,15 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
         player.Xp_Changed.AddListener(UpdateXp);
         player.Level_Up.AddListener(UpdateLevel);
         player.Attributes_Changed.AddListener(UpdateAttributes);
+        player.AttArmor_Changed.AddListener(UpdateAttArmor);
+        player.AttCDR_Changed.AddListener(UpdateAttCDR);
+        player.AttCritChance_Changed.AddListener(UpdateAttCritChance);
+        player.AttCritDmg_Changed.AddListener(UpdateAttCritDmg);
+        player.AttHealthRegen_Changed.AddListener(UpdateAttHealthRegen);
+        player.AttManaRegen_Changed.AddListener(UpdateAttManaRegen);
+        player.AttHealth_Changed.AddListener(UpdateAttHealth);
+        player.AttMana_Changed.AddListener(UpdateAttMana);
+        player.AttPower_Changed.AddListener(UpdateAttPower);
         var attackComp = player.GetComponent<CanAttack>();
         attackComp.Power_Changed.AddListener(UpdatePower);
         attackComp.Critical_Chance_Changed.AddListener(UpdateCriticalChance);
@@ -188,6 +198,42 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     public void CooldownReductionAtt()
     {
         playerCharacter.AddCooldownReductionAttribute(1);
+    }
+    private void UpdateAttPower(int points)
+    {
+        attPowerText.text = "(" + points + ")";
+    }
+    private void UpdateAttCritChance(int points)
+    {
+        attCritChanceText.text = "(" + points + ")";
+    }
+    private void UpdateAttCritDmg(int points)
+    {
+        attCritDmgText.text = "(" + points + ")";
+    }
+    private void UpdateAttCDR(int points)
+    {
+        attCDRText.text = "(" + points + ")";
+    }
+    private void UpdateAttHealth(int points)
+    {
+        attMaxHealthText.text = "(" + points + ")";
+    }
+    private void UpdateAttHealthRegen(int points)
+    {
+        attHealthRegenText.text = "(" + points + ")";
+    }
+    private void UpdateAttMana(int points)
+    {
+        attMaxManaText.text = "(" + points + ")";
+    }
+    private void UpdateAttManaRegen(int points)
+    {
+        attManaRegenText.text = "(" + points + ")";
+    }
+    private void UpdateAttArmor(int points)
+    {
+        attArmorText.text = "(" + points + ")";
     }
     public bool CheckToolLevel(ItemType toolType, int compareTo)
     {

@@ -20,6 +20,15 @@ public class SaveDataPlayer
     public int xp;
     public int maxXp;
     public int attributePoints;
+    public int attPower;
+    public int attCritChance;
+    public int attCritDamage;
+    public int attCooldownReduction;
+    public int attHealth;
+    public int attHealthRegen;
+    public int attMana;
+    public int attManaRegen;
+    public int attArmor;
     public List<SaveDataItem> inventory = new();
     public List<SaveDataItem> equippedGear = new();
     public int hunger;
