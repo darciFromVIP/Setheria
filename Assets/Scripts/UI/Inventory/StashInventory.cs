@@ -72,7 +72,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
                 return true;
             }
         }
-        FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
+        FindObjectOfType<SystemMessages>().AddMessage("Inventory is full.");
         return false;
     }
     public bool AddItemOnClient(ItemScriptable item, int stacks, bool isLoading = false)
@@ -206,7 +206,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
                 return slot.transform;
             }
         }
-        FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
+        FindObjectOfType<SystemMessages>().AddMessage("Inventory is full.");
         return null;
     }
 

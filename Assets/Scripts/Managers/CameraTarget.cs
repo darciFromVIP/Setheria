@@ -6,6 +6,7 @@ using Cinemachine;
 using UnityEngine.UI;
 using UnityEditor;
 using HighlightPlus;
+using static UnityEditor.PlayerSettings;
 
 public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
 {
@@ -119,21 +120,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             if (Input.GetKeyDown(settingsManager.settings.cameraLock))
             {
-                isKeyPressed = true;
-                lastKeyPressTime = Time.time;
-
-                isFollowing = !isFollowing;
-                if (isFollowing)
-                {
-                    StartCoroutine(DelayedDamping());
-                }
-                else
-                {
-                    StopAllCoroutines();
-                    cam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
-                    cam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
-                    cam.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 1;
-                }
+                CenterCamera(true);
             }
         }
         if (isKeyPressed && !Input.GetKey(settingsManager.settings.cameraLock))
@@ -145,9 +132,6 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             pos = new Vector3(localPlayerCharacter.transform.position.x, transform.position.y, localPlayerCharacter.transform.position.z);
         }
-
-        float playerHeight = transform.position.y;
-        //float groundLevel = Terrain.activeTerrain.SampleHeight(pos);  //Height based on Terrain
 
         if (zoomEnabled)
         {
@@ -165,7 +149,6 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
                 followOffset = zoomDir * cameraZoomMax;
         }
 
-        pos.y = Mathf.Clamp(Mathf.Lerp(pos.y, playerHeight, Time.deltaTime * 10), pos.y - 0.1f, pos.y + 0.1f);
         transform.rotation = Quaternion.Euler(rottarget);
 
         if (camBounds.bounds.Contains(pos + followOffset * 1.5f))
@@ -176,17 +159,31 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
         else
             followOffset = cam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
     }
-    private IEnumerator DelayedDamping()
+    public void CenterCamera(bool toggleLock)
     {
-        cam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
-        cam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
-        cam.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
-        float time = 1;
-        while (time > 0)
+        if (toggleLock)
         {
-            cam.transform.LookAt(localPlayerCharacter.transform);
-            time -= Time.deltaTime;
-            yield return null;
+            isKeyPressed = true;
+            lastKeyPressTime = Time.time;
+
+            isFollowing = !isFollowing;
+        }
+        else
+            transform.position = new Vector3(localPlayerCharacter.transform.position.x, transform.position.y, localPlayerCharacter.transform.position.z);
+
+        if (isFollowing)
+        {
+            cam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
+            cam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
+            cam.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 0;
+            cam.LookAt = localPlayerCharacter.transform;
+        }
+        else
+        {
+            cam.LookAt = null;
+            cam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
+            cam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
+            cam.GetCinemachineComponent<CinemachineTransposer>().m_ZDamping = 1;
         }
     }
     public void Teleport(Transform dest)

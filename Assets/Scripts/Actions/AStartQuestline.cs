@@ -23,7 +23,7 @@ public class AStartQuestline : ActionTemplate
     {
         if (FindObjectOfType<QuestManager>().questlines.Contains(questlineStarted))
         {
-            FindObjectOfType<SystemMessages>().AddMessage("You already accepted this questline!");
+            FindObjectOfType<SystemMessages>().AddMessage("You already accepted this questline.");
             return false;
         }
         return true;

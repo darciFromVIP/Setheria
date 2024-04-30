@@ -97,6 +97,7 @@ public class ActiveItemSlot : MonoBehaviour, IDropHandler
         if (isFree)
         {
             var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+            inventoryItem.DestroyTempObject();
             if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot)
                 || (inventoryItem.parentAfterDrag.TryGetComponent(out InventorySlot inventorySlot) && inventoryItem.item.itemType == ItemType.None))
             {

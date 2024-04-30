@@ -236,6 +236,13 @@ public class QuestScriptable : ScriptableObject, IComparable
                     {
                         if (requiredItem.Key == playerItem.item.name)
                             requiredItemsDic[requiredItem.Key] += playerItem.stacks;
+                        
+                        foreach (var item in requiredItemTypes)
+                        {
+                            if (item.requiredItemType == playerItem.item.itemType)
+                                item.currentItemTypeAmount += playerItem.stacks;
+                        }
+
                     }
                 }
                 CheckQuestCompletion();

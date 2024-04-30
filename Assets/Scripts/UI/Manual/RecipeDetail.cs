@@ -9,7 +9,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     public TextMeshProUGUI resultItemNameText, resourceCostText, structureRequirement, professionRequirement;
     public Transform resultItemParent, components;
     public Button craftBtn, craftAllBtn;
-    public GameObject amountUI, blockingUI;
+    public GameObject blockingUI;
     public TMP_InputField amountInput;
 
     private int amount = 1;
@@ -190,6 +190,8 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     public void ChangeAmount(int value)
     {
+        if (currentOpenedRecipe == null)
+            return;
         amount = value;
         if (amount < 1)
             amount = 1;

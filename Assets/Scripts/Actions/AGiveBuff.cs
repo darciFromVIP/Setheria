@@ -31,7 +31,7 @@ public class AGiveBuff : ActionTemplate
                 return true;
             else
             {
-                FindObjectOfType<SystemMessages>().AddMessage("You already have such non-stackable buff!");
+                FindObjectOfType<SystemMessages>().AddMessage("You already have such non-stackable buff.");
                 return false;
             }
         }

@@ -14,6 +14,6 @@ public class RunePillar : TurnInItemsInteractable
             GetComponentInChildren<TooltipTrigger>(true).enabled = false;
         }
         else
-            FindObjectOfType<SystemMessages>().AddMessage("The required quest is not active!");
+            FindObjectOfType<SystemMessages>().AddMessage("The required quest is not active.");
     }
 }

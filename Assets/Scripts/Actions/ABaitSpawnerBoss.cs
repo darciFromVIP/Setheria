@@ -34,7 +34,7 @@ public class ABaitSpawnerBoss : ActionTemplate
                 }
             }
         }
-        FindObjectOfType<SystemMessages>().AddMessage("You aren't standing near a Cave!");
+        FindObjectOfType<SystemMessages>().AddMessage("You aren't standing near a Cave.");
         return false;
     }
 }

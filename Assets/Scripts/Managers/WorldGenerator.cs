@@ -90,6 +90,8 @@ public class WorldGenerator : MonoBehaviour
         {
             for (int i = 0; i < manager.itemDatabase.items.Count; i++)
             {
+                if (state.unlockedItems.Count <= i)
+                    break;
                 manager.itemDatabase.items[i].unlocked = state.unlockedItems[i];
             }
         }

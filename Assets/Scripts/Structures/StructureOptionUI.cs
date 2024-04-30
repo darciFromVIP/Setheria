@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class StructureOptionUI : MonoBehaviour
 {
     private StructureOption structureOption;
@@ -15,6 +16,8 @@ public class StructureOptionUI : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(OnClickEvent);
         GetComponent<Image>().sprite = icon;
         currentStructure = GetComponentInParent<StructureScreen>().currentStructure;
+        if (currentStructure.TryGetComponent(out Tent tent))
+            tent.Stopped_Resting.AddListener(TentStoppedResting);
         string description = structureOption.description;
         if (currentStructure.demolishCost > 0 && structureOption.structureAction == StructureAction.Demolish)
             description += "\n\nDemolish Cost: " + currentStructure.demolishCost + "<sprite=15>";
@@ -109,7 +112,7 @@ public class StructureOptionUI : MonoBehaviour
                 if (currentStructure.TryGetComponent(out Tent tent2))
                     if (tent2.restingPlayers.Count > 0)
                     {
-                        FindObjectOfType<SystemMessages>().AddMessage("You can't upgrade this structure while someone is resting here!");
+                        FindObjectOfType<SystemMessages>().AddMessage("You can't upgrade this structure while someone is resting here.");
                         return;
                     }
                 FindObjectOfType<StructureScreen>().HideWindow();
@@ -127,7 +130,7 @@ public class StructureOptionUI : MonoBehaviour
                     GetComponentInParent<StructureScreen>().HideWindow();
                 }
                 else
-                    FindObjectOfType<SystemMessages>().AddMessage("You don't have enough Resources!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You don't have enough Resources.");
                 break;
             case StructureAction.TurnInResourcesAndKnowledge:
                 var items = FindObjectOfType<InventoryManager>(true).GetAllItems();
@@ -185,7 +188,7 @@ public class StructureOptionUI : MonoBehaviour
             case StructureAction.Rest:
                 var player4 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
                 if (player4.state != PlayerState.None)
-                    FindObjectOfType<SystemMessages>().AddMessage("You are busy right now!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You are busy right now.");
                 else
                 {
                     var tent = currentStructure.GetComponent<Tent>();
@@ -207,21 +210,21 @@ public class StructureOptionUI : MonoBehaviour
                             FindObjectOfType<TentButton>().HideBTN();
                     }
                     else
-                        FindObjectOfType<SystemMessages>().AddMessage("You are not resting in this tent!");
+                        FindObjectOfType<SystemMessages>().AddMessage("You are not resting in this tent.");
                 }
                 else
-                    FindObjectOfType<SystemMessages>().AddMessage("You are not resting right now!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You are not resting right now.");
                 break;
             case StructureAction.Repair:
                 if (FindObjectOfType<GameManager>().GetResources() == 0)
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("You have not enough Resources!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You have not enough Resources.");
                     return;
                 }
                 var healthToRepair = currentStructure.GetComponent<HasHealth>().GetFinalMaxHealth() - currentStructure.GetComponent<HasHealth>().GetHealth();
                 if (healthToRepair == 0)
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("This structure is fully repaired!");
+                    FindObjectOfType<SystemMessages>().AddMessage("This structure is fully repaired.");
                     return;
                 }
                 int toolLevel = 0;
@@ -232,7 +235,7 @@ public class StructureOptionUI : MonoBehaviour
                 }
                 if (toolLevel == 0)
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("You don't have a Handicraft Tool equipped!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You don't have a Handicraft Tool equipped.");
                     return;
                 }
                 var player6 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();

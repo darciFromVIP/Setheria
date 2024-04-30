@@ -26,7 +26,7 @@ public class ARecall : ActionTemplate
             return true;
         else
         {
-            FindObjectOfType<SystemMessages>().AddMessage("You need to set a return point first!");
+            FindObjectOfType<SystemMessages>().AddMessage("You need to set a return point first.");
             return false;
         }
     }

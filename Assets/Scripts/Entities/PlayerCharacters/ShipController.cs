@@ -85,19 +85,19 @@ public class ShipController : NetworkBehaviour
         var isAreaWalkable = NavMesh.SamplePosition(position, out hit, 0.5f, FindObjectOfType<PlayerController>().movementLayerMask);
         if (!isAreaWalkable)
         {
-            FindObjectOfType<SystemMessages>().AddMessage("This area is not walkable!");
+            FindObjectOfType<SystemMessages>().AddMessage("This area is not walkable.");
             yield break;
         }
         var pathStatus = moveComp.MoveTo(position);
         if (pathStatus != NavMeshPathStatus.PathComplete || Mathf.Abs(position.y - transform.position.y) > 1)
         {
-            FindObjectOfType<SystemMessages>().AddMessage("Can't reach that destination!");
+            FindObjectOfType<SystemMessages>().AddMessage("Can't reach that destination.");
             yield break;
         }
         var originDest = moveComp.agent.destination;
         if (Vector3.Distance(transform.position, originDest) > 20)
         {
-            FindObjectOfType<SystemMessages>().AddMessage("Target location is too far!");
+            FindObjectOfType<SystemMessages>().AddMessage("Target location is too far.");
             yield break;
         }
         while (true)

@@ -45,7 +45,7 @@ public class AGainProfession : ActionTemplate
         var prof = FindObjectOfType<GameManager>().localPlayerCharacter.professions;
         if (prof.GetProfessionExperience(professionType) > 0)
         {
-            FindObjectOfType<SystemMessages>().AddMessage("You can't use this anymore!", MsgType.Error);
+            FindObjectOfType<SystemMessages>().AddMessage("You can't use this anymore.", MsgType.Error);
             return false;
         }
         else

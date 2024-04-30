@@ -491,7 +491,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             maxXp = (int)(BaseMaxXpValue * level * MaxXpMultiplier);
             Level_Up.Invoke(level);
             Debug.Log("Level up: " + level);
-            if (level == 2)
+            if (level == 2 && isOwned)
             {
                 foreach (var item in levelUpTutorial)
                 {
@@ -567,6 +567,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         moveComp.Stop();
         CreateItem(new SaveDataItem() { name = itemToDrop.item.name, stacks = itemToDrop.stacks }, destination);
         itemToDrop.DestroyItem();
+        FindObjectOfType<RecipeDetail>(true).UpdateCurrentDetails();
     }
     public IEnumerator GoToGiveItem(InventoryItem itemToGive, PlayerCharacter player)
     {
@@ -585,6 +586,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         moveComp.Stop();
         CmdAddItemToInventory(itemToGive.item.name, itemToGive.stacks, player.netIdentity);
         itemToGive.DestroyItem();
+        FindObjectOfType<RecipeDetail>(true).UpdateCurrentDetails();
     }
     [Command]
     public void CmdAddItemToInventory(string item, int stacks, NetworkIdentity targetPlayer)
@@ -601,7 +603,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         hunger += amount;
         if ((hunger == 20 || hunger == 10) && amount < 0)
         {
-            FindObjectOfType<SystemMessages>().AddMessage("You are starving!");
+            FindObjectOfType<SystemMessages>().AddMessage("You are starving.");
         }
         if (amount > 0)
         {
@@ -714,7 +716,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     return false;
                 if (HasBuff("Poisoned"))
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("You can't eat while poisoned! You would throw up immediately...");
+                    FindObjectOfType<SystemMessages>().AddMessage("You can't eat while poisoned. You would throw up immediately...");
                     return false;
                 }
                 break;
@@ -751,12 +753,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             case PlayerStat.CorruptedHealthMana:
                 if (GetComponent<HasHealth>().GetCorruptedHealth() <= 0)
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("You are not corrupted!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You are not corrupted.");
                     return false;
                 }
                 if (GetComponent<HasMana>().GetCorruptedMana() <= 0)
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("You are not corrupted!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You are not corrupted.");
                     return false;
                 }
                 break;

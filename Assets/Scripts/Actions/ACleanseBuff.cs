@@ -29,7 +29,7 @@ public class ACleanseBuff : ActionTemplate
             if (player.HasBuff(item.name))
                 return true;
         }
-        FindObjectOfType<SystemMessages>().AddMessage("You don't have any valid buffs to cleanse!");
+        FindObjectOfType<SystemMessages>().AddMessage("You don't have any valid buffs to cleanse.");
         return false;
     }
 }

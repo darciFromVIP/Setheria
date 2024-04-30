@@ -20,6 +20,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private bool draggable = true;
     public bool usable = true;
     private GameObject tempObject = null;
+    public ItemScriptable unknownItemRef;
 
     [HideInInspector] public Transform parentAfterDrag;
     [HideInInspector] public ItemScriptable item;
@@ -126,6 +127,23 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         GetComponent<TooltipTrigger>().SetText(item.name, item.description, item.sprite);
         newItemNotification.SetActive(false);
     }
+    public void InitializeUnknownItem(int requiredStacks)                                           // For TurnInItemsInteractable
+    {
+        item = unknownItemRef;
+        image.sprite = item.sprite;
+        border.sprite = gradeDatabase.GetBorderByName(item.grade.ToString());
+        if (requiredStacks > 0)
+        {
+            stackText.gameObject.SetActive(true);
+            stackText.text = 0 + "/" + requiredStacks.ToString();
+        }
+        else
+            stackText.gameObject.SetActive(false);
+        draggable = false;
+        GetComponent<Button>().interactable = false;
+        GetComponent<TooltipTrigger>().SetText(item.name, item.description, item.sprite);
+        newItemNotification.SetActive(false);
+    }
     public void ChangeStacks(int stacks, bool withNotification = true)
     {
         if (stacks > 0 && withNotification)
@@ -142,6 +160,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (this.stacks <= 0)
         {
             DestroyItem();
+            FindObjectOfType<RecipeDetail>(true).UpdateCurrentDetails();
         }
     }
     public void UseItem()
@@ -326,6 +345,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (stashInventory == null)
             return;
+        if (!stashInventory.IsActive())
+            return;
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Mouse0) && !Input.GetKey(KeyCode.LeftControl))
         {
             if (inventoryManagerParent && stashInventory)                       // To Stash
@@ -344,24 +365,21 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void UnequipItem()
     {
+        FindObjectOfType<Tooltip>(true).Hide();
         var slot = FindObjectOfType<InventoryManager>(true).GetFreeSlot();
         if (slot)
         {
+            UnequipItemWithoutMoving();
             transform.parent.GetComponent<CharacterGearSlot>().UnequipItem();
             transform.SetParent(slot);
-            var player = FindObjectOfType<GameManager>().localPlayerCharacter;
-            foreach (var item in item.passiveBuffs)
-            {
-                if (item.buffType == BuffType.InventorySlots)
-                {
-                    if (!FindObjectOfType<InventoryManager>(true).TestReduceInventory((int)item.value))
-                        return;
-                }
-            }
-            foreach (var item in item.passiveBuffs)
-            {
-                player.CmdRemoveBuff(item.name);
-            }
+        }
+    }
+    public void UnequipItemWithoutMoving()
+    {
+        var player = FindObjectOfType<GameManager>().localPlayerCharacter;
+        foreach (var item in item.passiveBuffs)
+        {
+            player.CmdRemoveBuff(item.name);
         }
     }
 
@@ -370,9 +388,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
         if (inventoryItem == null)
             return;
-        if (inventoryItem.parentAfterDrag == null)
-            return;
-        if (inventoryItem == this)
+        if (inventoryItem.parentAfterDrag == null || inventoryItem == this || !draggable)
             return;
         if (transform.parent.TryGetComponent(out CharacterGearSlot backpackSlot))
         {
@@ -395,14 +411,38 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 }
                 inventoryItem.DestroyTempObject();
                 inventoryItem.DestroyItem();
+                FindObjectOfType<RecipeDetail>(true).UpdateCurrentDetails();
             }
             else if (!Input.GetKey(KeyCode.LeftShift))
             {
                 var myParent = transform.parent;
                 var otherParent = inventoryItem.parentAfterDrag;
+
+                if (myParent.TryGetComponent(out CharacterGearSlot gearSlot))
+                {
+                    if (inventoryItem.item.itemType == item.itemType)
+                    {
+                        gearSlot.EquipItemWithoutMoving(inventoryItem);
+                        UnequipItemWithoutMoving();
+                    }
+                    else
+                        return;
+                }
+                if (otherParent.TryGetComponent(out CharacterGearSlot gearSlot1))
+                {
+                    if (inventoryItem.item.itemType == item.itemType)
+                    {
+                        gearSlot1.EquipItemWithoutMoving(this);
+                        inventoryItem.UnequipItemWithoutMoving();
+                    }
+                    else
+                        return;
+                }
+
                 inventoryItem.parentAfterDrag = transform.parent;
                 transform.SetParent(otherParent);
                 transform.position = otherParent.transform.position;
+                
                 if (otherParent.TryGetComponent(out StashSlot slot))
                 {
                     slot.CmdDeleteItemOnClients();

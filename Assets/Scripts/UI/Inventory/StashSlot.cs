@@ -26,7 +26,8 @@ public class StashSlot : NetworkBehaviour, IDropHandler
             var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
             if (!inventoryItem)
                 return;
-            else if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
+            inventoryItem.DestroyTempObject();
+            if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
                 return;
             else if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
                 stashSlot.CmdDeleteItemOnClients();

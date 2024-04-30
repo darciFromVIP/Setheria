@@ -10,6 +10,7 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
     public List<ItemRecipeInfo> requiredItems;
     public float workDuration;
 
+    public bool showRequiredItems = true;
     public GameObject tooltipUI;
     public Transform requiredItemsParent;
     public Button turnInBTN;
@@ -19,7 +20,7 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
     public EventScriptable Quest_Event;
 
     public Animator animator;
-    public PlayerController player;
+    private PlayerController player;
 
     public bool interactable = true;
     private void Update()
@@ -55,7 +56,10 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
             }
             if (!initialized)
             {
-                newItem.InitializeItem(requiredItems[i].itemData, 0, requiredItems[i].stacks);
+                if (showRequiredItems)
+                    newItem.InitializeItem(requiredItems[i].itemData, 0, requiredItems[i].stacks);
+                else
+                    newItem.InitializeUnknownItem(requiredItems[i].stacks);
                 turnInBTN.interactable = false;
             }
         }

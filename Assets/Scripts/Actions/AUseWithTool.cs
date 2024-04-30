@@ -37,7 +37,7 @@ public class AUseWithTool : ActionTemplate
     {
         bool value = FindObjectOfType<CharacterScreen>(true).CheckToolLevel(toolType, requiredLevel);
         if (!value)
-            FindObjectOfType<SystemMessages>().AddMessage("You need to equip a " + toolType.ToString() + " of level " + requiredLevel + " to open this!");
+            FindObjectOfType<SystemMessages>().AddMessage("You need to equip a " + toolType.ToString() + " of level " + requiredLevel + " to open this.");
         return value;
     }
 }

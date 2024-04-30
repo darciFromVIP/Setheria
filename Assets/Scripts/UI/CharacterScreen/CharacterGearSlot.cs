@@ -11,6 +11,7 @@ public class CharacterGearSlot : MonoBehaviour, IDropHandler
         var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
         if (inventoryItem)
         {
+            inventoryItem.DestroyTempObject();
             if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
                 return;
             if (inventoryItem.item.itemType == itemType)
@@ -21,6 +22,7 @@ public class CharacterGearSlot : MonoBehaviour, IDropHandler
     }
     public void EquipItem(InventoryItem inventoryItem)
     {
+        FindObjectOfType<Tooltip>(true).Hide();
         var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         if (transform.childCount == 0)
             inventoryItem.parentAfterDrag = transform;
@@ -42,6 +44,12 @@ public class CharacterGearSlot : MonoBehaviour, IDropHandler
             }
             inventoryItem.parentAfterDrag = transform;
         }
+        EquipItemWithoutMoving(inventoryItem);
+        GetComponent<TooltipTrigger>().enabled = false;
+    }
+    public void EquipItemWithoutMoving(InventoryItem inventoryItem)
+    {
+        var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         foreach (var item in inventoryItem.item.passiveBuffs)
         {
             if (item.buffType == BuffType.InventorySlots)
@@ -49,7 +57,6 @@ public class CharacterGearSlot : MonoBehaviour, IDropHandler
             else
                 player.CmdAddBuff(item.name);
         }
-        GetComponent<TooltipTrigger>().enabled = false;
     }
     public void UnequipItem()
     {

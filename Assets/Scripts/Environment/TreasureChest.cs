@@ -16,7 +16,7 @@ public class TreasureChest : NetworkBehaviour
     {
         if (looted == true)
         {
-            FindObjectOfType<SystemMessages>().AddMessage("This Chest has already been looted!");
+            FindObjectOfType<SystemMessages>().AddMessage("This Chest has already been looted.");
             return;
         }
         FindObjectOfType<AudioManager>().ChestOpen(transform.position);

@@ -23,11 +23,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             var inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
             if (inventoryItem)
             {
+                inventoryItem.DestroyTempObject();
                 if (inventoryItem.parentAfterDrag == null)
                     return;
                 if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
                 {
-                    slot.UnequipItem();
                     var player = FindObjectOfType<GameManager>().localPlayerCharacter;
                     foreach (var item in inventoryItem.item.passiveBuffs)
                     {
@@ -37,6 +37,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                                 return;
                         }
                     }
+                    slot.UnequipItem();
                     foreach (var item in inventoryItem.item.passiveBuffs)
                     {
                         player.CmdRemoveBuff(item.name);

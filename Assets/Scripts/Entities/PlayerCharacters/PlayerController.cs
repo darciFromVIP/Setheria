@@ -221,7 +221,7 @@ public class PlayerController : NetworkBehaviour
                         if (Vector3.Distance(transform.position, ship.transform.position) < 10)
                             ship.GetComponent<CanMove>().MoveTo(transform.position);
                         else
-                            FindObjectOfType<SystemMessages>().AddMessage("The ship is too far away!");
+                            FindObjectOfType<SystemMessages>().AddMessage("The ship is too far away.");
                     }
                 }
             }
@@ -264,15 +264,15 @@ public class PlayerController : NetworkBehaviour
     }
     private void SendMessageNotEnoughMana()
     {
-        FindObjectOfType<SystemMessages>().AddMessage("Not enough Mana!");
+        FindObjectOfType<SystemMessages>().AddMessage("Not enough Mana.");
     }
     private void SendMessageSkillNotReady()
     {
-        FindObjectOfType<SystemMessages>().AddMessage("This skill is not ready yet!");
+        FindObjectOfType<SystemMessages>().AddMessage("This skill is not ready yet.");
     }
     private void SendMessageSkillNotUnlocked()
     {
-        FindObjectOfType<SystemMessages>().AddMessage("This skill is not unlocked yet!");
+        FindObjectOfType<SystemMessages>().AddMessage("This skill is not unlocked yet.");
     }
     public void AttemptExecuteSkill1()
     {

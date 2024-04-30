@@ -48,6 +48,8 @@ public class TalentTrees
     public void ChangeTalentPoints(int value)
     {
         talentPoints += value;
+        if (talentPoints < 0)
+            talentPoints = 0;
         Talent_Points_Changed.Invoke(talentPoints);
     }
 }

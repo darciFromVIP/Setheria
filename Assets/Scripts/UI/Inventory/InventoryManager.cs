@@ -62,10 +62,10 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
         localPlayerCharacter.CreateItem(new SaveDataItem() { name = item.name, stacks = stacks }, localPlayerCharacter.transform.position);
         if (item.itemType == ItemType.GatheringTool && equipableItemTutorial)
         {
-            FindObjectOfType<SystemMessages>().AddMessage("Equip your new pickaxe by double clicking it!", MsgType.Notice);
+            FindObjectOfType<SystemMessages>().AddMessage("Equip your new pickaxe by double clicking it.", MsgType.Notice);
             equipableItemTutorial = false;
         }
-        FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
+        FindObjectOfType<SystemMessages>().AddMessage("Inventory is full.");
         return result;
     }
     public InventoryItem AddItem(ItemRecipeInfo itemData, bool stackable = true)
@@ -161,6 +161,7 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     public bool TestReduceInventory(int value)
     {
+        value++;
         for (int i = inventorySlots.Count - 1; i >= 0; i--)
         {
             if (inventorySlots[i].isFree && inventorySlots[i].transform.childCount == 0)
@@ -193,7 +194,7 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
                 return slot.transform;
             }
         }
-        FindObjectOfType<SystemMessages>().AddMessage("Inventory is full!");
+        FindObjectOfType<SystemMessages>().AddMessage("Inventory is full.");
         return null;
     }
     public void DestroyAllItems()

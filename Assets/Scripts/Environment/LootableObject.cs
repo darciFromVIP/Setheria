@@ -61,24 +61,24 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     {
         if (!lootable)
         {
-            FindObjectOfType<SystemMessages>().AddMessage("This object has already been harvested!");
+            FindObjectOfType<SystemMessages>().AddMessage("This object has already been harvested.");
             return;
         }
         if (interactingPlayer)
         {
-            FindObjectOfType<SystemMessages>().AddMessage("Someone is already harvesting this object!");
+            FindObjectOfType<SystemMessages>().AddMessage("Someone is already harvesting this object.");
             return;
         }
         if (!FindObjectOfType<CharacterScreen>().CheckToolLevel(toolRequirement, toolLevelRequirement))
         {
-            FindObjectOfType<SystemMessages>().AddMessage("You need to equip a " + toolRequirement.ToString() + " of level " + toolLevelRequirement + " to harvest this!");
+            FindObjectOfType<SystemMessages>().AddMessage("You need to equip a " + toolRequirement.ToString() + " of level " + toolLevelRequirement + " to harvest this.");
             return;
         }
         if (toolRequirement != ItemType.None && player.TryGetComponent(out Shapeshifter shapeshifter))
         {
             if (shapeshifter.shapeshiftedModel.gameObject.activeSelf)
             {
-                FindObjectOfType<SystemMessages>().AddMessage("You can't harvest this in shapeshifted form!");
+                FindObjectOfType<SystemMessages>().AddMessage("You can't harvest this in shapeshifted form.");
                 return;
             }
         }
@@ -89,35 +89,35 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             case TalentTreeType.Gathering:
                 if (player.professions.gathering < professionExperienceRequired)
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this.");
                     return;
                 }
                 break;
             case TalentTreeType.Cooking:
                 if (player.professions.cooking < professionExperienceRequired)
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this.");
                     return;
                 }
                 break;
             case TalentTreeType.Alchemy:
                 if (player.professions.alchemy < professionExperienceRequired)
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this.");
                     return;
                 }
                 break;
             case TalentTreeType.Fishing:
                 if (player.professions.fishing < professionExperienceRequired)
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this.");
                     return;
                 }
                 break;
             case TalentTreeType.Exploration:
                 if (player.professions.exploration < professionExperienceRequired)
                 {
-                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this!");
+                    FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this.");
                     return;
                 }
                 break;
@@ -168,7 +168,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     {
         if (!lootable)
         {
-            FindObjectOfType<SystemMessages>().AddMessage("This object has already been harvested!");
+            FindObjectOfType<SystemMessages>().AddMessage("This object has already been harvested.");
             return;
         }
         interactingPlayer.GetComponent<PlayerCharacter>().CmdAddXp(xpGranted);

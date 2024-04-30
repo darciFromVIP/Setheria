@@ -11,10 +11,15 @@ public class HeroIcon : MonoBehaviour
     private void Awake()
     {
         image = GetComponent<Image>();
+        GetComponent<Button>().onClick.AddListener(CenterCamera);
     }
 
     public void SetHeroIcon(Hero heroType)
     {
         image.sprite = heroIcons[(int)heroType];
+    }
+    private void CenterCamera()
+    {
+        FindObjectOfType<CameraTarget>().CenterCamera(false);
     }
 }

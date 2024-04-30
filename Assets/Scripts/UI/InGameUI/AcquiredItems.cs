@@ -17,6 +17,7 @@ public class AcquiredItems : MonoBehaviour
     {
         var instance = Instantiate(prefab, transform);
         instance.UpdateUI(itemData.itemData.sprite, itemData.stacks + "x " + itemData.itemData.name);
+        FindObjectOfType<RecipeDetail>(true).UpdateCurrentDetails();
     }
     public void RecipeUnlocked(ItemRecipeInfo itemData)
     {
