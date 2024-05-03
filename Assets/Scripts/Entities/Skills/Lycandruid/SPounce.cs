@@ -2,6 +2,8 @@ using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 [CreateAssetMenu(menuName = "Skills/Lycandruid/Pounce")]
 public class SPounce : Skill
 {
@@ -35,6 +37,13 @@ public class SPounce : Skill
     }
     private void MoveWithinRange(EnemyCharacter enemy)
     {
+        NavMeshPath path = new();
+        NavMesh.CalculatePath(castingEntity.transform.position, enemy.transform.position, castingEntity.GetComponent<CanMove>().agent.areaMask, path);
+        if (path.status != NavMeshPathStatus.PathComplete)
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("The path to the target is not reachable.");
+            return;
+        }
         this.enemy = enemy;
         if (Vector3.Distance(castingEntity.transform.position, enemy.transform.position) > range)
         {

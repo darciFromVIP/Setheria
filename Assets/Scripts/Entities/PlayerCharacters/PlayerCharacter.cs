@@ -601,6 +601,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void ChangeHunger(int amount, bool showTextToOthers)
     {
         hunger += amount;
+        if (!isOwned)
+            return;
         if ((hunger == 20 || hunger == 10) && amount < 0)
         {
             FindObjectOfType<SystemMessages>().AddMessage("You are starving.");

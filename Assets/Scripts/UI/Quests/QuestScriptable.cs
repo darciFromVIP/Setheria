@@ -225,9 +225,9 @@ public class QuestScriptable : ScriptableObject, IComparable
                     }
                 }
             }
+            var playerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
             if (requiredItemsDic.Count > 0)
             {
-                var playerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
                 List<KeyValuePair<string, int>> dicCopy = new();
                 requiredItemsDic.CopyTo(dicCopy);
                 foreach (var requiredItem in dicCopy)
@@ -236,17 +236,31 @@ public class QuestScriptable : ScriptableObject, IComparable
                     {
                         if (requiredItem.Key == playerItem.item.name)
                             requiredItemsDic[requiredItem.Key] += playerItem.stacks;
-                        
-                        foreach (var item in requiredItemTypes)
-                        {
-                            if (item.requiredItemType == playerItem.item.itemType)
-                                item.currentItemTypeAmount += playerItem.stacks;
-                        }
-
                     }
                 }
-                CheckQuestCompletion();
             }
+            foreach (var playerItem in playerItems)
+            {
+                foreach (var item in requiredItemTypes)
+                {
+                    if (item.validItemTypeNames.Contains(playerItem.item.name))
+                    {
+                        item.currentItemTypeAmount += playerItem.stacks;
+                    }
+                }
+            }
+            var gear = FindObjectOfType<CharacterScreen>(true).GetEquippedGear();
+            foreach (var piece in gear)
+            {
+                foreach (var item in requiredItemTypes)
+                {
+                    if (item.validItemTypeNames.Contains(piece.item.name))
+                    {
+                        item.currentItemTypeAmount += piece.stacks;
+                    }
+                }
+            }
+            CheckQuestCompletion();
             if (tutorialToShow != null)
                 FindObjectOfType<Tutorial>().QueueNewTutorial(tutorialToShow);
         }
