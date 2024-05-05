@@ -38,6 +38,7 @@ public class Character : Entity
     protected int animHash_Skill3 = Animator.StringToHash("Skill3");
     protected int animHash_Skill4 = Animator.StringToHash("Skill4");
     protected int animHash_Skill5 = Animator.StringToHash("Skill5");
+    protected int animHash_Revive = Animator.StringToHash("Revive");
 
     protected override void Start()
     {

@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class Entity : NetworkBehaviour, IUsesAnimator
 {
     public NetworkAnimator animator;
+    public bool corpseDecay = true;
+    public List<GameObject> objectsToDisable;
 
     protected int animHash_Death = Animator.StringToHash("Death");
 
@@ -84,18 +86,29 @@ public class Entity : NetworkBehaviour, IUsesAnimator
             {
                 item.SetTrigger(animHash_Death);
             }
-            foreach (var item in GetComponentsInChildren<MonoBehaviour>())
+            if (objectsToDisable.Count <= 0)
             {
-                item.enabled = false;
+                foreach (var item in GetComponentsInChildren<MonoBehaviour>())
+                {
+                    item.enabled = false;
+                }
             }
+            else
+            {
+                foreach (var item in objectsToDisable)
+                {
+                    item.SetActive(false);
+                }
+            }
+            
             GetComponent<Collider>().enabled = false;
             if (TryGetComponent(out NavMeshAgent agent))
                 agent.enabled = false;
-            StartCoroutine(CorpseDecay());
+            if (corpseDecay)
+                StartCoroutine(CorpseDecay());
         }
         else
             gameObject.SetActive(false);
-        Debug.Log("Dead");
         On_Death.Invoke();
     }
     private IEnumerator CorpseDecay()
@@ -110,6 +123,49 @@ public class Entity : NetworkBehaviour, IUsesAnimator
         }
         if (isServer)
             NetworkServer.Destroy(gameObject);
+    }
+    [Command(requiresAuthority = false)]
+    public virtual void CmdRevive(Vector3 position, float hpPercentage)
+    {
+        RpcRevive(position, hpPercentage);
+        Revive(position, hpPercentage);
+    }
+    [ClientRpc]
+    public virtual void RpcRevive(Vector3 position, float hpPercentage)
+    {
+        Revive(position, hpPercentage);
+    }
+    public virtual void Revive(Vector3 position, float hpPercentage)
+    {
+        transform.position = position;
+        if (animator)
+        {
+            if (objectsToDisable.Count <= 0)
+            {
+                foreach (var item in GetComponentsInChildren<MonoBehaviour>())
+                {
+                    item.enabled = true;
+                }
+            }
+            else
+            {
+                foreach (var item in objectsToDisable)
+                {
+                    item.SetActive(true);
+                }
+            }
+            GetComponent<Collider>().enabled = true;
+            if (TryGetComponent(out NavMeshAgent agent))
+                agent.enabled = true;
+        }
+        if (TryGetComponent(out HasHealth hp))
+        {
+            hp.SetHealth(hp.GetFinalMaxHealth() * hpPercentage);
+        }
+        if (TryGetComponent(out HasMana mp))
+        {
+            mp.SetMana(mp.GetFinalMaxMana() * hpPercentage);
+        }
     }
     public void SetNewAnimator(Animator animator)
     {

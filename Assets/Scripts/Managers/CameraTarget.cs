@@ -6,7 +6,6 @@ using Cinemachine;
 using UnityEngine.UI;
 using UnityEditor;
 using HighlightPlus;
-using static UnityEditor.PlayerSettings;
 
 public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
 {

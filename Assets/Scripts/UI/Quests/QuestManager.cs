@@ -45,14 +45,14 @@ public class QuestManager : NetworkBehaviour
         quest.SetQuestActive(true);
         var questInstance = Instantiate(questDescriptionPrefab, contentUI);
         questInstance.Initialize(quest);
-        /*int count = 0;
+        int count = 0;
         foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
         {
             if (item.gameObject.activeSelf)
                 count++;
         }
-        if (count >= 4)
-            ToggleQuestTracking(quest, false);*/
+        if (count > 4)
+            ToggleQuestTracking(quest, false);
         return quest;
     }
     [Command(requiresAuthority = false)]
@@ -401,7 +401,10 @@ public class QuestManager : NetworkBehaviour
         foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
         {
             if (item.questData == questData)
-                item.gameObject.SetActive(value);
+            {
+                item.ToggleTracking(value);
+                Debug.Log(item.name + " is " + value);
+            }
         }
     }
     public bool GetQuestTracking(QuestScriptable questData)

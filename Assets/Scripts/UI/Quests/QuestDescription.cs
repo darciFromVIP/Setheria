@@ -29,7 +29,8 @@ public class QuestDescription : MonoBehaviour
     }
     public void QuestAcceptedAnimationComplete()
     {
-        transform.SetParent(parent);
+        if (parent)
+            transform.SetParent(parent);
         FindObjectOfType<AudioManager>().QuestAccepted();
     }
     public void QuestCompleted()
@@ -66,5 +67,9 @@ public class QuestDescription : MonoBehaviour
     public void ToggleTracking()
     {
         gameObject.SetActive(!gameObject.activeSelf);
+    }
+    public void ToggleTracking(bool value)
+    {
+        gameObject.SetActive(value);
     }
 }

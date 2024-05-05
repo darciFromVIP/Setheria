@@ -122,7 +122,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
             finalDmg = damage * (1 - (GetFinalArmor() / 100));
 
         health -= finalDmg;
-        if (isServer)
+        if (isServer && finalDmg >= 1)
             FindObjectOfType<FloatingText>().ServerSpawnFloatingText("-" + ((int)finalDmg).ToString(), transform.position + Vector3.up, isCritical ? FloatingTextType.CriticalDamage : FloatingTextType.Damage);
         if (health <= 0)
             OnDeath();

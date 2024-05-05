@@ -561,6 +561,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   animator: {fileID: 0}
+  corpseDecay: 1
+  objectsToDisable: []
   On_Death:
     m_PersistentCalls:
       m_Calls: []
@@ -571,7 +573,7 @@ MonoBehaviour:
   skills: []
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 2184
+    m_Bits: 18440
   allyLayers:
     serializedVersion: 2
     m_Bits: 64

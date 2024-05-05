@@ -950,4 +950,26 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         return hungerInterval * hungerIntervalMultiplier;
     }
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        if (isOwned)
+            FindObjectOfType<RespawnUI>().Show();
+    }
+    public override void Revive(Vector3 position, float hpPercentage)
+    {
+        base.Revive(position, hpPercentage);
+        animator.SetTrigger(animHash_Revive);
+        if (isOwned)
+        {
+            ChangeHunger(-20, false);
+            if (hunger < 5)
+            {
+                hunger = 5;
+                ChangeHunger(0, false);
+            }
+        }
+        if (isOwned)
+            FindObjectOfType<CameraTarget>().CenterCamera(false);
+    }
 }

@@ -71,7 +71,14 @@ public class ObjectMapIcon : NetworkBehaviour
     private void ToggleIconOnMap(bool value)
     {
         if (iconInstance != null)
+        {
             iconInstance.SetActive(value);
+            if (iconInstance.activeSelf)
+                if (TryGetComponent(out Heartstone heartstone))
+                {
+                    heartstone.ActivateRespawn();
+                }
+        }
     }
     [Command(requiresAuthority = false)]
     public void CmdDestroyIcon()
