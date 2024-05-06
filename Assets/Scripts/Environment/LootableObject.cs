@@ -229,13 +229,18 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         if (anim)
             anim.SetTrigger("Destroy");
         else
-            CmdDestroyOnServer();
+            StartCoroutine(DelayedDestroy());
     }
     public void CmdDestroyOnServer()
     {
         Object_Destroyed.Invoke(this);
         if (isServer)
             NetworkServer.Destroy(gameObject);
+    }
+    private IEnumerator DelayedDestroy()
+    {
+        yield return new WaitForSeconds(0.5f);
+        CmdDestroyOnServer();
     }
     [Command(requiresAuthority = false)]
     private void CmdUpdateLootability(bool value)

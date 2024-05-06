@@ -128,7 +128,6 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     public virtual void CmdRevive(Vector3 position, float hpPercentage)
     {
         RpcRevive(position, hpPercentage);
-        Revive(position, hpPercentage);
     }
     [ClientRpc]
     public virtual void RpcRevive(Vector3 position, float hpPercentage)

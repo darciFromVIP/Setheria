@@ -71,6 +71,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public ItemScriptableDatabase itemScriptableDatabase;
     public List<TutorialDataScriptable> introductoryTutorial = new();
     public List<TutorialDataScriptable> levelUpTutorial = new();
+    public TutorialDataScriptable deathTutorial;
 
     protected HasHealth healthComp;
     protected HasMana manaComp;
@@ -598,7 +599,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         FindObjectOfType<InventoryManager>(true).AddItem(itemScriptableDatabase.GetItemByName(item), stacks);
     }
-    public void ChangeHunger(int amount, bool showTextToOthers)
+    public void ChangeHunger(int amount, bool showText)
     {
         hunger += amount;
         if (!isOwned)
@@ -607,15 +608,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             FindObjectOfType<SystemMessages>().AddMessage("You are starving.");
         }
-        if (amount > 0)
+        if (showText)
         {
-            if (showTextToOthers)
+            if (amount > 0)
             {
                 FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
                 FindObjectOfType<AudioManager>().EatFood(transform.position);
             }
             else
-                FindObjectOfType<FloatingText>().SpawnText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
+                FindObjectOfType<FloatingText>().CmdSpawnFloatingText(amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
         }
         Hunger_Changed.Invoke();
     }
@@ -962,7 +963,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         animator.SetTrigger(animHash_Revive);
         if (isOwned)
         {
-            ChangeHunger(-20, false);
+            ChangeHunger(-20, true);
             if (hunger < 5)
             {
                 hunger = 5;
@@ -971,5 +972,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         }
         if (isOwned)
             FindObjectOfType<CameraTarget>().CenterCamera(false);
+    }
+    public void DeathTutorial()
+    {
+        if (deathTutorial)
+        {
+            FindObjectOfType<Tutorial>().QueueNewTutorial(deathTutorial);
+            deathTutorial = null;
+        }
     }
 }
