@@ -31,8 +31,11 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     {
         ClearDetails();
         var player = FindObjectOfType<GameManager>().localPlayerCharacter;
-        this.amount = amount;
-        amountInput.text = amount.ToString();
+        if (player.GetComponent<PlayerController>().state != PlayerState.Working)
+        {
+            this.amount = amount;
+            amountInput.text = this.amount.ToString();
+        }
         currentPlayerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
 
         this.openedInStructure = openedInStructure;
@@ -53,8 +56,8 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         craftBtn.interactable = craftableInStructure && hasRequiredProfession;
 
         var resultItem = Instantiate(inventoryItemPrefab, resultItemParent);
-        resultItem.stackText.text = (recipeData.resultItem.stacks * amount).ToString();
-        resultItem.InitializeItem(recipeData.resultItem.itemData, recipeData.resultItem.stacks * amount, false, false);
+        resultItem.stackText.text = (recipeData.resultItem.stacks * this.amount).ToString();
+        resultItem.InitializeItem(recipeData.resultItem.itemData, recipeData.resultItem.stacks * this.amount, false, false);
         
         for (int i = 0; i < recipeData.componentItems.Count; i++)
         {
@@ -63,8 +66,8 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
                 if (item.item == recipeData.componentItems[i].itemData)
                 {
                     var newItem = Instantiate(inventoryItemPrefab, componentParents[i].transform);
-                    newItem.InitializeItem(recipeData.componentItems[i].itemData, item.stacks , recipeData.componentItems[i].stacks * amount);
-                    if (item.stacks < recipeData.componentItems[i].stacks * amount)
+                    newItem.InitializeItem(recipeData.componentItems[i].itemData, item.stacks , recipeData.componentItems[i].stacks * this.amount);
+                    if (item.stacks < recipeData.componentItems[i].stacks * this.amount)
                         craftBtn.interactable = false;
                     break;
                 }
@@ -72,12 +75,12 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
             if (componentParents[i].transform.childCount == 0)
             {
                 var newItem = Instantiate(inventoryItemPrefab, componentParents[i].transform);
-                newItem.InitializeItem(recipeData.componentItems[i].itemData, 0, recipeData.componentItems[i].stacks * amount);
+                newItem.InitializeItem(recipeData.componentItems[i].itemData, 0, recipeData.componentItems[i].stacks * this.amount);
                 craftBtn.interactable = false;
             }
         }
-        resourceCostText.text = "Resources: " + (recipeData.resourceCost * amount).ToString();
-        if (!FindObjectOfType<GameManager>().TestSubtractResources(recipeData.resourceCost * amount))
+        resourceCostText.text = "Resources: " + (recipeData.resourceCost * this.amount).ToString();
+        if (!FindObjectOfType<GameManager>().TestSubtractResources(recipeData.resourceCost * this.amount))
             craftBtn.interactable = false;
 
         craftAllBtn.interactable = craftBtn.interactable;
@@ -104,7 +107,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     public void UpdateCurrentDetails()
     {
         if (currentOpenedRecipe)
-            UpdateDetails(currentOpenedRecipe, openedInStructure);
+            UpdateDetails(currentOpenedRecipe, openedInStructure, amount);
     }
 
     public void CraftCurrentItem()
@@ -162,7 +165,8 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
             inventory.AddItem(tempItem);
         else
         {
-            for (int i = 0; i < tempItem.stacks; i++)
+            tempItem.stacks = 1;
+            for (int i = 0; i < currentOpenedRecipe.resultItem.stacks * amount; i++)
             {
                 inventory.AddItem(tempItem);
             }

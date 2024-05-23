@@ -20,6 +20,7 @@ public class BuffScriptable : ScriptableObject
     public float value;
     public float duration;
     public bool stackable;
+    public int maxStacks = 1;
     public EventReference sound;
     private void OnEnable()
     {

@@ -25,10 +25,15 @@ public class AGiveBuff : ActionTemplate
         var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         foreach (var item in buffsToApply)
         {
-            if (player.HasBuff(item.name) && item.stackable)
+            if (player.HasBuff(item.name) < item.maxStacks && item.stackable)
                 return true;
-            else if (!player.HasBuff(item.name) && item.stackable)
+            else if (player.HasBuff(item.name) <= 0 && item.stackable)
                 return true;
+            else if (player.HasBuff(item.name) >= item.maxStacks && item.stackable)
+            {
+                FindObjectOfType<SystemMessages>().AddMessage("This buff is at max stacks.");
+                return false;
+            }
             else
             {
                 FindObjectOfType<SystemMessages>().AddMessage("You already have such non-stackable buff.");

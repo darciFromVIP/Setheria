@@ -119,7 +119,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     protected IEnumerator UpdatePlayer()
     {
-        while (true)
+        while (healthComp.GetHealth() > 0)
         {
             hungerTimer += Time.deltaTime;
             if (hungerTimer >= GetHungerInterval())
@@ -717,7 +717,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             case PlayerStat.Hunger:
                 if (hunger + modifier > 100)
                     return false;
-                if (HasBuff("Poisoned"))
+                if (HasBuff("Poisoned") > 0)
                 {
                     FindObjectOfType<SystemMessages>().AddMessage("You can't eat while poisoned. You would throw up immediately...");
                     return false;

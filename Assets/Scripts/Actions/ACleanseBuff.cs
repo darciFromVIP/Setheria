@@ -15,7 +15,7 @@ public class ACleanseBuff : ActionTemplate
         var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         foreach (var item in buffsToCleanse)
         {
-            if (player.HasBuff(item.name))
+            if (player.HasBuff(item.name) > 0)
                 player.CmdRemoveBuff(item.name);
         }
         ActionFinished();
@@ -26,7 +26,7 @@ public class ACleanseBuff : ActionTemplate
         var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         foreach (var item in buffsToCleanse)
         {
-            if (player.HasBuff(item.name))
+            if (player.HasBuff(item.name) > 0)
                 return true;
         }
         FindObjectOfType<SystemMessages>().AddMessage("You don't have any valid buffs to cleanse.");

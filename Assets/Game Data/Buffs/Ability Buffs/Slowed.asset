@@ -12,9 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8832f0c0855de0848b8feb174ea00465, type: 3}
   m_Name: Slowed
   m_EditorClassIdentifier: 
-  buffName: Slow
+  buffName: Slowed
   sprite: {fileID: 21300000, guid: c11e8a150de2fcc40b6dfbc138facd18, type: 3}
   description: This unit's movement speed is reduced.
   buffType: 1
   value: 0.11
   duration: 8
+  stackable: 0
+  maxStacks: 1
+  sound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

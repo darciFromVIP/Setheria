@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class BuffUI : MonoBehaviour
 {
@@ -23,7 +24,19 @@ public class BuffUI : MonoBehaviour
     {
         if (currentBuffInstance != null)
         {
-            durationText.text = currentBuffInstance.durationTimer.ToString("F0");
+            TimeSpan time = TimeSpan.FromSeconds(currentBuffInstance.durationTimer);
+
+            //here backslash is must to tell that colon is
+            //not the part of format, it just a character that we want in output
+            string str;
+            if (currentBuffInstance.durationTimer >= 3600)
+                str = time.ToString(@"hh\h");
+            else if (currentBuffInstance.durationTimer >= 60)
+                str = time.ToString(@"mm\m");
+            else
+                str = currentBuffInstance.durationTimer.ToString("F0");
+
+            durationText.text = str;
             slider.value = currentBuffInstance.durationTimer;
             if (currentBuffInstance.stacks > 1)
             {

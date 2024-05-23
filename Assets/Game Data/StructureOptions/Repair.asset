@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Repair
   m_EditorClassIdentifier: 
   structureAction: 13
-  description: Repair this structure using your equipped Handicraft Tool.
+  description: Repair this structure using your equipped Handicraft Tool. This costs
+    Resources depending on the type of Structure.
   icon: {fileID: 21300000, guid: ee5d3c503bf3552489c3eb1b7022748c, type: 3}
   craftingRecipes: []
   soldItems: []
   professionRequired: 0
   professionLevelRequired: 0
+  requiredStructures: []
+  requiredResources: 0

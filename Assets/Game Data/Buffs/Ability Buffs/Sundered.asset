@@ -12,9 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8832f0c0855de0848b8feb174ea00465, type: 3}
   m_Name: Sundered
   m_EditorClassIdentifier: 
-  buffName: Sunder
+  buffName: Sundered
   sprite: {fileID: -1011997451, guid: bb107fdeac0009f4b9688309ab6c77f4, type: 3}
   description: This unit's Armor is reduced.
   buffType: 13
   value: 1
   duration: 8
+  stackable: 0
+  maxStacks: 1
+  sound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

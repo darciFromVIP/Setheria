@@ -16,7 +16,7 @@ public abstract class Buff
     public BuffType buffType;
     public float value;
     public float durationTimer;
-    public float stacks = 1;
+    public int stacks = 1;
     public Character targetEntity;
     public GameObject effect;
     public EventInstance sound;

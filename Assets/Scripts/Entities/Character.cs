@@ -224,13 +224,18 @@ public class Character : Entity
             return;
         foreach (var item in buffs)
         {
-            if (item.name == buff && buffScriptable.stackable)
+            if (item.name == buff && buffScriptable.stackable && item.stacks < buffScriptable.maxStacks)
             {
                 item.IncreaseStacks();
                 return;
             }
             else if (item.name == buff && !buffScriptable.stackable)
                 return;
+            else if (item.name == buff && buffScriptable.stackable && item.stacks >= buffScriptable.maxStacks)
+            {
+                FindObjectOfType<SystemMessages>().AddMessage("This buff is at max stacks.");
+                return;
+            }
         }
         switch (buffScriptable.buffType)
         {
@@ -387,14 +392,14 @@ public class Character : Entity
         }
         UpdateSkills();
     }
-    public bool HasBuff(string name)
+    public int HasBuff(string name)
     {
         foreach (var item in buffs)
         {
             if (item.name == name)
-                return true;
+                return item.stacks;
         }
-        return false;
+        return 0;
     }
     [Command(requiresAuthority = false)]
     public void CmdStunCharacter()

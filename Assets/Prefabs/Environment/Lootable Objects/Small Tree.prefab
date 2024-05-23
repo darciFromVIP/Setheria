@@ -66,6 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
+      propertyPath: effectsToHide.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
       propertyPath: soundOnDestroy.Guid.Data1
       value: 1776021532
       objectReference: {fileID: 0}
@@ -104,6 +109,11 @@ PrefabInstance:
       propertyPath: soundOnLooting.Guid.Data4
       value: 2065520330
       objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: effectsToHide.Array.data[0]
+      value: 
+      objectReference: {fileID: 6734932483568365576}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: professionExperienceRequired
@@ -554,6 +564,12 @@ PrefabInstance:
 --- !u!4 &1724080288831201908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5122527780174866407, guid: b46344c8183999644b38ae37a7077b00,
+    type: 3}
+  m_PrefabInstance: {fileID: 5835528236769854867}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6734932483568365576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 976365683102791067, guid: b46344c8183999644b38ae37a7077b00,
     type: 3}
   m_PrefabInstance: {fileID: 5835528236769854867}
   m_PrefabAsset: {fileID: 0}

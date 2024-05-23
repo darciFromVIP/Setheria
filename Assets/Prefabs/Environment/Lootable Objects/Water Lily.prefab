@@ -197,6 +197,12 @@ PrefabInstance:
       addedObject: {fileID: 4155490335502538652}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b46344c8183999644b38ae37a7077b00, type: 3}
+--- !u!1 &3826371753412178297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 976365683102791067, guid: b46344c8183999644b38ae37a7077b00,
+    type: 3}
+  m_PrefabInstance: {fileID: 4077657327954658530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9187449190067020549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5122527780174866407, guid: b46344c8183999644b38ae37a7077b00,
@@ -259,6 +265,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
+      propertyPath: effectsToHide.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
       propertyPath: soundOnDestroy.Guid.Data1
       value: -713904105
       objectReference: {fileID: 0}
@@ -297,6 +308,11 @@ PrefabInstance:
       propertyPath: soundOnLooting.Guid.Data4
       value: -303898327
       objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: effectsToHide.Array.data[2]
+      value: 
+      objectReference: {fileID: 3826371753412178297}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: professionExperienceRequired
@@ -491,7 +507,7 @@ PrefabInstance:
     - target: {fileID: 8627531288678635897, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: rmsCount
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}

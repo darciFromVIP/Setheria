@@ -9,6 +9,10 @@ public enum QuestRewardType
 {
     Resources, Knowledge, XP, Item, Unknown
 }
+public enum QuestType
+{
+    Main, Side, Lore
+}
 [Serializable]
 public class RequiredItemType
 {
@@ -80,6 +84,7 @@ public class QuestScriptable : ScriptableObject, IComparable
     public string description;
     [Tooltip("Icon shown in the quest log.")]
     public Sprite icon;
+    public QuestType questType;
     [Tooltip("Does this quest progress across all players?")]
     public bool synchronizedQuest = true;
     [Tooltip("List of required items.")]

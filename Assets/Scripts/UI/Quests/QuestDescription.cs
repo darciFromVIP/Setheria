@@ -9,13 +9,24 @@ public class QuestDescription : MonoBehaviour
     public QuestScriptable questData;
     public TextMeshProUGUI label, objectives, rewards;
 
-    public Material mainQuestMaterial;
+    public Material mainQuestMaterial, loreQuestMaterial;
 
     private Transform parent;
     public void Initialize(QuestScriptable data)
     {
-        if (data.name.Contains("Main"))
-            GetComponent<Image>().material = mainQuestMaterial;
+        switch (data.questType)
+        {
+            case QuestType.Main:
+                GetComponent<Image>().material = mainQuestMaterial;
+                break;
+            case QuestType.Side:
+                break;
+            case QuestType.Lore:
+                GetComponent<Image>().material = loreQuestMaterial;
+                break;
+            default:
+                break;
+        }
         questData = data;
         questData.Quest_Updated.AddListener(UpdateUI);
         UpdateUI();

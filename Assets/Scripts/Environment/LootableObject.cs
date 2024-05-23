@@ -338,6 +338,22 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     }
     private void UpdateTooltip(int profession)
     {
+        if (profession == 0)
+        {
+            GetComponent<Collider>().enabled = false;
+            foreach (var item in effectsToHide)
+            {
+                item.SetActive(false);
+            }
+        }
+        else
+        {
+            GetComponent<Collider>().enabled = true;
+            foreach (var item in effectsToHide)
+            {
+                item.SetActive(true);
+            }
+        }
         if (profession >= professionExperienceRequired)
         {
             tooltip.objectName = lootableName + " <color=green>(" + professionExperienceRequired + ")";

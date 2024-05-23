@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8832f0c0855de0848b8feb174ea00465, type: 3}
   m_Name: Max MP +50 Buff
   m_EditorClassIdentifier: 
-  buffName: 'Max MP +50 Buff '
+  buffName: Max MP +50 Buff
   sprite: {fileID: 0}
   description: 
   buffType: 6
   value: 50
   duration: 0
   stackable: 1
+  maxStacks: 99
   sound:
     Guid:
       Data1: 0
