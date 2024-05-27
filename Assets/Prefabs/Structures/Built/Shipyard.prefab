@@ -306,7 +306,7 @@ PrefabInstance:
     - target: {fileID: 2012023165662233099, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: maxHealth
-      value: 400
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -704,6 +704,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   animator: {fileID: 0}
+  corpseDecay: 1
+  objectsToDisable: []
   On_Death:
     m_PersistentCalls:
       m_Calls: []
@@ -754,6 +756,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad07a9c04e098a4498823177558a0c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   callShipsCooldown: 30
   callShipsTimer: 0
 --- !u!4 &5480285570539159106 stripped

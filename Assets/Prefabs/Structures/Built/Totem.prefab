@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5673cbc4a7c75894596393982456011f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  On_Trigger_Enter:
+  On_Trigger_Stay:
     m_PersistentCalls:
       m_Calls: []
   On_Trigger_Exit:
@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 2012023165662233099, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: maxHealth
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -545,10 +545,12 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   animator: {fileID: 0}
+  corpseDecay: 1
+  objectsToDisable: []
   On_Death:
     m_PersistentCalls:
       m_Calls: []
-  hudCircle: {fileID: 4353333036746751421}
+  hudCircle: {fileID: 0}
   vfxDatabase: {fileID: 0}
   structureItem: {fileID: 11400000, guid: 084e2b6017fd1f94695aa56411411b3c, type: 2}
   structureOptions:
@@ -559,13 +561,8 @@ MonoBehaviour:
   entityDatabase: {fileID: 0}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 767815694d8d48f4985a4746894968ff, type: 2}
+  upgradePrefab: {fileID: 0}
   demolishCost: 5
---- !u!1 &4353333036746751421 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3570985794274343471, guid: cf1fd752683bedf41b6bd4eae6622612,
-    type: 3}
-  m_PrefabInstance: {fileID: 1001089926914312082}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6350557599784444269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,

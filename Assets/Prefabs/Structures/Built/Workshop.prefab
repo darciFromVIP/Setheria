@@ -1555,7 +1555,7 @@ PrefabInstance:
     - target: {fileID: 2012023165662233099, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: maxHealth
-      value: 250
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -1835,12 +1835,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 867903199493659754}
   m_SourcePrefab: {fileID: 100100000, guid: cf1fd752683bedf41b6bd4eae6622612, type: 3}
---- !u!1 &264877083464349759 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3570985794274343471, guid: cf1fd752683bedf41b6bd4eae6622612,
-    type: 3}
-  m_PrefabInstance: {fileID: 3612934620317254160}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3340302838364641395 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
@@ -1863,10 +1857,12 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   animator: {fileID: 0}
+  corpseDecay: 1
+  objectsToDisable: []
   On_Death:
     m_PersistentCalls:
       m_Calls: []
-  hudCircle: {fileID: 264877083464349759}
+  hudCircle: {fileID: 0}
   vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
   structureItem: {fileID: 11400000, guid: 10654546673692c4f8b3bfed64a1e4b7, type: 2}
   structureOptions:
@@ -1879,6 +1875,7 @@ MonoBehaviour:
   entityDatabase: {fileID: 11400000, guid: 0272411464c49914aa52af49104af5e1, type: 2}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  upgradePrefab: {fileID: 0}
   demolishCost: 20
 --- !u!4 &7486842287260214511 stripped
 Transform:

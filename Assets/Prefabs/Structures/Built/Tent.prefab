@@ -78,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 2012023165662233099, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: maxHealth
-      value: 300
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -388,6 +388,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   animator: {fileID: 0}
+  corpseDecay: 1
+  objectsToDisable: []
   On_Death:
     m_PersistentCalls:
       m_Calls: []
