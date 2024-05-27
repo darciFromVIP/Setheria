@@ -46,7 +46,6 @@ public class SGreenDust : Skill
         base.StartCasting(point);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         actualPoint = Vector3.MoveTowards(castingEntity.transform.position, point, range);
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCasting);
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill2();

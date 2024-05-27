@@ -12,7 +12,6 @@ public class SPhotosynthesis : Skill
         castingEntity = self;
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill1();
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         if (castingEntity.isOwned)
             self.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
@@ -40,6 +39,9 @@ public class SPhotosynthesis : Skill
     public override void StopExecute()
     {
         base.StopExecute();
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.InterruptCasting();
     }
 
     public override void UpdateDescription()

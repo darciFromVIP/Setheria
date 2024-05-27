@@ -242,8 +242,10 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (!isServer)
             return;
         if (enemyTarget)
+        {
             SpawnProjectile();
-        Attacked();
+            Attacked();
+        }
         RpcSetCanAct(true);
     }
     private void Attacked()

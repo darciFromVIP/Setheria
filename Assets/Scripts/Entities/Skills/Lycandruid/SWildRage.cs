@@ -24,7 +24,6 @@ public class SWildRage : Skill
         healthRegenBuff.value = hpRegenFinal;
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill5();
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         self.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.AddListener(Cast);
         if (castingEntity.isOwned)
@@ -33,6 +32,13 @@ public class SWildRage : Skill
             castingEntity.skillIndicator.Casting(1.33f);
         }
         StartCasting();
+    }
+    public override void StopExecute()
+    {
+        base.StopExecute();
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveAllListeners();
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.InterruptCasting();
     }
     protected override void Cast()
     {

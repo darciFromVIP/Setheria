@@ -65,8 +65,13 @@ public class Projectile : NetworkBehaviour
         {
             yield return null;
         }
+
+        if (isServer && data.targetedEntity == null)
+            NetworkServer.Destroy(gameObject);
+
         if (!launchSound.IsNull)
             PlaySound(launchSound);
+
         switch (data.projectileTravel)
         {
             case ProjectileTravelType.Skillshot:

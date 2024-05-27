@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
 using UnityEngine.Events;
-using Unity.VisualScripting;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class CanMove : NetworkBehaviour, IUsesAnimator
@@ -34,14 +33,14 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             character.Stun_Begin.AddListener(StunBegin);
             character.Stun_End.AddListener(StunEnd);
         }
-        if (TryGetComponent(out CanAttack attack))
-        {
-            attack.Stop_Acting.AddListener(StopAgent);
-            attack.Resume_Acting.AddListener(ResumeAgent);
-        }
         if (TryGetComponent(out PlayerController player))
         {
             player.Resume_Acting.AddListener(ResumeAgent);
+        }
+        if (TryGetComponent(out CanAttack attack) && !player)
+        {
+            attack.Stop_Acting.AddListener(StopAgent);
+            attack.Resume_Acting.AddListener(ResumeAgent);
         }
         startingLocation = transform.position;
     }
@@ -227,5 +226,15 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     {
         StopAllCoroutines();
         Moved_Within_Range.RemoveAllListeners();
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdForceMovementAnimation()
+    {
+        RpcForceMovementAnimation();
+    }
+    [ClientRpc]
+    private void RpcForceMovementAnimation()
+    {
+        animator.SetTrigger(animHash_Walk);
     }
 }

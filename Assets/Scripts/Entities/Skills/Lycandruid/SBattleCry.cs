@@ -22,7 +22,6 @@ public class SBattleCry : Skill
         base.Execute(self);
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill4();
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         movementBuff.duration = baseDuration;
         attackSpeedBuff.duration = baseDuration;
@@ -35,6 +34,13 @@ public class SBattleCry : Skill
             castingEntity.skillIndicator.Casting(1.26f);
         }
         StartCasting();
+    }
+    public override void StopExecute()
+    {
+        base.StopExecute();
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.InterruptCasting();
     }
     protected override void Cast()
     {

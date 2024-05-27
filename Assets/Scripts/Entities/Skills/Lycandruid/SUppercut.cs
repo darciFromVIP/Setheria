@@ -40,6 +40,7 @@ public class SUppercut : Skill
         base.StopExecute();
         castingEntity.GetComponent<PlayerController>().Enemy_Left_Clicked.RemoveListener(MoveWithinRange);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveAllListeners();
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.InterruptCasting();
     }
@@ -65,7 +66,6 @@ public class SUppercut : Skill
         armorReductionBuff.value = armorFinalReduction;
         damageReductionBuff.value = damageFinalReduction;
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);

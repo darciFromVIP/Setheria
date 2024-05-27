@@ -30,6 +30,7 @@ public class SBite : Skill
         base.StopExecute();
         castingEntity.GetComponent<PlayerController>().Enemy_Left_Clicked.RemoveListener(MoveWithinRange);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveAllListeners();
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.InterruptCasting();
     }
@@ -53,7 +54,6 @@ public class SBite : Skill
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill2();
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);

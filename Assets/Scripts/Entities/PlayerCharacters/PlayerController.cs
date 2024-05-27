@@ -110,13 +110,7 @@ public class PlayerController : NetworkBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1) && state == PlayerState.Casting)
-        {
-            ChangeState(PlayerState.None);
-            ChangeCastingState(CastingState.None);
-            Resume_Acting.Invoke();
-            currentSkill.StopExecute();
-        }
+        
     }
     public void SetCurrentSkill(Skill skill)
     {
@@ -169,6 +163,22 @@ public class PlayerController : NetworkBehaviour
     }
     private void InputHandle()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse1) && state == PlayerState.Casting)
+        {
+            ChangeState(PlayerState.None);
+            ChangeCastingState(CastingState.None);
+            Resume_Acting.Invoke();
+            currentSkill.StopExecute();
+            moveComp.CmdForceMovementAnimation();
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !attackComp.canAct)
+        {
+            Resume_Acting.Invoke();
+            attackComp.CmdTargetLost();
+            attackComp.attackSpeedTimer = 0;
+            moveComp.CmdForceMovementAnimation();
+        }
+
         if (state != PlayerState.None && state != PlayerState.Working)
             return;
 

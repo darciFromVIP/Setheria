@@ -33,6 +33,7 @@ public class SEntanglingRoots : Skill
         base.StopExecute();
         castingEntity.GetComponent<PlayerController>().Enemy_Left_Clicked.RemoveListener(MoveWithinRange);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.InterruptCasting();
     }
@@ -58,7 +59,6 @@ public class SEntanglingRoots : Skill
         stunBuff.duration = baseDuration;
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill4();
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);

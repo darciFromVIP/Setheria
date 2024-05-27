@@ -49,6 +49,21 @@ public class StructureOptionUI : MonoBehaviour
             GetComponent<Button>().interactable = false;
         if (!FindObjectOfType<InventoryManager>(true).GetItemOfName("Everstone") && structureOption.structureAction == StructureAction.SetReturnPoint)
             GetComponent<Button>().interactable = false;
+
+        if (currentStructure.TryGetComponent(out PlantedSeed seed))
+        {
+            if (!FindObjectOfType<InventoryManager>(true).GetItemOfName("Water") && structureOption.structureAction == StructureAction.PourWater)
+                GetComponent<Button>().interactable = false;
+            if (!FindObjectOfType<InventoryManager>(true).GetItemOfName("Fertilizer") && structureOption.structureAction == StructureAction.Fertilize)
+                GetComponent<Button>().interactable = false;
+
+            if (structureOption.structureAction == StructureAction.PourWater || structureOption.structureAction == StructureAction.Fertilize)
+                if (seed.GetGrowTimer() >= seed.timeToGrow)
+                    GetComponent<Button>().interactable = false;
+            if (structureOption.structureAction == StructureAction.Harvest)
+                if (seed.GetGrowTimer() < seed.timeToGrow)
+                    GetComponent<Button>().interactable = false;
+        }
     }
     private void Update()
     {
@@ -90,6 +105,33 @@ public class StructureOptionUI : MonoBehaviour
                 else
                     GetComponent<Button>().interactable = true;
             }
+            else if (currentStructure.TryGetComponent(out PlantedSeed seed))
+            {
+                if (structureOption.structureAction == StructureAction.PourWater)
+                {
+                    if (seed.GetWaterTimer() > 0)
+                    {
+                        GetComponent<Button>().interactable = false;
+                        cooldownSlider.gameObject.SetActive(true);
+                        cooldownSlider.maxValue = seed.pourWaterCooldown;
+                        cooldownSlider.value = seed.GetWaterTimer();
+                    }
+                    else
+                        GetComponent<Button>().interactable = true;
+                }
+                if (structureOption.structureAction == StructureAction.Fertilize)
+                {
+                    if (seed.GetFertilizeTimer() > 0)
+                    {
+                        GetComponent<Button>().interactable = false;
+                        cooldownSlider.gameObject.SetActive(true);
+                        cooldownSlider.maxValue = seed.fertilizeCooldown;
+                        cooldownSlider.value = seed.GetFertilizeTimer();
+                    }
+                    else
+                        GetComponent<Button>().interactable = true;
+                }
+            }
             else
                 cooldownSlider.gameObject.SetActive(false);
         }
@@ -98,6 +140,8 @@ public class StructureOptionUI : MonoBehaviour
     }
     public void OnClickEvent()
     {
+        var player = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
+        var gameManager = FindObjectOfType<GameManager>();
         switch (structureOption.structureAction)
         {
             case StructureAction.None:
@@ -120,13 +164,11 @@ public class StructureOptionUI : MonoBehaviour
                 FindObjectOfType<GameManager>().ChangeResources(-structureOption.requiredResources);
                 break;
             case StructureAction.Demolish:
-                var gameManager = FindObjectOfType<GameManager>();
-                var structure = GetComponentInParent<StructureScreen>().currentStructure;
-                if (gameManager.TestSubtractResources(structure.demolishCost))
+                if (gameManager.TestSubtractResources(currentStructure.demolishCost))
                 {
-                    gameManager.ChangeResources(-structure.demolishCost);
-                    FindObjectOfType<InventoryManager>(true).AddItem(structure.structureItem, 1);
-                    structure.CmdDemolishStructure();
+                    gameManager.ChangeResources(-currentStructure.demolishCost);
+                    FindObjectOfType<InventoryManager>(true).AddItem(currentStructure.structureItem, 1);
+                    currentStructure.CmdDemolishStructure();
                     GetComponentInParent<StructureScreen>().HideWindow();
                 }
                 else
@@ -142,7 +184,6 @@ public class StructureOptionUI : MonoBehaviour
                         selectedItems.Add(item);
                     }
                 }
-                var player = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
                 player.CmdStartWorking(selectedItems.Count * 2);
                 player.Work_Finished.RemoveListener(TurnInItems);
                 player.Work_Finished.AddListener(TurnInItems);
@@ -160,53 +201,48 @@ public class StructureOptionUI : MonoBehaviour
                         selectedItems.Add(item);
                     }
                 }
-                var player1 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
                 int count = 0;
                 foreach (var item in selectedItems)
                 {
                     count += item.stacks;
                 }
-                player1.CmdStartWorking(count);
-                player1.Work_Finished.RemoveListener(CookFish);
-                player1.Work_Finished.AddListener(CookFish);
+                player.CmdStartWorking(count);
+                player.Work_Finished.RemoveListener(CookFish);
+                player.Work_Finished.AddListener(CookFish);
                 break;
             case StructureAction.OpenInventory:
                 FindObjectOfType<StashInventory>(true).ShowWindow();
                 break;
             case StructureAction.SetReturnPoint:
-                var player2 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
-                player2.CmdStartWorking(3);
-                player2.Work_Finished.RemoveListener(SetReturnPoint);
-                player2.Work_Finished.AddListener(SetReturnPoint);
+                player.CmdStartWorking(3);
+                player.Work_Finished.RemoveListener(SetReturnPoint);
+                player.Work_Finished.AddListener(SetReturnPoint);
                 break;
             case StructureAction.DrawWater:
-                var player3 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
-                player3.CmdStartWorking(2);
-                player3.Work_Finished.RemoveListener(DrawWater);
-                player3.Work_Finished.AddListener(DrawWater);
+                player.CmdStartWorking(2);
+                player.Work_Finished.RemoveListener(DrawWater);
+                player.Work_Finished.AddListener(DrawWater);
                 break;
             case StructureAction.Rest:
-                var player4 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
-                if (player4.state != PlayerState.None)
+                if (player.state != PlayerState.None)
                     FindObjectOfType<SystemMessages>().AddMessage("You are busy right now.");
                 else
                 {
                     var tent = currentStructure.GetComponent<Tent>();
                     tent.Stopped_Resting.AddListener(TentStoppedResting);
-                    tent.CmdRestPlayer(player4.GetComponent<NetworkIdentity>());
-                    if (player4.isOwned)
+                    tent.CmdRestPlayer(player.GetComponent<NetworkIdentity>());
+                    if (player.isOwned)
                         FindObjectOfType<TentButton>().ShowBTN(currentStructure);
                 }
                 break;
             case StructureAction.StopRest:
-                var player5 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
                 var tent1 = currentStructure.GetComponent<Tent>();
-                if (player5.state == PlayerState.OutOfGame)
+                if (player.state == PlayerState.OutOfGame)
                 {
-                    if (tent1.restingPlayers.Contains(player5.GetComponent<PlayerCharacter>()))
+                    if (tent1.restingPlayers.Contains(player.GetComponent<PlayerCharacter>()))
                     {
-                        tent1.CmdStopRestPlayer(player5.GetComponent<NetworkIdentity>());
-                        if (player5.isOwned)
+                        tent1.CmdStopRestPlayer(player.GetComponent<NetworkIdentity>());
+                        if (player.isOwned)
                             FindObjectOfType<TentButton>().HideBTN();
                     }
                     else
@@ -238,14 +274,28 @@ public class StructureOptionUI : MonoBehaviour
                     FindObjectOfType<SystemMessages>().AddMessage("You don't have a Handicraft Tool equipped.");
                     return;
                 }
-                var player6 = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
-                player6.Repair_Tick.AddListener(currentStructure.CmdRepairStructure);
+                player.Repair_Tick.AddListener(currentStructure.CmdRepairStructure);
                 float temp = Mathf.Ceil(healthToRepair / (toolLevel * 10));
                 float temp2 = FindObjectOfType<GameManager>().GetResources();
-                player6.CmdStartWorking(temp2 < temp ? temp2 : temp);
+                player.CmdStartWorking(temp2 < temp ? temp2 : temp);
                 break;
             case StructureAction.CallShips:
                 currentStructure.GetComponent<Shipyard>().CallShips();
+                break;
+            case StructureAction.PourWater:
+                player.CmdStartWorking(1);
+                player.Work_Finished.RemoveListener(PourWater);
+                player.Work_Finished.AddListener(PourWater);
+                break;
+            case StructureAction.Fertilize:
+                player.CmdStartWorking(1);
+                player.Work_Finished.RemoveListener(Fertilize);
+                player.Work_Finished.AddListener(Fertilize);
+                break;
+            case StructureAction.Harvest:
+                player.CmdStartWorking(2);
+                player.Work_Finished.RemoveListener(Harvest);
+                player.Work_Finished.AddListener(Harvest);
                 break;
             default:
                 break;
@@ -305,5 +355,21 @@ public class StructureOptionUI : MonoBehaviour
     {
         currentStructure.GetComponent<Well>().CmdStartWaterCooldown();
         FindObjectOfType<InventoryManager>(true).AddItem(new ItemRecipeInfo { itemData = currentStructure.GetComponent<Well>().waterItem, stacks = currentStructure.GetComponent<Well>().waterStacks });
+    }
+    private void PourWater()
+    {
+        currentStructure.GetComponent<PlantedSeed>().CmdPourWater();
+        var inventory = FindObjectOfType<InventoryManager>(true);
+        inventory.RemoveItem(new ItemRecipeInfo { itemData = inventory.GetItemOfName("Water").item, stacks = 1 });
+    }
+    private void Fertilize()
+    {
+        currentStructure.GetComponent<PlantedSeed>().CmdFertilize();
+        var inventory = FindObjectOfType<InventoryManager>(true);
+        inventory.RemoveItem(new ItemRecipeInfo { itemData = inventory.GetItemOfName("Fertilizer").item, stacks = 1 });
+    }
+    private void Harvest()
+    {
+        currentStructure.GetComponent<PlantedSeed>().Harvest();
     }
 }

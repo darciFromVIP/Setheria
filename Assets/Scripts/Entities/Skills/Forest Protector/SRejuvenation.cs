@@ -31,7 +31,7 @@ public class SRejuvenation : Skill
         base.StopExecute();
         castingEntity.GetComponent<PlayerController>().Ally_Left_Clicked.RemoveListener(MoveWithinRange);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
-        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveListener(Cast);
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveAllListeners();
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.InterruptCasting();
     }
@@ -54,7 +54,6 @@ public class SRejuvenation : Skill
         base.StartCasting();
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill3();
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(ally.transform.position);
         if (castingEntity.isOwned)

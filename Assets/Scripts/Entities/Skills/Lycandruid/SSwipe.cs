@@ -36,7 +36,7 @@ public class SSwipe : Skill
     {
         base.StopExecute();
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCasting);
-        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveAllListeners();
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.InterruptCasting();
     }
@@ -47,7 +47,6 @@ public class SSwipe : Skill
         bleedingBuff.value = finalBleedDamage;
         bleedingBuff.duration = baseDuration;
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCasting);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(point);

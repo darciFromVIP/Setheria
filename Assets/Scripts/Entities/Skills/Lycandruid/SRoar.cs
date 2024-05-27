@@ -23,7 +23,6 @@ public class SRoar : Skill
         castingEntity = self;
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill4();
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         self.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.AddListener(Cast);
         movementReductionBuff.duration = baseDuration;
@@ -36,6 +35,13 @@ public class SRoar : Skill
             castingEntity.skillIndicator.Casting(1.5f);
         }
         StartCasting();
+    }
+    public override void StopExecute()
+    {
+        base.StopExecute();
+        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.InterruptCasting();
     }
     protected override void Cast()
     {
