@@ -13318,7 +13318,7 @@ ParticleSystem:
   m_GameObject: {fileID: 7497535783286489161}
   serializedVersion: 8
   lengthInSec: 100
-  simulationSpeed: 0.21
+  simulationSpeed: 0.78
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 2
@@ -13563,8 +13563,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0
-      minScalar: 3.71
+      scalar: 1.5
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -13887,7 +13887,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.005
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -18400,37 +18400,37 @@ PrefabInstance:
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 19.22
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -5.67
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 64.08
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.99929786
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.03746914
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1618013668271090457, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -18476,6 +18476,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _assetId
       value: 2836850491
+      objectReference: {fileID: 0}
+    - target: {fileID: 4071868080955811327, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: id
+      value: 721e1824-18b0-49e7-9499-501755f526d3
       objectReference: {fileID: 0}
     - target: {fileID: 5335262656679398396, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}

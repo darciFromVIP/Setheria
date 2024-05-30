@@ -10,27 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Fertilizer
+  m_Name: Recipe - Discard Cloth
   m_EditorClassIdentifier: 
-  description: '__________________________________
-
-    Used to increase the quantity
-    of crops when used on Planted Seed or Planted Sapling.
-
-    __________________________________
-
-    Material'
+  description: Unlocks the recipe Discard Cloth.
   grade: 0
   itemType: 0
-  sprite: {fileID: 21300000, guid: d31f75e03e5dcb0479f7944f293931e6, type: 3}
-  stackable: 1
-  usage: []
+  sprite: {fileID: 21300000, guid: 3bbd99494f6dddb4f8a52638989645f5, type: 3}
+  stackable: 0
+  usage:
+  - {fileID: 11400000, guid: 94c7a089f5ad6a44c852d22fcb9965b6, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
   value: 0
-  destroyItemOnUse: 0
+  destroyItemOnUse: 1
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
