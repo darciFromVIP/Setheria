@@ -4,6 +4,8 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
 using RPG_Indicator;
+using Unity.VisualScripting;
+using UnityEngine.PlayerLoop;
 
 public class Character : Entity
 {
@@ -45,16 +47,6 @@ public class Character : Entity
         base.Start();
         skillIndicator = GetComponentInChildren<RpgIndicator>(true);
         canCastSkills = TryGetComponent(out EnemySkills enemySkills);
-        if (cooldown1 > 0)
-            cooldown1 -= Time.deltaTime;
-        if (cooldown2 > 0)
-            cooldown2 -= Time.deltaTime;
-        if (cooldown3 > 0)
-            cooldown3 -= Time.deltaTime;
-        if (cooldown4 > 0)
-            cooldown4 -= Time.deltaTime;
-        if (cooldown5 > 0)
-            cooldown5 -= Time.deltaTime;
 
         if (TryGetComponent(out CanAttack attackComp))
         {
@@ -83,6 +75,17 @@ public class Character : Entity
     }
     protected void Update()
     {
+        if (cooldown1 > 0)
+            cooldown1 -= Time.deltaTime;
+        if (cooldown2 > 0)
+            cooldown2 -= Time.deltaTime;
+        if (cooldown3 > 0)
+            cooldown3 -= Time.deltaTime;
+        if (cooldown4 > 0)
+            cooldown4 -= Time.deltaTime;
+        if (cooldown5 > 0)
+            cooldown5 -= Time.deltaTime;
+
         if (rotateTarget)
             RotateToTarget();
     }
@@ -467,5 +470,13 @@ public class Character : Entity
                 item.SetCastingEntity(this);
             }
         }
+    }
+    public void RemoveRotateTarget()
+    {
+        rotateTarget = null;
+    }
+    public void SetRotateTarget(Transform target)
+    {
+        rotateTarget = target;
     }
 }

@@ -34,7 +34,6 @@ public class SSnakePoison : Skill
     protected override void StartCasting()
     {
         base.StartCasting();
-        Debug.Log("Started Casting");
         if (castingEntity.GetComponent<CanAttack>().enemyTarget == null)
         {
             castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
@@ -48,7 +47,6 @@ public class SSnakePoison : Skill
     protected override void Cast()
     {
         base.Cast(); 
-        Debug.Log("Casting");
         if (castingEntity.isServer)
             castingEntity.GetComponent<EnemySkills>().CastSnakePoison();
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);

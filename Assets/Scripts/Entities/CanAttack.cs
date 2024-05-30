@@ -37,6 +37,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private bool isStunned = false;
     public bool isCasting = false;
     public bool flyingUnit = false;
+    public float cooldownOnTargetAcquired = 3;
+    private float timerOnTargetAcquired = 0;
 
     public GameObject projectilePrefab;
     public Transform projectileLaunchPoint;
@@ -46,6 +48,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     private NetworkAnimator netAnim;
     private Entity entity;
     private Character character;
+    private int currentSkillIndex = 0;
 
     public EventReference attackSound;
 
@@ -100,6 +103,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         SetBaseAttackSpeed(baseAttackSpeed);
         SetDefaultAttackSpeed(baseAttackSpeed);
         SetPower(basePower);
+        currentSkillIndex = 0;
     }
     private void Update()
     {
@@ -108,6 +112,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
 
         if (attackSpeedTimer > 0)
             attackSpeedTimer -= Time.deltaTime;
+        if (timerOnTargetAcquired > 0)
+            timerOnTargetAcquired -= Time.deltaTime;
 
         if (enemyTarget && canAct && !isCasting && !isDelayingTargetLost && !isStunned)
         {
@@ -167,6 +173,16 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             }
             else if (moveComp)
                 moveComp.RpcMoveTo(enemyTarget.transform.position);
+
+            if (!character.IsAnyCooldownTicking() && character.canCastSkills && timerOnTargetAcquired <= 0)
+            {
+                netAnim.animator.speed = 1;
+                character.skills[currentSkillIndex].Execute(character);
+
+                currentSkillIndex++;
+                if (currentSkillIndex >= character.skills.Count)
+                    currentSkillIndex = 0;
+            }
         }
     }
     [ClientRpc]
@@ -362,6 +378,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             enemyTarget.On_Death.AddListener(CmdTargetLost);
             Target_Acquired.Invoke(enemyTarget.GetComponent<NetworkIdentity>());
             float temp = 0;
+            timerOnTargetAcquired = cooldownOnTargetAcquired;
             additionalRange = 0;
             if (!enemyTarget.TryGetComponent(out NavMeshObstacle obstacle))
                 temp = enemyTarget.GetComponent<Collider>().bounds.size.magnitude / 2;

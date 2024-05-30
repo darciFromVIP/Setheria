@@ -89,7 +89,7 @@ namespace RPG_Indicator
         {
             MainIndicator.material = new Material(data[style].LineIndicator);
             BasicSetup();
-            MainIndicator.transform.localScale = new Vector3(length, (range * 2), ProjectorHeight);
+            MainIndicator.transform.localScale = new Vector3(length * 3, (range * 2.7f), ProjectorHeight);
             Range = range;
 
             if (showRangeIndicator) ShowRange(range, color, style);
@@ -212,7 +212,7 @@ namespace RPG_Indicator
             }
             if (player == null)
             {
-                player = GetComponentInParent<PlayerCharacter>().transform;
+                player = GetComponentInParent<Character>().transform;
             }
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -233,7 +233,7 @@ namespace RPG_Indicator
             }
             if (player == null)
             {
-                player = GetComponentInParent<PlayerCharacter>().transform;
+                player = GetComponentInParent<Character>().transform;
             }
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);

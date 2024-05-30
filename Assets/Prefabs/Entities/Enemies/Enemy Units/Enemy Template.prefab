@@ -93,6 +93,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2941317601591429121, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      propertyPath: isPlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2973579037098558945, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       propertyPath: m_Layer
@@ -579,7 +584,7 @@ MonoBehaviour:
     m_Bits: 64
   buffDatabase: {fileID: 11400000, guid: 96ab774cc8ae8814c8a735af9af2ddaa, type: 2}
   canCastSkills: 0
-  skillIndicator: {fileID: 0}
+  skillIndicator: {fileID: 9069828003384503577}
   cooldown1: 0
   cooldown2: 0
   cooldown3: 0
@@ -824,3 +829,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6129161896939070744}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9069828003384503577 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2941317601591429121, guid: 36b01e57100ea254d9149e8306d6dd8f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6129161896939070744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dbafc9a05ece164ea531af27578daca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
