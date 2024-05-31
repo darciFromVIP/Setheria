@@ -45,7 +45,36 @@ public class EnemySkills : NetworkBehaviour
                 buff = skill.stunBuff,
                 targetedEntity = item.GetComponent<HasHealth>()
             });
+            var proj2 = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
+            proj2.InitializeProjectile(new ProjectileData()
+            {
+                projectileTravel = ProjectileTravelType.Instant,
+                projectileImpact = ProjectileImpactType.Single,
+                impactEffect = ProjectileImpactEffect.Damage,
+                effectValue = skill.baseDamage,
+                targetedEntity = item.GetComponent<HasHealth>()
+            });
             NetworkServer.Spawn(proj.gameObject);
         }
     }
+    public void CastBash()
+    {
+        SBash skill = (SBash)GetComponent<EnemyCharacter>().skills[0];
+        var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
+        proj.InitializeProjectile(new ProjectileData()
+        {
+            projectileTravel = ProjectileTravelType.Instant,
+            projectileImpact = ProjectileImpactType.AoE,
+            impactEffect = ProjectileImpactEffect.Damage,
+            targetsMask = GetComponent<Character>().enemyLayers,
+            aoeRadius = skill.radius,
+            effectValue = skill.baseDamage,
+            speed = 5,
+            targetPoint = transform.position,
+            affectsEntities = true,
+            owner = GetComponent<EnemyCharacter>()
+        });
+        NetworkServer.Spawn(proj.gameObject);
+    }
+
 }

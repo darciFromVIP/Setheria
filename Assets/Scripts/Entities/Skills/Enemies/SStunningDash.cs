@@ -8,6 +8,7 @@ public class SStunningDash : Skill
 {
     public float range;
     public float baseDuration;
+    public float baseDamage;
     public BuffScriptable stunBuff;
     public Projectile projectile;
 

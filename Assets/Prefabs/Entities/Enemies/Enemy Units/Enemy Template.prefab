@@ -478,6 +478,11 @@ PrefabInstance:
       propertyPath: baseAttackSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8972237152418319047, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      propertyPath: projectileLaunchPoint
+      value: 
+      objectReference: {fileID: 3983356041049155807}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -823,6 +828,12 @@ MonoBehaviour:
   hitFxFadeOutDuration: 0.25
   hitFxColor: {r: 1, g: 1, b: 1, a: 1}
   hitFxRadius: 0.5
+--- !u!4 &3983356041049155807 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7082070339115388359, guid: 36b01e57100ea254d9149e8306d6dd8f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6129161896939070744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7351104516572008576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3678164197958677912, guid: 36b01e57100ea254d9149e8306d6dd8f,
