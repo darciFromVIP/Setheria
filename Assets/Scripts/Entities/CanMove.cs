@@ -198,8 +198,11 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
             MoveTo(target.position);
             if (Vector3.Distance(transform.position, target.position) <= range)
                 break;
-            if (Vector3.Distance(originalTargetPosition, target.position) > 10)
+            if (Vector3.Distance(originalTargetPosition, target.position) > 7)
+            {
+                GetComponent<CanAttack>().CmdTargetLost();
                 yield break;
+            }
             yield return null;
         }
         Stop();

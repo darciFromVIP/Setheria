@@ -366,11 +366,6 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                         enemyTarget = petOwner;
                 }
             }
-        if (TryGetComponent(out EnemyCharacter enemy))
-            if (enemyTarget)
-                Debug.Log(enemyTarget.name);
-            else
-                Debug.Log("No target");
         if (enemyTarget)
         {
             if (TryGetComponent(out HasHealth hp))
@@ -413,12 +408,6 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void TargetLost()
     {
-        if (TryGetComponent(out EnemyCharacter enemy))
-        {
-            Debug.Log("lost");
-            if (enemyTarget)
-                Debug.Log(enemyTarget.GetComponent<HasHealth>().GetHealth());
-        }
         if (!canAct)
         {
             StopCoroutine("DelayedTargetLost");

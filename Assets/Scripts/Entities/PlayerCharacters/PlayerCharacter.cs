@@ -79,6 +79,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     protected CanAttack attackComp;
     protected PlayerController playerController;
     protected GameObject recallVFX;
+    [SerializeField] protected List<HasHealth> targetsReceived = new();
     [SerializeField] protected GameObject spotlight;
     [SerializeField] protected GameObject levelUpEffect;
     public EventReference levelUpSound;
@@ -87,7 +88,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         base.Start();
         healthComp = GetComponent<HasHealth>();
-
+        if (isOwned)
+        {
+            targetsReceived.Clear();
+            healthComp.Target_Received.AddListener(TargetReceived);
+            healthComp.Received_Target_Lost.AddListener(ReceivedTargetLost);
+        }
         manaComp = GetComponent<HasMana>();
         moveComp = GetComponent<CanMove>();
         attackComp = GetComponent<CanAttack>();
@@ -131,6 +137,23 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             {
                 hungerTimer = 0;
                 healthComp.CmdTakeDamage(healthComp.GetBaseMaxHealth() * 0.2f, true, GetComponent<NetworkIdentity>(), true, true);
+            }
+            foreach (var item in targetsReceived)
+            {
+                if (item == null)
+                {
+                    targetsReceived.Remove(item);
+                    if (targetsReceived.Count == 0)
+                        FindObjectOfType<AudioManager>().StopCombatMusic();
+                    break;
+                }    
+                if (item.GetComponent<CanAttack>().enemyTarget == null)
+                {
+                    targetsReceived.Remove(item);
+                    if (targetsReceived.Count == 0)
+                        FindObjectOfType<AudioManager>().StopCombatMusic();
+                    break;
+                }
             }
             yield return null;
         }
@@ -980,5 +1003,17 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             FindObjectOfType<Tutorial>().QueueNewTutorial(deathTutorial);
             deathTutorial = null;
         }
+    }
+    private void TargetReceived(HasHealth target)
+    {
+        targetsReceived.Add(target);
+        FindObjectOfType<AudioManager>().PlayCombatMusic();
+    }
+    private void ReceivedTargetLost(HasHealth target)
+    {
+        if (targetsReceived.Contains(target))
+            targetsReceived.Remove(target);
+        if (targetsReceived.Count == 0)
+            FindObjectOfType<AudioManager>().StopCombatMusic();
     }
 }

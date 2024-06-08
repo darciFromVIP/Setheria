@@ -9,14 +9,23 @@ public enum AmbienceParameter
 {
     Day, Night
 }
+public enum MusicParameter
+{
+    ForestDay, ForestNight, Corruption
+}
 public class AudioManager : MonoBehaviour
 {
     public Bus masterBus, musicBus, ambienceBus, sfxBus;
     public FMODEventsScriptable fmodEventsDatabase;
+    public EventReference musicEvent, combatEvent;
 
     private EventInstance currentAmbienceInstance;
+    private EventInstance currentMusicInstance;
+    private EventInstance currentCombatInstance;
 
     private List<EventInstance> eventInstances = new();
+
+    private float combatMusicTimer;
 
     public static AudioManager instance;
     private void Awake()
@@ -34,7 +43,11 @@ public class AudioManager : MonoBehaviour
         ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
         sfxBus = RuntimeManager.GetBus("bus:/SFX");
     }
-
+    private void Update()
+    {
+        if (combatMusicTimer > 0) 
+            combatMusicTimer -= Time.deltaTime;
+    }
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
         RuntimeManager.PlayOneShot(sound, worldPos);
@@ -62,6 +75,89 @@ public class AudioManager : MonoBehaviour
                 break;
         }
         currentAmbienceInstance.setParameterByName("DayAndNight", (float)parameter);
+    }
+    public void PlayMusic()
+    {
+        currentMusicInstance = RuntimeManager.CreateInstance(musicEvent);
+        currentMusicInstance.start();
+    }
+    public void ChangeMusicParameter(MusicParameter parameter)
+    {
+        if (!currentMusicInstance.isValid())
+            PlayMusic();
+        currentMusicInstance.setParameterByName("Music", (float)parameter);
+    }
+    public void PlayCombatMusic()
+    {
+        if (!currentCombatInstance.isValid())
+        {
+            currentCombatInstance = RuntimeManager.CreateInstance(combatEvent);
+            currentCombatInstance.start();
+        }
+        else
+        {
+            bool paused;
+            currentCombatInstance.getPaused(out paused);
+            if (!paused)
+                return;
+        }
+        if (combatMusicTimer <= 0)
+        {
+            currentCombatInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            currentCombatInstance.start();
+        }
+        StartCoroutine(UnpauseCombatFadeIn());
+        StartCoroutine(PauseMusicFadeOut());
+    }
+    public void StopCombatMusic()
+    {
+        combatMusicTimer = 15;
+        StartCoroutine(PauseCombatFadeOut());
+        StartCoroutine(UnpauseMusicFadeIn());
+    }    
+    private IEnumerator PauseMusicFadeOut()
+    {
+        float timer = 4;
+        while (timer > 0)
+        {
+            currentMusicInstance.setVolume(Mathf.Lerp(0, 1, timer / 4));
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        currentMusicInstance.setPaused(true);
+    }
+    private IEnumerator PauseCombatFadeOut()
+    {
+        float timer = 4;
+        while (timer > 0)
+        {
+            currentCombatInstance.setVolume(Mathf.Lerp(0, 1, timer / 4));
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        currentCombatInstance.setPaused(true);
+    }
+    private IEnumerator UnpauseMusicFadeIn()
+    {
+        currentMusicInstance.setPaused(false);
+        float timer = 4;
+        while (timer > 0)
+        {
+            currentMusicInstance.setVolume(Mathf.Lerp(1, 0, timer / 4));
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+    }
+    private IEnumerator UnpauseCombatFadeIn()
+    {
+        currentCombatInstance.setPaused(false);
+        float timer = 4;
+        while (timer > 0)
+        {
+            currentCombatInstance.setVolume(Mathf.Lerp(1, 0, timer / 4));
+            timer -= Time.deltaTime;
+            yield return null;
+        }
     }
     public void UIHover()
     {
