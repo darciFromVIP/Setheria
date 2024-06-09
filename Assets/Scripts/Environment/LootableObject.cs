@@ -346,7 +346,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                 item.SetActive(false);
             }
         }
-        else
+        else if (profession == 1)
         {
             GetComponent<Collider>().enabled = true;
             foreach (var item in effectsToHide)

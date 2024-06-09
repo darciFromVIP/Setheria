@@ -978,7 +978,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         base.OnDeath();
         if (isOwned)
+        {
             FindObjectOfType<RespawnUI>().Show();
+            FindObjectOfType<AudioManager>().StopCombatMusic();
+        }
     }
     public override void Revive(Vector3 position, float hpPercentage)
     {

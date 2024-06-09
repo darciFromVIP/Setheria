@@ -10,6 +10,7 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
     private List<ResearchRecipe> recipes = new();
     private int currentTier = 1;
     private bool allResearchesDone;
+    public List<Button> tierButtons = new();
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -29,7 +30,6 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
         if (value)
         {
             UpdateRecipes();
-            researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && !allResearchesDone;
         }
     }
     public void ShowWindow()
@@ -53,6 +53,7 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
         {
             item.UpdateRecipe();
         }
+        researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && !allResearchesDone;
         researchBTN.GetComponentInChildren<TextMeshProUGUI>().text = "Research<sprite=1>" + currentTier * 20;
     }
     public void UnlockRandomRecipe()
@@ -68,20 +69,22 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
     }
     public void CheckTier()
     {
-        bool stayInCurrentTier = false;
         allResearchesDone = true;
         foreach (var item in recipes)
         {
-            if (!item.recipe.unlocked)
+            if (!item.recipe.unlocked && item.recipe.tier == currentTier)
                 allResearchesDone = false;
-            if (item.recipe.tier == currentTier && !item.recipe.unlocked)
-                stayInCurrentTier = true;
         }
         if (allResearchesDone)
             researchBTN.interactable = false;
-        if (!stayInCurrentTier)
-        {
-            currentTier++;
-        }
+    }
+    public void ChangeCurrentTier(int tier)
+    {
+        currentTier = tier;
+        UpdateRecipes();
+    }
+    public void UnlockTier(int tier)
+    {
+        tierButtons[tier - 1].interactable = true;
     }
 }

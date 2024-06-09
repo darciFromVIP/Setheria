@@ -42,6 +42,8 @@ public class AudioManager : MonoBehaviour
         musicBus = RuntimeManager.GetBus("bus:/Music");
         ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
         sfxBus = RuntimeManager.GetBus("bus:/SFX");
+        FindObjectOfType<DayNightCycle>().Night_Started.AddListener(ChangeToNightMusic);
+        FindObjectOfType<DayNightCycle>().Day_Started.AddListener(ChangeToDayMusic);
     }
     private void Update()
     {
@@ -115,6 +117,20 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(PauseCombatFadeOut());
         StartCoroutine(UnpauseMusicFadeIn());
     }    
+    private void ChangeToNightMusic()
+    {
+        float parameter;
+        currentMusicInstance.getParameterByName("Music", out parameter);
+        if (parameter == 0)
+            ChangeMusicParameter(MusicParameter.ForestNight);
+    }
+    private void ChangeToDayMusic()
+    {
+        float parameter;
+        currentMusicInstance.getParameterByName("Music", out parameter);
+        if (parameter == 1)
+            ChangeMusicParameter(MusicParameter.ForestDay);
+    }
     private IEnumerator PauseMusicFadeOut()
     {
         float timer = 4;

@@ -417,6 +417,11 @@ public class Character : Entity
     public void StunCharacter()
     {
         isStunned = true;
+        foreach (var item in skills)
+        {
+            if (item.castingEntity != null)
+                item.StopExecute();
+        }
         Stun_Begin.Invoke();
     }
     [Command(requiresAuthority = false)]

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
+  m_Name: Workshop II
+  m_EditorClassIdentifier: 
+  description: "__________________________________\n- Turn in crates of Resources
+    and Knowledge here. \n- New recipes can be researched here. \n- New items can
+    be bought here for Resources and Knowledge.\n__________________________________\nStructure"
+  grade: 0
+  itemType: 0
+  sprite: {fileID: 21300000, guid: e97e50f4fad5eda45bbb99507c64dd97, type: 3}
+  stackable: 0
+  usage:
+  - {fileID: 11400000, guid: 05ad75b2d69cb6642bd54b772558664f, type: 2}
+  usageCooldown: 0
+  cooldownGroup: 0
+  passiveBuffs: []
+  activeSkills: []
+  value: 0
+  destroyItemOnUse: 1
+  resourceCost: 0
+  knowledgeCost: 0
+  unlocked: 1
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
+  Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
+    m_PersistentCalls:
+      m_Calls: []

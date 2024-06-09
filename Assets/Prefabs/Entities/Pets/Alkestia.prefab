@@ -11001,6 +11001,11 @@ PrefabInstance:
       objectReference: {fileID: 3610135011808215310}
     - target: {fileID: 4351539597950105368, guid: 5ae93da07d471b54a9b55bd3c5a3449a,
         type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 4256069360185060134}
+    - target: {fileID: 4351539597950105368, guid: 5ae93da07d471b54a9b55bd3c5a3449a,
+        type: 3}
       propertyPath: skills.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -11087,6 +11092,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1765780566317288737}
   m_SourcePrefab: {fileID: 100100000, guid: 5ae93da07d471b54a9b55bd3c5a3449a, type: 3}
+--- !u!114 &4256069360185060134 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7938667243172035373, guid: 5ae93da07d471b54a9b55bd3c5a3449a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6141598463903485963}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6230602716759643967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6230602716759643960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 237806135351412531, guid: 5ae93da07d471b54a9b55bd3c5a3449a,

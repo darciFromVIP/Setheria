@@ -66,7 +66,7 @@ public class Projectile : NetworkBehaviour
             yield return null;
         }
 
-        if (isServer && data.targetedEntity == null)
+        if (isServer && data.targetedEntity == null && data.projectileTravel == ProjectileTravelType.EntityTargeted)
             NetworkServer.Destroy(gameObject);
 
         if (!launchSound.IsNull)
