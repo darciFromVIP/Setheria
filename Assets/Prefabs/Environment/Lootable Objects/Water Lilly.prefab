@@ -750,37 +750,38 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   lootDuration: 3
-  refreshDuration: 0
-  xpGranted: 30
+  refreshDuration: 400
+  xpGranted: 15
   maxCharges: 0
   oneTimeLoot: 1
   destroyOnLoot: 0
   lootable: 1
   toolRequirement: 0
-  toolLevelRequirement: 0
-  professionRequired: 0
+  toolLevelRequirement: 60
+  professionRequired: 1
   professionExperienceRequired: 0
   effectsToHide:
   - {fileID: 2229150244544064768}
   - {fileID: 1484520294091152003}
+  - {fileID: 1484520294091152003}
   anim: {fileID: 0}
   soundOnDestroy:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -713904105
+      Data2: 1330006653
+      Data3: -1228084049
+      Data4: -1026474001
+    Path: event:/World Sounds/Vocational Activities/Sapling Destroy
   soundOnLooting:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1523487577
+      Data2: 1182270579
+      Data3: 2079329976
+      Data4: -303898327
+    Path: event:/World Sounds/Vocational Activities/Plant Gather
   skills: []
-  lootableName: <sprite=17> Ruins
-  unlootableName: 
+  lootableName: <sprite=18> Water Lilly
+  unlootableName: Water Lilly (Empty)
   refreshProgressBar: {fileID: 2071052980636620062}
   remainingChargesText: {fileID: 2373316213450876285}
   Player_Event: {fileID: 11400000, guid: cd12b9089334303458b84dfa92efc12f, type: 2}
@@ -809,19 +810,7 @@ MonoBehaviour:
     - item:
         itemData: {fileID: 11400000, guid: a8bc1728e509cca45bb7f5f95205187b, type: 2}
         stacks: 1
-      chance: 30
-    - item:
-        itemData: {fileID: 11400000, guid: 808adcef69c09114dbc4d38baeda0ad6, type: 2}
-        stacks: 1
-      chance: 20
-    - item:
-        itemData: {fileID: 11400000, guid: 4d1a97fe5fe98534aa7b3e2b8debfdbb, type: 2}
-        stacks: 2
-      chance: 30
-    - item:
-        itemData: {fileID: 11400000, guid: 79dd9ac95b358e346aacfd83c6504997, type: 2}
-        stacks: 1
-      chance: 20
+      chance: 100
   fishingQuestEvent: {fileID: 0}
 --- !u!114 &396763906757269663
 MonoBehaviour:
@@ -1042,9 +1031,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  mapIcon: {fileID: 21300000, guid: 6a123770f843d004ab3c4cf5aa34d4fa, type: 3}
+  mapIcon: {fileID: 21300000, guid: 330361fd91bc70d4eb52ef6cf4d7cc42, type: 3}
   ownedMapIcon: {fileID: 0}
-  mapTooltipText: 
+  mapTooltipText: Water Lilly
   iconSize: 0
 --- !u!114 &7463788362461560463
 MonoBehaviour:
