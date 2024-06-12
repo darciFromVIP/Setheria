@@ -797,7 +797,7 @@ PrefabInstance:
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -812,7 +812,12 @@ PrefabInstance:
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].chance
-      value: 100
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[1].chance
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -836,6 +841,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[1].item.stacks
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
       propertyPath: itemDropsTable.Array.data[1].itemDropChances.Array.data[0].item.stacks
       value: 1
       objectReference: {fileID: 0}
@@ -852,6 +862,12 @@ PrefabInstance:
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[0].item.itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: c24df273115bd324c9052ab14ba4c576,
+        type: 2}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[0].itemDropChances.Array.data[1].item.itemData
       value: 
       objectReference: {fileID: 11400000, guid: c24df273115bd324c9052ab14ba4c576,
         type: 2}
