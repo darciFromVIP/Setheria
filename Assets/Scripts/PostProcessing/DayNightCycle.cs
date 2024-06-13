@@ -49,6 +49,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
     {
         maxIndex = data.Count - 1;
         daysAlive = 1;
+        FindObjectOfType<AudioManager>().SetDayNightCycle(this);
     }
     public bool IsNight()
     {

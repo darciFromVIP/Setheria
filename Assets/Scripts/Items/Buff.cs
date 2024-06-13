@@ -29,7 +29,6 @@ public abstract class Buff
     public virtual void SetSound(EventInstance soundInstance)
     {
         sound = soundInstance;
-        sound.start();
     }
     public virtual void BuffExpired()
     {

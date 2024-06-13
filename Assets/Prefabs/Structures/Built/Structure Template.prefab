@@ -92,6 +92,20 @@ MonoBehaviour:
   maxHealth: 200
   healthRegen: 0.25
   baseArmor: 0
+  soundOnDeath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  soundOnHit:
+    Guid:
+      Data1: -140375498
+      Data2: 1238140054
+      Data3: 1147340442
+      Data4: 1977866442
+    Path: event:/World Sounds/Enemies/Hit Structure
   isInvulnerable: 0
 --- !u!135 &5303725996307361695
 SphereCollider:
@@ -689,6 +703,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792582145211125927, guid: 5a2a2ba95570a6545b0faedc7a293dc1,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792582145211125927, guid: 5a2a2ba95570a6545b0faedc7a293dc1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8636592497285462484, guid: 5a2a2ba95570a6545b0faedc7a293dc1,
         type: 3}

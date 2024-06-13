@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using RPG_Indicator;
 using Unity.VisualScripting;
 using UnityEngine.PlayerLoop;
+using FMODUnity;
 
 public class Character : Entity
 {
@@ -16,6 +17,7 @@ public class Character : Entity
 
     public List<Buff> buffs = new();
     public List<Skill> skills = new();
+    public List<EventReference> skillSounds = new();
     public LayerMask enemyLayers;
     public LayerMask allyLayers;
     public BuffDatabase buffDatabase;
@@ -124,26 +126,36 @@ public class Character : Entity
     public void CastSkill1()
     {
         animator.SetTrigger(animHash_Skill1);
+        if (skillSounds.Count >= 1)
+            FindObjectOfType<AudioManager>().PlayOneShot(skillSounds[0], transform.position);
         StopActing();
     }
     public void CastSkill2()
     {
         animator.SetTrigger(animHash_Skill2);
+        if (skillSounds.Count >= 2)
+            FindObjectOfType<AudioManager>().PlayOneShot(skillSounds[1], transform.position);
         StopActing();
     }
     public void CastSkill3()
     {
         animator.SetTrigger(animHash_Skill3);
+        if (skillSounds.Count >= 3)
+            FindObjectOfType<AudioManager>().PlayOneShot(skillSounds[2], transform.position);
         StopActing();
     }
     public void CastSkill4()
     {
         animator.SetTrigger(animHash_Skill4);
+        if (skillSounds.Count >= 4)
+            FindObjectOfType<AudioManager>().PlayOneShot(skillSounds[3], transform.position);
         StopActing();
     }
     public void CastSkill5()
     {
         animator.SetTrigger(animHash_Skill5);
+        if (skillSounds.Count >= 5)
+            FindObjectOfType<AudioManager>().PlayOneShot(skillSounds[4], transform.position);
         StopActing();
     }
     [Command(requiresAuthority = false)]
@@ -314,7 +326,7 @@ public class Character : Entity
                 break;
         }
         if (!buffScriptable.sound.IsNull)
-            buffInstance.SetSound(FindObjectOfType<AudioManager>().CreateEventInstance(buffScriptable.sound));
+            buffInstance.SetSound(FindObjectOfType<AudioManager>().CreateEventInstance(buffScriptable.sound, transform));
 
         if (buffInstance != null)
         {
@@ -417,11 +429,6 @@ public class Character : Entity
     public void StunCharacter()
     {
         isStunned = true;
-        foreach (var item in skills)
-        {
-            if (item.castingEntity != null)
-                item.StopExecute();
-        }
         Stun_Begin.Invoke();
     }
     [Command(requiresAuthority = false)]

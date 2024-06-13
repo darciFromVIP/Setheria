@@ -72,6 +72,7 @@ public class EnemySkills : NetworkBehaviour
             speed = 5,
             targetPoint = transform.position,
             affectsEntities = true,
+            affectsStructures = true,
             owner = GetComponent<EnemyCharacter>()
         });
         NetworkServer.Spawn(proj.gameObject);

@@ -115,6 +115,12 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (timerOnTargetAcquired > 0)
             timerOnTargetAcquired -= Time.deltaTime;
 
+        if (!moveComp && enemyTarget)
+        {
+            if (Vector3.Distance(enemyTarget.transform.position, transform.position) > attackRange)
+                TargetLost();
+        }
+
         if (enemyTarget && canAct && !isCasting && !isDelayingTargetLost && !isStunned)
         {
             if (moveComp)

@@ -131,15 +131,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         interactingPlayer.Work_Cancelled.AddListener(ForgetInteractingPlayer);
         if (!soundOnLooting.IsNull)
         {
-            lootSoundInstance = FindObjectOfType<AudioManager>().CreateEventInstance(soundOnLooting);
-            lootSoundInstance.set3DAttributes(new ATTRIBUTES_3D
-            {
-                position = new VECTOR { x = transform.position.x, y = transform.position.y, z = transform.position.z },
-                forward = new VECTOR { x = transform.forward.x, y = transform.forward.y, z = transform.forward.z },
-                up = new VECTOR { x = transform.up.x, y = transform.up.y, z = transform.up.z },
-                velocity = new VECTOR { x = 0, y = 0, z = 0 }
-            });
-            lootSoundInstance.start();
+            lootSoundInstance = FindObjectOfType<AudioManager>().CreateEventInstance(soundOnLooting, transform);
         }
     }
     private void ForgetInteractingPlayer()
@@ -351,7 +343,8 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             GetComponent<Collider>().enabled = true;
             foreach (var item in effectsToHide)
             {
-                item.SetActive(true);
+                if (item.name != "Loot Interact")
+                    item.SetActive(true);
             }
         }
         if (profession >= professionExperienceRequired)

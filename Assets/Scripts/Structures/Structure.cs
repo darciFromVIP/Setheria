@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using FMODUnity;
+using FMOD.Studio;
 
 public class Structure : Entity, ISaveable, IInteractable
 {
@@ -14,6 +16,8 @@ public class Structure : Entity, ISaveable, IInteractable
     public Structure upgradePrefab;
     public int demolishCost;
     private float notificationTimer = 0;
+    public FMODEventsScriptable sounds;
+    private EventInstance repairInstance;
 
     private void Update()
     {
@@ -95,11 +99,21 @@ public class Structure : Entity, ISaveable, IInteractable
     {
         GetComponent<HasHealth>().HealDamage(amount, false);
     }
+    public void PlayRepairSound()
+    {
+        repairInstance = FindObjectOfType<AudioManager>().CreateEventInstance(sounds.Repair, transform);
+    }
+    public void StopRepairSound()
+    {
+        repairInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        repairInstance.release();
+    }
     private void StructureUnderAttack(NetworkIdentity enemy)
     {
         if (notificationTimer > 0)
             return;
         notificationTimer = 10;
+        FindObjectOfType<AudioManager>().PlayOneShot(sounds.BaseUnderAttack, Vector3.zero);
         FindObjectOfType<SystemMessages>().AddMessage("Your base is under attack!", MsgType.Notice);
     }
     [Command(requiresAuthority = false)]

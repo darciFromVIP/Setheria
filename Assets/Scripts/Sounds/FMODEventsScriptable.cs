@@ -19,6 +19,7 @@ public class FMODEventsScriptable : ScriptableObject
     public EventReference QuestComplete;
     public EventReference ToolBreak;
     public EventReference UnlockRecipe;
+    public EventReference BaseUnderAttack;
     [Header("Hero Sounds")]
     public EventReference LevelUp;
     [Header("World Sounds")]
@@ -29,4 +30,5 @@ public class FMODEventsScriptable : ScriptableObject
     public EventReference ResourcesCollected;
     public EventReference ItemCrafted;
     public EventReference EatFood;
+    public EventReference Repair;
 }

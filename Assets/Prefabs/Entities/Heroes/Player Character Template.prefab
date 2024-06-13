@@ -815,6 +815,7 @@ MonoBehaviour:
   baseRotateSpeed: 10
   level: 0
   skills: []
+  skillSounds: []
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -883,6 +884,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 31e51963c8de7884d880929019046e23, type: 2}
   - {fileID: 11400000, guid: b4174f962622e004f8323b1401cf5ddd, type: 2}
   deathTutorial: {fileID: 11400000, guid: 91d8dcab2491bf24884430c56453b851, type: 2}
+  targetsReceived: []
   spotlight: {fileID: 7817695276934094833}
   levelUpEffect: {fileID: 1929508706665676967}
   levelUpSound:
@@ -966,7 +968,7 @@ MonoBehaviour:
   syncInterval: 0.1
   layerMask:
     serializedVersion: 2
-    m_Bits: 3289
+    m_Bits: 19673
 --- !u!114 &5963888240424352217
 MonoBehaviour:
   m_ObjectHideFlags: 0

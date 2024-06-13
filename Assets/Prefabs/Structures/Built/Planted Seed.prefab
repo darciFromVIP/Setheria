@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d8af8deac97e2194cbaf9a83fa16c338, type: 3}
+  m_Material: {fileID: 2100000, guid: ca50e5d898bcba4489bb430ccdc2135e, type: 2}
   m_Color: {r: 0, g: 0.67520344, b: 0.7735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1448,7 +1448,8 @@ MonoBehaviour:
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: a9254afd426f4fa4aad5a482119942c9, type: 2}
   upgradePrefab: {fileID: 0}
-  demolishCost: 5
+  demolishCost: 0
+  sounds: {fileID: 11400000, guid: 4043a4e6298e7054db0caada6f3bb6fb, type: 2}
 --- !u!114 &3216212825170540366
 MonoBehaviour:
   m_ObjectHideFlags: 0

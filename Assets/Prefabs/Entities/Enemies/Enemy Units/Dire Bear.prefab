@@ -55,6 +55,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c83383d8edb4c0444951b69f2f08d7b5,
         type: 2}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.data[0].Path
+      value: event:/World Sounds/Enemies/Bear Stomp 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.data[0].Guid.Data1
+      value: 1500989114
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.data[0].Guid.Data2
+      value: 1225677263
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.data[0].Guid.Data3
+      value: -674724449
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.data[0].Guid.Data4
+      value: 166424685
+      objectReference: {fileID: 0}
     - target: {fileID: 97580777487625474, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -362,6 +392,31 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHealth
       value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: soundOnDeath.Path
+      value: event:/World Sounds/Enemies/Bear Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: soundOnDeath.Guid.Data1
+      value: -729922434
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: soundOnDeath.Guid.Data2
+      value: 1232031267
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: soundOnDeath.Guid.Data3
+      value: -2077909606
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: soundOnDeath.Guid.Data4
+      value: 195554599
       objectReference: {fileID: 0}
     - target: {fileID: 4864168259604706628, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}

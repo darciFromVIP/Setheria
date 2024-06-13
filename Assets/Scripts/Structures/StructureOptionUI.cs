@@ -116,7 +116,7 @@ public class StructureOptionUI : MonoBehaviour
                         cooldownSlider.maxValue = seed.pourWaterCooldown;
                         cooldownSlider.value = seed.GetWaterTimer();
                     }
-                    else
+                    else if (FindObjectOfType<InventoryManager>(true).GetItemOfName("Water"))
                         GetComponent<Button>().interactable = true;
                 }
                 if (structureOption.structureAction == StructureAction.Fertilize)
@@ -128,7 +128,7 @@ public class StructureOptionUI : MonoBehaviour
                         cooldownSlider.maxValue = seed.fertilizeCooldown;
                         cooldownSlider.value = seed.GetFertilizeTimer();
                     }
-                    else
+                    else if (FindObjectOfType<InventoryManager>(true).GetItemOfName("Fertilizer"))
                         GetComponent<Button>().interactable = true;
                 }
             }
@@ -274,6 +274,9 @@ public class StructureOptionUI : MonoBehaviour
                     FindObjectOfType<SystemMessages>().AddMessage("You don't have a Handicraft Tool equipped.");
                     return;
                 }
+                currentStructure.PlayRepairSound();
+                player.Work_Finished.AddListener(currentStructure.StopRepairSound);
+                player.Work_Cancelled.AddListener(currentStructure.StopRepairSound);
                 player.Repair_Tick.AddListener(currentStructure.CmdRepairStructure);
                 float temp = Mathf.Ceil(healthToRepair / (toolLevel * 10));
                 float temp2 = FindObjectOfType<GameManager>().GetResources();

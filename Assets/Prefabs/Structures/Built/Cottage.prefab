@@ -393,6 +393,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   animator: {fileID: 0}
+  corpseDecay: 1
+  objectsToDisable: []
   On_Death:
     m_PersistentCalls:
       m_Calls: []
@@ -412,6 +414,7 @@ MonoBehaviour:
   structureData: {fileID: 11400000, guid: 8d29d2f2d555223459b16e12d1fa08b2, type: 2}
   upgradePrefab: {fileID: 0}
   demolishCost: 10
+  sounds: {fileID: 11400000, guid: 4043a4e6298e7054db0caada6f3bb6fb, type: 2}
 --- !u!114 &7439013240781064557
 MonoBehaviour:
   m_ObjectHideFlags: 0

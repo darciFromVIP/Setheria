@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d8af8deac97e2194cbaf9a83fa16c338, type: 3}
+  m_Material: {fileID: 2100000, guid: ca50e5d898bcba4489bb430ccdc2135e, type: 2}
   m_Color: {r: 0, g: 0.67520344, b: 0.7735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -795,7 +795,7 @@ PrefabInstance:
     - target: {fileID: 1952624448393945043, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: mapTooltipText
-      value: Totem
+      value: Planted Sapling
       objectReference: {fileID: 0}
     - target: {fileID: 2012023165662233099, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -1221,7 +1221,7 @@ MonoBehaviour:
       m_Calls: []
   hudCircle: {fileID: 0}
   vfxDatabase: {fileID: 0}
-  structureItem: {fileID: 11400000, guid: 3ce6dd3919e76ef4fa8156c3ae6f8795, type: 2}
+  structureItem: {fileID: 11400000, guid: bd019c5a606e93240956a02029eecda0, type: 2}
   structureOptions:
   - {fileID: 11400000, guid: bb3654b66b8a0334b9da3cb2b0da5523, type: 2}
   - {fileID: 11400000, guid: 1743935c9593bbe41bf9f74ec794e6af, type: 2}
@@ -1230,9 +1230,10 @@ MonoBehaviour:
   skills: []
   entityDatabase: {fileID: 0}
   unitSpawnPoint: {fileID: 0}
-  structureData: {fileID: 11400000, guid: a9254afd426f4fa4aad5a482119942c9, type: 2}
+  structureData: {fileID: 11400000, guid: 8188a155d70ce6048a1916494956795f, type: 2}
   upgradePrefab: {fileID: 0}
-  demolishCost: 5
+  demolishCost: 0
+  sounds: {fileID: 11400000, guid: 4043a4e6298e7054db0caada6f3bb6fb, type: 2}
 --- !u!114 &3216212825170540366
 MonoBehaviour:
   m_ObjectHideFlags: 0

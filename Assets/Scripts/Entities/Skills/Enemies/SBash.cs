@@ -36,6 +36,7 @@ public class SBash : Skill
         castingEntity.skillIndicator.InterruptCasting();
         castingEntity.Stun_Begin.RemoveAllListeners();
         castingEntity.animator.SetTrigger("Reset");
+        castingEntity.StartCooldown1();
     }
     protected override void StartCasting()
     {
@@ -49,7 +50,6 @@ public class SBash : Skill
             castingEntity.GetComponent<Character>().CastSkill1();
         castingEntity.Stun_Begin.AddListener(StopExecute);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
-
         castingEntity.skillIndicator.ShowRadius(radius, true, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
         castingEntity.skillIndicator.Casting(2);
     }

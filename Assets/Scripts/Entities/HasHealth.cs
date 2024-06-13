@@ -5,6 +5,7 @@ using Mirror;
 using UnityEngine.Events;
 using FMOD.Studio;
 using UnityEngine.UIElements;
+using FMODUnity;
 
 public class HasHealth : NetworkBehaviour, ISaveable
 {
@@ -25,6 +26,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
     [SerializeField] private float baseArmor = 0;
     private float gearArmor = 0;
     private float finalArmor;
+    public EventReference soundOnDeath;
+    public EventReference soundOnHit;
 
     [SerializeField] private bool isInvulnerable;
 
@@ -122,6 +125,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
             finalDmg = damage * (1 - (GetFinalArmor() / 100));
 
         health -= finalDmg;
+        if (!soundOnHit.IsNull)
+            FindObjectOfType<AudioManager>().PlayOneShot(soundOnHit, transform.position);
         if (isServer && finalDmg >= 1)
             FindObjectOfType<FloatingText>().ServerSpawnFloatingText("-" + ((int)finalDmg).ToString(), transform.position + Vector3.up, isCritical ? FloatingTextType.CriticalDamage : FloatingTextType.Damage);
         if (health <= 0)
@@ -357,6 +362,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
     private void OnDeath()
     {
         health = 0;
+        if (!soundOnDeath.IsNull)
+            FindObjectOfType<AudioManager>().PlayOneShot(soundOnDeath, transform.position);
         On_Death.Invoke();
     }
     public void SetInvulnerability(bool value)

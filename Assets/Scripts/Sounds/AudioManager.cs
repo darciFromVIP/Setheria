@@ -4,6 +4,7 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using UnityEngine.SceneManagement;
+using FMOD;
 
 public enum AmbienceParameter
 {
@@ -26,6 +27,7 @@ public class AudioManager : MonoBehaviour
     private List<EventInstance> eventInstances = new();
 
     private float combatMusicTimer;
+    private bool musicChanging = false;
 
     public static AudioManager instance;
     private void Awake()
@@ -37,13 +39,11 @@ public class AudioManager : MonoBehaviour
         else
             instance = this;
         DontDestroyOnLoad(gameObject);
-        SceneManager.sceneLoaded += CleanUp;
+        SceneManager.sceneLoaded += SceneChanged;
         masterBus = RuntimeManager.GetBus("bus:/");
         musicBus = RuntimeManager.GetBus("bus:/Music");
         ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
         sfxBus = RuntimeManager.GetBus("bus:/SFX");
-        FindObjectOfType<DayNightCycle>().Night_Started.AddListener(ChangeToNightMusic);
-        FindObjectOfType<DayNightCycle>().Day_Started.AddListener(ChangeToDayMusic);
     }
     private void Update()
     {
@@ -91,6 +91,11 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayCombatMusic()
     {
+        StartCoroutine(PlayCombatMusicCoro());
+    }
+    private IEnumerator PlayCombatMusicCoro()
+    {
+        yield return new WaitWhile(IsMusicChanging);
         if (!currentCombatInstance.isValid())
         {
             currentCombatInstance = RuntimeManager.CreateInstance(combatEvent);
@@ -101,7 +106,7 @@ public class AudioManager : MonoBehaviour
             bool paused;
             currentCombatInstance.getPaused(out paused);
             if (!paused)
-                return;
+                yield break;
         }
         if (combatMusicTimer <= 0)
         {
@@ -113,10 +118,19 @@ public class AudioManager : MonoBehaviour
     }
     public void StopCombatMusic()
     {
+        StartCoroutine(StopCombatMusicCoro());
+    }
+    private IEnumerator StopCombatMusicCoro()
+    {
+        yield return new WaitWhile(IsMusicChanging);
         combatMusicTimer = 15;
         StartCoroutine(PauseCombatFadeOut());
         StartCoroutine(UnpauseMusicFadeIn());
-    }    
+    }
+    private bool IsMusicChanging()
+    {
+        return musicChanging;
+    }
     private void ChangeToNightMusic()
     {
         float parameter;
@@ -133,6 +147,7 @@ public class AudioManager : MonoBehaviour
     }
     private IEnumerator PauseMusicFadeOut()
     {
+        musicChanging = true;
         float timer = 4;
         while (timer > 0)
         {
@@ -141,9 +156,11 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
         currentMusicInstance.setPaused(true);
+        musicChanging = false;
     }
     private IEnumerator PauseCombatFadeOut()
     {
+        musicChanging = true;
         float timer = 4;
         while (timer > 0)
         {
@@ -152,9 +169,11 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
         currentCombatInstance.setPaused(true);
+        musicChanging = false;
     }
     private IEnumerator UnpauseMusicFadeIn()
     {
+        musicChanging = true;
         currentMusicInstance.setPaused(false);
         float timer = 4;
         while (timer > 0)
@@ -163,9 +182,11 @@ public class AudioManager : MonoBehaviour
             timer -= Time.deltaTime;
             yield return null;
         }
+        musicChanging = false;
     }
     private IEnumerator UnpauseCombatFadeIn()
     {
+        musicChanging = true;
         currentCombatInstance.setPaused(false);
         float timer = 4;
         while (timer > 0)
@@ -174,6 +195,7 @@ public class AudioManager : MonoBehaviour
             timer -= Time.deltaTime;
             yield return null;
         }
+        musicChanging = false;
     }
     public void UIHover()
     {
@@ -247,13 +269,21 @@ public class AudioManager : MonoBehaviour
     {
         PlayOneShot(fmodEventsDatabase.EatFood, position);
     }
-    public EventInstance CreateEventInstance(EventReference eventReference)
+    public EventInstance CreateEventInstance(EventReference eventReference, Transform pos)
     {
         EventInstance instance = RuntimeManager.CreateInstance(eventReference);
         eventInstances.Add(instance);
+        instance.set3DAttributes(new ATTRIBUTES_3D
+        {
+            position = new VECTOR { x = pos.position.x, y = pos.position.y, z = pos.position.z },
+            forward = new VECTOR { x = pos.forward.x, y = pos.forward.y, z = pos.forward.z },
+            up = new VECTOR {x = pos.up.x, y = pos.up.y, z = pos.up.z },
+            velocity = new VECTOR { x = 0, y = 0, z = 0 }
+        });
+        instance.start();
         return instance;
     }
-    private void CleanUp(Scene arg0, LoadSceneMode arg1)
+    private void SceneChanged(Scene arg0, LoadSceneMode arg1)
     {
         foreach (var item in eventInstances)
         {
@@ -262,6 +292,15 @@ public class AudioManager : MonoBehaviour
         }
         currentAmbienceInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         currentAmbienceInstance.release();
+        currentMusicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        currentMusicInstance.release();
+        currentCombatInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        currentCombatInstance.release();
+    }
+    public void SetDayNightCycle(DayNightCycle reference)
+    {
+        reference.Night_Started.AddListener(ChangeToNightMusic);
+        reference.Day_Started.AddListener(ChangeToDayMusic);
     }
     public void ChangeMasterVolume(float value)
     {

@@ -250,6 +250,20 @@ MonoBehaviour:
   maxHealth: 100
   healthRegen: 0.25
   baseArmor: 0
+  soundOnDeath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  soundOnHit:
+    Guid:
+      Data1: -2128243017
+      Data2: 1315958039
+      Data3: 615756168
+      Data4: 1114073541
+    Path: event:/World Sounds/Enemies/Hit Alive
   isInvulnerable: 0
 --- !u!114 &8972237152418319047
 MonoBehaviour:
@@ -282,6 +296,7 @@ MonoBehaviour:
   canAct: 1
   isCasting: 0
   flyingUnit: 0
+  cooldownOnTargetAcquired: 3
   projectilePrefab: {fileID: 0}
   projectileLaunchPoint: {fileID: 0}
   enemyTarget: {fileID: 0}
