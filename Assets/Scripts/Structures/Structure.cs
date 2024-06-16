@@ -41,7 +41,11 @@ public class Structure : Entity, ISaveable, IInteractable
             }
         }
         if (TryGetComponent(out HasHealth hp))
+        {
             hp.Damage_Taken.AddListener(StructureUnderAttack);
+            hp.Target_Received.AddListener(TargetReceived);
+            hp.Received_Target_Lost.AddListener(ReceivedTargetLost);
+        }
     }
     public virtual void LoadState(SaveDataWorldObject state)
     {
@@ -114,7 +118,7 @@ public class Structure : Entity, ISaveable, IInteractable
             return;
         notificationTimer = 10;
         FindObjectOfType<AudioManager>().PlayOneShot(sounds.BaseUnderAttack, Vector3.zero);
-        FindObjectOfType<SystemMessages>().AddMessage("Your base is under attack!", MsgType.Notice);
+        FindObjectOfType<SystemMessages>().AddMessageWithTeleportBTN("Your base is under attack!", transform.position, MsgType.Error);
     }
     [Command(requiresAuthority = false)]
     public void CmdUpgradeStructure()
@@ -124,5 +128,13 @@ public class Structure : Entity, ISaveable, IInteractable
         var instance = Instantiate(upgradePrefab, transform.position, transform.rotation);
         NetworkServer.Spawn(instance.gameObject);
         NetworkServer.Destroy(gameObject);
+    }
+    private void TargetReceived(HasHealth target)
+    {
+        FindObjectOfType<AudioManager>().TargetReceived(target);
+    }
+    private void ReceivedTargetLost(HasHealth target)
+    {
+        FindObjectOfType<AudioManager>().ReceivedTargetLost(target);
     }
 }

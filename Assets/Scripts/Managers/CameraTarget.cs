@@ -44,6 +44,7 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
                 item.onValueChanged.AddListener(CameraZoomChanged);
         }
         StartCoroutine(WaitForGlobalStartingPoint());
+        FindObjectOfType<SystemMessages>(true).cameraTeleportEvent.AddListener(Teleport);
     }
     private IEnumerator WaitForGlobalStartingPoint()
     {
@@ -187,10 +188,14 @@ public class CameraTarget : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     public void Teleport(Transform dest)
     {
+        if (isFollowing)
+            CenterCamera(true);
         transform.position = dest.position;
     }
     public void Teleport(Vector3 dest)
     {
+        if (isFollowing)
+            CenterCamera(true);
         transform.position = dest;
     }
 

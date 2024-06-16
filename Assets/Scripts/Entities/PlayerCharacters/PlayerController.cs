@@ -176,6 +176,8 @@ public class PlayerController : NetworkBehaviour
             Resume_Acting.Invoke();
             attackComp.CmdTargetLost();
             attackComp.attackSpeedTimer = 0;
+            if (attackComp.isCasting)
+                currentSkill.StopExecute();
             moveComp.CmdForceMovementAnimation();
         }
 

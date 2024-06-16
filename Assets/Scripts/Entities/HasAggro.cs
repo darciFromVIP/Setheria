@@ -77,26 +77,34 @@ public class HasAggro : NetworkBehaviour
                 }
                 if (resultTarget)
                 {
-                    if (shouldCallForHelp)
-                    {
-                        Collider[] allies = new Collider[10];
-                        Physics.OverlapSphereNonAlloc(transform.position, allyHelpRange, allies, allyLayers);
-                        foreach (var item in allies)
+                    if (resultTarget.TryGetComponent(out HasHealth hp))
+                        if (hp.GetHealth() > 0)
                         {
-                            if (item)
-                            {
-                                if (item.TryGetComponent(out CanAttack attackComp))
-                                    if (attackComp.enemyTarget == null)
+                            if (resultTarget.TryGetComponent(out Character character))
+                                if (character.HasBuff("Sleeping") <= 0)
+                                {
+                                    if (shouldCallForHelp)
                                     {
-                                        item.GetComponent<HasAggro>().Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
+                                        Collider[] allies = new Collider[10];
+                                        Physics.OverlapSphereNonAlloc(transform.position, allyHelpRange, allies, allyLayers);
+                                        foreach (var item in allies)
+                                        {
+                                            if (item)
+                                            {
+                                                if (item.TryGetComponent(out CanAttack attackComp))
+                                                    if (attackComp.enemyTarget == null)
+                                                    {
+                                                        item.GetComponent<HasAggro>().Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
+                                                    }
+                                            }
+                                        }
                                     }
-                            }
+                                    else
+                                    {
+                                        Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
+                                    }
+                                }
                         }
-                    }
-                    else
-                    {
-                        Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
-                    }
                 }
             }
             yield return new WaitForSeconds(1);
@@ -110,6 +118,9 @@ public class HasAggro : NetworkBehaviour
     {
         if (enemy == GetComponent<NetworkIdentity>() || GetComponent<HasHealth>().GetHealth() <= 0)
             return;
+        if (enemy.TryGetComponent(out HasHealth hp))
+            if (hp.GetHealth() <= 0)
+                return;
         int multiplier = 1;
         if (enemy.TryGetComponent(out PlayerCharacter player))
         {

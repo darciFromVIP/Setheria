@@ -21,6 +21,9 @@ public class RespawnUI : MonoBehaviour
             return;
         deathCountdown = deathTime;
         deathBar.maxValue = deathTime;
+        heartstoneBTN.interactable = false;
+        startPointBTN.interactable = false;
+        baseBTN.interactable = false;
         window.SetActive(true);
         StartCoroutine(StartDeathTimer());
     }

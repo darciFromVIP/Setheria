@@ -38,6 +38,8 @@ public class EnemyCharacter : Character, ISaveable
     }
     protected void TargetLost()
     {
+        if (isServer)
+            ReturnToCamp(false);
         StopCoroutine("CheckCampRadius");
     }
     protected IEnumerator CheckCampRadius()
@@ -46,13 +48,14 @@ public class EnemyCharacter : Character, ISaveable
             yield break;
         while (Vector3.Distance(startingPosition, transform.position) < campRadius)
             yield return null;
-        ReturnToCamp();
+        ReturnToCamp(true);
     }
     [ClientRpc]
-    private void ReturnToCamp()
+    private void ReturnToCamp(bool loseTarget)
     {
         aggroComp.enabled = false;
-        attackComp.TargetLost();
+        if (loseTarget)
+            attackComp.TargetLost();
         if (moveComp)
             moveComp.MoveTo(startingPosition);
         hpComp.HealDamage(10000000, true);

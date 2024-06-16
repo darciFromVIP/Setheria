@@ -40,6 +40,11 @@ public class Skill : ScriptableObject
     {
         if (castingEntity.TryGetComponent(out CanAttack attackComp))
             attackComp.CmdSetCasting(true);
+        if (castingEntity.TryGetComponent(out PlayerController controller))
+        {
+            controller.ChangeState(PlayerState.None);
+            controller.ChangeCastingState(CastingState.None);
+        }
     }
     protected virtual void StartCasting(Vector3 point)
     {

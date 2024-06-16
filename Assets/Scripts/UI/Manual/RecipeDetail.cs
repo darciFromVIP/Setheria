@@ -81,7 +81,10 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         }
         resourceCostText.text = "Resources: " + (recipeData.resourceCost * this.amount).ToString();
         if (!FindObjectOfType<GameManager>().TestSubtractResources(recipeData.resourceCost * this.amount))
+        {
+            resourceCostText.text = "Resources: <color=red>" + (recipeData.resourceCost * this.amount).ToString();
             craftBtn.interactable = false;
+        }
 
         craftAllBtn.interactable = craftBtn.interactable;
     }

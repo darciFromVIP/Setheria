@@ -27,7 +27,8 @@ public class AudioManager : MonoBehaviour
     private List<EventInstance> eventInstances = new();
 
     private float combatMusicTimer;
-    private bool musicChanging = false;
+    private bool musicChanging = false, startingCombatMusic = false, stoppingCombatMusic = false;
+    private List<HasHealth> targetsReceived = new();
 
     public static AudioManager instance;
     private void Awake()
@@ -49,6 +50,23 @@ public class AudioManager : MonoBehaviour
     {
         if (combatMusicTimer > 0) 
             combatMusicTimer -= Time.deltaTime;
+        foreach (var item in targetsReceived)
+        {
+            if (item == null)
+            {
+                targetsReceived.Remove(item);
+                if (targetsReceived.Count == 0)
+                    StopCombatMusic();
+                break;
+            }
+            if (item.GetComponent<CanAttack>().enemyTarget == null)
+            {
+                targetsReceived.Remove(item);
+                if (targetsReceived.Count == 0)
+                    StopCombatMusic();
+                break;
+            }
+        }
     }
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
@@ -91,11 +109,16 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayCombatMusic()
     {
+        if (startingCombatMusic)
+            return;
+        UnityEngine.Debug.Log("StartingCombatMusic");
         StartCoroutine(PlayCombatMusicCoro());
     }
     private IEnumerator PlayCombatMusicCoro()
     {
         yield return new WaitWhile(IsMusicChanging);
+        if (startingCombatMusic)
+            yield break;
         if (!currentCombatInstance.isValid())
         {
             currentCombatInstance = RuntimeManager.CreateInstance(combatEvent);
@@ -118,11 +141,16 @@ public class AudioManager : MonoBehaviour
     }
     public void StopCombatMusic()
     {
+        if (stoppingCombatMusic)
+            return;
+        UnityEngine.Debug.Log("StoppingCombatMusic");
         StartCoroutine(StopCombatMusicCoro());
     }
     private IEnumerator StopCombatMusicCoro()
     {
         yield return new WaitWhile(IsMusicChanging);
+        if (stoppingCombatMusic)
+            yield break;
         combatMusicTimer = 15;
         StartCoroutine(PauseCombatFadeOut());
         StartCoroutine(UnpauseMusicFadeIn());
@@ -161,6 +189,7 @@ public class AudioManager : MonoBehaviour
     private IEnumerator PauseCombatFadeOut()
     {
         musicChanging = true;
+        stoppingCombatMusic = true;
         float timer = 4;
         while (timer > 0)
         {
@@ -170,6 +199,7 @@ public class AudioManager : MonoBehaviour
         }
         currentCombatInstance.setPaused(true);
         musicChanging = false;
+        stoppingCombatMusic = false;
     }
     private IEnumerator UnpauseMusicFadeIn()
     {
@@ -187,6 +217,7 @@ public class AudioManager : MonoBehaviour
     private IEnumerator UnpauseCombatFadeIn()
     {
         musicChanging = true;
+        startingCombatMusic = true;
         currentCombatInstance.setPaused(false);
         float timer = 4;
         while (timer > 0)
@@ -196,6 +227,7 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
         musicChanging = false;
+        startingCombatMusic = false;
     }
     public void UIHover()
     {
@@ -317,5 +349,17 @@ public class AudioManager : MonoBehaviour
     public void ChangeSFXVolume(float value)
     {
         sfxBus.setVolume(value);
+    }
+    public void TargetReceived(HasHealth target)
+    {
+        targetsReceived.Add(target);
+        PlayCombatMusic();
+    }
+    public void ReceivedTargetLost(HasHealth target)
+    {
+        if (targetsReceived.Contains(target))
+            targetsReceived.Remove(target);
+        if (targetsReceived.Count == 0)
+            StopCombatMusic();
     }
 }

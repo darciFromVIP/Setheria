@@ -64,7 +64,7 @@ public class CursorRaycaster : NetworkBehaviour
             else
                 tooltip.Hide();
 
-            if (player.castingState == CastingState.EnemyOnly || player.castingState == CastingState.Both || player.castingState == CastingState.BothExceptSelf && hit.collider.TryGetComponent(out EnemyCharacter enemyy))
+            if ((player.castingState == CastingState.EnemyOnly || player.castingState == CastingState.Both || player.castingState == CastingState.BothExceptSelf) && hit.collider.TryGetComponent(out EnemyCharacter enemyy))
                 cursor.SetEnemyCastingCursor();
             else if (player.state != PlayerState.Casting && hit.collider.TryGetComponent(out EnemyCharacter enemy))
                 cursor.SetEnemyCursor();
