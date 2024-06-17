@@ -29,6 +29,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     private InventoryManager inventoryManagerParent;
     private StashInventory stashInventory;
     private InventoryManager inventoryManager;
+    private DismantleSlot dismantleSlot;
 
     public UnityEvent Item_Destroyed = new();
     public UnityEvent<int> Stacks_Changed = new();
@@ -51,7 +52,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             stashInventoryParent = GetComponentInParent<StashInventory>();
             inventoryManagerParent = GetComponentInParent<InventoryManager>();
             stashInventory = FindObjectOfType<StashInventory>();
-            inventoryManager = FindObjectOfType<InventoryManager>(true);
+            if (!inventoryManager)
+                inventoryManager = FindObjectOfType<InventoryManager>(true);
+            dismantleSlot = FindObjectOfType<DismantleSlot>();
         }
     }
     public void InitializeItem(Item item)
@@ -343,23 +346,32 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     private void QuickItemTransfer()
     {
-        if (stashInventory == null)
+        if (stashInventory == null && dismantleSlot == null)
             return;
-        if (!stashInventory.IsActive())
-            return;
+
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Mouse0) && !Input.GetKey(KeyCode.LeftControl))
         {
-            if (inventoryManagerParent && stashInventory)                       // To Stash
+            if (stashInventory != null)
             {
-                if (stashInventory.CmdAddItem(item, stacks))    
-                    DestroyItem();
+                if (stashInventory.IsActive())
+                {
+                    if (inventoryManagerParent && stashInventory)                       // To Stash
+                    {
+                        if (stashInventory.CmdAddItem(item, stacks))
+                            DestroyItem();
+                    }
+                    else if (stashInventoryParent && inventoryManager)                  // To Inventory
+                    {
+                        if (!inventoryManager.GetFreeSlot())
+                            return;
+                        inventoryManager.AddItem(item, stacks);
+                        GetComponentInParent<StashSlot>().CmdDeleteItemOnClients();
+                    }
+                }
             }
-            else if (stashInventoryParent && inventoryManager)                  // To Inventory
+            if (dismantleSlot)
             {
-                if (!inventoryManager.GetFreeSlot())
-                    return;
-                inventoryManager.AddItem(item, stacks);
-                GetComponentInParent<StashSlot>().CmdDeleteItemOnClients();
+                dismantleSlot.DismantleItem(this);
             }
         }
     }

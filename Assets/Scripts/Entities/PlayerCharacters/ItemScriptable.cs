@@ -34,6 +34,7 @@ public class ItemScriptable : ScriptableObject
     public int resourceCost;
     public int knowledgeCost;
     public bool unlocked = true;
+    public List<ItemDropChances> itemsAfterDismantle = new();
     public TutorialDataScriptable tutorialToShowAfterItemAcquirement;
 
     [HideInInspector] public UnityEvent<ItemScriptable> Item_Acquired = new();

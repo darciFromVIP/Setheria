@@ -300,6 +300,9 @@ public class StructureOptionUI : MonoBehaviour
                 player.Work_Finished.RemoveListener(Harvest);
                 player.Work_Finished.AddListener(Harvest);
                 break;
+            case StructureAction.Dismantle:
+                FindObjectOfType<DismantleScreen>(true).ShowWindow();
+                break;
             default:
                 break;
         }

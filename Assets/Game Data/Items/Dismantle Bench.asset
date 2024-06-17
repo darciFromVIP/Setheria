@@ -10,40 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Thick Hide
+  m_Name: Dismantle Bench
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    Better quality skin.
-
-    Can
-    be <color=#FFD000>dismantled</color> using the <color=#FFD000>Handicraft Tool</color>
-    to receive <color=#FFD000>Scraps</color>.
+    This structure can dismantle
+    items into materials.
 
     __________________________________
 
-    Material,
-    Armory'
+    Structure'
   grade: 0
   itemType: 0
-  sprite: {fileID: 21300000, guid: 184253804b7cc4f4685577636d2bcc56, type: 3}
-  stackable: 1
-  usage: []
+  sprite: {fileID: 21300000, guid: c11e8a150de2fcc40b6dfbc138facd18, type: 3}
+  stackable: 0
+  usage:
+  - {fileID: 11400000, guid: 6c16ee02ede95284ba31d282bbf57eb4, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
   value: 0
-  destroyItemOnUse: 0
+  destroyItemOnUse: 1
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
-  itemsAfterDismantle:
-  - itemDropChances:
-    - item:
-        itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
-        stacks: 3
-      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

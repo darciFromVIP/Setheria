@@ -46,6 +46,7 @@ public class StructureScreen : MonoBehaviour, WindowedUI
         GetComponentInChildren<ShopScreen>(true).ToggleWindow(false);
         GetComponentInChildren<ResearchScreen>(true).ToggleWindow(false);
         GetComponentInChildren<StashInventory>(true).HideWindow();
+        GetComponentInChildren<DismantleScreen>(true).HideWindow();
     }
 
     public void ShowWindow()
