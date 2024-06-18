@@ -39,7 +39,7 @@ public class SStunningDash : Skill
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveAllListeners();
         castingEntity.skillIndicator.InterruptCasting();
-        castingEntity.Stun_Begin.RemoveAllListeners();
+        castingEntity.Stun_Begin.RemoveListener(StopExecute);
         castingEntity.animator.SetTrigger("Reset");
     }
     protected override void StartCasting()
@@ -111,6 +111,6 @@ public class SStunningDash : Skill
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
         castingEntity.SetRotateTarget(castingEntity.GetComponent<CanAttack>().enemyTarget.transform);
         castingEntity.GetComponent<CanAttack>().CmdResumeActing();
-        castingEntity.Stun_Begin.RemoveAllListeners();
+        castingEntity.Stun_Begin.RemoveListener(StopExecute);
     }
 }

@@ -231,8 +231,13 @@ public class SaveLoadSystem : MonoBehaviour
         state.worldSaveData.fogOfWar = new byte[FoW.FogOfWarTeam.GetTeam(0).mapResolution.x * FoW.FogOfWarTeam.GetTeam(0).mapResolution.y];
         FoW.FogOfWarTeam.GetTeam(0).GetTotalFogValues(ref state.worldSaveData.fogOfWar);
         state.worldSaveData.syncedQuestlines = FindObjectOfType<QuestManager>().SaveStateSynchronized();
-        state.worldSaveData.resources = FindObjectOfType<GameManager>().GetResources();
-        state.worldSaveData.knowledge = FindObjectOfType<GameManager>().GetKnowledge();
+        var gameManager = FindObjectOfType<GameManager>();
+        state.worldSaveData.resources = gameManager.GetResources();
+        state.worldSaveData.knowledge = gameManager.GetKnowledge();
+        foreach (var item in gameManager.structureUpgradeDatabase.upgrades)
+        {
+            state.worldSaveData.structureUpgrades.Add(item.currentLevel);
+        }
         var stash = FindObjectOfType<StashInventory>(true).GetAllItems();
         List<SaveDataItem> items = new();
         foreach (var item in stash)

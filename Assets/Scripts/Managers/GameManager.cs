@@ -17,6 +17,7 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     [SyncVar(hook = nameof(KnowledgeHook))]
     [SerializeField]
     private int knowledge = 0;
+    public StructureUpgradeDatabase structureUpgradeDatabase;
 
     private bool inputEnabled = true;
 
@@ -31,6 +32,13 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     
     public RecipeDatabase recipeDatabase;
     public PlayerCharacter localPlayerCharacter;
+    private void Awake()
+    {
+        foreach (var item in structureUpgradeDatabase.upgrades)
+        {
+            item.currentLevel = 0;
+        }
+    }
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         localPlayerCharacter = player;
@@ -218,5 +226,37 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     public bool GetInput()
     {
         return inputEnabled;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdStructureUpgrade(string upgradeName)
+    {
+        RpcStructureUpgrade(upgradeName);
+    }
+    [ClientRpc]
+    private void RpcStructureUpgrade(string upgradeName)
+    {
+        var upgrade = structureUpgradeDatabase.GetUpgradeByName(upgradeName);
+        if (upgrade)
+        {
+            ChangeResources(-upgrade.CalculateResourceCost());
+            ChangeKnowledge(-upgrade.CalculateKnowledgeCost());
+            upgrade.Upgrade();
+            FindObjectOfType<ShopScreen>(true).CheckAvailability();
+        }
+    }
+    public int GetStructureUpgradeLevel(string upgradeName)
+    {
+        var upgrade = structureUpgradeDatabase.GetUpgradeByName(upgradeName);
+        if (upgrade)
+            return upgrade.currentLevel;
+        return 0;
+    }
+    public void SetStructureUpgradeLevel(string upgradeName, int level)
+    {
+        var upgrade = structureUpgradeDatabase.GetUpgradeByName(upgradeName);
+        if (upgrade)
+        {
+            upgrade.currentLevel = level;
+        }
     }
 }

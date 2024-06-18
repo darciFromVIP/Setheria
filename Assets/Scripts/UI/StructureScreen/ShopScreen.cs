@@ -22,7 +22,20 @@ public class ShopScreen : MonoBehaviour, WindowedUI
         foreach (var item in items)
         {
             var shopItem = Instantiate(shopItemPrefab, shopItemList);
-            shopItem.Initialize(item);
+            shopItem.InitializeItem(item);
+        }
+    }
+    public void ShowScreen(List<StructureUpgradeScriptable> upgrades)
+    {
+        ToggleWindow(true);
+        foreach (var item in shopItemList.GetComponentsInChildren<ShopItem>())
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (var item in upgrades)
+        {
+            var shopItem = Instantiate(shopItemPrefab, shopItemList);
+            shopItem.InitializeUpgrade(item);
         }
     }
     public void ToggleWindow(bool value)
@@ -54,10 +67,20 @@ public class ShopScreen : MonoBehaviour, WindowedUI
     {
         foreach (var item in shopItemList.GetComponentsInChildren<ShopItem>())
         {
-            if (item.itemIcon.item.unlocked)
-                item.CheckAvailability(FindObjectOfType<GameManager>());
-            else
-                item.purchaseBTN.interactable = false;
+            if (item.itemIcon.item != null)
+            {
+                if (item.itemIcon.item.unlocked)
+                    item.CheckAvailability(FindObjectOfType<GameManager>());
+                else
+                    item.purchaseBTN.interactable = false;
+            }
+            if (item.upgrade != null)
+            {
+                if (item.upgrade.unlocked)
+                    item.CheckAvailability(FindObjectOfType<GameManager>());
+                else
+                    item.purchaseBTN.interactable = false;
+            }
         }
     }
 }

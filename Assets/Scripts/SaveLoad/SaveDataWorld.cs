@@ -11,6 +11,7 @@ public class SaveDataWorld
     public byte[] fogOfWar;
     public List<QuestlineSaveable> syncedQuestlines;
     public int resources, knowledge;
+    public List<int> structureUpgrades = new();
     public List<SaveDataItem> stash = new();
     public List<bool> unlockedItems = new();
     public List<bool> unlockedRecipes = new();

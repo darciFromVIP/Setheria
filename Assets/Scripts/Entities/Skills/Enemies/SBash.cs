@@ -34,7 +34,7 @@ public class SBash : Skill
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveAllListeners();
         castingEntity.skillIndicator.InterruptCasting();
-        castingEntity.Stun_Begin.RemoveAllListeners();
+        castingEntity.Stun_Begin.RemoveListener(StopExecute);
         castingEntity.animator.SetTrigger("Reset");
         castingEntity.StartCooldown1();
     }
@@ -64,6 +64,6 @@ public class SBash : Skill
         castingEntity.StartCooldown1();
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
         castingEntity.GetComponent<CanAttack>().CmdResumeActing();
-        castingEntity.Stun_Begin.RemoveAllListeners();
+        castingEntity.Stun_Begin.RemoveListener(StopExecute);
     }
 }

@@ -74,9 +74,6 @@ public class WorldGenerator : MonoBehaviour
     }
     public IEnumerator LoadWorldState(SaveDataWorld state)
     {
-        if (NetworkServer.active)
-            LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
-        FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
         var gameManager = FindObjectOfType<GameManager>();
         if (NetworkServer.active)
         {
@@ -85,6 +82,17 @@ public class WorldGenerator : MonoBehaviour
             gameManager.ChangeResources(state.resources);
             gameManager.ChangeKnowledge(state.knowledge);
         }
+        if (state.structureUpgrades.Count == gameManager.structureUpgradeDatabase.upgrades.Count)
+        {
+            for (int i = 0; i < gameManager.structureUpgradeDatabase.upgrades.Count; i++)
+            {
+                gameManager.structureUpgradeDatabase.upgrades[i].currentLevel = state.structureUpgrades[i];
+            }
+        }
+        if (NetworkServer.active)
+            LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
+        FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
+        
         var manager = FindObjectOfType<InventoryManager>(true);
         if (state.unlockedItems.Count > 0)
         {

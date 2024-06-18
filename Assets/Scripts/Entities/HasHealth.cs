@@ -49,7 +49,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public UnityEvent<NetworkIdentity> Damage_Taken = new();
     [System.NonSerialized]
     public UnityEvent<NetworkIdentity, float> Damage_Taken_Amount = new();
-    private void Start()
+    private void Awake()
     {
         health = maxHealth;
         baseMaxHealth = maxHealth;

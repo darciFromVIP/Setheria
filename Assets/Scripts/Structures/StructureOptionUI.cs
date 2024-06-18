@@ -150,7 +150,10 @@ public class StructureOptionUI : MonoBehaviour
                 FindObjectOfType<ManualScreen>().ShowStructureRecipes(structureOption.craftingRecipes);
                 break;
             case StructureAction.Shop:
-                FindObjectOfType<ShopScreen>().ShowScreen(structureOption.soldItems);
+                if (structureOption.soldItems.Count > 0)
+                    FindObjectOfType<ShopScreen>().ShowScreen(structureOption.soldItems);
+                if (structureOption.soldUpgrades.Count > 0)
+                    FindObjectOfType<ShopScreen>().ShowScreen(structureOption.soldUpgrades);
                 break;
             case StructureAction.Upgrade:
                 if (currentStructure.TryGetComponent(out Tent tent2))

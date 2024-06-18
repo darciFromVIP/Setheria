@@ -15,6 +15,7 @@ public class StructureOption : ScriptableObject
     public Sprite icon;
     public List<RecipeScriptable> craftingRecipes;
     public List<ItemRecipeInfo> soldItems;
+    public List<StructureUpgradeScriptable> soldUpgrades;
     public TalentTreeType professionRequired;
     public int professionLevelRequired;
     public List<StructureScriptable> requiredStructures = new();

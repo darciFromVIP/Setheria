@@ -19,6 +19,9 @@ public class Structure : Entity, ISaveable, IInteractable
     public FMODEventsScriptable sounds;
     private EventInstance repairInstance;
 
+    private bool loadedUpgrades = false;
+
+    public StructureUpgradeScriptable fortificationUpgrade; 
     private void Update()
     {
         if (notificationTimer > 0)
@@ -27,6 +30,16 @@ public class Structure : Entity, ISaveable, IInteractable
     protected override void Start()
     {
         base.Start();
+        if (fortificationUpgrade && !loadedUpgrades)
+        {
+            var levels = FindObjectOfType<GameManager>(true).GetStructureUpgradeLevel(fortificationUpgrade.name);
+            for (int i = 0; i < levels; i++)
+            {
+                FortificationUpgrade();
+            }
+            fortificationUpgrade.upgradeEvent.AddListener(FortificationUpgrade);
+            loadedUpgrades = true;
+        }
         if (structureData)
         {
             structureData.Structure_Built.Invoke(structureData);
@@ -51,6 +64,18 @@ public class Structure : Entity, ISaveable, IInteractable
     {
         transform.position = new Vector3(state.positionX, state.positionY, state.positionZ);
         transform.rotation = new Quaternion(state.rotationX, state.rotationY, state.rotationZ, state.rotationW);
+        if (loadedUpgrades)
+            return;
+        if (fortificationUpgrade)
+        {
+            var levels = FindObjectOfType<GameManager>(true).GetStructureUpgradeLevel(fortificationUpgrade.name);
+            for (int i = 0; i < levels; i++)
+            {
+                FortificationUpgrade();
+            }
+            fortificationUpgrade.upgradeEvent.AddListener(FortificationUpgrade);
+            loadedUpgrades = true;
+        }
     }
     public virtual SaveDataWorldObject SaveState()
     {
@@ -136,5 +161,9 @@ public class Structure : Entity, ISaveable, IInteractable
     private void ReceivedTargetLost(HasHealth target)
     {
         FindObjectOfType<AudioManager>().ReceivedTargetLost(target);
+    }
+    private void FortificationUpgrade()
+    {
+        GetComponent<HasHealth>().ChangeGearMaxHealth(50);
     }
 }
