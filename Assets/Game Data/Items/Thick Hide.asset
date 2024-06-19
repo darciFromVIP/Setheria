@@ -28,7 +28,8 @@ MonoBehaviour:
   itemType: 0
   sprite: {fileID: 21300000, guid: 184253804b7cc4f4685577636d2bcc56, type: 3}
   stackable: 1
-  usage: []
+  usage:
+  - {fileID: 0}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -38,12 +39,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
-  itemsAfterDismantle:
-  - itemDropChances:
-    - item:
-        itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
-        stacks: 3
-      chance: 100
+  itemsAfterDismantle: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

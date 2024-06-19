@@ -19,7 +19,9 @@ MonoBehaviour:
     __________________________________
 
     Equipable,
-    Chest'
+    Chest
+
+    Dismantable'
   grade: 0
   itemType: 2
   sprite: {fileID: 21300000, guid: ff86c5df5a7bc2949b42bffb7495f0c3, type: 3}
@@ -36,6 +38,17 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
+        stacks: 1
+      chance: 100
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: 8eb497e81706bda458d5dad3a88f88fa, type: 2}
+        stacks: 1
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

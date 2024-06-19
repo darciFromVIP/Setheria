@@ -21,7 +21,9 @@ MonoBehaviour:
     __________________________________
 
     Equipable,
-    Neck'
+    Neck
+
+    Dismantable'
   grade: 0
   itemType: 8
   sprite: {fileID: 21300000, guid: 84c9d5849fc313648b0e654b6f426caa, type: 3}
@@ -38,6 +40,21 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: d44200eb0aea857419310aff2f2aa518, type: 2}
+        stacks: 1
+      chance: 100
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: 0a9be37b8320fb647b7443dad5ca33d5, type: 2}
+        stacks: 1
+      chance: 100
+    - item:
+        itemData: {fileID: 11400000, guid: d44200eb0aea857419310aff2f2aa518, type: 2}
+        stacks: 1
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

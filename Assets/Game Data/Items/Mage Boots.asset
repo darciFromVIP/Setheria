@@ -26,7 +26,9 @@ MonoBehaviour:
     __________________________________
 
     Equipable,
-    Feet'
+    Feet
+
+    Dismantable'
   grade: 0
   itemType: 5
   sprite: {fileID: 21300000, guid: cf41f3d57216cf54fb0a8906a8225459, type: 3}
@@ -43,6 +45,17 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
+        stacks: 1
+      chance: 100
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: 8eb497e81706bda458d5dad3a88f88fa, type: 2}
+        stacks: 1
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

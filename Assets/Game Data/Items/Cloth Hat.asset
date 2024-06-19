@@ -19,7 +19,9 @@ MonoBehaviour:
     __________________________________
 
     Eqipable,
-    Head'
+    Head
+
+    Dismantable'
   grade: 0
   itemType: 1
   sprite: {fileID: 21300000, guid: 6bbdbaa818c406c43aa6ed674caa5dc7, type: 3}
@@ -36,6 +38,12 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
+        stacks: 1
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

@@ -34,7 +34,9 @@ MonoBehaviour:
     __________________________________
 
     Equipable,
-    Bracelet'
+    Bracelet
+
+    Dismantable'
   grade: 2
   itemType: 10
   sprite: {fileID: 21300000, guid: 6af28da823898694d846cb7290fd077d, type: 3}
@@ -57,6 +59,21 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: 1f1b11d515ab05048a319301ae769ca5, type: 2}
+        stacks: 2
+      chance: 100
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: a0b5dda13b42cc148900266b7c8d4927, type: 2}
+        stacks: 11
+      chance: 100
+    - item:
+        itemData: {fileID: 11400000, guid: 1f1b11d515ab05048a319301ae769ca5, type: 2}
+        stacks: 2
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

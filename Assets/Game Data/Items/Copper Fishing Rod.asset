@@ -19,7 +19,9 @@ MonoBehaviour:
     __________________________________
 
     Equipable,
-    Fishing Rod'
+    Fishing Rod
+
+    Dismantable'
   grade: 1
   itemType: 14
   sprite: {fileID: 21300000, guid: b28abd457e799b14b91b2ed1516eb4f7, type: 3}
@@ -34,6 +36,12 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: bd5a5039329c9cb4db787f752d56c230, type: 2}
+        stacks: 1
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

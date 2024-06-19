@@ -26,7 +26,9 @@ MonoBehaviour:
     __________________________________
 
     Equipable,
-    Ring'
+    Ring
+
+    Dismantable'
   grade: 1
   itemType: 9
   sprite: {fileID: 21300000, guid: d9a956c835d592b4ab3d646ac720118e, type: 3}
@@ -43,6 +45,12 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
+        stacks: 1
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

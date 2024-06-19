@@ -19,7 +19,9 @@ MonoBehaviour:
 
     __________________________________
 
-    Consumables'
+    Consumables
+
+    Dismantable'
   grade: 2
   itemType: 0
   sprite: {fileID: 21300000, guid: 6398ecbe413f8854f87c9afcff09ca63, type: 3}
@@ -28,11 +30,18 @@ MonoBehaviour:
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: a0b5dda13b42cc148900266b7c8d4927, type: 2}
+        stacks: 3
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

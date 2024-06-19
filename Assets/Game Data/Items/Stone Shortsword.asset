@@ -28,7 +28,9 @@ MonoBehaviour:
     __________________________________
 
     Equipable,
-    Weapon'
+    Weapon
+
+    Dismantable'
   grade: 0
   itemType: 6
   sprite: {fileID: 21300000, guid: 13986b48550df174194a08640c556755, type: 3}
@@ -41,11 +43,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: daf38c5c1e452a047b790c5ce1091077, type: 2}
   - {fileID: 11400000, guid: dd35a647da7ec1f4ea4bf07fa05e0cbe, type: 2}
   - {fileID: 11400000, guid: d42c50944b0223a46ae7b5c3c0414f10, type: 2}
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: 4d1a97fe5fe98534aa7b3e2b8debfdbb, type: 2}
+        stacks: 1
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

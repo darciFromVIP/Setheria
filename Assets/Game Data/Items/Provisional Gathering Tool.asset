@@ -20,7 +20,9 @@ MonoBehaviour:
     __________________________________
 
     Equipable, Gathering
-    Tool'
+    Tool
+
+    Dismantable'
   grade: 0
   itemType: 12
   sprite: {fileID: 21300000, guid: dccf5053d37504c49b993b8fc0bd4359, type: 3}
@@ -29,11 +31,18 @@ MonoBehaviour:
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
+  activeSkills: []
   value: 1
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
+        stacks: 1
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

@@ -19,7 +19,9 @@ MonoBehaviour:
     __________________________________
 
     Equipable,
-    Hands'
+    Hands
+
+    Dismantable'
   grade: 0
   itemType: 3
   sprite: {fileID: 21300000, guid: 340644629fe9e9f4c93bfc9a3d978590, type: 3}
@@ -36,6 +38,12 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
+        stacks: 1
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
