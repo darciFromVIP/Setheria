@@ -76,13 +76,13 @@ public class Character : Entity
     protected override void OnMouseEnter()
     {
         base.OnMouseEnter();
-        if (!isOwned)
+        if (!isOwned || this is Ship)
             FindObjectOfType<CharacterHoverDetail>().Show(this, false);
     }
     protected override void OnMouseExit()
     {
         base.OnMouseExit();
-        if (!isOwned)
+        if (!isOwned || this is Ship)
             FindObjectOfType<CharacterHoverDetail>().Hide(false);
     }
     protected void Update()

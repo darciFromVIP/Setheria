@@ -49,7 +49,11 @@ public class StructureOptionUI : MonoBehaviour
             GetComponent<Button>().interactable = false;
         if (!FindObjectOfType<InventoryManager>(true).GetItemOfName("Everstone") && structureOption.structureAction == StructureAction.SetReturnPoint)
             GetComponent<Button>().interactable = false;
-
+        if (structureOption.structureAction == StructureAction.CallShips)
+        {
+            if (!FindObjectOfType<Ship>())
+                GetComponent<Button>().interactable = false;
+        }
         if (currentStructure.TryGetComponent(out PlantedSeed seed))
         {
             if (!FindObjectOfType<InventoryManager>(true).GetItemOfName("Water") && structureOption.structureAction == StructureAction.PourWater)

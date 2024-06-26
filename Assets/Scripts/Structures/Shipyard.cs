@@ -17,7 +17,7 @@ public class Shipyard : NetworkBehaviour
     {
         StartCoroutine(WaitUntilCallShips(GetComponent<Structure>().unitSpawnPoint.position));
         callShipsTimer = callShipsCooldown;
-        FindObjectOfType<SystemMessages>().AddMessage("All ships will return to this Shipyard in 30 seconds.", MsgType.Notice);
+        FindObjectOfType<SystemMessages>().AddMessage("All ships will return to this Shipyard in 30 seconds. All players must leave the ships now!", MsgType.Notice);
     }
     private IEnumerator WaitUntilCallShips(Vector3 point)
     {
@@ -34,9 +34,14 @@ public class Shipyard : NetworkBehaviour
     {
         foreach (var item in FindObjectsOfType<Ship>())
         {
-            item.GetComponent<CanMove>().agent.enabled = false;
-            item.transform.position = point;
-            item.GetComponent<CanMove>().agent.enabled = true;
+            if (item.crew.Count <= 0)
+            {
+                item.GetComponent<CanMove>().agent.enabled = false;
+                item.transform.position = point;
+                item.GetComponent<CanMove>().agent.enabled = true;
+            }
+            else
+                FindObjectOfType<SystemMessages>().AddMessage("One or more ships still has players boarded on them!", MsgType.Error);
         }
     }
 }

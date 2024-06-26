@@ -111,7 +111,7 @@ public class ShipController : NetworkBehaviour
             yield return null;
         }
         moveComp.Stop();
-        shipComp.UnloadCrew(transform.position + transform.forward);
+        shipComp.UnloadCrew(transform.position + (position - transform.position).normalized);
     }
     private IEnumerator GoToInteract(Collider collider, IInteractable interactable)
     {
