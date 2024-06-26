@@ -189,6 +189,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     {
                         item1.SetCastingEntity(this);
                     }
+                    maxHunger = item.maxHunger;
+                    ChangeHunger(item.hunger, false);
+                    hungerInterval = item.hungerInterval;
+                    ChangeHungerIntervalMultiplier(1);
                 }
                 moveComp.agent.enabled = false;
                 GetComponent<NetworkTransformUnreliable>().enabled = false;
@@ -216,10 +220,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 attCriticalChance = item.attCritChance;
                 attCriticalDamage = item.attCritDamage;
                 Xp_Changed.Invoke(xp, maxXp);
-                maxHunger = item.maxHunger;
-                ChangeHunger(item.hunger, false);
-                hungerInterval = item.hungerInterval;
-                ChangeHungerIntervalMultiplier(1);
                 healthComp.SetBaseMaxHealth(item.baseMaxHealth);
                 healthComp.SetHealth(item.health);
                 healthComp.SetBaseHealthRegen(item.baseHealthRegen);

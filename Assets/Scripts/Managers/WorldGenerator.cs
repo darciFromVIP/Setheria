@@ -82,11 +82,14 @@ public class WorldGenerator : MonoBehaviour
             gameManager.ChangeResources(state.resources);
             gameManager.ChangeKnowledge(state.knowledge);
         }
-        if (state.structureUpgrades.Count == gameManager.structureUpgradeDatabase.upgrades.Count)
+        if (state.structureUpgrades != null)
         {
-            for (int i = 0; i < gameManager.structureUpgradeDatabase.upgrades.Count; i++)
+            if (state.structureUpgrades.Count == gameManager.structureUpgradeDatabase.upgrades.Count)
             {
-                gameManager.structureUpgradeDatabase.upgrades[i].currentLevel = state.structureUpgrades[i];
+                for (int i = 0; i < gameManager.structureUpgradeDatabase.upgrades.Count; i++)
+                {
+                    gameManager.structureUpgradeDatabase.upgrades[i].currentLevel = state.structureUpgrades[i];
+                }
             }
         }
         if (NetworkServer.active)
