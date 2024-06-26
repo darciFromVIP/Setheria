@@ -22,6 +22,12 @@ public class SPhotosynthesis : Skill
         }
         StartCasting();
     }
+    public override Skill GetInstance()
+    {
+        var instance = (SPhotosynthesis)base.GetInstance();
+        instance.possiblePlants = possiblePlants;
+        return instance;
+    }
     protected override void Cast()
     {
         base.Cast();

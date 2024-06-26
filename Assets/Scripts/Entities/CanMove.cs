@@ -66,6 +66,8 @@ public class CanMove : NetworkBehaviour, IUsesAnimator
     {
         if (agent.isOnNavMesh)
         {
+            if (animator)
+                animator.speed = 1;
             NavMeshPath path = new();
             NavMesh.CalculatePath(transform.position, destination, agent.areaMask, path);
             if (path.status == NavMeshPathStatus.PathComplete)

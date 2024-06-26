@@ -90,7 +90,8 @@ public class CursorRaycaster : NetworkBehaviour
                 || hit.collider.TryGetComponent(out Item item)
                 || hit.collider.TryGetComponent(out Structure structure)
                 || hit.collider.TryGetComponent(out TreasureChest treasureChest)
-                || hit.collider.TryGetComponent(out RunePillar runePillar)))
+                || hit.collider.TryGetComponent(out RunePillar runePillar)
+                || hit.collider.TryGetComponent(out BrokenBridge brokenBridge)))
                 cursor.SetInteractionCursor();
             else if ((hit.collider.gameObject.layer == 0 && player.state != PlayerState.OutOfGame) || hit.collider.TryGetComponent(out PlayerCharacter playerChar) || !player.GetComponentInChildren<SkinnedMeshRenderer>().enabled)
                 cursor.SetBaseCursor();

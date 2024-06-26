@@ -19,6 +19,14 @@ public class SFlowerPowerHeal : Skill
         castingEntity.skillIndicator.Casting(1.23f);
         StartCasting();
     }
+    public override Skill GetInstance()
+    {
+        var instance = (SFlowerPowerHeal)base.GetInstance();
+        instance.heal = heal;
+        instance.range = range;
+        instance.projectile = projectile;
+        return instance;
+    }
     protected override void Cast()
     {
         base.Cast();

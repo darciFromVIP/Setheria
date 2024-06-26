@@ -111,7 +111,6 @@ public class AudioManager : MonoBehaviour
     {
         if (startingCombatMusic)
             return;
-        UnityEngine.Debug.Log("StartingCombatMusic");
         StartCoroutine(PlayCombatMusicCoro());
     }
     private IEnumerator PlayCombatMusicCoro()
@@ -143,7 +142,6 @@ public class AudioManager : MonoBehaviour
     {
         if (stoppingCombatMusic)
             return;
-        UnityEngine.Debug.Log("StoppingCombatMusic");
         StartCoroutine(StopCombatMusicCoro());
     }
     private IEnumerator StopCombatMusicCoro()
@@ -199,6 +197,7 @@ public class AudioManager : MonoBehaviour
         }
         currentCombatInstance.setPaused(true);
         musicChanging = false;
+        yield return new WaitForSeconds(5);
         stoppingCombatMusic = false;
     }
     private IEnumerator UnpauseMusicFadeIn()
@@ -227,6 +226,7 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
         musicChanging = false;
+        yield return new WaitForSeconds(5);
         startingCombatMusic = false;
     }
     public void UIHover()

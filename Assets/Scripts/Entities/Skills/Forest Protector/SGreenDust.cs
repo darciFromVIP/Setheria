@@ -20,7 +20,21 @@ public class SGreenDust : Skill
 
 
     [HideInInspector] public Vector3 actualPoint;
-
+    public override Skill GetInstance()
+    {
+        var instance = (SGreenDust)base.GetInstance();
+        instance.baseDamage = baseDamage;
+        instance.damageScalingStat = damageScalingStat;
+        instance.damageScalingValue = damageScalingValue;
+        instance.baseHeal = baseHeal;
+        instance.healScalingStat = healScalingStat;
+        instance.healScalingValue = healScalingValue;
+        instance.aoeRadius = aoeRadius;
+        instance.range = range;
+        instance.damageProjectile = damageProjectile;
+        instance.healingProjectile = healingProjectile;
+        return instance;
+    }
     public override void Execute(Character self)
     {
         base.Execute(self);

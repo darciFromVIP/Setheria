@@ -20,7 +20,18 @@ public class SRejuvenation : Skill
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
     }
-
+    public override Skill GetInstance()
+    {
+        var instance = (SRejuvenation)base.GetInstance();
+        instance.baseHeal = baseHeal;
+        instance.healScalingStat = healScalingStat;
+        instance.healScalingValue = healScalingValue;
+        instance.range = range;
+        instance.baseDuration = baseDuration;
+        instance.buff = buff;
+        instance.projectile = projectile;
+        return instance;
+    }
     public override void ExecuteOnStart(Character self)
     {
 

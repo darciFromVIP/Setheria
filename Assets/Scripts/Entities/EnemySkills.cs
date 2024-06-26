@@ -9,7 +9,7 @@ public class EnemySkills : NetworkBehaviour
 {
     public void CastSnakePoison()
     {
-        SSnakePoison skill = (SSnakePoison)GetComponent<EnemyCharacter>().skills[0];
+        SSnakePoison skill = (SSnakePoison)GetComponent<EnemyCharacter>().skillInstances[0];
         var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -33,7 +33,7 @@ public class EnemySkills : NetworkBehaviour
     }
     public void CastStunningDash()
     {
-        SStunningDash skill = (SStunningDash)GetComponent<EnemyCharacter>().skills[0];
+        SStunningDash skill = (SStunningDash)GetComponent<EnemyCharacter>().skillInstances[0];
         foreach (var item in skill.enemiesHit)
         {
             var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
@@ -59,7 +59,7 @@ public class EnemySkills : NetworkBehaviour
     }
     public void CastBash()
     {
-        SBash skill = (SBash)GetComponent<EnemyCharacter>().skills[0];
+        SBash skill = (SBash)GetComponent<EnemyCharacter>().skillInstances[0];
         var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {

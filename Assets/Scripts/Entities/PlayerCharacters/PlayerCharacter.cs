@@ -185,7 +185,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     {
                         item1.SetLocalPlayerCharacter(this);
                     }
-                    foreach (var item1 in skills)
+                    foreach (var item1 in skillInstances)
                     {
                         item1.SetCastingEntity(this);
                     }
@@ -313,7 +313,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                         AddBuff(item5.name);
                         StartCoroutine(WaitForBuff(item5));
                     }
-                    foreach (var item6 in skills)
+                    foreach (var item6 in skillInstances)
                     {
                         item6.ExecuteOnStart(this);
                     }
@@ -700,7 +700,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             default:
                 break;
         }
-        Skills_Changed.Invoke(skills);
+        Skills_Changed.Invoke(skillInstances);
     }
     public bool TestChangeStat(PlayerStat playerStat, float modifier)
     {

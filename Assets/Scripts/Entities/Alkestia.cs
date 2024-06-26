@@ -8,7 +8,7 @@ public class Alkestia : NetworkBehaviour
     public void CastFlowerPowerHeal()
     {
         Debug.Log("Casting FPHeal");
-        SFlowerPowerHeal skill = (SFlowerPowerHeal)GetComponent<Character>().skills[0];
+        SFlowerPowerHeal skill = (SFlowerPowerHeal)GetComponent<Character>().skillInstances[0];
         var proj = Instantiate(skill.projectile, transform.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {

@@ -46,8 +46,8 @@ public class SkillCastController : MonoBehaviour
         isCasting = true;
         while (true)
         {
-            yield return new WaitForSeconds(self.skills[currentIndex].cooldown);
-            self.skills[currentIndex].Execute(self);
+            yield return new WaitForSeconds(self.skillInstances[currentIndex].cooldown);
+            self.skillInstances[currentIndex].Execute(self);
             currentIndex++;
             if (currentIndex >= self.skills.Count)
                 currentIndex = 0;

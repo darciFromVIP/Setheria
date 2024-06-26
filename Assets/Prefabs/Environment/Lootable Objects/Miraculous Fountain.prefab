@@ -288,7 +288,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3177516100288836122}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3000925485359684236}
   m_SourcePrefab: {fileID: 100100000, guid: f87e8e15654f0d1439fa30e59ccad342, type: 3}
 --- !u!1 &3569920736210350490 stripped
 GameObject:
@@ -308,3 +312,40 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3415258663854038170}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5999301067251735335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8945454117786027965, guid: f87e8e15654f0d1439fa30e59ccad342,
+    type: 3}
+  m_PrefabInstance: {fileID: 3415258663854038170}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3000925485359684236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5999301067251735335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1262709406
+      Data2: 1338663565
+      Data3: 1552308618
+      Data4: 1671371784
+    Path: event:/World Sounds/Environment Sounds/River Loop
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 10

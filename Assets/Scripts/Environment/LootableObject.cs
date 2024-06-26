@@ -246,8 +246,10 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         if (effectsToHide.Count > 0)
             foreach (var item in effectsToHide)
             {
-                if (item != null && item.name != "Loot Interact")
+                if (item != null)
                     item.SetActive(lootable);
+                if (item.name == "Loot Interact")
+                    item.SetActive(false);
             }
         GetComponent<Collider>().enabled = lootable;
         var players = FindObjectsOfType<PlayerController>();

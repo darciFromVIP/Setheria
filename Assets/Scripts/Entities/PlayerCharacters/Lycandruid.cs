@@ -7,7 +7,7 @@ public class Lycandruid : NetworkBehaviour
 {
     public void CastBite()
     {
-        SBite skill = (SBite)GetComponent<PlayerCharacter>().skills[2];
+        SBite skill = (SBite)GetComponent<PlayerCharacter>().skillInstances[2];
         var proj = Instantiate(skill.projectile, skill.actualPoint, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -33,7 +33,7 @@ public class Lycandruid : NetworkBehaviour
     }
     public void CastPounce()
     {
-        SPounce skill = (SPounce)GetComponent<PlayerCharacter>().skills[3];
+        SPounce skill = (SPounce)GetComponent<PlayerCharacter>().skillInstances[3];
         var proj = Instantiate(skill.projectile, skill.actualPoint, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -59,7 +59,7 @@ public class Lycandruid : NetworkBehaviour
     }
     public void CastBattleCry()
     {
-        SBattleCry skill = (SBattleCry)GetComponent<PlayerCharacter>().skills[4];
+        SBattleCry skill = (SBattleCry)GetComponent<PlayerCharacter>().skillInstances[4];
         var proj = Instantiate(skill.projectile, transform.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -89,7 +89,7 @@ public class Lycandruid : NetworkBehaviour
     }
     public void CastSwipe()
     {
-        SSwipe skill = (SSwipe)GetComponent<PlayerCharacter>().skills[2];
+        SSwipe skill = (SSwipe)GetComponent<PlayerCharacter>().skillInstances[2];
         var proj = Instantiate(skill.damageProjectile, skill.actualPoint, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -119,7 +119,7 @@ public class Lycandruid : NetworkBehaviour
     }
     public void CastUppercut()
     {
-        SUppercut skill = (SUppercut)GetComponent<PlayerCharacter>().skills[3];
+        SUppercut skill = (SUppercut)GetComponent<PlayerCharacter>().skillInstances[3];
         var proj = Instantiate(skill.projectile, transform.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -154,7 +154,7 @@ public class Lycandruid : NetworkBehaviour
     }
     public void CastRoar()
     {
-        SRoar skill = (SRoar)GetComponent<PlayerCharacter>().skills[4];
+        SRoar skill = (SRoar)GetComponent<PlayerCharacter>().skillInstances[4];
         var proj = Instantiate(skill.projectile, transform.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -182,7 +182,7 @@ public class Lycandruid : NetworkBehaviour
     }
     public void CastWildRage()
     {
-        SWildRage skill = (SWildRage)GetComponent<PlayerCharacter>().skills[5];
+        SWildRage skill = (SWildRage)GetComponent<PlayerCharacter>().skillInstances[5];
         var proj = Instantiate(skill.projectile, transform.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {

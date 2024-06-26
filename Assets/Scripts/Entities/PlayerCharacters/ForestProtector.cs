@@ -7,7 +7,7 @@ public class ForestProtector : NetworkBehaviour
 {
     public void CastGreenDust()
     {
-        SGreenDust skill = (SGreenDust)GetComponent<PlayerCharacter>().skills[2];
+        SGreenDust skill = (SGreenDust)GetComponent<PlayerCharacter>().skillInstances[2];
         var proj = Instantiate(skill.damageProjectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -43,7 +43,7 @@ public class ForestProtector : NetworkBehaviour
     }
     public void CastRejuvenation()
     {
-        SRejuvenation skill = (SRejuvenation)GetComponent<PlayerCharacter>().skills[3];
+        SRejuvenation skill = (SRejuvenation)GetComponent<PlayerCharacter>().skillInstances[3];
         var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -57,7 +57,7 @@ public class ForestProtector : NetworkBehaviour
     }
     public void CastEntanglingRoots()
     {
-        SEntanglingRoots skill = (SEntanglingRoots)GetComponent<PlayerCharacter>().skills[4];
+        SEntanglingRoots skill = (SEntanglingRoots)GetComponent<PlayerCharacter>().skillInstances[4];
         var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {

@@ -20,9 +20,23 @@ public class Skill : ScriptableObject
 
     public UnityEvent<string> Description_Updated = new();
     public UnityEvent Skill_Casted = new();
+    public virtual Skill GetInstance()
+    {
+        var instance = (Skill)CreateInstance(GetType());
+        instance.icon = icon;
+        instance.cooldown = cooldown;
+        instance.manaCost = manaCost;
+        instance.sound = sound;
+        instance.unlocked = unlocked;
+        instance.description = description;
+        instance.requiredTalent = requiredTalent;
+        instance.requiredTalentLevel = requiredTalentLevel;
+        instance.name = name;
+        return instance;
+    }
     public virtual void ExecuteOnStart(Transform self)
     {
-
+        
     }
     public virtual void ExecuteOnStart(Character self)
     {
@@ -78,7 +92,7 @@ public class Skill : ScriptableObject
     {
         if (requiredTalent != null)
             unlocked = (castingEntity as PlayerCharacter).talentTrees.IsTalentUnlocked(requiredTalent, requiredTalentLevel);
-        (castingEntity as PlayerCharacter).Skills_Changed.Invoke(castingEntity.skills);
+        (castingEntity as PlayerCharacter).Skills_Changed.Invoke(castingEntity.skillInstances);
         Description_Updated.Invoke(description);
     }
     public void SetCastingEntity(Character self)

@@ -7,6 +7,7 @@ using RPG_Indicator;
 using Unity.VisualScripting;
 using UnityEngine.PlayerLoop;
 using FMODUnity;
+using System;
 
 public class Character : Entity
 {
@@ -17,6 +18,7 @@ public class Character : Entity
 
     public List<Buff> buffs = new();
     public List<Skill> skills = new();
+    public List<Skill> skillInstances = new();
     public List<EventReference> skillSounds = new();
     public LayerMask enemyLayers;
     public LayerMask allyLayers;
@@ -55,9 +57,17 @@ public class Character : Entity
             attackComp.Target_Acquired.AddListener(RotateTargetAcquired);
             attackComp.Target_Lost.AddListener(RotateTargetLost);
         }
+        foreach (var item in skills)
+        {
+            skillInstances.Add(item.GetInstance());
+        }
+        if (TryGetComponent(out Shapeshifter shapeshifter))
+        {
+            shapeshifter.SetDefaultSkillInstances();
+        }
         if (isOwned)
         {
-            foreach (var item in skills)
+            foreach (var item in skillInstances)
             {
                 item.ExecuteOnStart(this);
             }
@@ -172,31 +182,31 @@ public class Character : Entity
 
     public void StartCooldown1()
     {
-        cooldown1 = GetComponent<EnemyCharacter>().skills[0].cooldown;
+        cooldown1 = GetComponent<EnemyCharacter>().skillInstances[0].cooldown;
         Resume_Acting.Invoke();
         RpcResumeActing();
     }
     public void StartCooldown2()
     {
-        cooldown2 = GetComponent<EnemyCharacter>().skills[1].cooldown;
+        cooldown2 = GetComponent<EnemyCharacter>().skillInstances[1].cooldown;
         Resume_Acting.Invoke();
         RpcResumeActing();
     }
     public void StartCooldown3()
     {
-        cooldown3 = GetComponent<EnemyCharacter>().skills[2].cooldown;
+        cooldown3 = GetComponent<EnemyCharacter>().skillInstances[2].cooldown;
         Resume_Acting.Invoke();
         RpcResumeActing();
     }
     public void StartCooldown4()
     {
-        cooldown4 = GetComponent<EnemyCharacter>().skills[3].cooldown;
+        cooldown4 = GetComponent<EnemyCharacter>().skillInstances[3].cooldown;
         Resume_Acting.Invoke();
         RpcResumeActing();
     }
     public void StartCooldown5()
     {
-        cooldown5 = GetComponent<EnemyCharacter>().skills[4].cooldown;
+        cooldown5 = GetComponent<EnemyCharacter>().skillInstances[4].cooldown;
         Resume_Acting.Invoke();
         RpcResumeActing();
     }
@@ -477,7 +487,7 @@ public class Character : Entity
         }
         else
         {
-            foreach (var item in skills)
+            foreach (var item in skillInstances)
             {
                 item.SetCastingEntity(this);
             }

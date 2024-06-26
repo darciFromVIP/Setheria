@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using Mirror;
 using HighlightPlus;
+using FMODUnity;
+using FMOD.Studio;
 public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveable
 {
     public List<ItemRecipeInfo> requiredItems;
@@ -20,6 +22,8 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
     public EventScriptable Quest_Event;
 
     public Animator animator;
+    public EventReference soundOfTurningIn;
+    private EventInstance soundInstance;
     private PlayerController player;
 
     public bool interactable = true;
@@ -67,9 +71,20 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
     }
     public void TurnInItems()
     {
+        soundInstance = FindObjectOfType<AudioManager>().CreateEventInstance(soundOfTurningIn, transform);
+        soundInstance.start();
         player.CmdStartWorking(workDuration);
+        player.Work_Cancelled.AddListener(StopSound);
         player.Work_Finished.AddListener(ItemsTurnedIn);
         tooltipUI.SetActive(false);
+    }
+    private void StopSound()
+    {
+        if (soundInstance.isValid())
+        {
+            soundInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            soundInstance.release();
+        }
     }
     protected virtual void ItemsTurnedIn()
     {
@@ -88,6 +103,7 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
             Quest_Event.voidEvent.Invoke();
         interactable = false;
         CmdTurnOffCollider();
+        StopSound();
         var outline = GetComponentInChildren<HighlightTrigger>();
         if (outline)
             outline.enabled = interactable;

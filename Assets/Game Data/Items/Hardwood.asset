@@ -28,11 +28,18 @@ MonoBehaviour:
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
+        stacks: 3
+      chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

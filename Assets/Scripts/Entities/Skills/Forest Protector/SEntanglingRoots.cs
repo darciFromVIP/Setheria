@@ -23,7 +23,18 @@ public class SEntanglingRoots : Skill
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
     }
-
+    public override Skill GetInstance()
+    {
+        var instance = (SEntanglingRoots)base.GetInstance();
+        instance.baseDamage = baseDamage;
+        instance.damageScalingStat = damageScalingStat;
+        instance.damageScalingValue = damageScalingValue;
+        instance.range = range;
+        instance.stunBuff = stunBuff;
+        instance.damageBuff = damageBuff;
+        instance.projectile = projectile;
+        return instance;
+    }
     public override void ExecuteOnStart(Character self)
     {
     }

@@ -183,10 +183,10 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             if (!character.IsAnyCooldownTicking() && character.canCastSkills && timerOnTargetAcquired <= 0)
             {
                 netAnim.animator.speed = 1;
-                character.skills[currentSkillIndex].Execute(character);
+                character.skillInstances[currentSkillIndex].Execute(character);
 
                 currentSkillIndex++;
-                if (currentSkillIndex >= character.skills.Count)
+                if (currentSkillIndex >= character.skillInstances.Count)
                     currentSkillIndex = 0;
             }
         }

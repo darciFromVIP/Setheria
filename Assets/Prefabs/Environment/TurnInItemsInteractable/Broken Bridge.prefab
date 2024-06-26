@@ -144,8 +144,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3424164063009273840, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
+      propertyPath: soundOfTurningIn.Path
+      value: event:/World Sounds/Vocational Activities/Repair
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424164063009273840, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
       propertyPath: requiredItems.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424164063009273840, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: soundOfTurningIn.Guid.Data1
+      value: 1022962055
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424164063009273840, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: soundOfTurningIn.Guid.Data2
+      value: 1117955385
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424164063009273840, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: soundOfTurningIn.Guid.Data3
+      value: -1572341878
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424164063009273840, guid: d53377f057764634697b6d036b46f8ab,
+        type: 3}
+      propertyPath: soundOfTurningIn.Guid.Data4
+      value: -1848057070
       objectReference: {fileID: 0}
     - target: {fileID: 3424164063009273840, guid: d53377f057764634697b6d036b46f8ab,
         type: 3}
@@ -340,6 +365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb72fabe904573b4f82d228eefc27de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   brokenModel: {fileID: 5673818803518939615}
   repairedModel: {fileID: 7893127165403270245}
 --- !u!4 &6083871290508783956 stripped

@@ -29,6 +29,22 @@ public class SFlowerPower : Skill
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Ally, 0);
     }
+    public override Skill GetInstance()
+    {
+        var instance = (SFlowerPower)base.GetInstance();
+        instance.baseDamage = baseDamage;
+        instance.damageScalingStat = damageScalingStat;
+        instance.damageScalingValue = damageScalingValue;
+        instance.baseHeal = baseHeal;
+        instance.healScalingStat = healScalingStat;
+        instance.healScalingValue = healScalingValue;
+        instance.range = range;
+        instance.timedLife = timedLife;
+        instance.flowerPrefab = flowerPrefab;
+        instance.healingSkillRef = healingSkillRef;
+        instance.GrowSound = GrowSound;
+        return instance;
+    }
     public override void ExecuteOnStart(Character self)
     {
 

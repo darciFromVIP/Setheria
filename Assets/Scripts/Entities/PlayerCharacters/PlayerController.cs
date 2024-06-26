@@ -290,9 +290,9 @@ public class PlayerController : NetworkBehaviour
     {
         if (state != PlayerState.None)
             return;
-        if (playerCharacter.skills[1].unlocked)
+        if (playerCharacter.skillInstances[1].unlocked)
             if (cooldown1 <= 0)
-                if (manaComp.GetMana() >= playerCharacter.skills[1].manaCost)
+                if (manaComp.GetMana() >= playerCharacter.skillInstances[1].manaCost)
                     CmdExecuteSkill1();
                 else
                     SendMessageNotEnoughMana();
@@ -305,9 +305,9 @@ public class PlayerController : NetworkBehaviour
     {
         if (state != PlayerState.None)
             return;
-        if (playerCharacter.skills[2].unlocked)
+        if (playerCharacter.skillInstances[2].unlocked)
             if (cooldown2 <= 0)
-                if (manaComp.GetMana() >= playerCharacter.skills[2].manaCost)
+                if (manaComp.GetMana() >= playerCharacter.skillInstances[2].manaCost)
                     CmdExecuteSkill2();
                 else
                     SendMessageNotEnoughMana();
@@ -320,9 +320,9 @@ public class PlayerController : NetworkBehaviour
     {
         if (state != PlayerState.None)
             return;
-        if (playerCharacter.skills[3].unlocked)
+        if (playerCharacter.skillInstances[3].unlocked)
             if (cooldown3 <= 0)
-                if (manaComp.GetMana() >= playerCharacter.skills[3].manaCost)
+                if (manaComp.GetMana() >= playerCharacter.skillInstances[3].manaCost)
                     CmdExecuteSkill3();
                 else
                     SendMessageNotEnoughMana();
@@ -335,9 +335,9 @@ public class PlayerController : NetworkBehaviour
     {
         if (state != PlayerState.None)
             return;
-        if (playerCharacter.skills[4].unlocked)
+        if (playerCharacter.skillInstances[4].unlocked)
             if (cooldown4 <= 0)
-                if (manaComp.GetMana() >= playerCharacter.skills[4].manaCost)
+                if (manaComp.GetMana() >= playerCharacter.skillInstances[4].manaCost)
                     CmdExecuteSkill4();
                 else
                     SendMessageNotEnoughMana();
@@ -350,9 +350,9 @@ public class PlayerController : NetworkBehaviour
     {
         if (state != PlayerState.None)
             return;
-        if (playerCharacter.skills[5].unlocked)
+        if (playerCharacter.skillInstances[5].unlocked)
             if (cooldown5 <= 0)
-                if (manaComp.GetMana() >= playerCharacter.skills[5].manaCost)
+                if (manaComp.GetMana() >= playerCharacter.skillInstances[5].manaCost)
                     CmdExecuteSkill5();
                 else
                     SendMessageNotEnoughMana();
@@ -370,7 +370,7 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     private void RpcExecuteSkill1()
     {
-        playerCharacter.skills[1].Execute(playerCharacter);
+        playerCharacter.skillInstances[1].Execute(playerCharacter);
     }
     [Command]
     public void CmdExecuteSkill2()
@@ -380,7 +380,7 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     private void RpcExecuteSkill2()
     {
-        playerCharacter.skills[2].Execute(playerCharacter);
+        playerCharacter.skillInstances[2].Execute(playerCharacter);
     }
     [Command]
     public void CmdExecuteSkill3()
@@ -390,7 +390,7 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     private void RpcExecuteSkill3()
     {
-        playerCharacter.skills[3].Execute(playerCharacter);
+        playerCharacter.skillInstances[3].Execute(playerCharacter);
     }
     [Command]
     public void CmdExecuteSkill4()
@@ -400,7 +400,7 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     private void RpcExecuteSkill4()
     {
-        playerCharacter.skills[4].Execute(playerCharacter);
+        playerCharacter.skillInstances[4].Execute(playerCharacter);
     }
     [Command]
     public void CmdExecuteSkill5()
@@ -410,7 +410,7 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     private void RpcExecuteSkill5()
     {
-        playerCharacter.skills[5].Execute(playerCharacter);
+        playerCharacter.skillInstances[5].Execute(playerCharacter);
     }
     private IEnumerator GoToInteract(Collider collider, IInteractable interactable)
     {
@@ -456,31 +456,31 @@ public class PlayerController : NetworkBehaviour
     }
     public void StartCooldown1()
     {
-        cooldown1 = playerCharacter.skills[1].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
+        cooldown1 = playerCharacter.skillInstances[1].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_1_Started.Invoke();
         CmdResumeActing();
     }
     public void StartCooldown2()
     {
-        cooldown2 = playerCharacter.skills[2].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
+        cooldown2 = playerCharacter.skillInstances[2].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_2_Started.Invoke();
         CmdResumeActing();
     }
     public void StartCooldown3()
     {
-        cooldown3 = playerCharacter.skills[3].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
+        cooldown3 = playerCharacter.skillInstances[3].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_3_Started.Invoke();
         CmdResumeActing();
     }
     public void StartCooldown4()
     {
-        cooldown4 = playerCharacter.skills[4].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
+        cooldown4 = playerCharacter.skillInstances[4].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_4_Started.Invoke();
         CmdResumeActing();
     }
     public void StartCooldown5()
     {
-        cooldown5 = playerCharacter.skills[5].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
+        cooldown5 = playerCharacter.skillInstances[5].cooldown * GetComponent<CanAttack>().GetCooldownReductionModifier();
         Cooldown_5_Started.Invoke();
         CmdResumeActing();
     }

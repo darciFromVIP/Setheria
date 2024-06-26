@@ -72,7 +72,7 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         player.GetComponent<HasMana>().Mana_Regen_Changed.AddListener(UpdateManaRegen);
         player.GetComponent<HasMana>().Corrupted_Mana_Changed.AddListener(UpdateCorruptedMana);
         player.Skills_Changed.AddListener(UpdateSkills);
-        UpdateSkills(player.skills);
+        UpdateSkills(player.skillInstances);
         playerController.GetComponent<CanAttack>().Has_Attacked.AddListener(StartCooldownA);
         playerController.Cooldown_1_Started.AddListener(StartCooldownD);
         playerController.Cooldown_2_Started.AddListener(StartCooldownQ);
@@ -154,7 +154,7 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
         var player = playerController.GetComponent<PlayerCharacter>();
         for (int i = 0; i < skills.Count; i++)
         {
-            if (currentMana < player.skills[i].manaCost)
+            if (currentMana < player.skillInstances[i].manaCost)
                 skills[i].color = new Color(0.3f, 0.3f, 0.3f);
             else
                 skills[i].color = new Color(1f, 1f, 1f);
