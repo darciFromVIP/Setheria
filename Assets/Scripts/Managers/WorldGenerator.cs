@@ -82,7 +82,8 @@ public class WorldGenerator : MonoBehaviour
             gameManager.ChangeResources(state.resources);
             gameManager.ChangeKnowledge(state.knowledge);
         }
-        if (state.structureUpgrades != null)
+        Debug.Log(gameManager == null);
+        if (state.structureUpgrades != null && gameManager != null)
         {
             if (state.structureUpgrades.Count == gameManager.structureUpgradeDatabase.upgrades.Count)
             {

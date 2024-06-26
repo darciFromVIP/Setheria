@@ -12,7 +12,7 @@ public class Shapeshifter : NetworkBehaviour
 {
     public Animator defaultModel, shapeshiftedModel;
     public List<Skill> defaultSkills, shapeshiftedSkills;
-    private List<Skill> defaultSkillInstances, shapeshiftedSkillInstances;
+    private List<Skill> defaultSkillInstances = new(), shapeshiftedSkillInstances = new();
     public GameObject shapeshiftVFX;
     public EventReference defaultAttackSound, shapeshiftedAttackSound;
 
