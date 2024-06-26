@@ -189,10 +189,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     {
                         item1.SetCastingEntity(this);
                     }
-                    maxHunger = item.maxHunger;
-                    ChangeHunger(item.hunger, false);
-                    hungerInterval = item.hungerInterval;
-                    ChangeHungerIntervalMultiplier(1);
                 }
                 moveComp.agent.enabled = false;
                 GetComponent<NetworkTransformUnreliable>().enabled = false;
@@ -220,6 +216,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 attCriticalChance = item.attCritChance;
                 attCriticalDamage = item.attCritDamage;
                 Xp_Changed.Invoke(xp, maxXp);
+                maxHunger = item.maxHunger;
+                SetHunger(item.hunger);
+                hungerInterval = item.hungerInterval;
+                ChangeHungerIntervalMultiplier(1);
                 healthComp.SetBaseMaxHealth(item.baseMaxHealth);
                 healthComp.SetHealth(item.health);
                 healthComp.SetBaseHealthRegen(item.baseHealthRegen);
@@ -606,7 +606,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void ChangeHunger(int amount, bool showText)
     {
         hunger += amount;
-        Debug.Log(hunger);
         if (!isOwned)
             return;
         if ((hunger == 20 || hunger == 10) && amount < 0)
@@ -623,6 +622,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             else
                 FindObjectOfType<FloatingText>().CmdSpawnFloatingText(amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
         }
+        Hunger_Changed.Invoke();
+    }
+    public void SetHunger(int amount)
+    {
+        hunger = amount;
         Hunger_Changed.Invoke();
     }
     public void ChangeStat(PlayerStat playerStat, float modifier)
