@@ -33,6 +33,20 @@ public class SWildRage : Skill
         }
         StartCasting();
     }
+    public override Skill GetInstance()
+    {
+        var instance = (SWildRage)base.GetInstance();
+        instance.baseDuration = baseDuration;
+        instance.durationScalingStat = durationScalingStat;
+        instance.durationScalingValue = durationScalingValue;
+        instance.hpRegenBase = hpRegenBase;
+        instance.hpRegenScalingStat = hpRegenScalingStat;
+        instance.hpRegenScalingValue = hpRegenScalingValue;
+        instance.invulnerabilityBuff = invulnerabilityBuff;
+        instance.healthRegenBuff = healthRegenBuff;
+        instance.projectile = projectile;
+        return instance;
+    }
     public override void StopExecute()
     {
         base.StopExecute();

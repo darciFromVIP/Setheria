@@ -30,7 +30,25 @@ public class SUppercut : Skill
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
     }
-
+    public override Skill GetInstance()
+    {
+        var instance = (SUppercut)base.GetInstance();
+        instance.baseDamage = baseDamage;
+        instance.damageScalingStat = damageScalingStat;
+        instance.damageScalingValue = damageScalingValue;
+        instance.baseDuration = baseDuration;
+        instance.armorBaseReduction = armorBaseReduction;
+        instance.armorReductionScalingStat = armorReductionScalingStat;
+        instance.armorReductionScalingValue = armorReductionScalingValue;
+        instance.damageBaseReduction = damageBaseReduction;
+        instance.damageReductionScalingStat = damageReductionScalingStat;
+        instance.damageReductionScalingValue = damageReductionScalingValue;
+        instance.armorReductionBuff = armorReductionBuff;
+        instance.damageReductionBuff = damageReductionBuff;
+        instance.range = range;
+        instance.projectile = projectile;
+        return instance;
+    }
     public override void ExecuteOnStart(Character self)
     {
     }

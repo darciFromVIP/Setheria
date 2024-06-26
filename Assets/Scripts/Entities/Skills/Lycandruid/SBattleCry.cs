@@ -35,6 +35,22 @@ public class SBattleCry : Skill
         }
         StartCasting();
     }
+    public override Skill GetInstance()
+    {
+        var instance = (SBattleCry)base.GetInstance();
+        instance.baseDuration = baseDuration;
+        instance.movementBase = movementBase;
+        instance.movementScalingStat = movementScalingStat;
+        instance.movementScalingValue = movementScalingValue;
+        instance.attackSpeedBase = attackSpeedBase;
+        instance.attackSpeedScalingStat = attackSpeedScalingStat;
+        instance.attackSpeedScalingValue = attackSpeedScalingValue;
+        instance.movementBuff = movementBuff;
+        instance.attackSpeedBuff = attackSpeedBuff;
+        instance.projectile = projectile;
+        instance.range = range;
+        return instance;
+    }
     public override void StopExecute()
     {
         base.StopExecute();

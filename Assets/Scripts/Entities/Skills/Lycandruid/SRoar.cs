@@ -36,6 +36,22 @@ public class SRoar : Skill
         }
         StartCasting();
     }
+    public override Skill GetInstance()
+    {
+        var instance = (SRoar)base.GetInstance();
+        instance.baseDuration = baseDuration;
+        instance.movementBaseReduction = movementBaseReduction;
+        instance.movementReductionScalingStat = movementReductionScalingStat;
+        instance.movementReductionScalingValue = movementReductionScalingValue;
+        instance.attackSpeedBaseReduction = attackSpeedBaseReduction;
+        instance.attackSpeedReductionScalingStat = attackSpeedReductionScalingStat;
+        instance.attackSpeedReductionScalingValue = attackSpeedReductionScalingValue;
+        instance.movementReductionBuff = movementReductionBuff;
+        instance.attackSpeedReductionBuff = attackSpeedReductionBuff;
+        instance.range = range;
+        instance.projectile = projectile;
+        return instance;
+    }
     public override void StopExecute()
     {
         base.StopExecute();

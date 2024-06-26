@@ -28,6 +28,22 @@ public class SSwipe : Skill
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.ShowArea(aoeRadius, range, true, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
     }
+    public override Skill GetInstance()
+    {
+        var instance = (SSwipe)base.GetInstance();
+        instance.baseDamage = baseDamage;
+        instance.damageScalingStat = damageScalingStat;
+        instance.damageScalingValue = damageScalingValue;
+        instance.baseDuration = baseDuration;
+        instance.bleedBaseDamage = bleedBaseDamage;
+        instance.bleedDamageScalingStat = bleedDamageScalingStat;
+        instance.bleedDamageScalingValue = bleedDamageScalingValue;
+        instance.aoeRadius = aoeRadius;
+        instance.damageProjectile = damageProjectile;
+        instance.bleedingBuff = bleedingBuff;
+        instance.range = range;
+        return instance;
+    }
     public override void ExecuteOnStart(Character self)
     {
 

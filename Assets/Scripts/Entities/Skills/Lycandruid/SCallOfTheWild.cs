@@ -26,6 +26,17 @@ public class SCallOfTheWild : Skill
         }
         StartCasting();
     }
+    public override Skill GetInstance()
+    {
+        var instance = (SCallOfTheWild)base.GetInstance();
+        instance.timedLife = timedLife;
+        instance.basePower = basePower;
+        instance.powerScalingStat = powerScalingStat;
+        instance.powerScalingValue = powerScalingValue;
+        instance.baseNumberOfWolves = baseNumberOfWolves;
+        instance.wolfPrefab = wolfPrefab;
+        return instance;
+    }
     public override void StopExecute()
     {
         base.StopExecute();

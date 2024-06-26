@@ -22,7 +22,15 @@ public class SSnakePoison : Skill
             StartCasting();
         }
     }
-
+    public override Skill GetInstance()
+    {
+        var instance = (SSnakePoison)base.GetInstance();
+        instance.poisonBuff = poisonBuff;
+        instance.slowBuff = slowBuff;
+        instance.range = range;
+        instance.projectile = projectile;
+        return instance;
+    }
     public override void ExecuteOnStart(Character self)
     {
     }

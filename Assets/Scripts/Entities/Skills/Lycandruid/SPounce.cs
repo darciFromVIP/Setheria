@@ -27,6 +27,19 @@ public class SPounce : Skill
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.ShowRange(range, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
     }
+    public override Skill GetInstance()
+    {
+        var instance = (SPounce)base.GetInstance();
+        instance.baseDamage = baseDamage;
+        instance.damageScalingStat = damageScalingStat;
+        instance.damageScalingValue = damageScalingValue;
+        instance.baseDuration = baseDuration;
+        instance.stunBuff = stunBuff;
+        instance.PounceImpactSound = PounceImpactSound;
+        instance.range = range;
+        instance.projectile = projectile;
+        return instance;
+    }
     public override void StopExecute()
     {
         base.StopExecute();

@@ -28,7 +28,16 @@ public class SStunningDash : Skill
             StartCasting();
         }
     }
-
+    public override Skill GetInstance()
+    {
+        var instance = (SStunningDash)base.GetInstance();
+        instance.baseDamage = baseDamage;
+        instance.baseDuration = baseDuration;
+        instance.stunBuff = stunBuff;
+        instance.range = range;
+        instance.projectile = projectile;
+        return instance;
+    }
     public override void ExecuteOnStart(Character self)
     {
     }

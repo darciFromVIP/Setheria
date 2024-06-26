@@ -606,6 +606,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void ChangeHunger(int amount, bool showText)
     {
         hunger += amount;
+        Debug.Log(hunger);
         if (!isOwned)
             return;
         if ((hunger == 20 || hunger == 10) && amount < 0)

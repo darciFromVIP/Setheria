@@ -23,7 +23,14 @@ public class SBash : Skill
             StartCasting();
         }
     }
-
+    public override Skill GetInstance()
+    {
+        var instance = (SBash)base.GetInstance();
+        instance.baseDamage = baseDamage;
+        instance.radius = radius;
+        instance.projectile = projectile;
+        return instance;
+    }
     public override void ExecuteOnStart(Character self)
     {
     }
