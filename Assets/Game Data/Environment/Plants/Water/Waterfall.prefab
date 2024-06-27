@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1419125845859455196}
   serializedVersion: 2
   m_LocalRotation: {x: -0.68286544, y: -0.18356162, z: -0.18356158, w: 0.68286544}
-  m_LocalPosition: {x: 0.236, y: -0.684, z: 0.364}
+  m_LocalPosition: {x: 0.194, y: -1.126, z: 0.319}
   m_LocalScale: {x: 0.02067702, y: 0.02067702, z: 0.02067702}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4856,7 +4856,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.024526931, y: 0.9540323, z: 0.15694977, w: 0.254141}
   m_LocalPosition: {x: 59.828, y: 87.122, z: 76.67}
-  m_LocalScale: {x: 1.1049861, y: 4.7255573, z: 2.9605045}
+  m_LocalScale: {x: 1.1911926, y: 2.062707, z: 3.2746139}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7737675379763790386}
@@ -4939,7 +4939,7 @@ Transform:
   m_GameObject: {fileID: 7031389696614857399}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.05, y: -0.648, z: 0.294}
+  m_LocalPosition: {x: -0.018, y: -1.036, z: 0.343}
   m_LocalScale: {x: 0.02865663, y: 0.02865663, z: 0.02865663}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9821,17 +9821,17 @@ PrefabInstance:
     - target: {fileID: 4478111337201274044, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.102
+      value: -0.179
       objectReference: {fileID: 0}
     - target: {fileID: 4478111337201274044, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1737
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 4478111337201274044, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.153
+      value: -0.179
       objectReference: {fileID: 0}
     - target: {fileID: 4799008681044021098, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
@@ -9883,6 +9883,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Waterfall
       objectReference: {fileID: 0}
+    - target: {fileID: 6528780127745297800, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.5686275
+      objectReference: {fileID: 0}
     - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -9892,6 +9897,16 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startSize.minScalar
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.ctime1
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
@@ -9920,23 +9935,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.ctime1
+      value: 56090
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.key0.b
+      value: 0.76895237
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.key0.g
+      value: 0.052643314
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.key0.r
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.key1.b
+      value: 0.4528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.key1.g
+      value: 0.049127813
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.key1.r
+      value: 0.067244016
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_NumColorKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9026869595733129860, guid: 61ad9a6f142c20e438eddbf62843fe01,
+        type: 3}
       propertyPath: InitialModule.startColor.maxGradient.m_ColorSpace
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9206061202660715775, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.12
+      value: 0.202
       objectReference: {fileID: 0}
     - target: {fileID: 9206061202660715775, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1256
+      value: 0.076
       objectReference: {fileID: 0}
     - target: {fileID: 9206061202660715775, guid: 61ad9a6f142c20e438eddbf62843fe01,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.041
+      value: 0.134
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
