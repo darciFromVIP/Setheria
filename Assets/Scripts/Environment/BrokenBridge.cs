@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class BrokenBridge : NetworkBehaviour, ISaveable
 {
-    public GameObject brokenModel;
     public GameObject repairedModel;
 
     private void Start()
@@ -21,7 +20,6 @@ public class BrokenBridge : NetworkBehaviour, ISaveable
     [ClientRpc]
     private void RpcRepairBridge()
     {
-        brokenModel.SetActive(false);
         repairedModel.SetActive(true);
         GetComponent<NavMeshObstacle>().enabled = false;
         Destroy(GetComponent<TurnInItemsInteractable>());
