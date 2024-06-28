@@ -43,6 +43,8 @@ public class QuestDescription : MonoBehaviour
         if (parent)
             transform.SetParent(parent);
         FindObjectOfType<AudioManager>().QuestAccepted();
+        if (questData.questType == QuestType.Main)
+            transform.SetAsFirstSibling();
     }
     public void QuestCompleted()
     {
