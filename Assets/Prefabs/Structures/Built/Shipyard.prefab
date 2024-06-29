@@ -122,17 +122,17 @@ PrefabInstance:
     - target: {fileID: 3813167064294271556, guid: 285a280c4751bb2489777a4cea3d29e2,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.9817178
+      value: 1.5963727
       objectReference: {fileID: 0}
     - target: {fileID: 3813167064294271556, guid: 285a280c4751bb2489777a4cea3d29e2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.9817178
+      value: 1.5963727
       objectReference: {fileID: 0}
     - target: {fileID: 3813167064294271556, guid: 285a280c4751bb2489777a4cea3d29e2,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.9817178
+      value: 1.5963727
       objectReference: {fileID: 0}
     - target: {fileID: 3813167064294271556, guid: 285a280c4751bb2489777a4cea3d29e2,
         type: 3}
@@ -519,23 +519,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5563563096656022236, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563563096656022236, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
       propertyPath: m_Center.x
-      value: 1.37
+      value: 1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563563096656022236, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 5563563096656022236, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.3
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 5563563096656022236, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_Extents.x
-      value: 0.5
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 5563563096656022236, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_Extents.y
-      value: 0.5
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 5563563096656022236, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -824,8 +834,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.550413, y: 2.3859391, z: 7.3289948}
-  m_Center: {x: -0.6052065, y: 0.6929696, z: 0.02579832}
+  m_Size: {x: 4.15, y: 2.72, z: 4.64}
+  m_Center: {x: 0, y: 0.78, z: -0.28}
 --- !u!114 &8222387542585493507
 MonoBehaviour:
   m_ObjectHideFlags: 0
