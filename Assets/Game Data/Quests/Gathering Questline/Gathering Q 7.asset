@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
+  m_Name: Gathering Q 7
+  m_EditorClassIdentifier: 
+  active: 0
+  label: Copper Age.
+  description: Craft more durable copper gathering pickaxe. with a better quality
+    tool it will be possible to collect better materials.
+  icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
+  questType: 1
+  synchronizedQuest: 0
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: e1c8734fa0e3dd24f8f90876677bfed5, type: 2}
+    stacks: 1
+  requiredItemTypes: []
+  requiredStructures: []
+  requiredResources: 0
+  currentResources: 0
+  requiredKnowledge: 0
+  currentKnowledge: 0
+  customRequirements: []
+  rewards:
+  - rewardType: 2
+    rewardAmount: 50
+    itemReward: {fileID: 0}
+  tutorialToShow: {fileID: 0}
+  Quest_Complete:
+    m_PersistentCalls:
+      m_Calls: []
+  Quest_Updated:
+    m_PersistentCalls:
+      m_Calls: []

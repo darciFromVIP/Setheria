@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Alchemy Q 5
   m_EditorClassIdentifier: 
   active: 0
-  label: Craft Everstone.
-  description: 
+  label: Craft Paper.
+  description: Find the way how to unlock and learn make the Paper.
   icon: {fileID: 21300000, guid: 2eb50e196936b774d96d2303d44727dc, type: 3}
   questType: 1
   synchronizedQuest: 0
   requiredItems:
-  - itemData: {fileID: 11400000, guid: 4e126d5b58ba5994db9d43b3f9e7d506, type: 2}
-    stacks: 1
+  - itemData: {fileID: 11400000, guid: 66a1749273eaa82478459db8daba8acb, type: 2}
+    stacks: 4
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   customRequirements: []
   rewards:
   - rewardType: 2
-    rewardAmount: 100
+    rewardAmount: 30
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:

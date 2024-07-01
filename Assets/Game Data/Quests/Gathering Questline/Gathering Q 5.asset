@@ -12,14 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Gathering Q 5
   m_EditorClassIdentifier: 
-  active: 0
-  label: Find better quality Ore.
+  active: 1
+  label: Find unknown plants.
   description: 
   icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
   questType: 1
   synchronizedQuest: 0
   requiredItems:
-  - itemData: {fileID: 11400000, guid: bd5a5039329c9cb4db787f752d56c230, type: 2}
+  - itemData: {fileID: 11400000, guid: c24df273115bd324c9052ab14ba4c576, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: 259866ad2fbffe245b24c7bae99eea3e, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: a8bc1728e509cca45bb7f5f95205187b, type: 2}
     stacks: 1
   requiredItemTypes: []
   requiredStructures: []
@@ -29,9 +33,9 @@ MonoBehaviour:
   currentKnowledge: 0
   customRequirements: []
   rewards:
-  - rewardType: 3
-    rewardAmount: 1
-    itemReward: {fileID: 11400000, guid: bd5a5039329c9cb4db787f752d56c230, type: 2}
+  - rewardType: 2
+    rewardAmount: 30
+    itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
