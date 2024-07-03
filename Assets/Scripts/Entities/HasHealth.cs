@@ -9,6 +9,7 @@ using FMODUnity;
 
 public class HasHealth : NetworkBehaviour, ISaveable
 {
+    [SerializeField]
     private float health;
     [Header("Don't set this on player characters! They have their data in the code.")]
     [SerializeField]
@@ -28,6 +29,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     private float finalArmor;
     public EventReference soundOnDeath;
     public EventReference soundOnHit;
+    public bool debug;
 
     [SerializeField] private bool isInvulnerable;
 
@@ -91,6 +93,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public void HealDamage(float heal, bool isRegen)
     {
         health += heal;
+        if (debug)
+            Debug.Log(health);
         if (!isRegen && isServer)
             FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + ((int)heal).ToString(), transform.position, FloatingTextType.Healing);
         if (health > maxHealth)
@@ -125,6 +129,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
             finalDmg = damage * (1 - (GetFinalArmor() / 100));
 
         health -= finalDmg;
+        if (debug)
+            Debug.Log(health);
         if (!soundOnHit.IsNull)
             FindObjectOfType<AudioManager>().PlayOneShot(soundOnHit, transform.position);
         if (isServer && finalDmg >= 1)
@@ -315,6 +321,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public void SetHealth(float value)
     {
         health = value;
+        if (debug)
+            Debug.Log(health);
         Health_Changed.Invoke(health, maxHealth);
     }
     public void SetBaseMaxHealth(float value)

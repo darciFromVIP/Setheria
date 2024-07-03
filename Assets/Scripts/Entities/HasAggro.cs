@@ -33,6 +33,7 @@ public class HasAggro : NetworkBehaviour
         }
         if (TryGetComponent(out CanAttack attack))
             attack.Target_Lost.AddListener(TargetLost);
+        Target_Found.AddListener(AddEmptyAggroList);
     }
     private void DisableScript()
     {
@@ -172,5 +173,10 @@ public class HasAggro : NetworkBehaviour
             }
             yield return null;
         }
+    }
+    private void AddEmptyAggroList(NetworkIdentity key)
+    {
+        if (!aggroList.ContainsKey(key))
+            aggroList.Add(key, 0);
     }
 }

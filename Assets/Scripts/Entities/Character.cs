@@ -129,7 +129,7 @@ public class Character : Entity
     {
         rotateTarget = target.transform;
     }
-    private void RotateTargetLost()
+    public void RotateTargetLost()
     {
         rotateTarget = null;
     }
@@ -492,10 +492,6 @@ public class Character : Entity
                 item.SetCastingEntity(this);
             }
         }
-    }
-    public void RemoveRotateTarget()
-    {
-        rotateTarget = null;
     }
     public void SetRotateTarget(Transform target)
     {

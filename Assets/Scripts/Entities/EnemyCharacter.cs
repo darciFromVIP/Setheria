@@ -53,6 +53,8 @@ public class EnemyCharacter : Character, ISaveable
     [ClientRpc]
     private void ReturnToCamp(bool loseTarget)
     {
+        if (hpComp.GetHealth() <= 0)
+            return;
         aggroComp.enabled = false;
         if (loseTarget)
             attackComp.TargetLost();
@@ -96,7 +98,10 @@ public class EnemyCharacter : Character, ISaveable
     public SaveDataWorldObject SaveState()
     {
         if (hpComp.GetHealth() <= 0)
+        {
+            Debug.Log("Dead Enemy Not Saved");
             return null;
+        }
         return new SaveDataWorldObject
         {
             positionX = transform.position.x,

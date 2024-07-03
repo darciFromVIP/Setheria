@@ -33,6 +33,7 @@ public class SEntanglingRoots : Skill
         instance.stunBuff = stunBuff;
         instance.damageBuff = damageBuff;
         instance.projectile = projectile;
+        instance.baseDuration = baseDuration;
         return instance;
     }
     public override void ExecuteOnStart(Character self)

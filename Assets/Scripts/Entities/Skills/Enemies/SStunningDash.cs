@@ -16,8 +16,8 @@ public class SStunningDash : Skill
     public override void Execute(Character self)
     {
         base.Execute(self);
-        enemiesHit.Clear();
         enemiesHit = new List<Character>();
+        enemiesHit.Clear();
         if (Vector3.Distance(castingEntity.transform.position, castingEntity.GetComponent<CanAttack>().enemyTarget.transform.position) > range)
         {
             castingEntity.GetComponent<CanMove>().Moved_Within_Range.AddListener(StartCasting);
@@ -64,7 +64,7 @@ public class SStunningDash : Skill
         castingEntity.Stun_Begin.AddListener(StopExecute);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().transform.rotation = Quaternion.LookRotation(castingEntity.GetComponent<CanAttack>().enemyTarget.transform.position - castingEntity.transform.position);
-        castingEntity.RemoveRotateTarget();
+        castingEntity.RotateTargetLost();
 
         castingEntity.skillIndicator.ShowLine(castingEntity.GetComponent<CapsuleCollider>().radius, range, true, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
         castingEntity.skillIndicator.Casting(2);

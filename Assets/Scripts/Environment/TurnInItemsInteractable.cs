@@ -71,8 +71,11 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
     }
     public void TurnInItems()
     {
-        soundInstance = FindObjectOfType<AudioManager>().CreateEventInstance(soundOfTurningIn, transform);
-        soundInstance.start();
+        if (!soundOfTurningIn.IsNull)
+        {
+            soundInstance = FindObjectOfType<AudioManager>().CreateEventInstance(soundOfTurningIn, transform);
+            soundInstance.start();
+        }
         player.CmdStartWorking(workDuration);
         player.Work_Cancelled.AddListener(StopSound);
         player.Work_Finished.AddListener(ItemsTurnedIn);
