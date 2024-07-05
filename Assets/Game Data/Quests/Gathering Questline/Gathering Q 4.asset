@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gathering Q 4
   m_EditorClassIdentifier: 
   active: 0
-  label: Cut down Saplings.
+  label: Mine stones.
   description: 
   icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
   questType: 1
@@ -28,9 +28,9 @@ MonoBehaviour:
   customRequirements:
   - requiredValue: 3
     currentValue: 0
-    requirementText: 'Saplings cut: '
+    requirementText: 'Stones mine: '
     customEvents:
-    - {fileID: 11400000, guid: b7e77a49f9596eb4d8f1786addbbff91, type: 2}
+    - {fileID: 11400000, guid: 3fe559f1971ce334c98a62ca07c853f3, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 10

@@ -13,21 +13,24 @@ MonoBehaviour:
   m_Name: Gathering Q 3
   m_EditorClassIdentifier: 
   active: 0
-  label: Craft Shabby Sac.
+  label: Cut down Saplings.
   description: 
   icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
   questType: 1
   synchronizedQuest: 0
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: 6af60e23b2b93c242a4c4fa015a85420, type: 2}
-    stacks: 1
+  requiredItems: []
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  customRequirements: []
+  customRequirements:
+  - requiredValue: 3
+    currentValue: 0
+    requirementText: 'Saplings cut: '
+    customEvents:
+    - {fileID: 11400000, guid: b7e77a49f9596eb4d8f1786addbbff91, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 10

@@ -10,28 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Main Quest 6
+  m_Name: Main Quest 17
   m_EditorClassIdentifier: 
   active: 0
-  label: Guarding lights.
-  description: I think the beasts will start attacking my sanctuary soon. I need
-    to create more sources of light to be ready for them. At least I'll feel safer
-    around them.
-  icon: {fileID: 21300000, guid: 18dc36883df3035469523c4df10a8d04, type: 3}
+  label: Awaken this place.
+  description: WORK IN PROGRESS
+  icon: {fileID: 21300000, guid: e2c298caad776684ab043ade25d0dd69, type: 3}
   synchronizedQuest: 1
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: 084e2b6017fd1f94695aa56411411b3c, type: 2}
-    stacks: 1
+  requiredItems: []
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  customRequirements: []
+  customRequirements:
+  - requiredValue: 5
+    currentValue: 0
+    requirementText: 'Rune Pillars activated: '
+    customEvents:
+    - {fileID: 11400000, guid: 767beebbe456a2a49bba925d4bc7bae4, type: 2}
   rewards:
-  - rewardType: 2
-    rewardAmount: 20
+  - rewardType: 4
+    rewardAmount: 100
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:

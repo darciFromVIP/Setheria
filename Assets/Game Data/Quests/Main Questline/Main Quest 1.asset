@@ -13,23 +13,17 @@ MonoBehaviour:
   m_Name: Main Quest 1
   m_EditorClassIdentifier: 
   active: 1
-  label: Find materials for your shelter.
-  description: "Ugh.. That was an unfortunate crash. Is this the fabled land of Setheria?
-    Is this even reality? Or have we ended up in the depths of darkness that is consuming
-    us and all this is a dream? Are they alive? Am I alive?! I feel pain, my body
-    is shaking... This is not an illusion! I refuse to accept my death! \n\nIn any
-    case, I'm here and now, and I need to adapt to this world. I need to build a
-    shelter to create my own sanctuary. I feel danger in the air."
-  icon: {fileID: 21300000, guid: 07e0b4d3074eb104f8ef138a6f42addc, type: 3}
+  label: Search the Supplies.
+  description: "The ship is totally destroyed and i am stucked now in this unknown
+    place. \n\nBut first i need to save what I can. I must search <color=#FFD000>supplies</color>!
+    Fast!  Maybe I'll find something else useful."
+  icon: {fileID: 21300000, guid: e6f69bfbddef46b45b3481266def1eb4, type: 3}
+  questType: 1
   synchronizedQuest: 1
   requiredItems:
+  - itemData: {fileID: 11400000, guid: 79dd9ac95b358e346aacfd83c6504997, type: 2}
+    stacks: 1
   - itemData: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 20c0f74954bf1054f835b3019722c099, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: dbec0b67dd7f0a14ca35cd98cb1dc026, type: 2}
-    stacks: 2
-  - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
     stacks: 2
   requiredItemTypes: []
   requiredStructures: []

@@ -10,39 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Main Quest 0
+  m_Name: Main Quest 15
   m_EditorClassIdentifier: 
-  active: 1
-  label: Basics of survival
-  description: 'In order to build a shelter, I''ll need to create a tool to gather
-    materials effectively.
+  active: 0
+  label: Explore the ocean!
+  description: 'The damned water is everywhere! I need to explore every part of this
+    world in order to expand my overview. I''m sure that I''ll find something interesting
+    and find out more about this land.
 
 
-    Combining a wooden stick and a stone should do the
-    trick.
-
-
-    The only thing that I got left is the Manual (N), where I''ll keep
-    track of all recipes.'
-  icon: {fileID: 21300000, guid: dccf5053d37504c49b993b8fc0bd4359, type: 3}
-  questType: 1
+    The question is: Can I build a ship?
+    Well, to do that, I need a shipyard.'
+  icon: {fileID: 21300000, guid: c11e8a150de2fcc40b6dfbc138facd18, type: 3}
   synchronizedQuest: 1
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: eed769246a0eca54dbd15b977acd3832, type: 2}
-    stacks: 1
+  requiredItems: []
   requiredItemTypes: []
-  requiredStructures: []
+  requiredStructures:
+  - {fileID: 11400000, guid: 382748be377ccbb4d8c79f98652e2ab5, type: 2}
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements: []
   rewards:
-  - rewardType: 3
-    rewardAmount: 1
-    itemReward: {fileID: 11400000, guid: 56fa6d2db1b3b704babb25bf108d8dee, type: 2}
   - rewardType: 2
-    rewardAmount: 15
+    rewardAmount: 70
+    itemReward: {fileID: 0}
+  - rewardType: 1
+    rewardAmount: 10
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:

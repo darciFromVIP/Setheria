@@ -13,26 +13,25 @@ MonoBehaviour:
   m_Name: Main Quest 11
   m_EditorClassIdentifier: 
   active: 0
-  label: Beat the Fairy Queen
-  description: WORK IN PROGRESS
-  icon: {fileID: 21300000, guid: 5c001cd9f596a5242854d6b9a439048b, type: 3}
+  label: Guarding lights.
+  description: I think the beasts will start attacking my sanctuary soon. I need
+    to create more sources of light to be ready for them. At least I'll feel safer
+    around them.
+  icon: {fileID: 21300000, guid: 18dc36883df3035469523c4df10a8d04, type: 3}
   synchronizedQuest: 1
-  requiredItems: []
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: 084e2b6017fd1f94695aa56411411b3c, type: 2}
+    stacks: 1
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  customRequirements:
-  - requiredValue: 1
-    currentValue: 0
-    requirementText: 'Forest Queen killed: '
-    customEvents:
-    - {fileID: 11400000, guid: 9cc51fee7b720f74b8a385c2919eef70, type: 2}
+  customRequirements: []
   rewards:
   - rewardType: 2
-    rewardAmount: 100
+    rewardAmount: 20
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:

@@ -12,30 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 3
   m_EditorClassIdentifier: 
-  active: 0
-  label: A light in the dark.
-  description: 'It''ll be night soon, I need a source of light to see the enemy in
-    case I''m ambushed. Moreover, i''m beginning to feel hungry. That''s a good sign.
-    It means I live!
-
-
-    Well, time to work and build a heart of the sanctuary.
-    Or... hmm... a campfire should suffice.'
-  icon: {fileID: 21300000, guid: 33cffd7f3edbebc4c905ff641ffd20b3, type: 3}
+  active: 1
+  label: Clean the way to the forest.
+  description: This obstacle will be a problem. Or maybe not, since I have my freshly
+    made tool!
+  icon: {fileID: 21300000, guid: e6f69bfbddef46b45b3481266def1eb4, type: 3}
+  questType: 0
   synchronizedQuest: 1
-  requiredItems: []
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
+    stacks: 3
+  - itemData: {fileID: 11400000, guid: a8bc1728e509cca45bb7f5f95205187b, type: 2}
+    stacks: 1
   requiredItemTypes: []
-  requiredStructures:
-  - {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}
+  requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements: []
   rewards:
-  - rewardType: 3
-    rewardAmount: 1
-    itemReward: {fileID: 11400000, guid: 5cdb4fabc5262c745ad2f45108ef81b8, type: 2}
+  - rewardType: 2
+    rewardAmount: 20
+    itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

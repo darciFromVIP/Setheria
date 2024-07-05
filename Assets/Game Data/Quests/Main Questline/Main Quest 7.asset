@@ -13,33 +13,29 @@ MonoBehaviour:
   m_Name: Main Quest 7
   m_EditorClassIdentifier: 
   active: 0
-  label: No more ooga booga!
-  description: 'Is it just me or I''m living as the ancient cave men did? Come on,
-    I''m better than that! I''ll build a place where I''ll stockpile my stuff and
-    create new technologies based on the materials of this world.
+  label: A light in the dark.
+  description: 'It''ll be night soon, I need a source of light to see the enemy in
+    case I''m ambushed. Moreover, i''m beginning to feel hungry. That''s a good sign.
+    It means I live!
 
 
-    P.S.: I hope
-    I''ll find Moonaris too.'
-  icon: {fileID: 21300000, guid: 72061f3047c09d64dbdc73773b9e3b06, type: 3}
+    Well, time to work and build a heart of the sanctuary.
+    Or... hmm... a campfire should suffice.'
+  icon: {fileID: 21300000, guid: 33cffd7f3edbebc4c905ff641ffd20b3, type: 3}
   synchronizedQuest: 1
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
-    stacks: 2
-  - itemData: {fileID: 11400000, guid: 21ee9a24c89b74d45acd86c0ea8c7c32, type: 2}
-    stacks: 3
-  - itemData: {fileID: 11400000, guid: dbec0b67dd7f0a14ca35cd98cb1dc026, type: 2}
-    stacks: 4
-  - itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
-    stacks: 4
+  requiredItems: []
   requiredItemTypes: []
-  requiredStructures: []
+  requiredStructures:
+  - {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements: []
-  rewards: []
+  rewards:
+  - rewardType: 3
+    rewardAmount: 1
+    itemReward: {fileID: 11400000, guid: 5cdb4fabc5262c745ad2f45108ef81b8, type: 2}
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

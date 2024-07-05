@@ -13,27 +13,33 @@ MonoBehaviour:
   m_Name: Main Quest 12
   m_EditorClassIdentifier: 
   active: 0
-  label: Awaken this place.
-  description: WORK IN PROGRESS
-  icon: {fileID: 21300000, guid: e2c298caad776684ab043ade25d0dd69, type: 3}
+  label: No more ooga booga!
+  description: 'Is it just me or I''m living as the ancient cave men did? Come on,
+    I''m better than that! I''ll build a place where I''ll stockpile my stuff and
+    create new technologies based on the materials of this world.
+
+
+    P.S.: I hope
+    I''ll find Moonaris too.'
+  icon: {fileID: 21300000, guid: 72061f3047c09d64dbdc73773b9e3b06, type: 3}
   synchronizedQuest: 1
-  requiredItems: []
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
+    stacks: 2
+  - itemData: {fileID: 11400000, guid: 21ee9a24c89b74d45acd86c0ea8c7c32, type: 2}
+    stacks: 3
+  - itemData: {fileID: 11400000, guid: dbec0b67dd7f0a14ca35cd98cb1dc026, type: 2}
+    stacks: 4
+  - itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
+    stacks: 4
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  customRequirements:
-  - requiredValue: 5
-    currentValue: 0
-    requirementText: 'Rune Pillars activated: '
-    customEvents:
-    - {fileID: 11400000, guid: 767beebbe456a2a49bba925d4bc7bae4, type: 2}
-  rewards:
-  - rewardType: 4
-    rewardAmount: 100
-    itemReward: {fileID: 0}
+  customRequirements: []
+  rewards: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

@@ -13,31 +13,33 @@ MonoBehaviour:
   m_Name: Main Quest 10
   m_EditorClassIdentifier: 
   active: 0
-  label: Explore the ocean!
-  description: 'The damned water is everywhere! I need to explore every part of this
-    world in order to expand my overview. I''m sure that I''ll find something interesting
-    and find out more about this land.
+  label: Gear up to fight in the wild.
+  description: 'I can''t just fight endlessly without proper gear. The beasts are
+    getting stronger by the day. I need to be even stronger than them.
 
 
-    The question is: Can I build a ship?
-    Well, to do that, I need a shipyard.'
-  icon: {fileID: 21300000, guid: c11e8a150de2fcc40b6dfbc138facd18, type: 3}
+    I should
+    start by crafting a weapon.'
+  icon: {fileID: 21300000, guid: 1f178aa2dfec7c34c96d254b08db1eca, type: 3}
   synchronizedQuest: 1
   requiredItems: []
-  requiredItemTypes: []
-  requiredStructures:
-  - {fileID: 11400000, guid: 382748be377ccbb4d8c79f98652e2ab5, type: 2}
+  requiredItemTypes:
+  - requiredItemType: 6
+    requiredItemTypeAmount: 1
+    currentItemTypeAmount: 0
+    validItemTypeNames: []
+  requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements: []
   rewards:
+  - rewardType: 3
+    rewardAmount: 1
+    itemReward: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
   - rewardType: 2
-    rewardAmount: 70
-    itemReward: {fileID: 0}
-  - rewardType: 1
-    rewardAmount: 10
+    rewardAmount: 20
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:

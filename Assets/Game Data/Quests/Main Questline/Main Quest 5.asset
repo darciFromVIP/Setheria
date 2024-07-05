@@ -12,34 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 5
   m_EditorClassIdentifier: 
-  active: 0
-  label: Gear up to fight in the wild.
-  description: 'I can''t just fight endlessly without proper gear. The beasts are
-    getting stronger by the day. I need to be even stronger than them.
-
-
-    I should
-    start by crafting a weapon.'
-  icon: {fileID: 21300000, guid: 1f178aa2dfec7c34c96d254b08db1eca, type: 3}
+  active: 1
+  label: Finalize your shelter.
+  description: "Well.. That was an unfortunate. Is this the fabled land of Setheria?
+    Is this even reality? Or have we ended up in the depths of darkness that is consuming
+    us and all this is a dream? Are they alive? Am I alive?! I feel pain, my body
+    is shaking... This is not an illusion! I refuse to accept my death! \n\nIn any
+    case, I'm here and now, and I need to adapt to this world. I need to build a
+    shelter to create my own sanctuary. I feel more danger in the air."
+  icon: {fileID: 21300000, guid: 07e0b4d3074eb104f8ef138a6f42addc, type: 3}
+  questType: 0
   synchronizedQuest: 1
   requiredItems: []
-  requiredItemTypes:
-  - requiredItemType: 6
-    requiredItemTypeAmount: 1
-    currentItemTypeAmount: 0
-    validItemTypeNames: []
-  requiredStructures: []
+  requiredItemTypes: []
+  requiredStructures:
+  - {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements: []
   rewards:
-  - rewardType: 3
-    rewardAmount: 1
-    itemReward: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
   - rewardType: 2
     rewardAmount: 20
+    itemReward: {fileID: 0}
+  - rewardType: 1
+    rewardAmount: 5
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:

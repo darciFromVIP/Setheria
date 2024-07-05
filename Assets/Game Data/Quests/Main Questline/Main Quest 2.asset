@@ -13,28 +13,38 @@ MonoBehaviour:
   m_Name: Main Quest 2
   m_EditorClassIdentifier: 
   active: 1
-  label: Time to build a shelter.
-  description: Now I should have everything to build a Tent. I should consult my
-    Manual to make sure I do.
-  icon: {fileID: 21300000, guid: eacbe2c5c2d5cd8488d3c0cd4f9fc726, type: 3}
+  label: Basics of survival
+  description: 'In order to build a shelter, I''ll need to create a tool to gather
+    materials effectively.
+
+
+    Combining a <color=#FFD000>wooden stickboss</color>
+    and a <color=#FFD000>stone</color> should do the trick.
+
+
+    The only thing
+    that I got left is the Manual (N), where I''ll keep track of all recipes.'
+  icon: {fileID: 21300000, guid: dccf5053d37504c49b993b8fc0bd4359, type: 3}
+  questType: 1
   synchronizedQuest: 1
-  requiredItems: []
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: eed769246a0eca54dbd15b977acd3832, type: 2}
+    stacks: 1
   requiredItemTypes: []
-  requiredStructures:
-  - {fileID: 11400000, guid: 3154b72ff37f3c04a9396597b5565e53, type: 2}
+  requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements: []
   rewards:
-  - rewardType: 1
-    rewardAmount: 5
-    itemReward: {fileID: 0}
+  - rewardType: 3
+    rewardAmount: 1
+    itemReward: {fileID: 11400000, guid: 56fa6d2db1b3b704babb25bf108d8dee, type: 2}
   - rewardType: 2
-    rewardAmount: 20
+    rewardAmount: 15
     itemReward: {fileID: 0}
-  tutorialToShow: {fileID: 11400000, guid: 10d9fa7badb9a4a49bab92906e4fb872, type: 2}
+  tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

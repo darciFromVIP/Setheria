@@ -10,27 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Main Quest 8
+  m_Name: Main Quest 13
   m_EditorClassIdentifier: 
   active: 0
-  label: A survivor's tool.
-  description: "I'll need more instruments to navigate the wild. \n\nThis one should
-    help me break some obstacles and repair structures."
-  icon: {fileID: 21300000, guid: ee5d3c503bf3552489c3eb1b7022748c, type: 3}
+  label: Advance your technologies.
+  description: Finally, I can build this ultimate piece of art! But don't laugh too
+    hard, please. We'll need this, I promise!
+  icon: {fileID: 21300000, guid: e97e50f4fad5eda45bbb99507c64dd97, type: 3}
   synchronizedQuest: 1
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: a5bfeb1a16d7d7f44b1fd295472414a6, type: 2}
-    stacks: 1
+  requiredItems: []
   requiredItemTypes: []
-  requiredStructures: []
+  requiredStructures:
+  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements: []
   rewards:
-  - rewardType: 2
-    rewardAmount: 15
+  - rewardType: 0
+    rewardAmount: 10
+    itemReward: {fileID: 0}
+  - rewardType: 1
+    rewardAmount: 10
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:
