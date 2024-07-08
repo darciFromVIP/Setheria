@@ -19,18 +19,19 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: e6f69bfbddef46b45b3481266def1eb4, type: 3}
   questType: 0
   synchronizedQuest: 1
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
-    stacks: 3
-  - itemData: {fileID: 11400000, guid: a8bc1728e509cca45bb7f5f95205187b, type: 2}
-    stacks: 1
+  requiredItems: []
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  customRequirements: []
+  customRequirements:
+  - requiredValue: 1
+    currentValue: 0
+    requirementText: 'Cleaned Obstacle:'
+    customEvents:
+    - {fileID: 11400000, guid: d41d7e980e6823446a1175aeb692f3a3, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 20

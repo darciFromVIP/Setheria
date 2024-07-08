@@ -19,16 +19,19 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
   questType: 1
   synchronizedQuest: 0
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: 21ee9a24c89b74d45acd86c0ea8c7c32, type: 2}
-    stacks: 3
+  requiredItems: []
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  customRequirements: []
+  customRequirements:
+  - requiredValue: 1
+    currentValue: 0
+    requirementText: 'Hemp Collected:'
+    customEvents:
+    - {fileID: 11400000, guid: 889d76a7d04a7ab46b22e770429fbeb9, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 10
