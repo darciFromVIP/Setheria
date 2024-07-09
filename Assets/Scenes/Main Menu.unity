@@ -15,30 +15,30 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0, g: 0.42646447, b: 0.7264151, a: 1}
+  m_FogColor: {r: 0.093004644, g: 0.16448164, b: 0.3584906, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 34.61
-  m_LinearFogEnd: 69
-  m_AmbientSkyColor: {r: 0.47343737, g: 0.41121703, b: 1.2278591, a: 1}
-  m_AmbientEquatorColor: {r: 0.32447433, g: 0.6698113, b: 0.31910822, a: 1}
-  m_AmbientGroundColor: {r: 3.99507, g: 3.99507, b: 3.99507, a: 1}
-  m_AmbientIntensity: 0.54
-  m_AmbientMode: 1
-  m_SubtractiveShadowColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: c1c961cbd00909b45b34d97fd7df5cbf, type: 2}
-  m_HaloStrength: 0.09
+  m_LinearFogStart: 27.9
+  m_LinearFogEnd: 58.9
+  m_AmbientSkyColor: {r: 1.6392884, g: 1.6392884, b: 1.6392884, a: 1}
+  m_AmbientEquatorColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientIntensity: 1.97
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b15f0da22d4ded6458b4e1143e125671, type: 2}
+  m_HaloStrength: 0.083
   m_FlareStrength: 0.135
   m_FlareFadeSpeed: 3.23
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 1
+  m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0.724
+  m_ReflectionIntensity: 0.854
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0043512294, g: 0.0435569, b: 0.1413189, a: 0.724}
+  m_IndirectSpecularColor: {r: 0.0708127, g: 0.069415286, b: 0.11621394, a: 0.854}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -385,6 +385,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest Pine Tree v1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -402,6 +407,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tree 1 Gross (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806453921392758872, guid: 0e7d8fec286303a4ab29c9c7271168ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294759523284044514, guid: 0e7d8fec286303a4ab29c9c7271168ad,
         type: 3}
@@ -844,6 +854,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree 1 Gross (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2806453921392758872, guid: 0e7d8fec286303a4ab29c9c7271168ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3294759523284044514, guid: 0e7d8fec286303a4ab29c9c7271168ad,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -932,6 +947,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tree 1 Gross (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806453921392758872, guid: 0e7d8fec286303a4ab29c9c7271168ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294759523284044514, guid: 0e7d8fec286303a4ab29c9c7271168ad,
         type: 3}
@@ -1086,6 +1106,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dry tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 3069310145076569264, guid: 3e61d9c2c12fe6c41a551995c45bfe82,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1429,6 +1454,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone 1 Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6517116454353954864, guid: 21b8f6b5f89613c49ad35b384b7664f3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1511,6 +1541,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GrassC (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8739400689571092146, guid: 02d8adcd59640d4438571729df8b31ec,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1797,6 +1832,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Forest Pine Tree v2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023833510615589462, guid: e00352bd9c536ec4f9e029c651a02839,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1023833510615826038, guid: e00352bd9c536ec4f9e029c651a02839,
         type: 3}
@@ -3147,6 +3187,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest Pine Tree v1
       objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3284,6 +3329,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stone 3 Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 968834911666138303, guid: 63870a3305fa7424c8ba5dcbe9a7e2af,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3526,6 +3576,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Forest Pine Tree v2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023833510615589462, guid: e00352bd9c536ec4f9e029c651a02839,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1023833510615826038, guid: e00352bd9c536ec4f9e029c651a02839,
         type: 3}
@@ -3914,6 +3969,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866299815201095668, guid: 260d9de149460a546a66289b775aa7bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866299815201579988, guid: 260d9de149460a546a66289b775aa7bb,
         type: 3}
@@ -9026,6 +9086,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stone 3 Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 968834911666138303, guid: 63870a3305fa7424c8ba5dcbe9a7e2af,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9183,6 +9248,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest Pine Tree v1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9330,6 +9400,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2053771204}
     m_Modifications:
+    - target: {fileID: 217566817, guid: e893fcd0339093246b80e54fd5356041, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 217566818, guid: e893fcd0339093246b80e54fd5356041, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.20490092
@@ -9419,10 +9493,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.367
       objectReference: {fileID: 0}
+    - target: {fileID: 3420009129681168788, guid: e893fcd0339093246b80e54fd5356041,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3420009129681168790, guid: e893fcd0339093246b80e54fd5356041,
         type: 3}
       propertyPath: m_Name
       value: Essenced Flower
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420009129681168790, guid: e893fcd0339093246b80e54fd5356041,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9452,6 +9536,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Menu Water
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329485000817697540, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8535197282319711379, guid: 0a8d1cc4be094d44ca0448b0001dd5be,
         type: 3}
@@ -9592,6 +9681,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pine Tree v3
       objectReference: {fileID: 0}
+    - target: {fileID: 5100696003583751963, guid: 0f14aaec10068034ab34c4e147ee8da8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9659,6 +9753,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stone 1 Prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517116454353954864, guid: 21b8f6b5f89613c49ad35b384b7664f3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9742,6 +9841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pine Tree v3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100696003583751963, guid: 0f14aaec10068034ab34c4e147ee8da8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14924,6 +15028,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essenced Flower (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3420009129681168790, guid: e893fcd0339093246b80e54fd5356041,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15310,6 +15419,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest Pine Tree v1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15521,6 +15635,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock1A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7262771324655906282, guid: 8b75a45239cad7b408eb46963bc47d2a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7262771324656136650, guid: 8b75a45239cad7b408eb46963bc47d2a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -15674,6 +15793,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Forest Pine Tree v1 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15857,6 +15981,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest Pine Tree v2 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1023833510615589462, guid: e00352bd9c536ec4f9e029c651a02839,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1023833510615826038, guid: e00352bd9c536ec4f9e029c651a02839,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -15943,7 +16072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!215 &943175255
 ReflectionProbe:
   m_ObjectHideFlags: 0
@@ -16093,6 +16222,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Forest Pine Tree v2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023833510615589462, guid: e00352bd9c536ec4f9e029c651a02839,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1023833510615826038, guid: e00352bd9c536ec4f9e029c651a02839,
         type: 3}
@@ -21126,6 +21260,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest Pine Tree v1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21623,6 +21762,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essenced Flower (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 3420009129681168790, guid: e893fcd0339093246b80e54fd5356041,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21640,6 +21784,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Forest Pine Tree v2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023833510615589462, guid: e00352bd9c536ec4f9e029c651a02839,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1023833510615826038, guid: e00352bd9c536ec4f9e029c651a02839,
         type: 3}
@@ -27023,8 +27172,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.5421413, g: 0.71774805, b: 0.8773585, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.31763974, g: 0.5542802, b: 0.8113208, a: 1}
+  m_Intensity: 1.65
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -27033,7 +27182,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.727
+    m_Strength: 0.938
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.1
@@ -27082,13 +27231,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176939590}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.93984264, y: -0.17935956, z: 0.031970087, w: 0.28897062}
-  m_LocalPosition: {x: 132.91, y: 36.22, z: 47.71}
+  m_LocalRotation: {x: 0.8222971, y: -0.15804301, z: 0.25915587, w: 0.4813401}
+  m_LocalPosition: {x: 146.03, y: 15.9, z: 80.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 33.686, y: -176.999, z: -157.482}
+  m_LocalEulerAnglesHint: {x: 60.871, y: -214.264, z: -178.772}
 --- !u!1 &1190479706
 GameObject:
   m_ObjectHideFlags: 0
@@ -27341,6 +27490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tree half dry 1 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019360347433929448, guid: 2cf498afd488193458ca46528abfbfc1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28097,6 +28251,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RainPS
       objectReference: {fileID: 0}
+    - target: {fileID: 5739665044326268867, guid: 015eaa64084f5834db631e6db9bc2ca4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7203081356601899569, guid: 015eaa64084f5834db631e6db9bc2ca4,
         type: 3}
       propertyPath: m_Enabled
@@ -28144,6 +28303,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock1A (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262771324655906282, guid: 8b75a45239cad7b408eb46963bc47d2a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7262771324656136650, guid: 8b75a45239cad7b408eb46963bc47d2a,
         type: 3}
@@ -28317,6 +28481,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree 1 Gross (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2806453921392758872, guid: 0e7d8fec286303a4ab29c9c7271168ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3294759523284044514, guid: 0e7d8fec286303a4ab29c9c7271168ad,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -28470,6 +28639,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Forest Pine Tree v1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28738,6 +28912,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest Pine Tree v1 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28901,6 +29080,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Essenced Flower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420009129681168790, guid: e893fcd0339093246b80e54fd5356041,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29323,6 +29507,10 @@ PrefabInstance:
     - target: {fileID: 132536, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_Name
       value: IngameDebugConsole
+      objectReference: {fileID: 0}
+    - target: {fileID: 132536, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11452418, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: toggleKey
@@ -29861,6 +30049,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree 1 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7411758854637535145, guid: 14dd613155290984cbc9ffde3bf4fe5f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7894823083779220755, guid: 14dd613155290984cbc9ffde3bf4fe5f,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -30201,6 +30394,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry tree Broken 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4911017936225576540, guid: e2b61a6ad3cc8eb488e6a240be40a4b1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5723125593088490726, guid: e2b61a6ad3cc8eb488e6a240be40a4b1,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -30347,6 +30545,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock1A
       objectReference: {fileID: 0}
+    - target: {fileID: 7262771324655906282, guid: 8b75a45239cad7b408eb46963bc47d2a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7262771324656136650, guid: 8b75a45239cad7b408eb46963bc47d2a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -30429,6 +30632,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rock3 A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866299815201095668, guid: 260d9de149460a546a66289b775aa7bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866299815201579988, guid: 260d9de149460a546a66289b775aa7bb,
         type: 3}
@@ -30613,6 +30821,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Essenced Flower (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3420009129681168790, guid: e893fcd0339093246b80e54fd5356041,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30897,6 +31110,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock3 A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5866299815201095668, guid: 260d9de149460a546a66289b775aa7bb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866299815201579988, guid: 260d9de149460a546a66289b775aa7bb,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -31035,6 +31253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tree 1 Gross (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806453921392758872, guid: 0e7d8fec286303a4ab29c9c7271168ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294759523284044514, guid: 0e7d8fec286303a4ab29c9c7271168ad,
         type: 3}
@@ -31190,6 +31413,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest Pine Tree v1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31207,6 +31435,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tree 1 Gross (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806453921392758872, guid: 0e7d8fec286303a4ab29c9c7271168ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294759523284044514, guid: 0e7d8fec286303a4ab29c9c7271168ad,
         type: 3}
@@ -31387,6 +31620,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Root  Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 9111086923734752171, guid: 3bc994ff39eeb074f9b0ed7eee181a48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31501,6 +31739,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Forest Pine Tree v2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023833510615589462, guid: e00352bd9c536ec4f9e029c651a02839,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1023833510615826038, guid: e00352bd9c536ec4f9e029c651a02839,
         type: 3}
@@ -31650,6 +31893,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dry tree
       objectReference: {fileID: 0}
+    - target: {fileID: 3069310145076569264, guid: 3e61d9c2c12fe6c41a551995c45bfe82,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31732,6 +31980,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stone 2 Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732270642953960638, guid: 6ba4985b6b1e18f4bbcb1aa8f0343f04,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31875,6 +32128,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tree 1 Gross
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806453921392758872, guid: 0e7d8fec286303a4ab29c9c7271168ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294759523284044514, guid: 0e7d8fec286303a4ab29c9c7271168ad,
         type: 3}
@@ -32132,6 +32390,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship wreck 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fc41a9c23af796c4bb33824b9ca66948,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32374,6 +32637,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stone 4 Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154096486425189575, guid: 33a049fff70a0e14888ce8c4e67ae7e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32635,6 +32903,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Forest Pine Tree v1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33002,6 +33275,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock1A
       objectReference: {fileID: 0}
+    - target: {fileID: 7262771324655906282, guid: 8b75a45239cad7b408eb46963bc47d2a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7262771324656136650, guid: 8b75a45239cad7b408eb46963bc47d2a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -33090,6 +33368,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tree 1 Gross
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806453921392758872, guid: 0e7d8fec286303a4ab29c9c7271168ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294759523284044514, guid: 0e7d8fec286303a4ab29c9c7271168ad,
         type: 3}
@@ -33424,6 +33707,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest Pine Tree v1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33536,6 +33824,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Forest Pine Tree v2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023833510615589462, guid: e00352bd9c536ec4f9e029c651a02839,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1023833510615826038, guid: e00352bd9c536ec4f9e029c651a02839,
         type: 3}
@@ -33685,6 +33978,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essenced Flower (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3420009129681168790, guid: e893fcd0339093246b80e54fd5356041,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33708,6 +34006,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tree 1 Gross (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806453921392758872, guid: 0e7d8fec286303a4ab29c9c7271168ad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3294759523284044514, guid: 0e7d8fec286303a4ab29c9c7271168ad,
         type: 3}
@@ -33951,6 +34254,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Forest Pine Tree v1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3884119795242940753, guid: c33e0fce3be0efc4cabba8bed294cd21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34278,6 +34586,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stone 1 Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517116454353954864, guid: 21b8f6b5f89613c49ad35b384b7664f3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
