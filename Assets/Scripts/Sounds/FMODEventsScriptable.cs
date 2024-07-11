@@ -25,7 +25,6 @@ public class FMODEventsScriptable : ScriptableObject
     [Header("World Sounds")]
     public EventReference BuildingFinished;
     public EventReference BuildingDestroyed;
-    public EventReference ChestOpen;
     public EventReference ItemPickUp;
     public EventReference ResourcesCollected;
     public EventReference ItemCrafted;

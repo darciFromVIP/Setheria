@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class StructureOptionUI : MonoBehaviour
     private StructureOption structureOption;
     private Structure currentStructure;
     public Slider cooldownSlider;
+    public TextMeshProUGUI cooldownText;
 
     private List<InventoryItem> selectedItems = new();
     public void Initialize(Sprite icon, StructureOption structureOption)
@@ -81,6 +83,7 @@ public class StructureOptionUI : MonoBehaviour
                     cooldownSlider.gameObject.SetActive(true);
                     cooldownSlider.maxValue = well.waterCooldown;
                     cooldownSlider.value = well.GetWaterTimer();
+                    cooldownText.text = well.GetWaterTimer().ToString("F0");
                 }
                 else
                     GetComponent<Button>().interactable = true;
@@ -93,6 +96,7 @@ public class StructureOptionUI : MonoBehaviour
                     cooldownSlider.gameObject.SetActive(true);
                     cooldownSlider.maxValue = tent.restCooldown;
                     cooldownSlider.value = tent.GetRestCooldown();
+                    cooldownText.text = tent.GetRestCooldown().ToString("F0");
                 }
                 else
                     GetComponent<Button>().interactable = true;
@@ -105,6 +109,7 @@ public class StructureOptionUI : MonoBehaviour
                     cooldownSlider.gameObject.SetActive(true);
                     cooldownSlider.maxValue = shipyard.callShipsCooldown;
                     cooldownSlider.value = shipyard.callShipsTimer;
+                    cooldownText.text = shipyard.callShipsTimer.ToString("F0");
                 }
                 else
                     GetComponent<Button>().interactable = true;
@@ -119,6 +124,7 @@ public class StructureOptionUI : MonoBehaviour
                         cooldownSlider.gameObject.SetActive(true);
                         cooldownSlider.maxValue = seed.pourWaterCooldown;
                         cooldownSlider.value = seed.GetWaterTimer();
+                        cooldownText.text = seed.GetWaterTimer().ToString("F0");
                     }
                     else if (FindObjectOfType<InventoryManager>(true).GetItemOfName("Water"))
                         GetComponent<Button>().interactable = true;
@@ -131,6 +137,7 @@ public class StructureOptionUI : MonoBehaviour
                         cooldownSlider.gameObject.SetActive(true);
                         cooldownSlider.maxValue = seed.fertilizeCooldown;
                         cooldownSlider.value = seed.GetFertilizeTimer();
+                        cooldownText.text = seed.GetFertilizeTimer().ToString("F0");
                     }
                     else if (FindObjectOfType<InventoryManager>(true).GetItemOfName("Fertilizer"))
                         GetComponent<Button>().interactable = true;

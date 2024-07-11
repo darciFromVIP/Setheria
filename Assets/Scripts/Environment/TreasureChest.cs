@@ -19,7 +19,6 @@ public class TreasureChest : NetworkBehaviour
             FindObjectOfType<SystemMessages>().AddMessage("This Chest has already been looted.");
             return;
         }
-        FindObjectOfType<AudioManager>().ChestOpen(transform.position);
         GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>(true));
         CmdChestLooted();
     }

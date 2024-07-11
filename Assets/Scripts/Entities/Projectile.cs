@@ -193,7 +193,7 @@ public class Projectile : NetworkBehaviour
                     foreach (var item in entities)
                     {
                         if (isServer)
-                            item.RpcTakeDamage(data.effectValue, data.ignoresArmor, data.owner.GetComponent<NetworkIdentity>(), data.isCritical, true);
+                            item.RpcTakeDamage(data.effectValue, data.ignoresArmor, data.owner.GetComponent<NetworkIdentity>(), data.isCritical, true, false);
                     }
                     break;
                 case ProjectileImpactEffect.Healing:

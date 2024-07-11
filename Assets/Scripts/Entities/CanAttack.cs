@@ -185,6 +185,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                 netAnim.animator.speed = 1;
                 character.skillInstances[currentSkillIndex].Execute(character);
 
+                character.canCastSkills = false;
                 currentSkillIndex++;
                 if (currentSkillIndex >= character.skillInstances.Count)
                     currentSkillIndex = 0;
@@ -255,7 +256,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (random < GetFinalCritChance())
             modifier = 1 + (GetFinalCritDamage() / 100);
         if (enemyTarget)
-            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier * GetPowerScaling(), false, GetComponent<NetworkIdentity>(), modifier > 1 ? true : false, true);
+            enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier * GetPowerScaling(), false, GetComponent<NetworkIdentity>(), modifier > 1 ? true : false, true, false);
         Attacked();
         RpcSetCanAct(true);
     }

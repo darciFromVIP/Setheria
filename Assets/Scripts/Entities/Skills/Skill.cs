@@ -70,6 +70,8 @@ public class Skill : ScriptableObject
             attackComp.CmdSetCasting(false);
         if (castingEntity.TryGetComponent(out PlayerController player))
             player.SetCurrentSkill(null);
+        if (castingEntity.TryGetComponent(out EnemyCharacter enemy))
+            enemy.canCastSkills = true;
     }
     public virtual void Execute(Character self)
     {

@@ -29,7 +29,6 @@ public class HasHealth : NetworkBehaviour, ISaveable
     private float finalArmor;
     public EventReference soundOnDeath;
     public EventReference soundOnHit;
-    public bool debug;
 
     [SerializeField] private bool isInvulnerable;
 
@@ -68,7 +67,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
                 if (healthRegen > 0)
                     RpcHealDamage(healthRegen, true);
                 else if (healthRegen < 0)
-                    RpcTakeDamage(-healthRegen, true, GetComponent<NetworkIdentity>(), false, false);
+                    RpcTakeDamage(-healthRegen, true, GetComponent<NetworkIdentity>(), false, false, true);
                 if (corruption > 0)
                 {
                     float actualCorruption = corruption - corruptionResistance;
@@ -93,8 +92,6 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public void HealDamage(float heal, bool isRegen)
     {
         health += heal;
-        if (debug)
-            Debug.Log(health);
         if (!isRegen && isServer)
             FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + ((int)heal).ToString(), transform.position, FloatingTextType.Healing);
         if (health > maxHealth)
@@ -102,16 +99,16 @@ public class HasHealth : NetworkBehaviour, ISaveable
         Health_Changed.Invoke(health, maxHealth);
     }
     [Command(requiresAuthority = false)]
-    public void CmdTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting)
+    public void CmdTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting, bool isRegen)
     {
-        RpcTakeDamage(damage, ignoreArmor, owner, isCritical, interruptCrafting);
+        RpcTakeDamage(damage, ignoreArmor, owner, isCritical, interruptCrafting, isRegen);
     }
     [ClientRpc]
-    public void RpcTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting)
+    public void RpcTakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting, bool isRegen)
     {
-        TakeDamage(damage, ignoreArmor, owner, isCritical, interruptCrafting);
+        TakeDamage(damage, ignoreArmor, owner, isCritical, interruptCrafting, isRegen);
     }
-    public void TakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting)
+    public void TakeDamage(float damage, bool ignoreArmor, NetworkIdentity owner, bool isCritical, bool interruptCrafting, bool isRegen)
     {
         if (health <= 0)
             return;
@@ -129,9 +126,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
             finalDmg = damage * (1 - (GetFinalArmor() / 100));
 
         health -= finalDmg;
-        if (debug)
-            Debug.Log(health);
-        if (!soundOnHit.IsNull)
+        if (!soundOnHit.IsNull && !isRegen)
             FindObjectOfType<AudioManager>().PlayOneShot(soundOnHit, transform.position);
         if (isServer && finalDmg >= 1)
             FindObjectOfType<FloatingText>().ServerSpawnFloatingText("-" + ((int)finalDmg).ToString(), transform.position + Vector3.up, isCritical ? FloatingTextType.CriticalDamage : FloatingTextType.Damage);
@@ -321,8 +316,6 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public void SetHealth(float value)
     {
         health = value;
-        if (debug)
-            Debug.Log(health);
         Health_Changed.Invoke(health, maxHealth);
     }
     public void SetBaseMaxHealth(float value)

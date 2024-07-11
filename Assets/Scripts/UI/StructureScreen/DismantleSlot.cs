@@ -34,7 +34,6 @@ public class DismantleSlot : MonoBehaviour, IDropHandler
                         temp += item2.chance;
                         if (random >= temp - item2.chance && random < temp)
                         {
-                            var player = FindObjectOfType<GameManager>().localPlayerCharacter;
                             FindObjectOfType<InventoryManager>(true).AddItem(item2.item);
                         }
                     }

@@ -134,7 +134,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             else if (hunger <= 0 && hungerTimer >= 4)
             {
                 hungerTimer = 0;
-                healthComp.CmdTakeDamage(healthComp.GetBaseMaxHealth() * 0.2f, true, GetComponent<NetworkIdentity>(), true, true);
+                healthComp.CmdTakeDamage(healthComp.GetBaseMaxHealth() * 0.2f, true, GetComponent<NetworkIdentity>(), true, true, true);
             }
             yield return null;
         }
@@ -637,7 +637,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 if (modifier > 0)
                     healthComp.CmdHealDamage(modifier, false);
                 else
-                    healthComp.CmdTakeDamage(modifier, true, GetComponent<NetworkIdentity>(), false, true);
+                    healthComp.CmdTakeDamage(modifier, true, GetComponent<NetworkIdentity>(), false, true, false);
                 break;
             case PlayerStat.MaxHealth:
                 healthComp.CmdChangeBaseMaxHealth(modifier);

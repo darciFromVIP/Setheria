@@ -22,7 +22,7 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
     public EventScriptable Quest_Event;
 
     public Animator animator;
-    public EventReference soundOfTurningIn;
+    public EventReference soundOfTurningIn, soundOfTurnedIn;
     private EventInstance soundInstance;
     private PlayerController player;
 
@@ -106,6 +106,8 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
             Quest_Event.voidEvent.Invoke();
         interactable = false;
         CmdTurnOffCollider();
+        if (!soundOfTurnedIn.IsNull)
+            FindObjectOfType<AudioManager>().PlayOneShot(soundOfTurnedIn, transform.position);
         StopSound();
         var outline = GetComponentInChildren<HighlightTrigger>();
         if (outline)

@@ -277,10 +277,6 @@ public class AudioManager : MonoBehaviour
     {
         PlayOneShot(fmodEventsDatabase.BuildingDestroyed, worldPos);
     }
-    public void ChestOpen(Vector3 worldPos)
-    {
-        PlayOneShot(fmodEventsDatabase.ChestOpen, worldPos);
-    }
     public void ItemPickUp(Vector3 worldPos)
     {
         PlayOneShot(fmodEventsDatabase.ItemPickUp, worldPos);

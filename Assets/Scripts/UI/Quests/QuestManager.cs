@@ -52,7 +52,10 @@ public class QuestManager : NetworkBehaviour
                 count++;
         }
         if (count > 4)
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("A new quest has been added to the Quest Log.", MsgType.Notice);
             ToggleQuestTracking(quest, false);
+        }
         return quest;
     }
     [Command(requiresAuthority = false)]
@@ -403,7 +406,6 @@ public class QuestManager : NetworkBehaviour
             if (item.questData == questData)
             {
                 item.ToggleTracking(value);
-                Debug.Log(item.name + " is " + value);
             }
         }
     }
