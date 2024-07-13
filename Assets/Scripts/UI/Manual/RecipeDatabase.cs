@@ -45,7 +45,7 @@ public class RecipeDatabase : ScriptableObject
         }
         foreach (var item in tempRecipes)
         {
-            if (item.name != "Tent" && item.name != "Provisional Gathering Tool")
+            if (item.name != "Tent")
             {
                 item.unlocked = false;
                 item.visible = false;

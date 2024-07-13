@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 2
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   label: Basics of survival
   description: 'In order to build a shelter, I''ll need to create a tool to gather
     materials effectively.
@@ -42,9 +42,9 @@ MonoBehaviour:
     rewardAmount: 1
     itemReward: {fileID: 11400000, guid: 56fa6d2db1b3b704babb25bf108d8dee, type: 2}
   - rewardType: 2
-    rewardAmount: 15
+    rewardAmount: 10
     itemReward: {fileID: 0}
-  tutorialToShow: {fileID: 0}
+  tutorialToShow: {fileID: 11400000, guid: 88e53205c2a722d4aa067be1351cb30c, type: 2}
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

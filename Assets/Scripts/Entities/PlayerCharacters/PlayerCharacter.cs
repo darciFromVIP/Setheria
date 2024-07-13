@@ -123,18 +123,21 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     protected IEnumerator UpdatePlayer()
     {
-        while (healthComp.GetHealth() > 0)
+        while (true)
         {
-            hungerTimer += Time.deltaTime;
-            if (hungerTimer >= GetHungerInterval())
+            if (healthComp.GetHealth() > 0)
             {
-                hungerTimer = 0;
-                ChangeHunger(-1, false);
-            }
-            else if (hunger <= 0 && hungerTimer >= 4)
-            {
-                hungerTimer = 0;
-                healthComp.CmdTakeDamage(healthComp.GetBaseMaxHealth() * 0.2f, true, GetComponent<NetworkIdentity>(), true, true, true);
+                hungerTimer += Time.deltaTime;
+                if (hungerTimer >= GetHungerInterval())
+                {
+                    hungerTimer = 0;
+                    ChangeHunger(-1, false);
+                }
+                else if (hunger <= 0 && hungerTimer >= 4)
+                {
+                    hungerTimer = 0;
+                    healthComp.CmdTakeDamage(healthComp.GetBaseMaxHealth() * 0.2f, true, GetComponent<NetworkIdentity>(), true, true, true);
+                }
             }
             yield return null;
         }

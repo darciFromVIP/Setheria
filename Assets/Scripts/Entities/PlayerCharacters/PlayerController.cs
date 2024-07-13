@@ -163,6 +163,8 @@ public class PlayerController : NetworkBehaviour
     }
     private void InputHandle()
     {
+        var cursor = FindObjectOfType<CustomCursor>().cursorType;
+
         if (Input.GetKeyDown(KeyCode.Mouse1) && state == PlayerState.Casting)
         {
             ChangeState(PlayerState.None);
@@ -171,7 +173,7 @@ public class PlayerController : NetworkBehaviour
             currentSkill.StopExecute();
             moveComp.CmdForceMovementAnimation();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !attackComp.canAct)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !attackComp.canAct && cursor != CursorType.Enemy)
         {
             Resume_Acting.Invoke();
             attackComp.CmdTargetLost();
@@ -196,6 +198,7 @@ public class PlayerController : NetworkBehaviour
             {
                 if (hit.collider.CompareTag("Ground"))                         
                 {
+                    Debug.Log("Ground clicked");
                     moveComp.MoveTo(hit.point);
                     attackComp.CmdTargetLost();
                 }
@@ -216,6 +219,7 @@ public class PlayerController : NetworkBehaviour
             {
                 if (hit.collider.TryGetComponent(out EnemyCharacter enemy))
                 {
+                    Debug.Log("Enemy clicked");
                     Enemy_Clicked.Invoke(enemy.GetComponent<NetworkIdentity>());
                 }
                 if (hit.collider.TryGetComponent(out Item item))

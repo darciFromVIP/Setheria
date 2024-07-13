@@ -60,7 +60,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.L))
         {
-            multiplier = 50;
+            multiplier = 100;
         }
         if (Input.GetKeyUp(KeyCode.L))
         {

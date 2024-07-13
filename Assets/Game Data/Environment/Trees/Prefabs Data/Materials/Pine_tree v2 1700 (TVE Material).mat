@@ -18,10 +18,10 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: -1
   stringTagMap:
     NatureRendererInstancing: true
-    RenderType: AlphaTest
+    RenderType: Opaque
   disabledShaderPasses:
   - TransparentBackface
   - TransparentBackfaceDebugDisplay
@@ -209,7 +209,7 @@ Material:
     - _RenderMode: 0
     - _RenderNormals: 0
     - _RenderPriority: 0
-    - _RenderQueue: 0
+    - _RenderQueue: 2
     - _RenderSSR: 0
     - _RenderShadow: 1
     - _RenderSpecular: 1

@@ -157,6 +157,9 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                 {
                     if (netAnim)
                     {
+                        if (TryGetComponent(out PlayerCharacter g))
+                            Debug.Log("attacked");
+
                         Attack();
                     }
                     else
@@ -415,6 +418,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void TargetLost()
     {
+        Debug.Log("Target Lost");
         if (!canAct)
         {
             StopCoroutine("DelayedTargetLost");

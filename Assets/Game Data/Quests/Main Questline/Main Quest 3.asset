@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 3
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   label: Clean the way to the forest.
   description: This obstacle will be a problem. Or maybe not, since I have my freshly
     made tool!
@@ -34,7 +34,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d41d7e980e6823446a1175aeb692f3a3, type: 2}
   rewards:
   - rewardType: 2
-    rewardAmount: 20
+    rewardAmount: 10
     itemReward: {fileID: 0}
   tutorialToShow: {fileID: 0}
   Quest_Complete:
