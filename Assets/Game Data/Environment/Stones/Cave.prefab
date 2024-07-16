@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 4069408666517092253}
   - component: {fileID: 7077569556932539104}
   - component: {fileID: 113505558286960196}
-  - component: {fileID: 691127177258860817}
-  - component: {fileID: 5486692638551989935}
-  - component: {fileID: 2451567135889555594}
   m_Layer: 0
   m_Name: Cave
   m_TagString: Untagged
@@ -96,69 +93,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &691127177258860817
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049885608195919667}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 11.8, y: 14.08, z: 4.86}
-  m_Center: {x: 0.06, y: 4.21, z: 1.2}
---- !u!65 &5486692638551989935
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049885608195919667}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 6.1, y: 16.13, z: 10.1}
-  m_Center: {x: 5.75, y: 3.16, z: -6.62}
---- !u!65 &2451567135889555594
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6049885608195919667}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 17.6, y: 16, z: 4.94}
-  m_Center: {x: -1.79, y: 2.16, z: -14}
 --- !u!1001 &159228724160053347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,7 +176,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8281174103084562175, guid: 4440c61be3b052a4bb3e0236816765dc, type: 3}
+    - {fileID: 3493744966502991219, guid: 4440c61be3b052a4bb3e0236816765dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -336,7 +272,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8281174103084562175, guid: 4440c61be3b052a4bb3e0236816765dc, type: 3}
+    - {fileID: 3493744966502991219, guid: 4440c61be3b052a4bb3e0236816765dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -430,7 +368,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8281174103084562175, guid: 4440c61be3b052a4bb3e0236816765dc, type: 3}
+    - {fileID: 3493744966502991219, guid: 4440c61be3b052a4bb3e0236816765dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -524,7 +464,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 844000923282871254, guid: 260d9de149460a546a66289b775aa7bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -618,7 +559,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8281174103084562175, guid: 4440c61be3b052a4bb3e0236816765dc, type: 3}
+    - {fileID: 3493744966502991219, guid: 4440c61be3b052a4bb3e0236816765dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -712,7 +655,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7262771324662186826, guid: 8b75a45239cad7b408eb46963bc47d2a, type: 3}
+    - {fileID: 4968112779912506501, guid: 8b75a45239cad7b408eb46963bc47d2a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -806,7 +751,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8281174103084562175, guid: 4440c61be3b052a4bb3e0236816765dc, type: 3}
+    - {fileID: 3493744966502991219, guid: 4440c61be3b052a4bb3e0236816765dc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -900,7 +847,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 844000923282871254, guid: 260d9de149460a546a66289b775aa7bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -994,7 +942,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 844000923282871254, guid: 260d9de149460a546a66289b775aa7bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1088,7 +1037,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 844000923282871254, guid: 260d9de149460a546a66289b775aa7bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

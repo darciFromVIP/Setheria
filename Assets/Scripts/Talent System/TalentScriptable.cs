@@ -26,17 +26,23 @@ public class TalentScriptable : ScriptableObject
     private string skillDescription2;
 
     public UnityEvent Talent_Description_Updated = new();
-    private void OnEnable()
+    public void SetupEvents(Skill skillInstance)
     {
         if (associatedSkill)
         {
-            associatedSkill.Description_Updated.RemoveListener(UpdateSkill1Description);
-            associatedSkill.Description_Updated.AddListener(UpdateSkill1Description);
+            if (skillInstance.GetType() == associatedSkill.GetType())
+            {
+                skillInstance.Description_Updated.RemoveListener(UpdateSkill1Description);
+                skillInstance.Description_Updated.AddListener(UpdateSkill1Description);
+            }
         }
         if (associatedSkill2)
         {
-            associatedSkill2.Description_Updated.RemoveListener(UpdateSkill2Description);
-            associatedSkill2.Description_Updated.AddListener(UpdateSkill2Description);
+            if (skillInstance.GetType() == associatedSkill2.GetType())
+            {
+                skillInstance.Description_Updated.RemoveListener(UpdateSkill2Description);
+                skillInstance.Description_Updated.AddListener(UpdateSkill2Description);
+            }
         }
     }
     private void UpdateSkill1Description(string desc)

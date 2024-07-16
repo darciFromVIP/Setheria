@@ -12,7 +12,7 @@ public class Shapeshifter : NetworkBehaviour
 {
     public Animator defaultModel, shapeshiftedModel;
     public List<Skill> defaultSkills, shapeshiftedSkills;
-    private List<Skill> defaultSkillInstances = new(), shapeshiftedSkillInstances = new();
+    public List<Skill> defaultSkillInstances = new(), shapeshiftedSkillInstances = new();
     public GameObject shapeshiftVFX;
     public EventReference defaultAttackSound, shapeshiftedAttackSound;
 
@@ -22,6 +22,10 @@ public class Shapeshifter : NetworkBehaviour
         foreach (var item in shapeshiftedSkills)
         {
             shapeshiftedSkillInstances.Add(item.GetInstance());
+        }
+        foreach (var item in shapeshiftedSkillInstances)
+        {
+            item.ExecuteOnStart(GetComponent<Character>());
         }
     }
     public void SetDefaultSkillInstances()

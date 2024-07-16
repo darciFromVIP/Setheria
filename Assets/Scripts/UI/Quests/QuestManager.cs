@@ -211,6 +211,10 @@ public class QuestManager : NetworkBehaviour
                     break;
             }
         }
+        foreach (var item in quest.recipesToUnlock)
+        {
+            item.UnlockRecipe();
+        }
         foreach (var item in FindObjectsOfType<QuestDescription>(true))
         {
             if (item.questData == quest)

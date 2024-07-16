@@ -74,6 +74,12 @@ public class SystemMessages : MonoBehaviour
         message.transform.parent.gameObject.SetActive(false);
         cameraTeleportBTN.gameObject.SetActive(false);
     }
+    public void HideMessage()
+    {
+        StopAllCoroutines();
+        message.transform.parent.gameObject.SetActive(false);
+        cameraTeleportBTN.gameObject.SetActive(false);
+    }
     public void TeleportCamera()
     {
         cameraTeleportEvent.Invoke(pos);

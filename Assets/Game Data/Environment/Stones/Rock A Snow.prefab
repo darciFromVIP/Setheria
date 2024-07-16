@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2060576578466442517}
   - component: {fileID: 2060576578463542581}
   - component: {fileID: 2060576578464542709}
-  - component: {fileID: 2060576578460245909}
+  - component: {fileID: 3979747517603365615}
   m_Layer: 0
   m_Name: Rock A Snow
   m_TagString: Untagged
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060576578466541877}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 120.06, y: 85.27149, z: 43.26}
   m_LocalScale: {x: 0.15147, y: 0.15147, z: 0.15147}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2060576578463542581
 MeshFilter:
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2060576578460245909
-MeshCollider:
+--- !u!135 &3979747517603365615
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: dfb9706df9ac8264ebf1e58976096256, type: 3}
+  serializedVersion: 3
+  m_Radius: 6.207397
+  m_Center: {x: -0.62405103, y: 1.9548078, z: -1.2386123}

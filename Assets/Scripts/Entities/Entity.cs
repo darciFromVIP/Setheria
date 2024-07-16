@@ -4,11 +4,15 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using FoW;
 public class Entity : NetworkBehaviour, IUsesAnimator
 {
     public NetworkAnimator animator;
     public bool corpseDecay = true;
     public List<GameObject> objectsToDisable;
+    public bool changeNightVision;
+    public float nightVisionRadius;
+    private float dayVisionRadius;
 
     protected int animHash_Death = Animator.StringToHash("Death");
 
@@ -17,6 +21,7 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     public GameObject hudCircle;
     private bool hudCircleToggled = false;
     public VFXDatabase vfxDatabase;
+    private FogOfWarUnit fowUnit;
     protected virtual void Start()
     {
         if (TryGetComponent(out HasHealth hp))
@@ -27,6 +32,14 @@ public class Entity : NetworkBehaviour, IUsesAnimator
                 hp.On_Death.AddListener(CmdOnDeath);
         }
         animator = GetComponent<NetworkAnimator>();
+        if (changeNightVision)
+        {
+            fowUnit = GetComponent<FogOfWarUnit>();
+            dayVisionRadius = fowUnit.circleRadius;
+            var daynight = FindObjectOfType<DayNightCycle>();
+            daynight.Day_Started.AddListener(DayVision);
+            daynight.Night_Started.AddListener(NightVision);
+        }
     }
     protected virtual void OnMouseEnter()
     {
@@ -182,5 +195,13 @@ public class Entity : NetworkBehaviour, IUsesAnimator
     private void SpawnVfx(string name)
     {
         Instantiate(vfxDatabase.GetVFXByName(name), transform);
+    }
+    private void NightVision()
+    {
+        fowUnit.circleRadius = nightVisionRadius;
+    }
+    private void DayVision()
+    {
+        fowUnit.circleRadius = dayVisionRadius;
     }
 }

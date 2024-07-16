@@ -83,28 +83,29 @@ public class HasAggro : NetworkBehaviour
                         {
                             if (resultTarget.TryGetComponent(out Character character))
                                 if (character.HasBuff("Sleeping") <= 0)
+                                    continue;
+
+                            if (shouldCallForHelp)
+                            {
+                                Collider[] allies = new Collider[10];
+                                Physics.OverlapSphereNonAlloc(transform.position, allyHelpRange, allies, allyLayers);
+                                foreach (var item in allies)
                                 {
-                                    if (shouldCallForHelp)
+                                    if (item)
                                     {
-                                        Collider[] allies = new Collider[10];
-                                        Physics.OverlapSphereNonAlloc(transform.position, allyHelpRange, allies, allyLayers);
-                                        foreach (var item in allies)
-                                        {
-                                            if (item)
+                                        if (item.TryGetComponent(out CanAttack attackComp))
+                                            if (attackComp.enemyTarget == null)
                                             {
-                                                if (item.TryGetComponent(out CanAttack attackComp))
-                                                    if (attackComp.enemyTarget == null)
-                                                    {
-                                                        item.GetComponent<HasAggro>().Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
-                                                    }
+                                                item.GetComponent<HasAggro>().Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
                                             }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
                                     }
                                 }
+                            }
+                            else
+                            {
+                                Target_Found.Invoke(resultTarget.GetComponent<NetworkIdentity>());
+                            }
+                                
                         }
                 }
             }

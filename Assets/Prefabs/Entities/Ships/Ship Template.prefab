@@ -5975,6 +5975,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   corpseDecay: 1
   objectsToDisable: []
+  changeNightVision: 1
+  nightVisionRadius: 6
   On_Death:
     m_PersistentCalls:
       m_Calls: []
@@ -5983,6 +5985,8 @@ MonoBehaviour:
   baseRotateSpeed: 1
   level: 0
   skills: []
+  skillInstances: []
+  skillSounds: []
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0

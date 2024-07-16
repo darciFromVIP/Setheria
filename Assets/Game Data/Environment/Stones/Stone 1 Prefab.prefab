@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5853169122940990090}
-  - component: {fileID: -8059725541094800351}
   m_Layer: 0
   m_Name: Stone 1 Prefab
   m_TagString: Untagged
@@ -24,6 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6517116454353954864}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 117.01, y: 85.549904, z: 38.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,22 +31,7 @@ Transform:
   m_Children:
   - {fileID: 6252642258280069484}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &-8059725541094800351
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6517116454353954864}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &7969626977180765957
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +43,7 @@ GameObject:
   - component: {fileID: 6252642258280069484}
   - component: {fileID: 2341039832880361650}
   - component: {fileID: 5406481950106885099}
-  - component: {fileID: 1984270709487240739}
+  - component: {fileID: 6160326990332498067}
   m_Layer: 0
   m_Name: 1_low
   m_TagString: Untagged
@@ -73,13 +58,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7969626977180765957}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5853169122940990090}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2341039832880361650
 MeshFilter:
@@ -131,17 +116,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1984270709487240739
-MeshCollider:
+--- !u!136 &6160326990332498067
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7969626977180765957}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8029413726392125436, guid: 02f0bf57477716b449c66963ed728a5f, type: 3}
+  serializedVersion: 2
+  m_Radius: 2.0062
+  m_Height: 2.3676
+  m_Direction: 1
+  m_Center: {x: 0.11590004, y: 0.5797, z: 0.015900016}

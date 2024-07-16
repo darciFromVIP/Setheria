@@ -113,6 +113,22 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             if (item.hero == hero)
                 item.SetButtonInteractability(false);
         }
+        TalentTreeScriptable talentTree = null;
+        foreach (var item in refTalentTrees.talentTrees)
+        {
+            if (item.treeType == TalentTreeType.Special)
+                talentTree = item;
+        }
+        if (talentTree != null)
+        {
+            foreach (var item in skillInstances)
+            {
+                foreach (var item2 in talentTree.talents)
+                {
+                    item2.SetupEvents(item);
+                }
+            }
+        }
         if (!isOwned && !NetworkServer.active)                      // Sync other players' characters when the client connects
             LoadCharacter();
     }

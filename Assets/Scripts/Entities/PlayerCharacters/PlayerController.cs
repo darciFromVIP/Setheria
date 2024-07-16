@@ -198,7 +198,6 @@ public class PlayerController : NetworkBehaviour
             {
                 if (hit.collider.CompareTag("Ground"))                         
                 {
-                    Debug.Log("Ground clicked");
                     moveComp.MoveTo(hit.point);
                     attackComp.CmdTargetLost();
                 }
@@ -219,7 +218,6 @@ public class PlayerController : NetworkBehaviour
             {
                 if (hit.collider.TryGetComponent(out EnemyCharacter enemy))
                 {
-                    Debug.Log("Enemy clicked");
                     Enemy_Clicked.Invoke(enemy.GetComponent<NetworkIdentity>());
                 }
                 if (hit.collider.TryGetComponent(out Item item))

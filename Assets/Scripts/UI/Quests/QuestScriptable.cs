@@ -106,6 +106,8 @@ public class QuestScriptable : ScriptableObject, IComparable
 
     [Tooltip("Quest rewards. Always fill only one reward per list element.")]
     public List<QuestReward> rewards;
+    [Tooltip("Which recipes will unlock upon quest completion.")]
+    public List<RecipeScriptable> recipesToUnlock = new();
 
     [Tooltip("Does this quest introduce new mechanic? Add the corresponding tutorial data here.")]
     public TutorialDataScriptable tutorialToShow;
@@ -566,12 +568,23 @@ public class QuestScriptable : ScriptableObject, IComparable
             if (item.rewardType != QuestRewardType.Unknown)
             {
                 result += item.rewardAmount;
-                if (rewards.IndexOf(item) != rewards.Count - 1)
+                if (rewards.IndexOf(item) != rewards.Count - 1 || recipesToUnlock.Count > 0)
                     if (withCommas)
                         result += ", ";
                     else
                         result += "\n";
             }
+        }
+        foreach (var item in recipesToUnlock)
+        {
+            if (!withCommas)
+                result += "■ ";
+            result += "Recipe: " + item.name;
+            if (recipesToUnlock.IndexOf(item) != recipesToUnlock.Count - 1)
+                if (withCommas)
+                    result += ", ";
+                else
+                    result += "\n";
         }
         return result;
     }

@@ -99,7 +99,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3407955578670948496
 Transform:
   m_ObjectHideFlags: 0
@@ -939,6 +939,8 @@ MonoBehaviour:
   - {fileID: 4070823358418694916}
   - {fileID: 7817695276934094833}
   - {fileID: 863608888131716060}
+  changeNightVision: 1
+  nightVisionRadius: 6
   On_Death:
     m_PersistentCalls:
       m_Calls: []

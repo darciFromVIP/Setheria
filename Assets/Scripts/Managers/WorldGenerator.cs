@@ -145,6 +145,7 @@ public class WorldGenerator : MonoBehaviour
             foreach (var item2 in item.Value)
             {
                 GameObject temp = null;
+                Debug.Log(item2.Key + item2.Value.name);
                 if (item2.Key == typeof(Item).ToString())
                     temp = itemDatabase.GetItemByName(item2.Value.name).gameObject;
                 if (item2.Key == typeof(Structure).ToString())

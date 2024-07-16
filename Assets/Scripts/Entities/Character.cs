@@ -476,11 +476,11 @@ public class Character : Entity
     {
         if (TryGetComponent(out Shapeshifter shapeshifter))
         {
-            foreach (var item in shapeshifter.defaultSkills)
+            foreach (var item in shapeshifter.defaultSkillInstances)
             {
                 item.SetCastingEntity(this);
             }
-            foreach (var item in shapeshifter.shapeshiftedSkills)
+            foreach (var item in shapeshifter.shapeshiftedSkillInstances)
             {
                 item.SetCastingEntity(this);
             }

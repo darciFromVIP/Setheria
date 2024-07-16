@@ -278,17 +278,17 @@ PrefabInstance:
     - target: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 137.25131
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 85.00275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 71.224525
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -323,7 +323,7 @@ PrefabInstance:
     - target: {fileID: 6537390957117573919, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: circleRadius
-      value: 2.81
+      value: 3.54
       objectReference: {fileID: 0}
     - target: {fileID: 6677551501297419170, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -480,6 +480,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   corpseDecay: 1
   objectsToDisable: []
+  changeNightVision: 0
+  nightVisionRadius: 0
   On_Death:
     m_PersistentCalls:
       m_Calls: []
