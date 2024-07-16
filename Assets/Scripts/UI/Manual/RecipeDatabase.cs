@@ -36,7 +36,8 @@ public class RecipeDatabase : ScriptableObject
         explorationRecipes = new();
         List<RecipeScriptable> tempRecipes = new();
         tempRecipes.Clear();
-        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Game Data/Recipes" });
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Game Data/Recipes/Alchemy", "Assets/Game Data/Recipes/Survival", "Assets/Game Data/Recipes/Structures",
+        "Assets/Game Data/Recipes/Fishing", "Assets/Game Data/Recipes/Smithing", "Assets/Game Data/Recipes/Cooking", "Assets/Game Data/Recipes/Exploration"});
         foreach (string SOName in assetNames)
         {
             var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
@@ -65,7 +66,7 @@ public class RecipeDatabase : ScriptableObject
                 case RecipeCategory.Fishing:
                     fishingRecipes.Add(item);
                     break;
-                case RecipeCategory.Armorsmithing:
+                case RecipeCategory.Smithing:
                     armoryRecipes.Add(item);
                     break;
                 case RecipeCategory.Cooking:

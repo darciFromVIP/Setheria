@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public enum RecipeCategory
 {
-    Survival, Structures, Alchemy, Fishing, Armorsmithing, Cooking, Exploration, AllRecipes
+    Survival, Structures, Alchemy, Fishing, Smithing, Cooking, Exploration, AllRecipes
 }
 [CreateAssetMenu(menuName = "Recipe")]
 public class RecipeScriptable : ScriptableObject
@@ -35,6 +35,7 @@ public class RecipeScriptable : ScriptableObject
     private Dictionary<StructureScriptable, bool> requiredStructuresTemp = new();
     public TalentTreeType requiredProfession;
     public int requiredProfessionExperience;
+    public List<RecipeScriptable> recipesInThisCategory = new();
 
     [HideInInspector] public UnityEvent Recipe_Unlocked;
 
@@ -79,7 +80,8 @@ public class RecipeScriptable : ScriptableObject
     }
     public void UnlockRecipe()
     {
-        if (!unlocked)
+        Debug.Log(name);
+        if (!unlocked && resultItem.itemData != null)
             FindObjectOfType<AcquiredItems>().RecipeUnlocked(resultItem);
         unlocked = true;
         visible = true;

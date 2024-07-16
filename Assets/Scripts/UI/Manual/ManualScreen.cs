@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class ManualScreen : MonoBehaviour, WindowedUI
@@ -70,7 +71,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     }
     private void ClearRecipeList()
     {
-        foreach (var item in recipeList.transform.GetComponentsInChildren<Transform>())
+        foreach (var item in recipeList.transform.GetComponentsInChildren<Transform>(true))
         {
             if (item != recipeList.transform)
                 Destroy(item.gameObject);
@@ -92,7 +93,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
             case RecipeCategory.Fishing:
                 LoadFishingRecipes();
                 break;
-            case RecipeCategory.Armorsmithing:
+            case RecipeCategory.Smithing:
                 LoadArmoryRecipes();
                 break;
             case RecipeCategory.Cooking:
@@ -111,49 +112,74 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     private void SetRecipeData(List<RecipeScriptable> recipes, bool openedInStructure)
     {
         List<RecipeScriptable> nonVisible = new();
+        List<Recipe> recipeCategories = new();
+        List<Recipe> allRecipes = new();
         foreach (var recipe in recipes)
         {
-            if (!recipe.visible)
-            {
-                nonVisible.Add(recipe);
-            }
+            var tempRecipe = Instantiate(recipePrefab, recipeList.transform);
+            allRecipes.Add(tempRecipe);
+            tempRecipe.recipeData = recipe;
+            if (recipe.visible)
+                tempRecipe.UpdateText(recipe.name, openedInStructure);
             else
             {
-                var tempRecipe = Instantiate(recipePrefab, recipeList.transform);
-                tempRecipe.recipeData = recipe;
-                tempRecipe.UpdateText(recipe.name, openedInStructure);
-                if (recipe.freshlyUnlocked)
-                {
-                    tempRecipe.ToggleNewItemNotif(true);
-                    recipe.freshlyUnlocked = false;
-                }
+                tempRecipe.UpdateText("???", openedInStructure);
+                tempRecipe.GetComponent<Button>().interactable = false;
+            }
 
-                tempRecipe.ToggleCraftableNotif(false);
-                var currentPlayerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
-                int matchedCriteria = 0;
-                for (int i = 0; i < recipe.componentItems.Count; i++)
+            if (recipe.resultItem.itemData == null)
+                recipeCategories.Add(tempRecipe);
+            if (recipe.freshlyUnlocked)
+            {
+                tempRecipe.ToggleNewItemNotif(true);
+                recipe.freshlyUnlocked = false;
+            }
+
+            tempRecipe.ToggleCraftableNotif(false);
+            if (recipe.componentItems.Count == 0)
+                continue;
+            var currentPlayerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
+            int matchedCriteria = 0;
+            for (int i = 0; i < recipe.componentItems.Count; i++)
+            {
+                foreach (var playerItem in currentPlayerItems)
                 {
-                    foreach (var playerItem in currentPlayerItems)
+                    if (playerItem.item == recipe.componentItems[i].itemData)
                     {
-                        if (playerItem.item == recipe.componentItems[i].itemData)
+                        if (playerItem.stacks >= recipe.componentItems[i].stacks)
                         {
-                            if (playerItem.stacks >= recipe.componentItems[i].stacks)
-                            {
-                                matchedCriteria++;
-                            }
-                            break;
+                            matchedCriteria++;
                         }
+                        break;
                     }
                 }
-                if (matchedCriteria >= recipe.componentItems.Count)
-                    tempRecipe.ToggleCraftableNotif(true);
+            }
+            if (matchedCriteria >= recipe.componentItems.Count)
+                tempRecipe.ToggleCraftableNotif(true);
+        }
+        foreach (var item in recipeCategories)
+        {
+            foreach (var item2 in item.recipeData.recipesInThisCategory)
+            {
+                foreach (var item3 in allRecipes)
+                {
+                    if (item2 == item3.recipeData)
+                    {
+                        item.categoryRecipeInstances.Add(item3);
+                    }
+                }
             }
         }
-        foreach (var item in nonVisible)
+        foreach (var item in recipeCategories)
         {
-            var recipe = Instantiate(recipePrefab, recipeList.transform);
-            recipe.GetComponent<Button>().interactable = false;
-            recipe.UpdateText("???", openedInStructure);
+            item.HierarchySignal(0);
+        }
+        foreach (var item in recipeCategories)
+        {
+            foreach (var item2 in item.categoryRecipeInstances)
+            {
+                item2.SetAsCategoryRecipe();
+            }
         }
     }
     public void ShowStructureRecipes(List<RecipeScriptable> recipes)
@@ -194,7 +220,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     {
         ClearRecipeList();
         SetRecipeData(recipeDatabase.armoryRecipes, false);
-        currentOpenedCategory = RecipeCategory.Armorsmithing;
+        currentOpenedCategory = RecipeCategory.Smithing;
     }
     public void LoadCookingRecipes()
     {
