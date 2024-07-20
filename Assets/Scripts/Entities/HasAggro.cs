@@ -82,7 +82,7 @@ public class HasAggro : NetworkBehaviour
                         if (hp.GetHealth() > 0)
                         {
                             if (resultTarget.TryGetComponent(out Character character))
-                                if (character.HasBuff("Sleeping") <= 0)
+                                if (character.HasBuff("Sleeping") > 0)
                                     continue;
 
                             if (shouldCallForHelp)
