@@ -209,7 +209,23 @@ public class StashInventory : MonoBehaviour, WindowedUI
         FindObjectOfType<SystemMessages>().AddMessage("Inventory is full.");
         return null;
     }
-
+    public InventoryItem GetItemOfName(string name)
+    {
+        InventoryItem result = null;
+        foreach (var item in stashSlots)
+        {
+            if (item.transform.childCount > 0)
+            {
+                var temp = item.transform.GetChild(0).GetComponent<InventoryItem>();
+                if (temp != null)
+                {
+                    if (temp.item.name == name)
+                        result = temp;
+                }
+            }
+        }
+        return result;
+    }
     public bool IsActive()
     {
         return window.activeSelf;

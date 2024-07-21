@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Video;
 public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
 {
     public InventoryItem inventoryItemPrefab;
@@ -17,7 +18,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     private PlayerController localPlayer;
 
     private List<Transform> componentParents = new();
-    public List<InventoryItem> currentPlayerItems;
+    public List<ItemRecipeInfo> currentPlayerItems;
     private RecipeScriptable currentOpenedRecipe;
     private bool openedInStructure;
     private void Start()
@@ -30,14 +31,8 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     public void UpdateDetails(RecipeScriptable recipeData, bool openedInStructure, int amount = 1)
     {
         ClearDetails();
-        var player = FindObjectOfType<GameManager>().localPlayerCharacter;
-        if (player.GetComponent<PlayerController>().state != PlayerState.Working)
-        {
-            this.amount = amount;
-            amountInput.text = this.amount.ToString();
-        }
-        currentPlayerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
-
+        var player = localPlayer.GetComponent<PlayerCharacter>();
+        currentPlayerItems = GetAllAvailableItems();
         this.openedInStructure = openedInStructure;
         bool craftableInStructure = recipeData.unlocked && (recipeData.requiredStructure == null ? !openedInStructure : openedInStructure);
         currentOpenedRecipe = recipeData;
@@ -63,7 +58,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             foreach (var item in currentPlayerItems)
             {
-                if (item.item == recipeData.componentItems[i].itemData)
+                if (item.itemData == recipeData.componentItems[i].itemData)
                 {
                     var newItem = Instantiate(inventoryItemPrefab, componentParents[i].transform);
                     newItem.InitializeItem(recipeData.componentItems[i].itemData, item.stacks , recipeData.componentItems[i].stacks * this.amount);
@@ -106,6 +101,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         resourceCostText.text = "";
         craftBtn.interactable = false;
         craftAllBtn.interactable = false;
+        currentPlayerItems.Clear();
     }
     public void UpdateCurrentDetails()
     {
@@ -132,7 +128,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
             {
                 foreach (var item in currentPlayerItems)
                 {
-                    if (item.item == currentOpenedRecipe.componentItems[i].itemData)
+                    if (item.itemData == currentOpenedRecipe.componentItems[i].itemData)
                     {
                         int temp = item.stacks / currentOpenedRecipe.componentItems[i].stacks;
                         if (temp < tempAmount)
@@ -157,10 +153,68 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     private void FinishCrafting()
     {
         var inventory = FindObjectOfType<InventoryManager>(true);
+        var stash = FindObjectOfType<StashInventory>(true);
+        var canUseStash = localPlayer.GetComponent<PlayerCharacter>().IsTentNearby();
         foreach (var item in currentOpenedRecipe.componentItems)
         {
             var temp = new ItemRecipeInfo() { itemData = item.itemData, stacks = item.stacks * amount };
-            inventory.RemoveItem(temp);
+            int totalStacks = item.stacks * amount;
+            var inventoryItem = inventory.GetItemOfName(temp.itemData.name);
+            if (inventoryItem != null)
+                if (inventoryItem.stacks >= totalStacks)
+                    inventory.RemoveItem(temp);
+                else if (canUseStash)
+                {
+                    var stashItem = stash.GetItemOfName(temp.itemData.name);
+                    if (stashItem != null)
+                        if (stashItem.stacks >= totalStacks)
+                            stash.RemoveItem(temp);
+                        else if (inventoryItem.stacks + stashItem.stacks >= totalStacks)
+                        {
+                            temp.stacks = inventoryItem.stacks;
+                            var afterStacks = totalStacks - inventoryItem.stacks;
+                            inventory.RemoveItem(temp);
+                            temp.stacks = afterStacks;
+                            stash.RemoveItem(temp);
+                        }
+                        else
+                        {
+                            SendComponentMissingMessage();
+                            return;
+                        }
+                    else
+                    {
+                        SendComponentMissingMessage();
+                        return;
+                    }
+                }
+                else
+                {
+                    SendComponentMissingMessage();
+                    return;
+                }
+            else if (canUseStash)
+            {
+                var stashItem = stash.GetItemOfName(temp.itemData.name);
+                if (stashItem != null)
+                    if (stashItem.stacks >= totalStacks)
+                        stash.RemoveItem(temp);
+                    else
+                    {
+                        SendComponentMissingMessage();
+                        return;
+                    }
+                else
+                {
+                    SendComponentMissingMessage();
+                    return;
+                }
+            }
+            else
+            {
+                SendComponentMissingMessage();
+                return;
+            }
         }
         FindObjectOfType<GameManager>().ChangeResources(-currentOpenedRecipe.resourceCost * amount);
         var tempItem = new ItemRecipeInfo() { itemData = currentOpenedRecipe.resultItem.itemData, stacks = currentOpenedRecipe.resultItem.stacks * amount };
@@ -183,7 +237,13 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         UpdateCurrentDetails();
         blockingUI.SetActive(false);
     }
-
+    private void SendComponentMissingMessage()
+    {
+        FindObjectOfType<SystemMessages>().AddMessage("A component is missing.");
+        localPlayer.Work_Finished.RemoveListener(FinishCrafting);
+        UpdateCurrentDetails();
+        blockingUI.SetActive(false);
+    }
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
         localPlayer = player.GetComponent<PlayerController>();
@@ -205,6 +265,40 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         if (amount > 99)
             amount = 99;
         UpdateDetails(currentOpenedRecipe, openedInStructure, amount);
+    }
+    private List<ItemRecipeInfo> GetAllAvailableItems()
+    {
+        List<ItemRecipeInfo> currentPlayerItems = new();
+        var player = localPlayer.GetComponent<PlayerCharacter>();
+        foreach (var item in FindObjectOfType<InventoryManager>(true).GetAllItems())
+        {
+            var temp = currentPlayerItems.Find(x => x.itemData == item.item);
+            if (temp != null)
+                temp.stacks += item.stacks;
+            else
+                currentPlayerItems.Add(new ItemRecipeInfo { itemData = item.item, stacks = item.stacks });
+        }
+        if (player.IsTentNearby())
+        {
+            List<ItemRecipeInfo> stashInventory = new();
+            foreach (var item in FindObjectOfType<StashInventory>(true).GetAllItems())
+            {
+                var temp = stashInventory.Find(x => x.itemData == item.item);
+                if (temp != null)
+                    temp.stacks += item.stacks;
+                else
+                    stashInventory.Add(new ItemRecipeInfo { itemData = item.item, stacks = item.stacks });
+            }
+            foreach (var item in stashInventory)
+            {
+                var temp = currentPlayerItems.Find(x => x.itemData == item.itemData);
+                if (temp != null)
+                    temp.stacks += item.stacks;
+                else
+                    currentPlayerItems.Add(item);
+            }
+        }
+        return currentPlayerItems;
     }
     public void ChangeAmount(string value)
     {

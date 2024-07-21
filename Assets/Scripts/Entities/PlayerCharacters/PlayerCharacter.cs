@@ -1020,4 +1020,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         FindObjectOfType<AudioManager>().ReceivedTargetLost(target);
     }
+    public bool IsTentNearby()
+    {
+        foreach (var item in FindObjectsOfType<Tent>(true))
+        {
+            if (Vector3.Distance(item.transform.position, transform.position) <= 10)
+                return true;
+        }
+        return false;
+    }
 }

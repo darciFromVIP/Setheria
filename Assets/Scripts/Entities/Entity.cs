@@ -5,6 +5,7 @@ using Mirror;
 using UnityEngine.AI;
 using UnityEngine.Events;
 using FoW;
+using FMODUnity;
 public class Entity : NetworkBehaviour, IUsesAnimator
 {
     public NetworkAnimator animator;
@@ -122,6 +123,8 @@ public class Entity : NetworkBehaviour, IUsesAnimator
         }
         else
             gameObject.SetActive(false);
+        if (TryGetComponent(out StudioEventEmitter emitter))
+            emitter.Stop();
         On_Death.Invoke();
     }
     private IEnumerator CorpseDecay()

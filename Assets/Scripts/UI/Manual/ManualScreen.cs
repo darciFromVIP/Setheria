@@ -138,24 +138,21 @@ public class ManualScreen : MonoBehaviour, WindowedUI
             tempRecipe.ToggleCraftableNotif(false);
             if (recipe.componentItems.Count == 0)
                 continue;
-            var currentPlayerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
-            int matchedCriteria = 0;
-            for (int i = 0; i < recipe.componentItems.Count; i++)
+
+            if (recipe.visible)
             {
-                foreach (var playerItem in currentPlayerItems)
+                int matchedCriteria = 0;
+                var currentPlayerItems = GetAllAvailableItems();
+                for (int i = 0; i < recipe.componentItems.Count; i++)
                 {
-                    if (playerItem.item == recipe.componentItems[i].itemData)
-                    {
-                        if (playerItem.stacks >= recipe.componentItems[i].stacks)
-                        {
+                    var item = currentPlayerItems.Find(x => x.itemData == recipe.componentItems[i].itemData);
+                    if (item != null)
+                        if (item.stacks >= recipe.componentItems[i].stacks)
                             matchedCriteria++;
-                        }
-                        break;
-                    }
                 }
+                if (matchedCriteria >= recipe.componentItems.Count)
+                    tempRecipe.ToggleCraftableNotif(true);
             }
-            if (matchedCriteria >= recipe.componentItems.Count)
-                tempRecipe.ToggleCraftableNotif(true);
         }
         foreach (var item in recipeCategories)
         {
@@ -313,5 +310,39 @@ public class ManualScreen : MonoBehaviour, WindowedUI
             if (recipe.unlocked && recipe.visible)
                 GetComponentInChildren<RecipeDetail>(true).UpdateDetails(recipe, false);
         }
+    }
+    private List<ItemRecipeInfo> GetAllAvailableItems()
+    {
+        List<ItemRecipeInfo> currentPlayerItems = new();
+        var player = FindObjectOfType<GameManager>().localPlayerCharacter;
+        foreach (var item in FindObjectOfType<InventoryManager>(true).GetAllItems())
+        {
+            var temp = currentPlayerItems.Find(x => x.itemData == item.item);
+            if (temp != null)
+                temp.stacks += item.stacks;
+            else
+                currentPlayerItems.Add(new ItemRecipeInfo { itemData = item.item, stacks = item.stacks });
+        }
+        if (player.IsTentNearby())
+        {
+            List<ItemRecipeInfo> stashInventory = new();
+            foreach (var item in FindObjectOfType<StashInventory>(true).GetAllItems())
+            {
+                var temp = stashInventory.Find(x => x.itemData == item.item);
+                if (temp != null)
+                    temp.stacks += item.stacks;
+                else
+                    stashInventory.Add(new ItemRecipeInfo { itemData = item.item, stacks = item.stacks });
+            }
+            foreach (var item in stashInventory)
+            {
+                var temp = currentPlayerItems.Find(x => x.itemData == item.itemData);
+                if (temp != null)
+                    temp.stacks += item.stacks;
+                else
+                    currentPlayerItems.Add(item);
+            }
+        }
+        return currentPlayerItems;
     }
 }
