@@ -61,16 +61,16 @@ public class Character : Entity
         {
             skillInstances.Add(item.GetInstance());
         }
-        if (TryGetComponent(out Shapeshifter shapeshifter))
-        {
-            shapeshifter.SetDefaultSkillInstances();
-        }
         if (isOwned)
         {
             foreach (var item in skillInstances)
             {
                 item.ExecuteOnStart(this);
             }
+        }
+        if (TryGetComponent(out Shapeshifter shapeshifter))
+        {
+            shapeshifter.SetDefaultSkillInstances();
         }
     }
     protected override void OnMouseEnter()

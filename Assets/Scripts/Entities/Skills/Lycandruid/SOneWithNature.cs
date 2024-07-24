@@ -9,6 +9,7 @@ public class SOneWithNature : Skill
     {
         castingEntity = self;
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
+        castingEntity.GetComponent<Shapeshifter>().defaultSkills[1].SetCastingEntity(castingEntity);
         (castingEntity.GetComponent<Shapeshifter>().defaultSkills[1] as SDefensiveStance).TogglePassive(true);
         if (castingEntity.isServer)
             castingEntity.GetComponent<Shapeshifter>().RpcShapeshift(true);
