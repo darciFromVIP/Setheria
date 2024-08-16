@@ -53,7 +53,7 @@ public class ISBlowpipe : Skill
         castingEntity.GetComponent<ActiveItemSkills>().CmdCastBlowpipe(enemy.GetComponent<NetworkIdentity>());
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         player.ChangeCastingState(CastingState.None);
-        player.ChangeState(PlayerState.None);
+        player.CmdChangeState(PlayerState.None);
         Skill_Casted.Invoke();
         if (castingEntity.isOwned)
             castingEntity.skillIndicator.Casting(0);

@@ -88,18 +88,28 @@ public class StructureOptionUI : MonoBehaviour
                 else
                     GetComponent<Button>().interactable = true;
             }
-            else if (currentStructure.TryGetComponent(out Tent tent) && structureOption.structureAction == StructureAction.Rest)
+            else if (currentStructure.TryGetComponent(out Tent tent))
             {
-                if (tent.GetRestCooldown() > 0)
+                if (structureOption.structureAction == StructureAction.Rest)
                 {
-                    GetComponent<Button>().interactable = false;
-                    cooldownSlider.gameObject.SetActive(true);
-                    cooldownSlider.maxValue = tent.restCooldown;
-                    cooldownSlider.value = tent.GetRestCooldown();
-                    cooldownText.text = tent.GetRestCooldown().ToString("F0");
+                    if (tent.GetRestCooldown() > 0)
+                    {
+                        GetComponent<Button>().interactable = false;
+                        cooldownSlider.gameObject.SetActive(true);
+                        cooldownSlider.maxValue = tent.restCooldown;
+                        cooldownSlider.value = tent.GetRestCooldown();
+                        cooldownText.text = tent.GetRestCooldown().ToString("F0");
+                    }
+                    else
+                        GetComponent<Button>().interactable = true;
                 }
-                else
-                    GetComponent<Button>().interactable = true;
+                else if (structureOption.structureAction == StructureAction.OpenInventory)
+                {
+                    if (tent.stashOccupied)
+                        GetComponent<Button>().interactable = false;
+                    else
+                        GetComponent<Button>().interactable = true;
+                }
             }
             else if (currentStructure.TryGetComponent(out Shipyard shipyard) && structureOption.structureAction == StructureAction.CallShips)
             {
@@ -144,6 +154,8 @@ public class StructureOptionUI : MonoBehaviour
                 }
             }
             else
+                cooldownSlider.gameObject.SetActive(false);
+            if (cooldownSlider.value <= 0)
                 cooldownSlider.gameObject.SetActive(false);
         }
         else

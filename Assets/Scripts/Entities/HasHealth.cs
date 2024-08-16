@@ -119,7 +119,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
         if (TryGetComponent(out PlayerController player) && interruptCrafting)
         {
             if (player.state == PlayerState.Working)
-                player.ChangeState(PlayerState.None);
+                player.CmdChangeState(PlayerState.None);
         }
         float finalDmg = damage;
         if (!ignoreArmor)

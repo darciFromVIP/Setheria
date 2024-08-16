@@ -25,8 +25,9 @@ public class Tooltip : MonoBehaviour
             Hide();
         Vector2 position = Input.mousePosition;
         float pivotX = position.x < Screen.width / 2 ? 0 : 1;
-        float pivotY = position.y < Screen.width / 2 ? 0 : 1.2f;
-
+        float pivotY = position.y < Screen.height / 2 ? 0 : 1;
+        if (pivotY == 1 && pivotX == 0)
+            pivotX = -0.1f;
         rectTransform.pivot = new Vector2(pivotX, pivotY);
         transform.position = position;
     }

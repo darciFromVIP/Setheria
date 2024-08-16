@@ -31,6 +31,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     public void UpdateDetails(RecipeScriptable recipeData, bool openedInStructure, int amount = 1)
     {
         ClearDetails();
+        this.amount = amount;
         var player = localPlayer.GetComponent<PlayerCharacter>();
         currentPlayerItems = GetAllAvailableItems();
         this.openedInStructure = openedInStructure;
@@ -49,6 +50,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         }
         bool hasRequiredProfession = player.professions.GetProfessionExperience(recipeData.requiredProfession) >= recipeData.requiredProfessionExperience;
         craftBtn.interactable = craftableInStructure && hasRequiredProfession;
+        amountInput.text = this.amount.ToString();
 
         var resultItem = Instantiate(inventoryItemPrefab, resultItemParent);
         resultItem.stackText.text = (recipeData.resultItem.stacks * this.amount).ToString();

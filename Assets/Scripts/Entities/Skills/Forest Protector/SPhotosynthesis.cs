@@ -35,7 +35,7 @@ public class SPhotosynthesis : Skill
         castingEntity.GetComponent<PlayerCharacter>().CreateItem(new SaveDataItem() { name = item.itemData.name, stacks = 1 }, castingEntity.transform.position + castingEntity.transform.forward);
         castingEntity.GetComponent<PlayerController>().StartCooldown1();
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveListener(Cast);
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.None);
+        castingEntity.GetComponent<PlayerController>().CmdChangeState(PlayerState.None);
     }
     public override void ExecuteOnStart(Character self)
     {

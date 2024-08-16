@@ -185,6 +185,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [ClientRpc]
     public void LoadState(List<SaveDataPlayer> data)
     {
+        if (isLoaded)
+            return;
         foreach (var item in data)
         {
             if (item.hero == hero)
@@ -826,7 +828,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         }
         GetComponentInChildren<EntityStatusBar>(true).gameObject.SetActive(false);
         moveComp.agent.enabled = false;
-        playerController.ChangeState(PlayerState.OutOfGame);
+        playerController.CmdChangeState(PlayerState.OutOfGame);
         spotlight.SetActive(false);
     }
     public void EnableCharacter()
@@ -841,7 +843,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         }
         GetComponentInChildren<EntityStatusBar>(true).gameObject.SetActive(true);
         moveComp.agent.enabled = true;
-        playerController.ChangeState(PlayerState.None);
+        playerController.CmdChangeState(PlayerState.None);
         spotlight.SetActive(true);
     }
     public void AddMaxHealthAttribute(int value)

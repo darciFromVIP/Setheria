@@ -69,7 +69,7 @@ public class SRoar : Skill
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldown4();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
-        player.ChangeState(PlayerState.None);
+        player.CmdChangeState(PlayerState.None);
     }
     public override void UpdateDescription()
     {

@@ -59,7 +59,7 @@ public class SCallOfTheWild : Skill
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldown5();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveAllListeners();
-        player.ChangeState(PlayerState.None);
+        player.CmdChangeState(PlayerState.None);
     }
     public override void UpdateDescription()
     {

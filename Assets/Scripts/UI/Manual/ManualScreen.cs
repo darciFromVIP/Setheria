@@ -129,7 +129,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
 
             if (recipe.resultItem.itemData == null)
                 recipeCategories.Add(tempRecipe);
-            if (recipe.freshlyUnlocked)
+            if (recipe.freshlyUnlocked && recipe.unlocked)
             {
                 tempRecipe.ToggleNewItemNotif(true);
                 recipe.freshlyUnlocked = false;

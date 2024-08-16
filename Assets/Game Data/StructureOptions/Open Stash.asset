@@ -13,7 +13,16 @@ MonoBehaviour:
   m_Name: Open Stash
   m_EditorClassIdentifier: 
   structureAction: 8
-  description: Store your items here.
+  description: 'Store your items here.
+
+
+    Only one player can open the stash at
+    a time.'
   icon: {fileID: 21300000, guid: 83e2bcb2cd6a74b4285937db4f03b0b1, type: 3}
   craftingRecipes: []
   soldItems: []
+  soldUpgrades: []
+  professionRequired: 0
+  professionLevelRequired: 0
+  requiredStructures: []
+  requiredResources: 0

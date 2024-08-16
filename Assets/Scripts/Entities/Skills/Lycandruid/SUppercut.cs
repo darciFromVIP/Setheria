@@ -102,7 +102,7 @@ public class SUppercut : Skill
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldown3();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveAllListeners();
-        player.ChangeState(PlayerState.None);
+        player.CmdChangeState(PlayerState.None);
         player.ChangeCastingState(CastingState.None);
     }
     public override void UpdateDescription()

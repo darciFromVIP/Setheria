@@ -18,6 +18,7 @@ public class ObjectMapIcon : NetworkBehaviour
     public Sprite ownedMapIcon;
     public string mapTooltipText;
     public IconSize iconSize;
+    public bool staticObject = true;
 
     private FogOfWarTeam fow;
     private GameObject iconInstance;
@@ -32,7 +33,8 @@ public class ObjectMapIcon : NetworkBehaviour
     {
         if (fow == null || iconInstance == null)
             return;
-        map.UpdatePositionOfIcon(iconInstance, fow.WorldPositionToFogPosition(transform.position));
+        if (!staticObject)
+            map.UpdatePositionOfIcon(iconInstance, fow.WorldPositionToFogPosition(transform.position));
     }
     private IEnumerator WaitForFow()
     {

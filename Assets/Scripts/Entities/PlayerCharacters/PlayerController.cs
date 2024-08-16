@@ -34,7 +34,7 @@ public class PlayerController : NetworkBehaviour
     private SettingsManager settingsManager;
     public InputEnabledScriptable inputEnabled;
     private Character targetedCharacter;
-
+    private CustomCursor cursor;
 
     public float cooldown1;
     public float cooldown2;
@@ -163,17 +163,18 @@ public class PlayerController : NetworkBehaviour
     }
     private void InputHandle()
     {
-        var cursor = FindObjectOfType<CustomCursor>().cursorType;
+        if (!cursor)
+            cursor = FindObjectOfType<CustomCursor>();
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && state == PlayerState.Casting)
         {
-            ChangeState(PlayerState.None);
+            CmdChangeState(PlayerState.None);
             ChangeCastingState(CastingState.None);
             Resume_Acting.Invoke();
             currentSkill.StopExecute();
             moveComp.CmdForceMovementAnimation();
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !attackComp.canAct && cursor != CursorType.Enemy)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !attackComp.canAct && cursor.cursorType != CursorType.Enemy)
         {
             Resume_Acting.Invoke();
             attackComp.CmdTargetLost();
@@ -211,7 +212,7 @@ public class PlayerController : NetworkBehaviour
                 }
                 if (state == PlayerState.Working)
                 {
-                    ChangeState(PlayerState.None);
+                    CmdChangeState(PlayerState.None);
                 }
             }
             if (Input.GetKeyDown(settingsManager.settings.interact))
@@ -438,11 +439,21 @@ public class PlayerController : NetworkBehaviour
     }
     public void ChangeStateToNone()
     {
-        ChangeState(PlayerState.None);
+        CmdChangeState(PlayerState.None);
     }
     public void ChangeStateToBusy()
     {
-        ChangeState(PlayerState.Busy);
+        CmdChangeState(PlayerState.Busy);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeState(PlayerState state)
+    {
+        RpcChangeState(state);   
+    }
+    [ClientRpc]
+    public void RpcChangeState(PlayerState state)
+    {
+        ChangeState(state);
     }
     public void ChangeState(PlayerState state)
     {
@@ -510,6 +521,7 @@ public class PlayerController : NetworkBehaviour
     private IEnumerator Working(float duration)
     {
         moveComp.Stop();
+        CmdChangeState(PlayerState.Working);
         ChangeState(PlayerState.Working);
         playerCharacter.animator.animator.SetBool("Interact", true);
 
@@ -547,9 +559,9 @@ public class PlayerController : NetworkBehaviour
             yield return null;
         }
         if (moveComp.agent.enabled)
-            ChangeState(PlayerState.None);
+            CmdChangeState(PlayerState.None);
         else
-            ChangeState(PlayerState.OutOfGame);
+            CmdChangeState(PlayerState.OutOfGame);
         Work_Finished.Invoke();
         Work_Finished.RemoveAllListeners();
         Work_Cancelled.RemoveAllListeners();

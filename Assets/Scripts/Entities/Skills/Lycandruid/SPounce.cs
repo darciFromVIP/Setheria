@@ -74,7 +74,7 @@ public class SPounce : Skill
         base.StartCasting();
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill3();
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
+        castingEntity.GetComponent<PlayerController>().CmdChangeState(PlayerState.Busy);
         castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(enemy.transform.position);
@@ -111,7 +111,7 @@ public class SPounce : Skill
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldown3();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveListener(Cast);
-        player.ChangeState(PlayerState.None);
+        player.CmdChangeState(PlayerState.None);
         player.ChangeCastingState(CastingState.None);
     }
     public override void UpdateDescription()

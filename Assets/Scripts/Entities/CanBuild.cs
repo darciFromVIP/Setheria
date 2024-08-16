@@ -24,7 +24,7 @@ public class CanBuild : NetworkBehaviour
     {
         if (isOwned)
         {
-            playerController.ChangeState(PlayerState.Busy);
+            playerController.CmdChangeState(PlayerState.Busy);
             StartCoroutine(ChoosingBuildLocation(structure));
         }
     }
@@ -46,7 +46,7 @@ public class CanBuild : NetworkBehaviour
                         {
                             StartCoroutine(GoToBuildStructure(structure, hit.point, ghost.transform.rotation));
                             Destroy(ghost.gameObject);
-                            playerController.ChangeState(PlayerState.None);
+                            playerController.CmdChangeState(PlayerState.None);
                             break;
                         }
                         if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Escape))
@@ -54,7 +54,7 @@ public class CanBuild : NetworkBehaviour
                             if (buildStructureAction)
                                 buildStructureAction.StopExecute(this);
                             Destroy(ghost.gameObject);
-                            playerController.ChangeState(PlayerState.None);
+                            playerController.CmdChangeState(PlayerState.None);
                             break;
                         }
                     }

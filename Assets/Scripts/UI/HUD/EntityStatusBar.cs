@@ -87,7 +87,6 @@ public class EntityStatusBar : MonoBehaviour
     }
     private void InitializeHpBar(PlayerCharacter player)
     {
-        Debug.Log("Character Loaded Event Hp");
         InitializeHpBar(player.GetComponent<HasHealth>());
     }
     private void InitializeHpBar(HasHealth hp)
@@ -100,7 +99,6 @@ public class EntityStatusBar : MonoBehaviour
     }
     private void InitializeMpBar(PlayerCharacter player)
     {
-        Debug.Log("Character Loaded Event Mp");
         InitializeMpBar(player.GetComponent<HasMana>());
     }
     private void InitializeMpBar(HasMana mp)

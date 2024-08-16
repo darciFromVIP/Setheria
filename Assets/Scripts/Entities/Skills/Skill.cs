@@ -56,7 +56,7 @@ public class Skill : ScriptableObject
             attackComp.CmdSetCasting(true);
         if (castingEntity.TryGetComponent(out PlayerController controller))
         {
-            controller.ChangeState(PlayerState.None);
+            controller.CmdChangeState(PlayerState.None);
             controller.ChangeCastingState(CastingState.None);
         }
     }
@@ -81,7 +81,7 @@ public class Skill : ScriptableObject
         {
             UpdateDescription();
             player.SetCurrentSkill(this);
-            player.ChangeState(PlayerState.Casting);
+            player.CmdChangeState(PlayerState.Casting);
             player.Ground_Left_Clicked.RemoveAllListeners();
         }
     }

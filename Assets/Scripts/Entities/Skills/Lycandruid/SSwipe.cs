@@ -81,7 +81,7 @@ public class SSwipe : Skill
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldown2();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
-        player.ChangeState(PlayerState.None);
+        player.CmdChangeState(PlayerState.None);
         player.ChangeCastingState(CastingState.None);
     }
 

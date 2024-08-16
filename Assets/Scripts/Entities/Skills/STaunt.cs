@@ -10,7 +10,7 @@ public class STaunt : Skill
         base.Execute(self);
         castingEntity = self;
         castingEntity.GetComponent<Character>().CastSkill1();
-        castingEntity.GetComponent<PlayerController>().ChangeState(PlayerState.Busy);
+        castingEntity.GetComponent<PlayerController>().CmdChangeState(PlayerState.Busy);
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
         if (castingEntity.isOwned)
             self.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
@@ -41,7 +41,7 @@ public class STaunt : Skill
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         player.StartCooldown1();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
-        player.ChangeState(PlayerState.None);
+        player.CmdChangeState(PlayerState.None);
     }
     public override void UpdateDescription()
     {
