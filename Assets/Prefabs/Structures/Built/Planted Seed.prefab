@@ -1356,7 +1356,7 @@ PrefabInstance:
     - target: {fileID: 8918073030982514316, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.216
+      value: 1.328
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5563563096656022236, guid: cf1fd752683bedf41b6bd4eae6622612, type: 3}
@@ -1432,6 +1432,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   corpseDecay: 1
   objectsToDisable: []
+  changeNightVision: 0
+  nightVisionRadius: 0
   On_Death:
     m_PersistentCalls:
       m_Calls: []

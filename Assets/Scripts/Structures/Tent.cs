@@ -24,6 +24,7 @@ public class Tent : NetworkBehaviour
     {
         if (tutorialAfterBuild)
             FindObjectOfType<Tutorial>(true).QueueTentTutorial(tutorialAfterBuild);
+        GetComponent<Structure>().On_Death.AddListener(StopRestAllPlayers);
     }
 
     [Command(requiresAuthority = false)]
@@ -48,12 +49,25 @@ public class Tent : NetworkBehaviour
     [ClientRpc]
     private void RpcStopRestPlayer(NetworkIdentity player)
     {
+        StopRestPlayer(player);
+    }
+    private void StopRestPlayer(NetworkIdentity player)
+    {
         Stopped_Resting.Invoke();
         var playerCharacter = player.GetComponent<PlayerCharacter>();
         restingPlayers.Remove(playerCharacter);
         playerCharacter.EnableCharacter();
         playerCharacter.GetComponent<HasMana>().ChangeGearManaRegen(-(5 + (playerCharacter.GetComponent<HasMana>().GetFinalMaxMana() * 0.01f)));
         playerCharacter.ChangeHungerIntervalMultiplier(-3);
+    }
+    public void StopRestAllPlayers()
+    {
+        List<PlayerCharacter> copy = new();
+        restingPlayers.CopyTo(copy);
+        foreach (var item in copy)
+        {
+            StopRestPlayer(item.netIdentity);
+        }
     }
     public void StartRestCooldown()
     {

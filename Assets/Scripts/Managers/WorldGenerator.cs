@@ -95,7 +95,8 @@ public class WorldGenerator : MonoBehaviour
         }
         if (NetworkServer.active)
             LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
-        FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
+        if (state.fogOfWar != null)
+            FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
         
         var manager = FindObjectOfType<InventoryManager>(true);
         if (state.unlockedItems.Count > 0)

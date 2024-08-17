@@ -5,6 +5,8 @@ using Mirror;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using FMODUnity;
+using TMPro;
+using Steamworks;
 
 [System.Serializable]
 public enum Hero
@@ -82,6 +84,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [SerializeField] protected GameObject spotlight;
     [SerializeField] protected GameObject levelUpEffect;
     public EventReference levelUpSound;
+    public TextMeshProUGUI nameTag;
 
     protected override void Start()
     {
@@ -147,7 +150,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 if (hungerTimer >= GetHungerInterval())
                 {
                     hungerTimer = 0;
-                    ChangeHunger(-1, false);
+                    CmdChangeHunger(-1, false);
                 }
                 else if (hunger <= 0 && hungerTimer >= 4)
                 {
@@ -182,6 +185,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         return connectionToClient.identity.GetComponent<ClientObject>().GetSaveData() != null;
     }
+    [Command(requiresAuthority = false)]
+    private void CmdSetName(string name)
+    {
+        RpcSetName(name);
+    }
+    [ClientRpc]
+    private void RpcSetName(string name)
+    {
+        nameTag.text = name;
+    }
     [ClientRpc]
     public void LoadState(List<SaveDataPlayer> data)
     {
@@ -193,6 +206,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             {
                 if (isOwned)
                 {
+                    CmdSetName(SteamFriends.GetPersonaName());
                     if (item.professions != null)
                         professions = item.professions;
                     professions.player = this;
@@ -238,7 +252,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 attCriticalDamage = item.attCritDamage;
                 Xp_Changed.Invoke(xp, maxXp);
                 maxHunger = item.maxHunger;
-                SetHunger(item.hunger);
+                CmdSetHunger(item.hunger);
                 hungerInterval = item.hungerInterval;
                 ChangeHungerIntervalMultiplier(1);
                 healthComp.SetBaseMaxHealth(item.baseMaxHealth);
@@ -345,7 +359,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             }
         }
         if (isOwned)
+        {
             UpdateSkills();
+            FindObjectOfType<PartyList>().CmdAddPartyMember(netIdentity);
+        }
         Debug.Log("Character Loaded!");
         isLoaded = true;
         Character_Loaded.Invoke(this);
@@ -624,28 +641,42 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         FindObjectOfType<InventoryManager>(true).AddItem(itemScriptableDatabase.GetItemByName(item), stacks);
     }
-    public void ChangeHunger(int amount, bool showText)
+    [Command(requiresAuthority = false)]
+    public void CmdChangeHunger(int amount, bool showText)
     {
-        hunger += amount;
-        if (!isOwned)
-            return;
-        if ((hunger == 20 || hunger == 10) && amount < 0)
-        {
-            FindObjectOfType<SystemMessages>().AddMessage("You are starving.");
-        }
         if (showText)
         {
             if (amount > 0)
             {
-                FindObjectOfType<FloatingText>().CmdSpawnFloatingText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
-                FindObjectOfType<AudioManager>().EatFood(transform.position);
+                FindObjectOfType<FloatingText>().ServerSpawnFloatingText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
             }
             else
-                FindObjectOfType<FloatingText>().CmdSpawnFloatingText(amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
+                FindObjectOfType<FloatingText>().ServerSpawnFloatingText(amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
+        }
+        RpcChangeHunger(amount);
+    }
+    [ClientRpc]
+    public void RpcChangeHunger(int amount)
+    {
+        hunger += amount;
+        if (isOwned)
+        {
+            if ((hunger == 20 || hunger == 10) && amount < 0)
+            {
+                FindObjectOfType<SystemMessages>().AddMessage("You are starving.");
+            }
+            if (amount > 0)
+                FindObjectOfType<AudioManager>().EatFood(transform.position);
         }
         Hunger_Changed.Invoke();
     }
-    public void SetHunger(int amount)
+    [Command(requiresAuthority = false)]
+    public void CmdSetHunger(int amount)
+    {
+        RpcSetHunger(amount);
+    }
+    [ClientRpc]
+    public void RpcSetHunger(int amount)
     {
         hunger = amount;
         Hunger_Changed.Invoke();
@@ -679,7 +710,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 manaComp.CmdChangeBaseManaRegen(modifier);
                 break;
             case PlayerStat.Hunger:
-                ChangeHunger((int)modifier, true);
+                CmdChangeHunger((int)modifier, true);
                 break;
             case PlayerStat.MaxHunger:
                 break;
@@ -827,6 +858,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             item.enabled = false;
         }
         GetComponentInChildren<EntityStatusBar>(true).gameObject.SetActive(false);
+        nameTag.gameObject.SetActive(false);
         moveComp.agent.enabled = false;
         playerController.CmdChangeState(PlayerState.OutOfGame);
         spotlight.SetActive(false);
@@ -842,6 +874,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             item.enabled = true;
         }
         GetComponentInChildren<EntityStatusBar>(true).gameObject.SetActive(true);
+        nameTag.gameObject.SetActive(true);
         moveComp.agent.enabled = true;
         playerController.CmdChangeState(PlayerState.None);
         spotlight.SetActive(true);
@@ -996,11 +1029,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         animator.SetTrigger(animHash_Revive);
         if (isOwned)
         {
-            ChangeHunger(-20, true);
+            CmdChangeHunger(-20, true);
             if (hunger < 20)
             {
                 hunger = 20;
-                ChangeHunger(0, false);
+                CmdChangeHunger(0, false);
             }
         }
         if (isOwned)

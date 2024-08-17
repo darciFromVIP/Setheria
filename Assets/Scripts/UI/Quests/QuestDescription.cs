@@ -10,6 +10,7 @@ public class QuestDescription : MonoBehaviour
     public TextMeshProUGUI label, objectives, rewards;
 
     public Material mainQuestMaterial, loreQuestMaterial;
+    public bool complete = false;
 
     private Transform parent;
     public void Initialize(QuestScriptable data)
@@ -50,6 +51,7 @@ public class QuestDescription : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().QuestCompleted();
         GetComponent<Animator>().SetTrigger("Completed");
+        complete = true;
     }
     public void QuestCompletedAnimationComplete()
     {
@@ -57,7 +59,6 @@ public class QuestDescription : MonoBehaviour
     }
     public void UpdateUI()
     {
-        Debug.Log("Quest active: " + questData.active);
         if (questData.active)
         {
             label.text = questData.label;

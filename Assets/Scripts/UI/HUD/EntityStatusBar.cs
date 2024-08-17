@@ -46,6 +46,12 @@ public class EntityStatusBar : MonoBehaviour
             manaBar.value = Mathf.Lerp(manaBar.value, currentMana, manaLerpTimer / chipTimer);
         }
     }
+    public void Initialize(PlayerCharacter player)
+    {
+        InitializeHpBar(player.GetComponent<HasHealth>());
+        InitializeMpBar(player.GetComponent<HasMana>());
+        InitializeXpBar(player);
+    }
     private void Initialize()                           
     {                                                           
         var hp = GetComponentInParent<HasHealth>();
@@ -187,7 +193,6 @@ public class EntityStatusBar : MonoBehaviour
     }
     private void InitializeXpBar(PlayerCharacter player)
     {
-        Debug.Log("Character Loaded Event Xp");
         levelBar.gameObject.SetActive(true);
         levelText.text = player.level.ToString();
         player.Level_Up.AddListener(ChangeLevelStatus);

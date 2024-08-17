@@ -235,14 +235,17 @@ public class QuestScriptable : ScriptableObject, IComparable
             var playerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
             if (requiredItemsDic.Count > 0)
             {
-                List<KeyValuePair<string, int>> dicCopy = new();
-                requiredItemsDic.CopyTo(dicCopy);
-                foreach (var requiredItem in dicCopy)
+                foreach (var requiredItem in requiredItemsDic)
                 {
                     foreach (var playerItem in playerItems)
                     {
                         if (requiredItem.Key == playerItem.item.name)
-                            requiredItemsDic[requiredItem.Key] += playerItem.stacks;
+                        {
+                            if (synchronizedQuest)
+                                CmdReduceItemRequirement(playerItem.item, playerItem.stacks);
+                            else
+                                ReduceItemRequirement(playerItem.item, playerItem.stacks);
+                        }
                     }
                 }
             }
@@ -252,7 +255,10 @@ public class QuestScriptable : ScriptableObject, IComparable
                 {
                     if (item.validItemTypeNames.Contains(playerItem.item.name))
                     {
-                        item.currentItemTypeAmount += playerItem.stacks;
+                        if (synchronizedQuest)
+                            CmdReduceItemRequirement(playerItem.item, playerItem.stacks);
+                        else
+                            ReduceItemRequirement(playerItem.item, playerItem.stacks);
                     }
                 }
             }
@@ -263,7 +269,10 @@ public class QuestScriptable : ScriptableObject, IComparable
                 {
                     if (item.validItemTypeNames.Contains(piece.item.name))
                     {
-                        item.currentItemTypeAmount += piece.stacks;
+                        if (synchronizedQuest)
+                            CmdReduceItemRequirement(piece.item, piece.stacks);
+                        else
+                            ReduceItemRequirement(piece.item, piece.stacks);
                     }
                 }
             }

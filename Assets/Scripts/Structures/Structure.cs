@@ -81,7 +81,7 @@ public class Structure : Entity, ISaveable, IInteractable
     {
         return new SaveDataWorldObject
         {
-            name = structureItem.name,
+            name = structureData.name,
             positionX = transform.position.x,
             positionY = transform.position.y,
             positionZ = transform.position.z,

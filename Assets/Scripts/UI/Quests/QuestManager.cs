@@ -48,7 +48,7 @@ public class QuestManager : NetworkBehaviour
         int count = 0;
         foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
         {
-            if (item.gameObject.activeSelf)
+            if (!item.complete)
                 count++;
         }
         if (count > 4)
