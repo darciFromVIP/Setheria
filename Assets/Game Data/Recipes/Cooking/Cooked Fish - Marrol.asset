@@ -10,19 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
-  m_Name: Meal
+  m_Name: Cooked Fish - Marrol
   m_EditorClassIdentifier: 
   recipeCategory: 5
-  priority: 8
+  priority: 3
   resultItem:
-    itemData: {fileID: 11400000, guid: 68275719217b1cc47b58767399476c34, type: 2}
+    itemData: {fileID: 11400000, guid: f23074d28c51c584bb68e8864779818e, type: 2}
     stacks: 1
   componentItems:
-  - itemData: {fileID: 11400000, guid: acdf02d0325686b48b04cb5b9f5f4ee1, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 8196a9deb0b604443a71880fe0c85755, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: b53abc5e132b0964385430ca5ff001c0, type: 2}
+  - itemData: {fileID: 11400000, guid: 9d37711ce16935d4db88180b16523947, type: 2}
     stacks: 1
   resourceCost: 0
   unlocked: 0
@@ -30,15 +26,14 @@ MonoBehaviour:
   freshlyUnlocked: 1
   requiredStructure: {fileID: 11400000, guid: c1c19e88d55514748b3a55507fbdc8c5, type: 2}
   craftingDuration: 1
-  xpGranted: 30
+  xpGranted: 10
   tier: 0
   recipeItem: {fileID: 0}
-  requiredItems:
-  - {fileID: 11400000, guid: b53abc5e132b0964385430ca5ff001c0, type: 2}
+  requiredItems: []
   requiredStructures:
-  - {fileID: 11400000, guid: 8b497a35dbd6ffe46921b06c141e395a, type: 2}
+  - {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}
   requiredProfession: 2
-  requiredProfessionExperience: 30
+  requiredProfessionExperience: 1
   recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:

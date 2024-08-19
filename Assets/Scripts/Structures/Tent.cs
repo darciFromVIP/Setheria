@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 public class Tent : NetworkBehaviour
 {
     public List<PlayerCharacter> restingPlayers = new List<PlayerCharacter>();
@@ -11,6 +13,8 @@ public class Tent : NetworkBehaviour
     private float restTimer;
     public int stashSlots;
     public bool stashOccupied = false;
+    public Transform restingPlayersUI;
+    public Image restingPlayerPrefab;
 
     public UnityEvent Stopped_Resting = new();
     private void Update()
@@ -40,6 +44,8 @@ public class Tent : NetworkBehaviour
         playerCharacter.DisableCharacter();
         playerCharacter.GetComponent<HasMana>().ChangeGearManaRegen(5 + (playerCharacter.GetComponent<HasMana>().GetFinalMaxMana() * 0.01f));
         playerCharacter.ChangeHungerIntervalMultiplier(3);
+        var img = Instantiate(restingPlayerPrefab, restingPlayersUI);
+        img.sprite = FindObjectOfType<HeroIcon>().GetHeroIcon(playerCharacter.hero);
     }
     [Command(requiresAuthority = false)]
     public void CmdStopRestPlayer(NetworkIdentity player)
@@ -55,6 +61,7 @@ public class Tent : NetworkBehaviour
     {
         Stopped_Resting.Invoke();
         var playerCharacter = player.GetComponent<PlayerCharacter>();
+        Destroy(restingPlayersUI.GetChild(restingPlayers.IndexOf(playerCharacter)).gameObject);
         restingPlayers.Remove(playerCharacter);
         playerCharacter.EnableCharacter();
         playerCharacter.GetComponent<HasMana>().ChangeGearManaRegen(-(5 + (playerCharacter.GetComponent<HasMana>().GetFinalMaxMana() * 0.01f)));

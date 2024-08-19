@@ -14,7 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structureAction: 11
   description: 'Rest here to speed up Mana Regen as well as slow down Food depletion
-    by 300%. Cooldown: 200 seconds.'
+    by 300%. There is a limited number of beds for each structure level:
+
+
+    Tent:
+    1 bed
+
+    Cottage: 2 beds
+
+
+    Cooldown: 200 seconds.'
   icon: {fileID: 21300000, guid: b395029466a68f745aabf609f29c3474, type: 3}
   craftingRecipes: []
   soldItems: []

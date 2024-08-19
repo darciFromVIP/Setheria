@@ -18,6 +18,10 @@ public class HeroIcon : MonoBehaviour
     {
         image.sprite = heroIcons[(int)heroType];
     }
+    public Sprite GetHeroIcon(Hero heroType)
+    {
+        return heroIcons[(int)heroType];
+    }
     private void CenterCamera()
     {
         FindObjectOfType<CameraTarget>().CenterCamera(false);
