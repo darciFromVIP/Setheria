@@ -25,7 +25,7 @@ public class PlayerController : NetworkBehaviour
     private HasMana manaComp;
     private PlayerCharacter playerCharacter;
     public PlayerState state;
-    private Skill currentSkill;
+    public Skill currentSkill;
     public CastingState castingState;
     private List<Collider> collidingColliders = new();
     public LayerMask movementLayerMask;
@@ -115,18 +115,8 @@ public class PlayerController : NetworkBehaviour
     public void SetCurrentSkill(Skill skill)
     {
         if (currentSkill)
-            CmdStopExecuteCurrentSkill();
+            currentSkill.StopExecute();
         currentSkill = skill;
-    }
-    [Command]
-    private void CmdStopExecuteCurrentSkill()
-    {
-        RpcStopExecuteCurrentSkill();
-    }
-    [ClientRpc]
-    private void RpcStopExecuteCurrentSkill()
-    {
-        currentSkill.StopExecute();
     }
     [Command]
     private void CmdGroundLeftClicked(Vector3 point)
@@ -181,7 +171,7 @@ public class PlayerController : NetworkBehaviour
             CmdChangeState(PlayerState.None);
             ChangeCastingState(CastingState.None);
             Resume_Acting.Invoke();
-            CmdStopExecuteCurrentSkill();
+            currentSkill.StopExecute();
             moveComp.CmdForceMovementAnimation();
         }
         if (Input.GetKeyDown(KeyCode.Mouse1) && !attackComp.canAct && cursor.cursorType != CursorType.Enemy)
@@ -190,7 +180,7 @@ public class PlayerController : NetworkBehaviour
             attackComp.CmdTargetLost();
             attackComp.attackSpeedTimer = 0;
             if (attackComp.isCasting)
-                CmdStopExecuteCurrentSkill();
+                currentSkill.StopExecute();
             moveComp.CmdForceMovementAnimation();
         }
 

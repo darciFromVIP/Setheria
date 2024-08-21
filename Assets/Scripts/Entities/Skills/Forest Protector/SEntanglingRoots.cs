@@ -88,8 +88,6 @@ public class SEntanglingRoots : Skill
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldown4();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill4_Casted.RemoveAllListeners();
-        player.CmdChangeState(PlayerState.None);
-        player.ChangeCastingState(CastingState.None);
     }
     public override void UpdateDescription()
     {

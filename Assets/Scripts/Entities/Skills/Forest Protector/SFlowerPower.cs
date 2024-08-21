@@ -80,8 +80,6 @@ public class SFlowerPower : Skill
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldown5();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveListener(Cast);
-        player.CmdChangeState(PlayerState.None);
-        player.ChangeCastingState(CastingState.None);
     }
 
     public override void UpdateDescription()

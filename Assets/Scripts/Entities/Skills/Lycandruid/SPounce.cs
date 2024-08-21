@@ -111,8 +111,6 @@ public class SPounce : Skill
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
         player.StartCooldown3();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill3_Casted.RemoveListener(Cast);
-        player.CmdChangeState(PlayerState.None);
-        player.ChangeCastingState(CastingState.None);
     }
     public override void UpdateDescription()
     {
