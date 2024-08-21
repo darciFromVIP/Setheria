@@ -115,8 +115,18 @@ public class PlayerController : NetworkBehaviour
     public void SetCurrentSkill(Skill skill)
     {
         if (currentSkill)
-            currentSkill.StopExecute();
+            CmdStopExecuteCurrentSkill();
         currentSkill = skill;
+    }
+    [Command]
+    private void CmdStopExecuteCurrentSkill()
+    {
+        RpcStopExecuteCurrentSkill();
+    }
+    [ClientRpc]
+    private void RpcStopExecuteCurrentSkill()
+    {
+        currentSkill.StopExecute();
     }
     [Command]
     private void CmdGroundLeftClicked(Vector3 point)
@@ -171,7 +181,7 @@ public class PlayerController : NetworkBehaviour
             CmdChangeState(PlayerState.None);
             ChangeCastingState(CastingState.None);
             Resume_Acting.Invoke();
-            currentSkill.StopExecute();
+            CmdStopExecuteCurrentSkill();
             moveComp.CmdForceMovementAnimation();
         }
         if (Input.GetKeyDown(KeyCode.Mouse1) && !attackComp.canAct && cursor.cursorType != CursorType.Enemy)
@@ -180,7 +190,7 @@ public class PlayerController : NetworkBehaviour
             attackComp.CmdTargetLost();
             attackComp.attackSpeedTimer = 0;
             if (attackComp.isCasting)
-                currentSkill.StopExecute();
+                CmdStopExecuteCurrentSkill();
             moveComp.CmdForceMovementAnimation();
         }
 
