@@ -10,6 +10,7 @@ public class Tent : NetworkBehaviour
     public List<PlayerCharacter> restingPlayers = new List<PlayerCharacter>();
     public TutorialDataScriptable tutorialAfterBuild;
     public float restCooldown;
+    public int maxBeds;
     private float restTimer;
     public int stashSlots;
     public bool stashOccupied = false;
@@ -93,5 +94,10 @@ public class Tent : NetworkBehaviour
     public void RpcStashOccupy(bool value)
     {
         stashOccupied = value;
+        Debug.Log(stashOccupied);
+    }
+    public bool CanRest()
+    {
+        return restingPlayers.Count < maxBeds;
     }
 }

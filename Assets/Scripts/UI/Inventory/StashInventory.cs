@@ -25,18 +25,18 @@ public class StashInventory : MonoBehaviour, WindowedUI
     }
     public void ShowWindow()
     {
+        var tent = FindObjectOfType<Tent>();
+        if (tent && !window.activeSelf)
+            tent.CmdStashOccupy(true);
         window.SetActive(true);
         FindObjectOfType<InventoryScreen>(true).ShowWindow();
-        var tent = FindObjectOfType<Tent>();
-        if (tent)
-            tent.CmdStashOccupy(true);
     }
     public void HideWindow()
     {
-        window.SetActive(false);
         var tent = FindObjectOfType<Tent>();
-        if (tent)
+        if (tent && window.activeSelf)
             tent.CmdStashOccupy(false);
+        window.SetActive(false);
     }
     public void InitializeInventory()
     {

@@ -100,6 +100,8 @@ public class StructureOptionUI : MonoBehaviour
                         cooldownSlider.value = tent.GetRestCooldown();
                         cooldownText.text = tent.GetRestCooldown().ToString("F0");
                     }
+                    else if (!tent.CanRest())
+                        GetComponent<Button>().interactable = false;
                     else
                         GetComponent<Button>().interactable = true;
                 }

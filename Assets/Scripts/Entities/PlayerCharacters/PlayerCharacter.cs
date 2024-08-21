@@ -198,178 +198,179 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [ClientRpc]
     public void LoadState(List<SaveDataPlayer> data)
     {
-        if (isLoaded)
-            return;
-        foreach (var item in data)
+        if (!isLoaded)
         {
-            if (item.hero == hero)
+            foreach (var item in data)
             {
-                if (isOwned)
+                if (item.hero == hero)
                 {
-                    CmdSetName(SteamFriends.GetPersonaName());
-                    if (item.professions != null)
-                        professions = item.professions;
-                    professions.player = this;
-                    var arr = SceneManager.GetActiveScene().GetRootGameObjects();
-                    List<NeedsLocalPlayerCharacter> list = new();
-                    foreach (var item1 in arr)
+                    if (isOwned)
                     {
-                        list.AddRange(item1.GetComponentsInChildren<NeedsLocalPlayerCharacter>(true));
-                    }
-                    foreach (var item1 in list)
-                    {
-                        item1.SetLocalPlayerCharacter(this);
-                    }
-                    foreach (var item1 in skillInstances)
-                    {
-                        item1.SetCastingEntity(this);
-                    }
-                }
-                moveComp.agent.enabled = false;
-                GetComponent<NetworkTransformUnreliable>().enabled = false;
-                if (item.positionX == 0 && item.positionY == 0 && item.positionZ == 0)
-                    transform.position = FindObjectOfType<WorldGenerator>().globalStartingPoint.position;
-                else
-                    transform.position = new Vector3(item.positionX, item.positionY, item.positionZ);
-                transform.rotation = new Quaternion(item.rotationX, item.rotationY, item.rotationZ, item.rotationW);
-                GetComponent<NetworkTransformUnreliable>().enabled = true;
-                moveComp.agent.enabled = true;
-                returnPoint = new Vector3(item.everstonePointX, item.everstonePointY, item.everstonePointZ);
-                heroName = item.name;
-                level = item.level;
-                Level_Up.Invoke(level);
-                xp = item.xp;
-                maxXp = item.maxXp;
-                ChangeAttributePoints(item.attributePoints);
-                attPower = item.attPower;
-                attMaxMana = item.attMana;
-                attManaRegen = item.attManaRegen;
-                attMaxHealth = item.attHealth;
-                attHealthRegen = item.attHealthRegen;
-                attCooldownReduction = item.attCooldownReduction;
-                attArmor = item.attArmor;
-                attCriticalChance = item.attCritChance;
-                attCriticalDamage = item.attCritDamage;
-                Xp_Changed.Invoke(xp, maxXp);
-                maxHunger = item.maxHunger;
-                CmdSetHunger(item.hunger);
-                hungerInterval = item.hungerInterval;
-                ChangeHungerIntervalMultiplier(1);
-                healthComp.SetBaseMaxHealth(item.baseMaxHealth);
-                healthComp.SetHealth(item.health);
-                healthComp.SetBaseHealthRegen(item.baseHealthRegen);
-                healthComp.ChangeCorruptedHealth(item.corruptedHealth);
-                manaComp.SetMaxMana(item.baseMaxMana);
-                manaComp.SetMana(item.mana);
-                manaComp.SetBaseManaRegen(item.baseManaRegen);
-                manaComp.ChangeCorruptedMana(item.corruptedMana);
-                FindObjectOfType<CharacterSkillsWindow>().SetHealthMana(item.health, item.baseMaxHealth, item.mana, item.baseMaxMana);
-                attackComp.SetPower(item.power);
-                attackComp.SetCriticalChance(item.criticalChance);
-                attackComp.SetCriticalDamage(item.criticalDamage);
-                attackComp.SetAttackRange(item.attackRange);
-                healthComp.SetArmor(item.armor);
-                attackComp.SetCooldownReduction(item.cooldownReduction);
-                var controller = GetComponent<PlayerController>();
-                if (item.cooldown1 > 0)
-                {
-                    controller.StartCooldown1();
-                    controller.cooldown1 = item.cooldown1;
-                }
-                if (item.cooldown2 > 0)
-                {
-                    controller.StartCooldown2();
-                    controller.cooldown2 = item.cooldown2;
-                }
-                if (item.cooldown3 > 0)
-                {
-                    controller.StartCooldown3();
-                    controller.cooldown3 = item.cooldown3;
-                }
-                if (item.cooldown4 > 0)
-                {
-                    controller.StartCooldown4();
-                    controller.cooldown4 = item.cooldown4;
-                }
-                if (item.cooldown5 > 0)
-                {
-                    controller.StartCooldown5();
-                    controller.cooldown5 = item.cooldown5;
-                }
-                if (isOwned)
-                {
-                    AttPower_Changed.Invoke(attPower);
-                    AttArmor_Changed.Invoke(attArmor);
-                    AttCDR_Changed.Invoke(attCooldownReduction);
-                    AttCritChance_Changed.Invoke(attCriticalChance);
-                    AttCritDmg_Changed.Invoke(attCriticalDamage);
-                    AttHealthRegen_Changed.Invoke(attHealthRegen);
-                    AttHealth_Changed.Invoke(attMaxHealth);
-                    AttManaRegen_Changed.Invoke(attManaRegen);
-                    AttMana_Changed.Invoke(attMaxMana);
-
-                    FindObjectOfType<QuestManager>(true).LoadStateUnsynchronized(item.unsyncedQuestlines);
-                    var manager = FindObjectOfType<InventoryManager>(true);
-                    foreach (var item3 in item.equippedGear)
-                    {
-                        var gearItem = manager.AddItem(item3);
-                        gearItem.GetComponent<ItemButton>().TryEquip();
-                    }
-                    foreach (var item2 in item.inventory)
-                    {
-                        manager.AddItem(item2);
-                    }
-                    if (item.activeItems.Count > 0)
-                    {
-                        var activeItemsBar = FindObjectOfType<ActiveItemsBar>(true);
-                        for (int i = 0; i < activeItemsBar.transform.childCount; i++)
+                        if (item.professions != null)
+                            professions = item.professions;
+                        professions.player = this;
+                        var arr = SceneManager.GetActiveScene().GetRootGameObjects();
+                        List<NeedsLocalPlayerCharacter> list = new();
+                        foreach (var item1 in arr)
                         {
-                            if (item.activeItems[i] != null)
+                            list.AddRange(item1.GetComponentsInChildren<NeedsLocalPlayerCharacter>(true));
+                        }
+                        foreach (var item1 in list)
+                        {
+                            item1.SetLocalPlayerCharacter(this);
+                        }
+                        foreach (var item1 in skillInstances)
+                        {
+                            item1.SetCastingEntity(this);
+                        }
+                    }
+                    moveComp.agent.enabled = false;
+                    GetComponent<NetworkTransformUnreliable>().enabled = false;
+                    if (item.positionX == 0 && item.positionY == 0 && item.positionZ == 0)
+                        transform.position = FindObjectOfType<WorldGenerator>().globalStartingPoint.position;
+                    else
+                        transform.position = new Vector3(item.positionX, item.positionY, item.positionZ);
+                    transform.rotation = new Quaternion(item.rotationX, item.rotationY, item.rotationZ, item.rotationW);
+                    GetComponent<NetworkTransformUnreliable>().enabled = true;
+                    moveComp.agent.enabled = true;
+                    returnPoint = new Vector3(item.everstonePointX, item.everstonePointY, item.everstonePointZ);
+                    heroName = item.name;
+                    level = item.level;
+                    Level_Up.Invoke(level);
+                    xp = item.xp;
+                    maxXp = item.maxXp;
+                    ChangeAttributePoints(item.attributePoints);
+                    attPower = item.attPower;
+                    attMaxMana = item.attMana;
+                    attManaRegen = item.attManaRegen;
+                    attMaxHealth = item.attHealth;
+                    attHealthRegen = item.attHealthRegen;
+                    attCooldownReduction = item.attCooldownReduction;
+                    attArmor = item.attArmor;
+                    attCriticalChance = item.attCritChance;
+                    attCriticalDamage = item.attCritDamage;
+                    Xp_Changed.Invoke(xp, maxXp);
+                    maxHunger = item.maxHunger;
+                    CmdSetHunger(item.hunger);
+                    hungerInterval = item.hungerInterval;
+                    ChangeHungerIntervalMultiplier(1);
+                    healthComp.SetBaseMaxHealth(item.baseMaxHealth);
+                    healthComp.SetHealth(item.health);
+                    healthComp.SetBaseHealthRegen(item.baseHealthRegen);
+                    healthComp.ChangeCorruptedHealth(item.corruptedHealth);
+                    manaComp.SetMaxMana(item.baseMaxMana);
+                    manaComp.SetMana(item.mana);
+                    manaComp.SetBaseManaRegen(item.baseManaRegen);
+                    manaComp.ChangeCorruptedMana(item.corruptedMana);
+                    FindObjectOfType<CharacterSkillsWindow>().SetHealthMana(item.health, item.baseMaxHealth, item.mana, item.baseMaxMana);
+                    attackComp.SetPower(item.power);
+                    attackComp.SetCriticalChance(item.criticalChance);
+                    attackComp.SetCriticalDamage(item.criticalDamage);
+                    attackComp.SetAttackRange(item.attackRange);
+                    healthComp.SetArmor(item.armor);
+                    attackComp.SetCooldownReduction(item.cooldownReduction);
+                    var controller = GetComponent<PlayerController>();
+                    if (item.cooldown1 > 0)
+                    {
+                        controller.StartCooldown1();
+                        controller.cooldown1 = item.cooldown1;
+                    }
+                    if (item.cooldown2 > 0)
+                    {
+                        controller.StartCooldown2();
+                        controller.cooldown2 = item.cooldown2;
+                    }
+                    if (item.cooldown3 > 0)
+                    {
+                        controller.StartCooldown3();
+                        controller.cooldown3 = item.cooldown3;
+                    }
+                    if (item.cooldown4 > 0)
+                    {
+                        controller.StartCooldown4();
+                        controller.cooldown4 = item.cooldown4;
+                    }
+                    if (item.cooldown5 > 0)
+                    {
+                        controller.StartCooldown5();
+                        controller.cooldown5 = item.cooldown5;
+                    }
+                    if (isOwned)
+                    {
+                        AttPower_Changed.Invoke(attPower);
+                        AttArmor_Changed.Invoke(attArmor);
+                        AttCDR_Changed.Invoke(attCooldownReduction);
+                        AttCritChance_Changed.Invoke(attCriticalChance);
+                        AttCritDmg_Changed.Invoke(attCriticalDamage);
+                        AttHealthRegen_Changed.Invoke(attHealthRegen);
+                        AttHealth_Changed.Invoke(attMaxHealth);
+                        AttManaRegen_Changed.Invoke(attManaRegen);
+                        AttMana_Changed.Invoke(attMaxMana);
+
+                        FindObjectOfType<QuestManager>(true).LoadStateUnsynchronized(item.unsyncedQuestlines);
+                        var manager = FindObjectOfType<InventoryManager>(true);
+                        foreach (var item3 in item.equippedGear)
+                        {
+                            var gearItem = manager.AddItem(item3);
+                            gearItem.GetComponent<ItemButton>().TryEquip();
+                        }
+                        foreach (var item2 in item.inventory)
+                        {
+                            manager.AddItem(item2);
+                        }
+                        if (item.activeItems.Count > 0)
+                        {
+                            var activeItemsBar = FindObjectOfType<ActiveItemsBar>(true);
+                            for (int i = 0; i < activeItemsBar.transform.childCount; i++)
                             {
-                                var inventoryItem = manager.GetItemOfName(item.activeItems[i].name);
-                                activeItemsBar.transform.GetChild(i).GetComponent<ActiveItemSlot>().Initialize(inventoryItem);
+                                if (item.activeItems[i] != null)
+                                {
+                                    var inventoryItem = manager.GetItemOfName(item.activeItems[i].name);
+                                    activeItemsBar.transform.GetChild(i).GetComponent<ActiveItemSlot>().Initialize(inventoryItem);
+                                }
                             }
                         }
-                    }
-                    talentTrees.talentPoints = 0;
-                    if (item.talentTrees != null)
-                    {
-                        talentTrees = item.talentTrees;
-                    }
-                    else
-                    {
-                        foreach (var item2 in refTalentTrees.talentTrees)
+                        talentTrees.talentPoints = 0;
+                        if (item.talentTrees != null)
                         {
-                            talentTrees.talentTrees.Add(new TalentTree(item2.treeType, item2.talents));
+                            talentTrees = item.talentTrees;
                         }
+                        else
+                        {
+                            foreach (var item2 in refTalentTrees.talentTrees)
+                            {
+                                talentTrees.talentTrees.Add(new TalentTree(item2.treeType, item2.talents));
+                            }
+                        }
+                        foreach (var item5 in item.activebuffs)
+                        {
+                            AddBuff(item5.name);
+                            StartCoroutine(WaitForBuff(item5));
+                        }
+                        foreach (var item6 in skillInstances)
+                        {
+                            item6.ExecuteOnStart(this);
+                        }
+                        if (item.positionX != 0 && item.positionY != 0 && item.positionZ != 0)
+                            FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
+                        UpdateManualCategories();
                     }
-                    foreach (var item5 in item.activebuffs)
-                    {
-                        AddBuff(item5.name);
-                        StartCoroutine(WaitForBuff(item5));
-                    }
-                    foreach (var item6 in skillInstances)
-                    {
-                        item6.ExecuteOnStart(this);
-                    }
-                    if (item.positionX != 0 && item.positionY != 0 && item.positionZ != 0)
-                        FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
-                    UpdateManualCategories();
                 }
             }
+            if (isOwned)
+                UpdateSkills();
+            isLoaded = true;
+            Character_Loaded.Invoke(this);
+            healthComp.ChangeCorruptedHealth(0);
+            manaComp.ChangeCorruptedMana(0);
+            if (isOwned)
+                StartCoroutine(UpdatePlayer());
         }
         if (isOwned)
         {
-            UpdateSkills();
+            CmdSetName(SteamFriends.GetPersonaName());
             FindObjectOfType<PartyList>().CmdAddPartyMember(netIdentity);
         }
-        Debug.Log("Character Loaded!");
-        isLoaded = true;
-        Character_Loaded.Invoke(this);
-        healthComp.ChangeCorruptedHealth(0);
-        manaComp.ChangeCorruptedMana(0);
-        if (isOwned)
-            StartCoroutine(UpdatePlayer());
     }
     private IEnumerator WaitForBuff(BuffSaveable buff)
     {
