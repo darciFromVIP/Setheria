@@ -507,7 +507,7 @@ public class PlayerController : NetworkBehaviour
     {
         Resume_Acting.Invoke();
     }
-    [Command]
+    [Command(requiresAuthority = false)]
     public void CmdStartWorking(float duration)
     {
         RpcStartWorking(duration);
@@ -533,7 +533,7 @@ public class PlayerController : NetworkBehaviour
             if (item.item.itemType == ItemType.HandicraftTool)
                 repairAmount = item.item.value * 10;
         }
-
+        Debug.Log("Starting work");
         while (duration > 0)
         {
             if (state != PlayerState.Working)
@@ -545,6 +545,7 @@ public class PlayerController : NetworkBehaviour
                 Repair_Tick.RemoveAllListeners();
                 Work_Tick.RemoveAllListeners();
                 playerCharacter.animator.animator.SetBool("Interact", false);
+                Debug.Log("Work cancelled");
                 yield break;
             }
             repairInterval += Time.deltaTime;
@@ -555,6 +556,7 @@ public class PlayerController : NetworkBehaviour
                 repairInterval = 0;
             }
             duration -= Time.deltaTime;
+            Debug.Log("Working");
             Working_Event.Invoke(duration);
             yield return null;
         }
