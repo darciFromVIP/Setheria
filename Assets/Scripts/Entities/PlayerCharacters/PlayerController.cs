@@ -25,7 +25,7 @@ public class PlayerController : NetworkBehaviour
     private HasMana manaComp;
     private PlayerCharacter playerCharacter;
     public PlayerState state;
-    public Skill currentSkill;
+    private Skill currentSkill;
     public CastingState castingState;
     private List<Collider> collidingColliders = new();
     public LayerMask movementLayerMask;
@@ -562,6 +562,7 @@ public class PlayerController : NetworkBehaviour
             CmdChangeState(PlayerState.None);
         else
             CmdChangeState(PlayerState.OutOfGame);
+        Debug.Log("Work Finished");
         Work_Finished.Invoke();
         Work_Finished.RemoveAllListeners();
         Work_Cancelled.RemoveAllListeners();

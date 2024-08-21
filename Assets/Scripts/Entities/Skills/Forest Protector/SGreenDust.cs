@@ -77,8 +77,7 @@ public class SGreenDust : Skill
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         if (castingEntity.isServer)
             player.GetComponent<HasMana>().RpcSpendMana(manaCost);
-        if (castingEntity.isOwned && castingEntity.GetComponent<PlayerController>().currentSkill == this)
-            player.StartCooldown2();
+        player.StartCooldown2();
         player.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.RemoveListener(Cast);
     }
 
