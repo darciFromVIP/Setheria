@@ -10,27 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
-  m_Name: Leather Boots
+  m_Name: "Leather Armor\u25BC"
   m_EditorClassIdentifier: 
   recipeCategory: 4
-  priority: 32
+  priority: 27
   resultItem:
-    itemData: {fileID: 11400000, guid: 70ba17c685486c745950cd60595f7caa, type: 2}
-    stacks: 1
-  componentItems:
-  - itemData: {fileID: 11400000, guid: 7587a223c3058a94cb69d1d3cbf1480b, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 77ee74d9a32ed344bbfa8696f6b1a5c3, type: 2}
-    stacks: 2
-  - itemData: {fileID: 11400000, guid: b49586590dfb42e4b888ae0104b82e77, type: 2}
-    stacks: 1
+    itemData: {fileID: 0}
+    stacks: 0
+  componentItems: []
   resourceCost: 0
   unlocked: 0
   visible: 0
-  freshlyUnlocked: 1
+  freshlyUnlocked: 0
   requiredStructure: {fileID: 0}
-  craftingDuration: 4
-  xpGranted: 15
+  craftingDuration: 0
+  xpGranted: 0
   tier: 0
   recipeItem: {fileID: 0}
   requiredItems: []
@@ -38,7 +32,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5abfbcd5f01d2347a2bdf6e6cc916f9, type: 2}
   requiredProfession: 0
   requiredProfessionExperience: 0
-  recipesInThisCategory: []
+  recipesInThisCategory:
+  - {fileID: 11400000, guid: a7bbdb1fc124b2c449b0e3dfcf452ec2, type: 2}
+  - {fileID: 11400000, guid: a272fdb706cf79649910dff8dfedf261, type: 2}
+  - {fileID: 11400000, guid: fda83f6aa79346c48bb9963e6d89813a, type: 2}
+  - {fileID: 11400000, guid: 71b3327fd4b87e24f8cecebb359b5681, type: 2}
+  - {fileID: 11400000, guid: 62bda7820be93184a9401e0168f5af06, type: 2}
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []

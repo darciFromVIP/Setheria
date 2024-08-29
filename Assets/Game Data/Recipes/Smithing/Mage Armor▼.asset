@@ -10,27 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
-  m_Name: Leather Boots
+  m_Name: "Mage Armor\u25BC"
   m_EditorClassIdentifier: 
   recipeCategory: 4
-  priority: 32
+  priority: 46
   resultItem:
-    itemData: {fileID: 11400000, guid: 70ba17c685486c745950cd60595f7caa, type: 2}
-    stacks: 1
-  componentItems:
-  - itemData: {fileID: 11400000, guid: 7587a223c3058a94cb69d1d3cbf1480b, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 77ee74d9a32ed344bbfa8696f6b1a5c3, type: 2}
-    stacks: 2
-  - itemData: {fileID: 11400000, guid: b49586590dfb42e4b888ae0104b82e77, type: 2}
-    stacks: 1
+    itemData: {fileID: 0}
+    stacks: 0
+  componentItems: []
   resourceCost: 0
-  unlocked: 0
-  visible: 0
-  freshlyUnlocked: 1
+  unlocked: 1
+  visible: 1
+  freshlyUnlocked: 0
   requiredStructure: {fileID: 0}
-  craftingDuration: 4
-  xpGranted: 15
+  craftingDuration: 0
+  xpGranted: 0
   tier: 0
   recipeItem: {fileID: 0}
   requiredItems: []
@@ -38,7 +32,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5abfbcd5f01d2347a2bdf6e6cc916f9, type: 2}
   requiredProfession: 0
   requiredProfessionExperience: 0
-  recipesInThisCategory: []
+  recipesInThisCategory:
+  - {fileID: 11400000, guid: 38e39684d78d4ea4abdb32d8197d9bf1, type: 2}
+  - {fileID: 11400000, guid: cc118ea06d70ce0488acc554a0edc23f, type: 2}
+  - {fileID: 11400000, guid: f8e4ce91e02658841968612af7995339, type: 2}
+  - {fileID: 11400000, guid: dffffe65d54aba3439f12e2b76952b3c, type: 2}
+  - {fileID: 11400000, guid: 72e900235b9661247a5523d57e3c4b85, type: 2}
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []

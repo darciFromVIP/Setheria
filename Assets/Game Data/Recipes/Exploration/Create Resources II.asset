@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Create Resources II
   m_EditorClassIdentifier: 
   recipeCategory: 6
-  priority: 0
+  priority: 1
   resultItem:
     itemData: {fileID: 11400000, guid: 79dd9ac95b358e346aacfd83c6504997, type: 2}
     stacks: 1
@@ -33,6 +33,7 @@ MonoBehaviour:
   requiredStructures: []
   requiredProfession: 5
   requiredProfessionExperience: 10
+  recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []

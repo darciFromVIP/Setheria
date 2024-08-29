@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mage Pants
   m_EditorClassIdentifier: 
   recipeCategory: 4
-  priority: 91
+  priority: 50
   resultItem:
     itemData: {fileID: 11400000, guid: b84f45ebef9d4d542a916f8c98a8b011, type: 2}
     stacks: 1
@@ -35,9 +35,10 @@ MonoBehaviour:
   recipeItem: {fileID: 0}
   requiredItems: []
   requiredStructures:
-  - {fileID: 11400000, guid: 382748be377ccbb4d8c79f98652e2ab5, type: 2}
+  - {fileID: 11400000, guid: a5abfbcd5f01d2347a2bdf6e6cc916f9, type: 2}
   requiredProfession: 0
   requiredProfessionExperience: 0
+  recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []
