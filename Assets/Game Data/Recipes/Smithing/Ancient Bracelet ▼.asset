@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
-  m_Name: "Cloth Armor\u25BC"
+  m_Name: "Ancient Bracelet \u25BC"
   m_EditorClassIdentifier: 
   recipeCategory: 4
-  priority: 40
+  priority: 100
   resultItem:
     itemData: {fileID: 0}
     stacks: 0
@@ -27,17 +27,18 @@ MonoBehaviour:
   xpGranted: 0
   tier: 0
   recipeItem: {fileID: 0}
-  requiredItems: []
-  requiredStructures:
-  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  requiredItems:
+  - {fileID: 11400000, guid: a0b5dda13b42cc148900266b7c8d4927, type: 2}
+  requiredStructures: []
   requiredProfession: 0
   requiredProfessionExperience: 0
   recipesInThisCategory:
-  - {fileID: 11400000, guid: 0382d5e2557a1ed45b0b5648037a0fa0, type: 2}
-  - {fileID: 11400000, guid: 484936f9672b0184bb3510c250b22557, type: 2}
-  - {fileID: 11400000, guid: 28462d15628ac094b9d0cb6bc65f35d3, type: 2}
-  - {fileID: 11400000, guid: de166ac8ed8284743a9dd85d0d3aacb4, type: 2}
-  - {fileID: 11400000, guid: 765b8c1ec73fa014bae26a080877dd9a, type: 2}
+  - {fileID: 11400000, guid: 34dfaa01437fb4f429aa043c2ccc99f6, type: 2}
+  - {fileID: 11400000, guid: 18a1a7c438925784eb51468731439671, type: 2}
+  - {fileID: 11400000, guid: 49b55502fe0241842bf7a2c76963d630, type: 2}
+  - {fileID: 11400000, guid: c76a7c8923c9ed44789186d6b4da78db, type: 2}
+  - {fileID: 11400000, guid: 5a9973d61ff1ef14cae65cef85b820d6, type: 2}
+  - {fileID: 11400000, guid: dce3395026d7d7844807c794dc03ea71, type: 2}
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []

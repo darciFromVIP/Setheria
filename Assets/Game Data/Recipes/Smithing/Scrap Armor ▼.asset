@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
-  m_Name: "Ancient Bracer\u25BC"
+  m_Name: "Scrap Armor \u25BC"
   m_EditorClassIdentifier: 
   recipeCategory: 4
-  priority: 100
+  priority: 20
   resultItem:
     itemData: {fileID: 0}
     stacks: 0
@@ -27,18 +27,17 @@ MonoBehaviour:
   xpGranted: 0
   tier: 0
   recipeItem: {fileID: 0}
-  requiredItems:
-  - {fileID: 11400000, guid: a0b5dda13b42cc148900266b7c8d4927, type: 2}
-  requiredStructures: []
+  requiredItems: []
+  requiredStructures:
+  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
   requiredProfession: 0
   requiredProfessionExperience: 0
   recipesInThisCategory:
-  - {fileID: 11400000, guid: 34dfaa01437fb4f429aa043c2ccc99f6, type: 2}
-  - {fileID: 11400000, guid: 18a1a7c438925784eb51468731439671, type: 2}
-  - {fileID: 11400000, guid: 49b55502fe0241842bf7a2c76963d630, type: 2}
-  - {fileID: 11400000, guid: c76a7c8923c9ed44789186d6b4da78db, type: 2}
-  - {fileID: 11400000, guid: 5a9973d61ff1ef14cae65cef85b820d6, type: 2}
-  - {fileID: 11400000, guid: dce3395026d7d7844807c794dc03ea71, type: 2}
+  - {fileID: 11400000, guid: 9e765f16af762604bbe5e5526f08373c, type: 2}
+  - {fileID: 11400000, guid: 70443ce43e8a3d54ca3409e1ff0212f9, type: 2}
+  - {fileID: 11400000, guid: 60bb011f7a13f6347b0f4bf1fedec2d2, type: 2}
+  - {fileID: 11400000, guid: e6c5785a928b73f41a2dadd1ccfea46b, type: 2}
+  - {fileID: 11400000, guid: 6a19bebfc0ba2e6409a48871e967514e, type: 2}
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []
