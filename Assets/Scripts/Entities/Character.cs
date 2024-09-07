@@ -497,4 +497,16 @@ public class Character : Entity
     {
         rotateTarget = target;
     }
+    protected override void OnDeath()
+    {
+        base.OnDeath();
+        foreach (var item in buffs)
+        {
+            CmdRemoveBuff(item.name);
+        }
+        foreach (var item in skillInstances)
+        {
+            item.StopExecute();
+        }
+    }
 }

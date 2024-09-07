@@ -46,7 +46,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                 }
                 if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
                 {
-                    stashSlot.CmdDeleteItemOnClients();
+                    stashSlot.CmdRemoveItem();
                     inventoryItem.item.Item_Stacks_Acquired.Invoke(inventoryItem.item, inventoryItem.stacks);
                 }
                 inventoryItem.parentAfterDrag = transform;

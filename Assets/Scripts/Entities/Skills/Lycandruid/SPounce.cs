@@ -43,10 +43,6 @@ public class SPounce : Skill
     public override void StopExecute()
     {
         base.StopExecute();
-        castingEntity.GetComponent<PlayerController>().Enemy_Left_Clicked.RemoveListener(MoveWithinRange);
-        castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(StartCasting);
-        if (castingEntity.isOwned)
-            castingEntity.skillIndicator.InterruptCasting();
     }
     private void MoveWithinRange(EnemyCharacter enemy)
     {
@@ -98,6 +94,7 @@ public class SPounce : Skill
         }
         moveComp.agent.enabled = true;
         stunBuff.duration = baseDuration;
+        castingEntity.GetComponent<PlayerController>().CmdChangeState(PlayerState.None);
         CastEffect();
     }
     private void CastEffect()

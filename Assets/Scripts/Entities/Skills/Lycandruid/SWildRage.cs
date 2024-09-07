@@ -50,9 +50,6 @@ public class SWildRage : Skill
     public override void StopExecute()
     {
         base.StopExecute();
-        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill5_Casted.RemoveAllListeners();
-        if (castingEntity.isOwned)
-            castingEntity.skillIndicator.InterruptCasting();
     }
     protected override void Cast()
     {

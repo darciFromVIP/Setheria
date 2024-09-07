@@ -38,10 +38,7 @@ public class SBash : Skill
     public override void StopExecute()
     {
         base.StopExecute();
-        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
-        castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveAllListeners();
         castingEntity.skillIndicator.InterruptCasting();
-        castingEntity.Stun_Begin.RemoveListener(StopExecute);
         castingEntity.animator.SetTrigger("Reset");
         castingEntity.StartCooldown1();
     }
@@ -55,7 +52,6 @@ public class SBash : Skill
         }
         if (castingEntity.isServer)
             castingEntity.GetComponent<Character>().CastSkill1();
-        castingEntity.Stun_Begin.AddListener(StopExecute);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.AddListener(Cast);
         castingEntity.skillIndicator.ShowRadius(radius, true, RPG_Indicator.RpgIndicator.IndicatorColor.Enemy, 0);
         castingEntity.skillIndicator.Casting(2);
@@ -71,6 +67,5 @@ public class SBash : Skill
         castingEntity.StartCooldown1();
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
         castingEntity.GetComponent<CanAttack>().CmdResumeActing();
-        castingEntity.Stun_Begin.RemoveListener(StopExecute);
     }
 }

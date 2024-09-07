@@ -75,11 +75,10 @@ public class Skill : ScriptableObject
     }
     public virtual void Execute(Character self)
     {
-        castingEntity = self;
+        SetCastingEntity(self);
         PlayerController player = castingEntity.GetComponent<PlayerController>();
         if (player)
         {
-            UpdateDescription();
             player.SetCurrentSkill(this);
             player.CmdChangeState(PlayerState.Casting);
             player.Ground_Left_Clicked.RemoveAllListeners();
@@ -89,6 +88,24 @@ public class Skill : ScriptableObject
     {
         if (castingEntity.TryGetComponent(out CanAttack attackComp))
             attackComp.CmdSetCasting(false);
+        if (castingEntity.TryGetComponent(out PlayerController playerController))
+        {
+            playerController.Ground_Left_Clicked.RemoveListener(StartCasting);
+            playerController.Enemy_Left_Clicked.RemoveAllListeners();
+            playerController.Ally_Left_Clicked.RemoveAllListeners();
+        }
+        if (castingEntity.TryGetComponent(out CanMove move))
+            move.Moved_Within_Range.RemoveListener(StartCasting);
+        if (castingEntity.TryGetComponent(out AnimatorEventReceiver animatorEventReceiver))
+        { 
+            animatorEventReceiver.Skill1_Casted.RemoveAllListeners();
+            animatorEventReceiver.Skill2_Casted.RemoveAllListeners();
+            animatorEventReceiver.Skill3_Casted.RemoveAllListeners();
+            animatorEventReceiver.Skill4_Casted.RemoveAllListeners();
+            animatorEventReceiver.Skill5_Casted.RemoveAllListeners();
+        }
+        if (castingEntity.isOwned)
+            castingEntity.skillIndicator.InterruptCasting();
     }
     public virtual void UpdateDescription()
     {
@@ -100,6 +117,8 @@ public class Skill : ScriptableObject
     public void SetCastingEntity(Character self)
     {
         castingEntity = self;
+        castingEntity.Stun_Begin.RemoveListener(StopExecute);
+        castingEntity.Stun_Begin.AddListener(StopExecute);
         if (self is PlayerCharacter)
             UpdateDescription();
     }

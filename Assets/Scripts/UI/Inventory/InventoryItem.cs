@@ -365,7 +365,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                         if (!inventoryManager.GetFreeSlot())
                             return;
                         inventoryManager.AddItem(item, stacks);
-                        GetComponentInParent<StashSlot>().CmdDeleteItemOnClients();
+                        GetComponentInParent<StashSlot>().CmdRemoveItem();
                     }
                 }
             }
@@ -419,7 +419,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     ChangeStacks(inventoryItem.stacks, false);
                 if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
                 {
-                    stashSlot.CmdDeleteItemOnClients();
+                    stashSlot.CmdRemoveItem();
                 }
                 inventoryItem.DestroyTempObject();
                 inventoryItem.DestroyItem();
@@ -457,12 +457,12 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 
                 if (otherParent.TryGetComponent(out StashSlot slot))
                 {
-                    slot.CmdDeleteItemOnClients();
+                    slot.CmdRemoveItem();
                     slot.CmdSpawnItemOnThisSlot(item.name, stacks);
                 }
                 if (myParent.TryGetComponent(out StashSlot stashSlot))
                 {
-                    stashSlot.CmdDeleteItemOnClients();
+                    stashSlot.CmdRemoveItem();
                     stashSlot.CmdSpawnItemOnThisSlot(inventoryItem.item.name, inventoryItem.stacks);
                 }
             }

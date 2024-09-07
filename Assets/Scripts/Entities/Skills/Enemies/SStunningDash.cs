@@ -45,10 +45,7 @@ public class SStunningDash : Skill
     public override void StopExecute()
     {
         base.StopExecute();
-        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
-        castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveAllListeners();
         castingEntity.skillIndicator.InterruptCasting();
-        castingEntity.Stun_Begin.RemoveListener(StopExecute);
         castingEntity.animator.SetTrigger("Reset");
     }
     protected override void StartCasting()

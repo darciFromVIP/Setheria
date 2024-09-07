@@ -54,7 +54,7 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     }
     public void ExitToMainMenu()
     {
-        FindObjectOfType<InventoryManager>().DestroyAllItems();
+        FindObjectOfType<InventoryManager>(true).DestroyAllItems();
         SceneManager.LoadSceneAsync("Main Menu", LoadSceneMode.Single);
     }
     void ResourceHook(int oldValue, int newValue)

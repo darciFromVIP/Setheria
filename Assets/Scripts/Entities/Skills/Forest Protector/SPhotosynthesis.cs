@@ -45,9 +45,6 @@ public class SPhotosynthesis : Skill
     public override void StopExecute()
     {
         base.StopExecute();
-        castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveAllListeners();
-        if (castingEntity.isOwned)
-            castingEntity.skillIndicator.InterruptCasting();
     }
 
     public override void UpdateDescription()

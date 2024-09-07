@@ -30,7 +30,7 @@ public class StashSlot : NetworkBehaviour, IDropHandler
             if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
                 return;
             else if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
-                stashSlot.CmdDeleteItemOnClients();
+                stashSlot.CmdRemoveItem();
             else
                 inventoryItem.DestroyItem();
             CmdSpawnItemOnThisSlot(inventoryItem.item.name, inventoryItem.stacks);
@@ -53,12 +53,12 @@ public class StashSlot : NetworkBehaviour, IDropHandler
         isFree = false;
     }
     [Command(requiresAuthority = false)]
-    public void CmdDeleteItemOnClients()
+    public void CmdRemoveItem()
     {
-        RpcDeleteItemOnClients();
+        RpcRemoveItem();
     }
     [ClientRpc]
-    private void RpcDeleteItemOnClients()
+    private void RpcRemoveItem()
     {
         var item = GetComponentInChildren<InventoryItem>(true);
         if (item)

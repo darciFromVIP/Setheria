@@ -26,10 +26,6 @@ public class ISBlowpipe : Skill
     public override void StopExecute()
     {
         base.StopExecute();
-        castingEntity.GetComponent<PlayerController>().Enemy_Left_Clicked.RemoveListener(MoveWithinRange);
-        castingEntity.GetComponent<CanMove>().Moved_Within_Range.RemoveListener(Cast);
-        if (castingEntity.isOwned)
-            castingEntity.skillIndicator.InterruptCasting();
     }
     private void MoveWithinRange(EnemyCharacter enemy)
     {

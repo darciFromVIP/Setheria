@@ -170,14 +170,14 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
                     var stashItem = stash.GetItemOfName(temp.itemData.name);
                     if (stashItem != null)
                         if (stashItem.stacks >= totalStacks)
-                            stash.RemoveItem(temp);
+                            stash.CmdRemoveItem(temp);
                         else if (inventoryItem.stacks + stashItem.stacks >= totalStacks)
                         {
                             temp.stacks = inventoryItem.stacks;
                             var afterStacks = totalStacks - inventoryItem.stacks;
                             inventory.RemoveItem(temp);
                             temp.stacks = afterStacks;
-                            stash.RemoveItem(temp);
+                            stash.CmdRemoveItem(temp);
                         }
                         else
                         {
@@ -200,7 +200,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
                 var stashItem = stash.GetItemOfName(temp.itemData.name);
                 if (stashItem != null)
                     if (stashItem.stacks >= totalStacks)
-                        stash.RemoveItem(temp);
+                        stash.CmdRemoveItem(temp);
                     else
                     {
                         SendComponentMissingMessage();

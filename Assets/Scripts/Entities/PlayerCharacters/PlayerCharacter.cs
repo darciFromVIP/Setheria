@@ -28,8 +28,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [SyncVar] [SerializeField] protected int xp;                                             //We need SyncVars to sync data from server to client when the client connects
     [SyncVar] [SerializeField] protected int maxXp;
     protected int attributePoints = 0;
-    public int hunger;
-    public int maxHunger;
+    [SyncVar] public int hunger;
+    [SyncVar] public int maxHunger;
     protected float hungerInterval;
     protected float hungerIntervalMultiplier = 0;
     protected float hungerTimer = 0;
@@ -1030,12 +1030,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         animator.SetTrigger(animHash_Revive);
         if (isOwned)
         {
-            CmdChangeHunger(-20, true);
-            if (hunger < 20)
+            if (hunger - 20 < 20)
             {
-                hunger = 20;
-                CmdChangeHunger(0, false);
+                CmdSetHunger(20);
             }
+            else
+                CmdChangeHunger(-20, true);            
         }
         if (isOwned)
             FindObjectOfType<CameraTarget>().CenterCamera(false);

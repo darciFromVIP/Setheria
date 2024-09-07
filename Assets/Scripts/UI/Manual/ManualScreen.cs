@@ -308,7 +308,12 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         if (recipe != null) 
         {
             if (recipe.unlocked && recipe.visible)
+            {
                 GetComponentInChildren<RecipeDetail>(true).UpdateDetails(recipe, false);
+                currentOpenedCategory = recipe.recipeCategory;
+                ClearRecipeList();
+                UpdateCurrentCategory();
+            }
         }
     }
     private List<ItemRecipeInfo> GetAllAvailableItems()

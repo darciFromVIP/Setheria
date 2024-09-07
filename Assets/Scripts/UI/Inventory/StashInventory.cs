@@ -102,7 +102,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
     {
         return AddItemOnClient(itemDatabase.GetItemByName(itemData.name), itemData.stacks, true);
     }
-    public void RemoveItem(ItemRecipeInfo itemToDestroy)
+    public void CmdRemoveItem(ItemRecipeInfo itemToDestroy)
     {
         foreach (var item in stashSlots)
         {
@@ -115,13 +115,11 @@ public class StashInventory : MonoBehaviour, WindowedUI
                     {
                         if (temp.item.stackable)
                         {
-                            temp.ChangeStacks(-itemToDestroy.stacks);
+                            item.CmdChangeStacks(-itemToDestroy.stacks);
                         }
                         else
                         {
-                            temp.transform.SetParent(null);
-                            Destroy(temp.gameObject);
-                            item.isFree = true;
+                            item.CmdRemoveItem();
                         }
                     }
                 }
