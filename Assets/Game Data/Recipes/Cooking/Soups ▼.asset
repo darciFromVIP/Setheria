@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
+  m_Name: "Soups \u25BC"
+  m_EditorClassIdentifier: 
+  recipeCategory: 5
+  priority: 20
+  resultItem:
+    itemData: {fileID: 0}
+    stacks: 0
+  componentItems: []
+  resourceCost: 0
+  unlocked: 1
+  visible: 1
+  freshlyUnlocked: 0
+  requiredStructure: {fileID: 0}
+  craftingDuration: 0
+  xpGranted: 0
+  tier: 0
+  recipeItem: {fileID: 0}
+  requiredItems: []
+  requiredStructures: []
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  recipesInThisCategory:
+  - {fileID: 11400000, guid: fc814b9ccfc555848949813be96e1f10, type: 2}
+  - {fileID: 11400000, guid: fe897954bf8eca54da7a13169248dd57, type: 2}
+  - {fileID: 11400000, guid: f823d0da18a4f7a48a6c5b11822db856, type: 2}
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []

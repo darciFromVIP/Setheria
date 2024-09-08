@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    Eating this restores +5<sprite=12>.
+    Eating this restores:
+
+    +7<sprite=12>
+
+    -3
+    Hydratation
 
     __________________________________
 
@@ -24,15 +29,17 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: dbd3931a67db3f24e873dab4a32ee35a, type: 3}
   stackable: 1
   usage:
-  - {fileID: 11400000, guid: 5ea5dfd5ddb295c468b0c52e2047cf8e, type: 2}
+  - {fileID: 11400000, guid: a4907513d044f3f4492811ad4ca7b5aa, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
+  activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

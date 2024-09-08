@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tropical Food
   m_EditorClassIdentifier: 
   recipeCategory: 5
-  priority: 10
+  priority: 15
   resultItem:
     itemData: {fileID: 11400000, guid: 3c64b5397381b5c4b83d7130b9baa0c6, type: 2}
     stacks: 1
@@ -23,6 +23,8 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: 9d37711ce16935d4db88180b16523947, type: 2}
     stacks: 1
   - itemData: {fileID: 11400000, guid: 8c92f68877404364a8d61d9ed463a766, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: e707f0b9aecac3d48a4b3ea0e0854505, type: 2}
     stacks: 1
   resourceCost: 0
   unlocked: 0
@@ -38,6 +40,7 @@ MonoBehaviour:
   requiredStructures: []
   requiredProfession: 2
   requiredProfessionExperience: 50
+  recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []

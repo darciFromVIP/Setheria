@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Dismantle Bench
+  m_Name: Salt
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    This structure can dismantle
-    items into materials.
+    Small sack of Salt. Good
+    ingredient to craft various food.
 
     __________________________________
 
-    Structure'
-  grade: 0
+    Cooking,
+    Alchemy'
+  grade: 1
   itemType: 0
-  sprite: {fileID: 21300000, guid: 5c972649d925d044e898ee0f210f9457, type: 3}
-  stackable: 0
-  usage:
-  - {fileID: 11400000, guid: 6c16ee02ede95284ba31d282bbf57eb4, type: 2}
+  sprite: {fileID: 21300000, guid: 988e7d70deadbdc42b9624b049cfe861, type: 3}
+  stackable: 1
+  usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
   value: 0
-  destroyItemOnUse: 1
+  destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
