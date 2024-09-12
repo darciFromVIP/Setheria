@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
+  m_Name: Spellbloom Juice
+  m_EditorClassIdentifier: 
+  recipeCategory: 5
+  priority: 60
+  resultItem:
+    itemData: {fileID: 11400000, guid: a8759afe57115fe42af1b2c566ba6a0d, type: 2}
+    stacks: 1
+  componentItems:
+  - itemData: {fileID: 11400000, guid: 533f61762d2826a41834241e43a638d4, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: 259866ad2fbffe245b24c7bae99eea3e, type: 2}
+    stacks: 3
+  resourceCost: 0
+  unlocked: 0
+  visible: 0
+  freshlyUnlocked: 0
+  requiredStructure: {fileID: 0}
+  craftingDuration: 3
+  xpGranted: 15
+  tier: 1
+  recipeItem: {fileID: 11400000, guid: 3744f633eb92a8b46a581ab78a84575e, type: 2}
+  requiredItems: []
+  requiredStructures: []
+  requiredProfession: 2
+  requiredProfessionExperience: 10
+  recipesInThisCategory: []
+  Recipe_Unlocked:
+    m_PersistentCalls:
+      m_Calls: []
