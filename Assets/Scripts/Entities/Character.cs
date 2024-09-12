@@ -293,6 +293,9 @@ public class Character : Entity
             case BuffType.Power:
                 buffInstance = new BPower(buffScriptable.value, this);
                 break;
+            case BuffType.PowerPercent:
+                buffInstance = new BPowerPercent(buffScriptable.value, this);
+                break;
             case BuffType.CriticalChance:
                 buffInstance = new BCriticalChance(buffScriptable.value, this);
                 break;

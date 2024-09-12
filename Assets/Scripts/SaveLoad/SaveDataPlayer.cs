@@ -34,6 +34,9 @@ public class SaveDataPlayer
     public int hunger;
     public int maxHunger;
     public float hungerInterval;
+    public int water;
+    public int maxWater;
+    public float waterInterval;
     public float health;
     public float baseMaxHealth;
     public float baseHealthRegen;
@@ -110,5 +113,8 @@ public class SaveDataPlayer
         hunger = 100;
         maxHunger = 100;
         hungerInterval = 20;
+        water = 100;
+        maxWater = 100;
+        waterInterval = 15;
     }
 }

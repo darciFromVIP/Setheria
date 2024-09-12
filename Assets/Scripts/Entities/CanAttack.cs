@@ -497,6 +497,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         basePower += value;
         finalPower = basePower + gearPower;
+        if (finalPower <= 0)
+            finalPower = 0;
         Power_Changed.Invoke(finalPower);
     }
     [Command(requiresAuthority = false)]
@@ -513,12 +515,16 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         gearPower += value;
         finalPower = basePower + gearPower;
+        if (finalPower <= 0)
+            finalPower = 0;
         Power_Changed.Invoke(finalPower);
     }
     public void SetPower(float value)
     {
         basePower = value;
         finalPower = basePower + gearPower;
+        if (finalPower <= 0)
+            finalPower = 0;
         Power_Changed.Invoke(finalPower);
     }
     [Command(requiresAuthority = false)]

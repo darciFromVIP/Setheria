@@ -11,7 +11,9 @@ public class Heartstone : MonoBehaviour, ISaveable
     {
         respawnActivated = true;
         FindObjectOfType<SystemMessages>().AddMessage("New respawn point unlocked!", MsgType.Positive);
-        FindObjectOfType<GameManager>().localPlayerCharacter.DeathTutorial();
+        var gm = FindObjectOfType<GameManager>();
+        if (gm.localPlayerCharacter)
+            gm.localPlayerCharacter.DeathTutorial();
     }
     public void LoadState(SaveDataWorldObject state)
     {

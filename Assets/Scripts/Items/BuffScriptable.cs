@@ -7,7 +7,8 @@ public enum BuffType
     Bleed, Slow, Stun, Regen, Fear,
     MaxHealth, MaxMana, ManaRegen, InventorySlots, Power, 
     CriticalChance, CriticalDamage, AttackSpeedMultiplier, Armor, CooldownReduction, AttackRange, Speed, BaseAttackSpeed, 
-    PowerScaling, CorruptionResistance, Corruption, Sleep, Invulnerability
+    PowerScaling, CorruptionResistance, Corruption, Sleep, Invulnerability,
+    PowerPercent
 }
 [CreateAssetMenu(menuName = "Buff")]
 public class BuffScriptable : ScriptableObject

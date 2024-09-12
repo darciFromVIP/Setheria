@@ -4,7 +4,7 @@ using UnityEngine;
 public enum PlayerStat
 {
     Health, MaxHealth, HealthRegen, Mana, MaxMana, ManaRegen, Hunger, MaxHunger, Resources, Knowledge, 
-    ActiveItemSlot, AttributePoint, Power, AttackSpeed, CriticalChance, CriticalDamage, Armor, CooldownReduction, MovementSpeed, Level, CorruptedHealthMana
+    ActiveItemSlot, AttributePoint, Power, AttackSpeed, CriticalChance, CriticalDamage, Armor, CooldownReduction, MovementSpeed, Level, CorruptedHealthMana, Hydration
 }
 [CreateAssetMenu(menuName = "Actions/Change Stat")]
 public class AChangeStat : ActionTemplate

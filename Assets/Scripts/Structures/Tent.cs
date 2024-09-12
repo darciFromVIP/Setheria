@@ -45,6 +45,7 @@ public class Tent : NetworkBehaviour
         playerCharacter.DisableCharacter();
         playerCharacter.GetComponent<HasMana>().ChangeGearManaRegen(5 + (playerCharacter.GetComponent<HasMana>().GetFinalMaxMana() * 0.01f));
         playerCharacter.ChangeHungerIntervalMultiplier(3);
+        playerCharacter.ChangeWaterIntervalMultiplier(3);
         var img = Instantiate(restingPlayerPrefab, restingPlayersUI);
         img.sprite = FindObjectOfType<HeroIcon>().GetHeroIcon(playerCharacter.hero);
     }
@@ -67,6 +68,7 @@ public class Tent : NetworkBehaviour
         playerCharacter.EnableCharacter();
         playerCharacter.GetComponent<HasMana>().ChangeGearManaRegen(-(5 + (playerCharacter.GetComponent<HasMana>().GetFinalMaxMana() * 0.01f)));
         playerCharacter.ChangeHungerIntervalMultiplier(-3);
+        playerCharacter.ChangeWaterIntervalMultiplier(-3);
     }
     public void StopRestAllPlayers()
     {

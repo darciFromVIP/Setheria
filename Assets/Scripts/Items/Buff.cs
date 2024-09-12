@@ -247,6 +247,33 @@ public class BPower : Buff
         targetEntity.GetComponent<CanAttack>().ChangeGearPower(-value);
     }
 }
+public class BPowerPercent : Buff
+{
+    float modifiedPower = 0;
+    public BPowerPercent(float value, Character targetEntity)
+    {
+        buffType = BuffType.PowerPercent;
+        this.value = value;
+        this.targetEntity = targetEntity;
+        var temp = targetEntity.GetComponent<CanAttack>();
+        var temp2 = temp.GetFinalPower() * value;
+        modifiedPower = temp2 - temp.GetFinalPower();
+        temp.ChangeGearPower(modifiedPower);
+    }
+    public override void BuffExpired()
+    {
+        base.BuffExpired();
+        targetEntity.GetComponent<CanAttack>().ChangeGearPower(-modifiedPower * stacks);
+    }
+    public override void IncreaseStacks()
+    {
+        base.IncreaseStacks();
+    }
+    public override void DecreaseStacks()
+    {
+        base.DecreaseStacks();
+    }
+}
 public class BCriticalChance : Buff
 {
     public BCriticalChance(float value, Character targetEntity)

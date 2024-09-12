@@ -33,6 +33,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     protected float hungerInterval;
     protected float hungerIntervalMultiplier = 0;
     protected float hungerTimer = 0;
+    [SyncVar] public int water;
+    [SyncVar] public int maxWater;
+    protected float waterInterval;
+    protected float waterIntervalMultiplier = 0;
+    protected float waterTimer = 0;
     protected Vector3 returnPoint;
 
     protected int attMaxHealth = 0;
@@ -57,6 +62,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [System.NonSerialized] public UnityEvent<PlayerCharacter> Character_Loaded = new();
     [SyncVar] public bool isLoaded = false;
     [System.NonSerialized] public UnityEvent Hunger_Changed = new();
+    [System.NonSerialized] public UnityEvent Water_Changed = new();
     [System.NonSerialized] public UnityEvent<int> Attributes_Changed = new();
     [System.NonSerialized] public UnityEvent<int> AttHealth_Changed = new();
     [System.NonSerialized] public UnityEvent<int> AttHealthRegen_Changed = new();
@@ -151,11 +157,23 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 {
                     hungerTimer = 0;
                     CmdChangeHunger(-1, false);
+                    CmdRemoveBuff("Starving", connectionToClient);
                 }
-                else if (hunger <= 0 && hungerTimer >= 4)
+                else if (hunger <= 0 && hungerTimer >= 10)
                 {
                     hungerTimer = 0;
-                    healthComp.CmdTakeDamage(healthComp.GetBaseMaxHealth() * 0.2f, true, GetComponent<NetworkIdentity>(), true, true, true);
+                    CmdAddBuff("Starving", connectionToClient);
+                }
+                waterTimer += Time.deltaTime;
+                if (waterTimer >= GetWaterInterval())
+                {
+                    waterTimer = 0;
+                    CmdChangeWater(-1, false);
+                }
+                else if (water <= 0 && waterTimer >= 4)
+                {
+                    waterTimer = 0;
+                    manaComp.CmdSpendMana(manaComp.GetFinalMaxMana() * 0.2f);
                 }
             }
             yield return null;
@@ -254,6 +272,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     CmdSetHunger(item.hunger);
                     hungerInterval = item.hungerInterval;
                     ChangeHungerIntervalMultiplier(1);
+                    maxWater = item.maxWater;
+                    CmdSetWater(item.water);
+                    waterInterval = item.waterInterval;
+                    ChangeWaterIntervalMultiplier(1);
                     healthComp.SetBaseMaxHealth(item.baseMaxHealth);
                     healthComp.SetHealth(item.health);
                     healthComp.SetBaseHealthRegen(item.baseHealthRegen);
@@ -480,6 +502,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             hunger = hunger,
             maxHunger = maxHunger,
             hungerInterval = hungerInterval,
+            water = water,
+            maxWater = maxWater,
+            waterInterval = waterInterval,
             health = healthComp.GetHealth(),
             baseMaxHealth = healthComp.GetBaseMaxHealth(),
             baseHealthRegen = healthComp.GetBaseHealthRegen(),
@@ -682,6 +707,46 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         hunger = amount;
         Hunger_Changed.Invoke();
     }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeWater(int amount, bool showText)
+    {
+        if (showText)
+        {
+            if (amount > 0)
+            {
+                FindObjectOfType<FloatingText>().ServerSpawnFloatingText("+" + amount + " <sprite=20>", transform.position, FloatingTextType.Hydration);
+            }
+            else
+                FindObjectOfType<FloatingText>().ServerSpawnFloatingText(amount + " <sprite=20>", transform.position, FloatingTextType.Hydration);
+        }
+        RpcChangeWater(amount);
+    }
+    [ClientRpc]
+    public void RpcChangeWater(int amount)
+    {
+        water += amount;
+        if (isOwned)
+        {
+            if ((water == 20 || water == 10) && amount < 0)
+            {
+                FindObjectOfType<SystemMessages>().AddMessage("You are dehydrated.");
+            }
+            if (amount > 0)
+                FindObjectOfType<AudioManager>().EatFood(transform.position);
+        }
+        Water_Changed.Invoke();
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdSetWater(int amount)
+    {
+        RpcSetWater(amount);
+    }
+    [ClientRpc]
+    public void RpcSetWater(int amount)
+    {
+        water = amount;
+        Water_Changed.Invoke();
+    }
     public void ChangeStat(PlayerStat playerStat, float modifier)
     {
         switch (playerStat)
@@ -714,6 +779,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 CmdChangeHunger((int)modifier, true);
                 break;
             case PlayerStat.MaxHunger:
+                break;
+            case PlayerStat.Hydration:
+                CmdChangeWater((int)modifier, true);
                 break;
             case PlayerStat.Resources:
                 FindObjectOfType<GameManager>().ChangeResources((int)modifier);
@@ -1014,6 +1082,25 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public float GetHungerInterval()
     {
         return hungerInterval * hungerIntervalMultiplier;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeWaterIntervalMultiplier(float value)
+    {
+        RpcChangeWaterIntervalMultiplier(value);
+    }
+    [ClientRpc]
+    public void RpcChangeWaterIntervalMultiplier(float value)
+    {
+        ChangeWaterIntervalMultiplier(value);
+    }
+    public void ChangeWaterIntervalMultiplier(float value)
+    {
+        waterIntervalMultiplier += value;
+        Water_Changed.Invoke();
+    }
+    public float GetWaterInterval()
+    {
+        return waterInterval * waterIntervalMultiplier;
     }
     protected override void OnDeath()
     {
