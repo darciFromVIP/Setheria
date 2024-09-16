@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.AI;
-
+using FMOD;
+using FMODUnity;
 [RequireComponent(typeof(CanMove), typeof(CanPickup))]
 public class ShipController : NetworkBehaviour
 {
@@ -15,6 +16,7 @@ public class ShipController : NetworkBehaviour
     private List<Collider> collidingColliders = new();
     private GameObject clickEffect;
     public InputEnabledScriptable inputEnabled;
+    private StudioEventEmitter shipSounds;
 
     private void Start()
     {
@@ -24,11 +26,16 @@ public class ShipController : NetworkBehaviour
         settingsManager = FindObjectOfType<SettingsManager>();
         collidingColliders.Clear();
         clickEffect = FindObjectOfType<ClickEffect>().gameObject;
+        shipSounds = GetComponent<StudioEventEmitter>();
     }
     private void Update()
     {
         if (isOwned && inputEnabled.inputEnabled)
             InputHandle();
+        if (moveComp.agent.velocity.magnitude > 0)
+            shipSounds.SetParameter("Ship", 1);
+        else
+            shipSounds.SetParameter("Ship", 0);
     }
     private void OnTriggerEnter(Collider other)
     {

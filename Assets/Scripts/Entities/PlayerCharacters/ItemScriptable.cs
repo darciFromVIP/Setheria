@@ -23,6 +23,7 @@ public class ItemScriptable : ScriptableObject
     public ItemType itemType;
     public Sprite sprite;
     public bool stackable = true;
+    public int maxStacks = 99;
     public List<ActionTemplate> usage;
     public float usageCooldown;
     public CooldownGroup cooldownGroup;

@@ -9,10 +9,12 @@ public class BuffUI : MonoBehaviour
 {
     private Image image;
     private TooltipTrigger tooltipTrigger;
+    public Image frame;
     public TextMeshProUGUI durationText, stacksText;
     private Slider slider;
     public Buff currentBuffInstance;
     public BuffDatabase buffDatabase;
+    public Color positiveBuff, negativeBuff;
 
     private void Awake()
     {
@@ -56,6 +58,7 @@ public class BuffUI : MonoBehaviour
             image.sprite = buff.sprite;
         else
             Destroy(gameObject);
+        frame.color = buff.positiveBuff ? positiveBuff : negativeBuff;
         tooltipTrigger.SetText(buff.name, buff.description, buff.sprite);
         currentBuffInstance = buffInstance;
         slider.maxValue = buff.duration;

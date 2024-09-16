@@ -252,18 +252,15 @@ public class BPowerPercent : Buff
     float modifiedPower = 0;
     public BPowerPercent(float value, Character targetEntity)
     {
-        buffType = BuffType.PowerPercent;
+        buffType = BuffType.PowerMultiplier;
         this.value = value;
         this.targetEntity = targetEntity;
-        var temp = targetEntity.GetComponent<CanAttack>();
-        var temp2 = temp.GetFinalPower() * value;
-        modifiedPower = temp2 - temp.GetFinalPower();
-        temp.ChangeGearPower(modifiedPower);
+        targetEntity.GetComponent<CanAttack>().ChangePowerMultiplier(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<CanAttack>().ChangeGearPower(-modifiedPower * stacks);
+        targetEntity.GetComponent<CanAttack>().ChangePowerMultiplier(-value);
     }
     public override void IncreaseStacks()
     {

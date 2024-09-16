@@ -24,6 +24,7 @@ public class RespawnUI : MonoBehaviour
         heartstoneBTN.interactable = false;
         startPointBTN.interactable = false;
         baseBTN.interactable = false;
+        FindObjectOfType<AudioManager>().PlayerDeath();
         window.SetActive(true);
         StartCoroutine(StartDeathTimer());
     }

@@ -162,17 +162,21 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 else if (hunger <= 0 && hungerTimer >= 10)
                 {
                     hungerTimer = 0;
-                    CmdAddBuff("Starving", connectionToClient);
+                    if (HasBuff("Starving") == 0)
+                        CmdAddBuff("Starving", connectionToClient);
                 }
                 waterTimer += Time.deltaTime;
                 if (waterTimer >= GetWaterInterval())
                 {
                     waterTimer = 0;
                     CmdChangeWater(-1, false);
+                    CmdRemoveBuff("Dehydrated", connectionToClient);
                 }
                 else if (water <= 0 && waterTimer >= 4)
                 {
                     waterTimer = 0;
+                    if (HasBuff("Dehydrated") == 0)
+                        CmdAddBuff("Dehydrated", connectionToClient);
                     manaComp.CmdSpendMana(manaComp.GetFinalMaxMana() * 0.2f);
                 }
             }
@@ -732,7 +736,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 FindObjectOfType<SystemMessages>().AddMessage("You are dehydrated.");
             }
             if (amount > 0)
-                FindObjectOfType<AudioManager>().EatFood(transform.position);
+                FindObjectOfType<AudioManager>().DrinkWater(transform.position);
         }
         Water_Changed.Invoke();
     }
@@ -823,6 +827,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 GetComponent<HasHealth>().CmdChangeCorruptedHealth(modifier);
                 GetComponent<HasMana>().CmdChangeCorruptedMana(modifier);
                 break;
+            case PlayerStat.PowerMultiplier:
+                GetComponent<CanAttack>().ChangePowerMultiplier(modifier);
+                break;
             default:
                 break;
         }
@@ -894,6 +901,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     FindObjectOfType<SystemMessages>().AddMessage("You are not corrupted.");
                     return false;
                 }
+                break;
+            case PlayerStat.Hydration:
+                if (water + modifier > 100)
+                    return false;
+                break;
+            case PlayerStat.PowerMultiplier:
                 break;
             default:
                 break;
@@ -1117,12 +1130,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         animator.SetTrigger(animHash_Revive);
         if (isOwned)
         {
-            if (hunger - 20 < 20)
-            {
-                CmdSetHunger(20);
-            }
-            else
-                CmdChangeHunger(-20, true);            
+            CmdChangeHunger(-20, true);      
         }
         if (isOwned)
             FindObjectOfType<CameraTarget>().CenterCamera(false);

@@ -116,9 +116,10 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
     {
         levelText.text = level.ToString();
     }
-    private void UpdatePower(float value)
+    private void UpdatePower(float basePower, float gearPower, float finalPower, float powerMultiplier)
     {
-        powerText.text = ((int)value).ToString();
+        powerText.text = ((int)finalPower).ToString();
+        powerText.GetComponent<TooltipTrigger>().SetText("Power Calculation", "(" + basePower + " + " + gearPower + ") * " + (powerMultiplier * 100).ToString("F0") + "% = " + finalPower.ToString("F0"));
     }
     private void UpdateCriticalChance(float value)
     {

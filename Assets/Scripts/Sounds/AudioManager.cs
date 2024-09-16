@@ -297,6 +297,14 @@ public class AudioManager : MonoBehaviour
     {
         PlayOneShot(fmodEventsDatabase.EatFood, position);
     }
+    public void DrinkWater(Vector3 position)
+    {
+        PlayOneShot(fmodEventsDatabase.DrinkWater, position);
+    }
+    public void PlayerDeath()
+    {
+        PlayOneShot(fmodEventsDatabase.PlayerDeath, default);
+    }
     public EventInstance CreateEventInstance(EventReference eventReference, Transform pos)
     {
         EventInstance instance = RuntimeManager.CreateInstance(eventReference);

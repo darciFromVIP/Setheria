@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7441370699895035577}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7959221220734408964}
   - component: {fileID: 3011368493655030646}
   - component: {fileID: 6957035713857197619}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 8538916009262958710}
   - component: {fileID: 935516817448020609}
   - component: {fileID: 3820748829139085439}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: RefreshBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 4049064960514402561}
   - component: {fileID: 8185286904917637224}
   - component: {fileID: 2386038552059143528}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 1614779907426699205}
   - component: {fileID: 5702606302478120712}
   - component: {fileID: 4137397520888311960}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1253465495681394361}
   - component: {fileID: 8700573535417490704}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 8776809958951354068}
   - component: {fileID: 3517084275391932898}
   - component: {fileID: 1006343927132954188}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: FertilizedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 2464175396707177598}
   - component: {fileID: 4504096399018259323}
   - component: {fileID: 2273892325644620910}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: FertilizedIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1489,6 +1489,7 @@ MonoBehaviour:
   minimumCount: 2
   maximumCount: 3
   sprout: {fileID: 2176421569622331936}
+  statusBar: {fileID: 0}
   fertilizedText: {fileID: 1006343927132954188}
   slider: {fileID: 8700573535417490704}
 --- !u!4 &6350557599784444269 stripped

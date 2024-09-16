@@ -14,6 +14,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     [SerializeField] private float basePower;
     [SerializeField] private float gearPower = 0;
     [SerializeField] private float finalPower;
+    [SerializeField] private float powerMultiplier = 1;
     [SerializeField] private float powerScaling = 1;
     [SerializeField] private float baseCriticalChance = 0f;
     private float gearCriticalChance = 0;
@@ -54,7 +55,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
 
     [System.NonSerialized] public UnityEvent<NetworkIdentity> Target_Acquired = new();
     [System.NonSerialized] public UnityEvent Target_Lost = new();
-    [System.NonSerialized] public UnityEvent<float> Power_Changed = new();
+    [System.NonSerialized] public UnityEvent<float, float, float, float> Power_Changed = new();
     [System.NonSerialized] public UnityEvent<float> Critical_Chance_Changed = new();
     [System.NonSerialized] public UnityEvent<float> Critical_Damage_Changed = new();
     [System.NonSerialized] public UnityEvent<float> Attack_Speed_Changed = new();
@@ -496,10 +497,10 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     public void ChangePower(float value)
     {
         basePower += value;
-        finalPower = basePower + gearPower;
+        finalPower = (basePower + gearPower) * powerMultiplier;
         if (finalPower <= 0)
             finalPower = 0;
-        Power_Changed.Invoke(finalPower);
+        Power_Changed.Invoke(basePower, gearPower, finalPower, powerMultiplier);
     }
     [Command(requiresAuthority = false)]
     public void CmdChangeGearPower(float value)
@@ -514,18 +515,44 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     public void ChangeGearPower(float value)
     {
         gearPower += value;
-        finalPower = basePower + gearPower;
+        finalPower = (basePower + gearPower) * powerMultiplier;
         if (finalPower <= 0)
             finalPower = 0;
-        Power_Changed.Invoke(finalPower);
+        Power_Changed.Invoke(basePower, gearPower, finalPower, powerMultiplier);
     }
     public void SetPower(float value)
     {
         basePower = value;
-        finalPower = basePower + gearPower;
+        finalPower = (basePower + gearPower) * powerMultiplier;
         if (finalPower <= 0)
             finalPower = 0;
-        Power_Changed.Invoke(finalPower);
+        Power_Changed.Invoke(basePower, gearPower, finalPower, powerMultiplier);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangePowerMultiplier(float value)
+    {
+        RpcChangePowerMultiplier(value);
+    }
+    [ClientRpc]
+    public void RpcChangePowerMultiplier(float value)
+    {
+        ChangePowerMultiplier(value);
+    }
+    public void ChangePowerMultiplier(float value)
+    {
+        powerMultiplier += value;
+        finalPower = (basePower + gearPower) * powerMultiplier;
+        if (finalPower <= 0)
+            finalPower = 0;
+        Power_Changed.Invoke(basePower, gearPower, finalPower, powerMultiplier);
+    }
+    public void SetPowerMultiplier(float value)
+    {
+        powerMultiplier = value;
+        finalPower = (basePower + gearPower) * powerMultiplier;
+        if (finalPower <= 0)
+            finalPower = 0;
+        Power_Changed.Invoke(basePower, gearPower, finalPower, powerMultiplier);
     }
     [Command(requiresAuthority = false)]
     public void CmdChangeCriticalChance(float value)

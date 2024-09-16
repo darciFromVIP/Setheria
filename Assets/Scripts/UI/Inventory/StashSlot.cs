@@ -27,12 +27,13 @@ public class StashSlot : NetworkBehaviour, IDropHandler
             if (!inventoryItem)
                 return;
             inventoryItem.DestroyTempObject();
-            if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
-                return;
-            else if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
-                stashSlot.CmdRemoveItem();
-            else
-                inventoryItem.DestroyItem();
+            if (inventoryItem.parentAfterDrag)
+                if (inventoryItem.parentAfterDrag.TryGetComponent(out CharacterGearSlot slot))
+                    return;
+                else if (inventoryItem.parentAfterDrag.TryGetComponent(out StashSlot stashSlot))
+                    stashSlot.CmdRemoveItem();
+                else
+                    inventoryItem.DestroyItem();
             CmdSpawnItemOnThisSlot(inventoryItem.item.name, inventoryItem.stacks);
         }
     }

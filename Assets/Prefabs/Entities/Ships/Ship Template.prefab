@@ -5874,6 +5874,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8551011942329262333}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2908695252944429058}
+    - targetCorrespondingSourceObject: {fileID: 7082070339115388352, guid: 36b01e57100ea254d9149e8306d6dd8f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3001487855049465744}
   m_SourcePrefab: {fileID: 100100000, guid: 36b01e57100ea254d9149e8306d6dd8f, type: 3}
 --- !u!4 &2913504394842974162 stripped
 Transform:
@@ -6228,6 +6236,70 @@ MonoBehaviour:
   mapTooltipText: 
   iconSize: 0
   staticObject: 0
+--- !u!114 &2908695252944429058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913504394842974165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1594580939
+      Data2: 1200880664
+      Data3: -881227101
+      Data4: -240362344
+    Path: event:/World Sounds/Vocational Activities/Ship Sounds
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params:
+  - Name: Ship
+    Value: 0
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 10
+--- !u!114 &3001487855049465744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913504394842974165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2136248448
+      Data2: 1211666547
+      Data3: -840670825
+      Data4: -686797317
+    Path: event:/UI Sounds/Ship Build
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8731704956966985613 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3678164197958677912, guid: 36b01e57100ea254d9149e8306d6dd8f,

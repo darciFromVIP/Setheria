@@ -62,8 +62,17 @@ public class StashInventory : MonoBehaviour, WindowedUI
                     {
                         if (inventoryItem.item == item)
                         {
-                            slot.CmdChangeStacks(stacks);
-                            return true;
+                            if (inventoryItem.stacks + stacks > item.maxStacks)
+                            {
+                                var temp = item.maxStacks - inventoryItem.stacks;
+                                slot.CmdChangeStacks(temp);
+                                stacks -= temp;
+                            }
+                            else
+                            {
+                                slot.CmdChangeStacks(stacks);
+                                return true;
+                            }
                         }
                     }
                 }
@@ -75,9 +84,20 @@ public class StashInventory : MonoBehaviour, WindowedUI
             {
                 slot.CmdSpawnItemOnThisSlot(item.name, stacks);
                 slot.isFree = false;
+                if (stacks >= item.maxStacks)
+                    stacks -= item.maxStacks;
+                if (item.maxStacks < stacks)
+                    continue;
                 return true;
             }
         }
+        do
+        {
+            var player = FindObjectOfType<GameManager>().localPlayerCharacter;
+            player.CreateItem(new SaveDataItem() { name = item.name, stacks = stacks }, player.transform.position);
+            if (stacks >= item.maxStacks)
+                stacks -= item.maxStacks;
+        } while (item.maxStacks <= stacks);
         FindObjectOfType<SystemMessages>().AddMessage("Inventory is full.");
         return false;
     }

@@ -26,7 +26,7 @@ public class PlantedSeed : NetworkBehaviour
     public int maximumCount = 3;
     private ItemScriptable selectedCrop;
 
-    public GameObject sprout;
+    public GameObject sprout, statusBar;
     public TextMeshProUGUI fertilizedText;
     public Slider slider;
 

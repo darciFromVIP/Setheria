@@ -364,6 +364,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                     {
                         if (!inventoryManager.GetFreeSlot())
                             return;
+                        enabled = false;
                         inventoryManager.AddItem(item, stacks);
                         GetComponentInParent<StashSlot>().CmdRemoveItem();
                     }
@@ -411,6 +412,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             if (inventoryItem.item == item && item.stackable)
             {
+                if (stacks + inventoryItem.stacks > item.maxStacks)
+                    return;
                 if (transform.parent.TryGetComponent(out StashSlot parentSlot))
                 {
                     parentSlot.CmdChangeStacks(inventoryItem.stacks);

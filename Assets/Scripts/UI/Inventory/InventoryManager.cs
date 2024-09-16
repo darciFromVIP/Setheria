@@ -36,13 +36,23 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
                 {
                     var inventoryItem = slot.GetComponentInChildren<InventoryItem>(true);
                     if (inventoryItem != null)
-                    { if (inventoryItem.item == item)
+                    { 
+                        if (inventoryItem.item == item)
                         {
                             result = slot.GetComponentInChildren<InventoryItem>(true);
-                            result.ChangeStacks(stacks);
-                            item.Item_Stacks_Acquired.Invoke(item, stacks);
-                            FindObjectOfType<AcquiredItems>().ItemAcquired(new ItemRecipeInfo { itemData = item, stacks = stacks });
-                            return result;
+                            if (result.stacks + stacks > item.maxStacks)
+                            {
+                                var temp = item.maxStacks - result.stacks;
+                                result.ChangeStacks(temp, false);
+                                stacks -= temp;
+                            }
+                            else
+                            {
+                                result.ChangeStacks(stacks);
+                                item.Item_Stacks_Acquired.Invoke(item, stacks);
+                                FindObjectOfType<AcquiredItems>().ItemAcquired(new ItemRecipeInfo { itemData = item, stacks = stacks });
+                                return result;
+                            }
                         }
                     }
                 }
@@ -56,10 +66,20 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
                 item.Item_Acquired.Invoke(item);
                 item.Item_Stacks_Acquired.Invoke(item, stacks);
                 FindObjectOfType<AcquiredItems>().ItemAcquired(new ItemRecipeInfo { itemData = item, stacks = stacks });
+                if (stacks >= item.maxStacks)
+                    stacks -= item.maxStacks;
+                if (item.maxStacks < stacks)
+                    continue;
                 return result;
             }
         }
-        localPlayerCharacter.CreateItem(new SaveDataItem() { name = item.name, stacks = stacks }, localPlayerCharacter.transform.position);
+        do
+        {
+            localPlayerCharacter.CreateItem(new SaveDataItem() { name = item.name, stacks = stacks }, localPlayerCharacter.transform.position);
+            if (stacks >= item.maxStacks)
+                stacks -= item.maxStacks;
+        } while (item.maxStacks <= stacks);
+
         if (item.itemType == ItemType.GatheringTool && equipableItemTutorial)
         {
             FindObjectOfType<SystemMessages>().AddMessage("Equip your new pickaxe by double clicking it.", MsgType.Notice);

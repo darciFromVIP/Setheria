@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7441370699895035577}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 7959221220734408964}
   - component: {fileID: 3011368493655030646}
   - component: {fileID: 6957035713857197619}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b5d95993344fafe4cbd41c9bb56c6e00, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 8538916009262958710}
   - component: {fileID: 935516817448020609}
   - component: {fileID: 3820748829139085439}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: RefreshBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5.06}
+  m_AnchoredPosition: {x: 0, y: 1.9300001}
   m_SizeDelta: {x: 0.6, y: 0.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8538916009262958710
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 4049064960514402561}
   - component: {fileID: 8185286904917637224}
   - component: {fileID: 2386038552059143528}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ RectTransform:
   m_GameObject: {fileID: 3667619247040941622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5303, y: 1.5303, z: 1.5303}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7441370699895035577}
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: ca50e5d898bcba4489bb430ccdc2135e, type: 2}
+  m_Material: {fileID: 2100000, guid: b5d95993344fafe4cbd41c9bb56c6e00, type: 2}
   m_Color: {r: 0, g: 0.67520344, b: 0.7735849, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6cb7ab8e175708048b03e0b0e1e56406, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f18470fffcfd26641a65dafb5be2196d, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 1614779907426699205}
   - component: {fileID: 5702606302478120712}
   - component: {fileID: 4137397520888311960}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,8 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.77560496, b: 0, a: 1}
+  m_Material: {fileID: 2100000, guid: b5d95993344fafe4cbd41c9bb56c6e00, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -355,7 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1253465495681394361}
   - component: {fileID: 8700573535417490704}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 8776809958951354068}
   - component: {fileID: 3517084275391932898}
   - component: {fileID: 1006343927132954188}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: FertilizedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 2464175396707177598}
   - component: {fileID: 4504096399018259323}
   - component: {fileID: 2273892325644620910}
-  m_Layer: 2
+  m_Layer: 5
   m_Name: FertilizedIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b5d95993344fafe4cbd41c9bb56c6e00, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -903,6 +903,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5082464107748616580, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: b5d95993344fafe4cbd41c9bb56c6e00, type: 2}
     - target: {fileID: 5164897888139500763, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_Size.x
@@ -1156,7 +1161,7 @@ PrefabInstance:
     - target: {fileID: 8918073030982514316, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.3
+      value: 1.17
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5563563096656022236, guid: cf1fd752683bedf41b6bd4eae6622612, type: 3}
@@ -1265,6 +1270,7 @@ MonoBehaviour:
   minimumCount: 2
   maximumCount: 3
   sprout: {fileID: 2176421569622331936}
+  statusBar: {fileID: 0}
   fertilizedText: {fileID: 1006343927132954188}
   slider: {fileID: 8700573535417490704}
 --- !u!4 &6350557599784444269 stripped
