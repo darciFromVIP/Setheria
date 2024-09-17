@@ -16,8 +16,7 @@ MonoBehaviour:
 
     Eating this restores: <color=#FFD000>+8</color><sprite=12>
 
-    -3
-    Hydratation
+    <color=#FFD000>-3</color><sprite=20>
 
     __________________________________
 
@@ -26,6 +25,7 @@ MonoBehaviour:
   itemType: 0
   sprite: {fileID: 21300000, guid: c98177af5ee4691428227c6a933f5a43, type: 3}
   stackable: 1
+  maxStacks: 99
   usage:
   - {fileID: 11400000, guid: a35b307e5e3eddb44a40c7ec1167bfb6, type: 2}
   usageCooldown: 0
