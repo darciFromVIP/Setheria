@@ -28,13 +28,14 @@ MonoBehaviour:
   customRequirements:
   - requiredValue: 3
     currentValue: 0
-    requirementText: 'Stones mine: '
+    requirementText: 'Stones mined: '
     customEvents:
     - {fileID: 11400000, guid: 3fe559f1971ce334c98a62ca07c853f3, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 10
     itemReward: {fileID: 0}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

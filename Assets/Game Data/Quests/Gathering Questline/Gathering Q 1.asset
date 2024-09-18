@@ -29,13 +29,14 @@ MonoBehaviour:
   customRequirements:
   - requiredValue: 1
     currentValue: 0
-    requirementText: 'Hemp Collected:'
+    requirementText: 'Hemp collected:'
     customEvents:
     - {fileID: 11400000, guid: 889d76a7d04a7ab46b22e770429fbeb9, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 10
     itemReward: {fileID: 0}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

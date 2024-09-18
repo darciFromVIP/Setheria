@@ -28,7 +28,7 @@ MonoBehaviour:
   customRequirements:
   - requiredValue: 1
     currentValue: 0
-    requirementText: 'Crystals Collected: '
+    requirementText: 'Crystals collected: '
     customEvents:
     - {fileID: 11400000, guid: 6840120b2ec54c04a85280df3dbb5796, type: 2}
   rewards:
@@ -38,6 +38,7 @@ MonoBehaviour:
   - rewardType: 3
     rewardAmount: 1
     itemReward: {fileID: 11400000, guid: 2a8974aad52e27a49b69e4ef1cfafffc, type: 2}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

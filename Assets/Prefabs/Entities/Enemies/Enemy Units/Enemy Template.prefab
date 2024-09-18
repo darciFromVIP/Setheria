@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 2381644692228015024, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2804234070414737381, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
@@ -121,7 +121,7 @@ PrefabInstance:
     - target: {fileID: 3479276508606114988, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4045840149944982043, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
@@ -256,7 +256,7 @@ PrefabInstance:
     - target: {fileID: 5887946461969776663, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5892824231114542242, guid: 36b01e57100ea254d9149e8306d6dd8f,
         type: 3}
@@ -573,6 +573,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   corpseDecay: 1
   objectsToDisable: []
+  changeNightVision: 0
+  nightVisionRadius: 0
   On_Death:
     m_PersistentCalls:
       m_Calls: []
@@ -581,6 +583,8 @@ MonoBehaviour:
   baseRotateSpeed: 5
   level: 1
   skills: []
+  skillInstances: []
+  skillSounds: []
   enemyLayers:
     serializedVersion: 2
     m_Bits: 18440

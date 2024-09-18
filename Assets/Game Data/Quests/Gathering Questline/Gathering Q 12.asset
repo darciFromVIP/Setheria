@@ -28,13 +28,14 @@ MonoBehaviour:
   customRequirements:
   - requiredValue: 3
     currentValue: 0
-    requirementText: 'Cymians Collected: '
+    requirementText: 'Cymians collected: '
     customEvents:
     - {fileID: 11400000, guid: eed0b7fa491ef79409ae54117329ec77, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 70
     itemReward: {fileID: 0}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
