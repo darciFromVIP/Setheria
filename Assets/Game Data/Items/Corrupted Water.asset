@@ -19,7 +19,7 @@ MonoBehaviour:
 
     __________________________________
 
-    +20<sprite=20>
+    +15<sprite=20>
 
     +50
     HP/Mana Corruption
@@ -31,10 +31,11 @@ MonoBehaviour:
   itemType: 0
   sprite: {fileID: 21300000, guid: fd109c902bd2b0d4b8ce4ebf90f14294, type: 3}
   stackable: 0
+  maxStacks: 99
   usage:
-  - {fileID: 11400000, guid: 65aa8a19dfceec844bfcefe8dd4d15a2, type: 2}
+  - {fileID: 11400000, guid: a4b2e5a6c90298e42bc69bdfc2244fc8, type: 2}
   - {fileID: 11400000, guid: 8b92dec1655bf7d4dac20e8871f27304, type: 2}
-  usageCooldown: 3
+  usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
