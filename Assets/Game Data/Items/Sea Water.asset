@@ -28,8 +28,8 @@ MonoBehaviour:
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 811cbdd1ff764144e833a3af70dc1396, type: 3}
-  stackable: 0
-  maxStacks: 99
+  stackable: 1
+  maxStacks: 2
   usage:
   - {fileID: 11400000, guid: db6dd72693c04824d9d18e6117e6e18a, type: 2}
   usageCooldown: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
   passiveBuffs: []
   activeSkills: []
   value: 0
-  destroyItemOnUse: 1
+  destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
