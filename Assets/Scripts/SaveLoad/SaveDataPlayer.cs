@@ -73,7 +73,7 @@ public class SaveDataPlayer
                 name = "Wolferius the Lycandruid";
                 health = 250;
                 baseMaxHealth = 250;
-                baseHealthRegen = 0.6f;
+                baseHealthRegen = 0f;
                 mana = 150;
                 baseMaxMana = 150;
                 baseManaRegen = 0.25f;
@@ -88,7 +88,7 @@ public class SaveDataPlayer
                 name = "Nirri the Forest Protector";
                 health = 150;
                 baseMaxHealth = 150;
-                baseHealthRegen = 0.25f;
+                baseHealthRegen = 0f;
                 mana = 250;
                 baseMaxMana = 250;
                 baseManaRegen = 0.6f;
