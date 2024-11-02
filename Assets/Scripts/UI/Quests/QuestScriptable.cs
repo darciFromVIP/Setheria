@@ -118,6 +118,8 @@ public class QuestScriptable : ScriptableObject, IComparable
     [HideInInspector] public UnityEvent Quest_Updated = new();
     public void SetQuestActive(bool value)
     {
+        if (active == value)
+            return;
         active = value;
         requiredItemsDic.Clear();
         requiredStructuresDic.Clear();
