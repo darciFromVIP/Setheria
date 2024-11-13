@@ -162,6 +162,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             item.Item_Stacks_Lost.Invoke(item, -stacks);
         if (this.stacks <= 0)
         {
+            if (transform.parent.TryGetComponent(out StashSlot stashSlot))
+                stashSlot.isFree = true;
             DestroyItem();
             FindObjectOfType<RecipeDetail>(true).UpdateCurrentDetails();
         }

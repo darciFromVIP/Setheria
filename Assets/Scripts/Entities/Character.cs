@@ -68,6 +68,13 @@ public class Character : Entity
                 item.ExecuteOnStart(this);
             }
         }
+        if (canCastSkills)
+        {
+            foreach (var item in skillInstances)
+            {
+                item.SetCastingEntity(this);
+            }
+        }
         if (TryGetComponent(out Shapeshifter shapeshifter))
         {
             shapeshifter.SetDefaultSkillInstances();
