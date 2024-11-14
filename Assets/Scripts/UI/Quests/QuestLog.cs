@@ -24,8 +24,6 @@ public class QuestLog : MonoBehaviour
                 instance.Initialize(item.questList[item.currentQuestIndex], questManager.GetQuestTracking(item.questList[item.currentQuestIndex]), this);
             }
         }
-        if (description.text == "")
-            ShowQuestDetails(questLog.transform.GetChild(0).GetComponent<QuestLogElement>().questData);
     }
     public void ShowQuestDetails(QuestScriptable questData)
     {
