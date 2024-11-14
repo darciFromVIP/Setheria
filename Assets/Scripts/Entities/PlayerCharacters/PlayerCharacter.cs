@@ -1130,7 +1130,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         animator.SetTrigger(animHash_Revive);
         if (isOwned)
         {
-            CmdChangeHunger(-20, true);      
+            if (hunger > 40)
+                CmdChangeHunger(-20, true);
+            else
+                CmdSetHunger(20);
         }
         if (isOwned)
             FindObjectOfType<CameraTarget>().CenterCamera(false);

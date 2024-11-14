@@ -92,7 +92,7 @@ public class SaveDataPlayer
                 mana = 250;
                 baseMaxMana = 250;
                 baseManaRegen = 0.6f;
-                power = 10;
+                power = 15;
                 criticalChance = 0;
                 criticalDamage = 50;
                 attackRange = 7;
