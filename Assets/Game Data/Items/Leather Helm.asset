@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Leather Helm
   m_EditorClassIdentifier: 
-  description: '+5%<sprite=7>
+  description: '+0,40%<sprite=1>
 
     +5%<sprite=8>
 
@@ -26,11 +26,12 @@ MonoBehaviour:
   itemType: 1
   sprite: {fileID: 21300000, guid: 4155997045a0e4443a402dec561252e7, type: 3}
   stackable: 0
+  maxStacks: 99
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: 33ceaaa914b54a04c97e45109a66277c, type: 2}
+  - {fileID: 11400000, guid: 0aab4817e2c00fe42beb5afc7ddf5db9, type: 2}
   - {fileID: 11400000, guid: 65e700745340d1e4b95be61af1760019, type: 2}
   activeSkills: []
   value: 0

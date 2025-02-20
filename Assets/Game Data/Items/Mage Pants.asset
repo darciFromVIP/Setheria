@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Mage Pants
   m_EditorClassIdentifier: 
-  description: '+50<sprite=5>
+  description: '+0,5<sprite=5>
 
-    +75<sprite=4>
+    +50<sprite=4>
 
     __________________________________
 
@@ -26,12 +26,13 @@ MonoBehaviour:
   itemType: 4
   sprite: {fileID: 21300000, guid: b17df1dee2e12e445acdceb963f47916, type: 3}
   stackable: 0
+  maxStacks: 99
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: 42b91eb1fa958cd4b8b3d5b0274557a8, type: 2}
-  - {fileID: 11400000, guid: 4506bd3feb8b5ce4c9f6555361b5ac92, type: 2}
+  - {fileID: 11400000, guid: c9141211d1171ba4983628c3e447cba9, type: 2}
+  - {fileID: 11400000, guid: 69cda73cd1b3bd746a9dd66247e0a1c1, type: 2}
   activeSkills: []
   value: 0
   destroyItemOnUse: 0

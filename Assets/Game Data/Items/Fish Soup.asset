@@ -10,41 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Leather Gloves
+  m_Name: Fish Soup
   m_EditorClassIdentifier: 
-  description: '+50<sprite=1>
+  description: '__________________________________
 
-    +50<sprite=5>
+    Warm simple soup.
+
+    +5<sprite=12>
+
+    +10<sprite=20>
 
     __________________________________
 
-    Equipable,
-    Hands
-
-    Dismantable'
-  grade: 0
-  itemType: 3
-  sprite: {fileID: 21300000, guid: c1bda30cafeb6eb43a68ad0d11f81229, type: 3}
-  stackable: 0
+    Food'
+  grade: 1
+  itemType: 0
+  sprite: {fileID: 21300000, guid: 7bd4697a3545bb245b3246470b32df36, type: 3}
+  stackable: 1
   maxStacks: 99
-  usage: []
+  usage:
+  - {fileID: 11400000, guid: 5ea5dfd5ddb295c468b0c52e2047cf8e, type: 2}
+  - {fileID: 11400000, guid: e90842f592076494fb1b147565bf5949, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
-  passiveBuffs:
-  - {fileID: 11400000, guid: 69cda73cd1b3bd746a9dd66247e0a1c1, type: 2}
-  - {fileID: 11400000, guid: 42b91eb1fa958cd4b8b3d5b0274557a8, type: 2}
+  passiveBuffs: []
   activeSkills: []
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
-  itemsAfterDismantle:
-  - itemDropChances:
-    - item:
-        itemData: {fileID: 11400000, guid: 77ee74d9a32ed344bbfa8696f6b1a5c3, type: 2}
-        stacks: 1
-      chance: 100
+  itemsAfterDismantle: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

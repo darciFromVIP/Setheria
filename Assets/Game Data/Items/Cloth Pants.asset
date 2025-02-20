@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Cloth Pants
   m_EditorClassIdentifier: 
-  description: '+25<sprite=5>
+  description: '+0.3<sprite=6>
 
     +50<sprite=4>
 
@@ -26,11 +26,12 @@ MonoBehaviour:
   itemType: 4
   sprite: {fileID: 21300000, guid: cf294edb27210f141b1785f7ce8e7f3b, type: 3}
   stackable: 0
+  maxStacks: 99
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: e4e426ea19887c54fbb56ed42a662451, type: 2}
+  - {fileID: 11400000, guid: afb9f0cbfaa8fbd4d95fcc0e311d15df, type: 2}
   - {fileID: 11400000, guid: 69cda73cd1b3bd746a9dd66247e0a1c1, type: 2}
   activeSkills: []
   value: 0

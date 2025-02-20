@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Scrap Chest
   m_EditorClassIdentifier: 
-  description: '+50<sprite=5>
+  description: '+25<sprite=5>
 
     +1<sprite=0>
 
@@ -26,11 +26,12 @@ MonoBehaviour:
   itemType: 2
   sprite: {fileID: 21300000, guid: feaeee15a5d101d438c087df813eed92, type: 3}
   stackable: 0
+  maxStacks: 99
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: 42b91eb1fa958cd4b8b3d5b0274557a8, type: 2}
+  - {fileID: 11400000, guid: e4e426ea19887c54fbb56ed42a662451, type: 2}
   - {fileID: 11400000, guid: 99aab7de98c924e4ebb142ed86a01acf, type: 2}
   activeSkills: []
   value: 0

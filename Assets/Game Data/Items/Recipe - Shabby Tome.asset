@@ -10,41 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Leather Gloves
+  m_Name: Recipe - Shabby Tome
   m_EditorClassIdentifier: 
-  description: '+50<sprite=1>
-
-    +50<sprite=5>
-
-    __________________________________
-
-    Equipable,
-    Hands
-
-    Dismantable'
+  description: Unlocks the recipe to craft Shabby Tome.
   grade: 0
-  itemType: 3
-  sprite: {fileID: 21300000, guid: c1bda30cafeb6eb43a68ad0d11f81229, type: 3}
+  itemType: 0
+  sprite: {fileID: 21300000, guid: e6f69bfbddef46b45b3481266def1eb4, type: 3}
   stackable: 0
   maxStacks: 99
-  usage: []
+  usage:
+  - {fileID: 11400000, guid: f1fa87c34ddb1ae41835d9953066c4b7, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
-  passiveBuffs:
-  - {fileID: 11400000, guid: 69cda73cd1b3bd746a9dd66247e0a1c1, type: 2}
-  - {fileID: 11400000, guid: 42b91eb1fa958cd4b8b3d5b0274557a8, type: 2}
+  passiveBuffs: []
   activeSkills: []
   value: 0
-  destroyItemOnUse: 0
+  destroyItemOnUse: 1
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
-  itemsAfterDismantle:
-  - itemDropChances:
-    - item:
-        itemData: {fileID: 11400000, guid: 77ee74d9a32ed344bbfa8696f6b1a5c3, type: 2}
-        stacks: 1
-      chance: 100
+  itemsAfterDismantle: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

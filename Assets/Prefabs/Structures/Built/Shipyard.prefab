@@ -849,6 +849,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   corpseDecay: 1
   objectsToDisable: []
+  changeNightVision: 0
+  nightVisionRadius: 0
   On_Death:
     m_PersistentCalls:
       m_Calls: []
@@ -949,7 +951,7 @@ PrefabInstance:
     - target: {fileID: 2861922163582182427, guid: a8abf0e5202774e48a51491da557a333,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.087
+      value: 0.214
       objectReference: {fileID: 0}
     - target: {fileID: 2861922163582182427, guid: a8abf0e5202774e48a51491da557a333,
         type: 3}

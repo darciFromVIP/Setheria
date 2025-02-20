@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Leather Pants
   m_EditorClassIdentifier: 
-  description: '+75<sprite=5>
+  description: '+50<sprite=5>
 
-    +50<sprite=4>
+    +0,4<sprite=1>
 
     __________________________________
 
@@ -26,12 +26,13 @@ MonoBehaviour:
   itemType: 4
   sprite: {fileID: 21300000, guid: 4d9f61cf0ce38e145b2ec502463371b4, type: 3}
   stackable: 0
+  maxStacks: 99
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: 6fdfda733a89f62498559cb6a2bf36e3, type: 2}
-  - {fileID: 11400000, guid: 69cda73cd1b3bd746a9dd66247e0a1c1, type: 2}
+  - {fileID: 11400000, guid: 42b91eb1fa958cd4b8b3d5b0274557a8, type: 2}
+  - {fileID: 11400000, guid: 0aab4817e2c00fe42beb5afc7ddf5db9, type: 2}
   activeSkills: []
   value: 0
   destroyItemOnUse: 0

@@ -10,29 +10,45 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Leather Gloves
+  m_Name: Shabby Tome
   m_EditorClassIdentifier: 
-  description: '+50<sprite=1>
+  description: '__________________________________
 
-    +50<sprite=5>
+    Hand-made ranged magic small
+    weapon, useful in battle.
+
+    __________________________________
+
+    Tome
+
+    6s
+    attack speed
+
+    +35%<sprite=6>
+
+    +1<sprite=10>
+
+    30% basic attack scaling
 
     __________________________________
 
     Equipable,
-    Hands
+    Weapon
 
     Dismantable'
   grade: 0
-  itemType: 3
-  sprite: {fileID: 21300000, guid: c1bda30cafeb6eb43a68ad0d11f81229, type: 3}
+  itemType: 6
+  sprite: {fileID: 21300000, guid: 74f766119018505439d0ae6493a4d625, type: 3}
   stackable: 0
   maxStacks: 99
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: 69cda73cd1b3bd746a9dd66247e0a1c1, type: 2}
-  - {fileID: 11400000, guid: 42b91eb1fa958cd4b8b3d5b0274557a8, type: 2}
+  - {fileID: 11400000, guid: 486431227a0b3f84c9c36306c671cd69, type: 2}
+  - {fileID: 11400000, guid: 4ccd69dc02f1aa046be5a66e7ec9f42f, type: 2}
+  - {fileID: 11400000, guid: 5a0073eb1864d464ebe93c5e58067753, type: 2}
+  - {fileID: 11400000, guid: 036c1fecea6fcee4d8bfc551f9bdc428, type: 2}
   activeSkills: []
   value: 0
   destroyItemOnUse: 0
@@ -42,8 +58,13 @@ MonoBehaviour:
   itemsAfterDismantle:
   - itemDropChances:
     - item:
-        itemData: {fileID: 11400000, guid: 77ee74d9a32ed344bbfa8696f6b1a5c3, type: 2}
-        stacks: 1
+        itemData: {fileID: 11400000, guid: ae8a464113dcbb04799e77ea91c0cdc8, type: 2}
+        stacks: 3
+      chance: 100
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: c71fe4510bdeb4542bea85166544c79b, type: 2}
+        stacks: 3
       chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:

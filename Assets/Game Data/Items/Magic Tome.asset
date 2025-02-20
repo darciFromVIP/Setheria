@@ -10,29 +10,46 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Mage Hat
+  m_Name: Magic Tome
   m_EditorClassIdentifier: 
-  description: '+4%<sprite=10>
+  description: '__________________________________
 
-    +50<sprite=4>
+    Hand-made ranged magic small
+    weapon, useful in battle.
 
     __________________________________
 
-    Eqipable,
-    Head
+    Tome
+
+    6s
+    attack speed
+
+    +40%<sprite=6>
+
+    +2<sprite=10>
+
+    30% basic attack scaling
+
+    __________________________________
+
+    Equipable,
+    Weapon
 
     Dismantable'
   grade: 0
-  itemType: 1
-  sprite: {fileID: 21300000, guid: 2e4a9ba101f0cee46b0afc2d5a1b7762, type: 3}
+  itemType: 6
+  sprite: {fileID: 21300000, guid: c34cb1674caf64149bfa5c1a2c518e77, type: 3}
   stackable: 0
   maxStacks: 99
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs:
-  - {fileID: 11400000, guid: f659588354b152e44bf470ffb45a8d7b, type: 2}
-  - {fileID: 11400000, guid: 69cda73cd1b3bd746a9dd66247e0a1c1, type: 2}
+  - {fileID: 11400000, guid: 7d25a5153d6ee9a449bb0cc98ef4e17e, type: 2}
+  - {fileID: 11400000, guid: 4ccd69dc02f1aa046be5a66e7ec9f42f, type: 2}
+  - {fileID: 11400000, guid: 5a0073eb1864d464ebe93c5e58067753, type: 2}
+  - {fileID: 11400000, guid: 5a0073eb1864d464ebe93c5e58067753, type: 2}
+  - {fileID: 11400000, guid: 036c1fecea6fcee4d8bfc551f9bdc428, type: 2}
   activeSkills: []
   value: 0
   destroyItemOnUse: 0
@@ -42,13 +59,13 @@ MonoBehaviour:
   itemsAfterDismantle:
   - itemDropChances:
     - item:
-        itemData: {fileID: 11400000, guid: 8eb497e81706bda458d5dad3a88f88fa, type: 2}
-        stacks: 1
+        itemData: {fileID: 11400000, guid: ae8a464113dcbb04799e77ea91c0cdc8, type: 2}
+        stacks: 2
       chance: 100
   - itemDropChances:
     - item:
-        itemData: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
-        stacks: 1
+        itemData: {fileID: 11400000, guid: c71fe4510bdeb4542bea85166544c79b, type: 2}
+        stacks: 2
       chance: 100
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
