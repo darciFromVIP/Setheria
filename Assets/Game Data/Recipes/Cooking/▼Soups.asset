@@ -10,32 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
-  m_Name: Cooked Fish - Ocean Coralys
+  m_Name: "\u25BCSoups"
   m_EditorClassIdentifier: 
   recipeCategory: 5
-  priority: 44
+  priority: 1
   resultItem:
-    itemData: {fileID: 11400000, guid: f23074d28c51c584bb68e8864779818e, type: 2}
-    stacks: 1
-  componentItems:
-  - itemData: {fileID: 11400000, guid: 523b0e142c1859e4da08a6289b3ef321, type: 2}
-    stacks: 1
+    itemData: {fileID: 0}
+    stacks: 0
+  componentItems: []
   resourceCost: 0
   unlocked: 1
   visible: 1
   freshlyUnlocked: 1
   requiredStructure: {fileID: 11400000, guid: c1c19e88d55514748b3a55507fbdc8c5, type: 2}
-  craftingDuration: 1
-  xpGranted: 10
+  craftingDuration: 0
+  xpGranted: 0
   tier: 0
-  recipeItem: {fileID: 11400000, guid: 523b0e142c1859e4da08a6289b3ef321, type: 2}
-  requiredItems:
-  - {fileID: 11400000, guid: 523b0e142c1859e4da08a6289b3ef321, type: 2}
+  recipeItem: {fileID: 0}
+  requiredItems: []
   requiredStructures:
   - {fileID: 11400000, guid: 37b845a58f56ee74b9636efe6444dc34, type: 2}
-  requiredProfession: 2
-  requiredProfessionExperience: 1
-  recipesInThisCategory: []
+  requiredProfession: 0
+  requiredProfessionExperience: 0
+  recipesInThisCategory:
+  - {fileID: 11400000, guid: fc814b9ccfc555848949813be96e1f10, type: 2}
+  - {fileID: 11400000, guid: 55055be64fd8aef44982a5a3b16805db, type: 2}
+  - {fileID: 11400000, guid: fe897954bf8eca54da7a13169248dd57, type: 2}
+  - {fileID: 11400000, guid: f823d0da18a4f7a48a6c5b11822db856, type: 2}
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []
