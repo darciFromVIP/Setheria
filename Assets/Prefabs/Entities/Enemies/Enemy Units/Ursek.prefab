@@ -133,6 +133,47 @@ PrefabInstance:
       propertyPath: nameOfEnemy
       value: Ursek
       objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skills.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skills.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c83383d8edb4c0444951b69f2f08d7b5,
+        type: 2}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.data[0].Path
+      value: event:/World Sounds/Enemies/Bear Stomp 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.data[0].Guid.Data1
+      value: 1500989114
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.data[0].Guid.Data2
+      value: 1225677263
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.data[0].Guid.Data3
+      value: -674724449
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: skillSounds.Array.data[0].Guid.Data4
+      value: 166424685
+      objectReference: {fileID: 0}
     - target: {fileID: 344714690138220986, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -576,6 +617,7 @@ MonoBehaviour:
   ownedMapIcon: {fileID: 0}
   mapTooltipText: Ursek (Boss)
   iconSize: 0
+  staticObject: 1
 --- !u!114 &7957358071692540437 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6494381524655264961, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
