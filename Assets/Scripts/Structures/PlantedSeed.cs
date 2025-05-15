@@ -5,10 +5,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlantedSeed : NetworkBehaviour
+public class PlantedSeed : NetworkBehaviour, ISaveable
 {
     public float timeToGrow = 3600;
-    private float growTimer;
+    private float growTimer = 0;
 
     public float pourWaterCooldown;
     public float fertilizeCooldown;
@@ -32,7 +32,6 @@ public class PlantedSeed : NetworkBehaviour
 
     private void Start()
     {
-        growTimer = 0;
         slider.maxValue = timeToGrow;
     }
     private void Update()
@@ -93,10 +92,18 @@ public class PlantedSeed : NetworkBehaviour
     {
         slider.gameObject.SetActive(false);
         grown = true;
-        int random = Random.Range(0, harvestableCrops.Count);
+        if (isServer)
+        {
+            int random = Random.Range(0, harvestableCrops.Count);
+            RpcGrownUp(random);
+        }
+        sprout.SetActive(false);
+    }
+    [ClientRpc]
+    private void RpcGrownUp(int random)
+    {
         selectedCrop = harvestableCrops[random];
         cropsModels[random].SetActive(true);
-        sprout.SetActive(false);
     }
     public void Harvest()
     {
@@ -110,5 +117,30 @@ public class PlantedSeed : NetworkBehaviour
     private void DestroySeed()
     {
         NetworkServer.Destroy(gameObject);
+    }
+
+    public SaveDataWorldObject SaveState()
+    {
+        return new SaveDataWorldObject { 
+            positionX = transform.position.x, 
+            positionY = transform.position.y, 
+            positionZ = transform.position.z, 
+            rotationW = transform.rotation.w, 
+            rotationX = transform.rotation.x, 
+            rotationY = transform.rotation.y, 
+            rotationZ = transform.rotation.z,
+            floatData1 = growTimer,
+            floatData2 = pourWaterTimer,
+            floatData3 = fertilizeTimer
+        };
+    }
+
+    public void LoadState(SaveDataWorldObject state)
+    {
+        transform.position = new Vector3(state.positionX, state.positionY, state.positionZ );
+        transform.rotation = new Quaternion(state.rotationX, state.rotationY, state.rotationZ, state.rotationW );
+        growTimer = state.floatData1;
+        pourWaterTimer = state.floatData2;
+        fertilizeTimer = state.floatData3;
     }
 }

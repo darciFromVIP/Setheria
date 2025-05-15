@@ -718,10 +718,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             if (amount > 0)
             {
-                FindObjectOfType<FloatingText>().ServerSpawnFloatingText("+" + amount + " <sprite=20>", transform.position, FloatingTextType.Hydration);
+                FindObjectOfType<FloatingText>().ServerSpawnFloatingText("+" + amount + " <sprite=20>", transform.position + Vector3.down * 0.5f, FloatingTextType.Hydration);
             }
             else
-                FindObjectOfType<FloatingText>().ServerSpawnFloatingText(amount + " <sprite=20>", transform.position, FloatingTextType.Hydration);
+                FindObjectOfType<FloatingText>().ServerSpawnFloatingText(amount + " <sprite=20>", transform.position + Vector3.down * 0.5f, FloatingTextType.Hydration);
         }
         RpcChangeWater(amount);
     }

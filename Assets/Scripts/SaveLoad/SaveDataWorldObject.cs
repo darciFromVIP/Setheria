@@ -14,6 +14,6 @@ public class SaveDataWorldObject
     public float rotationZ;
     public float rotationW;
     public int intData1, intData2;
-    public float floatData1, floatData2;
+    public float floatData1, floatData2, floatData3;
     public bool boolData1;
 }

@@ -516,7 +516,8 @@ public class Character : Entity
         }
         foreach (var item in skillInstances)
         {
-            item.StopExecute();
+            if (item.castingEntity != null)
+                item.StopExecute();
         }
     }
 }

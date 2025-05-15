@@ -24,7 +24,7 @@ public class Recipe : MonoBehaviour, IPointerEnterHandler
         if (recipeData)
             if (recipeData.resultItem.itemData == null && categoryRecipeInstances.Count > 0)
             {
-                text.text = text.text.Replace("▼", "▲");
+                text.text = text.text.Replace("►", "▼");
                 foreach (var item in categoryRecipeInstances)
                 {
                     item.gameObject.SetActive(false);
@@ -34,8 +34,11 @@ public class Recipe : MonoBehaviour, IPointerEnterHandler
     public void UpdateText(string text, bool openedInStructure = false)
     {
         this.text.text = text;
-        if (text.Contains("▼"))
+        if (text.Contains("►"))
+        {
             ToggleCraftableNotif(false);
+            this.text.fontSize = this.text.fontSize + 4;
+        }
         this.openedInStructure = openedInStructure;
     }
     private void RecipeClicked()
@@ -51,9 +54,9 @@ public class Recipe : MonoBehaviour, IPointerEnterHandler
                 item.gameObject.SetActive(!item.gameObject.activeSelf);
             }
             if (active)
-                text.text = text.text.Replace("▲", "▼");
+                text.text = text.text.Replace("▼", "►");
             else
-                text.text = text.text.Replace("▼", "▲");
+                text.text = text.text.Replace("►", "▼");
             FindObjectOfType<RecipeDetail>().ClearDetails();
         }
     }
