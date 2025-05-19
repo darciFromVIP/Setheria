@@ -21,7 +21,8 @@ public class WorldGenerator : MonoBehaviour
 
     public static WorldGenerator instance;
 
-    private bool biomeLoaded = false;
+    [SerializeField]private bool biomeLoaded = false;
+    [SerializeField]private bool gameLoaded = false;
     private void Awake()
     {
         if (instance != null)
@@ -71,7 +72,7 @@ public class WorldGenerator : MonoBehaviour
                     item.transform.position += dic[i - 1];
             } 
         }
-        yield return new WaitUntil(IsMainSceneLoaded);
+        yield return new WaitUntil(AreScenesLoaded);
         yield return StartCoroutine(LoadWorldState(state));
         Debug.Log("Scene Loaded");
     }
@@ -167,13 +168,15 @@ public class WorldGenerator : MonoBehaviour
             }
         }
     }
-    private bool IsMainSceneLoaded()
+    private bool AreScenesLoaded()
     {
-        return biomeLoaded;
+        return biomeLoaded && gameLoaded;
     }
     private void BiomeLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         if (scene.name == "Forest Biome")
             biomeLoaded = true;
+        if (scene.name == "Game")
+            gameLoaded = true;
     }
 }
