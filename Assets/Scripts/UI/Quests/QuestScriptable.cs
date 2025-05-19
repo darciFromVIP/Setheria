@@ -233,9 +233,12 @@ public class QuestScriptable : ScriptableObject, IComparable
                 }
             }
             var playerItems = FindObjectOfType<InventoryManager>(true).GetAllItems();
-            if (requiredItemsDic.Count > 0)
+
+            List<KeyValuePair<string, int>> requiredItemsCopy = new();              // This is required to prevent "Collection was modified" error
+            requiredItemsDic.CopyTo(requiredItemsCopy);
+            if (requiredItemsCopy.Count > 0)
             {
-                foreach (var requiredItem in requiredItemsDic)
+                foreach (var requiredItem in requiredItemsCopy)
                 {
                     foreach (var playerItem in playerItems)
                     {

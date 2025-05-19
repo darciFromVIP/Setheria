@@ -82,7 +82,6 @@ public class WorldGenerator : MonoBehaviour
             gameManager.ChangeResources(state.resources);
             gameManager.ChangeKnowledge(state.knowledge);
         }
-        Debug.Log(gameManager == null);
         if (state.structureUpgrades != null && gameManager != null)
         {
             if (state.structureUpgrades.Count == gameManager.structureUpgradeDatabase.upgrades.Count)
@@ -93,8 +92,7 @@ public class WorldGenerator : MonoBehaviour
                 }
             }
         }
-        if (NetworkServer.active)
-            LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
+        LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
         if (state.fogOfWar != null)
             FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
         
@@ -133,7 +131,7 @@ public class WorldGenerator : MonoBehaviour
                 item.LoadState(value);
                 worldObjects.Remove(item.Id);
             }
-            else if (!FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.fresh)
+            else if (!FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.fresh && NetworkServer.active)
             {
                 if (item.TryGetComponent(out NetworkBehaviour net))
                     NetworkServer.Destroy(item.gameObject);
@@ -146,14 +144,13 @@ public class WorldGenerator : MonoBehaviour
             foreach (var item2 in item.Value)
             {
                 GameObject temp = null;
-                Debug.Log(item2.Key + item2.Value.name);
                 if (item2.Key == typeof(Item).ToString())
                     temp = itemDatabase.GetItemByName(item2.Value.name).gameObject;
                 if (item2.Key == typeof(Structure).ToString())
                     temp = structureDatabase.GetStructureByName(item2.Value.name).gameObject;
                 if (item2.Key == typeof(Ship).ToString() || item2.Key == typeof(EnemyCharacter).ToString())
                     temp = entityDatabase.GetEntityByName(item2.Value.name).gameObject;
-                if (temp)
+                if (temp && NetworkServer.active)
                 {
                     var spawnedObject = Instantiate(temp, Vector3.zero, temp.transform.rotation);
                     spawnedObject.GetComponent<SaveableBehaviour>().LoadState(item.Value);
