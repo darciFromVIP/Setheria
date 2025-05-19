@@ -139,23 +139,26 @@ public class WorldGenerator : MonoBehaviour
                     Destroy(item.gameObject);
             }
         }
-        foreach (var item in worldObjects)
+        if (NetworkServer.active)
         {
-            foreach (var item2 in item.Value)
+            foreach (var item in worldObjects)
             {
-                GameObject temp = null;
-                if (item2.Key == typeof(Item).ToString())
-                    temp = itemDatabase.GetItemByName(item2.Value.name).gameObject;
-                if (item2.Key == typeof(Structure).ToString())
-                    temp = structureDatabase.GetStructureByName(item2.Value.name).gameObject;
-                if (item2.Key == typeof(Ship).ToString() || item2.Key == typeof(EnemyCharacter).ToString())
-                    temp = entityDatabase.GetEntityByName(item2.Value.name).gameObject;
-                if (temp && NetworkServer.active)
+                foreach (var item2 in item.Value)
                 {
-                    var spawnedObject = Instantiate(temp, Vector3.zero, temp.transform.rotation);
-                    spawnedObject.GetComponent<SaveableBehaviour>().LoadState(item.Value);
-                    NetworkServer.Spawn(spawnedObject);
-                    break;
+                    GameObject temp = null;
+                    if (item2.Key == typeof(Item).ToString())
+                        temp = itemDatabase.GetItemByName(item2.Value.name).gameObject;
+                    if (item2.Key == typeof(Structure).ToString())
+                        temp = structureDatabase.GetStructureByName(item2.Value.name).gameObject;
+                    if (item2.Key == typeof(Ship).ToString() || item2.Key == typeof(EnemyCharacter).ToString())
+                        temp = entityDatabase.GetEntityByName(item2.Value.name).gameObject;
+                    if (temp)
+                    {
+                        var spawnedObject = Instantiate(temp, Vector3.zero, temp.transform.rotation);
+                        spawnedObject.GetComponent<SaveableBehaviour>().LoadState(item.Value);
+                        NetworkServer.Spawn(spawnedObject);
+                        break;
+                    }
                 }
             }
         }
