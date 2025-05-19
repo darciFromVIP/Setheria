@@ -9,7 +9,7 @@ public struct ClientConnectedMessage : NetworkMessage
 }
 public struct CurrentWorldSetMessage : NetworkMessage
 {
-    public SaveDataWorld currentWorldData;
+    public SaveDataWorldServer currentWorldData;
 }
 [System.Serializable]
 public class MyNetworkManager : NetworkManager
@@ -23,7 +23,7 @@ public class MyNetworkManager : NetworkManager
     }
     private void SendCurrentWorldData<ClientConnectedMessage>(NetworkConnectionToClient conn, ClientConnectedMessage msg)
     {
-        NetworkServer.SendToAll(new CurrentWorldSetMessage { currentWorldData = FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldSaveData });
+        NetworkServer.SendToAll(new CurrentWorldSetMessage { currentWorldData = FindObjectOfType<SaveLoadSystem>().currentWorldDataServer });
     }
     public override void OnServerConnect(NetworkConnectionToClient conn)
     {
@@ -44,7 +44,8 @@ public class MyNetworkManager : NetworkManager
     {
         if (!saveLoad)
             saveLoad = FindObjectOfType<SaveLoadSystem>();
-        saveLoad.LoadStateWorld(msg.currentWorldData);
+        saveLoad.currentWorldDataServer = msg.currentWorldData;
+        saveLoad.LoadStateWorld(msg.currentWorldData.worldSaveData);
         NetworkClient.UnregisterHandler<CurrentWorldSetMessage>();
         NetworkClient.RegisterHandler<CurrentWorldSetMessage>(EmptyMsgRegister);
     }
