@@ -31,9 +31,14 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
         currentIndex = state.intData2;
         timer = state.floatData1;
         progressPercentage = state.floatData2;
+        StartCoroutine(DelayedLoad());
+    }
+    private IEnumerator DelayedLoad()
+    {
+        while (uiData.daysAliveText == null)
+            yield return null;
         uiData.daysAliveText.text = "Day " + daysAlive;
     }
-
     public SaveDataWorldObject SaveState()
     {
         return new SaveDataWorldObject
