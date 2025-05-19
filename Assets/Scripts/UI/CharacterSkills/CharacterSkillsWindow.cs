@@ -13,6 +13,7 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     public List<Image> skills = new();
     public Sprite lockedSkill;
     public AvailablePointsBTN attributePointsBTN, talentPointsBTN;
+    public GameObject combatIcon;
     public Color takeDamageColor = Color.red, healDamageColor = Color.green;
     private float healthLerpTimer = 0, manaLerpTimer = 0;
     private float currentHealth, currentMana;
@@ -365,5 +366,13 @@ public class CharacterSkillsWindow : MonoBehaviour, NeedsLocalPlayerCharacter
     public void CastR()
     {
         playerController.AttemptExecuteSkill5();
+    }
+    public void EnableCombat()
+    {
+        combatIcon.SetActive(true);
+    }
+    public void DisableCombat()
+    {
+        combatIcon.SetActive(false);
     }
 }

@@ -10,6 +10,7 @@ public class WorldMap : MonoBehaviour, WindowedUI
     public MapCamera mapCamera;
     public RectTransform fowMap;
     public GameObject mapIconPrefab, mapCameraButtons, mapButtonsWindow;
+    public InputEnabledScriptable inputEnabled;
 
     private SettingsManager settingsManager;
     private GameObject ownedHeroIcon;
@@ -19,6 +20,8 @@ public class WorldMap : MonoBehaviour, WindowedUI
     }
     void Update()
     {
+        if (!inputEnabled.inputEnabled)
+            return;
         if (Input.GetKeyDown(settingsManager.settings.map))
         {
             ToggleWindow();

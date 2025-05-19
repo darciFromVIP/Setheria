@@ -32,6 +32,11 @@ public class SaveLoadSystem : MonoBehaviour
     [ContextMenu("Save")]
     public void Save()
     {
+        if (FindObjectOfType<AudioManager>().inCombat)
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("Unable to save while in combat.");
+            return;
+        }    
         StartCoroutine(SavingCoro());
     }
     private IEnumerator SavingCoro()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,10 +12,9 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     public GameObject allRecipes;
     public Recipe recipePrefab;
     public TooltipTrigger alchemyButton, fishingButton, cookingButton, explorationButton;
-
+    public RectTransform searchField;
     private RecipeCategory currentOpenedCategory;
     private SettingsManager settingsManager;
-
     public RecipeDatabase recipeDatabase;
     public InputEnabledScriptable inputEnabled;
     private void Awake()
@@ -234,6 +234,11 @@ public class ManualScreen : MonoBehaviour, WindowedUI
     public void LoadAllRecipes()
     {
         ClearRecipeList();
+        SetRecipeData(GetAllRecipes(), false);
+        currentOpenedCategory = RecipeCategory.AllRecipes;
+    }
+    private List<RecipeScriptable> GetAllRecipes()
+    {
         var player = FindObjectOfType<GameManager>().localPlayerCharacter;
         var allRecipes = new List<RecipeScriptable>();
         allRecipes.AddRange(recipeDatabase.survivalRecipes);
@@ -248,8 +253,7 @@ public class ManualScreen : MonoBehaviour, WindowedUI
         if (player.professions.exploration > 0)
             allRecipes.AddRange(recipeDatabase.explorationRecipes);
         allRecipes.Sort(CompareByIntValue);
-        SetRecipeData(allRecipes, false);
-        currentOpenedCategory = RecipeCategory.AllRecipes;
+        return allRecipes;
     }
     private int CompareByIntValue(RecipeScriptable a, RecipeScriptable b)
     {
@@ -349,5 +353,25 @@ public class ManualScreen : MonoBehaviour, WindowedUI
             }
         }
         return currentPlayerItems;
+    }
+    public void ShowSearchedRecipes(string input)
+    {
+        ClearRecipeList();
+        var allRecipes = GetAllRecipes();
+        var result = new List<RecipeScriptable>();
+        foreach (var item in allRecipes)
+        {
+            if (item.name.ContainsInsensitive(input))
+            {
+                result.Add(item);
+            }
+        }
+        inputEnabled.inputEnabled = true;
+        SetRecipeData(result, false);
+        currentOpenedCategory = RecipeCategory.Search;
+    }
+    public void DisableInput()
+    {
+        inputEnabled.inputEnabled = false;
     }
 }

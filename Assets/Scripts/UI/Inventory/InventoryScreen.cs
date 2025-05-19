@@ -9,6 +9,7 @@ public class InventoryScreen : MonoBehaviour
     private SettingsManager settingsManager;
     private Vector3 defaultWindowPosition;
     private Vector3 customWindowPosition;
+    public InputEnabledScriptable inputEnabled;
 
     private void Start()
     {
@@ -20,6 +21,8 @@ public class InventoryScreen : MonoBehaviour
     }
     void Update()
     {
+        if (!inputEnabled.inputEnabled)
+            return;
         if (Input.GetKeyDown(settingsManager.settings.inventory))
         {
             ToggleWindow();

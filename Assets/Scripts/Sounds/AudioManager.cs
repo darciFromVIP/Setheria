@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
     private float combatMusicTimer;
     private bool musicChanging = false, startingCombatMusic = false, stoppingCombatMusic = false;
     private List<HasHealth> targetsReceived = new();
+    public bool inCombat = false;
 
     public static AudioManager instance;
     private void Awake()
@@ -109,6 +110,8 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayCombatMusic()
     {
+        inCombat = true;
+        FindObjectOfType<CharacterSkillsWindow>().EnableCombat();
         if (startingCombatMusic)
             return;
         StartCoroutine(PlayCombatMusicCoro());
@@ -140,6 +143,8 @@ public class AudioManager : MonoBehaviour
     }
     public void StopCombatMusic()
     {
+        inCombat = false;
+        FindObjectOfType<CharacterSkillsWindow>().DisableCombat();
         if (stoppingCombatMusic)
             return;
         StartCoroutine(StopCombatMusicCoro());
