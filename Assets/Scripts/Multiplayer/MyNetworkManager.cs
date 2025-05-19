@@ -23,7 +23,7 @@ public class MyNetworkManager : NetworkManager
     }
     private void SendCurrentWorldData<ClientConnectedMessage>(NetworkConnectionToClient conn, ClientConnectedMessage msg)
     {
-        NetworkServer.SendToAll(new CurrentWorldSetMessage { currentWorldData = FindObjectOfType<SaveLoadSystem>().currentWorldDataServer });
+        NetworkServer.SendToAll(new CurrentWorldSetMessage { currentWorldData = FindObjectOfType<SaveLoadSystem>().currentWorldData });
     }
     public override void OnServerConnect(NetworkConnectionToClient conn)
     {
@@ -44,7 +44,7 @@ public class MyNetworkManager : NetworkManager
     {
         if (!saveLoad)
             saveLoad = FindObjectOfType<SaveLoadSystem>();
-        saveLoad.currentWorldDataServer = msg.currentWorldData;
+        saveLoad.currentWorldData = msg.currentWorldData;
         saveLoad.LoadStateWorld(msg.currentWorldData.worldSaveData);
         NetworkClient.UnregisterHandler<CurrentWorldSetMessage>();
         NetworkClient.RegisterHandler<CurrentWorldSetMessage>(EmptyMsgRegister);

@@ -13,7 +13,7 @@ public class SaveLoadSystem : MonoBehaviour
     public string dataDirPath = "";
     public string playerDirPath = "";
     public const string WorldDataFileFormat = ".WorldData";
-    public SaveDataWorldServer currentWorldDataServer = null;
+    public SaveDataWorldServer currentWorldData = null;
     private List<SaveDataPlayer> saveDataPlayers = new();
 
 
@@ -42,8 +42,8 @@ public class SaveLoadSystem : MonoBehaviour
     private IEnumerator SavingCoro()
     {
         saveFinished = false;
-        currentWorldDataServer = SaveStateWorld();
-        SaveFileWorld(currentWorldDataServer);
+        currentWorldData = SaveStateWorld();
+        SaveFileWorld(currentWorldData);
         SavePlayerStates();
         yield return StartCoroutine(SavePlayerFiles());
         FindObjectOfType<NetworkedSaveLoad>().RpcSaveSuccessful();
@@ -51,8 +51,8 @@ public class SaveLoadSystem : MonoBehaviour
     }
     public void SetCurrentWorld(string fullPath)
     {
-        currentWorldDataServer = LoadFileWorld(fullPath);
-        playerDirPath = dataDirPath + "/" + currentWorldDataServer.worldSaveData.worldName + "/Players/";
+        currentWorldData = LoadFileWorld(fullPath);
+        playerDirPath = dataDirPath + "/" + currentWorldData.worldSaveData.worldName + "/Players/";
     }
     public void SaveFileWorld(SaveDataWorldServer state, bool freshWorld = false)
     {
@@ -231,8 +231,8 @@ public class SaveLoadSystem : MonoBehaviour
         }
         state.worldSaveData.unlockedItems = unlockedItems;
         state.worldSaveData.unlockedRecipes = unlockedRecipes;
-        state.worldSaveData.worldName = currentWorldDataServer.worldSaveData.worldName;
-        state.worldSaveData.worldSeed = currentWorldDataServer.worldSaveData.worldSeed;
+        state.worldSaveData.worldName = currentWorldData.worldSaveData.worldName;
+        state.worldSaveData.worldSeed = currentWorldData.worldSaveData.worldSeed;
         state.worldSaveData.fogOfWar = new byte[FoW.FogOfWarTeam.GetTeam(0).mapResolution.x * FoW.FogOfWarTeam.GetTeam(0).mapResolution.y];
         FoW.FogOfWarTeam.GetTeam(0).GetTotalFogValues(ref state.worldSaveData.fogOfWar);
         state.worldSaveData.syncedQuestlines = FindObjectOfType<QuestManager>().SaveStateSynchronized();
@@ -254,7 +254,7 @@ public class SaveLoadSystem : MonoBehaviour
         {
             state.worldObjects.Add(item.Id, item.SaveState());
         }
-        currentWorldDataServer = state;
+        currentWorldData = state;
         return state;
     }
     public void LoadStateWorld(SaveDataWorld state)

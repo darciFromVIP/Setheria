@@ -92,7 +92,7 @@ public class WorldGenerator : MonoBehaviour
                 }
             }
         }
-        LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
+        LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldData.worldObjects);
         if (state.fogOfWar != null)
             FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
         
@@ -128,10 +128,11 @@ public class WorldGenerator : MonoBehaviour
         {
             if (worldObjects.TryGetValue(item.Id, out Dictionary<string, SaveDataWorldObject> value))
             {
+                Debug.Log(item.Id);
                 item.LoadState(value);
                 worldObjects.Remove(item.Id);
             }
-            else if (!FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.fresh && NetworkServer.active)
+            else if (!FindObjectOfType<SaveLoadSystem>().currentWorldData.fresh && NetworkServer.active)
             {
                 if (item.TryGetComponent(out NetworkBehaviour net))
                     NetworkServer.Destroy(item.gameObject);
