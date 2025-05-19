@@ -35,8 +35,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
     }
     private IEnumerator DelayedLoad()
     {
-        while (uiData.daysAliveText == null)
-            yield return null;
+        yield return new WaitForSeconds(1);
         uiData.daysAliveText.text = "Day " + daysAlive;
     }
     public SaveDataWorldObject SaveState()
