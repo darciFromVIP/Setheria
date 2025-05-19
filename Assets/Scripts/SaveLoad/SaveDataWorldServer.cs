@@ -136,6 +136,56 @@ public static class DictionaryReadWrite
         }
         return dic;
     }
+    public static void WriteWorldObjectsSimple(this NetworkWriter writer, WorldObjectsSimple value)
+    {
+        writer.WriteString(value.id);
+        writer.WriteList(value.data);
+    }
+    public static WorldObjectsSimple ReadWorldObjectsSimple(this NetworkReader reader)
+    {
+        var result = new WorldObjectsSimple();
+        result.id = reader.ReadString();
+        result.data = reader.ReadList<SaveDataWorldSimple>();
+        return result;
+    }
+    public static void WriteSaveDataWorldSimple(this NetworkWriter writer, SaveDataWorldSimple value)
+    {
+        writer.WriteString(value.id);
+        writer.WriteString(value.name);
+        writer.WriteFloat(value.positionX);
+        writer.WriteFloat(value.positionY);
+        writer.WriteFloat(value.positionZ);
+        writer.WriteFloat(value.rotationX);
+        writer.WriteFloat(value.rotationY);
+        writer.WriteFloat(value.rotationZ);
+        writer.WriteFloat(value.rotationW);
+        writer.WriteFloat(value.floatData1);
+        writer.WriteFloat(value.floatData2);
+        writer.WriteFloat(value.floatData3);
+        writer.WriteInt(value.intData1);
+        writer.WriteInt(value.intData2);
+        writer.WriteBool(value.boolData1);
+    }
+    public static SaveDataWorldSimple ReadSaveDataWorldSimple(this NetworkReader reader)
+    {
+        var value = new SaveDataWorldSimple();
+        value.id = reader.ReadString();
+        value.name = reader.ReadString();
+        value.positionX = reader.ReadFloat();
+        value.positionY = reader.ReadFloat();
+        value.positionZ = reader.ReadFloat();
+        value.rotationX = reader.ReadFloat();
+        value.rotationY = reader.ReadFloat();
+        value.rotationZ = reader.ReadFloat();
+        value.rotationW = reader.ReadFloat();
+        value.floatData1 = reader.ReadFloat();
+        value.floatData2 = reader.ReadFloat();
+        value.floatData3 = reader.ReadFloat();
+        value.intData1 = reader.ReadInt();
+        value.intData2 = reader.ReadInt();
+        value.boolData1 = reader.ReadBool();
+        return value;
+    }
 }
 [Serializable]
 public class SaveDataWorldSimple
