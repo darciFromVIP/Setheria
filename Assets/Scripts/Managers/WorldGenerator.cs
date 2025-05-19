@@ -20,6 +20,8 @@ public class WorldGenerator : MonoBehaviour
     public SaveDataWorld lastLoadedWorldState;
 
     public static WorldGenerator instance;
+
+    private bool biomeLoaded = false;
     private void Awake()
     {
         if (instance != null)
@@ -49,6 +51,7 @@ public class WorldGenerator : MonoBehaviour
             while (biomeCopy[random] == null);
 
             var operation = SceneManager.LoadSceneAsync(biomeCopy[random], LoadSceneMode.Additive);
+            SceneManager.sceneLoaded += BiomeLoaded;
             FindObjectOfType<LoadingScreen>().LoadAsyncOperation("Loading Terrain...", operation);
             while (!operation.isDone)
             {
@@ -92,7 +95,7 @@ public class WorldGenerator : MonoBehaviour
                 }
             }
         }
-        LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldData.worldObjects);
+        LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
         if (state.fogOfWar != null)
             FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
         
@@ -132,7 +135,7 @@ public class WorldGenerator : MonoBehaviour
                 item.LoadState(value);
                 worldObjects.Remove(item.Id);
             }
-            else if (!FindObjectOfType<SaveLoadSystem>().currentWorldData.fresh && NetworkServer.active)
+            else if (!FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.fresh && NetworkServer.active)
             {
                 if (item.TryGetComponent(out NetworkBehaviour net))
                     NetworkServer.Destroy(item.gameObject);
@@ -166,6 +169,11 @@ public class WorldGenerator : MonoBehaviour
     }
     private bool IsMainSceneLoaded()
     {
-        return SceneManager.GetActiveScene().name == "Game";
+        return biomeLoaded;
+    }
+    private void BiomeLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        if (scene.name == "Forest Biome")
+            biomeLoaded = true;
     }
 }

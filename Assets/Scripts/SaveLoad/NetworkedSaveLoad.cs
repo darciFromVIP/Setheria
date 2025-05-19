@@ -23,7 +23,7 @@ public class NetworkedSaveLoad : NetworkBehaviour
     [Command(requiresAuthority = false)]    
     public void CmdLoad()                   // not functional enough
     {
-        RpcLoad(saveLoadSystem.currentWorldData.worldSaveData);
+        RpcLoad(saveLoadSystem.currentWorldDataServer.worldSaveData);
         foreach (var item in FindObjectsOfType<PlayerCharacter>())
         {
             item.LoadCharacterFromServer();
