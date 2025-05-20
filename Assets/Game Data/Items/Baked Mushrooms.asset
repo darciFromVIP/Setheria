@@ -12,21 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
   m_Name: Baked Mushrooms
   m_EditorClassIdentifier: 
-  description: '__________________________________
-
-    Baked edible mushrooms. Eat
-    this to restore +6<sprite=12>
-
-    __________________________________
-
-    Food,
-    Cooking'
+  description: "__________________________________\nBaked edible mushrooms.\n+6<sprite=12>
+    \n-3<sprite=20>\n__________________________________\nFood, Cooking"
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 0f4b292d41654194aa97d483a710a713, type: 3}
   stackable: 1
+  maxStacks: 99
   usage:
   - {fileID: 11400000, guid: 8556a85ecfb919d468d8c3bff51cd180, type: 2}
+  - {fileID: 11400000, guid: e066ff55f3c2ca347bf56110bccb49e4, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -36,6 +31,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
