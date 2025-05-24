@@ -96,7 +96,8 @@ public class WorldGenerator : MonoBehaviour
                 }
             }
         }
-        LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
+        if (NetworkServer.active)
+            LoadWorldObjects(FindObjectOfType<SaveLoadSystem>().currentWorldDataServer.worldObjects);
         if (state.fogOfWar != null)
             FoW.FogOfWarTeam.GetTeam(0).SetTotalFogValues(state.fogOfWar);
         

@@ -16,11 +16,11 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     public float refreshDuration;
     public int xpGranted;
     public int maxCharges;
-    private int currentCharges;
-    private float refreshTimer;
+    [SyncVar(hook = nameof(HookCharges))]private int currentCharges;
+    [SyncVar(hook = nameof(HookRefreshTimer))]private float refreshTimer;
     public bool oneTimeLoot = true;
     public bool destroyOnLoot = false;
-    public bool lootable = true;
+    [SyncVar(hook = nameof(HookLootable))]public bool lootable = true;
     public ItemType toolRequirement;
     public int toolLevelRequirement;
     public TalentTreeType professionRequired;
@@ -242,6 +242,10 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     [ClientRpc]
     private void RpcUpdateLootability(bool value)
     {
+        UpdateLootability(value);
+    }
+    private void UpdateLootability(bool value)
+    {
         lootable = value;
         if (effectsToHide.Count > 0)
             foreach (var item in effectsToHide)
@@ -389,5 +393,19 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             if (refreshTimer > 0)
                 StartCoroutine(StartRefreshTimer(true));
         }
+    }
+    private void HookLootable(bool oldLootable, bool newLootable)
+    {
+        UpdateLootability(newLootable);
+    }
+    private void HookCharges(int oldCharges, int newCharges)
+    {
+        currentCharges = newCharges;
+    }
+    private void HookRefreshTimer(float oldTimer, float newTimer)
+    {
+        refreshTimer = newTimer;
+        if (refreshTimer > 0 && !refreshProgressBar.gameObject.activeSelf)
+            StartCoroutine(StartRefreshTimer(true));
     }
 }

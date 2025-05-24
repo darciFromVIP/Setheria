@@ -14,7 +14,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
     public DayNightCycleScriptable uiData;
     public List<PostProcessingDataScriptable> data = new();
 
-    [SyncVar][SerializeField] public int daysAlive = 1;
+    [SyncVar(hook = nameof(HookDays))][SerializeField] public int daysAlive = 1;
     [SyncVar][SerializeField] private float timer = 0;
     [SyncVar][SerializeField] private float progressPercentage = 0;
     [SyncVar][SerializeField] private int currentIndex = 0;
@@ -43,7 +43,10 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
             floatData2 = progressPercentage
         };
     }
-
+    private void HookDays(int oldDays, int newDays)
+    {
+        uiData.daysAliveText.text = "Day " + newDays;
+    }
     private void Start()
     {
         maxIndex = data.Count - 1;
