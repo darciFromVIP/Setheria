@@ -119,6 +119,7 @@ public class WorldGenerator : MonoBehaviour
                 yield return null;
             }
             var recipes = gameManager.recipeDatabase.allRecipes;
+            Debug.Log(recipes.Count + " + " + state.unlockedRecipes.Count);
             for (int i = 0; i < recipes.Count; i++)
             {
                 recipes[i].unlocked = state.unlockedRecipes[i];
@@ -133,7 +134,6 @@ public class WorldGenerator : MonoBehaviour
         {
             if (worldObjects.TryGetValue(item.Id, out Dictionary<string, SaveDataWorldObject> value))
             {
-                Debug.Log(item.Id);
                 item.LoadState(value);
                 worldObjects.Remove(item.Id);
             }

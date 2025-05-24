@@ -45,7 +45,8 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
     }
     private void HookDays(int oldDays, int newDays)
     {
-        uiData.daysAliveText.text = "Day " + newDays;
+        if (!NetworkServer.active)
+            uiData.daysAliveText.text = "Day " + newDays;
     }
     private void Start()
     {
