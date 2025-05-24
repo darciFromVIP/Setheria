@@ -18,7 +18,7 @@ public class SaveDataWorldServer
     }
 }
 
-public static class DictionaryReadWrite
+/*public static class DictionaryReadWrite
 {
     public static void WriteDictionaryStringSaveDataWorldObject(this NetworkWriter writer, Dictionary<string, SaveDataWorldObject> value)
     {
@@ -208,4 +208,4 @@ public class WorldObjectsSimple
 {
     public string id;
     public List<SaveDataWorldSimple> data;
-}
+}*/
