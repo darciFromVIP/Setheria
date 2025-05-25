@@ -365,8 +365,6 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
 
     public SaveDataWorldObject SaveState()
     {
-        if (!lootable && oneTimeLoot && !TryGetComponent(out Heartstone hs))
-            return null;
         return new SaveDataWorldObject
         {
              intData1 = currentCharges,

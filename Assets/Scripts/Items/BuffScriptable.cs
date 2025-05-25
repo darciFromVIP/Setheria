@@ -19,6 +19,7 @@ public class BuffScriptable : ScriptableObject
     public string description;
     public BuffType buffType;
     public bool positiveBuff;
+    public bool persistsAfterDeath;   
     public float value;
     public float duration;
     public bool stackable;

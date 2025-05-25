@@ -304,6 +304,8 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
     }
     public void ChangeAmount(string value)
     {
+        if (value == "")
+            return;
         ChangeAmount(int.Parse(value));
     }
 }

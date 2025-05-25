@@ -10,7 +10,16 @@ public class ActiveDuringTime : MonoBehaviour
     public NavMeshObstacle obstacle;
     private void Start()
     {
+        StartCoroutine(WaitForDayNightCycle());
+    }
+    private IEnumerator WaitForDayNightCycle()
+    {
         var daynight = FindObjectOfType<DayNightCycle>();
+        while (daynight == null)
+        {
+            daynight = FindObjectOfType<DayNightCycle>();
+            yield return null;
+        }
         if (activeDuringDay)
         {
             daynight.Day_Started.AddListener(TurnOn);
@@ -26,7 +35,6 @@ public class ActiveDuringTime : MonoBehaviour
         else if (!daynight.IsNight() && !activeDuringDay)
             TurnOff();
     }
-
     private void TurnOn()
     {
         objectToChange.SetActive(true);

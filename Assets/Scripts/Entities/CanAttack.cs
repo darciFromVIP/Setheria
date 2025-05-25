@@ -184,7 +184,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             if (!character.IsAnyCooldownTicking() && character.canCastSkills && timerOnTargetAcquired <= 0)
             {
                 netAnim.animator.speed = 1;
-                character.skillInstances[currentSkillIndex].Execute(character);
+                RpcCastSkill();
 
                 character.canCastSkills = false;
                 currentSkillIndex++;
@@ -192,6 +192,11 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
                     currentSkillIndex = 0;
             }
         }
+    }
+    [ClientRpc]
+    private void RpcCastSkill()
+    {
+        character.skillInstances[currentSkillIndex].Execute(character);
     }
     [ClientRpc]
     private void RpcSetCanAct(bool value)
@@ -376,6 +381,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             }
         if (enemyTarget)
         {
+            if (TryGetComponent(out PlayerCharacter player))                    // Combat music
+                FindObjectOfType<AudioManager>().TargetReceived(enemyTarget);
             if (TryGetComponent(out HasHealth hp))
                 enemyTarget.Target_Received.Invoke(hp);
             enemyTarget.On_Death.AddListener(CmdTargetLost);

@@ -26,10 +26,9 @@ public class AudioManager : MonoBehaviour
 
     private List<EventInstance> eventInstances = new();
 
-    private float combatMusicTimer;
-    private bool musicChanging = false, startingCombatMusic = false, stoppingCombatMusic = false;
-    private List<HasHealth> targetsReceived = new();
     public bool inCombat = false;
+    private float timer = 0;
+    private List<HasHealth> targetsReceived = new();
 
     public static AudioManager instance;
     private void Awake()
@@ -49,8 +48,6 @@ public class AudioManager : MonoBehaviour
     }
     private void Update()
     {
-        if (combatMusicTimer > 0) 
-            combatMusicTimer -= Time.deltaTime;
         foreach (var item in targetsReceived)
         {
             if (item == null)
@@ -60,12 +57,30 @@ public class AudioManager : MonoBehaviour
                     StopCombatMusic();
                 break;
             }
-            if (item.GetComponent<CanAttack>().enemyTarget == null)
+            if (item.GetComponent<CanAttack>().enemyTarget == null || item.GetComponent<HasHealth>().GetHealth() <= 0)
             {
                 targetsReceived.Remove(item);
                 if (targetsReceived.Count == 0)
                     StopCombatMusic();
                 break;
+            }
+        }
+        if (!inCombat)
+        {
+            if (timer > 0)
+            {
+                currentMusicInstance.setVolume(Mathf.Lerp(1, 0, timer / 4));
+                currentCombatInstance.setVolume(Mathf.Lerp(0, 1, timer / 4));
+                timer -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (timer > 0)
+            {
+                currentMusicInstance.setVolume(Mathf.Lerp(0, 1, timer / 4));
+                currentCombatInstance.setVolume(Mathf.Lerp(1, 0, timer / 4));
+                timer -= Time.deltaTime;
             }
         }
     }
@@ -110,57 +125,26 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayCombatMusic()
     {
+        if (inCombat)
+            return;
         inCombat = true;
         FindObjectOfType<CharacterSkillsWindow>().EnableCombat();
-        if (startingCombatMusic)
-            return;
-        StartCoroutine(PlayCombatMusicCoro());
-    }
-    private IEnumerator PlayCombatMusicCoro()
-    {
-        yield return new WaitWhile(IsMusicChanging);
-        if (startingCombatMusic)
-            yield break;
         if (!currentCombatInstance.isValid())
         {
             currentCombatInstance = RuntimeManager.CreateInstance(combatEvent);
-            currentCombatInstance.start();
-        }
-        else
-        {
-            bool paused;
-            currentCombatInstance.getPaused(out paused);
-            if (!paused)
-                yield break;
-        }
-        if (combatMusicTimer <= 0)
-        {
             currentCombatInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             currentCombatInstance.start();
+            currentCombatInstance.setPaused(false);
         }
-        StartCoroutine(UnpauseCombatFadeIn());
-        StartCoroutine(PauseMusicFadeOut());
+        timer = 4;
     }
     public void StopCombatMusic()
     {
+        if (!inCombat)
+            return;
         inCombat = false;
         FindObjectOfType<CharacterSkillsWindow>().DisableCombat();
-        if (stoppingCombatMusic)
-            return;
-        StartCoroutine(StopCombatMusicCoro());
-    }
-    private IEnumerator StopCombatMusicCoro()
-    {
-        yield return new WaitWhile(IsMusicChanging);
-        if (stoppingCombatMusic)
-            yield break;
-        combatMusicTimer = 15;
-        StartCoroutine(PauseCombatFadeOut());
-        StartCoroutine(UnpauseMusicFadeIn());
-    }
-    private bool IsMusicChanging()
-    {
-        return musicChanging;
+        timer = 4;
     }
     private void ChangeToNightMusic()
     {
@@ -175,64 +159,6 @@ public class AudioManager : MonoBehaviour
         currentMusicInstance.getParameterByName("Music", out parameter);
         if (parameter == 1)
             ChangeMusicParameter(MusicParameter.ForestDay);
-    }
-    private IEnumerator PauseMusicFadeOut()
-    {
-        musicChanging = true;
-        float timer = 4;
-        while (timer > 0)
-        {
-            currentMusicInstance.setVolume(Mathf.Lerp(0, 1, timer / 4));
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-        currentMusicInstance.setPaused(true);
-        musicChanging = false;
-    }
-    private IEnumerator PauseCombatFadeOut()
-    {
-        musicChanging = true;
-        stoppingCombatMusic = true;
-        float timer = 4;
-        while (timer > 0)
-        {
-            currentCombatInstance.setVolume(Mathf.Lerp(0, 1, timer / 4));
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-        currentCombatInstance.setPaused(true);
-        musicChanging = false;
-        yield return new WaitForSeconds(5);
-        stoppingCombatMusic = false;
-    }
-    private IEnumerator UnpauseMusicFadeIn()
-    {
-        musicChanging = true;
-        currentMusicInstance.setPaused(false);
-        float timer = 4;
-        while (timer > 0)
-        {
-            currentMusicInstance.setVolume(Mathf.Lerp(1, 0, timer / 4));
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-        musicChanging = false;
-    }
-    private IEnumerator UnpauseCombatFadeIn()
-    {
-        musicChanging = true;
-        startingCombatMusic = true;
-        currentCombatInstance.setPaused(false);
-        float timer = 4;
-        while (timer > 0)
-        {
-            currentCombatInstance.setVolume(Mathf.Lerp(1, 0, timer / 4));
-            timer -= Time.deltaTime;
-            yield return null;
-        }
-        musicChanging = false;
-        yield return new WaitForSeconds(5);
-        startingCombatMusic = false;
     }
     public void UIHover()
     {

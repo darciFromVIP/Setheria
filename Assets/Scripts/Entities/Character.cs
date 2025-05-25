@@ -357,6 +357,7 @@ public class Character : Entity
                 var effectInstance = Instantiate(vfxDatabase.GetVFXByName(buffScriptable.buffName), transform);
                 buffInstance.effect = effectInstance;
             }
+            buffInstance.persistsAfterDeath = buffScriptable.persistsAfterDeath;
             buffs.Add(buffInstance);
             Buff_Added.Invoke(buffScriptable.name, buffInstance);
             if (this is PlayerCharacter && isOwned && buffScriptable.sprite != null)
@@ -512,7 +513,8 @@ public class Character : Entity
         base.OnDeath();
         foreach (var item in buffs)
         {
-            CmdRemoveBuff(item.name);
+            if (!item.persistsAfterDeath)
+                CmdRemoveBuff(item.name);
         }
         foreach (var item in skillInstances)
         {

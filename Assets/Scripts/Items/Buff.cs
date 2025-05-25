@@ -16,6 +16,7 @@ public abstract class Buff
     public BuffType buffType;
     public float value;
     public float durationTimer;
+    public bool persistsAfterDeath;
     public int stacks = 1;
     public Character targetEntity;
     public GameObject effect;
@@ -122,22 +123,22 @@ public class BManaRegen : Buff
         buffType = BuffType.ManaRegen;
         this.value = value;
         this.targetEntity = targetEntity;
-        targetEntity.GetComponent<HasMana>().ChangeBaseManaRegen(value);
+        targetEntity.GetComponent<HasMana>().ChangeGearManaRegen(value);
     }
     public override void BuffExpired()
     {
         base.BuffExpired();
-        targetEntity.GetComponent<HasMana>().ChangeBaseManaRegen(-value * stacks);
+        targetEntity.GetComponent<HasMana>().ChangeGearManaRegen(-value * stacks);
     }
     public override void IncreaseStacks()
     {
         base.IncreaseStacks();
-        targetEntity.GetComponent<HasMana>().ChangeBaseManaRegen(value);
+        targetEntity.GetComponent<HasMana>().ChangeGearManaRegen(value);
     }
     public override void DecreaseStacks()
     {
         base.DecreaseStacks();
-        targetEntity.GetComponent<HasMana>().ChangeBaseManaRegen(-value);
+        targetEntity.GetComponent<HasMana>().ChangeGearManaRegen(-value);
     }
 }
 public class BBleed : Buff
