@@ -58,6 +58,8 @@ public class SaveDataPlayer
     public float cooldown3; 
     public float cooldown4; 
     public float cooldown5;
+    public float carnivorePercentage;
+    public int hungerCount;
     public TalentTrees talentTrees;
     public Professions professions;
     public List<QuestlineSaveable> unsyncedQuestlines = new();
@@ -116,5 +118,7 @@ public class SaveDataPlayer
         water = 100;
         maxWater = 100;
         waterInterval = 15;
+        hungerCount = 0;
+        carnivorePercentage = 50;
     }
 }

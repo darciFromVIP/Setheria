@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0580cc4b71a6b4fa128e9ae325d57e, type: 3}
+  m_Name: TutDiet
+  m_EditorClassIdentifier: 
+  label: Diet
+  gifAnim: {fileID: 7400000, guid: fe61ea09773dcf947b71f9465b1515eb, type: 2}
+  description: '- Eating food from certain diets changes your diet type (Carnivore,
+    Herbivore, Omnivore)
+
+    - Eating food from diets other than your own cuts the
+    food efficiency by half (except for Omnivore)
+
+    - Every diet type has its
+    own Talent Tree, changing diets resets the tree
+
+    - Check your Character Screen
+    (C) for more details'

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TalentTreeType
 {
-    Special, Gathering, Cooking, Alchemy, Fishing, Exploration
+    Special, Gathering, Cooking, Alchemy, Fishing, Exploration, Diet
 }
 [System.Serializable]
 public class TalentTree
@@ -18,7 +18,7 @@ public class TalentTree
         talentTreeType = treeType;
         foreach (var item in talents)
         {
-            this.talents.Add(new Talent(item.talentType));
+            this.talents.Add(new Talent(item.label));
         }
     }
     public void ChangeTalentPointsSpent(int value)

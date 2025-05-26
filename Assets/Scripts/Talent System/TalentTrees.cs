@@ -19,7 +19,7 @@ public class TalentTrees
         {
             foreach (var item2 in item.talents)
             {
-                if (item2.talentType == talent.talentType)
+                if (item2.name == talent.label)
                 {
                     if (item2.currentLevel >= level)
                         return true;
@@ -28,7 +28,7 @@ public class TalentTrees
         }
         return false;
     }
-    public void UnlockTalent(TalentScriptable talent)
+    public void UnlockTalent(TalentScriptable talent, PlayerCharacter player)
     {
         if (talentPoints <= 0)
             return;
@@ -36,12 +36,28 @@ public class TalentTrees
         {
             foreach (var item2 in item.talents)
             {
-                if (item2.talentType == talent.talentType)
+                if (item2.name == talent.label)
                 {
-                    item2.IncreaseCurrentLevel();
+                    item2.IncreaseCurrentLevel(player);
                     ChangeTalentPoints(-1);
                     item.ChangeTalentPointsSpent(1);
                 }
+            }
+        }
+    }
+    public void RefundTalentPoints(TalentTreeType treeType, PlayerCharacter player)
+    {
+        foreach (var item in talentTrees)
+        {
+            if (item.talentTreeType == treeType && item.talentPointsSpent > 0)
+            {
+                foreach (var item2 in item.talents)
+                {
+                    Debug.Log(item2.name);
+                    item2.ResetLevel(player);
+                }
+                talentPoints += item.talentPointsSpent;
+                item.talentPointsSpent = 0;
             }
         }
     }

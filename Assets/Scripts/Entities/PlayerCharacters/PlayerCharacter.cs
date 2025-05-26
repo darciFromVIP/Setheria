@@ -13,6 +13,10 @@ public enum Hero
 {
     Lycandruid, ForestProtector
 }
+public enum DietType
+{
+    None, Carnivore, Herbivore, Omnivore
+}
 public interface LocalPlayerCharacter
 {
     public PlayerCharacter GetLocalPlayerCharacter();
@@ -53,6 +57,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public TalentTreesReference refTalentTrees;
     [HideInInspector] public TalentTrees talentTrees = new();
     public Professions professions;
+    protected float carnivorePercentage = 50;
+    protected int hungerCount = 0;
 
     protected const float MaxXpMultiplier = 1.2f;
     protected const int BaseMaxXpValue = 100;
@@ -74,6 +80,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [System.NonSerialized] public UnityEvent<int> AttCritDmg_Changed = new();
     [System.NonSerialized] public UnityEvent<int> AttCDR_Changed = new();
     [System.NonSerialized] public UnityEvent<List<Skill>> Skills_Changed = new();
+    [System.NonSerialized] public UnityEvent<float> DietPercentageChanged = new();
+
 
     public ItemPrefabDatabase itemDatabase;
     public ItemScriptableDatabase itemScriptableDatabase;
@@ -156,7 +164,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 if (hungerTimer >= GetHungerInterval())
                 {
                     hungerTimer = 0;
-                    CmdChangeHunger(-1, false);
+                    CmdChangeHunger(-1, false, DietType.None);
                     CmdRemoveBuff("Starving", connectionToClient);
                 }
                 else if (hunger <= 0 && hungerTimer >= 10)
@@ -262,6 +270,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     xp = item.xp;
                     maxXp = item.maxXp;
                     ChangeAttributePoints(item.attributePoints);
+                    carnivorePercentage = item.carnivorePercentage;
+                    hungerCount = item.hungerCount;
                     attPower = item.attPower;
                     attMaxMana = item.attMana;
                     attManaRegen = item.attManaRegen;
@@ -366,6 +376,13 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                             foreach (var item2 in refTalentTrees.talentTrees)
                             {
                                 talentTrees.talentTrees.Add(new TalentTree(item2.treeType, item2.talents));
+                            }
+                        }
+                        foreach (var item2 in talentTrees.talentTrees)
+                        {
+                            foreach (var item3 in item2.talents)
+                            {
+                                UnlockTalent(item3.name, 0, item3.currentLevel);
                             }
                         }
                         foreach (var item5 in item.activebuffs)
@@ -506,6 +523,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             hunger = hunger,
             maxHunger = maxHunger,
             hungerInterval = hungerInterval,
+            hungerCount = hungerCount,
+            carnivorePercentage = carnivorePercentage,
             water = water,
             maxWater = maxWater,
             waterInterval = waterInterval,
@@ -563,7 +582,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             level++;
             maxXp = (int)(BaseMaxXpValue * level * MaxXpMultiplier);
             Level_Up.Invoke(level);
-            Debug.Log("Level up: " + level);
             if (level == 2 && isOwned)
             {
                 foreach (var item in levelUpTutorial)
@@ -672,21 +690,26 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         FindObjectOfType<InventoryManager>(true).AddItem(itemScriptableDatabase.GetItemByName(item), stacks);
     }
     [Command(requiresAuthority = false)]
-    public void CmdChangeHunger(int amount, bool showText)
+    public void CmdChangeHunger(int amount, bool showText, DietType dietType)
     {
         if (showText)
         {
             if (amount > 0)
             {
+                if (carnivorePercentage >= 70 && dietType != DietType.Carnivore)
+                    amount /= 2;
+                if (carnivorePercentage <= 30 && dietType != DietType.Herbivore)
+                    amount /= 2;
+                
                 FindObjectOfType<FloatingText>().ServerSpawnFloatingText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
             }
             else
                 FindObjectOfType<FloatingText>().ServerSpawnFloatingText(amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
         }
-        RpcChangeHunger(amount);
+        RpcChangeHunger(amount, dietType);
     }
     [ClientRpc]
-    public void RpcChangeHunger(int amount)
+    public void RpcChangeHunger(int amount, DietType dietType)
     {
         hunger += amount;
         if (isOwned)
@@ -696,7 +719,32 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 FindObjectOfType<SystemMessages>().AddMessage("You are starving.");
             }
             if (amount > 0)
+            {
+                switch (dietType)
+                {
+                    case DietType.Carnivore:
+                        carnivorePercentage += amount / 2;
+                        break;
+                    case DietType.Herbivore:
+                        carnivorePercentage -= amount / 2;
+                        break;
+                    default:
+                        break;
+                }
+                if (carnivorePercentage > 100)
+                    carnivorePercentage = 100;
+                if (carnivorePercentage < 0)
+                    carnivorePercentage = 0;
+                DietPercentageChanged.Invoke(carnivorePercentage);
                 FindObjectOfType<AudioManager>().EatFood(transform.position);
+                hungerCount += amount;
+                if (hungerCount >= 50)
+                {
+                    hungerCount = 0;
+                    talentTrees.ChangeTalentPoints(1);
+                    FindObjectOfType<SystemMessages>().AddMessage("Talent Point acquired!", MsgType.Positive);
+                }
+            }
         }
         Hunger_Changed.Invoke();
     }
@@ -751,7 +799,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         water = amount;
         Water_Changed.Invoke();
     }
-    public void ChangeStat(PlayerStat playerStat, float modifier)
+    public void ChangeStat(PlayerStat playerStat, float modifier, DietType dietType = DietType.None)
     {
         switch (playerStat)
         {
@@ -780,7 +828,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 manaComp.CmdChangeBaseManaRegen(modifier);
                 break;
             case PlayerStat.Hunger:
-                CmdChangeHunger((int)modifier, true);
+                CmdChangeHunger((int)modifier, true, dietType);
                 break;
             case PlayerStat.MaxHunger:
                 break;
@@ -1131,7 +1179,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (isOwned)
         {
             if (hunger > 40)
-                CmdChangeHunger(-20, true);
+                CmdChangeHunger(-20, true, DietType.None);
             else
                 CmdSetHunger(20);
         }
@@ -1163,4 +1211,70 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         }
         return false;
     }
+    // Talent Unlock and Reset
+    public void UnlockTalent(string name, int previousLevel, int currentLevel)
+    {
+        if (name == "Protein Rush")
+            ProteinRush(previousLevel, currentLevel);
+        if (name == "Chlorophyll Surge")
+            ChlorophyllSurge(previousLevel, currentLevel);
+        if (name == "Balanced Bite")
+            BalancedBite(previousLevel, currentLevel);
+    }
+    public void ResetTalent(string name, int previousLevel, int currentLevel)
+    {
+        if (name == "Protein Rush")
+            ProteinRushReduce(previousLevel, currentLevel);
+        if (name == "Chlorophyll Surge")
+            ChlorophyllSurgeReduce(previousLevel, currentLevel);
+        if (name == "Balanced Bite")
+            BalancedBiteReduce(previousLevel, currentLevel);
+    }   
+    // Diet Talents
+    private void ProteinRush(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++) 
+        {
+            attackComp.CmdChangeGearPower(1);
+        }
+    }
+    private void ProteinRushReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            attackComp.CmdChangeGearPower(-1);
+        }
+    }
+    private void ChlorophyllSurge(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            manaComp.CmdChangeGearManaRegen(0.1f);
+        }
+    }
+    private void ChlorophyllSurgeReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            manaComp.CmdChangeGearManaRegen(-0.1f);
+        }
+    }
+    private void BalancedBite(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            healthComp.CmdChangeGearMaxHealth(15);
+        }
+    }
+    private void BalancedBiteReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            healthComp.CmdChangeGearMaxHealth(-15);
+        }
+    }
+
+
+
+
 }

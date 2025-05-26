@@ -18,18 +18,21 @@ public class TalentButton : MonoBehaviour
     public void UpdateTalentDescription()
     {
         string talentDescription = talent.description;
-        if (talent.requiredTalent || talent.requiredTalentPointsSpent > 0)
+        if (talent.requiredTalent || talent.requiredTalentPointsSpent > 0 || talent.requiredPlayerLevel > 0)
             talentDescription += "\n\n";
+        if (talent.requiredPlayerLevel > 0)
+            talentDescription += "Required Player Level: " + talent.requiredPlayerLevel;
         if (talent.requiredTalent)
-            talentDescription += "Required Talent: " + talent.requiredTalent.name + " of level " + talent.requiredTalentLevel;
+            talentDescription += "Required Talent: " + talent.requiredTalent.label + " of level " + talent.requiredTalentLevel;
         if (talent.requiredTalentPointsSpent > 0)
             talentDescription += "Required Talent Points spent: " + talent.requiredTalentPointsSpent;
         GetComponent<TooltipTrigger>().SetText(talent.label, talentDescription, image.sprite);
     }
     public void UpdateButton(Talent currentTalent, TalentTrees playerTalentTrees, TalentTree talentTree)
     {
+        var localPlayer = FindObjectOfType<GameManager>().localPlayerCharacter;
         levelText.text = currentTalent.currentLevel + "/" + talent.maxLevel;
-        if (currentTalent.currentLevel == 0 && (talentTree.talentPointsSpent < talent.requiredTalentPointsSpent || playerTalentTrees.talentPoints <= 0))
+        if (currentTalent.currentLevel == 0 && (talentTree.talentPointsSpent < talent.requiredTalentPointsSpent || playerTalentTrees.talentPoints <= 0 || localPlayer.level < talent.requiredPlayerLevel) )
         {
             image.color = new Color(0.25f, 0.25f, 0.25f);
             btn.interactable = false;

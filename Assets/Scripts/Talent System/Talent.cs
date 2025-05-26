@@ -5,17 +5,23 @@ using UnityEngine;
 [System.Serializable]
 public class Talent
 {
-    public TalentType talentType;
+    public string name;
     public byte currentLevel = 0;
     public Talent() { }
-    public Talent(TalentType type)
+    public Talent(string name)
     {
-        talentType = type;
+        this.name = name;
         currentLevel = 0;
     }
-    public void IncreaseCurrentLevel()
+    public void IncreaseCurrentLevel(PlayerCharacter player)
     {
         currentLevel++;
+        player.UnlockTalent(name, currentLevel - 1, currentLevel);
+    }
+    public void ResetLevel(PlayerCharacter player)
+    {
+        player.ResetTalent(name, currentLevel, 0);
+        currentLevel = 0;
     }
     public void SetCurrentLevel(byte value)
     {

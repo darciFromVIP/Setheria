@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
 {
-    public List<GameObject> combatTalentTrees = new();
     public TextMeshProUGUI availablePoints, spentPoints;
     private List<TalentButton> talentButtons = new();
 
@@ -14,9 +13,7 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
     public PlayerCharacter localPlayer;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
-        localPlayer = player;
-        if (combatTalentTrees.Count > 0)
-            combatTalentTrees[(int)player.hero].SetActive(true);
+        localPlayer = player; 
         foreach (var item in GetComponentsInChildren<TalentButton>(true))
         {
             talentButtons.Add(item);
@@ -35,7 +32,7 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
                 }
                 foreach (var item3 in item2.talents)
                 {
-                    if (item3.talentType == item.talent.talentType)
+                    if (item3.name == item.talent.label)
                     {
                         item.UpdateButton(item3, localPlayer.talentTrees, item2);
                     }
@@ -45,7 +42,7 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
     }
     public void UnlockTalent(TalentScriptable talent)
     {
-        localPlayer.talentTrees.UnlockTalent(talent);
+        localPlayer.talentTrees.UnlockTalent(talent, localPlayer);
         localPlayer.UpdateSkills();
         UpdateTalents();
     }

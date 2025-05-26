@@ -170,7 +170,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void UseItem()
     {
-        if (FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>().state != PlayerState.None)        //Already does something
+        var localPlayer = FindObjectOfType<GameManager>().localPlayerCharacter;
+        if (localPlayer.GetComponent<PlayerController>().state != PlayerState.None)        //Already does something
             return;
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftControl))
             return;
@@ -211,7 +212,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             item.Skill_Casted.RemoveAllListeners();
             item.Skill_Casted.AddListener(StartCooldown);
-            item.Execute(FindObjectOfType<GameManager>().localPlayerCharacter);
+            item.Execute(localPlayer);
         }
         if (used && item.stackable)
         {

@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum TalentType
-{
-    None, GreenDust, Rejuvenation, EntanglingRoots, FlowerPower, SwipeAndBite, UppercutAndPounce, RoarAndBattlecry, WildRageAndCallOfTheWild
-}
 [CreateAssetMenu(menuName = "Talent System/Talent")]
 public class TalentScriptable : ScriptableObject
 {
-    public TalentType talentType;
     public byte maxLevel;
     public TalentScriptable requiredTalent;
     public byte requiredTalentLevel;
     public byte requiredTalentPointsSpent;
+    public byte requiredPlayerLevel;
     public string label;
     [TextArea(10, 10)]
     public string description;

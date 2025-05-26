@@ -12,6 +12,7 @@ public class AChangeStat : ActionTemplate
 {
     public PlayerStat stat;
     public float amount;
+    public DietType dietType;
     public GameObject vfx;
     public override void ActionFinished()
     {
@@ -23,7 +24,7 @@ public class AChangeStat : ActionTemplate
         if (TestExecute())
         {
             var player = FindObjectOfType<GameManager>().localPlayerCharacter;
-            player.ChangeStat(stat, amount);
+            player.ChangeStat(stat, amount, dietType);
             if (vfx)
                 player.CmdSpawnVfx(vfx.name);
             ActionFinished();
