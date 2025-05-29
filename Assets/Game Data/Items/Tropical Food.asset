@@ -19,11 +19,13 @@ MonoBehaviour:
 
     __________________________________
 
-    Food'
+    Food,
+    <color=red>Carnivore</color>'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: fa61129ccdf5c0b4a87f57dc739f1ae7, type: 3}
   stackable: 1
+  maxStacks: 99
   usage:
   - {fileID: 11400000, guid: 0cf6e3deaf5c46641a5024b9d37c6af5, type: 2}
   - {fileID: 11400000, guid: dca4668c8c35bde4d91fe70f9c2a35a5, type: 2}
@@ -36,6 +38,7 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
