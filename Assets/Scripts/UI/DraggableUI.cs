@@ -6,6 +6,7 @@ public class DraggableUI : MonoBehaviour, IDragHandler
 {
     private RectTransform rectTransform;
     public bool isLocked = true;
+    public bool alwaysUnlocked = false;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();

@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
-  m_Name: TFlowerPower
+  m_Name: TEnergicBody
   m_EditorClassIdentifier: 
-  maxLevel: 1
-  requiredTalent: {fileID: 0}
-  requiredTalentLevel: 0
-  requiredTalentPointsSpent: 3
-  requiredPlayerLevel: 5
-  label: Flower Power
-  description: 
-  associatedSkill: {fileID: 11400000, guid: f710f2cc1e9875546bbaf8bfa1162cef, type: 2}
+  maxLevel: 3
+  requiredTalent: {fileID: 11400000, guid: 68e05ebfaace5f249a95329b9e29dd42, type: 2}
+  requiredTalentLevel: 5
+  requiredTalentPointsSpent: 0
+  requiredPlayerLevel: 0
+  label: Energic Body
+  description: You feel more energic while keeping the balanced diet. <color=orange>+10</color>
+    <sprite=5> and <color=orange>+10</color> <sprite=4> per level.
+  associatedSkill: {fileID: 0}
   associatedSkill2: {fileID: 0}
   Talent_Description_Updated:
     m_PersistentCalls:

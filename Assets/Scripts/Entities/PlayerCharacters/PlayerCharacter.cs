@@ -696,11 +696,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             if (amount > 0)
             {
-                if (carnivorePercentage >= 70 && dietType != DietType.Carnivore)
-                    amount /= 2;
-                if (carnivorePercentage <= 30 && dietType != DietType.Herbivore)
-                    amount /= 2;
-                
+                if ((carnivorePercentage >= 70 && dietType != DietType.Carnivore) || (carnivorePercentage <= 30 && dietType != DietType.Herbivore))
+                    amount = (int)(amount * 0.15f);
+
                 FindObjectOfType<FloatingText>().ServerSpawnFloatingText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
             }
             else
@@ -1216,21 +1214,34 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         if (name == "Protein Rush")
             ProteinRush(previousLevel, currentLevel);
+        if (name == "Tough Body")
+            ToughBody(previousLevel, currentLevel);
         if (name == "Chlorophyll Surge")
             ChlorophyllSurge(previousLevel, currentLevel);
+        if (name == "Energy Reserves")
+            EnergyReserves(previousLevel, currentLevel);
         if (name == "Balanced Bite")
             BalancedBite(previousLevel, currentLevel);
+        if (name == "Energic Body")
+            EnergicBody(previousLevel, currentLevel);
     }
     public void ResetTalent(string name, int previousLevel, int currentLevel)
     {
         if (name == "Protein Rush")
             ProteinRushReduce(previousLevel, currentLevel);
+        if (name == "Tough Body")
+            ToughBodyReduce(previousLevel, currentLevel);
         if (name == "Chlorophyll Surge")
             ChlorophyllSurgeReduce(previousLevel, currentLevel);
+        if (name == "Energy Reserves")
+            EnergyReservesReduce(previousLevel, currentLevel);
         if (name == "Balanced Bite")
             BalancedBiteReduce(previousLevel, currentLevel);
+        if (name == "Energic Body")
+            EnergicBodyReduce(previousLevel, currentLevel);
     }   
     // Diet Talents
+    // Carnivore
     private void ProteinRush(int previousLevel, int currentLevel)
     {
         for (int i = previousLevel; i < currentLevel; i++) 
@@ -1245,6 +1256,21 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             attackComp.CmdChangeGearPower(-1);
         }
     }
+    private void ToughBody(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            healthComp.CmdChangeGearMaxHealth(20);
+        }
+    }
+    private void ToughBodyReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            healthComp.CmdChangeGearMaxHealth(-20);
+        }
+    }
+    // Herbivore
     private void ChlorophyllSurge(int previousLevel, int currentLevel)
     {
         for (int i = previousLevel; i < currentLevel; i++)
@@ -1259,6 +1285,21 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             manaComp.CmdChangeGearManaRegen(-0.1f);
         }
     }
+    private void EnergyReserves(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            manaComp.ChangeGearMaxMana(20);
+        }
+    }
+    private void EnergyReservesReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            manaComp.ChangeGearMaxMana(-20);
+        }
+    }
+    // Omnivore
     private void BalancedBite(int previousLevel, int currentLevel)
     {
         for (int i = previousLevel; i < currentLevel; i++)
@@ -1273,7 +1314,22 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             healthComp.CmdChangeGearMaxHealth(-15);
         }
     }
-
+    private void EnergicBody(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            healthComp.CmdChangeGearMaxHealth(10);
+            manaComp.ChangeGearMaxMana(10);
+        }
+    }
+    private void EnergicBodyReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            healthComp.CmdChangeGearMaxHealth(-10);
+            manaComp.ChangeGearMaxMana(-10);
+        }
+    }
 
 
 

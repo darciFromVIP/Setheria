@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class DietUI : MonoBehaviour, NeedsLocalPlayerCharacter
 {
     private PlayerCharacter localPlayer;
-    public LayoutElement entireRect, carnivoreGraphic, herbivoreGraphic;
+    public LayoutElement entireRect;
+    public RectTransform line;
     public TextMeshProUGUI carnivoreText, herbivoreText, dietText;
     public GameObject carnivoreTalents, herbivoreTalents, omnivoreTalents;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
@@ -19,8 +20,11 @@ public class DietUI : MonoBehaviour, NeedsLocalPlayerCharacter
     private void UpdateUI(float percentage)
     {
         var maxWidth = entireRect.flexibleWidth;
-        carnivoreGraphic.preferredWidth = maxWidth * ((float)percentage / 100);
-        herbivoreGraphic.preferredWidth = maxWidth - carnivoreGraphic.preferredWidth;
+        line.localPosition = new Vector3((maxWidth * ((float)percentage / 100)) - 2.2f, line.localPosition.y, line.localPosition.z);
+        if (line.localPosition.x < 2.2f)
+            line.localPosition = new Vector3(2.2f, line.localPosition.y, line.localPosition.z);
+        else if (line.localPosition.x > 553)
+            line.localPosition = new Vector3(553, line.localPosition.y, line.localPosition.z);
         carnivoreText.text = percentage.ToString() + "%";
         herbivoreText.text = (100 - percentage).ToString() + "%";
         if (percentage >= 70 && !carnivoreTalents.activeSelf)

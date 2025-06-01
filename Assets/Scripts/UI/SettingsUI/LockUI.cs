@@ -15,7 +15,8 @@ public class LockUI : MonoBehaviour
         btn.onClick.AddListener(ButtonClicked);
         foreach (var item in FindObjectsOfType<DraggableUI>(true))
         {
-            item.isLocked = isLocked;
+            if (!item.alwaysUnlocked)
+                item.isLocked = isLocked;
         }
     }
     private void ButtonClicked()
@@ -23,7 +24,8 @@ public class LockUI : MonoBehaviour
         isLocked = !isLocked;
         foreach (var item in FindObjectsOfType<DraggableUI>(true))
         {
-            item.isLocked = isLocked;
+            if (!item.alwaysUnlocked)
+                item.isLocked = isLocked;
         }
         if (isLocked)
             img.sprite = lockedSprite;
