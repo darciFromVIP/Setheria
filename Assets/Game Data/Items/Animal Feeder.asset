@@ -10,40 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Fresh Meat
+  m_Name: Animal Feeder
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    Cook this at a <color=#FFD000>Campfire</color>
-    to make it edible. Eathing this while having a weak stomach subtracts -4<sprite=12>.
-    Otherwise restores +4<sprite=12>.
+    Wild animals are lured to
+    this structure, free to slaughter.
 
     __________________________________
 
-    Food,
-    Cooking, <color=red>Carnivore</color>'
+    Structure'
   grade: 0
   itemType: 0
-  sprite: {fileID: 21300000, guid: 9a8852588947a1b40a786e2324d5cc08, type: 3}
-  stackable: 1
+  sprite: {fileID: 21300000, guid: c11e8a150de2fcc40b6dfbc138facd18, type: 3}
+  stackable: 0
   maxStacks: 99
   usage:
-  - {fileID: 11400000, guid: a4a11d9a6846c06438f1e04cf7411322, type: 2}
+  - {fileID: 11400000, guid: a9b12a9d791f3f94f8ab7d7b68e14569, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
   value: 0
-  destroyItemOnUse: 0
+  destroyItemOnUse: 1
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
-  requiredTalentForAlternateUsage: {fileID: 11400000, guid: 3261736e3e3c1ae42a76f03ae027dc40,
-    type: 2}
-  requiredTalentLevel: 1
-  alternateUsage:
-  - {fileID: 11400000, guid: 2be994470503d964e8c2c3b18726e737, type: 2}
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

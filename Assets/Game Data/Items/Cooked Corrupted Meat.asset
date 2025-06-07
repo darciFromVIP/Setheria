@@ -34,6 +34,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a35b307e5e3eddb44a40c7ec1167bfb6, type: 2}
   - {fileID: 11400000, guid: e066ff55f3c2ca347bf56110bccb49e4, type: 2}
   - {fileID: 11400000, guid: 8b92dec1655bf7d4dac20e8871f27304, type: 2}
+  - {fileID: 11400000, guid: ba3b76f2187a88d4e98d65ccd1e1b887, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -44,9 +45,13 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
-  requiredTalentForAlternateUsage: {fileID: 0}
-  requiredTalentLevel: 0
-  alternateUsage: []
+  requiredTalentForAlternateUsage: {fileID: 11400000, guid: 17c398174f9c8394f87695e1172e13cd,
+    type: 2}
+  requiredTalentLevel: 1
+  alternateUsage:
+  - {fileID: 11400000, guid: a35b307e5e3eddb44a40c7ec1167bfb6, type: 2}
+  - {fileID: 11400000, guid: e066ff55f3c2ca347bf56110bccb49e4, type: 2}
+  - {fileID: 11400000, guid: ba3b76f2187a88d4e98d65ccd1e1b887, type: 2}
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

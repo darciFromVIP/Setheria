@@ -9,14 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93e0efae1f02904cae866def7a15fff, type: 3}
-  m_Name: Campfire
+  m_Script: {fileID: 11500000, guid: 66072fae48d942e4cb28115fb0f3c0e1, type: 3}
+  m_Name: CookedCorruptedMeat
   m_EditorClassIdentifier: 
   Action_Finished:
     m_PersistentCalls:
       m_Calls: []
-  structurePrefab: {fileID: 2464085923947891766, guid: c401b272c13190842b8c3c564be43b6a,
-    type: 3}
-  structureGhostPrefab: {fileID: 1581060017693938703, guid: 1bf5a321271c4ad41babc44b7a539b94,
-    type: 3}
-  structureLimit: 0
+  buffsToApply:
+  - {fileID: 11400000, guid: 6fc1a3e9d7a7a7e419cc3b856356845b, type: 2}

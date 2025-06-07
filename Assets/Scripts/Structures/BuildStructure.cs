@@ -7,6 +7,7 @@ public class BuildStructure : ActionTemplate
 {
     public GameObject structurePrefab;
     public GameObject structureGhostPrefab;
+    public int structureLimit;
 
     public override void ActionFinished()
     {
@@ -26,6 +27,17 @@ public class BuildStructure : ActionTemplate
     }
     public override bool TestExecute()
     {
-        return true;
+        if (structureLimit == 0)
+            return true;
+        int count = 0;
+        foreach (var item in FindObjectsOfType<Structure>())
+        {
+            if (item.name.Contains(structurePrefab.name))
+                count++;
+        }
+        if (count >= structureLimit)
+            return false;
+        else
+            return true;
     }
 }

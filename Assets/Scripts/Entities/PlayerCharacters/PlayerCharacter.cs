@@ -790,6 +790,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void RpcChangeWater(int amount)
     {
         water += amount;
+        if (water > maxWater)
+            water = maxWater;
         if (isOwned)
         {
             if ((water == 20 || water == 10) && amount < 0)
@@ -964,8 +966,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 }
                 break;
             case PlayerStat.Hydration:
-                if (water + modifier > 100)
-                    return false;
                 break;
             case PlayerStat.PowerMultiplier:
                 break;
@@ -1231,11 +1231,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             ProteinRush(previousLevel, currentLevel);
         if (name == "Tough Body")
             ToughBody(previousLevel, currentLevel);
+        if (name == "Animal Feeder")
+            AnimalFeeder(previousLevel, currentLevel);
 
         if (name == "Chlorophyll Surge")
             ChlorophyllSurge(previousLevel, currentLevel);
         if (name == "Energy Reserves")
             EnergyReserves(previousLevel, currentLevel);
+        if (name == "Potato Seed")
+            PotatoSeed(previousLevel, currentLevel);
 
         if (name == "Balanced Bite")
             BalancedBite(previousLevel, currentLevel);
@@ -1243,6 +1247,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             EnergicBody(previousLevel, currentLevel);
         if (name == "Feast")
             Feast(previousLevel, currentLevel);
+        if (name == "Blood Extractor")
+            BloodExtractor(previousLevel, currentLevel);
 
         if (name.Contains("Expanded Stomach"))
             ExpandedStomach(previousLevel, currentLevel);
@@ -1255,11 +1261,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             ProteinRushReduce(previousLevel, currentLevel);
         if (name == "Tough Body")
             ToughBodyReduce(previousLevel, currentLevel);
+        if (name == "Animal Feeder")
+            AnimalFeederReduce(previousLevel, currentLevel);
 
         if (name == "Chlorophyll Surge")
             ChlorophyllSurgeReduce(previousLevel, currentLevel);
         if (name == "Energy Reserves")
             EnergyReservesReduce(previousLevel, currentLevel);
+        if (name == "Potato Seed")
+            PotatoSeedReduce(previousLevel, currentLevel);
 
         if (name == "Balanced Bite")
             BalancedBiteReduce(previousLevel, currentLevel);
@@ -1267,6 +1277,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             EnergicBodyReduce(previousLevel, currentLevel);
         if (name == "Feast")
             FeastReduce(previousLevel, currentLevel);
+        if (name == "Blood Extractor")
+            BloodExtractorReduce(previousLevel, currentLevel);
 
         if (name.Contains("Expanded Stomach"))
             ExpandedStomachReduce(previousLevel, currentLevel);
@@ -1303,6 +1315,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             healthComp.CmdChangeGearMaxHealth(-20);
         }
     }
+    private void AnimalFeeder(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Animal Feeder").UnlockRecipe();
+    }
+    private void AnimalFeederReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Animal Feeder").LockRecipe();
+    }
     // Herbivore
     private void ChlorophyllSurge(int previousLevel, int currentLevel)
     {
@@ -1331,6 +1353,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             manaComp.CmdChangeGearMaxMana(-20);
         }
+    }
+    private void PotatoSeed(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Potato Seed").UnlockRecipe();
+    }
+    private void PotatoSeedReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Potato Seed").LockRecipe();
     }
     // Omnivore
     private void BalancedBite(int previousLevel, int currentLevel)
@@ -1373,7 +1405,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (currentLevel <= 0)
             FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Feast").LockRecipe();
     }
-
     private void ExpandedStomach(int previousLevel, int currentLevel)
     {
         for (int i = previousLevel; i < currentLevel; i++)
@@ -1402,5 +1433,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             hungerBonus = 1.20f;
         if (currentLevel == 3)
             hungerBonus = 1.30f;
+    }
+    private void BloodExtractor(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Blood").UnlockRecipe();
+    }
+    private void BloodExtractorReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Blood").LockRecipe();
     }
 }

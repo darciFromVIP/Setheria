@@ -10,31 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
-  m_Name: Extract Blood
+  m_Name: Animal Feeder
   m_EditorClassIdentifier: 
-  recipeCategory: 2
-  priority: 21
+  recipeCategory: 1
+  priority: 10
   resultItem:
-    itemData: {fileID: 11400000, guid: 7923f1a8721b3bd41a6a45e9575050c0, type: 2}
+    itemData: {fileID: 11400000, guid: c28c4b67dec1dc94fa9e31ec5bddac3f, type: 2}
     stacks: 1
   componentItems:
-  - itemData: {fileID: 11400000, guid: acdf02d0325686b48b04cb5b9f5f4ee1, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: ca8eaf79a2fea974cbdc803918c8cabb, type: 2}
+  - itemData: {fileID: 11400000, guid: dbec0b67dd7f0a14ca35cd98cb1dc026, type: 2}
+    stacks: 2
+  - itemData: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
+    stacks: 3
+  - itemData: {fileID: 11400000, guid: a311dc8195d8f5c45a1ae5cd6b31eb80, type: 2}
     stacks: 1
   resourceCost: 0
   unlocked: 0
   visible: 0
-  freshlyUnlocked: 1
+  freshlyUnlocked: 0
   requiredStructure: {fileID: 0}
-  craftingDuration: 4
-  xpGranted: 10
+  craftingDuration: 2
+  xpGranted: 20
   tier: 0
   recipeItem: {fileID: 0}
   requiredItems: []
   requiredStructures: []
-  requiredProfession: 3
-  requiredProfessionExperience: 20
+  requiredProfession: 0
+  requiredProfessionExperience: 0
   recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:

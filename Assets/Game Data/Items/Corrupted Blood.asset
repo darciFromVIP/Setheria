@@ -44,9 +44,11 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
-  requiredTalentForAlternateUsage: {fileID: 0}
-  requiredTalentLevel: 0
-  alternateUsage: []
+  requiredTalentForAlternateUsage: {fileID: 11400000, guid: 17c398174f9c8394f87695e1172e13cd,
+    type: 2}
+  requiredTalentLevel: 1
+  alternateUsage:
+  - {fileID: 11400000, guid: 8de10e6973e22664c90c0876bf321c78, type: 2}
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

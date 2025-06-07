@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93e0efae1f02904cae866def7a15fff, type: 3}
-  m_Name: Campfire
+  m_Script: {fileID: 11500000, guid: 1c38cf51309ecbe4ca070d2cf5aa62bf, type: 3}
+  m_Name: Hunger -4
   m_EditorClassIdentifier: 
   Action_Finished:
     m_PersistentCalls:
       m_Calls: []
-  structurePrefab: {fileID: 2464085923947891766, guid: c401b272c13190842b8c3c564be43b6a,
-    type: 3}
-  structureGhostPrefab: {fileID: 1581060017693938703, guid: 1bf5a321271c4ad41babc44b7a539b94,
-    type: 3}
-  structureLimit: 0
+  stat: 6
+  amount: -3
+  dietType: 0
+  vfx: {fileID: 0}

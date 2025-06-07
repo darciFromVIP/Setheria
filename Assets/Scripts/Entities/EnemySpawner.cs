@@ -149,7 +149,8 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
                     Destroy(wander);
                 item.GetComponent<CanMove>().MoveTo(attackPoint);
                 item.campRadius = 99999;
-                item.GetComponent<HasAggro>().CheckForStructures();
+                if (item.TryGetComponent(out HasAggro aggro))
+                    aggro.CheckForStructures();
             }
         }
     }
@@ -183,13 +184,22 @@ public class EnemySpawner : NetworkBehaviour, ISaveable
 
     public void LoadState(SaveDataWorldObject state)
     {
+        StartCoroutine(DelayedLoad(state));
+    }
+    private IEnumerator DelayedLoad(SaveDataWorldObject state)
+    {
         timer = state.floatData1;
+        while (dayNight == null)
+            yield return null;
         if (dayNight.IsNight())
             NightStarted();
-        foreach (var item in FindObjectsOfType<EnemyCharacter>())
+        if (boss)
         {
-            if (item.GetComponent<HasHealth>().GetBaseMaxHealth() == boss.GetComponent<HasHealth>().GetBaseMaxHealth() && Vector3.Distance(transform.position, item.transform.position) <= 5)
-                item.On_Death.AddListener(DestroySpawner);
+            foreach (var item in FindObjectsOfType<EnemyCharacter>())
+            {
+                if (item.GetComponent<HasHealth>().GetBaseMaxHealth() == boss.GetComponent<HasHealth>().GetBaseMaxHealth() && Vector3.Distance(transform.position, item.transform.position) <= 5)
+                    item.On_Death.AddListener(DestroySpawner);
+            }
         }
     }
 }

@@ -18,8 +18,15 @@ MonoBehaviour:
   requiredTalentPointsSpent: 0
   requiredPlayerLevel: 0
   label: Efficient Metabolism (O)
-  description: You can now process food more effectively. All food items grant <color=orange>+1</color>
-    <sprite=12> per level.
+  description: 'You can now process food more effectively. All food items grant bonus
+    feed based on the talent level:
+
+    Level 1: +15%<sprite=12>
+
+    Level 2: +20%<sprite=12>
+
+    Level
+    3: +30%<sprite=12>'
   associatedSkill: {fileID: 0}
   associatedSkill2: {fileID: 0}
   Talent_Description_Updated:
