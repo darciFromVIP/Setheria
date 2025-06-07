@@ -80,12 +80,17 @@ public class RecipeScriptable : ScriptableObject
     }
     public void UnlockRecipe()
     {
-        Debug.Log(name);
         if (!unlocked && resultItem.itemData != null)
             FindObjectOfType<AcquiredItems>().RecipeUnlocked(resultItem);
         unlocked = true;
         visible = true;
         freshlyUnlocked = true;
         Recipe_Unlocked.Invoke();
+    }
+    public void LockRecipe()
+    {
+        unlocked = false;
+        visible = false;
+        freshlyUnlocked = false;
     }
 }

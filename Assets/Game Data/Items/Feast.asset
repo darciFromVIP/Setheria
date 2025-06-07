@@ -10,24 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Mushroom
+  m_Name: Feast
   m_EditorClassIdentifier: 
-  description: '__________________________________
-
-    Used in cooking. For a weak
-    stomach, eating this subtracts -3<sprite=12>. Otherwise restores +3<sprite=12>.
-
-    __________________________________
-
-    Food,
-    Cooking, <color=green>Herbivore</color>'
-  grade: 0
+  description: "__________________________________\nThis certainly took a lot of
+    your energy to make! But it's worth it. Restores +30<sprite=12> and +15<sprite=20>.
+    \n__________________________________\nFood, <color=orange>Omnivore</color>"
+  grade: 2
   itemType: 0
-  sprite: {fileID: 21300000, guid: 3d11ea81f23df0e49a34be5b15ec2e76, type: 3}
+  sprite: {fileID: 21300000, guid: 08ee1d4b4dd94db4ab38877c0b6c6246, type: 3}
   stackable: 1
   maxStacks: 99
   usage:
-  - {fileID: 11400000, guid: f40bde1d9f0c69f4ebdaba678c59f949, type: 2}
+  - {fileID: 11400000, guid: d1b6d0049c4a91542a98d4b10efe6580, type: 2}
+  - {fileID: 11400000, guid: a4b2e5a6c90298e42bc69bdfc2244fc8, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -38,11 +33,6 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
-  requiredTalentForAlternateUsage: {fileID: 11400000, guid: ec907c0a42a5e024484e0d5e603aee11,
-    type: 2}
-  requiredTalentLevel: 1
-  alternateUsage:
-  - {fileID: 11400000, guid: 8b3acf9f780c1cd42b44fd067a80b976, type: 2}
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

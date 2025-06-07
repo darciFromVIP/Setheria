@@ -36,6 +36,12 @@ public class ItemScriptable : ScriptableObject
     public int knowledgeCost;
     public bool unlocked = true;
     public List<ItemDropChances> itemsAfterDismantle = new();
+    [Tooltip("This talent will change the usage of the item")]
+    public TalentScriptable requiredTalentForAlternateUsage;
+    [Tooltip("Required level of the abovementioned talent")]
+    public byte requiredTalentLevel;
+    [Tooltip("Usage after the required talent is acquired")]
+    public List<ActionTemplate> alternateUsage;
     public TutorialDataScriptable tutorialToShowAfterItemAcquirement;
 
     [HideInInspector] public UnityEvent<ItemScriptable> Item_Acquired = new();

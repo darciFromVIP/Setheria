@@ -188,25 +188,38 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
         }
         bool used = false;
-        foreach (var item in item.usage)
+        if (item.requiredTalentForAlternateUsage)
         {
-            if (item.TestExecute())
+            if (localPlayer.talentTrees.IsTalentUnlocked(item.requiredTalentForAlternateUsage, item.requiredTalentLevel))
             {
-                if (this.item.destroyItemOnUse)
+                foreach (var item in item.alternateUsage)
                 {
-                    item.Action_Finished.RemoveAllListeners();
-                    item.Action_Finished.AddListener(DestroyItem);
+                    if (item.TestExecute())
+                        used = ExecuteAction(item);
+                    else
+                        break;
                 }
-                if (this.item.usageCooldown > 0)
-                {
-                    item.Action_Finished.RemoveAllListeners();
-                    item.Action_Finished.AddListener(StartCooldown);
-                }
-                item.Execute();
-                used = true;
             }
             else
-                break;
+            {
+                foreach (var item in item.usage)
+                {
+                    if (item.TestExecute())
+                        used = ExecuteAction(item);
+                    else
+                        break;
+                }
+            }
+        }
+        else
+        {
+            foreach (var item in item.usage)
+            {
+                if (item.TestExecute())
+                    used = ExecuteAction(item);
+                else
+                    break;
+            }
         }
         foreach (var item in item.activeSkills)
         {
@@ -219,6 +232,25 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             ChangeStacks(-1);
         }
     }
+
+    private bool ExecuteAction(ActionTemplate item)
+    {
+        bool used;
+        if (this.item.destroyItemOnUse)
+        {
+            item.Action_Finished.RemoveAllListeners();
+            item.Action_Finished.AddListener(DestroyItem);
+        }
+        if (this.item.usageCooldown > 0)
+        {
+            item.Action_Finished.RemoveAllListeners();
+            item.Action_Finished.AddListener(StartCooldown);
+        }
+        item.Execute();
+        used = true;
+        return used;
+    }
+
     private void StartCooldown()
     {
         if (item.cooldownGroup != CooldownGroup.None)

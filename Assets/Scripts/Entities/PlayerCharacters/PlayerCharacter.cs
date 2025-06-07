@@ -59,6 +59,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public Professions professions;
     protected float carnivorePercentage = 50;
     protected int hungerCount = 0;
+    protected float hungerBonus = 1;
 
     protected const float MaxXpMultiplier = 1.2f;
     protected const int BaseMaxXpValue = 100;
@@ -589,8 +590,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     FindObjectOfType<Tutorial>().QueueNewTutorial(item);
                 }
             }    
-            if (level <= 5)
-                talentTrees.ChangeTalentPoints(1);
+            talentTrees.ChangeTalentPoints(1);
             ChangeAttributePoints(2);
             FindObjectOfType<FloatingText>().SpawnText("+1 <sprite=13>", transform.position + Vector3.up * 1, FloatingTextType.Experience);
             levelUpEffect.SetActive(true);
@@ -692,6 +692,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [Command(requiresAuthority = false)]
     public void CmdChangeHunger(int amount, bool showText, DietType dietType)
     {
+        if (amount > 0)
+            amount = (int)(hungerBonus * amount);
         if (showText)
         {
             if (amount > 0)
@@ -744,6 +746,19 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 }
             }
         }
+        Hunger_Changed.Invoke();
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeMaxHunger(int amount)
+    {
+        RpcChangeMaxHunger(amount);
+    }
+    [ClientRpc]
+    public void RpcChangeMaxHunger(int amount)
+    {
+        maxHunger += amount;
+        if (hunger > maxHunger)
+            hunger = maxHunger;
         Hunger_Changed.Invoke();
     }
     [Command(requiresAuthority = false)]
@@ -1216,14 +1231,23 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             ProteinRush(previousLevel, currentLevel);
         if (name == "Tough Body")
             ToughBody(previousLevel, currentLevel);
+
         if (name == "Chlorophyll Surge")
             ChlorophyllSurge(previousLevel, currentLevel);
         if (name == "Energy Reserves")
             EnergyReserves(previousLevel, currentLevel);
+
         if (name == "Balanced Bite")
             BalancedBite(previousLevel, currentLevel);
         if (name == "Energic Body")
             EnergicBody(previousLevel, currentLevel);
+        if (name == "Feast")
+            Feast(previousLevel, currentLevel);
+
+        if (name.Contains("Expanded Stomach"))
+            ExpandedStomach(previousLevel, currentLevel);
+        if (name.Contains("Efficient Metabolism"))
+            CmdEfficientMetabolism(previousLevel, currentLevel);
     }
     public void ResetTalent(string name, int previousLevel, int currentLevel)
     {
@@ -1231,14 +1255,23 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             ProteinRushReduce(previousLevel, currentLevel);
         if (name == "Tough Body")
             ToughBodyReduce(previousLevel, currentLevel);
+
         if (name == "Chlorophyll Surge")
             ChlorophyllSurgeReduce(previousLevel, currentLevel);
         if (name == "Energy Reserves")
             EnergyReservesReduce(previousLevel, currentLevel);
+
         if (name == "Balanced Bite")
             BalancedBiteReduce(previousLevel, currentLevel);
         if (name == "Energic Body")
             EnergicBodyReduce(previousLevel, currentLevel);
+        if (name == "Feast")
+            FeastReduce(previousLevel, currentLevel);
+
+        if (name.Contains("Expanded Stomach"))
+            ExpandedStomachReduce(previousLevel, currentLevel);
+        if (name.Contains("Efficient Metabolism"))
+            CmdEfficientMetabolism(previousLevel, currentLevel);
     }   
     // Diet Talents
     // Carnivore
@@ -1289,14 +1322,14 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i < currentLevel; i++)
         {
-            manaComp.ChangeGearMaxMana(20);
+            manaComp.CmdChangeGearMaxMana(20);
         }
     }
     private void EnergyReservesReduce(int previousLevel, int currentLevel)
     {
         for (int i = previousLevel; i > currentLevel; i--)
         {
-            manaComp.ChangeGearMaxMana(-20);
+            manaComp.CmdChangeGearMaxMana(-20);
         }
     }
     // Omnivore
@@ -1319,7 +1352,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         for (int i = previousLevel; i < currentLevel; i++)
         {
             healthComp.CmdChangeGearMaxHealth(10);
-            manaComp.ChangeGearMaxMana(10);
+            manaComp.CmdChangeGearMaxMana(10);
         }
     }
     private void EnergicBodyReduce(int previousLevel, int currentLevel)
@@ -1327,10 +1360,47 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         for (int i = previousLevel; i > currentLevel; i--)
         {
             healthComp.CmdChangeGearMaxHealth(-10);
-            manaComp.ChangeGearMaxMana(-10);
+            manaComp.CmdChangeGearMaxMana(-10);
         }
     }
+    private void Feast(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Feast").UnlockRecipe();
+    }
+    private void FeastReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Feast").LockRecipe();
+    }
 
-
-
+    private void ExpandedStomach(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            CmdChangeMaxHunger(10);
+        }
+    }
+    private void ExpandedStomachReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            CmdChangeMaxHunger(-10);
+        }
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdEfficientMetabolism(int previousLevel, int currentLevel)
+    {
+        RpcEfficientMetabolism(previousLevel, currentLevel);
+    }
+    [ClientRpc]
+    private void RpcEfficientMetabolism(int previousLevel, int currentLevel)
+    {
+        if (currentLevel == 1)
+            hungerBonus = 1.15f;
+        if (currentLevel == 2)
+            hungerBonus = 1.20f;
+        if (currentLevel == 3)
+            hungerBonus = 1.30f;
+    }
 }
