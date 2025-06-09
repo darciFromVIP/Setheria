@@ -35,6 +35,7 @@ public class RecipeScriptable : ScriptableObject
     private Dictionary<StructureScriptable, bool> requiredStructuresTemp = new();
     public TalentTreeType requiredProfession;
     public int requiredProfessionExperience;
+    public bool givesProfXP = true;
     public List<RecipeScriptable> recipesInThisCategory = new();
 
     [HideInInspector] public UnityEvent Recipe_Unlocked;

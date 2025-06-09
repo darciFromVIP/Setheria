@@ -25,7 +25,8 @@ public class Character : Entity
     public BuffDatabase buffDatabase;
     public bool canCastSkills;
     public RpgIndicator skillIndicator;
-    private bool isStunned;
+    protected bool isStunned;
+    protected Dictionary<string, Coroutine> buffCoroutines = new();
 
     public float cooldown1;
     public float cooldown2;
@@ -365,7 +366,7 @@ public class Character : Entity
                 FindObjectOfType<BuffListHero>().AddBuff(buffScriptable.name, buffInstance);
             }
             if (buffScriptable.duration > 0)
-                StartCoroutine(buffInstance.TimedBuff(buffScriptable.duration));
+                buffCoroutines.Add(buffScriptable.buffName, StartCoroutine(buffInstance.TimedBuff(buffScriptable.duration)));
         }
     }
     public void BuffExpired(GameObject effect)
@@ -421,6 +422,7 @@ public class Character : Entity
                 else
                 {
                     item.BuffExpired();
+                    buffCoroutines.Remove(item.name);
                     buffs.Remove(item);
                 }
                 break;
@@ -514,7 +516,10 @@ public class Character : Entity
         foreach (var item in buffs)
         {
             if (!item.persistsAfterDeath)
+            {
+                StopCoroutine(buffCoroutines.GetValueOrDefault(item.name));
                 CmdRemoveBuff(item.name);
+            }
         }
         foreach (var item in skillInstances)
         {

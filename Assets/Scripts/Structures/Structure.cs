@@ -151,6 +151,7 @@ public class Structure : Entity, ISaveable, IInteractable
         if (TryGetComponent(out ObjectMapIcon icon))
             icon.RpcDestroyIcon();
         var instance = Instantiate(upgradePrefab, transform.position, transform.rotation);
+        instance.GetComponent<HasHealth>().SetHealth(GetComponent<HasHealth>().GetHealth());
         NetworkServer.Spawn(instance.gameObject);
         NetworkServer.Destroy(gameObject);
     }

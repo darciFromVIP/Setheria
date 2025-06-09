@@ -234,7 +234,8 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
             GetComponentInParent<ManualScreen>().UpdateCurrentCategory();
         FindObjectOfType<AudioManager>().ItemCrafted(localPlayer.transform.position);
         localPlayer.GetComponent<PlayerCharacter>().CmdAddXp(currentOpenedRecipe.xpGranted * amount);
-        localPlayer.GetComponent<PlayerCharacter>().professions.AddAnyProfession(currentOpenedRecipe.requiredProfession, amount);
+        if (currentOpenedRecipe.givesProfXP)
+            localPlayer.GetComponent<PlayerCharacter>().professions.AddAnyProfession(currentOpenedRecipe.requiredProfession, amount);
         localPlayer.Work_Finished.RemoveListener(FinishCrafting);
         UpdateCurrentDetails();
         blockingUI.SetActive(false);
