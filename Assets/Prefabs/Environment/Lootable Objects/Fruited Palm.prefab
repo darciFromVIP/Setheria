@@ -487,7 +487,7 @@ MonoBehaviour:
     - item:
         itemData: {fileID: 11400000, guid: bd019c5a606e93240956a02029eecda0, type: 2}
         stacks: 1
-      chance: 7
+      chance: 10
   fishingQuestEvent: {fileID: 0}
 --- !u!114 &6297087839700961011
 MonoBehaviour:
@@ -569,15 +569,15 @@ MonoBehaviour:
   overlayTextureScale: 1
   overlayTextureScrolling: {x: 0, y: 0}
   overlayVisibility: 0
-  outline: 0
+  outline: 0.522
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineColorStyle: 0
+  outlineColorStyle: 1
   outlineGradient:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 1, g: 1, b: 1, a: 0}
     key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key2: {r: 0, g: 0, b: 0, a: 1}
+    key3: {r: 0, g: 0, b: 0, a: 0.015686275}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
@@ -590,18 +590,18 @@ MonoBehaviour:
     ctime5: 0
     ctime6: 0
     ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
+    atime0: 193
+    atime1: 16384
+    atime2: 47609
+    atime3: 65535
     atime4: 0
     atime5: 0
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_ColorSpace: -1
+    m_ColorSpace: 1
     m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
+    m_NumAlphaKeys: 4
   outlineGradientInLocalSpace: 0
   outlineWidth: 0.45
   outlineBlurPasses: 2
@@ -615,12 +615,12 @@ MonoBehaviour:
   outlineIndependent: 0
   outlineContourStyle: 0
   outlineMaskMode: 0
-  glow: 1.15
-  glowWidth: 0.24
+  glow: 0.63
+  glowWidth: 0.1
   glowQuality: 2
   glowBlurMethod: 0
   glowDownsampling: 1
-  glowHQColor: {r: 1, g: 1, b: 1, a: 1}
+  glowHQColor: {r: 0.34117648, g: 0.7019608, b: 0.9607843, a: 1}
   glowDithering: 1
   glowMagicNumber1: 0.75
   glowMagicNumber2: 0.5
@@ -759,6 +759,7 @@ MonoBehaviour:
   ownedMapIcon: {fileID: 0}
   mapTooltipText: Fruited Palm
   iconSize: 0
+  staticObject: 1
 --- !u!114 &1116731127511708775
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,14 +20,14 @@ MonoBehaviour:
     __________________________________
 
     Food,
-    <color=green>Herbivore</color>'
+    <color=orange>Omnivore</color>'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 879a6f3b136c7f6418a539daffa03a13, type: 3}
   stackable: 1
   maxStacks: 99
   usage:
-  - {fileID: 11400000, guid: 316565ac72ce6984599865833e15c2de, type: 2}
+  - {fileID: 11400000, guid: 0c32e01ec3fbabd4e80de407dbe1baf9, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -38,6 +38,9 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
