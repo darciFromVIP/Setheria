@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
+  m_Name: Iron Gathering Tool
+  m_EditorClassIdentifier: 
+  description: '__________________________________
+
+    Helpful instrument used to
+    <color=#FFD000>gather materials</color>.
+
+    __________________________________
+
+    Equipable,
+    Gathering Tool
+
+    Dismantable'
+  grade: 1
+  itemType: 12
+  sprite: {fileID: 21300000, guid: 2e85b39d7a4bf5e448cc0f0e895d301d, type: 3}
+  stackable: 0
+  maxStacks: 99
+  usage: []
+  usageCooldown: 0
+  cooldownGroup: 0
+  passiveBuffs: []
+  activeSkills: []
+  value: 2
+  destroyItemOnUse: 0
+  resourceCost: 0
+  knowledgeCost: 0
+  unlocked: 1
+  itemsAfterDismantle:
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: 09d0330c4cacef4498e20906c8d255d4, type: 2}
+        stacks: 1
+      chance: 100
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
+  Item_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Acquired:
+    m_PersistentCalls:
+      m_Calls: []
+  Item_Stacks_Lost:
+    m_PersistentCalls:
+      m_Calls: []

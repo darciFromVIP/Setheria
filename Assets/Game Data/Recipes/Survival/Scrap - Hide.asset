@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scrap - Hide
   m_EditorClassIdentifier: 
   recipeCategory: 0
-  priority: 200
+  priority: 22
   resultItem:
     itemData: {fileID: 11400000, guid: b2490e66eaebb1f4388825141adc0d22, type: 2}
     stacks: 3
@@ -33,6 +33,8 @@ MonoBehaviour:
   requiredStructures: []
   requiredProfession: 0
   requiredProfessionExperience: 0
+  givesProfXP: 1
+  recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []

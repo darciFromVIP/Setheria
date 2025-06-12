@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Copper Handicraft Tool
   m_EditorClassIdentifier: 
   recipeCategory: 0
-  priority: 3
+  priority: 7
   resultItem:
     itemData: {fileID: 11400000, guid: 653c00acba09d6841af426f151ffdfcf, type: 2}
     stacks: 1
@@ -37,6 +37,8 @@ MonoBehaviour:
   requiredStructures: []
   requiredProfession: 0
   requiredProfessionExperience: 0
+  givesProfXP: 1
+  recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []

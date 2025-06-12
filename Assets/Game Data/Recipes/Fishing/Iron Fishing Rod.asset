@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron Fishing Rod
   m_EditorClassIdentifier: 
   recipeCategory: 3
-  priority: 2
+  priority: 3
   resultItem:
     itemData: {fileID: 11400000, guid: 30beef986f8d56d4481973c09413a4a5, type: 2}
     stacks: 1
@@ -31,13 +31,14 @@ MonoBehaviour:
   requiredStructure: {fileID: 0}
   craftingDuration: 6
   xpGranted: 20
-  tier: 0
-  recipeItem: {fileID: 0}
-  requiredItems:
-  - {fileID: 11400000, guid: 09d0330c4cacef4498e20906c8d255d4, type: 2}
+  tier: 2
+  recipeItem: {fileID: 11400000, guid: 1c81f033202c217448b65906683b04e5, type: 2}
+  requiredItems: []
   requiredStructures: []
   requiredProfession: 4
   requiredProfessionExperience: 70
+  givesProfXP: 1
+  recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []

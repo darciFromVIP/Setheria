@@ -528,12 +528,17 @@ PrefabInstance:
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.data[3].itemDropChances.Array.data[0].chance
-      value: 35
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.data[3].itemDropChances.Array.data[1].chance
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[3].itemDropChances.Array.data[2].chance
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -573,6 +578,11 @@ PrefabInstance:
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.data[3].itemDropChances.Array.data[1].item.stacks
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[3].itemDropChances.Array.data[2].item.stacks
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
@@ -620,6 +630,12 @@ PrefabInstance:
     - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
       propertyPath: itemDropsTable.Array.data[3].itemDropChances.Array.data[1].item.itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6578e5f179971d444a6bebc4dc53f110,
+        type: 2}
+    - target: {fileID: 7929684349248396451, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: itemDropsTable.Array.data[3].itemDropChances.Array.data[2].item.itemData
       value: 
       objectReference: {fileID: 11400000, guid: 6578e5f179971d444a6bebc4dc53f110,
         type: 2}
