@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 [System.Serializable]
 public class BuffSaveable
 {
@@ -38,6 +39,7 @@ public abstract class Buff
         {
             targetEntity.BuffExpired(effect);
             targetEntity.buffs.Remove(this);
+            targetEntity.buffCoroutines.Remove(name);
         }
     }
     public virtual IEnumerator TimedBuff(float duration)

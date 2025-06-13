@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine.PlayerLoop;
 using FMODUnity;
 using System;
+using static UnityEditor.Progress;
 
 public class Character : Entity
 {
@@ -26,7 +27,7 @@ public class Character : Entity
     public bool canCastSkills;
     public RpgIndicator skillIndicator;
     protected bool isStunned;
-    protected Dictionary<string, Coroutine> buffCoroutines = new();
+    public Dictionary<string, Coroutine> buffCoroutines = new();
 
     public float cooldown1;
     public float cooldown2;
@@ -420,11 +421,7 @@ public class Character : Entity
                 if (item.stacks > 1)
                     item.DecreaseStacks();
                 else
-                {
                     item.BuffExpired();
-                    buffCoroutines.Remove(item.name);
-                    buffs.Remove(item);
-                }
                 break;
             }
         }

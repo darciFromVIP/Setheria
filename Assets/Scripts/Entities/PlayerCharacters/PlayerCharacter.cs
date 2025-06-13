@@ -272,6 +272,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     maxXp = item.maxXp;
                     ChangeAttributePoints(item.attributePoints);
                     carnivorePercentage = item.carnivorePercentage;
+                    DietPercentageChanged.Invoke(carnivorePercentage);
                     hungerCount = item.hungerCount;
                     attPower = item.attPower;
                     attMaxMana = item.attMana;
@@ -698,8 +699,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             if (amount > 0)
             {
-                if ((carnivorePercentage >= 70 && dietType != DietType.Carnivore) || (carnivorePercentage <= 30 && dietType != DietType.Herbivore))
+                if ((carnivorePercentage >= 70 && dietType == DietType.Herbivore) || (carnivorePercentage <= 30 && dietType == DietType.Carnivore))
                     amount = (int)(amount * 0.15f);
+                if ((carnivorePercentage >= 70 || carnivorePercentage <= 30) && dietType == DietType.Omnivore)
+                    amount = (int)(amount * 0.75f);
 
                 FindObjectOfType<FloatingText>().ServerSpawnFloatingText("+" + amount + " <sprite=12>", transform.position, FloatingTextType.Hunger);
             }
@@ -727,6 +730,20 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                         break;
                     case DietType.Herbivore:
                         carnivorePercentage -= amount / 2;
+                        break;
+                    case DietType.Omnivore:
+                        if (carnivorePercentage > 50)
+                        {
+                            carnivorePercentage -= amount / 2;
+                            if (carnivorePercentage < 50)
+                                carnivorePercentage = 50;
+                        }
+                        if (carnivorePercentage < 50)
+                        {
+                            carnivorePercentage += amount / 2;
+                            if (carnivorePercentage > 50)
+                                carnivorePercentage = 50;
+                        }
                         break;
                     default:
                         break;
