@@ -159,57 +159,50 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         var canUseStash = localPlayer.GetComponent<PlayerCharacter>().IsTentNearby();
         foreach (var item in currentOpenedRecipe.componentItems)
         {
-            var temp = new ItemRecipeInfo() { itemData = item.itemData, stacks = item.stacks * amount };
-            int totalStacks = item.stacks * amount;
-            var inventoryItem = inventory.GetItemOfName(temp.itemData.name);
-            if (inventoryItem != null)
-                if (inventoryItem.stacks >= totalStacks)
-                    inventory.RemoveItem(temp);
-                else if (canUseStash)
-                {
-                    var stashItem = stash.GetItemOfName(temp.itemData.name);
-                    if (stashItem != null)
-                        if (stashItem.stacks >= totalStacks)
-                            stash.CmdRemoveItem(temp);
-                        else if (inventoryItem.stacks + stashItem.stacks >= totalStacks)
-                        {
-                            temp.stacks = inventoryItem.stacks;
-                            var afterStacks = totalStacks - inventoryItem.stacks;
-                            inventory.RemoveItem(temp);
-                            temp.stacks = afterStacks;
-                            stash.CmdRemoveItem(temp);
-                        }
-                        else
-                        {
-                            SendComponentMissingMessage();
-                            return;
-                        }
-                    else
-                    {
-                        SendComponentMissingMessage();
-                        return;
-                    }
-                }
-                else
-                {
-                    SendComponentMissingMessage();
-                    return;
-                }
-            else if (canUseStash)
+            var refItem = new ItemRecipeInfo() { itemData = item.itemData, stacks = item.stacks * amount };
+            int totalStacks = refItem.stacks;
+            int stacksSum = 0;
+            var playerItems = inventory.GetAllItems();
+            var stashItems = stash.GetAllItems();
+            foreach (var item2 in playerItems)
             {
-                var stashItem = stash.GetItemOfName(temp.itemData.name);
-                if (stashItem != null)
-                    if (stashItem.stacks >= totalStacks)
-                        stash.CmdRemoveItem(temp);
-                    else
-                    {
-                        SendComponentMissingMessage();
-                        return;
-                    }
-                else
+                if (refItem.itemData == item2.item)
                 {
-                    SendComponentMissingMessage();
-                    return;
+                    stacksSum += item2.stacks;
+                }
+            }
+            if (canUseStash)
+            {
+                foreach (var item2 in stashItems)
+                {
+                    if (refItem.itemData == item2.item)
+                    {
+                        stacksSum += item2.stacks;
+                    }
+                }
+            }
+            if (stacksSum >= refItem.stacks)
+            {
+                foreach (var item2 in playerItems)
+                {
+                    if (refItem.itemData == item2.item && stacksSum > 0)
+                    {
+                        int tempStacks = stacksSum > item2.stacks ? item2.stacks : stacksSum;
+                        inventory.RemoveItem(new ItemRecipeInfo() { itemData = refItem.itemData, stacks = tempStacks});
+                        stacksSum -= tempStacks;
+                    }
+                }
+                if (stacksSum > 0)
+                {
+                    foreach (var item2 in stashItems)
+                    {
+                        if (refItem.itemData == item2.item && stacksSum > 0)
+                        {
+                            int tempStacks = stacksSum > item2.stacks ? item2.stacks : stacksSum;
+                            stash.CmdRemoveItem(new ItemRecipeInfo() { itemData = refItem.itemData, stacks = tempStacks });
+                            stacksSum -= tempStacks;
+                        }
+                    }
                 }
             }
             else
