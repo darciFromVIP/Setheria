@@ -141,6 +141,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
                         {
                             item.CmdRemoveItem();
                         }
+                        break;
                     }
                 }
             }

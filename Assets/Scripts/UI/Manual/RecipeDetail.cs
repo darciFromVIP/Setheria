@@ -181,26 +181,26 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
                     }
                 }
             }
-            if (stacksSum >= refItem.stacks)
+            if (stacksSum >= totalStacks)
             {
                 foreach (var item2 in playerItems)
                 {
-                    if (refItem.itemData == item2.item && stacksSum > 0)
+                    if (refItem.itemData == item2.item && totalStacks > 0)
                     {
-                        int tempStacks = stacksSum > item2.stacks ? item2.stacks : stacksSum;
+                        int tempStacks = totalStacks > item2.stacks ? item2.stacks : totalStacks;
                         inventory.RemoveItem(new ItemRecipeInfo() { itemData = refItem.itemData, stacks = tempStacks});
-                        stacksSum -= tempStacks;
+                        totalStacks -= tempStacks;
                     }
                 }
-                if (stacksSum > 0)
+                if (totalStacks > 0)
                 {
                     foreach (var item2 in stashItems)
                     {
-                        if (refItem.itemData == item2.item && stacksSum > 0)
+                        if (refItem.itemData == item2.item && totalStacks > 0)
                         {
-                            int tempStacks = stacksSum > item2.stacks ? item2.stacks : stacksSum;
+                            int tempStacks = totalStacks > item2.stacks ? item2.stacks : totalStacks;
                             stash.CmdRemoveItem(new ItemRecipeInfo() { itemData = refItem.itemData, stacks = tempStacks });
-                            stacksSum -= tempStacks;
+                            totalStacks -= tempStacks;
                         }
                     }
                 }
