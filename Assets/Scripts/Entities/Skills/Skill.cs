@@ -96,7 +96,8 @@ public class Skill : ScriptableObject
         }
         if (castingEntity.TryGetComponent(out CanMove move))
             move.Moved_Within_Range.RemoveListener(StartCasting);
-        if (castingEntity.TryGetComponent(out AnimatorEventReceiver animatorEventReceiver))
+        var animatorEventReceiver = castingEntity.GetComponentInChildren<AnimatorEventReceiver>();
+        if (animatorEventReceiver)
         { 
             animatorEventReceiver.Skill1_Casted.RemoveAllListeners();
             animatorEventReceiver.Skill2_Casted.RemoveAllListeners();
