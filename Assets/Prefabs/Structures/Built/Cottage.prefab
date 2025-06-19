@@ -1,5 +1,77 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &134480827507872342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3949203784771721210}
+  - component: {fileID: 5723142123247838057}
+  - component: {fileID: 204844864660573046}
+  m_Layer: 1
+  m_Name: Aura
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3949203784771721210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134480827507872342}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4915988604612018700}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5723142123247838057
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134480827507872342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &204844864660573046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134480827507872342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5673cbc4a7c75894596393982456011f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  On_Trigger_Stay:
+    m_PersistentCalls:
+      m_Calls: []
+  On_Trigger_Exit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3810813114561022183
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +637,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 3949203784771721210}
+    - targetCorrespondingSourceObject: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
       insertIndex: -1
       addedObject: {fileID: 3334649212671569219}
     - targetCorrespondingSourceObject: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
@@ -624,7 +700,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 60ccbd9dc7b7a4e4791424444dd3b91f, type: 2}
   - {fileID: 11400000, guid: 914a6f718d2228947a51df4f57638aae, type: 2}
   - {fileID: 11400000, guid: c60c51bea0c77c64799aa8ff424b70fb, type: 2}
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: e21fbda05766e3145bcecea81658c742, type: 2}
   entityDatabase: {fileID: 0}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: 8d29d2f2d555223459b16e12d1fa08b2, type: 2}

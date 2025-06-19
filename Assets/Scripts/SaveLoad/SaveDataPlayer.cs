@@ -101,6 +101,21 @@ public class SaveDataPlayer
                 armor = 0;
                 cooldownReduction = 0;
                 break;
+            case Hero.KnowledgeDragon:
+                name = "Dragon the Knowledge Dragon";
+                health = 200;
+                baseMaxHealth = 200;
+                baseHealthRegen = 0f;
+                mana = 200;
+                baseMaxMana = 200;
+                baseManaRegen = 0.4f;
+                power = 15;
+                criticalChance = 0;
+                criticalDamage = 50;
+                attackRange = 1.5f;
+                armor = 0;
+                cooldownReduction = 0;
+                break;
             default:
                 break;
         }

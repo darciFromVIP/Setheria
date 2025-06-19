@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HeroIcon : MonoBehaviour
 {
-    [Tooltip("Lycandruid -> Forest Protector")]
+    [Tooltip("Lycandruid -> Forest Protector -> Knowledge Dragon")]
     public List<Sprite> heroIcons;
 
     private Image image;

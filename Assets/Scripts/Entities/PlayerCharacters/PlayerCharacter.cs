@@ -11,7 +11,7 @@ using Steamworks;
 [System.Serializable]
 public enum Hero
 {
-    Lycandruid, ForestProtector
+    Lycandruid, ForestProtector, KnowledgeDragon
 }
 public enum DietType
 {

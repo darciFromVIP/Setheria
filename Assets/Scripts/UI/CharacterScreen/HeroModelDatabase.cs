@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Databases/Hero Model Database")]
 public class HeroModelDatabase : ScriptableObject
 {
-    [Tooltip("Order must be: Lycandruid, ForestProtector")]
+    [Tooltip("Order must be: Lycandruid, ForestProtector, KnowledgeDragon")]
     public List<GameObject> models;
 
     public GameObject GetModelByHeroType(Hero hero)
@@ -15,6 +15,8 @@ public class HeroModelDatabase : ScriptableObject
                 return models[0];
             case Hero.ForestProtector:
                 return models[1];
+            case Hero.KnowledgeDragon:
+                return models[2];
             default:
                 return null;
         }
