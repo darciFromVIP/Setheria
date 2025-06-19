@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Knowledge +5
   m_EditorClassIdentifier: 
   recipeCategory: 6
-  priority: 10
+  priority: 11
   resultItem:
     itemData: {fileID: 11400000, guid: 007f0a7ef1ab32448825e5056132bf84, type: 2}
     stacks: 1
@@ -33,7 +33,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ae8a464113dcbb04799e77ea91c0cdc8, type: 2}
   requiredStructures: []
   requiredProfession: 5
-  requiredProfessionExperience: 10
+  requiredProfessionExperience: 20
+  givesProfXP: 1
   recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:

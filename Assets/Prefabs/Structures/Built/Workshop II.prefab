@@ -155,7 +155,7 @@ PrefabInstance:
     - target: {fileID: 1580122834452613331, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.137
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 1580122834452613331, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
         type: 3}
@@ -619,7 +619,7 @@ PrefabInstance:
     - target: {fileID: 8918073030982514316, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.485
+      value: 2.52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -666,6 +666,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   corpseDecay: 1
   objectsToDisable: []
+  changeNightVision: 0
+  nightVisionRadius: 0
   On_Death:
     m_PersistentCalls:
       m_Calls: []

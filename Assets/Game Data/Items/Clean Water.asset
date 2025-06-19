@@ -19,7 +19,7 @@ MonoBehaviour:
 
     __________________________________
 
-    +12<sprite=20>
+    +10<sprite=20>
 
     __________________________________
 
@@ -31,7 +31,7 @@ MonoBehaviour:
   stackable: 1
   maxStacks: 2
   usage:
-  - {fileID: 11400000, guid: c1925bcf30db7254e8193a284e4ba779, type: 2}
+  - {fileID: 11400000, guid: 12100950ae687df4086bdb098db85c25, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -42,6 +42,9 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

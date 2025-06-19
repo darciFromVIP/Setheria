@@ -18,6 +18,9 @@ MonoBehaviour:
 
     +40<sprite=20>
 
+    +1<sprite=6>
+    for 5min.
+
     __________________________________
 
     Hydratation'
@@ -25,8 +28,10 @@ MonoBehaviour:
   itemType: 0
   sprite: {fileID: 21300000, guid: 2b45d667d5f774a49b896591444dc16e, type: 3}
   stackable: 1
+  maxStacks: 99
   usage:
   - {fileID: 11400000, guid: 6c66c4a37b8aefe41a20b1fa6e4f63dd, type: 2}
+  - {fileID: 11400000, guid: 26c3aa64628c5894087c1ccc2f206929, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -37,6 +42,9 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
