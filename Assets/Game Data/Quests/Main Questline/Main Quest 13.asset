@@ -14,9 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 0
   label: Advance your technologies.
-  description: Finally, I can build this ultimate piece of art! But don't laugh too
-    hard, please. We'll need this, I promise!
+  description: 'Is it just me or I''m living as the ancient cave men did? Come on,
+    I''m better than that! I''ll build a place where I''ll stockpile my stuff and
+    create new technologies based on the materials of this world.
+
+
+    P.S.: I hope
+    I''ll find Moonaris too.'
   icon: {fileID: 21300000, guid: e97e50f4fad5eda45bbb99507c64dd97, type: 3}
+  questType: 0
   synchronizedQuest: 1
   requiredItems: []
   requiredItemTypes: []
@@ -34,6 +40,7 @@ MonoBehaviour:
   - rewardType: 1
     rewardAmount: 10
     itemReward: {fileID: 0}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

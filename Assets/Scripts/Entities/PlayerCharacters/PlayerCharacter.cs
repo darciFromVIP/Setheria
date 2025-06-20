@@ -1244,6 +1244,21 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     // Talent Unlock and Reset
     public void UnlockTalent(string name, int previousLevel, int currentLevel)
     {
+        // Nirri Talents
+        if (name == "Nature Attunement")
+            NatureAttunement(previousLevel, currentLevel);
+        if (name == "Mana Mastery")
+            ManaMastery(previousLevel, currentLevel);
+        if (name == "Defilement")
+            Defilement(previousLevel, currentLevel);
+        if (name == "Prolonged Magic")
+            ProlongedMagic(previousLevel, currentLevel);
+        if (name == "Healing Dust")
+            HealingDust(previousLevel, currentLevel);
+        if (name == "Persistent Roots")
+            PersistentRoots(previousLevel, currentLevel);
+
+        // Diet Talents
         if (name == "Protein Rush")
             ProteinRush(previousLevel, currentLevel);
         if (name == "Tough Body")
@@ -1274,6 +1289,21 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     }
     public void ResetTalent(string name, int previousLevel, int currentLevel)
     {
+        // Nirri Talents
+        if (name == "Nature Attunement")
+            NatureAttunementReduce(previousLevel, currentLevel);
+        if (name == "Mana Mastery")
+            ManaMasteryReduce(previousLevel, currentLevel);
+        if (name == "Defilement")
+            DefilementReduce(previousLevel, currentLevel);
+        if (name == "Prolonged Magic")
+            ProlongedMagicReduce(previousLevel, currentLevel);
+        if (name == "Healing Dust")
+            HealingDustReduce(previousLevel, currentLevel);
+        if (name == "Persistent Roots")
+            PersistentRootsReduce(previousLevel, currentLevel);
+
+        // Diet Talents
         if (name == "Protein Rush")
             ProteinRushReduce(previousLevel, currentLevel);
         if (name == "Tough Body")
@@ -1301,7 +1331,120 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             ExpandedStomachReduce(previousLevel, currentLevel);
         if (name.Contains("Efficient Metabolism"))
             CmdEfficientMetabolism(previousLevel, currentLevel);
-    }   
+    }
+    // Nirri Talents
+    private void NatureAttunement(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            manaComp.CmdChangeGearManaRegen(0.5f);
+        }
+    }
+    private void NatureAttunementReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            manaComp.CmdChangeGearManaRegen(-0.5f);
+        }
+    }
+    private void ManaMastery(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            GetComponent<ForestProtector>().LearnManaMastery();
+        }
+    }
+    private void ManaMasteryReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            GetComponent<ForestProtector>().UnlearnManaMastery();
+        }
+    }
+    private void Defilement(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            skillInstances.RemoveAt(3);
+            skillInstances.Insert(3, skills.Find((x) => x is SDefilement).GetInstance());
+            skillInstances[3].ExecuteOnStart(this);
+            UpdateSkills();
+        }
+    }
+    private void DefilementReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            skillInstances.RemoveAt(3);
+            skillInstances.Insert(3, skills.Find((x) => x is SRejuvenation).GetInstance());
+            skillInstances[3].ExecuteOnStart(this);
+            UpdateSkills();
+        }
+    }
+    private void HealingDust(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            GetComponent<ForestProtector>().LearnHealingDust();
+        }
+    }
+    private void HealingDustReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            GetComponent<ForestProtector>().UnlearnHealingDust();
+        }
+    }
+    private void ProlongedMagic(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            var rejSkill = skills.Find((x) => x is SRejuvenation);
+            if (rejSkill)
+                (rejSkill as SRejuvenation).baseDuration += 2;
+            var rejSkillInst = skillInstances.Find((x) => x is SRejuvenation);
+            if (rejSkillInst)
+                (rejSkillInst as SRejuvenation).baseDuration += 2;
+            var defSkill = skills.Find((x) => x is SDefilement);
+            if (defSkill)
+                (defSkill as SDefilement).baseDuration += 2;
+            var defSkillInst = skillInstances.Find((x) => x is SDefilement);
+            if (defSkillInst)
+                (defSkillInst as SDefilement).baseDuration += 2;
+        }
+    }
+    private void ProlongedMagicReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            var rejSkill = skills.Find((x) => x is SRejuvenation);
+            if (rejSkill)
+                (rejSkill as SRejuvenation).baseDuration -= 2;
+            var rejSkillInst = skillInstances.Find((x) => x is SRejuvenation);
+            if (rejSkillInst)
+                (rejSkillInst as SRejuvenation).baseDuration -= 2;
+            var defSkill = skills.Find((x) => x is SDefilement);
+            if (defSkill)
+                (defSkill as SDefilement).baseDuration -= 2;
+            var defSkillInst = skillInstances.Find((x) => x is SDefilement);
+            if (defSkillInst)
+                (defSkillInst as SDefilement).baseDuration -= 2;
+        }
+    }
+    private void PersistentRoots(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            (skills.Find((x) => x is SEntanglingRoots) as SEntanglingRoots).baseDuration += 1;
+        }
+    }
+    private void PersistentRootsReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            (skills.Find((x) => x is SEntanglingRoots) as SEntanglingRoots).baseDuration -= 1;
+        }
+    }
     // Diet Talents
     // Carnivore
     private void ProteinRush(int previousLevel, int currentLevel)

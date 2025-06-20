@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ForestProtector : NetworkBehaviour
 {
+    private int manaMasteryLevel = 0;
+    private int healingDustLevel = 0;
     public void CastGreenDust()
     {
         SGreenDust skill = (SGreenDust)GetComponent<PlayerCharacter>().skillInstances[2];
@@ -40,6 +42,8 @@ public class ForestProtector : NetworkBehaviour
         });
         NetworkServer.Spawn(proj.gameObject);
         NetworkServer.Spawn(proj2.gameObject);
+        if (healingDustLevel > 0)
+            GetComponent<HasHealth>().CmdHealDamage(20 * healingDustLevel, false);
     }
     public void CastRejuvenation()
     {
@@ -52,6 +56,20 @@ public class ForestProtector : NetworkBehaviour
             impactEffect = ProjectileImpactEffect.Buff,
             buff = skill.buff,
             targetedEntity = skill.ally.GetComponent<HasHealth>()
+        });
+        NetworkServer.Spawn(proj.gameObject);
+    }
+    public void CastDefilement()
+    {
+        SDefilement skill = (SDefilement)GetComponent<PlayerCharacter>().skillInstances[3];
+        var proj = Instantiate(skill.projectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
+        proj.InitializeProjectile(new ProjectileData()
+        {
+            projectileTravel = ProjectileTravelType.Instant,
+            projectileImpact = ProjectileImpactType.Single,
+            impactEffect = ProjectileImpactEffect.Buff,
+            buff = skill.buff,
+            targetedEntity = skill.enemy.GetComponent<HasHealth>()
         });
         NetworkServer.Spawn(proj.gameObject);
     }
@@ -78,5 +96,33 @@ public class ForestProtector : NetworkBehaviour
         });
         NetworkServer.Spawn(proj.gameObject);
         NetworkServer.Spawn(proj2.gameObject);
+    }
+
+    public void LearnManaMastery()
+    {
+        manaMasteryLevel++;
+        GetComponent<HasMana>().Mana_Spent.AddListener(ManaMasteryTrigger);
+    }
+    public void UnlearnManaMastery()
+    {
+        manaMasteryLevel--;
+        if (manaMasteryLevel <= 0)
+            GetComponent<HasMana>().Mana_Spent.RemoveListener(ManaMasteryTrigger);
+    }
+    private void ManaMasteryTrigger(float previousMana, float currentMana)
+    {
+        int random = Random.Range(0, 100);
+        if (random >= 0 && random <= manaMasteryLevel * 5)
+        {
+            GetComponent<HasMana>().RestoreMana(previousMana - currentMana);
+        }
+    }
+    public void LearnHealingDust()
+    {
+        healingDustLevel++;
+    }
+    public void UnlearnHealingDust()
+    {
+        healingDustLevel--;
     }
 }

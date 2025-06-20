@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
+  m_Name: TManaMastery
+  m_EditorClassIdentifier: 
+  maxLevel: 3
+  requiredTalent: {fileID: 11400000, guid: 38833f5ec6e51384c91e4dd01c04a16b, type: 2}
+  requiredTalentLevel: 3
+  requiredTalentPointsSpent: 0
+  requiredPlayerLevel: 5
+  label: Mana Mastery
+  description: You have learned to harness your magic in your favor. +5% chance per
+    talent level to refund mana on mana consumption.
+  associatedSkill: {fileID: 0}
+  associatedSkill2: {fileID: 0}
+  Talent_Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []

@@ -23,9 +23,9 @@ public class TalentButton : MonoBehaviour
         if (talent.requiredPlayerLevel > 0)
             talentDescription += "Required Player Level: " + talent.requiredPlayerLevel;
         if (talent.requiredTalent)
-            talentDescription += "Required Talent: " + talent.requiredTalent.label + " of level " + talent.requiredTalentLevel;
+            talentDescription += "\nRequired Talent: " + talent.requiredTalent.label + " of level " + talent.requiredTalentLevel;
         if (talent.requiredTalentPointsSpent > 0)
-            talentDescription += "Required Talent Points spent: " + talent.requiredTalentPointsSpent;
+            talentDescription += "\nRequired Talent Points spent: " + talent.requiredTalentPointsSpent;
         GetComponent<TooltipTrigger>().SetText(talent.label, talentDescription, image.sprite);
     }
     public void UpdateButton(Talent currentTalent, TalentTrees playerTalentTrees, TalentTree talentTree)

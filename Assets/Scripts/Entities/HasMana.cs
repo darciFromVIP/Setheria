@@ -20,6 +20,8 @@ public class HasMana : NetworkBehaviour
     [System.NonSerialized]
     public UnityEvent<float, float> Mana_Changed = new();
     [System.NonSerialized]
+    public UnityEvent<float, float> Mana_Spent = new();
+    [System.NonSerialized]
     public UnityEvent<float, float> Corrupted_Mana_Changed = new();
     [System.NonSerialized]
     public UnityEvent<float> Mana_Regen_Changed = new();
@@ -81,6 +83,7 @@ public class HasMana : NetworkBehaviour
         mana -= amount;
         if (mana < 0)
             mana = 0;
+        Mana_Spent.Invoke(mana + amount, mana);
         Mana_Changed.Invoke(mana, maxMana);
     }
     [Command(requiresAuthority = false)]

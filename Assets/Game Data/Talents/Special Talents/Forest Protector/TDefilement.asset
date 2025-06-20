@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
+  m_Name: TDefilement
+  m_EditorClassIdentifier: 
+  maxLevel: 1
+  requiredTalent: {fileID: 11400000, guid: 0565b487720aae84d9a569db35b1630b, type: 2}
+  requiredTalentLevel: 1
+  requiredTalentPointsSpent: 0
+  requiredPlayerLevel: 5
+  label: Defilement
+  description: '<sprite=10>11,0 <sprite=4>40
+
+    Defiles an enemy target with corrupted
+    magic, reducing their <sprite=1> by <color=orange>6,5</color> (5 + 10% <sprite=3>)
+    for 10,0 seconds.'
+  associatedSkill: {fileID: 11400000, guid: 898c4827a80cf4a44824a32043025721, type: 2}
+  associatedSkill2: {fileID: 0}
+  Talent_Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []
