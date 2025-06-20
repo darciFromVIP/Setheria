@@ -24,6 +24,7 @@ MonoBehaviour:
   itemType: 0
   sprite: {fileID: 21300000, guid: 070ecc5dd43447842afcd8b99eb6e8d3, type: 3}
   stackable: 1
+  maxStacks: 99
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
@@ -38,8 +39,11 @@ MonoBehaviour:
   - itemDropChances:
     - item:
         itemData: {fileID: 11400000, guid: 533f61762d2826a41834241e43a638d4, type: 2}
-        stacks: 1
+        stacks: 3
       chance: 100
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
