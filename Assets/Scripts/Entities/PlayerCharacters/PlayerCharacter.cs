@@ -1257,7 +1257,18 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             HealingDust(previousLevel, currentLevel);
         if (name == "Persistent Roots")
             PersistentRoots(previousLevel, currentLevel);
-
+        if (name == "Corrupted Dust")
+            CorruptedDust(previousLevel, currentLevel);
+        if (name == "Deep Roots")
+            DeepRoots(previousLevel, currentLevel);
+        if (name == "Photosynthesis Level 1")
+            Photosynthesis1(previousLevel, currentLevel);
+        if (name == "Photosynthesis Level 2")
+            Photosynthesis2(previousLevel, currentLevel);
+        if (name == "Photosynthesis Level 3")
+            Photosynthesis3(previousLevel, currentLevel);
+        if (name == "Photosynthesis Level 4")
+            Photosynthesis4(previousLevel, currentLevel);
         // Diet Talents
         if (name == "Protein Rush")
             ProteinRush(previousLevel, currentLevel);
@@ -1302,7 +1313,18 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             HealingDustReduce(previousLevel, currentLevel);
         if (name == "Persistent Roots")
             PersistentRootsReduce(previousLevel, currentLevel);
-
+        if (name == "Corrupted Dust")
+            CorruptedDustReduce(previousLevel, currentLevel);
+        if (name == "Deep Roots")
+            DeepRootsReduce(previousLevel, currentLevel);
+        if (name == "Photosynthesis Level 1")
+            Photosynthesis1Reduce(previousLevel, currentLevel);
+        if (name == "Photosynthesis Level 2")
+            Photosynthesis2Reduce(previousLevel, currentLevel);
+        if (name == "Photosynthesis Level 3")
+            Photosynthesis3Reduce(previousLevel, currentLevel);
+        if (name == "Photosynthesis Level 4")
+            Photosynthesis4Reduce(previousLevel, currentLevel);
         // Diet Talents
         if (name == "Protein Rush")
             ProteinRushReduce(previousLevel, currentLevel);
@@ -1436,6 +1458,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         for (int i = previousLevel; i < currentLevel; i++)
         {
             (skills.Find((x) => x is SEntanglingRoots) as SEntanglingRoots).baseDuration += 1;
+            (skillInstances.Find((x) => x is SEntanglingRoots) as SEntanglingRoots).baseDuration += 1;
         }
     }
     private void PersistentRootsReduce(int previousLevel, int currentLevel)
@@ -1443,6 +1466,119 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         for (int i = previousLevel; i > currentLevel; i--)
         {
             (skills.Find((x) => x is SEntanglingRoots) as SEntanglingRoots).baseDuration -= 1;
+            (skillInstances.Find((x) => x is SEntanglingRoots) as SEntanglingRoots).baseDuration -= 1;
+        }
+    }
+    private void CorruptedDust(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            skillInstances.RemoveAt(2);
+            skillInstances.Insert(2, skills.Find((x) => x is SCorruptedDust).GetInstance());
+            skillInstances[2].ExecuteOnStart(this);
+            UpdateSkills();
+        }
+    }
+    private void CorruptedDustReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            skillInstances.RemoveAt(2);
+            skillInstances.Insert(2, skills.Find((x) => x is SGreenDust).GetInstance());
+            skillInstances[2].ExecuteOnStart(this);
+            UpdateSkills();
+        }
+    }
+    private void DeepRoots(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            (skills.Find((x) => x is SFlowerPower) as SFlowerPower).timedLife += 3;
+            (skillInstances.Find((x) => x is SFlowerPower) as SFlowerPower).timedLife += 3;
+        }
+    }
+    private void DeepRootsReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            (skills.Find((x) => x is SFlowerPower) as SFlowerPower).timedLife -= 3;
+            (skillInstances.Find((x) => x is SFlowerPower) as SFlowerPower).timedLife -= 3;
+        }
+    }
+    private void Photosynthesis1(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            PhotosynthesisUnlock(new List<int> { 0, 1 });
+        }
+    }
+    private void Photosynthesis1Reduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            PhotosynthesisLock(new List<int> { 0, 1 });
+        }
+    }
+    private void Photosynthesis2(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            PhotosynthesisUnlock(new List<int> { 2, 3 });
+        }
+    }
+    private void Photosynthesis2Reduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            PhotosynthesisLock(new List<int> { 2, 3 });
+        }
+    }
+    private void Photosynthesis3(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            PhotosynthesisUnlock(new List<int> { 4, 5 });
+        }
+    }
+    private void Photosynthesis3Reduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            PhotosynthesisLock(new List<int> { 4, 5 });
+        }
+    }
+    private void Photosynthesis4(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            PhotosynthesisUnlock(new List<int> { 6 });
+        }
+    }
+    private void Photosynthesis4Reduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            PhotosynthesisLock(new List<int> { 6 });
+        }
+    }
+    private void PhotosynthesisUnlock(List<int> indexes)
+    {
+        var photosynthesis = skills[1] as SPhotosynthesis;
+        foreach (var item in FindObjectsOfType<PhotosynthesisButton>(true))
+        {
+            foreach (var index in indexes)
+                if (item.plant == photosynthesis.possiblePlants[index])
+                    item.UnlockButton();
+        }
+    }
+    private void PhotosynthesisLock(List<int> indexes)
+    {
+        var photosynthesis = skills[1] as SPhotosynthesis;
+        foreach (var item in FindObjectsOfType<PhotosynthesisButton>(true))
+        {
+            foreach (var index in indexes)
+                if (item.plant == photosynthesis.possiblePlants[index])
+                    item.LockButton();
         }
     }
     // Diet Talents

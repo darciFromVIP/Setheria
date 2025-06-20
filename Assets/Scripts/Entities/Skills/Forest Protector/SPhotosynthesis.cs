@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skills/Forest Protector/Photosynthesis")]
 public class SPhotosynthesis : Skill
 {
-    public List<Item> possiblePlants = new();
-
+    public List<ItemScriptable> possiblePlants = new();
+    public ItemScriptable chosenPlant;
     public override void Execute(Character self)
     {
         base.Execute(self);
@@ -31,8 +31,8 @@ public class SPhotosynthesis : Skill
     protected override void Cast()
     {
         base.Cast();
-        Item item = possiblePlants[Random.Range(0, possiblePlants.Count)];
-        castingEntity.GetComponent<PlayerCharacter>().CreateItem(new SaveDataItem() { name = item.itemData.name, stacks = 1 }, castingEntity.transform.position + castingEntity.transform.forward);
+        ItemScriptable item = chosenPlant ? chosenPlant : possiblePlants[Random.Range(0, possiblePlants.Count)];
+        castingEntity.GetComponent<PlayerCharacter>().CreateItem(new SaveDataItem() { name = item.name, stacks = 1 }, castingEntity.transform.position + castingEntity.transform.forward);
         castingEntity.GetComponent<PlayerController>().StartCooldown1();
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill1_Casted.RemoveListener(Cast);
         castingEntity.GetComponent<PlayerController>().CmdChangeState(PlayerState.None);
@@ -50,11 +50,7 @@ public class SPhotosynthesis : Skill
     public override void UpdateDescription()
     {
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
-            + "\nCreates a random plant in front of Nirri. Available plants:\n";
-        foreach (var item in possiblePlants)
-        {
-            description += "- " + item.name + "\n";
-        }
+            + "\nCreates a chosen plant in front of Nirri: " + (chosenPlant ? chosenPlant.name : "Random") + "\nChoose your plant in the Talent screen.";
         base.UpdateDescription();
     }
 }

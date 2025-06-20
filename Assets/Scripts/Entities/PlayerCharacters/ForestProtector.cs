@@ -45,6 +45,27 @@ public class ForestProtector : NetworkBehaviour
         if (healingDustLevel > 0)
             GetComponent<HasHealth>().CmdHealDamage(20 * healingDustLevel, false);
     }
+    public void CastCorruptedDust()
+    {
+        SCorruptedDust skill = (SCorruptedDust)GetComponent<PlayerCharacter>().skillInstances[2];
+        var proj = Instantiate(skill.damageProjectile, GetComponent<CanAttack>().projectileLaunchPoint.position, Quaternion.identity);
+        proj.InitializeProjectile(new ProjectileData()
+        {
+            projectileTravel = ProjectileTravelType.TerrainTargeted,
+            projectileImpact = ProjectileImpactType.AoE,
+            impactEffect = ProjectileImpactEffect.Damage,
+            targetsMask = LayerMask.GetMask("Enemy"),
+            aoeRadius = skill.aoeRadius,
+            effectValue = skill.finalDamage,
+            speed = 5,
+            targetPoint = skill.actualPoint,
+            affectsEntities = true,
+            owner = GetComponent<PlayerCharacter>()
+        });
+        NetworkServer.Spawn(proj.gameObject);
+        if (healingDustLevel > 0)
+            GetComponent<HasHealth>().CmdHealDamage(20 * healingDustLevel, false);
+    }
     public void CastRejuvenation()
     {
         SRejuvenation skill = (SRejuvenation)GetComponent<PlayerCharacter>().skillInstances[3];
