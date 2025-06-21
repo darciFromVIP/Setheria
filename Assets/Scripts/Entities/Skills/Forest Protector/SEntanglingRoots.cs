@@ -15,6 +15,10 @@ public class SEntanglingRoots : Skill
     public BuffScriptable damageBuff;
     [HideInInspector] public EnemyCharacter enemy;
     public Projectile projectile;
+    private void OnEnable()
+    {
+        baseDuration = 8;
+    }
     public override void Execute(Character self)
     {
         base.Execute(self);

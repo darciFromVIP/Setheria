@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEditor.Progress;
 public class TalentButton : MonoBehaviour
 {
     public TalentScriptable talent;
@@ -26,6 +27,16 @@ public class TalentButton : MonoBehaviour
             talentDescription += "\nRequired Talent: " + talent.requiredTalent.label + " of level " + talent.requiredTalentLevel;
         if (talent.requiredTalentPointsSpent > 0)
             talentDescription += "\nRequired Talent Points spent: " + talent.requiredTalentPointsSpent;
+        if (talent.excludesTalents.Count > 0)
+        {
+            talentDescription += "\nExcludes these talents: ";
+            for (int i = 0; i < talent.excludesTalents.Count; i++)
+            {
+                talentDescription += talent.excludesTalents[i].name;
+                if (talent.excludesTalents.Count - i > 1)
+                    talentDescription += ", ";
+            }
+        }
         GetComponent<TooltipTrigger>().SetText(talent.label, talentDescription, image.sprite);
     }
     public void UpdateButton(Talent currentTalent, TalentTrees playerTalentTrees, TalentTree talentTree)
@@ -42,10 +53,23 @@ public class TalentButton : MonoBehaviour
             image.color = new Color(0.75f, 0.75f, 0.75f);
             btn.interactable = true;
         }
+        else if (currentTalent.currentLevel <= 0)
+        {
+            image.color = new Color(0.25f, 0.25f, 0.25f);
+            btn.interactable = false;
+        }
         if (currentTalent.currentLevel >= 1)
             image.color = Color.white;
         if (currentTalent.currentLevel == talent.maxLevel)
             btn.interactable = false;
+        foreach (var item in talent.excludesTalents)
+        {
+            if (playerTalentTrees.IsTalentUnlocked(item, 1))
+            {
+                image.color = new Color(0.25f, 0.25f, 0.25f);
+                btn.interactable = false;
+            }
+        }
     }
     private void UnlockTalent()
     {

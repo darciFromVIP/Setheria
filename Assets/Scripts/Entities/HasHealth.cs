@@ -16,6 +16,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     private float maxHealth;
     private float baseMaxHealth;
     private float gearMaxHealth = 0;
+    private float healthMultiplier = 1;
     private float corruptedHealth = 0;
     private float corruption = 0;
     private float corruptionResistance = 0;
@@ -154,6 +155,23 @@ public class HasHealth : NetworkBehaviour, ISaveable
         AdjustHealthToMaxHealth(GetFinalMaxHealth() - amount);
     }
     [Command(requiresAuthority = false)]
+    public void CmdChangeHealthMultiplier(float amount)
+    {
+        RpcChangeHealthMultiplier(amount);
+    }
+    [ClientRpc]
+    public void RpcChangeHealthMultiplier(float amount)
+    {
+        ChangeHealthMultiplier(amount);
+    }
+    public void ChangeHealthMultiplier(float amount)
+    {
+        var previousHealth = GetFinalMaxHealth();
+        healthMultiplier += amount;
+        UpdateMaxHealth();
+        AdjustHealthToMaxHealth(previousHealth);
+    }
+    [Command(requiresAuthority = false)]
     public void CmdChangeGearMaxHealth(float amount)
     {
         RpcChangeGearMaxHealth(amount);
@@ -194,7 +212,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     }
     private void UpdateMaxHealth()
     {
-        maxHealth = baseMaxHealth + gearMaxHealth - corruptedHealth;
+        maxHealth = (baseMaxHealth + gearMaxHealth - corruptedHealth) * healthMultiplier;
         Health_Changed.Invoke(health, maxHealth);
     }
     private void AdjustHealthToMaxHealth(float previousMaxHealth)

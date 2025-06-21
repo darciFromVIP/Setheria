@@ -264,7 +264,10 @@ public class Character : Entity
                 return;
             }
             else if (item.name == buff && !buffScriptable.stackable)
+            {
+                item.durationTimer = buffScriptable.duration;
                 return;
+            }
             else if (item.name == buff && buffScriptable.stackable && item.stacks >= buffScriptable.maxStacks)
             {
                 FindObjectOfType<SystemMessages>().AddMessage("This buff is at max stacks.");

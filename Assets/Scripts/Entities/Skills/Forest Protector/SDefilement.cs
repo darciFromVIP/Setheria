@@ -12,6 +12,10 @@ public class SDefilement : Skill
     public BuffScriptable buff;
     [HideInInspector] public EnemyCharacter enemy;
     public Projectile projectile;
+    private void OnEnable()
+    {
+        baseDuration = 10;
+    }
     public override void Execute(Character self)
     {
         base.Execute(self);

@@ -1269,6 +1269,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             Photosynthesis3(previousLevel, currentLevel);
         if (name == "Photosynthesis Level 4")
             Photosynthesis4(previousLevel, currentLevel);
+        if (name == "Regenerating Dust")
+            RegeneratingDust(previousLevel, currentLevel);
+        if (name == "Glass Cannon")
+            GlassCannon(previousLevel, currentLevel);
+
         // Diet Talents
         if (name == "Protein Rush")
             ProteinRush(previousLevel, currentLevel);
@@ -1314,7 +1319,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (name == "Persistent Roots")
             PersistentRootsReduce(previousLevel, currentLevel);
         if (name == "Corrupted Dust")
-            CorruptedDustReduce(previousLevel, currentLevel);
+            RestoreGreenDust(previousLevel, currentLevel);
         if (name == "Deep Roots")
             DeepRootsReduce(previousLevel, currentLevel);
         if (name == "Photosynthesis Level 1")
@@ -1325,6 +1330,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             Photosynthesis3Reduce(previousLevel, currentLevel);
         if (name == "Photosynthesis Level 4")
             Photosynthesis4Reduce(previousLevel, currentLevel);
+        if (name == "Regenerating Dust")
+            RestoreGreenDust(previousLevel, currentLevel);
+        if (name == "Glass Cannon")
+            GlassCannonReduce(previousLevel, currentLevel);
+
         // Diet Talents
         if (name == "Protein Rush")
             ProteinRushReduce(previousLevel, currentLevel);
@@ -1479,12 +1489,22 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             UpdateSkills();
         }
     }
-    private void CorruptedDustReduce(int previousLevel, int currentLevel)
+    private void RestoreGreenDust(int previousLevel, int currentLevel)
     {
         if (currentLevel <= 0)
         {
             skillInstances.RemoveAt(2);
             skillInstances.Insert(2, skills.Find((x) => x is SGreenDust).GetInstance());
+            skillInstances[2].ExecuteOnStart(this);
+            UpdateSkills();
+        }
+    }
+    private void RegeneratingDust(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            skillInstances.RemoveAt(2);
+            skillInstances.Insert(2, skills.Find((x) => x is SRegeneratingDust).GetInstance());
             skillInstances[2].ExecuteOnStart(this);
             UpdateSkills();
         }
@@ -1579,6 +1599,22 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             foreach (var index in indexes)
                 if (item.plant == photosynthesis.possiblePlants[index])
                     item.LockButton();
+        }
+    }
+    private void GlassCannon(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            GetComponent<HasHealth>().ChangeHealthMultiplier(-0.5f);
+            GetComponent<CanAttack>().ChangePowerMultiplier(0.5f);
+        }
+    }
+    private void GlassCannonReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            GetComponent<HasHealth>().ChangeHealthMultiplier(0.5f);
+            GetComponent<CanAttack>().ChangePowerMultiplier(-0.5f);
         }
     }
     // Diet Talents

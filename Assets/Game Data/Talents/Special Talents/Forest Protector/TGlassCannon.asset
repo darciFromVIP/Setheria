@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
-  m_Name: TCorruptedDust
+  m_Name: TGlassCannon
   m_EditorClassIdentifier: 
   maxLevel: 1
-  requiredTalent: {fileID: 11400000, guid: 1b3910cdf54e8f2409946c05bee04ca0, type: 2}
-  requiredTalentLevel: 3
-  requiredTalentPointsSpent: 0
-  requiredPlayerLevel: 10
-  label: Corrupted Dust
-  description: 
-  excludesTalents:
-  - {fileID: 11400000, guid: 6d96d49f22b045543ada65a6b7ca5eb9, type: 2}
-  associatedSkill: {fileID: 11400000, guid: 06e83c2bd90b66a4cbe9d7652130be62, type: 2}
+  requiredTalent: {fileID: 0}
+  requiredTalentLevel: 0
+  requiredTalentPointsSpent: 15
+  requiredPlayerLevel: 15
+  label: Glass Cannon
+  description: Permanently decreases <sprite=5> by 50% and increases <sprite=3> by
+    50%.
+  excludesTalents: []
+  associatedSkill: {fileID: 0}
   associatedSkill2: {fileID: 0}
   Talent_Description_Updated:
     m_PersistentCalls:

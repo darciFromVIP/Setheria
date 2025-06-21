@@ -78,7 +78,7 @@ public class SaveDataPlayer
                 baseHealthRegen = 0f;
                 mana = 150;
                 baseMaxMana = 150;
-                baseManaRegen = 0.25f;
+                baseManaRegen = 0f;
                 power = 15;
                 criticalChance = 0;
                 criticalDamage = 50;
@@ -93,7 +93,7 @@ public class SaveDataPlayer
                 baseHealthRegen = 0f;
                 mana = 250;
                 baseMaxMana = 250;
-                baseManaRegen = 0.6f;
+                baseManaRegen = 0f;
                 power = 15;
                 criticalChance = 0;
                 criticalDamage = 50;
@@ -108,7 +108,7 @@ public class SaveDataPlayer
                 baseHealthRegen = 0f;
                 mana = 200;
                 baseMaxMana = 200;
-                baseManaRegen = 0.4f;
+                baseManaRegen = 0f;
                 power = 15;
                 criticalChance = 0;
                 criticalDamage = 50;
