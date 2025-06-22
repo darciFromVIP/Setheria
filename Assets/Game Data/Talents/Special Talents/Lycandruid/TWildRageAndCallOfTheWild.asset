@@ -15,14 +15,15 @@ MonoBehaviour:
   maxLevel: 1
   requiredTalent: {fileID: 0}
   requiredTalentLevel: 0
-  requiredTalentPointsSpent: 3
-  requiredPlayerLevel: 5
+  requiredTalentPointsSpent: 10
+  requiredPlayerLevel: 10
   label: Wild Rage / Call of the Wild
   description: '<sprite=10>90,0 <sprite=4>50
 
     Wolferius enters enraged state,
     granting himself Invulnerability and Invigoration (increases <sprite=1> by <color=orange>7,5</color>
     (5 + 1% <sprite=5>). Lasts <color=orange>5,5</color> (5 + 50% <sprite=13>). seconds.'
+  excludesTalents: []
   associatedSkill: {fileID: 11400000, guid: 78c4f4c637103454a95d0fbfdcebc214, type: 2}
   associatedSkill2: {fileID: 11400000, guid: baa42571c2330674c83f0db9ba8aa37b, type: 2}
   Talent_Description_Updated:

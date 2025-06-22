@@ -517,7 +517,9 @@ public class Character : Entity
         {
             if (!item.persistsAfterDeath)
             {
-                StopCoroutine(buffCoroutines.GetValueOrDefault(item.name));
+                var coro = buffCoroutines[item.name];
+                if (coro != null)
+                    StopCoroutine(coro);
                 CmdRemoveBuff(item.name);
             }
         }

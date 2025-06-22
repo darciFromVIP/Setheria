@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
-  m_Name: TRoarAndBattlecry
+  m_Name: TRestorativeCuts
   m_EditorClassIdentifier: 
   maxLevel: 1
-  requiredTalent: {fileID: 0}
-  requiredTalentLevel: 0
-  requiredTalentPointsSpent: 5
-  requiredPlayerLevel: 5
-  label: Roar / Battlecry
-  description: 
+  requiredTalent: {fileID: 11400000, guid: 118531a6c55a5cb4c91ba11e63ee2064, type: 2}
+  requiredTalentLevel: 1
+  requiredTalentPointsSpent: 15
+  requiredPlayerLevel: 15
+  label: Restorative Cuts
+  description: Your critical strikes restore 1% <sprite=5>.
   excludesTalents: []
-  associatedSkill: {fileID: 11400000, guid: b814150dd68b7c946b7a1d074f8b281b, type: 2}
-  associatedSkill2: {fileID: 11400000, guid: b555e99856e5c73419544f55d68614b3, type: 2}
+  associatedSkill: {fileID: 0}
+  associatedSkill2: {fileID: 0}
   Talent_Description_Updated:
     m_PersistentCalls:
       m_Calls: []

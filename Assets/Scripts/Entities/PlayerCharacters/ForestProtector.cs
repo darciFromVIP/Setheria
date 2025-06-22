@@ -158,7 +158,7 @@ public class ForestProtector : NetworkBehaviour
         int random = Random.Range(0, 100);
         if (random >= 0 && random <= manaMasteryLevel * 5)
         {
-            GetComponent<HasMana>().RestoreMana(previousMana - currentMana);
+            GetComponent<HasMana>().CmdRestoreMana(previousMana - currentMana);
         }
     }
     public void LearnHealingDust()

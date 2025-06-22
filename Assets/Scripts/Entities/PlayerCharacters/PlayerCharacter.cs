@@ -592,7 +592,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 }
             }    
             talentTrees.ChangeTalentPoints(1);
-            ChangeAttributePoints(2);
+            ChangeAttributePoints(1);
             FindObjectOfType<FloatingText>().SpawnText("+1 <sprite=13>", transform.position + Vector3.up * 1, FloatingTextType.Experience);
             levelUpEffect.SetActive(true);
             FindObjectOfType<AudioManager>().PlayOneShot(levelUpSound, transform.position);
@@ -1274,6 +1274,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (name == "Glass Cannon")
             GlassCannon(previousLevel, currentLevel);
 
+        // Wolferius Talents
+
         // Diet Talents
         if (name == "Protein Rush")
             ProteinRush(previousLevel, currentLevel);
@@ -1334,6 +1336,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             RestoreGreenDust(previousLevel, currentLevel);
         if (name == "Glass Cannon")
             GlassCannonReduce(previousLevel, currentLevel);
+
+        // Wolferius Talents
 
         // Diet Talents
         if (name == "Protein Rush")
@@ -1605,16 +1609,137 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         if (currentLevel >= 1)
         {
-            GetComponent<HasHealth>().ChangeHealthMultiplier(-0.5f);
-            GetComponent<CanAttack>().ChangePowerMultiplier(0.5f);
+            GetComponent<HasHealth>().CmdChangeHealthMultiplier(-0.5f);
+            GetComponent<CanAttack>().CmdChangePowerMultiplier(0.5f);
         }
     }
     private void GlassCannonReduce(int previousLevel, int currentLevel)
     {
         if (currentLevel <= 0)
         {
-            GetComponent<HasHealth>().ChangeHealthMultiplier(0.5f);
-            GetComponent<CanAttack>().ChangePowerMultiplier(-0.5f);
+            GetComponent<HasHealth>().CmdChangeHealthMultiplier(0.5f);
+            GetComponent<CanAttack>().CmdChangePowerMultiplier(-0.5f);
+        }
+    }
+    // Wolferius Talents
+    private void Endurance(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            GetComponent<HasHealth>().CmdChangeGearHealthRegen(0.2f);
+        }
+    }
+    private void EnduranceReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            GetComponent<HasHealth>().CmdChangeGearHealthRegen(-0.2f);
+        }
+    }
+    private void Toughness(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            GetComponent<HasHealth>().CmdChangeGearMaxHealth(50);
+        }
+    }
+    private void ToughnessReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            GetComponent<HasHealth>().CmdChangeGearMaxHealth(-50);
+        }
+    }
+    private void AdrenalineRush(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            GetComponent<Lycandruid>().CmdLearnAdrenalineRush();
+        }
+    }
+    private void AdrenalineRushReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            GetComponent<Lycandruid>().CmdUnlearnAdrenalineRush();
+        }
+    }
+    private void DisarmingUppercut(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            if (skillInstances[3] is SUppercut)
+                (skillInstances[3] as SUppercut).damageBaseReduction += 5;
+            (GetComponent<Shapeshifter>().defaultSkills[3] as SUppercut).damageBaseReduction += 5;
+            (GetComponent<Shapeshifter>().defaultSkillInstances[3] as SUppercut).damageBaseReduction += 5;
+        }
+    }
+    private void DisarmingUppercutReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            if (skillInstances[3] is SUppercut)
+                (skillInstances[3] as SUppercut).damageBaseReduction -= 5;
+            (GetComponent<Shapeshifter>().defaultSkills[3] as SUppercut).damageBaseReduction -= 5;
+            (GetComponent<Shapeshifter>().defaultSkillInstances[3] as SUppercut).damageBaseReduction -= 5;
+        }
+    }
+    private void PiercingUppercut(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            if (skillInstances[3] is SUppercut)
+                (skillInstances[3] as SUppercut).armorBaseReduction += 5;
+            (GetComponent<Shapeshifter>().defaultSkills[3] as SUppercut).armorBaseReduction += 5;
+            (GetComponent<Shapeshifter>().defaultSkillInstances[3] as SUppercut).armorBaseReduction += 5;
+        }
+    }
+    private void PiercingUppercutReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            if (skillInstances[3] is SUppercut)
+                (skillInstances[3] as SUppercut).armorBaseReduction -= 5;
+            (GetComponent<Shapeshifter>().defaultSkills[3] as SUppercut).armorBaseReduction -= 5;
+            (GetComponent<Shapeshifter>().defaultSkillInstances[3] as SUppercut).armorBaseReduction -= 5;
+        }
+    }
+    private void HastedAttacks(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            skillInstances[2].cooldown -= 1;
+            var shapeshift = GetComponent<Shapeshifter>();
+            (shapeshift.defaultSkills[2] as SSwipe).cooldown -= 1;
+            (shapeshift.defaultSkillInstances[2] as SSwipe).cooldown -= 1;
+            (shapeshift.shapeshiftedSkills[2] as SBite).cooldown -= 1;
+            (shapeshift.shapeshiftedSkillInstances[2] as SBite).cooldown -= 1;
+        }
+    }
+    private void HastedAttacksReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            skillInstances[2].cooldown += 1;
+            var shapeshift = GetComponent<Shapeshifter>();
+            (shapeshift.defaultSkills[2] as SSwipe).cooldown += 1;
+            (shapeshift.defaultSkillInstances[2] as SSwipe).cooldown += 1;
+            (shapeshift.shapeshiftedSkills[2] as SBite).cooldown += 1;
+            (shapeshift.shapeshiftedSkillInstances[2] as SBite).cooldown += 1;
+        }
+    }
+    private void RegenerativeRage(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            GetComponent<Lycandruid>().CmdLearnRegenerativeRage();
+        }
+    }
+    private void RegenerativeRageReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            GetComponent<Lycandruid>().CmdUnlearnRegenerativeRage();
         }
     }
     // Diet Talents
@@ -1769,11 +1894,17 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     private void BloodExtractor(int previousLevel, int currentLevel)
     {
         if (currentLevel >= 1)
+        {
             FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Blood").UnlockRecipe();
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Corrupted Blood").UnlockRecipe();
+        }
     }
     private void BloodExtractorReduce(int previousLevel, int currentLevel)
     {
         if (currentLevel <= 0)
+        {
             FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Blood").LockRecipe();
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Corrupted Blood").LockRecipe();
+        }
     }
 }

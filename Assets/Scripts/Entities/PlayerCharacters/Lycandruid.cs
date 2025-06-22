@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class Lycandruid : NetworkBehaviour
 {
+    private int adrenalineRushLevel;
+    private float adrenalineRushTimer;
+    private bool regenerativeRage;
+
+    private void Update()
+    {
+        if (adrenalineRushTimer > 0)
+            adrenalineRushTimer -= Time.deltaTime;
+    }
     public void CastBite()
     {
         SBite skill = (SBite)GetComponent<PlayerCharacter>().skillInstances[2];
@@ -192,16 +201,76 @@ public class Lycandruid : NetworkBehaviour
             buff = skill.invulnerabilityBuff,
             targetedEntity = GetComponent<HasHealth>()
         });
-        var proj2 = Instantiate(skill.projectile, transform.position, Quaternion.identity);
-        proj2.InitializeProjectile(new ProjectileData()
+        if (regenerativeRage)
         {
-            projectileTravel = ProjectileTravelType.Instant,
-            projectileImpact = ProjectileImpactType.Single,
-            impactEffect = ProjectileImpactEffect.Buff,
-            buff = skill.healthRegenBuff,
-            targetedEntity = GetComponent<HasHealth>()
-        });
+            var buff = GetComponent<PlayerCharacter>().buffDatabase.GetBuffByName("Invigoration");
+            buff.duration = skill.duration;
+            buff.value = GetComponent<HasHealth>().GetFinalMaxHealth() * 0.02f / skill.duration;
+            var proj2 = Instantiate(skill.projectile, transform.position, Quaternion.identity);
+            proj2.InitializeProjectile(new ProjectileData()
+            {
+                projectileTravel = ProjectileTravelType.Instant,
+                projectileImpact = ProjectileImpactType.Single,
+                impactEffect = ProjectileImpactEffect.Buff,
+                buff = buff,
+                targetedEntity = GetComponent<HasHealth>()
+            });
+            NetworkServer.Spawn(proj2.gameObject);
+        }
         NetworkServer.Spawn(proj.gameObject);
-        NetworkServer.Spawn(proj2.gameObject);
+    }
+
+    [Command(requiresAuthority = false)]
+    public void CmdLearnAdrenalineRush()
+    {
+        RpcLearnAdrenalineRush();
+    }
+    [ClientRpc]
+    private void RpcLearnAdrenalineRush()
+    {
+        adrenalineRushLevel++;
+        GetComponent<HasHealth>().Health_Changed.AddListener(AdrenalineRushTrigger);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdUnlearnAdrenalineRush()
+    {
+        RpcUnlearnAdrenalineRush();
+    }
+    [ClientRpc]
+    private void RpcUnlearnAdrenalineRush()
+    {
+        adrenalineRushLevel--;
+        if (adrenalineRushLevel <= 0)
+            GetComponent<HasHealth>().Health_Changed.RemoveListener(AdrenalineRushTrigger);
+    }
+    private void AdrenalineRushTrigger(float currentHealth, float maxHealth)
+    {
+        if (currentHealth / maxHealth <= 0.15f && adrenalineRushTimer <= 0)
+        {
+            var buff = GetComponent<PlayerCharacter>().buffDatabase.GetBuffByName("Adrenaline Rush");
+            buff.value = (0.2f + adrenalineRushLevel * 0.1f) * maxHealth / 10;
+            GetComponent<Character>().AddBuff("Adrenaline Rush");
+            adrenalineRushTimer = 120 - (adrenalineRushLevel * 20);
+        }
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdLearnRegenerativeRage()
+    {
+        RpcLearnRegenerativeRage();
+    }
+    [ClientRpc]
+    private void RpcLearnRegenerativeRage()
+    {
+        regenerativeRage = true;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdUnlearnRegenerativeRage()
+    {
+        RpcUnlearnRegenerativeRage();
+    }
+    [ClientRpc]
+    private void RpcUnlearnRegenerativeRage()
+    {
+        regenerativeRage = false;
     }
 }

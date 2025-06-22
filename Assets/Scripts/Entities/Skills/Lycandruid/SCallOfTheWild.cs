@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skills/Lycandruid/Call of the Wild")]
 public class SCallOfTheWild : Skill
 {
-    public float timedLife;
+    public float duration;
     public float basePower;
     public PlayerStat powerScalingStat;
     public float powerScalingValue;
@@ -29,7 +29,7 @@ public class SCallOfTheWild : Skill
     public override Skill GetInstance()
     {
         var instance = (SCallOfTheWild)base.GetInstance();
-        instance.timedLife = timedLife;
+        instance.duration = duration;
         instance.basePower = basePower;
         instance.powerScalingStat = powerScalingStat;
         instance.powerScalingValue = powerScalingValue;
@@ -48,7 +48,7 @@ public class SCallOfTheWild : Skill
             for (int i = 0; i < baseNumberOfWolves; i++)
             {
                 var pos = castingEntity.transform.position - (castingEntity.transform.forward * 2) - (castingEntity.transform.right * 4) + (castingEntity.transform.right * i * 2);
-                castingEntity.GetComponent<CanHavePets>().SpawnPet(wolfPrefab.name, pos, timedLife, finalPower);
+                castingEntity.GetComponent<CanHavePets>().SpawnPet(wolfPrefab.name, pos, duration, finalPower);
             }
 
         PlayerController player = castingEntity.GetComponent<PlayerController>();
@@ -64,7 +64,7 @@ public class SCallOfTheWild : Skill
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
             + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nWolferius unleashes a resonating howl to call his pack. Summons " + baseNumberOfWolves +
             " wolves to aid him in battle. Each wolf has <color=orange>" + finalPower.ToString("F0") + "</color> (" + basePower.ToString("F0") + " + "
-            + (powerScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(powerScalingStat) + ") power and lasts for " + timedLife + " seconds.";
+            + (powerScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(powerScalingStat) + ") power and lasts for " + duration + " seconds.";
         base.UpdateDescription();
     }
 }

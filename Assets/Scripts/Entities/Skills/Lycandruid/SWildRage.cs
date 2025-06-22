@@ -4,24 +4,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skills/Lycandruid/Wild Rage")]
 public class SWildRage : Skill
 {
-    public float baseDuration;
-    [HideInInspector] public float durationFinal;
-    public PlayerStat durationScalingStat;
-    public float durationScalingValue;
-    public float hpRegenBase;
-    [HideInInspector] public float hpRegenFinal;
-    public PlayerStat hpRegenScalingStat;
-    public float hpRegenScalingValue;
+    public float duration;
     public BuffScriptable invulnerabilityBuff;
-    public BuffScriptable healthRegenBuff;
     public Projectile projectile;
     public override void Execute(Character self)
     {
         base.Execute(self);
         castingEntity = self;
-        invulnerabilityBuff.duration = durationFinal;
-        healthRegenBuff.duration = durationFinal;
-        healthRegenBuff.value = hpRegenFinal;
+        invulnerabilityBuff.duration = duration;
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill5();
         FindObjectOfType<AudioManager>().PlayOneShot(sound, castingEntity.transform.position);
@@ -36,14 +26,8 @@ public class SWildRage : Skill
     public override Skill GetInstance()
     {
         var instance = (SWildRage)base.GetInstance();
-        instance.baseDuration = baseDuration;
-        instance.durationScalingStat = durationScalingStat;
-        instance.durationScalingValue = durationScalingValue;
-        instance.hpRegenBase = hpRegenBase;
-        instance.hpRegenScalingStat = hpRegenScalingStat;
-        instance.hpRegenScalingValue = hpRegenScalingValue;
+        instance.duration = duration;
         instance.invulnerabilityBuff = invulnerabilityBuff;
-        instance.healthRegenBuff = healthRegenBuff;
         instance.projectile = projectile;
         return instance;
     }
@@ -65,13 +49,10 @@ public class SWildRage : Skill
     }
     public override void UpdateDescription()
     {
-        hpRegenFinal = hpRegenBase + GetScalingStatValue(hpRegenScalingStat) * hpRegenScalingValue;
-        durationFinal = baseDuration + GetScalingStatValue(durationScalingStat) * durationScalingValue;
-        invulnerabilityBuff.duration = durationFinal;
+        invulnerabilityBuff.duration = duration;
         description = GetTextIconByStat(PlayerStat.CooldownReduction) + (cooldown * castingEntity.GetComponent<CanAttack>().GetCooldownReductionModifier()).ToString("F1")
-            + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nWolferius enters enraged state, granting himself Invulnerability and Invigoration (increases "
-            + GetTextIconByStat(PlayerStat.HealthRegen) + " by <color=orange>" + hpRegenFinal.ToString("F1") + "</color> (" + hpRegenBase + " + " + (hpRegenScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(hpRegenScalingStat) + ")." +
-            " Lasts <color=orange>" + invulnerabilityBuff.duration + "</color> (" + baseDuration + " + " + (durationScalingValue * 100).ToString("F0") + "% " + GetTextIconByStat(durationScalingStat) + ")." + " seconds.";
+            + " " + GetTextIconByStat(PlayerStat.MaxMana) + manaCost + "\nWolferius enters enraged state, granting himself Invulnerability." +
+            " Lasts " + invulnerabilityBuff.duration + " seconds.";
         base.UpdateDescription();
     }
 }
