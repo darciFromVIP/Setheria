@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8832f0c0855de0848b8feb174ea00465, type: 3}
   m_Name: Defiled
   m_EditorClassIdentifier: 
-  buffName: Bleeding
-  sprite: {fileID: 21300000, guid: 064de9d76f19ac94f9a9ad3fee2501ea, type: 3}
+  buffName: Defiled
+  sprite: {fileID: 21300000, guid: 380a54e7a916b234b91059adee14fb05, type: 3}
   description: This unit's Health Regen is reduced.
   buffType: 0
-  value: 9
-  duration: 4
+  positiveBuff: 0
+  persistsAfterDeath: 0
+  value: 8
+  duration: 10
   stackable: 0
   maxStacks: 1
   sound:
