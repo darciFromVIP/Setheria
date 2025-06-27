@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Mirror;
-using UnityEngine.Events;
-using FMOD.Studio;
-using UnityEngine.UIElements;
 using FMODUnity;
+using Mirror;
+using UnityEngine;
+using UnityEngine.Events;
 
 public class HasHealth : NetworkBehaviour, ISaveable
 {
@@ -155,16 +151,16 @@ public class HasHealth : NetworkBehaviour, ISaveable
         AdjustHealthToMaxHealth(GetFinalMaxHealth() - amount);
     }
     [Command(requiresAuthority = false)]
-    public void CmdChangeHealthMultiplier(float amount)
+    public void CmdChangeMaxHealthMultiplier(float amount)
     {
-        RpcChangeHealthMultiplier(amount);
+        RpcChangeMaxHealthMultiplier(amount);
     }
     [ClientRpc]
-    public void RpcChangeHealthMultiplier(float amount)
+    public void RpcChangeMaxHealthMultiplier(float amount)
     {
-        ChangeHealthMultiplier(amount);
+        ChangeMaxHealthMultiplier(amount);
     }
-    public void ChangeHealthMultiplier(float amount)
+    public void ChangeMaxHealthMultiplier(float amount)
     {
         var previousHealth = GetFinalMaxHealth();
         healthMultiplier += amount;

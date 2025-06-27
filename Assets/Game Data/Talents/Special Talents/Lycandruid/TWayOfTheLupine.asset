@@ -18,11 +18,10 @@ MonoBehaviour:
   requiredTalentPointsSpent: 15
   requiredPlayerLevel: 15
   label: Way of the Lupine
-  description: Embrace the wolf form permanently. Gain +25% <sprite=3>. Wolf can
-    now interact with objects.
-  excludesTalents:
+  description: 
+  excludingTalents:
   - {fileID: 11400000, guid: fcd49ad01b5dbb541aeb07e7b56c2452, type: 2}
-  associatedSkill: {fileID: 0}
+  associatedSkill: {fileID: 11400000, guid: 094fff59c41222041aef5b46366460b3, type: 2}
   associatedSkill2: {fileID: 0}
   Talent_Description_Updated:
     m_PersistentCalls:

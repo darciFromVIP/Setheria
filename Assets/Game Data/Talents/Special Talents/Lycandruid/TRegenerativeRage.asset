@@ -20,8 +20,9 @@ MonoBehaviour:
   label: Regenerative Rage
   description: Improves your Wild Rage so that it grants <sprite=1> equal to 2% of
     your <sprite=5> over the duration.
-  excludesTalents:
+  excludingTalents:
   - {fileID: 11400000, guid: ee313f92cd28ae140998e57c2fefc05a, type: 2}
+  - {fileID: 11400000, guid: fd6ab530ed741e7499914e79b99ffa9e, type: 2}
   associatedSkill: {fileID: 0}
   associatedSkill2: {fileID: 0}
   Talent_Description_Updated:

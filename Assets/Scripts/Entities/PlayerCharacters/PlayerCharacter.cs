@@ -1275,6 +1275,30 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             GlassCannon(previousLevel, currentLevel);
 
         // Wolferius Talents
+        if (name == "Adrenaline Rush")
+            AdrenalineRush(previousLevel, currentLevel);
+        if (name == "Disarming Uppercut")
+            DisarmingUppercut(previousLevel, currentLevel);
+        if (name == "Endurance")
+            Endurance(previousLevel, currentLevel); 
+        if (name == "Hasted Attacks")
+            HastedAttacks(previousLevel, currentLevel);
+        if (name == "Piercing Uppercut")
+            PiercingUppercut(previousLevel, currentLevel);
+        if (name == "Regenerative Rage")
+            RegenerativeRage(previousLevel, currentLevel);  
+        if (name == "Reinforcements of the Wild")
+            ReinforcementsOfTheWild(previousLevel, currentLevel);   
+        if (name == "Restorative Cuts")
+            RestorativeCuts(previousLevel, currentLevel);
+        if (name == "Toughness")
+            Toughness(previousLevel, currentLevel); 
+        if (name == "Way of the Lupine")
+            WayOfTheLupine(previousLevel, currentLevel);    
+        if (name == "Way of the Sapiens")
+            WayOfTheSapiens(previousLevel, currentLevel);
+        if (name == "Wild Companion")
+            WildCompanion(previousLevel, currentLevel);
 
         // Diet Talents
         if (name == "Protein Rush")
@@ -1338,6 +1362,28 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             GlassCannonReduce(previousLevel, currentLevel);
 
         // Wolferius Talents
+        if (name == "Adrenaline Rush")
+            AdrenalineRushReduce(previousLevel, currentLevel);
+        if (name == "Disarming Uppercut")
+            DisarmingUppercutReduce(previousLevel, currentLevel);
+        if (name == "Endurance")
+            EnduranceReduce(previousLevel, currentLevel);
+        if (name == "Hasted Attacks")
+            HastedAttacksReduce(previousLevel, currentLevel);
+        if (name == "Piercing Uppercut")
+            PiercingUppercutReduce(previousLevel, currentLevel);
+        if (name == "Regenerative Rage")
+            RegenerativeRageReduce(previousLevel, currentLevel);
+        if (name == "Reinforcements of the Wild")
+            ReinforcementsOfTheWildReduce(previousLevel, currentLevel);
+        if (name == "Restorative Cuts")
+            RestorativeCutsReduce(previousLevel, currentLevel);
+        if (name == "Toughness")
+            ToughnessReduce(previousLevel, currentLevel);
+        if (name == "Way of the Lupine" || name == "Way of the Sapiens")
+            RevertPermanentShapeshift(previousLevel, currentLevel);
+        if (name == "Wild Companion")
+            WildCompanionReduce(previousLevel, currentLevel);
 
         // Diet Talents
         if (name == "Protein Rush")
@@ -1609,7 +1655,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         if (currentLevel >= 1)
         {
-            GetComponent<HasHealth>().CmdChangeHealthMultiplier(-0.5f);
+            GetComponent<HasHealth>().CmdChangeMaxHealthMultiplier(-0.5f);
             GetComponent<CanAttack>().CmdChangePowerMultiplier(0.5f);
         }
     }
@@ -1617,7 +1663,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         if (currentLevel <= 0)
         {
-            GetComponent<HasHealth>().CmdChangeHealthMultiplier(0.5f);
+            GetComponent<HasHealth>().CmdChangeMaxHealthMultiplier(0.5f);
             GetComponent<CanAttack>().CmdChangePowerMultiplier(-0.5f);
         }
     }
@@ -1740,6 +1786,87 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         for (int i = previousLevel; i > currentLevel; i--)
         {
             GetComponent<Lycandruid>().CmdUnlearnRegenerativeRage();
+        }
+    }
+    private void RestorativeCuts(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            GetComponent<Lycandruid>().CmdLearnCriticalSustain();
+        }
+    }
+    private void RestorativeCutsReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            GetComponent<Lycandruid>().CmdUnlearnCriticalSustain();
+        }
+    }
+    private void ReinforcementsOfTheWild(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            if (skillInstances[5] is SCallOfTheWild)
+            {
+                (skillInstances[5] as SCallOfTheWild).duration += 1;
+                (skillInstances[5] as SCallOfTheWild).baseNumberOfWolves += 1;
+            }
+            var shapeshift = GetComponent<Shapeshifter>();
+            (shapeshift.shapeshiftedSkills[5] as SCallOfTheWild).duration += 1;
+            (shapeshift.shapeshiftedSkills[5] as SCallOfTheWild).baseNumberOfWolves += 1;
+            (shapeshift.shapeshiftedSkillInstances[5] as SCallOfTheWild).duration += 1;
+            (shapeshift.shapeshiftedSkillInstances[5] as SCallOfTheWild).baseNumberOfWolves += 1;
+        }
+    }
+    private void ReinforcementsOfTheWildReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            if (skillInstances[5] is SCallOfTheWild)
+            {
+                (skillInstances[5] as SCallOfTheWild).duration -= 1;
+                (skillInstances[5] as SCallOfTheWild).baseNumberOfWolves -= 1;
+            }
+            var shapeshift = GetComponent<Shapeshifter>();
+            (shapeshift.shapeshiftedSkills[5] as SCallOfTheWild).duration -= 1;
+            (shapeshift.shapeshiftedSkills[5] as SCallOfTheWild).baseNumberOfWolves -= 1;
+            (shapeshift.shapeshiftedSkillInstances[5] as SCallOfTheWild).duration -= 1;
+            (shapeshift.shapeshiftedSkillInstances[5] as SCallOfTheWild).baseNumberOfWolves -= 1;
+        }
+    }
+    private void WayOfTheLupine(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            GetComponent<Shapeshifter>().CmdPermanentShapeshift(false);
+        }
+    }
+    private void WayOfTheSapiens(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            GetComponent<Shapeshifter>().CmdPermanentShapeshift(true);
+        }
+    }
+    private void RevertPermanentShapeshift(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            GetComponent<Shapeshifter>().CmdRevertPermanentShapeshift();
+        }
+    }
+    private void WildCompanion(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i < currentLevel; i++)
+        {
+            GetComponent<Lycandruid>().CmdLearnWildCompanion();
+        }
+    }
+    private void WildCompanionReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            GetComponent<Lycandruid>().CmdUnlearnWildCompanion();
         }
     }
     // Diet Talents

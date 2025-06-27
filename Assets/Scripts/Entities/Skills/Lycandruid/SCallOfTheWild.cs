@@ -8,7 +8,7 @@ public class SCallOfTheWild : Skill
     public float basePower;
     public PlayerStat powerScalingStat;
     public float powerScalingValue;
-    private float finalPower;
+    public float finalPower;
     public int baseNumberOfWolves;
     public Character wolfPrefab;
     public override void Execute(Character self)

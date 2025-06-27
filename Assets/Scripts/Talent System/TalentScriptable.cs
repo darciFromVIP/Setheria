@@ -14,8 +14,8 @@ public class TalentScriptable : ScriptableObject
     public string label;
     [TextArea(10, 10)]
     public string description;
-    [Tooltip("These talents will be locked once this talent is chosen.")]
-    public List<TalentScriptable> excludesTalents;
+    [Tooltip("These talents lock this one once they are chosen.")]
+    public List<TalentScriptable> excludingTalents;
     [Tooltip("If this talent unlocks a skill, assign it here to get its description with scalings etc. Leave Description blank in this case")]
     public Skill associatedSkill;
     [Tooltip("2nd skill for Shapeshifters")]

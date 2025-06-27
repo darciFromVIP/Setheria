@@ -8,7 +8,13 @@ public class Lycandruid : NetworkBehaviour
     private int adrenalineRushLevel;
     private float adrenalineRushTimer;
     private bool regenerativeRage;
+    private bool wildCompanion;
 
+    private HasHealth hpComp;
+    private void Start()
+    {
+        hpComp = GetComponent<HasHealth>();
+    }
     private void Update()
     {
         if (adrenalineRushTimer > 0)
@@ -42,7 +48,13 @@ public class Lycandruid : NetworkBehaviour
     }
     public void CastPounce()
     {
-        SPounce skill = (SPounce)GetComponent<PlayerCharacter>().skillInstances[3];
+        var player = GetComponent<PlayerCharacter>();
+        if (wildCompanion)
+        {
+            var wolfSkill = (SCallOfTheWild)player.skillInstances[5];
+            player.GetComponent<CanHavePets>().SpawnPet(wolfSkill.wolfPrefab.name, player.transform.position + (player.transform.right * 4), wolfSkill.duration, wolfSkill.finalPower);
+        }
+        SPounce skill = (SPounce)player.skillInstances[3];
         var proj = Instantiate(skill.projectile, skill.actualPoint, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -51,7 +63,7 @@ public class Lycandruid : NetworkBehaviour
             impactEffect = ProjectileImpactEffect.Damage,
             effectValue = skill.finalDamage,
             targetedEntity = skill.enemy.GetComponent<HasHealth>(),
-            owner = GetComponent<Entity>()
+            owner = player
         });
         var proj2 = Instantiate(skill.projectile, skill.actualPoint, Quaternion.identity);
         proj2.InitializeProjectile(new ProjectileData()
@@ -61,7 +73,7 @@ public class Lycandruid : NetworkBehaviour
             impactEffect = ProjectileImpactEffect.Buff,
             buff = skill.stunBuff,
             targetedEntity = skill.enemy.GetComponent<HasHealth>(),
-            owner = GetComponent<Entity>()
+            owner = player
         });
         NetworkServer.Spawn(proj.gameObject);
         NetworkServer.Spawn(proj2.gameObject);
@@ -128,7 +140,13 @@ public class Lycandruid : NetworkBehaviour
     }
     public void CastUppercut()
     {
-        SUppercut skill = (SUppercut)GetComponent<PlayerCharacter>().skillInstances[3];
+        var player = GetComponent<PlayerCharacter>();
+        if (wildCompanion)
+        {
+            var wolfSkill = (SCallOfTheWild)player.skillInstances[5];
+            player.GetComponent<CanHavePets>().SpawnPet(wolfSkill.wolfPrefab.name, player.transform.position + (player.transform.right * 4), wolfSkill.duration, wolfSkill.finalPower);
+        }
+        SUppercut skill = (SUppercut)player.skillInstances[3];
         var proj = Instantiate(skill.projectile, transform.position, Quaternion.identity);
         proj.InitializeProjectile(new ProjectileData()
         {
@@ -155,7 +173,7 @@ public class Lycandruid : NetworkBehaviour
             impactEffect = ProjectileImpactEffect.Damage,
             effectValue = skill.damageFinal,
             targetedEntity = skill.enemy.GetComponent<HasHealth>(),
-            owner = GetComponent<Entity>()
+            owner = player
         });
         NetworkServer.Spawn(proj.gameObject);
         NetworkServer.Spawn(proj2.gameObject);
@@ -272,5 +290,49 @@ public class Lycandruid : NetworkBehaviour
     private void RpcUnlearnRegenerativeRage()
     {
         regenerativeRage = false;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdLearnCriticalSustain()
+    {
+        RpcLearnCriticalSustain();
+    }
+    [ClientRpc]
+    private void RpcLearnCriticalSustain()
+    {
+        GetComponent<CanAttack>().Critically_Stricken.AddListener(CriticalSustainTrigger);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdUnlearnCriticalSustain()
+    {
+        RpcUnlearnCriticalSustain();
+    }
+    [ClientRpc]
+    private void RpcUnlearnCriticalSustain()
+    {
+        GetComponent<CanAttack>().Critically_Stricken.RemoveListener(CriticalSustainTrigger);
+    }
+    private void CriticalSustainTrigger()
+    {
+        hpComp.HealDamage(hpComp.GetFinalMaxHealth() * 0.01f, false);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdLearnWildCompanion()
+    {
+        RpcLearnWildCompanion();
+    }
+    [ClientRpc]
+    private void RpcLearnWildCompanion()
+    {
+        wildCompanion = true;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdUnlearnWildCompanion()
+    {
+        RpcUnlearnWildCompanion();
+    }
+    [ClientRpc]
+    private void RpcUnlearnWildCompanion()
+    {
+        wildCompanion = false;
     }
 }

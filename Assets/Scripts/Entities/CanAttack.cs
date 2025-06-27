@@ -64,6 +64,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     [HideInInspector] public UnityEvent Stop_Acting = new();
     [HideInInspector] public UnityEvent Resume_Acting = new();
     [HideInInspector] public UnityEvent Has_Attacked = new();
+    [HideInInspector] public UnityEvent Critically_Stricken = new();
 
     protected int animHash_Attack1 = Animator.StringToHash("Attack1");
     protected int animHash_Attack2 = Animator.StringToHash("Attack2");
@@ -260,7 +261,10 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         float modifier = 1;
         var random = Random.Range(0f, 100f);
         if (random < GetFinalCritChance())
+        {
             modifier = 1 + (GetFinalCritDamage() / 100);
+            Critically_Stricken.Invoke();
+        }
         if (enemyTarget)
             enemyTarget.GetComponent<HasHealth>().RpcTakeDamage(GetFinalPower() * modifier * GetPowerScaling(), false, GetComponent<NetworkIdentity>(), modifier > 1 ? true : false, true, false);
         Attacked();
@@ -307,7 +311,10 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         float modifier = 1;
         var random = Random.Range(0f, 100f);
         if (random < GetFinalCritChance())
+        {
             modifier = 1 + (GetFinalCritDamage() / 100);
+            Critically_Stricken.Invoke();
+        }
         Entity owner;
         if (TryGetComponent(out Pet pet))
             owner = pet.petOwner.GetComponent<Entity>();

@@ -73,4 +73,41 @@ public class Shapeshifter : NetworkBehaviour
             item.SetNewAnimator(animator);
         }
     }
+    [Command(requiresAuthority = false)]
+    public void CmdPermanentShapeshift(bool defaultForm)
+    {
+        RpcPermanentShapeshift(defaultForm);
+    }
+    [ClientRpc()]
+    public void RpcPermanentShapeshift(bool defaultForm)
+    {
+        Shapeshift(defaultForm);
+        var character = GetComponent<Character>();
+        character.skillInstances[1].StopExecute();
+        character.skillInstances.RemoveAt(1);
+        if (defaultForm)
+            character.skillInstances.Insert(1, defaultSkills.Find((x) => x is SWayOfTheSapiens).GetInstance());
+        else
+            character.skillInstances.Insert(1, shapeshiftedSkills.Find((x) => x is SWayOfTheLupine).GetInstance());
+        character.skillInstances[1].Execute(character);
+        character.UpdateSkills();
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdRevertPermanentShapeshift()
+    {
+        RpcRevertPermanentShapeshift();
+    }
+    [ClientRpc()]
+    public void RpcRevertPermanentShapeshift()
+    {
+        var character = GetComponent<Character>();
+        character.skillInstances[1].StopExecute();
+        character.skillInstances.RemoveAt(1);
+        if (defaultModel.gameObject.activeSelf)
+            character.skillInstances.Insert(1, defaultSkills.Find((x) => x is SDefensiveStance).GetInstance());
+        else
+            character.skillInstances.Insert(1, shapeshiftedSkills.Find((x) => x is SOneWithNature).GetInstance());
+        character.skillInstances[1].ExecuteOnStart(transform);
+        character.UpdateSkills();
+    }
 }

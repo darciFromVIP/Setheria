@@ -27,14 +27,14 @@ public class TalentButton : MonoBehaviour
             talentDescription += "\nRequired Talent: " + talent.requiredTalent.label + " of level " + talent.requiredTalentLevel;
         if (talent.requiredTalentPointsSpent > 0)
             talentDescription += "\nRequired Talent Points spent: " + talent.requiredTalentPointsSpent;
-        if (talent.excludesTalents.Count > 0)
+        if (talent.excludingTalents.Count > 0)
         {
             talentDescription += "\nExcludes these talents: ";
-            for (int i = 0; i < talent.excludesTalents.Count; i++)
+            for (int i = 0; i < talent.excludingTalents.Count; i++)
             {
-                talentDescription += talent.excludesTalents[i].name;
-                if (talent.excludesTalents.Count - i > 1)
-                    talentDescription += ", ";
+                talentDescription += talent.excludingTalents[i].label;
+                if (talent.excludingTalents.Count - i > 1)
+                    talentDescription += "\n";
             }
         }
         GetComponent<TooltipTrigger>().SetText(talent.label, talentDescription, image.sprite);
@@ -62,7 +62,7 @@ public class TalentButton : MonoBehaviour
             image.color = Color.white;
         if (currentTalent.currentLevel == talent.maxLevel)
             btn.interactable = false;
-        foreach (var item in talent.excludesTalents)
+        foreach (var item in talent.excludingTalents)
         {
             if (playerTalentTrees.IsTalentUnlocked(item, 1))
             {

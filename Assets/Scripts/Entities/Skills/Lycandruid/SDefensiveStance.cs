@@ -20,6 +20,11 @@ public class SDefensiveStance : Skill
         (self as PlayerCharacter).Level_Up.AddListener(LevelUp);
         TogglePassive(true);
     }
+    public override void StopExecute()
+    {
+        base.StopExecute();
+        TogglePassive(false);
+    }
     private void LevelUp(int level)
     {
         if (castingEntity.GetComponent<Shapeshifter>().shapeshiftedModel.gameObject.activeSelf)

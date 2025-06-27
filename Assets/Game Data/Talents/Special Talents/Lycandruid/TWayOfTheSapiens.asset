@@ -18,10 +18,10 @@ MonoBehaviour:
   requiredTalentPointsSpent: 15
   requiredPlayerLevel: 15
   label: Way of the Sapiens
-  description: Embrace the human form permanently. Gain +25% <sprite=5>.
-  excludesTalents:
+  description: 
+  excludingTalents:
   - {fileID: 11400000, guid: fd6ab530ed741e7499914e79b99ffa9e, type: 2}
-  associatedSkill: {fileID: 0}
+  associatedSkill: {fileID: 11400000, guid: 1dc6a30e4cbf29f478fa585f99c2ce4a, type: 2}
   associatedSkill2: {fileID: 0}
   Talent_Description_Updated:
     m_PersistentCalls:
