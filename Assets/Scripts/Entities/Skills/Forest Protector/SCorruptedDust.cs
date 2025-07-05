@@ -49,7 +49,7 @@ public class SCorruptedDust : Skill
         castingEntity.GetComponent<PlayerController>().Ground_Left_Clicked.RemoveListener(StartCasting);
         if (castingEntity.isOwned)
             castingEntity.GetComponent<Character>().CastSkill2();
-        castingEntity.GetComponent<CharacterVFXReference>().skill2.SetActive(true);
+        castingEntity.GetComponent<CharacterVFXReference>().skill3.SetActive(true);
         castingEntity.GetComponentInChildren<AnimatorEventReceiver>().Skill2_Casted.AddListener(Cast);
         castingEntity.GetComponent<Character>().RotateToPoint(point);
         if (castingEntity.isOwned)

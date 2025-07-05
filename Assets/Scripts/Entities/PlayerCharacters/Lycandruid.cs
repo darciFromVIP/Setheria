@@ -247,7 +247,8 @@ public class Lycandruid : NetworkBehaviour
     private void RpcLearnAdrenalineRush()
     {
         adrenalineRushLevel++;
-        GetComponent<HasHealth>().Health_Changed.AddListener(AdrenalineRushTrigger);
+        if (adrenalineRushLevel == 1)
+            GetComponent<HasHealth>().Health_Changed.AddListener(AdrenalineRushTrigger);
     }
     [Command(requiresAuthority = false)]
     public void CmdUnlearnAdrenalineRush()

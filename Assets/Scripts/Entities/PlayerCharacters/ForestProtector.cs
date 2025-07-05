@@ -145,7 +145,8 @@ public class ForestProtector : NetworkBehaviour
     public void LearnManaMastery()
     {
         manaMasteryLevel++;
-        GetComponent<HasMana>().Mana_Spent.AddListener(ManaMasteryTrigger);
+        if (manaMasteryLevel == 1)
+            GetComponent<HasMana>().Mana_Spent.AddListener(ManaMasteryTrigger);
     }
     public void UnlearnManaMastery()
     {
@@ -158,7 +159,7 @@ public class ForestProtector : NetworkBehaviour
         int random = Random.Range(0, 100);
         if (random >= 0 && random <= manaMasteryLevel * 5)
         {
-            GetComponent<HasMana>().CmdRestoreMana(previousMana - currentMana);
+            GetComponent<HasMana>().RestoreMana(previousMana - currentMana);
         }
     }
     public void LearnHealingDust()
