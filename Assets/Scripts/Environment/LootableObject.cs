@@ -271,7 +271,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         {
             if (oneTimeLoot)
                 mapIcon.CmdToggleCheckmark();
-            else if (destroyOnLoot)
+            if (destroyOnLoot)
                 mapIcon.CmdDestroyIcon();
         }
     }
