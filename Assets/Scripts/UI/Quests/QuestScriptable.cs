@@ -457,6 +457,8 @@ public class QuestScriptable : ScriptableObject, IComparable
     }
     public void CheckQuestCompletion()
     {
+        if (!active)
+            return;
         Quest_Updated.Invoke();
         foreach (var item in requiredItems)
         {
