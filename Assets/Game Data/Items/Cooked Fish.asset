@@ -16,7 +16,7 @@ MonoBehaviour:
 
     Eating this restores:
 
-    +7<sprite=12>
+    +6<sprite=12>
 
     -3<sprite=20>
 
@@ -30,7 +30,7 @@ MonoBehaviour:
   stackable: 1
   maxStacks: 99
   usage:
-  - {fileID: 11400000, guid: a4907513d044f3f4492811ad4ca7b5aa, type: 2}
+  - {fileID: 11400000, guid: 8556a85ecfb919d468d8c3bff51cd180, type: 2}
   - {fileID: 11400000, guid: e066ff55f3c2ca347bf56110bccb49e4, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
@@ -42,6 +42,9 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

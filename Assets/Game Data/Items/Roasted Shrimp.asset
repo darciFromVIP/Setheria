@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    Eating this restores +4<sprite=12>.
+    Eating this restores +4<sprite=12>
+    but -3<sprite=20>.
 
     __________________________________
 
-    Food,
-    <color=red>Carnivore</color>'
+    Food, <color=red>Carnivore</color>'
   grade: 2
   itemType: 0
   sprite: {fileID: 21300000, guid: a95d8aafd66aa7f4ab860b8f522f13f9, type: 3}
@@ -27,6 +27,7 @@ MonoBehaviour:
   maxStacks: 99
   usage:
   - {fileID: 11400000, guid: 2be994470503d964e8c2c3b18726e737, type: 2}
+  - {fileID: 11400000, guid: e066ff55f3c2ca347bf56110bccb49e4, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []

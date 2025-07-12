@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Meat Soup
   m_EditorClassIdentifier: 
   description: "__________________________________\nWarm meaty soup with a little
-    bit salt. \n+8<sprite=12>\n+20<sprite=20>\n__________________________________\nFood,
+    bit salt. \n+7<sprite=12>\n+12<sprite=20>\n__________________________________\nFood,
     <color=red>Carnivore</color>"
-  grade: 1
+  grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 8b5f37dac52ccf04685ac28ec4fbe802, type: 3}
   stackable: 1
   maxStacks: 99
   usage:
-  - {fileID: 11400000, guid: a35b307e5e3eddb44a40c7ec1167bfb6, type: 2}
-  - {fileID: 11400000, guid: 65aa8a19dfceec844bfcefe8dd4d15a2, type: 2}
+  - {fileID: 11400000, guid: a4907513d044f3f4492811ad4ca7b5aa, type: 2}
+  - {fileID: 11400000, guid: c1925bcf30db7254e8193a284e4ba779, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -33,6 +33,9 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

@@ -15,7 +15,7 @@ MonoBehaviour:
   description: '__________________________________
 
     Gift from the god of seas.
-    Restores +20<sprite=12> and 75 HP
+    Restores +20<sprite=12>, -10<sprite=20> and 75 HP
 
     __________________________________
 
@@ -29,6 +29,7 @@ MonoBehaviour:
   usage:
   - {fileID: 11400000, guid: 0cf6e3deaf5c46641a5024b9d37c6af5, type: 2}
   - {fileID: 11400000, guid: dca4668c8c35bde4d91fe70f9c2a35a5, type: 2}
+  - {fileID: 11400000, guid: db6dd72693c04824d9d18e6117e6e18a, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -39,6 +40,9 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

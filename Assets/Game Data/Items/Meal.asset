@@ -14,19 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    Warm and hearty meal. Restores
-    +15<sprite=12>.
+    Warm and hearty meal. Restores:
+
+    +10<sprite=12>
+
+    -7<sprite=20>
 
     __________________________________
 
-    Food, <color=red>Carnivore</color>'
-  grade: 1
+    Food,
+    <color=red>Carnivore</color>'
+  grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 08ee1d4b4dd94db4ab38877c0b6c6246, type: 3}
   stackable: 1
   maxStacks: 99
   usage:
-  - {fileID: 11400000, guid: f379e06674e2f6043be10da36f3ec3fc, type: 2}
+  - {fileID: 11400000, guid: afeb861d222201b4fb706782d470cf41, type: 2}
+  - {fileID: 11400000, guid: 42abf13e979d148459e49416d1244395, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -37,6 +42,9 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

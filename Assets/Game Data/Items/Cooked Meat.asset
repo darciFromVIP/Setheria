@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    Eating this restores: <color=#FFD000>+8</color><sprite=12>
+    Eating this restores: <color=#FFD000>+5</color><sprite=12>
 
     <color=#FFD000>-3</color><sprite=20>
 
@@ -28,7 +28,7 @@ MonoBehaviour:
   stackable: 1
   maxStacks: 99
   usage:
-  - {fileID: 11400000, guid: a35b307e5e3eddb44a40c7ec1167bfb6, type: 2}
+  - {fileID: 11400000, guid: 5ea5dfd5ddb295c468b0c52e2047cf8e, type: 2}
   - {fileID: 11400000, guid: e066ff55f3c2ca347bf56110bccb49e4, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
@@ -40,6 +40,9 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

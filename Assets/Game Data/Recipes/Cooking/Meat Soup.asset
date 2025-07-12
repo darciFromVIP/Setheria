@@ -20,7 +20,7 @@ MonoBehaviour:
   componentItems:
   - itemData: {fileID: 11400000, guid: 533f61762d2826a41834241e43a638d4, type: 2}
     stacks: 1
-  - itemData: {fileID: 11400000, guid: acdf02d0325686b48b04cb5b9f5f4ee1, type: 2}
+  - itemData: {fileID: 11400000, guid: 294bbf2a06d985842802a3842f31fe4b, type: 2}
     stacks: 1
   - itemData: {fileID: 11400000, guid: e707f0b9aecac3d48a4b3ea0e0854505, type: 2}
     stacks: 1
@@ -33,10 +33,12 @@ MonoBehaviour:
   xpGranted: 10
   tier: 0
   recipeItem: {fileID: 0}
-  requiredItems: []
+  requiredItems:
+  - {fileID: 11400000, guid: 294bbf2a06d985842802a3842f31fe4b, type: 2}
   requiredStructures: []
   requiredProfession: 2
-  requiredProfessionExperience: 25
+  requiredProfessionExperience: 10
+  givesProfXP: 1
   recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:

@@ -10,37 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c174924f5a1149f46828f02611f30a24, type: 3}
-  m_Name: Spinach
+  m_Name: Meal(advanced)
   m_EditorClassIdentifier: 
   recipeCategory: 5
-  priority: 26
+  priority: 22
   resultItem:
-    itemData: {fileID: 11400000, guid: d3c43f0c5864c4c4291a264a0ae740e6, type: 2}
+    itemData: {fileID: 11400000, guid: 8991e1a4df7daaa4a84da647dd39d84d, type: 2}
     stacks: 1
   componentItems:
-  - itemData: {fileID: 11400000, guid: 533f61762d2826a41834241e43a638d4, type: 2}
+  - itemData: {fileID: 11400000, guid: 8196a9deb0b604443a71880fe0c85755, type: 2}
     stacks: 1
-  - itemData: {fileID: 11400000, guid: a8bc1728e509cca45bb7f5f95205187b, type: 2}
-    stacks: 2
-  - itemData: {fileID: 11400000, guid: 8094a1a7df5dea748ba6b93dcb946804, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: ab3359b6db0255043859b0180d21fb63, type: 2}
-    stacks: 2
-  - itemData: {fileID: 11400000, guid: f09a58d2dbe31914aa4c64058f129ef1, type: 2}
+  - itemData: {fileID: 11400000, guid: 68275719217b1cc47b58767399476c34, type: 2}
     stacks: 1
   resourceCost: 0
   unlocked: 1
   visible: 1
   freshlyUnlocked: 0
   requiredStructure: {fileID: 11400000, guid: c1c19e88d55514748b3a55507fbdc8c5, type: 2}
-  craftingDuration: 3
-  xpGranted: 25
-  tier: 2
-  recipeItem: {fileID: 11400000, guid: 82c31c4a46425e840850e432b08f1b6c, type: 2}
-  requiredItems: []
+  craftingDuration: 1
+  xpGranted: 15
+  tier: 0
+  recipeItem: {fileID: 0}
+  requiredItems:
+  - {fileID: 11400000, guid: 68275719217b1cc47b58767399476c34, type: 2}
   requiredStructures: []
   requiredProfession: 2
-  requiredProfessionExperience: 50
+  requiredProfessionExperience: 35
   givesProfXP: 1
   recipesInThisCategory: []
   Recipe_Unlocked:
