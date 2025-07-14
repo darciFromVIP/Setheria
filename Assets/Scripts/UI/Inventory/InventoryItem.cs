@@ -392,6 +392,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 {
                     if (inventoryManagerParent && stashInventory)                       // To Stash
                     {
+                        if (!stashInventory.GetFreeSlot())
+                            return;
                         if (stashInventory.CmdAddItem(item, stacks))
                             DestroyItem();
                     }

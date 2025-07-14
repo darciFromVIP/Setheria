@@ -15,6 +15,8 @@ namespace TheVegetationEngine
     [AddComponentMenu("BOXOPHOBIC/The Vegetation Engine/TVE Element")]
     public class TVEElement : StyledMonoBehaviour
     {
+        private TVEManager tveManager;      // We can't use static in multiplayer
+
         [StyledBanner(0.890f, 0.745f, 0.309f, "Element")]
         public bool styledBanner;
 
@@ -124,8 +126,9 @@ namespace TheVegetationEngine
 
         void Update()
         {
-            if (TVEManager.Instance == null)
+            if (tveManager == null)
             {
+                tveManager = FindObjectOfType<TVEManager>();
                 isActive = false;
 
 #if UNITY_EDITOR
@@ -137,7 +140,9 @@ namespace TheVegetationEngine
             if (!isActive)
             {
                 UpdateElement();
-
+#if UNITY_EDITOR
+                debugData = "<size=10>The element is enabled</size>";
+#endif
                 isActive = true;
             }
 
@@ -215,7 +220,7 @@ namespace TheVegetationEngine
             SetElementVisibility();
 
 #if UNITY_EDITOR
-            TVEManager.Instance.globalVolume.MarkSortDirty(); // SortElementObjects();
+            tveManager.globalVolume.MarkSortDirty(); // SortElementObjects();
 
             UpdateDebugData();
 #endif
@@ -265,9 +270,9 @@ namespace TheVegetationEngine
 
         void AddElementToVolume()
         {
-            var renderDataSet = TVEManager.Instance.globalVolume.renderDataSet;
-            var elementObjects = TVEManager.Instance.globalVolume.elementObjects;
-            var elementInstances = TVEManager.Instance.globalVolume.elementInstances;
+            var renderDataSet = tveManager.globalVolume.renderDataSet;
+            var elementObjects = tveManager.globalVolume.elementObjects;
+            var elementInstances = tveManager.globalVolume.elementInstances;
 
             for (int i = 0; i < renderDataSet.Count; i++)
             {
@@ -316,7 +321,7 @@ namespace TheVegetationEngine
                 if (maxLayer > renderData.bufferSize)
                 {
                     renderData.bufferSize = maxLayer;
-                    TVEManager.Instance.globalVolume.CreateRenderBuffer(renderData);
+                    tveManager.globalVolume.CreateRenderBuffer(renderData);
                 }
 
                 if (Application.isPlaying && SystemInfo.supportsInstancing)
@@ -420,7 +425,7 @@ namespace TheVegetationEngine
         {
             if (customVisibility == TVEElementVisibilityMode.UseGlobalVolumeSettings)
             {
-                var visibility = TVEManager.Instance.globalVolume.elementsVisibility;
+                var visibility = tveManager.globalVolume.elementsVisibility;
 
                 if (visibility == TVEElementsVisibilityMode.AlwaysHidden)
                 {
@@ -473,7 +478,7 @@ namespace TheVegetationEngine
 #if UNITY_EDITOR
         void UpdateDebugData()
         {
-            var renderDataSet = TVEManager.Instance.globalVolume.renderDataSet;
+            var renderDataSet = tveManager.globalVolume.renderDataSet;
             var elementBounds = elementRenderer.bounds;
 
             for (int i = 0; i < renderDataSet.Count; i++)
@@ -667,7 +672,7 @@ namespace TheVegetationEngine
 
         void DrawGizmos(bool selected)
         {
-            if (TVEManager.Instance == null || !isActive)
+            if (tveManager == null || !isActive)
             {
                 return;
             }

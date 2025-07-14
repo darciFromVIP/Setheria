@@ -100,8 +100,12 @@ public class ObjectMapIcon : NetworkBehaviour
     [ClientRpc]
     public void RpcToggleCheckmark()
     {
-        if (iconInstance)
-            iconInstance.GetComponent<MapIconPrefab>().ToggleCheckmark();
+        StartCoroutine(WaitForInstance());
     }
-
+    private IEnumerator WaitForInstance()
+    {
+        while (iconInstance == null)
+            yield return null;
+        iconInstance.GetComponent<MapIconPrefab>().ToggleCheckmark();
+    }
 }

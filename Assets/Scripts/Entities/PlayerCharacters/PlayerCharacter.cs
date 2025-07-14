@@ -1468,6 +1468,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         for (int i = previousLevel; i < currentLevel; i++)
         {
             GetComponent<ForestProtector>().LearnHealingDust();
+            skillInstances[2].manaCost += 10;
+            var dustSkill = skills.Find((x) => x is SGreenDust);
+            if (dustSkill)
+                (dustSkill as SGreenDust).manaCost += 10;
+            var regDustSkill = skills.Find((x) => x is SRegeneratingDust);
+            if (regDustSkill)
+                (regDustSkill as SRegeneratingDust).manaCost += 10;
+            var corDustSkill = skills.Find((x) => x is SCorruptedDust);
+            if (corDustSkill)
+                (corDustSkill as SCorruptedDust).manaCost += 10;
         }
     }
     private void HealingDustReduce(int previousLevel, int currentLevel)
@@ -1475,6 +1485,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         for (int i = previousLevel; i > currentLevel; i--)
         {
             GetComponent<ForestProtector>().UnlearnHealingDust();
+            skillInstances[2].manaCost -= 10;
+            var dustSkill = skills.Find((x) => x is SGreenDust);
+            if (dustSkill)
+                (dustSkill as SGreenDust).manaCost -= 10;
+            var regDustSkill = skills.Find((x) => x is SRegeneratingDust);
+            if (regDustSkill)
+                (regDustSkill as SRegeneratingDust).manaCost -= 10;
+            var corDustSkill = skills.Find((x) => x is SCorruptedDust);
+            if (corDustSkill)
+                (corDustSkill as SCorruptedDust).manaCost -= 10;
         }
     }
     private void ProlongedMagic(int previousLevel, int currentLevel)

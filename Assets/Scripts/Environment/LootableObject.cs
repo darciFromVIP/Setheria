@@ -256,6 +256,8 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                     item.SetActive(false);
             }
         GetComponent<Collider>().enabled = lootable;
+        if (lootable)
+            return;
         var players = FindObjectsOfType<PlayerController>();
         foreach (var item in players)
         {
@@ -383,6 +385,8 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             }
             else
                 return;
+        if (name.Contains("Shipwreck"))
+            UnityEngine.Debug.Log("Loading State " + name + " " + state.boolData1);
         CmdUpdateLootability(state.boolData1);
         currentCharges = state.intData1;
         if (currentCharges <= 0 && state.floatData1 > 0)
