@@ -24,9 +24,9 @@ MonoBehaviour:
     6s
     attack speed
 
-    +40%<sprite=6>
+    +40%<sprite=10>
 
-    +2<sprite=10>
+    +2<sprite=6>
 
     30% basic attack scaling
 
@@ -67,6 +67,9 @@ MonoBehaviour:
         itemData: {fileID: 11400000, guid: c71fe4510bdeb4542bea85166544c79b, type: 2}
         stacks: 2
       chance: 100
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
