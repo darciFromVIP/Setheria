@@ -18,6 +18,9 @@ MonoBehaviour:
 
     +40<sprite=20>
 
+    -5
+    corruption
+
     __________________________________
 
     Hydratation'
@@ -25,8 +28,10 @@ MonoBehaviour:
   itemType: 0
   sprite: {fileID: 21300000, guid: ed1e133133c05ff4197ad5e1b8f5463a, type: 3}
   stackable: 1
+  maxStacks: 99
   usage:
   - {fileID: 11400000, guid: 6c66c4a37b8aefe41a20b1fa6e4f63dd, type: 2}
+  - {fileID: 11400000, guid: 2ba4c207dc7f3f24dafaaf8d332db499, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -36,7 +41,11 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  defaultUnlocked: 1
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
