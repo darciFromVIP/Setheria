@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Well
   m_EditorClassIdentifier: 
   recipeCategory: 1
-  priority: 6
+  priority: 7
   resultItem:
     itemData: {fileID: 11400000, guid: 423f1949f35eb8e419d657ae9dae8e6a, type: 2}
     stacks: 1
@@ -38,6 +38,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d29d2f2d555223459b16e12d1fa08b2, type: 2}
   requiredProfession: 0
   requiredProfessionExperience: 0
+  givesProfXP: 1
+  recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []

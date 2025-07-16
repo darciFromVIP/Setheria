@@ -1237,6 +1237,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6180385102963156735, guid: cf1fd752683bedf41b6bd4eae6622612,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1509,71 +1524,71 @@ MonoBehaviour:
   planted: 0
   waterBoostPercentage: 25
   harvestableCrops:
-  - timeToGrow: 1
+  - timeToGrow: 300
     seedCost: 1
     harvestItems:
     - harvestedItem: {fileID: 11400000, guid: 21ee9a24c89b74d45acd86c0ea8c7c32, type: 2}
-      minimumHarvestAmount: 2
-      maximumHarvestAmount: 3
+      minimumHarvestAmount: 3
+      maximumHarvestAmount: 4
     seedItem: {fileID: 11400000, guid: bb21678b7f66be948a00c9959249f281, type: 2}
-  - timeToGrow: 1
-    seedCost: 1
+  - timeToGrow: 500
+    seedCost: 2
     harvestItems:
     - harvestedItem: {fileID: 11400000, guid: a8bc1728e509cca45bb7f5f95205187b, type: 2}
       minimumHarvestAmount: 2
       maximumHarvestAmount: 3
     seedItem: {fileID: 11400000, guid: bb21678b7f66be948a00c9959249f281, type: 2}
-  - timeToGrow: 1
+  - timeToGrow: 300
     seedCost: 1
     harvestItems:
     - harvestedItem: {fileID: 11400000, guid: e60445ebf50cda74ea96b43c01fa0fc3, type: 2}
-      minimumHarvestAmount: 2
-      maximumHarvestAmount: 3
+      minimumHarvestAmount: 3
+      maximumHarvestAmount: 4
     seedItem: {fileID: 11400000, guid: bd019c5a606e93240956a02029eecda0, type: 2}
-  - timeToGrow: 1
+  - timeToGrow: 500
     seedCost: 1
     harvestItems:
     - harvestedItem: {fileID: 11400000, guid: dbec0b67dd7f0a14ca35cd98cb1dc026, type: 2}
       minimumHarvestAmount: 2
       maximumHarvestAmount: 3
     - harvestedItem: {fileID: 11400000, guid: 6578e5f179971d444a6bebc4dc53f110, type: 2}
-      minimumHarvestAmount: 2
-      maximumHarvestAmount: 3
+      minimumHarvestAmount: 3
+      maximumHarvestAmount: 4
     seedItem: {fileID: 11400000, guid: bd019c5a606e93240956a02029eecda0, type: 2}
-  - timeToGrow: 1
+  - timeToGrow: 400
     seedCost: 1
     harvestItems:
     - harvestedItem: {fileID: 11400000, guid: 8196a9deb0b604443a71880fe0c85755, type: 2}
       minimumHarvestAmount: 2
       maximumHarvestAmount: 3
     seedItem: {fileID: 11400000, guid: bb21678b7f66be948a00c9959249f281, type: 2}
-  - timeToGrow: 1
-    seedCost: 1
+  - timeToGrow: 600
+    seedCost: 2
     harvestItems:
     - harvestedItem: {fileID: 11400000, guid: c24df273115bd324c9052ab14ba4c576, type: 2}
       minimumHarvestAmount: 2
       maximumHarvestAmount: 3
     seedItem: {fileID: 11400000, guid: bb21678b7f66be948a00c9959249f281, type: 2}
-  - timeToGrow: 1
-    seedCost: 1
+  - timeToGrow: 600
+    seedCost: 2
     harvestItems:
     - harvestedItem: {fileID: 11400000, guid: 259866ad2fbffe245b24c7bae99eea3e, type: 2}
-      minimumHarvestAmount: 2
-      maximumHarvestAmount: 3
+      minimumHarvestAmount: 4
+      maximumHarvestAmount: 6
     seedItem: {fileID: 11400000, guid: bb21678b7f66be948a00c9959249f281, type: 2}
-  - timeToGrow: 1
-    seedCost: 1
+  - timeToGrow: 600
+    seedCost: 3
     harvestItems:
     - harvestedItem: {fileID: 11400000, guid: df7a2ab289b52ac45ace238057e4ff3a, type: 2}
       minimumHarvestAmount: 2
       maximumHarvestAmount: 3
     seedItem: {fileID: 11400000, guid: bb21678b7f66be948a00c9959249f281, type: 2}
-  - timeToGrow: 1
-    seedCost: 1
+  - timeToGrow: 600
+    seedCost: 2
     harvestItems:
     - harvestedItem: {fileID: 11400000, guid: ab3359b6db0255043859b0180d21fb63, type: 2}
       minimumHarvestAmount: 2
-      maximumHarvestAmount: 3
+      maximumHarvestAmount: 5
     seedItem: {fileID: 11400000, guid: bb21678b7f66be948a00c9959249f281, type: 2}
   cropsModels:
   - {fileID: 1053799602666417830}
