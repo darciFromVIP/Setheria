@@ -20,18 +20,19 @@ public class ItemScriptableDatabase : ScriptableObject
     [ContextMenu("Load Items Into Database")]
     public void LoadItemsIntoDatabase()
     {
-        List<ItemScriptable> tempEvents = new();
-        tempEvents.Clear();
+        List<ItemScriptable> tempItems = new();
+        tempItems.Clear();
         string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Game Data/Items" });
         foreach (string SOName in assetNames)
         {
             var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
             var character = AssetDatabase.LoadAssetAtPath<ItemScriptable>(SOpath);
-            tempEvents.Add(character);
+            tempItems.Add(character);
         }
         items.Clear();
-        foreach (var item in tempEvents)
+        foreach (var item in tempItems)
         {
+            item.unlocked = item.defaultUnlocked;
             items.Add(item);
         }
     }

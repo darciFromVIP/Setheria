@@ -14,30 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: '__________________________________
 
-    If it is planted, maybe something
-    will grow out of it.
-
-    It can be used in cooking too.
+    Plant this in a Planter to
+    grow anything you want.
 
     __________________________________
 
-    Seed,
-    Cooking'
+    Seed'
   grade: 0
   itemType: 0
   sprite: {fileID: 21300000, guid: 51ebba5ba719ba74bb0ef03d0b03b2f0, type: 3}
-  stackable: 0
-  usage:
-  - {fileID: 11400000, guid: 45c9219270891224e8c99e5b9551cab4, type: 2}
+  stackable: 1
+  maxStacks: 99
+  usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
   value: 0
-  destroyItemOnUse: 1
+  destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

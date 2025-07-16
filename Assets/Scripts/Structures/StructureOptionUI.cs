@@ -56,18 +56,21 @@ public class StructureOptionUI : MonoBehaviour
             if (!FindObjectOfType<Ship>())
                 GetComponent<Button>().interactable = false;
         }
-        if (currentStructure.TryGetComponent(out PlantedSeed seed))
+        if (currentStructure.TryGetComponent(out Planter planter))
         {
             if (!FindObjectOfType<InventoryManager>(true).GetItemOfName("Water") && structureOption.structureAction == StructureAction.PourWater)
                 GetComponent<Button>().interactable = false;
             if (!FindObjectOfType<InventoryManager>(true).GetItemOfName("Fertilizer") && structureOption.structureAction == StructureAction.Fertilize)
                 GetComponent<Button>().interactable = false;
 
+            if (structureOption.structureAction == StructureAction.PlantSeed)
+                if (planter.planted)
+                    GetComponent<Button>().interactable = false;
             if (structureOption.structureAction == StructureAction.PourWater || structureOption.structureAction == StructureAction.Fertilize)
-                if (seed.GetGrowTimer() >= seed.timeToGrow)
+                if (planter.grown)
                     GetComponent<Button>().interactable = false;
             if (structureOption.structureAction == StructureAction.Harvest)
-                if (seed.GetGrowTimer() < seed.timeToGrow)
+                if (!planter.grown)
                     GetComponent<Button>().interactable = false;
         }
     }
@@ -126,8 +129,17 @@ public class StructureOptionUI : MonoBehaviour
                 else
                     GetComponent<Button>().interactable = true;
             }
-            else if (currentStructure.TryGetComponent(out PlantedSeed seed))
+            else if (currentStructure.TryGetComponent(out Planter seed))
             {
+                if (structureOption.structureAction == StructureAction.PlantSeed)
+                {
+                    if (seed.planted)
+                    {
+                        GetComponent<Button>().interactable = false;
+                    }
+                    else
+                        GetComponent<Button>().interactable = true;
+                }
                 if (structureOption.structureAction == StructureAction.PourWater)
                 {
                     if (seed.GetWaterTimer() > 0)
@@ -331,6 +343,9 @@ public class StructureOptionUI : MonoBehaviour
             case StructureAction.Dismantle:
                 FindObjectOfType<DismantleScreen>(true).ShowWindow();
                 break;
+            case StructureAction.PlantSeed:
+                FindObjectOfType<SeedScreen>(true).ShowWindow();
+                break;
             default:
                 break;
         }
@@ -392,18 +407,18 @@ public class StructureOptionUI : MonoBehaviour
     }
     private void PourWater()
     {
-        currentStructure.GetComponent<PlantedSeed>().CmdPourWater();
+        currentStructure.GetComponent<Planter>().CmdPourWater();
         var inventory = FindObjectOfType<InventoryManager>(true);
         inventory.RemoveItem(new ItemRecipeInfo { itemData = inventory.GetItemOfName("Water").item, stacks = 1 });
     }
     private void Fertilize()
     {
-        currentStructure.GetComponent<PlantedSeed>().CmdFertilize();
+        currentStructure.GetComponent<Planter>().CmdFertilize();
         var inventory = FindObjectOfType<InventoryManager>(true);
         inventory.RemoveItem(new ItemRecipeInfo { itemData = inventory.GetItemOfName("Fertilizer").item, stacks = 1 });
     }
     private void Harvest()
     {
-        currentStructure.GetComponent<PlantedSeed>().Harvest();
+        currentStructure.GetComponent<Planter>().Harvest();
     }
 }

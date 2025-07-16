@@ -8,7 +8,7 @@ public enum ItemGrade
 }
 public enum ItemType
 {
-    None, Head, Chest, Hands, Legs, Feet, Weapon, Backpack, Necklace, Ring, Bracelet, HandicraftTool, GatheringTool, ArchaeologyTool, FishingTool, Resources, Knowledge, Unit, Fish
+    None, Head, Chest, Hands, Legs, Feet, Weapon, Backpack, Necklace, Ring, Bracelet, HandicraftTool, GatheringTool, ArchaeologyTool, FishingTool, Resources, Knowledge, Unit, Fish, Plant
 }
 public enum CooldownGroup
 {
@@ -35,6 +35,7 @@ public class ItemScriptable : ScriptableObject
     public int resourceCost;
     public int knowledgeCost;
     public bool unlocked = true;
+    public bool defaultUnlocked = true;
     public List<ItemDropChances> itemsAfterDismantle = new();
     [Tooltip("This talent will change the usage of the item")]
     public TalentScriptable requiredTalentForAlternateUsage;

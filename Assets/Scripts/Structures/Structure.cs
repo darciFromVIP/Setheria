@@ -15,7 +15,7 @@ public class Structure : Entity, ISaveable, IInteractable
     public StructureScriptable structureData;
     public Structure upgradePrefab;
     public int demolishCost;
-    private float notificationTimer = 0;
+    private static float notificationTimer = 0;
     public FMODEventsScriptable sounds;
     private EventInstance repairInstance;
 

@@ -5,9 +5,23 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlantedSeed : NetworkBehaviour, ISaveable
+[System.Serializable]
+public struct HarvestItem
 {
-    public float timeToGrow = 3600;
+    public ItemScriptable harvestedItem;
+    public int minimumHarvestAmount, maximumHarvestAmount;
+}
+[System.Serializable]
+public struct PlantedPlant
+{
+    public int timeToGrow;
+    public int seedCost;
+    public List<HarvestItem> harvestItems;
+    public ItemScriptable seedItem;
+}
+public class Planter : NetworkBehaviour, ISaveable
+{
+    private float timeToGrow;
     private float growTimer = 0;
 
     public float pourWaterCooldown;
@@ -15,28 +29,23 @@ public class PlantedSeed : NetworkBehaviour, ISaveable
     private float pourWaterTimer;
     private float fertilizeTimer;
     private int fertilized = 0;
-    private bool grown = false;
+    public bool grown = false;
+    public bool planted = false;
 
     [Tooltip("How much does watering boost the growth? Enter a number between 0 and 100 to indicate a percentage of the current timer, which will be subtracted from the timer.")]
     public float waterBoostPercentage;
 
-    public List<ItemScriptable> harvestableCrops = new List<ItemScriptable>();
+    public List<PlantedPlant> harvestableCrops;
     public List<GameObject> cropsModels = new List<GameObject>();
-    public int minimumCount = 2;
-    public int maximumCount = 3;
-    private ItemScriptable selectedCrop;
+    private int selectedCropIndex;
 
-    public GameObject sprout, statusBar;
+    public GameObject sprout;
     public TextMeshProUGUI fertilizedText;
     public Slider slider;
 
-    private void Start()
-    {
-        slider.maxValue = timeToGrow;
-    }
     private void Update()
     {
-        if (grown)
+        if (grown || !planted)
             return;
 
         if (growTimer < timeToGrow)
@@ -50,7 +59,39 @@ public class PlantedSeed : NetworkBehaviour, ISaveable
         if (fertilizeTimer > 0) 
             fertilizeTimer -= Time.deltaTime;
     }
-
+    public void PlantSeed(int plantIndex)
+    {
+        var seeds = FindObjectOfType<InventoryManager>().GetItemOfName(harvestableCrops[plantIndex].seedItem.name);
+        if (seeds != null)
+        {
+            if (seeds.stacks < harvestableCrops[plantIndex].seedCost)
+            {
+                FindObjectOfType<SystemMessages>().AddMessage("You don't have enough seeds for this plant.");
+                return;
+            }
+        }
+        else
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("You don't have enough seeds for this plant.");
+            return;
+        }
+        seeds.ChangeStacks(-harvestableCrops[plantIndex].seedCost);
+        CmdPlantSeed(plantIndex);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdPlantSeed(int plantIndex)
+    {
+        RpcPlantSeed(plantIndex);    
+    }
+    [ClientRpc]
+    public void RpcPlantSeed(int plantIndex)
+    {
+        selectedCropIndex = plantIndex;
+        timeToGrow = harvestableCrops[plantIndex].timeToGrow;
+        slider.gameObject.SetActive(true);
+        slider.maxValue = timeToGrow;
+        planted = true;
+    }
 
     [Command(requiresAuthority = false)]
     public void CmdPourWater()
@@ -94,29 +135,31 @@ public class PlantedSeed : NetworkBehaviour, ISaveable
         grown = true;
         if (isServer)
         {
-            int random = Random.Range(0, harvestableCrops.Count);
-            RpcGrownUp(random);
+            RpcGrownUp(selectedCropIndex);
         }
         sprout.SetActive(false);
     }
     [ClientRpc]
-    private void RpcGrownUp(int random)
+    private void RpcGrownUp(int cropIndex)
     {
-        selectedCrop = harvestableCrops[random];
-        cropsModels[random].SetActive(true);
+        cropsModels[cropIndex].SetActive(true);
     }
     public void Harvest()
     {
-        int random = Random.Range(minimumCount, maximumCount + 1) + fertilized;
-        FindObjectOfType<InventoryManager>().AddItem(new ItemRecipeInfo { itemData = selectedCrop, stacks = random });
-        FindObjectOfType<StructureScreen>().HideWindow();
+        foreach (var item in harvestableCrops[selectedCropIndex].harvestItems)
+        {
+            int random = Random.Range(item.minimumHarvestAmount, item.maximumHarvestAmount + 1) + fertilized;
+            FindObjectOfType<InventoryManager>().AddItem(new ItemRecipeInfo { itemData = item.harvestedItem, stacks = random });
+        }
+       
         FindObjectOfType<GameManager>().localPlayerCharacter.professions.AddGathering(1);
-        DestroySeed();
-    }
-    [Command(requiresAuthority = false)]
-    private void DestroySeed()
-    {
-        NetworkServer.Destroy(gameObject);
+        cropsModels[selectedCropIndex].SetActive(false);
+        sprout.SetActive(true);
+        grown = false;
+        planted = false;
+        growTimer = 0;
+        fertilizeTimer = 0;
+        pourWaterTimer = 0;
     }
 
     public SaveDataWorldObject SaveState()

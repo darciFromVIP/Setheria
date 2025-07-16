@@ -22,7 +22,7 @@ MonoBehaviour:
     Food,
     Cooking, <color=green>Herbivore</color>'
   grade: 0
-  itemType: 0
+  itemType: 19
   sprite: {fileID: 21300000, guid: 3d11ea81f23df0e49a34be5b15ec2e76, type: 3}
   stackable: 1
   maxStacks: 99
@@ -32,11 +32,12 @@ MonoBehaviour:
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
-  value: 0
+  value: 1800
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
-  unlocked: 1
+  unlocked: 0
+  defaultUnlocked: 0
   itemsAfterDismantle: []
   requiredTalentForAlternateUsage: {fileID: 11400000, guid: ec907c0a42a5e024484e0d5e603aee11,
     type: 2}

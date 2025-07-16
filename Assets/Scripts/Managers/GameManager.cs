@@ -212,7 +212,8 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
         recipe.UnlockRecipe();
         foreach (var item in recipe.componentItems)
         {
-            item.itemData.unlocked = true;
+            if (item.itemData.itemType != ItemType.Plant)
+                item.itemData.unlocked = true;
         }
     }
     public void DisableInput()

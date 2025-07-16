@@ -31,12 +31,16 @@ MonoBehaviour:
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
-  value: 0
+  value: 3600
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
-  unlocked: 1
+  unlocked: 0
+  defaultUnlocked: 0
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

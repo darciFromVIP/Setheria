@@ -64,6 +64,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void InitializeItem(ItemScriptable item, int stacks, bool draggable = true, bool triggerNewItemNotif = true, bool ignoreLockedItem = true)
     {
         this.item = item;
+        if (item.itemType == ItemType.Plant)
+            item.unlocked = true;
         if (item.unlocked || ignoreLockedItem)
         {
             image.sprite = item.sprite;

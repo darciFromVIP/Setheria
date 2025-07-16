@@ -16,7 +16,7 @@ MonoBehaviour:
     essence. Can be eaten to restore <color=#FFD000>+1</color><sprite=12> and <color=#FFD000>+10</color><sprite=4>.
     \n__________________________________\nAlchemy, Food, <color=green>Herbivore</color>"
   grade: 0
-  itemType: 0
+  itemType: 19
   sprite: {fileID: 21300000, guid: 25de37e57cfe3264abda43240fac4397, type: 3}
   stackable: 1
   maxStacks: 99
@@ -27,12 +27,16 @@ MonoBehaviour:
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
-  value: 0
+  value: 2400
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
-  unlocked: 1
+  unlocked: 0
+  defaultUnlocked: 0
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

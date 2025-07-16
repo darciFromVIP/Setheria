@@ -25,15 +25,21 @@ MonoBehaviour:
   itemType: 0
   sprite: {fileID: 21300000, guid: a3834ad4747c1304e9e196b9d5588516, type: 3}
   stackable: 1
+  maxStacks: 99
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
-  value: 0
+  activeSkills: []
+  value: 800
   destroyItemOnUse: 0
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
