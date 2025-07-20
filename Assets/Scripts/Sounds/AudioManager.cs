@@ -1,10 +1,11 @@
+using FMOD;
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using FMODUnity;
-using FMOD.Studio;
 using UnityEngine.SceneManagement;
-using FMOD;
 
 public enum AmbienceParameter
 {
@@ -28,6 +29,7 @@ public class AudioManager : MonoBehaviour
 
     public bool inCombat = false;
     private float timer = 0;
+    private float notificationTimer = 0;
     private List<HasHealth> targetsReceived = new();
 
     public static AudioManager instance;
@@ -65,6 +67,8 @@ public class AudioManager : MonoBehaviour
                 break;
             }
         }
+        if (notificationTimer > 0)
+            notificationTimer -= Time.deltaTime;
         if (!inCombat)
         {
             if (timer > 0)
@@ -235,6 +239,14 @@ public class AudioManager : MonoBehaviour
     public void PlayerDeath()
     {
         PlayOneShot(fmodEventsDatabase.PlayerDeath, default);
+    }
+    public void BaseUnderAttack()
+    {
+        if (notificationTimer > 0)
+            return;
+        notificationTimer = 10;
+        FindObjectOfType<AudioManager>().PlayOneShot(fmodEventsDatabase.BaseUnderAttack, Vector3.zero);
+        FindObjectOfType<SystemMessages>().AddMessageWithTeleportBTN("Your base is under attack!", transform.position, MsgType.Error);
     }
     public EventInstance CreateEventInstance(EventReference eventReference, Transform pos)
     {

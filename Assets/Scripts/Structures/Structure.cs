@@ -15,18 +15,12 @@ public class Structure : Entity, ISaveable, IInteractable
     public StructureScriptable structureData;
     public Structure upgradePrefab;
     public int demolishCost;
-    private static float notificationTimer = 0;
     public FMODEventsScriptable sounds;
     private EventInstance repairInstance;
 
     private bool loadedUpgrades = false;
 
     public StructureUpgradeScriptable fortificationUpgrade; 
-    private void Update()
-    {
-        if (notificationTimer > 0)
-            notificationTimer -= Time.deltaTime;
-    }
     protected override void Start()
     {
         base.Start();
@@ -139,11 +133,7 @@ public class Structure : Entity, ISaveable, IInteractable
     }
     private void StructureUnderAttack(NetworkIdentity enemy)
     {
-        if (notificationTimer > 0)
-            return;
-        notificationTimer = 10;
-        FindObjectOfType<AudioManager>().PlayOneShot(sounds.BaseUnderAttack, Vector3.zero);
-        FindObjectOfType<SystemMessages>().AddMessageWithTeleportBTN("Your base is under attack!", transform.position, MsgType.Error);
+        FindObjectOfType<AudioManager>().BaseUnderAttack();
     }
     [Command(requiresAuthority = false)]
     public void CmdUpgradeStructure()

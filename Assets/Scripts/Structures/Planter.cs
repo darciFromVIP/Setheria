@@ -160,6 +160,7 @@ public class Planter : NetworkBehaviour, ISaveable
         growTimer = 0;
         fertilizeTimer = 0;
         pourWaterTimer = 0;
+        fertilizedText.transform.parent.gameObject.SetActive(false);
     }
 
     public SaveDataWorldObject SaveState()
@@ -174,7 +175,8 @@ public class Planter : NetworkBehaviour, ISaveable
             rotationZ = transform.rotation.z,
             floatData1 = growTimer,
             floatData2 = pourWaterTimer,
-            floatData3 = fertilizeTimer
+            floatData3 = fertilizeTimer,
+            intData1 = selectedCropIndex
         };
     }
 
@@ -182,6 +184,7 @@ public class Planter : NetworkBehaviour, ISaveable
     {
         transform.position = new Vector3(state.positionX, state.positionY, state.positionZ );
         transform.rotation = new Quaternion(state.rotationX, state.rotationY, state.rotationZ, state.rotationW );
+        PlantSeed(state.intData1);
         growTimer = state.floatData1;
         pourWaterTimer = state.floatData2;
         fertilizeTimer = state.floatData3;
