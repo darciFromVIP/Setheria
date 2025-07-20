@@ -13,20 +13,28 @@ MonoBehaviour:
   m_Name: Recipe - Everstone
   m_EditorClassIdentifier: 
   description: Unlocks the recipe to craft Everstone.
-  grade: 2
+  grade: 1
   itemType: 0
   sprite: {fileID: 21300000, guid: 3bbd99494f6dddb4f8a52638989645f5, type: 3}
   stackable: 0
+  maxStacks: 99
   usage:
   - {fileID: 11400000, guid: 1cc4d97d4e49cc84a86c1a46065d2353, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
+  activeSkills: []
   value: 0
   destroyItemOnUse: 1
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  defaultUnlocked: 1
+  itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
+  tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
       m_Calls: []

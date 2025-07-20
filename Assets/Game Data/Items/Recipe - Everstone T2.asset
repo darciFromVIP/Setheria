@@ -10,31 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c033e0aa17482b46aa2815358b33ecf, type: 3}
-  m_Name: Everstone
+  m_Name: Recipe - Everstone T2
   m_EditorClassIdentifier: 
-  description: '__________________________________
-
-    This stone is used to teleport
-    to the base. Your character can be linked with one Tent. Linking to another will
-    cancel the current connection.
-
-    __________________________________
-
-    Active
-    Item'
-  grade: 1
+  description: Unlocks the recipe to craft Everstone.
+  grade: 2
   itemType: 0
-  sprite: {fileID: 21300000, guid: 0842a51fdf48d794c8aeee44ba50a13a, type: 3}
+  sprite: {fileID: 21300000, guid: 3bbd99494f6dddb4f8a52638989645f5, type: 3}
   stackable: 0
   maxStacks: 99
   usage:
-  - {fileID: 11400000, guid: d90ef98f3972a6c42805a95d416f7856, type: 2}
-  usageCooldown: 400
+  - {fileID: 11400000, guid: a4533b3587ccee44d92788e6bf8e0e9f, type: 2}
+  usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
   value: 0
-  destroyItemOnUse: 0
+  destroyItemOnUse: 1
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
