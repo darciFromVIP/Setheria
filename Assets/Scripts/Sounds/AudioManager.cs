@@ -240,13 +240,13 @@ public class AudioManager : MonoBehaviour
     {
         PlayOneShot(fmodEventsDatabase.PlayerDeath, default);
     }
-    public void BaseUnderAttack()
+    public void BaseUnderAttack(Vector3 pos)
     {
         if (notificationTimer > 0)
             return;
         notificationTimer = 10;
         FindObjectOfType<AudioManager>().PlayOneShot(fmodEventsDatabase.BaseUnderAttack, Vector3.zero);
-        FindObjectOfType<SystemMessages>().AddMessageWithTeleportBTN("Your base is under attack!", transform.position, MsgType.Error);
+        FindObjectOfType<SystemMessages>().AddMessageWithTeleportBTN("Your base is under attack!", pos, MsgType.Error);
     }
     public EventInstance CreateEventInstance(EventReference eventReference, Transform pos)
     {

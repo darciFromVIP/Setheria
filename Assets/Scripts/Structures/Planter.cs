@@ -144,7 +144,14 @@ public class Planter : NetworkBehaviour, ISaveable
     {
         cropsModels[cropIndex].SetActive(true);
     }
-    public void Harvest()
+
+    [Command(requiresAuthority = false)]
+    public void CmdHarvest()
+    {
+        RpcHarvest();
+    }
+    [ClientRpc]
+    public void RpcHarvest()
     {
         foreach (var item in harvestableCrops[selectedCropIndex].harvestItems)
         {

@@ -133,7 +133,7 @@ public class Structure : Entity, ISaveable, IInteractable
     }
     private void StructureUnderAttack(NetworkIdentity enemy)
     {
-        FindObjectOfType<AudioManager>().BaseUnderAttack();
+        FindObjectOfType<AudioManager>().BaseUnderAttack(transform.position);
     }
     [Command(requiresAuthority = false)]
     public void CmdUpgradeStructure()

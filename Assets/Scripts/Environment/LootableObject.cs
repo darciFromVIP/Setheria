@@ -385,15 +385,12 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             }
             else
                 return;
-        if (name.Contains("Shipwreck"))
-            UnityEngine.Debug.Log("Loading State " + name + " " + state.boolData1);
         CmdUpdateLootability(state.boolData1);
         currentCharges = state.intData1;
         if (currentCharges <= 0 && state.floatData1 > 0)
         {
             refreshTimer = state.floatData1;
-            if (refreshTimer > 0)
-                StartCoroutine(StartRefreshTimer(true));
+            StartCoroutine(StartRefreshTimer(true));
         }
     }
     private void HookLootable(bool oldLootable, bool newLootable)

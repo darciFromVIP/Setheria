@@ -28,6 +28,10 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
             componentParents.Add(item.transform);
         }
     }
+    public void UpdateDetails(RecipeScriptable recipeData)
+    {
+        UpdateDetails(recipeData, openedInStructure);
+    }
     public void UpdateDetails(RecipeScriptable recipeData, bool openedInStructure, int amount = 1)
     {
         ClearDetails();

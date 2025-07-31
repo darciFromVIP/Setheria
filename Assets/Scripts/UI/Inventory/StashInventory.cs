@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class StashInventory : MonoBehaviour, WindowedUI
     public InventoryItem inventoryItemPrefab;
 
     public ItemScriptableDatabase itemDatabase;
+
+    private bool isRemovingItem = false;
     private void Start()
     {
         window.SetActive(true);
@@ -124,6 +127,14 @@ public class StashInventory : MonoBehaviour, WindowedUI
     }
     public void CmdRemoveItem(ItemRecipeInfo itemToDestroy)
     {
+        StartCoroutine(RemoveItemCoro(itemToDestroy));
+    }
+    private IEnumerator RemoveItemCoro(ItemRecipeInfo itemToDestroy)
+    {
+        while (isRemovingItem)
+            yield return null;
+        isRemovingItem = true;
+        Debug.Log("Removing Item");
         foreach (var item in stashSlots)
         {
             if (item.transform.childCount > 0)
@@ -133,6 +144,7 @@ public class StashInventory : MonoBehaviour, WindowedUI
                 {
                     if (temp.item == itemToDestroy.itemData)
                     {
+                        temp.item.Item_Stacks_Lost.AddListener(ItemDestroyed);
                         if (temp.item.stackable)
                         {
                             item.CmdChangeStacks(-itemToDestroy.stacks);
@@ -145,9 +157,13 @@ public class StashInventory : MonoBehaviour, WindowedUI
                     }
                 }
             }
+            
         }
     }
-
+    private void ItemDestroyed(ItemScriptable item, int amount)
+    {
+        isRemovingItem = false;
+    }
     private void SpawnNewItem(Item item, InventorySlot slot)
     {
         var newItem = Instantiate(inventoryItemPrefab, slot.transform);

@@ -419,6 +419,6 @@ public class StructureOptionUI : MonoBehaviour
     }
     private void Harvest()
     {
-        currentStructure.GetComponent<Planter>().Harvest();
+        currentStructure.GetComponent<Planter>().CmdHarvest();
     }
 }

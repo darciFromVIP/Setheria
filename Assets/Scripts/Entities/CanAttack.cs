@@ -389,7 +389,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         if (enemyTarget)
         {
             if (TryGetComponent(out PlayerCharacter player))                    // Combat music
-                FindObjectOfType<AudioManager>().TargetReceived(enemyTarget);
+                if (player.isOwned)
+                    FindObjectOfType<AudioManager>().TargetReceived(enemyTarget);
             if (TryGetComponent(out HasHealth hp))
                 enemyTarget.Target_Received.Invoke(hp);
             enemyTarget.On_Death.AddListener(CmdTargetLost);

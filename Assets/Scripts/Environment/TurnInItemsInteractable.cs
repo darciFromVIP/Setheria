@@ -26,7 +26,7 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
     private EventInstance soundInstance;
     private PlayerController player;
 
-    public bool interactable = true;
+    [SyncVar(hook = nameof(HookInteractable))] public bool interactable = true;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -150,6 +150,14 @@ public class TurnInItemsInteractable : NetworkBehaviour, IInteractable, ISaveabl
     {
         if (!interactable)
             ItemsTurnedIn();
+    }
+    private void HookInteractable(bool oldInteractable, bool newInteractable)
+    {
+        if (!oldInteractable)
+            return;
+        if (!NetworkServer.active)
+            if (!newInteractable)
+                ItemsTurnedIn();
     }
     [Command(requiresAuthority = false)]
     public void CmdDestroy()
