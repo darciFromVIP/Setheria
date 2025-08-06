@@ -63,18 +63,12 @@ public class Character : Entity
         {
             skillInstances.Add(item.GetInstance());
         }
-        if (isOwned)
-        {
-            foreach (var item in skillInstances)
-            {
-                item.ExecuteOnStart(this);
-            }
-        }
         if (canCastSkills)
         {
             foreach (var item in skillInstances)
             {
                 item.SetCastingEntity(this);
+                item.ExecuteOnStart(this);
             }
         }
         if (TryGetComponent(out Shapeshifter shapeshifter))

@@ -206,6 +206,12 @@ public class HasHealth : NetworkBehaviour, ISaveable
         if (corruptedHealth != cap)
             AdjustHealthToMaxHealth(GetFinalMaxHealth() + amount);
     }
+    public void SetCorruptedHealth(float amount)
+    {
+        corruptedHealth = amount;
+        UpdateMaxHealth();
+        Corrupted_Health_Changed.Invoke(baseMaxHealth + gearMaxHealth, corruptedHealth);
+    }
     private void UpdateMaxHealth()
     {
         maxHealth = (baseMaxHealth + gearMaxHealth - corruptedHealth) * healthMultiplier;
@@ -285,6 +291,7 @@ public class HasHealth : NetworkBehaviour, ISaveable
     }
     public void ChangeGearArmor(float value)
     {
+        Debug.Log("Added armor");
         gearArmor += value;
         finalArmor = baseArmor + gearArmor;
         Armor_Changed.Invoke(finalArmor);

@@ -141,6 +141,12 @@ public class HasMana : NetworkBehaviour
         if (corruptedMana != cap)
             AdjustManaToMaxMana(GetFinalMaxMana() + amount);
     }
+    public void SetCorruptedMana(float amount)
+    {
+        corruptedMana = amount;
+        UpdateMaxMana();
+        Corrupted_Mana_Changed.Invoke(baseMaxMana + gearMaxMana, corruptedMana);
+    }
     private void UpdateMaxMana()
     {
         maxMana = baseMaxMana + gearMaxMana - corruptedMana;

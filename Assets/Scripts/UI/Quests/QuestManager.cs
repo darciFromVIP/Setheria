@@ -8,7 +8,7 @@ public class QuestManager : NetworkBehaviour
 {
     public List<QuestlineScriptable> questlines = new();
     public List<QuestlineScriptable> beginnerQuestlines = new();
-    public Transform contentUI;
+    public Transform mainQuestCategory, profQuestCategory, loreQuestCategory;
     public QuestDescription questDescriptionPrefab;
     public QuestlineDatabase questlineDatabase;
     public ItemScriptableDatabase itemDatabase;
@@ -43,19 +43,24 @@ public class QuestManager : NetworkBehaviour
             }
         }
         quest.SetQuestActive(true);
+        Transform contentUI = null;
+        switch (quest.questType)
+        {
+            case QuestType.Main:
+                contentUI = mainQuestCategory;
+                break;
+            case QuestType.Profession:
+                contentUI = profQuestCategory;
+                break;
+            case QuestType.Lore:
+                contentUI = loreQuestCategory;
+                break;
+            default:
+                break;
+        }
+        contentUI.gameObject.SetActive(true);
         var questInstance = Instantiate(questDescriptionPrefab, contentUI);
         questInstance.Initialize(quest);
-        int count = 0;
-        foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
-        {
-            if (!item.complete)
-                count++;
-        }
-        if (count > 4)
-        {
-            FindObjectOfType<SystemMessages>().AddMessage("A new quest has been added to the Quest Log.", MsgType.Notice);
-            ToggleQuestTracking(quest, false);
-        }
         return quest;
     }
     [Command(requiresAuthority = false)]
@@ -405,7 +410,7 @@ public class QuestManager : NetworkBehaviour
     }
     public void ToggleQuestTracking(QuestScriptable questData, bool value)
     {
-        foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
+        foreach (var item in transform.GetComponentsInChildren<QuestDescription>(true))
         {
             if (item.questData == questData)
             {
@@ -415,7 +420,7 @@ public class QuestManager : NetworkBehaviour
     }
     public bool GetQuestTracking(QuestScriptable questData)
     {
-        foreach (var item in contentUI.GetComponentsInChildren<QuestDescription>(true))
+        foreach (var item in transform.GetComponentsInChildren<QuestDescription>(true))
         {
             if (item.questData == questData)
                 return item.gameObject.activeSelf;

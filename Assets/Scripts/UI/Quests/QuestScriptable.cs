@@ -11,7 +11,7 @@ public enum QuestRewardType
 }
 public enum QuestType
 {
-    Main, Side, Lore
+    Main, Profession, Lore
 }
 [Serializable]
 public class RequiredItemType

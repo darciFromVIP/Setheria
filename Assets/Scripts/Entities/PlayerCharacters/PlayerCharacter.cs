@@ -1,12 +1,13 @@
+using FMODUnity;
+using Mirror;
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Mirror;
-using UnityEngine.SceneManagement;
-using UnityEngine.Events;
-using FMODUnity;
 using TMPro;
-using Steamworks;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using static UnityEditor.Progress;
 
 [System.Serializable]
 public enum Hero
@@ -295,11 +296,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     healthComp.SetBaseMaxHealth(item.baseMaxHealth);
                     healthComp.SetHealth(item.health);
                     healthComp.SetBaseHealthRegen(item.baseHealthRegen);
-                    healthComp.ChangeCorruptedHealth(item.corruptedHealth);
+                    healthComp.SetCorruptedHealth(item.corruptedHealth);
                     manaComp.SetMaxMana(item.baseMaxMana);
                     manaComp.SetMana(item.mana);
                     manaComp.SetBaseManaRegen(item.baseManaRegen);
-                    manaComp.ChangeCorruptedMana(item.corruptedMana);
+                    manaComp.SetCorruptedMana(item.corruptedMana);
                     FindObjectOfType<CharacterSkillsWindow>().SetHealthMana(item.health, item.baseMaxHealth, item.mana, item.baseMaxMana);
                     attackComp.SetPower(item.power);
                     attackComp.SetCriticalChance(item.criticalChance);
@@ -392,9 +393,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                             AddBuff(item5.name);
                             StartCoroutine(WaitForBuff(item5));
                         }
-                        foreach (var item6 in skillInstances)
+                        for (int i = 0; i < 5; i++)
                         {
-                            item6.ExecuteOnStart(this);
+                            skillInstances[i].ExecuteOnStart(this);
                         }
                         if (item.positionX != 0 && item.positionY != 0 && item.positionZ != 0)
                             FindObjectOfType<CameraTarget>().Teleport(new Vector3(item.positionX, item.positionY, item.positionZ));
@@ -1328,10 +1329,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             ExpandedStomach(previousLevel, currentLevel);
         if (name.Contains("Efficient Metabolism"))
             CmdEfficientMetabolism(previousLevel, currentLevel);
+
+        UpdateSkills();
     }
     public void ResetTalent(string name, int previousLevel, int currentLevel)
     {
-        // Nirri Talents
+        // Forest Protector Talents
         if (name == "Nature Attunement")
             NatureAttunementReduce(previousLevel, currentLevel);
         if (name == "Mana Mastery")
@@ -1361,7 +1364,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (name == "Glass Cannon")
             GlassCannonReduce(previousLevel, currentLevel);
 
-        // Wolferius Talents
+        // Lycandruid Talents
         if (name == "Adrenaline Rush")
             AdrenalineRushReduce(previousLevel, currentLevel);
         if (name == "Disarming Uppercut")
@@ -1414,7 +1417,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (name.Contains("Efficient Metabolism"))
             CmdEfficientMetabolism(previousLevel, currentLevel);
     }
-    // Nirri Talents
+    // Forest Protector Talents
     private void NatureAttunement(int previousLevel, int currentLevel)
     {
         for (int i = previousLevel; i < currentLevel; i++)
@@ -1469,15 +1472,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             GetComponent<ForestProtector>().LearnHealingDust();
             skillInstances[2].manaCost += 10;
-            var dustSkill = skills.Find((x) => x is SGreenDust);
-            if (dustSkill)
-                (dustSkill as SGreenDust).manaCost += 10;
-            var regDustSkill = skills.Find((x) => x is SRegeneratingDust);
-            if (regDustSkill)
-                (regDustSkill as SRegeneratingDust).manaCost += 10;
-            var corDustSkill = skills.Find((x) => x is SCorruptedDust);
-            if (corDustSkill)
-                (corDustSkill as SCorruptedDust).manaCost += 10;
         }
     }
     private void HealingDustReduce(int previousLevel, int currentLevel)
@@ -1486,30 +1480,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             GetComponent<ForestProtector>().UnlearnHealingDust();
             skillInstances[2].manaCost -= 10;
-            var dustSkill = skills.Find((x) => x is SGreenDust);
-            if (dustSkill)
-                (dustSkill as SGreenDust).manaCost -= 10;
-            var regDustSkill = skills.Find((x) => x is SRegeneratingDust);
-            if (regDustSkill)
-                (regDustSkill as SRegeneratingDust).manaCost -= 10;
-            var corDustSkill = skills.Find((x) => x is SCorruptedDust);
-            if (corDustSkill)
-                (corDustSkill as SCorruptedDust).manaCost -= 10;
         }
     }
     private void ProlongedMagic(int previousLevel, int currentLevel)
     {
         for (int i = previousLevel; i < currentLevel; i++)
         {
-            var rejSkill = skills.Find((x) => x is SRejuvenation);
-            if (rejSkill)
-                (rejSkill as SRejuvenation).baseDuration += 2;
             var rejSkillInst = skillInstances.Find((x) => x is SRejuvenation);
             if (rejSkillInst)
                 (rejSkillInst as SRejuvenation).baseDuration += 2;
-            var defSkill = skills.Find((x) => x is SDefilement);
-            if (defSkill)
-                (defSkill as SDefilement).baseDuration += 2;
             var defSkillInst = skillInstances.Find((x) => x is SDefilement);
             if (defSkillInst)
                 (defSkillInst as SDefilement).baseDuration += 2;
@@ -1519,15 +1498,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i > currentLevel; i--)
         {
-            var rejSkill = skills.Find((x) => x is SRejuvenation);
-            if (rejSkill)
-                (rejSkill as SRejuvenation).baseDuration -= 2;
             var rejSkillInst = skillInstances.Find((x) => x is SRejuvenation);
             if (rejSkillInst)
                 (rejSkillInst as SRejuvenation).baseDuration -= 2;
-            var defSkill = skills.Find((x) => x is SDefilement);
-            if (defSkill)
-                (defSkill as SDefilement).baseDuration -= 2;
             var defSkillInst = skillInstances.Find((x) => x is SDefilement);
             if (defSkillInst)
                 (defSkillInst as SDefilement).baseDuration -= 2;
@@ -1537,7 +1510,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i < currentLevel; i++)
         {
-            (skills.Find((x) => x is SEntanglingRoots) as SEntanglingRoots).baseDuration += 1;
             (skillInstances.Find((x) => x is SEntanglingRoots) as SEntanglingRoots).baseDuration += 1;
         }
     }
@@ -1545,7 +1517,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i > currentLevel; i--)
         {
-            (skills.Find((x) => x is SEntanglingRoots) as SEntanglingRoots).baseDuration -= 1;
             (skillInstances.Find((x) => x is SEntanglingRoots) as SEntanglingRoots).baseDuration -= 1;
         }
     }
@@ -1583,7 +1554,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i < currentLevel; i++)
         {
-            (skills.Find((x) => x is SFlowerPower) as SFlowerPower).timedLife += 3;
             (skillInstances.Find((x) => x is SFlowerPower) as SFlowerPower).timedLife += 3;
         }
     }
@@ -1591,7 +1561,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i > currentLevel; i--)
         {
-            (skills.Find((x) => x is SFlowerPower) as SFlowerPower).timedLife -= 3;
             (skillInstances.Find((x) => x is SFlowerPower) as SFlowerPower).timedLife -= 3;
         }
     }
@@ -1687,7 +1656,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             GetComponent<CanAttack>().CmdChangePowerMultiplier(-0.5f);
         }
     }
-    // Wolferius Talents
+    // Lycandruid Talents
     private void Endurance(int previousLevel, int currentLevel)
     {
         for (int i = previousLevel; i < currentLevel; i++)
@@ -1734,9 +1703,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i < currentLevel; i++)
         {
-            if (skillInstances[3] is SUppercut)
-                (skillInstances[3] as SUppercut).damageBaseReduction += 5;
-            (GetComponent<Shapeshifter>().defaultSkills[3] as SUppercut).damageBaseReduction += 5;
             (GetComponent<Shapeshifter>().defaultSkillInstances[3] as SUppercut).damageBaseReduction += 5;
         }
     }
@@ -1744,9 +1710,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i > currentLevel; i--)
         {
-            if (skillInstances[3] is SUppercut)
-                (skillInstances[3] as SUppercut).damageBaseReduction -= 5;
-            (GetComponent<Shapeshifter>().defaultSkills[3] as SUppercut).damageBaseReduction -= 5;
             (GetComponent<Shapeshifter>().defaultSkillInstances[3] as SUppercut).damageBaseReduction -= 5;
         }
     }
@@ -1754,9 +1717,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i < currentLevel; i++)
         {
-            if (skillInstances[3] is SUppercut)
-                (skillInstances[3] as SUppercut).armorBaseReduction += 5;
-            (GetComponent<Shapeshifter>().defaultSkills[3] as SUppercut).armorBaseReduction += 5;
             (GetComponent<Shapeshifter>().defaultSkillInstances[3] as SUppercut).armorBaseReduction += 5;
         }
     }
@@ -1764,9 +1724,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i > currentLevel; i--)
         {
-            if (skillInstances[3] is SUppercut)
-                (skillInstances[3] as SUppercut).armorBaseReduction -= 5;
-            (GetComponent<Shapeshifter>().defaultSkills[3] as SUppercut).armorBaseReduction -= 5;
             (GetComponent<Shapeshifter>().defaultSkillInstances[3] as SUppercut).armorBaseReduction -= 5;
         }
     }
@@ -1774,11 +1731,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i < currentLevel; i++)
         {
-            skillInstances[2].cooldown -= 1;
             var shapeshift = GetComponent<Shapeshifter>();
-            (shapeshift.defaultSkills[2] as SSwipe).cooldown -= 1;
             (shapeshift.defaultSkillInstances[2] as SSwipe).cooldown -= 1;
-            (shapeshift.shapeshiftedSkills[2] as SBite).cooldown -= 1;
             (shapeshift.shapeshiftedSkillInstances[2] as SBite).cooldown -= 1;
         }
     }
@@ -1786,11 +1740,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i > currentLevel; i--)
         {
-            skillInstances[2].cooldown += 1;
             var shapeshift = GetComponent<Shapeshifter>();
-            (shapeshift.defaultSkills[2] as SSwipe).cooldown += 1;
             (shapeshift.defaultSkillInstances[2] as SSwipe).cooldown += 1;
-            (shapeshift.shapeshiftedSkills[2] as SBite).cooldown += 1;
             (shapeshift.shapeshiftedSkillInstances[2] as SBite).cooldown += 1;
         }
     }
@@ -1826,14 +1777,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i < currentLevel; i++)
         {
-            if (skillInstances[5] is SCallOfTheWild)
-            {
-                (skillInstances[5] as SCallOfTheWild).duration += 1;
-                (skillInstances[5] as SCallOfTheWild).baseNumberOfWolves += 1;
-            }
             var shapeshift = GetComponent<Shapeshifter>();
-            (shapeshift.shapeshiftedSkills[5] as SCallOfTheWild).duration += 1;
-            (shapeshift.shapeshiftedSkills[5] as SCallOfTheWild).baseNumberOfWolves += 1;
             (shapeshift.shapeshiftedSkillInstances[5] as SCallOfTheWild).duration += 1;
             (shapeshift.shapeshiftedSkillInstances[5] as SCallOfTheWild).baseNumberOfWolves += 1;
         }
@@ -1842,14 +1786,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         for (int i = previousLevel; i < currentLevel; i++)
         {
-            if (skillInstances[5] is SCallOfTheWild)
-            {
-                (skillInstances[5] as SCallOfTheWild).duration -= 1;
-                (skillInstances[5] as SCallOfTheWild).baseNumberOfWolves -= 1;
-            }
             var shapeshift = GetComponent<Shapeshifter>();
-            (shapeshift.shapeshiftedSkills[5] as SCallOfTheWild).duration -= 1;
-            (shapeshift.shapeshiftedSkills[5] as SCallOfTheWild).baseNumberOfWolves -= 1;
             (shapeshift.shapeshiftedSkillInstances[5] as SCallOfTheWild).duration -= 1;
             (shapeshift.shapeshiftedSkillInstances[5] as SCallOfTheWild).baseNumberOfWolves -= 1;
         }

@@ -34,9 +34,9 @@ public class SDefensiveStance : Skill
     {
         var hp = castingEntity.GetComponent<HasHealth>();
         if (value)
-            hp.ChangeGearArmor(0.5f * hp.GetComponent<Character>().level);
+            hp.ChangeGearArmor(0.5f * castingEntity.level);
         else
-            hp.ChangeGearArmor(-0.5f * hp.GetComponent<Character>().level); 
+            hp.ChangeGearArmor(-0.5f * castingEntity.level); 
     }
     public override void UpdateDescription()
     {

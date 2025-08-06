@@ -9,43 +9,18 @@ public class QuestDescription : MonoBehaviour
     public QuestScriptable questData;
     public TextMeshProUGUI label, objectives, rewards;
 
-    public Material mainQuestMaterial, loreQuestMaterial;
     public bool complete = false;
 
-    private Transform parent;
     public void Initialize(QuestScriptable data)
     {
-        switch (data.questType)
-        {
-            case QuestType.Main:
-                GetComponent<Image>().material = mainQuestMaterial;
-                break;
-            case QuestType.Side:
-                break;
-            case QuestType.Lore:
-                GetComponent<Image>().material = loreQuestMaterial;
-                break;
-            default:
-                break;
-        }
         questData = data;
         questData.Quest_Updated.AddListener(UpdateUI);
         UpdateUI();
-        StartCoroutine(DelayedParentNull());
+        QuestAccepted();
     }
-    private IEnumerator DelayedParentNull()
+    public void QuestAccepted()
     {
-        yield return new WaitForEndOfFrame();
-        parent = transform.parent;
-        transform.SetParent(parent.parent);
-    }
-    public void QuestAcceptedAnimationComplete()
-    {
-        if (parent)
-            transform.SetParent(parent);
         FindObjectOfType<AudioManager>().QuestAccepted();
-        if (questData.questType == QuestType.Main)
-            transform.SetAsFirstSibling();
     }
     public void QuestCompleted()
     {

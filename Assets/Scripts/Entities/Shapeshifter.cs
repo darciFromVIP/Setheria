@@ -83,13 +83,15 @@ public class Shapeshifter : NetworkBehaviour
     {
         Shapeshift(defaultForm);
         var character = GetComponent<Character>();
-        character.skillInstances[1].StopExecute();
-        character.skillInstances.RemoveAt(1);
+        var inst = character.skillInstances[1];
+        inst.StopExecute();
+        character.skillInstances.Remove(inst);
         if (defaultForm)
-            character.skillInstances.Insert(1, defaultSkills.Find((x) => x is SWayOfTheSapiens).GetInstance());
+            character.skillInstances.Insert(1, defaultSkillInstances.Find((x) => x is SWayOfTheSapiens));
         else
-            character.skillInstances.Insert(1, shapeshiftedSkills.Find((x) => x is SWayOfTheLupine).GetInstance());
+            character.skillInstances.Insert(1, shapeshiftedSkillInstances.Find((x) => x is SWayOfTheLupine));
         character.skillInstances[1].Execute(character);
+        character.skillInstances.Add(inst);
         character.UpdateSkills();
     }
     [Command(requiresAuthority = false)]
@@ -101,13 +103,15 @@ public class Shapeshifter : NetworkBehaviour
     public void RpcRevertPermanentShapeshift()
     {
         var character = GetComponent<Character>();
-        character.skillInstances[1].StopExecute();
-        character.skillInstances.RemoveAt(1);
+        var inst = character.skillInstances[1];
+        inst.StopExecute();
+        character.skillInstances.Remove(inst);
         if (defaultModel.gameObject.activeSelf)
-            character.skillInstances.Insert(1, defaultSkills.Find((x) => x is SDefensiveStance).GetInstance());
+            character.skillInstances.Insert(1, defaultSkillInstances.Find((x) => x is SDefensiveStance));
         else
-            character.skillInstances.Insert(1, shapeshiftedSkills.Find((x) => x is SOneWithNature).GetInstance());
+            character.skillInstances.Insert(1, shapeshiftedSkillInstances.Find((x) => x is SOneWithNature));
         character.skillInstances[1].ExecuteOnStart(transform);
+        character.skillInstances.Add(inst);
         character.UpdateSkills();
     }
 }
