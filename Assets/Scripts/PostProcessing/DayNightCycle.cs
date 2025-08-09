@@ -17,7 +17,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
     [SyncVar(hook = nameof(HookDays))][SerializeField] public int daysAlive = 1;
     [SyncVar][SerializeField] private float timer = 0;
     [SyncVar][SerializeField] private float progressPercentage = 0;
-    [SyncVar][SerializeField] private int currentIndex = 0;
+    [SyncVar(hook = nameof(HookIndex))][SerializeField] private int currentIndex = 0;
     private int maxIndex;
 
     private int multiplier = 1;
@@ -32,6 +32,10 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
         timer = state.floatData1;
         progressPercentage = state.floatData2;
         uiData.daysAliveText.text = "Day " + daysAlive;
+        if (currentIndex >= 0 && currentIndex < 3)
+            FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Day);
+        else
+            FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Night);
     }
     public SaveDataWorldObject SaveState()
     {
@@ -47,6 +51,13 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
     {
         if (!NetworkServer.active)
             uiData.daysAliveText.text = "Day " + newDays;
+    }
+    private void HookIndex(int oldIndex, int newIndex)
+    {
+        if (currentIndex >= 0 && currentIndex < 3)
+            FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Day);
+        else
+            FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Night);
     }
     private void Start()
     {

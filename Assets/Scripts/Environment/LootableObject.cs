@@ -41,7 +41,9 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     public TextMeshProUGUI remainingChargesText;
     public EventScriptable Player_Event;
     [Tooltip("Only fill this if this object is involved in a quest.")]
+    public QuestScriptable questToComplete;
     public EventScriptable Quest_Event;
+
     public UnityEvent<LootableObject> Object_Destroyed = new();
 
     private void Start()
@@ -68,6 +70,14 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         {
             FindObjectOfType<SystemMessages>().AddMessage("Someone is already harvesting this object.");
             return;
+        }
+        if (questToComplete != null)
+        {
+            if (!questToComplete.active)
+            {
+                FindObjectOfType<SystemMessages>().AddMessage("The required quest is not active.");
+                return;
+            }
         }
         if (!FindObjectOfType<CharacterScreen>().CheckToolLevel(toolRequirement, toolLevelRequirement))
         {

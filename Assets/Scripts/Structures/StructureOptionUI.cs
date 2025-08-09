@@ -126,8 +126,6 @@ public class StructureOptionUI : MonoBehaviour
                     cooldownSlider.value = shipyard.callShipsTimer;
                     cooldownText.text = shipyard.callShipsTimer.ToString("F0");
                 }
-                else
-                    GetComponent<Button>().interactable = true;
             }
             else if (currentStructure.TryGetComponent(out Planter seed))
             {

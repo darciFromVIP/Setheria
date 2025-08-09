@@ -59,7 +59,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [HideInInspector] public TalentTrees talentTrees = new();
     public Professions professions;
     protected float carnivorePercentage = 50;
-    protected int hungerCount = 0;
     protected float hungerBonus = 1;
 
     protected const float MaxXpMultiplier = 1.2f;
@@ -274,7 +273,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     ChangeAttributePoints(item.attributePoints);
                     carnivorePercentage = item.carnivorePercentage;
                     DietPercentageChanged.Invoke(carnivorePercentage);
-                    hungerCount = item.hungerCount;
                     attPower = item.attPower;
                     attMaxMana = item.attMana;
                     attManaRegen = item.attManaRegen;
@@ -526,7 +524,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             hunger = hunger,
             maxHunger = maxHunger,
             hungerInterval = hungerInterval,
-            hungerCount = hungerCount,
             carnivorePercentage = carnivorePercentage,
             water = water,
             maxWater = maxWater,
@@ -755,13 +752,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     carnivorePercentage = 0;
                 DietPercentageChanged.Invoke(carnivorePercentage);
                 FindObjectOfType<AudioManager>().EatFood(transform.position);
-                hungerCount += amount;
-                if (hungerCount >= 50)
-                {
-                    hungerCount = 0;
-                    talentTrees.ChangeTalentPoints(1);
-                    FindObjectOfType<SystemMessages>().AddMessage("Talent Point acquired!", MsgType.Positive);
-                }
             }
         }
         Hunger_Changed.Invoke();
@@ -910,6 +900,9 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 break;
             case PlayerStat.PowerMultiplier:
                 GetComponent<CanAttack>().ChangePowerMultiplier(modifier);
+                break;
+            case PlayerStat.TalentPoint:
+                talentTrees.ChangeTalentPoints((int)modifier);
                 break;
             default:
                 break;
