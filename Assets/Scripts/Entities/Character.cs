@@ -509,7 +509,7 @@ public class Character : Entity
         base.OnDeath();
         foreach (var item in buffs)
         {
-            if (!item.persistsAfterDeath)
+            if (!item.persistsAfterDeath && buffCoroutines.ContainsKey(item.name))
             {
                 var coro = buffCoroutines[item.name];
                 if (coro != null)

@@ -11,6 +11,10 @@ public class SAura : Skill
     public List<BuffScriptable> buffsApplied;
     public LayerMask layerMask;
     public float radius;
+    private void OnEnable()
+    {
+        enteredCharacters.Clear();
+    }
     public override void ExecuteOnStart(Transform self)
     {
         base.ExecuteOnStart(self);
@@ -70,8 +74,9 @@ public class SAura : Skill
         {
             foreach (var item2 in buffsApplied)
             {
-                item.RpcRemoveBuff(item2.name);
+                item.RpcRemoveBuff(item2.buffName);
             }
         }
     }
 }
+

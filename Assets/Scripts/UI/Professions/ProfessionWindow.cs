@@ -24,35 +24,35 @@ public class ProfessionWindow : MonoBehaviour
                     lockedImage.SetActive(true);
                 else
                     lockedImage.SetActive(false);
-                experienceText.text = talentScreen.localPlayer.professions.gathering.ToString() + "/" + talentScreen.localPlayer.professions.maxGathering;
+                experienceText.text = talentScreen.localPlayer.professions.gathering.ToString() + "/" + talentScreen.localPlayer.professions.gatheringMilestone;
                 break;
             case TalentTreeType.Cooking:
                 if (talentScreen.localPlayer.professions.cooking == 0)
                     lockedImage.SetActive(true);
                 else
                     lockedImage.SetActive(false);
-                experienceText.text = talentScreen.localPlayer.professions.cooking.ToString() + "/" + talentScreen.localPlayer.professions.maxCooking;
+                experienceText.text = talentScreen.localPlayer.professions.cooking.ToString() + "/" + talentScreen.localPlayer.professions.cookingMilestone;
                 break;
             case TalentTreeType.Alchemy:
                 if (talentScreen.localPlayer.professions.alchemy == 0)
                     lockedImage.SetActive(true);
                 else
                     lockedImage.SetActive(false);
-                experienceText.text = talentScreen.localPlayer.professions.alchemy.ToString() + "/" + talentScreen.localPlayer.professions.maxAlchemy;
+                experienceText.text = talentScreen.localPlayer.professions.alchemy.ToString() + "/" + talentScreen.localPlayer.professions.alchemyMilestone;
                 break;
             case TalentTreeType.Fishing:
                 if (talentScreen.localPlayer.professions.fishing == 0)
                     lockedImage.SetActive(true);
                 else
                     lockedImage.SetActive(false);
-                experienceText.text = talentScreen.localPlayer.professions.fishing.ToString() + "/" + talentScreen.localPlayer.professions.maxFishing;
+                experienceText.text = talentScreen.localPlayer.professions.fishing.ToString() + "/" + talentScreen.localPlayer.professions.fishingMilestone;
                 break;
             case TalentTreeType.Exploration:
                 if (talentScreen.localPlayer.professions.exploration == 0)
                     lockedImage.SetActive(true);
                 else
                     lockedImage.SetActive(false);
-                experienceText.text = talentScreen.localPlayer.professions.exploration.ToString() + "/" + talentScreen.localPlayer.professions.maxExploration;
+                experienceText.text = talentScreen.localPlayer.professions.exploration.ToString() + "/" + talentScreen.localPlayer.professions.explorationMilestone;
                 break;
             default:
                 break;
