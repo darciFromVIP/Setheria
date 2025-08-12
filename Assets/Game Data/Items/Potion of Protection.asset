@@ -17,6 +17,8 @@ MonoBehaviour:
     Use to gain +2 Armor for
     1h. This effect can be stacked.
 
+    Max stacks 5.
+
     __________________________________
 
     Active
@@ -25,6 +27,7 @@ MonoBehaviour:
   itemType: 0
   sprite: {fileID: 21300000, guid: 0315de608234ba24e9e138c5bf52396e, type: 3}
   stackable: 1
+  maxStacks: 99
   usage:
   - {fileID: 11400000, guid: 25fb0610a3c310741a7e9125986d9763, type: 2}
   usageCooldown: 2
@@ -36,6 +39,11 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  defaultUnlocked: 1
+  itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
