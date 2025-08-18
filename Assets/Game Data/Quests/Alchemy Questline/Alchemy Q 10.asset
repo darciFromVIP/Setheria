@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Alchemy Q 5
+  m_Name: Alchemy Q 10
   m_EditorClassIdentifier: 
   active: 0
-  label: Craft Paper.
-  description: Find the way how to unlock and learn make the Paper.
+  label: Craft Fertilizer
+  description: There is nothing more beautiful for an alchemist than mixing quality
+    ingredients for growing plants that will be used for further experiments.
   icon: {fileID: 21300000, guid: 2eb50e196936b774d96d2303d44727dc, type: 3}
   questType: 1
   synchronizedQuest: 0
   requiredItems:
-  - itemData: {fileID: 11400000, guid: 66a1749273eaa82478459db8daba8acb, type: 2}
-    stacks: 4
+  - itemData: {fileID: 11400000, guid: 07da0fa546742144bb2f077c77a1920e, type: 2}
+    stacks: 1
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
@@ -32,6 +33,7 @@ MonoBehaviour:
   - rewardType: 2
     rewardAmount: 30
     itemReward: {fileID: 0}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

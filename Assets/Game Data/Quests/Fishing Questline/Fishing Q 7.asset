@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fishing Q 7
   m_EditorClassIdentifier: 
   active: 0
-  label: Catch 50 Fish.
+  label: Catch 10 Fish.
   description: 
   icon: {fileID: 21300000, guid: 47b55e5e7fc63b44995eb35009cb5486, type: 3}
   questType: 1
@@ -26,15 +26,16 @@ MonoBehaviour:
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements:
-  - requiredValue: 50
+  - requiredValue: 10
     currentValue: 0
     requirementText: 'Fish caught: '
     customEvents:
     - {fileID: 11400000, guid: 3fc6c6ec4fa97894e814e8186f21b4b2, type: 2}
   rewards:
   - rewardType: 2
-    rewardAmount: 300
-    itemReward: {fileID: 11400000, guid: 1f1b11d515ab05048a319301ae769ca5, type: 2}
+    rewardAmount: 30
+    itemReward: {fileID: 0}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

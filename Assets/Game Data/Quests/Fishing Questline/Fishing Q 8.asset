@@ -13,28 +13,30 @@ MonoBehaviour:
   m_Name: Fishing Q 8
   m_EditorClassIdentifier: 
   active: 0
-  label: Catch 100 Fish.
+  label: Explore Deepsea creatures.
   description: 
   icon: {fileID: 21300000, guid: 47b55e5e7fc63b44995eb35009cb5486, type: 3}
   questType: 1
   synchronizedQuest: 0
-  requiredItems: []
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: 55e8a39bdec3e6146aaf08cfc7b37895, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: e9aa19f3359b8a943a75523c1c47eb6f, type: 2}
+    stacks: 1
+  - itemData: {fileID: 11400000, guid: 26049ea5c27523c45a821592b99ff1ec, type: 2}
+    stacks: 1
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  customRequirements:
-  - requiredValue: 100
-    currentValue: 0
-    requirementText: 'Fish caught: '
-    customEvents:
-    - {fileID: 11400000, guid: 3fc6c6ec4fa97894e814e8186f21b4b2, type: 2}
+  customRequirements: []
   rewards:
   - rewardType: 2
-    rewardAmount: 500
-    itemReward: {fileID: 11400000, guid: 1f1b11d515ab05048a319301ae769ca5, type: 2}
+    rewardAmount: 30
+    itemReward: {fileID: 0}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

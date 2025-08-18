@@ -13,31 +13,25 @@ MonoBehaviour:
   m_Name: Gathering Q 13
   m_EditorClassIdentifier: 
   active: 0
-  label: Collect a pure Crystal.
-  description: 
+  label: Stronger than Copper.
+  description: You are ready to mine this untouched raw material.
   icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
   questType: 1
   synchronizedQuest: 0
-  requiredItems: []
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: 09d0330c4cacef4498e20906c8d255d4, type: 2}
+    stacks: 3
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  customRequirements:
-  - requiredValue: 1
-    currentValue: 0
-    requirementText: 'Crystals collected: '
-    customEvents:
-    - {fileID: 11400000, guid: 6840120b2ec54c04a85280df3dbb5796, type: 2}
+  customRequirements: []
   rewards:
   - rewardType: 2
-    rewardAmount: 400
+    rewardAmount: 30
     itemReward: {fileID: 0}
-  - rewardType: 3
-    rewardAmount: 1
-    itemReward: {fileID: 11400000, guid: 2a8974aad52e27a49b69e4ef1cfafffc, type: 2}
   recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:

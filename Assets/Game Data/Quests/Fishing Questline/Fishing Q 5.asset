@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Fishing Q 5
   m_EditorClassIdentifier: 
   active: 0
-  label: Catch and open an Old Box.
+  label: Fixed Fishing Rod.
   description: 
   icon: {fileID: 21300000, guid: 47b55e5e7fc63b44995eb35009cb5486, type: 3}
   questType: 1
   synchronizedQuest: 0
   requiredItems:
-  - itemData: {fileID: 11400000, guid: 808adcef69c09114dbc4d38baeda0ad6, type: 2}
+  - itemData: {fileID: 11400000, guid: e45bafb766d3eb3429067d4795e14216, type: 2}
     stacks: 1
   requiredItemTypes: []
   requiredStructures: []
@@ -30,8 +30,9 @@ MonoBehaviour:
   customRequirements: []
   rewards:
   - rewardType: 2
-    rewardAmount: 20
-    itemReward: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
+    rewardAmount: 30
+    itemReward: {fileID: 0}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

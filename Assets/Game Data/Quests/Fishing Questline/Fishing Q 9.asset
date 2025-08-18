@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Gathering Q 16
+  m_Name: Fishing Q 9
   m_EditorClassIdentifier: 
   active: 1
-  label: Find and mine Crystal Piles.
+  label: Professional fish hunter!
   description: 
-  icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
+  icon: {fileID: 21300000, guid: 47b55e5e7fc63b44995eb35009cb5486, type: 3}
   questType: 1
   synchronizedQuest: 0
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: 09d0330c4cacef4498e20906c8d255d4, type: 2}
-    stacks: 1
+  requiredItems: []
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
@@ -28,18 +26,16 @@ MonoBehaviour:
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements:
-  - requiredValue: 3
+  - requiredValue: 20
     currentValue: 0
-    requirementText: 'Crystal Piles mined: '
+    requirementText: 'Fish caught: '
     customEvents:
-    - {fileID: 11400000, guid: 681f81582832b9741a92cfa2d97a92dc, type: 2}
+    - {fileID: 11400000, guid: 3fc6c6ec4fa97894e814e8186f21b4b2, type: 2}
   rewards:
   - rewardType: 2
-    rewardAmount: 50
+    rewardAmount: 30
     itemReward: {fileID: 0}
-  - rewardType: 3
-    rewardAmount: 1
-    itemReward: {fileID: 11400000, guid: b13387b73b910c041bde6f22db5cca3a, type: 2}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:
