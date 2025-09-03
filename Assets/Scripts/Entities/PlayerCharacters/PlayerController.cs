@@ -179,6 +179,7 @@ public class PlayerController : NetworkBehaviour
             Resume_Acting.Invoke();
             attackComp.CmdTargetLost();
             attackComp.attackSpeedTimer = 0;
+            FindObjectOfType<AudioManager>().TargetLost();
             if (attackComp.isCasting)
                 currentSkill.StopExecute();
             moveComp.CmdForceMovementAnimation();

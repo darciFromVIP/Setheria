@@ -346,6 +346,7 @@ public class AudioManager : MonoBehaviour
     }
     public void CheckCombat()
     {
+        UnityEngine.Debug.Log("Targets received: " + targetsReceived.Count + "\nTarget Found: " + targetFound);
         if (targetsReceived.Count == 0 && targetFound == null)
             StopCombatMusic();
         else
