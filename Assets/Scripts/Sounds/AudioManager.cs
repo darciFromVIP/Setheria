@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
     private float notificationTimer = 0;
     private List<HasHealth> targetsReceived = new();
     private HasHealth targetFound;
+    private float combatTimer = 0;
 
     public static AudioManager instance;
     private void Awake()
@@ -86,6 +87,14 @@ public class AudioManager : MonoBehaviour
                 currentMusicInstance.setVolume(Mathf.Lerp(0, 1, timer / 4));
                 currentCombatInstance.setVolume(Mathf.Lerp(1, 0, timer / 4));
                 timer -= Time.deltaTime;
+            }
+            if (combatTimer > 0)
+            {
+                combatTimer -= Time.deltaTime;
+            }
+            else 
+            {
+                CheckCombat();
             }
         }
     }
@@ -311,13 +320,18 @@ public class AudioManager : MonoBehaviour
     public void TargetFound(HasHealth target)
     {
         targetFound = target;
+        targetFound.On_Death.AddListener(TargetDead);
         PlayCombatMusic();
+    }
+    public void TargetDead()
+    {
+        targetFound = null;
+        CheckCombat();
     }
     public void TargetLost()
     {
         targetFound = null;
-        if (targetsReceived.Count == 0)
-            StopCombatMusic();
+        combatTimer = 5;
     }
     public void TargetReceived(HasHealth target)
     {
@@ -328,7 +342,13 @@ public class AudioManager : MonoBehaviour
     {
         if (targetsReceived.Contains(target))
             targetsReceived.Remove(target);
+        CheckCombat();
+    }
+    public void CheckCombat()
+    {
         if (targetsReceived.Count == 0 && targetFound == null)
             StopCombatMusic();
+        else
+            combatTimer = 5;
     }
 }
