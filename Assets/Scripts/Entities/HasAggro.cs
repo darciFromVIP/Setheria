@@ -142,6 +142,8 @@ public class HasAggro : NetworkBehaviour
         else
             aggroList.Add(enemy, damageAmount * multiplier);
         var topAggro = aggroList.OrderByDescending(pair => pair.Value).Take(1).ToList()[0].Key;
+        if (enemy != topAggro)
+            enemy.GetComponent<HasHealth>().Received_Target_Lost.Invoke(GetComponent<HasHealth>());
         Target_Found.Invoke(topAggro);
     }
     private void BeastKilledEventInvoke()
