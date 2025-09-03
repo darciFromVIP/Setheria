@@ -88,7 +88,7 @@ public class AudioManager : MonoBehaviour
             if (combatTimer > 0)
             {
                 combatTimer -= Time.deltaTime;
-                UnityEngine.Debug.Log("ticking combat timer: " + combatTimer.ToString("s"));
+                UnityEngine.Debug.Log("ticking combat timer: " + combatTimer);
             }
             else
                 CheckCombat();
