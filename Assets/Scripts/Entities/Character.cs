@@ -508,11 +508,14 @@ public class Character : Entity
         base.OnDeath();
         foreach (var item in buffs)
         {
-            if (!item.persistsAfterDeath && buffCoroutines.ContainsKey(item.name))
+            if (!item.persistsAfterDeath)
             {
-                var coro = buffCoroutines[item.name];
-                if (coro != null)
-                    StopCoroutine(coro);
+                if (buffCoroutines.ContainsKey(item.name))
+                {
+                    var coro = buffCoroutines[item.name];
+                    if (coro != null)
+                        StopCoroutine(coro);
+                }
                 CmdRemoveBuff(item.name);
             }
         }

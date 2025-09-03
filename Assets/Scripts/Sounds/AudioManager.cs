@@ -328,7 +328,6 @@ public class AudioManager : MonoBehaviour
         if (targetFound)
             targetFound.On_Death.RemoveListener(TargetDead);
         targetFound = null;
-        UnityEngine.Debug.Log("Target lost: " + targetFound);
         combatTimer = 5;
     }
     public void TargetReceived(HasHealth target)
@@ -345,7 +344,6 @@ public class AudioManager : MonoBehaviour
     }
     public void CheckCombat()
     {
-        UnityEngine.Debug.Log("Targets received: " + targetsReceived.Count + "\nTarget Found: " + targetFound);
         if (targetsReceived.Count == 0 && targetFound == null)
             StopCombatMusic();
         else
