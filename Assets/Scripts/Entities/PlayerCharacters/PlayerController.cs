@@ -179,7 +179,6 @@ public class PlayerController : NetworkBehaviour
             Resume_Acting.Invoke();
             attackComp.CmdTargetLost();
             attackComp.attackSpeedTimer = 0;
-            FindObjectOfType<AudioManager>().TargetLost();
             if (attackComp.isCasting)
                 currentSkill.StopExecute();
             moveComp.CmdForceMovementAnimation();
@@ -202,6 +201,7 @@ public class PlayerController : NetworkBehaviour
                 {
                     moveComp.MoveTo(hit.point);
                     attackComp.CmdTargetLost();
+                    FindObjectOfType<AudioManager>().TargetLost();
                 }
             }
             if (Input.GetKeyDown(settingsManager.settings.move))
