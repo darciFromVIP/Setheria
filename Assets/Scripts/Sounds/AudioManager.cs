@@ -56,16 +56,12 @@ public class AudioManager : MonoBehaviour
         {
             if (item == null)
             {
-                targetsReceived.Remove(item);
-                if (targetsReceived.Count == 0)
-                    StopCombatMusic();
+                ReceivedTargetLost(item);
                 break;
             }
             if (item.GetComponent<CanAttack>().enemyTarget == null || item.GetComponent<HasHealth>().GetHealth() <= 0)
             {
-                targetsReceived.Remove(item);
-                if (targetsReceived.Count == 0)
-                    StopCombatMusic();
+                ReceivedTargetLost(item);
                 break;
             }
         }
@@ -82,6 +78,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
+            UnityEngine.Debug.Log("in combat");
             if (timer > 0)
             {
                 currentMusicInstance.setVolume(Mathf.Lerp(0, 1, timer / 4));
@@ -91,12 +88,12 @@ public class AudioManager : MonoBehaviour
             if (combatTimer > 0)
             {
                 combatTimer -= Time.deltaTime;
+                UnityEngine.Debug.Log("ticking combat timer: " + combatTimer.ToString("s"));
             }
-            else 
-            {
+            else
                 CheckCombat();
-            }
         }
+        
     }
     public void PlayOneShot(EventReference sound, Vector3 worldPos)
     {
@@ -335,7 +332,8 @@ public class AudioManager : MonoBehaviour
     }
     public void TargetReceived(HasHealth target)
     {
-        targetsReceived.Add(target);
+        if (!targetsReceived.Contains(target))
+            targetsReceived.Add(target);
         PlayCombatMusic();
     }
     public void ReceivedTargetLost(HasHealth target)
