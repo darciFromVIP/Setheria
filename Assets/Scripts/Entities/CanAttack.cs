@@ -256,6 +256,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         if (!attackSound.IsNull)
             FindObjectOfType<AudioManager>().PlayOneShot(attackSound, transform.position);
+        StartCombat();
         if (!isServer)
             return;
         float modifier = 1;
@@ -272,6 +273,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void RangedAttack()                          //This reacts to animations, that are run on both the server and client
     {
+        StartCombat();
         if (!isServer)
             return;
         if (enemyTarget)
@@ -281,18 +283,22 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         }
         RpcSetCanAct(true);
     }
+
     private void Attacked()
     {
         attackSpeedTimer = finalAttackSpeed;
         RpcSetAnimationSpeed(1);
         Has_Attacked.Invoke();
-        if (TryGetComponent(out PlayerCharacter player))                    // Combat music
-            if (player.isOwned)
-                FindObjectOfType<AudioManager>().TargetFound(enemyTarget);
     }
     public float GetAttackCooldown()
     {
         return finalAttackSpeed;
+    }
+    private void StartCombat()
+    {
+        if (TryGetComponent(out PlayerCharacter player))                    // Combat music
+            if (player.isOwned)
+                FindObjectOfType<AudioManager>().TargetFound(enemyTarget);
     }
     private void SpawnProjectile()
     {
