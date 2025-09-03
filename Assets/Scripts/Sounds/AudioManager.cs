@@ -101,7 +101,7 @@ public class AudioManager : MonoBehaviour
         currentAmbienceInstance = RuntimeManager.CreateInstance(ambience);
         currentAmbienceInstance.start();
     }
-    public void ChangeAmbienceParameter(AmbienceParameter parameter)
+    public void AnnounceDayNight(AmbienceParameter parameter)
     {
         switch (parameter)
         {
@@ -114,6 +114,16 @@ public class AudioManager : MonoBehaviour
             default:
                 break;
         }
+    }
+    public void ChangeAmbienceParameter(AmbienceParameter parameter)
+    {
+        if (!currentAmbienceInstance.isValid())
+            StartCoroutine(DelayedChangeAmbienceParameter(parameter));
+    }
+    private IEnumerator DelayedChangeAmbienceParameter(AmbienceParameter parameter)
+    {
+        while (!currentAmbienceInstance.isValid())
+            yield return null;
         currentAmbienceInstance.setParameterByName("DayAndNight", (float)parameter);
     }
     public void PlayMusic()

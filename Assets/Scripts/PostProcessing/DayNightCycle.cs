@@ -33,9 +33,15 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
         progressPercentage = state.floatData2;
         uiData.daysAliveText.text = "Day " + daysAlive;
         if (currentIndex >= 0 && currentIndex < 3)
+        {
             FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Day);
+            Day_Started.Invoke();
+        }
         else
+        {
             FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Night);
+            Night_Started.Invoke();
+        }
     }
     public SaveDataWorldObject SaveState()
     {
@@ -107,6 +113,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
 
             if (currentIndex == 0)
             {
+                FindObjectOfType<AudioManager>().AnnounceDayNight(AmbienceParameter.Day);
                 FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Day);
                 Day_Started.Invoke();
                 if (isServer)
@@ -114,6 +121,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
             }
             else if (currentIndex == 3)
             {
+                FindObjectOfType<AudioManager>().AnnounceDayNight(AmbienceParameter.Night);
                 FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Night);
                 Debug.Log("Night Started");
                 Night_Started.Invoke();
