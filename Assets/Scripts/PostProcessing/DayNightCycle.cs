@@ -115,6 +115,7 @@ public class DayNightCycle : NetworkBehaviour, ISaveable
             else if (currentIndex == 3)
             {
                 FindObjectOfType<AudioManager>().ChangeAmbienceParameter(AmbienceParameter.Night);
+                Debug.Log("Night Started");
                 Night_Started.Invoke();
                 uiData.daysAliveAnimatedText.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
                 uiData.daysAliveAnimatedText.text = "Night Falls!";

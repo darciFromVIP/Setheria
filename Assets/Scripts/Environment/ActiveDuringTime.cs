@@ -37,12 +37,14 @@ public class ActiveDuringTime : MonoBehaviour
     }
     private void TurnOn()
     {
+        Debug.Log("Object appeared");
         objectToChange.SetActive(true);
         if (obstacle)
             obstacle.enabled = false;
     }
     private void TurnOff()
     {
+        Debug.Log("Object disappeared");
         objectToChange.SetActive(false);
         if (obstacle)
             obstacle.enabled = true;

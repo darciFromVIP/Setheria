@@ -7,7 +7,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
 
 [System.Serializable]
 public enum Hero

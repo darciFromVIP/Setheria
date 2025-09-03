@@ -8,7 +8,6 @@ using Unity.VisualScripting;
 using UnityEngine.PlayerLoop;
 using FMODUnity;
 using System;
-using static UnityEditor.Progress;
 
 public class Character : Entity
 {
