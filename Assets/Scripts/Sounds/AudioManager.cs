@@ -31,6 +31,7 @@ public class AudioManager : MonoBehaviour
     private float timer = 0;
     private float notificationTimer = 0;
     private List<HasHealth> targetsReceived = new();
+    private HasHealth targetFound;
 
     public static AudioManager instance;
     private void Awake()
@@ -307,6 +308,17 @@ public class AudioManager : MonoBehaviour
     {
         sfxBus.setVolume(value);
     }
+    public void TargetFound(HasHealth target)
+    {
+        targetFound = target;
+        PlayCombatMusic();
+    }
+    public void TargetLost()
+    {
+        targetFound = null;
+        if (targetsReceived.Count == 0)
+            StopCombatMusic();
+    }
     public void TargetReceived(HasHealth target)
     {
         targetsReceived.Add(target);
@@ -316,7 +328,7 @@ public class AudioManager : MonoBehaviour
     {
         if (targetsReceived.Contains(target))
             targetsReceived.Remove(target);
-        if (targetsReceived.Count == 0)
+        if (targetsReceived.Count == 0 && targetFound == null)
             StopCombatMusic();
     }
 }

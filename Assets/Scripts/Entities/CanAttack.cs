@@ -288,7 +288,7 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
         Has_Attacked.Invoke();
         if (TryGetComponent(out PlayerCharacter player))                    // Combat music
             if (player.isOwned)
-                FindObjectOfType<AudioManager>().TargetReceived(enemyTarget);
+                FindObjectOfType<AudioManager>().TargetFound(enemyTarget);
     }
     public float GetAttackCooldown()
     {
@@ -443,6 +443,9 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
             enemyTarget.Received_Target_Lost.Invoke(GetComponent<HasHealth>());
         }
         enemyTarget = null;
+        if (TryGetComponent(out PlayerCharacter player))                    // Combat music
+            if (player.isOwned)
+                FindObjectOfType<AudioManager>().TargetLost();
         Target_Lost.Invoke();
         if (moveComp)
             moveComp.agent.stoppingDistance = 0;
