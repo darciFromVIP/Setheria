@@ -296,12 +296,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 209907684693652021}
   m_SourcePrefab: {fileID: 100100000, guid: 390ac85b0ed2c28459a431ba39e2d51b, type: 3}
---- !u!1 &397985826454860992 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8250040695968144722, guid: 390ac85b0ed2c28459a431ba39e2d51b,
-    type: 3}
-  m_PrefabInstance: {fileID: 8645757129309415826}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5824107610347426204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2821651740538025998, guid: 390ac85b0ed2c28459a431ba39e2d51b,
@@ -322,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeDuringDay: 0
   activeDuringNight: 1
-  objectToChange: {fileID: 397985826454860992}
+  objectToChange: {fileID: 5824107610347426204}
   obstacle: {fileID: 9008288811931101782}
 --- !u!208 &9008288811931101782 stripped
 NavMeshObstacle:
