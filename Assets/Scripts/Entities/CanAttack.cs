@@ -256,7 +256,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     {
         if (!attackSound.IsNull)
             FindObjectOfType<AudioManager>().PlayOneShot(attackSound, transform.position);
-        StartCombat();
+        if (isOwned)
+            StartCombat();
         if (!isServer)
             return;
         float modifier = 1;
@@ -273,7 +274,8 @@ public class CanAttack : NetworkBehaviour, IUsesAnimator
     }
     public void RangedAttack()                          //This reacts to animations, that are run on both the server and client
     {
-        StartCombat();
+        if (isOwned)
+            StartCombat();
         if (!isServer)
             return;
         if (enemyTarget)

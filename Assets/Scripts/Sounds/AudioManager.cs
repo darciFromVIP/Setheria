@@ -78,7 +78,6 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.Log("in combat");
             if (timer > 0)
             {
                 currentMusicInstance.setVolume(Mathf.Lerp(0, 1, timer / 4));
@@ -88,7 +87,6 @@ public class AudioManager : MonoBehaviour
             if (combatTimer > 0)
             {
                 combatTimer -= Time.deltaTime;
-                UnityEngine.Debug.Log("ticking combat timer: " + combatTimer);
             }
             else
                 CheckCombat();
@@ -327,7 +325,9 @@ public class AudioManager : MonoBehaviour
     }
     public void TargetLost()
     {
+        targetFound.On_Death.RemoveListener(TargetDead);
         targetFound = null;
+        UnityEngine.Debug.Log("Target lost: " + targetFound);
         combatTimer = 5;
     }
     public void TargetReceived(HasHealth target)
