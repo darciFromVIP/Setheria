@@ -325,7 +325,8 @@ public class AudioManager : MonoBehaviour
     }
     public void TargetLost()
     {
-        targetFound.On_Death.RemoveListener(TargetDead);
+        if (targetFound)
+            targetFound.On_Death.RemoveListener(TargetDead);
         targetFound = null;
         UnityEngine.Debug.Log("Target lost: " + targetFound);
         combatTimer = 5;
