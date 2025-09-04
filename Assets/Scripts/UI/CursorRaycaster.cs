@@ -85,7 +85,7 @@ public class CursorRaycaster : NetworkBehaviour
                 else
                     cursor.SetInvalidCursor();
             }
-            else if (player.state != PlayerState.OutOfGame && player.state != PlayerState.Casting
+            else if (player.state != PlayerState.Casting
                 && (hit.collider.TryGetComponent(out LootableObject lootable)
                 || hit.collider.TryGetComponent(out Item item)
                 || hit.collider.TryGetComponent(out Structure structure)

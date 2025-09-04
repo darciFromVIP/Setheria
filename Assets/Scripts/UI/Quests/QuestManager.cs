@@ -212,8 +212,11 @@ public class QuestManager : NetworkBehaviour
                 case QuestRewardType.Item:
                     FindObjectOfType<InventoryManager>(true).AddItem(item.itemReward, item.rewardAmount);
                     break;
-                case QuestRewardType.TalentPoint:
-                    FindObjectOfType<GameManager>().localPlayerCharacter.talentTrees.ChangeTalentPoints(item.rewardAmount);
+                case QuestRewardType.CombatTalentPoint:
+                    FindObjectOfType<GameManager>().localPlayerCharacter.talentTrees.ChangeCombatTalentPoints(item.rewardAmount);
+                    break;
+                case QuestRewardType.ProfessionTalentPoint:
+                    FindObjectOfType<GameManager>().localPlayerCharacter.talentTrees.ChangeProfessionTalentPoints(item.rewardAmount);
                     break;
                 default:
                     break;

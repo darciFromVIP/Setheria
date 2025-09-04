@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
+  m_Name: TImprovedDigestion
+  m_EditorClassIdentifier: 
+  talentType: 1
+  maxLevel: 3
+  requiredTalent: {fileID: 11400000, guid: 649f76d4b4ad0874bbd11471881dad80, type: 2}
+  requiredTalentLevel: 0
+  requiredTalentPointsSpent: 0
+  requiredPlayerLevel: 0
+  label: Improved Digestion
+  description: Reduces the speed at which you lose <sprite=12> by 2% per talent level.
+  excludingTalents: []
+  associatedSkill: {fileID: 0}
+  associatedSkill2: {fileID: 0}
+  Talent_Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []

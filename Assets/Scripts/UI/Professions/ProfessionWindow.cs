@@ -8,13 +8,11 @@ public class ProfessionWindow : MonoBehaviour
 {
     public TalentTreeType talentTreeType;
     public TextMeshProUGUI experienceText;
-    public Button upgradeBtn;
     public GameObject lockedImage;
     private void OnEnable()
     {
         var talentScreen = GetComponentInParent<TalentScreen>();
         talentScreen.ChangeCurrentOpenedTalentTree(talentTreeType);
-        upgradeBtn.interactable = talentScreen.CanUpgradeThisTree(talentTreeType);
         switch (talentTreeType)
         {
             case TalentTreeType.Special:

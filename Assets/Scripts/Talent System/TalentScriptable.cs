@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum TalentType
+{
+    Combat, Profession
+}
 [CreateAssetMenu(menuName = "Talent System/Talent")]
 public class TalentScriptable : ScriptableObject
 {
+    public TalentType talentType;
     public byte maxLevel;
     public TalentScriptable requiredTalent;
     public byte requiredTalentLevel;

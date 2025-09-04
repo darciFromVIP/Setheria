@@ -16,7 +16,7 @@ public class AvailablePointsBTN : MonoBehaviour
         if (pointType == PointType.Attribute)
             player.Attributes_Changed.AddListener(PointsChanged);
         else if (pointType == PointType.Talent)
-            player.talentTrees.Talent_Points_Changed.AddListener(PointsChanged);
+            player.talentTrees.Combat_Talent_Points_Changed.AddListener(PointsChanged);
     }
     private void PointsChanged(int points)
     {

@@ -8,8 +8,10 @@ using UnityEngine.Events;
 public class TalentTrees
 {
     public List<TalentTree> talentTrees = new();
-    public int talentPoints;
-    [NonSerialized] public UnityEvent<int> Talent_Points_Changed = new();
+    public int combatTalentPoints;
+    public int professionTalentPoints;
+    [NonSerialized] public UnityEvent<int> Combat_Talent_Points_Changed = new();
+    [NonSerialized] public UnityEvent<int> Profession_Talent_Points_Changed = new();
 
     public bool IsTalentUnlocked(TalentScriptable talent, byte level)
     {
@@ -30,7 +32,7 @@ public class TalentTrees
     }
     public void UnlockTalent(TalentScriptable talent, PlayerCharacter player)
     {
-        if (talentPoints <= 0)
+        if (combatTalentPoints <= 0)
             return;
         foreach (var item in talentTrees)
         {
@@ -39,7 +41,10 @@ public class TalentTrees
                 if (item2.name == talent.label)
                 {
                     item2.IncreaseCurrentLevel(player);
-                    ChangeTalentPoints(-1);
+                    if (talent.talentType == TalentType.Combat)
+                        ChangeCombatTalentPoints(-1);
+                    else
+                        ChangeProfessionTalentPoints(-1);
                     item.ChangeTalentPointsSpent(1);
                 }
             }
@@ -56,16 +61,26 @@ public class TalentTrees
                     Debug.Log(item2.name);
                     item2.ResetLevel(player);
                 }
-                talentPoints += item.talentPointsSpent;
+                if (treeType == TalentTreeType.Special)
+                    combatTalentPoints += item.talentPointsSpent;
+                else
+                    professionTalentPoints += item.talentPointsSpent;
                 item.talentPointsSpent = 0;
             }
         }
     }
-    public void ChangeTalentPoints(int value)
+    public void ChangeCombatTalentPoints(int value)
     {
-        talentPoints += value;
-        if (talentPoints < 0)
-            talentPoints = 0;
-        Talent_Points_Changed.Invoke(talentPoints);
+        combatTalentPoints += value;
+        if (combatTalentPoints < 0)
+            combatTalentPoints = 0;
+        Combat_Talent_Points_Changed.Invoke(combatTalentPoints);
+    }
+    public void ChangeProfessionTalentPoints(int value)
+    {
+        professionTalentPoints += value;
+        if (professionTalentPoints < 0)
+            professionTalentPoints = 0;
+        Profession_Talent_Points_Changed.Invoke(professionTalentPoints);
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public enum QuestRewardType
 {
-    Resources, Knowledge, XP, Item, Unknown, TalentPoint
+    Resources, Knowledge, XP, Item, Unknown, CombatTalentPoint, ProfessionTalentPoint
 }
 public enum QuestType
 {
@@ -576,7 +576,7 @@ public class QuestScriptable : ScriptableObject, IComparable
                 case QuestRewardType.Unknown:
                     result += "Unknown";
                     break;
-                case QuestRewardType.TalentPoint:
+                case QuestRewardType.CombatTalentPoint:
                     result += "Talent Point x";
                     break;
                 default:

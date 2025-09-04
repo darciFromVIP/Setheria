@@ -6,14 +6,11 @@ using UnityEngine.UI;
 
 public class DietUI : MonoBehaviour, NeedsLocalPlayerCharacter
 {
-    private PlayerCharacter localPlayer;
     public LayoutElement entireRect;
     public RectTransform line;
     public TextMeshProUGUI carnivoreText, herbivoreText, dietText;
-    public GameObject carnivoreTalents, herbivoreTalents, omnivoreTalents;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
     {
-        localPlayer = player;
         player.DietPercentageChanged.AddListener(UpdateUI);
     }
 
@@ -27,30 +24,18 @@ public class DietUI : MonoBehaviour, NeedsLocalPlayerCharacter
             line.localPosition = new Vector3(553, line.localPosition.y, line.localPosition.z);
         carnivoreText.text = percentage.ToString() + "%";
         herbivoreText.text = (100 - percentage).ToString() + "%";
-        if (percentage >= 70 && !carnivoreTalents.activeSelf)
+        if (percentage >= 70)
         {
-            carnivoreTalents.SetActive(true);
-            herbivoreTalents.SetActive(false);
-            omnivoreTalents.SetActive(false);
-            localPlayer.talentTrees.RefundTalentPoints(TalentTreeType.Diet, localPlayer);
             FindObjectOfType<SystemMessages>().AddMessage("Diet changed to Carnivore.", MsgType.Notice);
             dietText.text = "Carnivore";
         }
-        else if (percentage <= 30 && !herbivoreTalents.activeSelf)
+        else if (percentage <= 30)
         {
-            carnivoreTalents.SetActive(false);
-            herbivoreTalents.SetActive(true);
-            omnivoreTalents.SetActive(false);
-            localPlayer.talentTrees.RefundTalentPoints(TalentTreeType.Diet, localPlayer);
             FindObjectOfType<SystemMessages>().AddMessage("Diet changed to Herbivore.", MsgType.Notice);
             dietText.text = "Herbivore";
         }
-        else if (percentage > 30 && percentage < 70 && !omnivoreTalents.activeSelf)
+        else if (percentage > 30 && percentage < 70)
         {
-            carnivoreTalents.SetActive(false);
-            herbivoreTalents.SetActive(false);
-            omnivoreTalents.SetActive(true);
-            localPlayer.talentTrees.RefundTalentPoints(TalentTreeType.Diet, localPlayer);
             FindObjectOfType<SystemMessages>().AddMessage("Diet changed to Omnivore.", MsgType.Notice);
             dietText.text = "Omnivore";
         }

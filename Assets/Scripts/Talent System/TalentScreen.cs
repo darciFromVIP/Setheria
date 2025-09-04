@@ -27,8 +27,16 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
             {
                 if (item2.talentTreeType == currentOpenedTree)
                 {
-                    availablePoints.text = "Available Talent Points: " + localPlayer.talentTrees.talentPoints;
-                    spentPoints.text = "Spent Talent Points: " + item2.talentPointsSpent;
+                    if (currentOpenedTree == TalentTreeType.Special)
+                    {
+                        availablePoints.text = "Available Combat Talent Points: " + localPlayer.talentTrees.combatTalentPoints;
+                        spentPoints.text = "Spent Talent Points: " + item2.talentPointsSpent;
+                    }
+                    else
+                    {
+                        availablePoints.text = "Available Profession Talent Points: " + localPlayer.talentTrees.professionTalentPoints;
+                        spentPoints.text = "Spent Talent Points: " + item2.talentPointsSpent;
+                    }
                 }
                 foreach (var item3 in item2.talents)
                 {
@@ -54,26 +62,5 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
     public void ChangeCurrentOpenedTalentTree(TalentTreeType type)
     {
         currentOpenedTree = type;
-    }
-    public bool CanUpgradeThisTree(TalentTreeType type)
-    {
-        switch (type)
-        {
-            case TalentTreeType.Special:
-                break;
-            case TalentTreeType.Gathering:
-                return localPlayer.professions.gathering == localPlayer.professions.maxGathering;
-            case TalentTreeType.Cooking:
-                return localPlayer.professions.cooking == localPlayer.professions.maxCooking;
-            case TalentTreeType.Alchemy:
-                return localPlayer.professions.alchemy == localPlayer.professions.maxAlchemy;
-            case TalentTreeType.Fishing:
-                return localPlayer.professions.fishing == localPlayer.professions.maxFishing;
-            case TalentTreeType.Exploration:
-                return localPlayer.professions.exploration == localPlayer.professions.maxExploration;
-            default:
-                break;
-        }
-        return false;
     }
 }

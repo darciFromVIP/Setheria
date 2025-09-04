@@ -11,6 +11,7 @@ public class Professions
     public int maxGathering, maxAlchemy, maxCooking, maxFishing, maxExploration;
     public int gatheringMilestone, alchemyMilestone, cookingMilestone, fishingMilestone, explorationMilestone;
     public List<int> largeProfMilestones;
+    public List<int> smallProfMilestones;
 
     [NonSerialized] public PlayerCharacter player;
 
@@ -34,12 +35,13 @@ public class Professions
         maxCooking = 200;
         maxFishing = 200;
         maxExploration = 200;
-        gatheringMilestone = 25;
-        alchemyMilestone = 25;
-        cookingMilestone = 25;
-        fishingMilestone = 25;
-        explorationMilestone = 25;
-        largeProfMilestones = new List<int> { 50, 75, 100, 125, 150, 175, 200 };
+        gatheringMilestone = 20;        // Large Profession
+        alchemyMilestone = 15;          // Small Profession
+        cookingMilestone = 20;          // Large Profession
+        fishingMilestone = 20;          // Large Profession
+        explorationMilestone = 15;      // Small Profession
+        largeProfMilestones = new List<int> { 40, 60, 80, 100, 120, 140, 160, 180, 200 };
+        smallProfMilestones = new List<int> { 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 200 };
         this.player = player;
     }
 
@@ -53,7 +55,7 @@ public class Professions
                 player.SpawnProfessionFloatingText(TalentTreeType.Gathering, amount, gathering, gatheringMilestone);
             if (gathering / gatheringMilestone >= 1)
             {
-                player.talentTrees.ChangeTalentPoints(gathering / gatheringMilestone);
+                player.talentTrees.ChangeProfessionTalentPoints(gathering / gatheringMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (gatheringMilestone / item < 1)
@@ -74,8 +76,8 @@ public class Professions
                 player.SpawnProfessionFloatingText(TalentTreeType.Alchemy, amount, alchemy, alchemyMilestone);
             if (alchemy / alchemyMilestone >= 1)
             {
-                player.talentTrees.ChangeTalentPoints(alchemy / alchemyMilestone);
-                foreach (var item in largeProfMilestones)
+                player.talentTrees.ChangeProfessionTalentPoints(alchemy / alchemyMilestone);
+                foreach (var item in smallProfMilestones)
                 {
                     if (alchemyMilestone / item < 1)
                     {
@@ -97,7 +99,7 @@ public class Professions
                 player.SpawnProfessionFloatingText(TalentTreeType.Cooking, amount, cooking, cookingMilestone);
             if (cooking/ cookingMilestone >= 1)
             {
-                player.talentTrees.ChangeTalentPoints(cooking / cookingMilestone);
+                player.talentTrees.ChangeProfessionTalentPoints(cooking / cookingMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (cookingMilestone / item < 1)
@@ -120,7 +122,7 @@ public class Professions
                 player.SpawnProfessionFloatingText(TalentTreeType.Fishing, amount, fishing, fishingMilestone);
             if (fishing / fishingMilestone >= 1)
             {
-                player.talentTrees.ChangeTalentPoints(fishing / fishingMilestone);
+                player.talentTrees.ChangeProfessionTalentPoints(fishing / fishingMilestone);
                 foreach (var item in largeProfMilestones)
                 {
                     if (fishingMilestone / item < 1)
@@ -143,8 +145,8 @@ public class Professions
                 player.SpawnProfessionFloatingText(TalentTreeType.Exploration, amount, exploration, explorationMilestone);
             if (exploration / explorationMilestone >= 1)
             {
-                player.talentTrees.ChangeTalentPoints(exploration / explorationMilestone);
-                foreach (var item in largeProfMilestones)
+                player.talentTrees.ChangeProfessionTalentPoints(exploration / explorationMilestone);
+                foreach (var item in smallProfMilestones)
                 {
                     if (explorationMilestone / item < 1)
                     {

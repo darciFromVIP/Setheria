@@ -366,7 +366,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                                 }
                             }
                         }
-                        talentTrees.talentPoints = 0;
+                        talentTrees.combatTalentPoints = 0;
+                        talentTrees.professionTalentPoints = 0;
                         if (item.talentTrees != null)
                         {
                             talentTrees = item.talentTrees;
@@ -588,7 +589,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                     FindObjectOfType<Tutorial>().QueueNewTutorial(item);
                 }
             }    
-            talentTrees.ChangeTalentPoints(1);
+            talentTrees.ChangeCombatTalentPoints(1);
             ChangeAttributePoints(1);
             FindObjectOfType<FloatingText>().SpawnText("+1 <sprite=13>", transform.position + Vector3.up * 1, FloatingTextType.Experience);
             levelUpEffect.SetActive(true);
@@ -901,7 +902,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 GetComponent<CanAttack>().ChangePowerMultiplier(modifier);
                 break;
             case PlayerStat.TalentPoint:
-                talentTrees.ChangeTalentPoints((int)modifier);
+                talentTrees.ChangeCombatTalentPoints((int)modifier);
                 break;
             default:
                 break;
