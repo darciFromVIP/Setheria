@@ -49,7 +49,7 @@ public class TalentButton : MonoBehaviour
             image.color = new Color(0.25f, 0.25f, 0.25f);
             btn.interactable = false;
         }
-        else if (currentTalent.currentLevel == 0 && playerTalentTrees.IsTalentUnlocked(talent.requiredTalent, talent.requiredTalentLevel))
+        else if (currentTalent.currentLevel == 0 && (playerTalentTrees.IsTalentUnlocked(talent.requiredTalent, talent.requiredTalentLevel) >= talent.requiredTalentLevel))
         {
             image.color = new Color(0.75f, 0.75f, 0.75f);
             btn.interactable = true;
@@ -65,7 +65,7 @@ public class TalentButton : MonoBehaviour
             btn.interactable = false;
         foreach (var item in talent.excludingTalents)
         {
-            if (playerTalentTrees.IsTalentUnlocked(item, 1))
+            if (playerTalentTrees.IsTalentUnlocked(item, 1) >= 1)
             {
                 image.color = new Color(0.25f, 0.25f, 0.25f);
                 btn.interactable = false;

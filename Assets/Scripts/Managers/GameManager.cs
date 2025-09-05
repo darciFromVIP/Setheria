@@ -19,6 +19,13 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     private int knowledge = 0;
     public StructureUpgradeDatabase structureUpgradeDatabase;
 
+    [SyncVar(hook = nameof(CookingPlayersHook))] private byte cookingPlayers;
+    [SyncVar(hook = nameof(FishingPlayersHook))] private byte fishingPlayers;
+    [SyncVar(hook = nameof(AlchemyPlayersHook))] private byte alchemyPlayers;
+    [SyncVar(hook = nameof(GatheringPlayersHook))] private byte gatheringPlayers;
+    [SyncVar(hook = nameof(ExplorationPlayersHook))] private byte explorationPlayers;
+    [SyncVar(hook = nameof(OccultismPlayersHook))] private byte occultismPlayers;
+
     private bool inputEnabled = true;
 
     public UnityEvent<float> Healing_Potions_Cooldown = new();
@@ -29,7 +36,6 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     public UnityEvent<int> Knowledge_Added = new();
     public EventScriptable Player_Event;
 
-    
     public RecipeDatabase recipeDatabase;
     public PlayerCharacter localPlayerCharacter;
     private void Awake()
@@ -259,5 +265,63 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
         {
             upgrade.currentLevel = level;
         }
+    }
+    private void CookingPlayersHook(byte previous, byte current)
+    {
+        foreach (var item in FindObjectsOfType<PlayerCharacter>())
+        {
+            if (item.professions.cooking > 0)
+                item.CookingUnityPlayers(current);
+        }
+    }
+    private void FishingPlayersHook(byte previous, byte current)
+    {
+
+    }
+    private void GatheringPlayersHook(byte previous, byte current)
+    {
+
+    }
+    private void AlchemyPlayersHook(byte previous, byte current)
+    {
+
+    }
+    private void ExplorationPlayersHook(byte previous, byte current)
+    {
+
+    }
+    private void OccultismPlayersHook(byte previous, byte current)
+    {
+
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdAddCookingPlayer()
+    {
+        cookingPlayers++;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdAddExplorationPlayer()
+    {
+        explorationPlayers++;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdAddGatheringPlayer()
+    {
+        gatheringPlayers++;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdAddFishingPlayer()
+    {
+        fishingPlayers++;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdAddAlchemyPlayer()
+    {
+        alchemyPlayers++;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdAddOccultismPlayer()
+    {
+        occultismPlayers++;
     }
 }

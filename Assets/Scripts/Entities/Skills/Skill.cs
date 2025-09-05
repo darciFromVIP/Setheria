@@ -111,7 +111,7 @@ public class Skill : ScriptableObject
     public virtual void UpdateDescription()
     {
         if (requiredTalent != null)
-            unlocked = (castingEntity as PlayerCharacter).talentTrees.IsTalentUnlocked(requiredTalent, requiredTalentLevel);
+            unlocked = (castingEntity as PlayerCharacter).talentTrees.IsTalentUnlocked(requiredTalent, requiredTalentLevel) >= requiredTalentLevel;
         (castingEntity as PlayerCharacter).Skills_Changed.Invoke(castingEntity.skillInstances);
         Description_Updated.Invoke(description);
     }

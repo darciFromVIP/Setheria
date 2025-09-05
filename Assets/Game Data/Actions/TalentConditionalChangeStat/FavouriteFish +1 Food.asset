@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7edfa0ac1bbe00648acfce7bbd462446, type: 3}
+  m_Name: FavouriteFish +1 Food
+  m_EditorClassIdentifier: 
+  Action_Finished:
+    m_PersistentCalls:
+      m_Calls: []
+  stat: 6
+  amount: 1
+  dietType: 1
+  vfx: {fileID: 0}
+  requiredTalent: {fileID: 11400000, guid: 3502eaa68fc475a4295632581bcd7d3f, type: 2}
+  requiredTalentLevel: 1
+  multiplyStatByTalentLevel: 0

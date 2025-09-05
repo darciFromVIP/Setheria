@@ -54,11 +54,19 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     protected int attCriticalDamage = 0;
     protected int attCooldownReduction = 0;
 
+    private byte 
+        cookingPlayers = 0,
+        fishingPlayers = 0,
+        alchemyPlayers = 0,
+        explorationPlayers = 0,
+        gatheringPlayers = 0,
+        occultismPlayers = 0;
+
     public TalentTreesReference refTalentTrees;
     [HideInInspector] public TalentTrees talentTrees = new();
     public Professions professions;
     protected float carnivorePercentage = 50;
-    protected float hungerBonus = 1;
+    protected float flatFoodBonus = 0;
 
     protected const float MaxXpMultiplier = 1.2f;
     protected const int BaseMaxXpValue = 100;
@@ -692,7 +700,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     public void CmdChangeHunger(int amount, bool showText, DietType dietType)
     {
         if (amount > 0)
-            amount = (int)(hungerBonus * amount);
+            amount = (int)(flatFoodBonus + amount);
         if (showText)
         {
             if (amount > 0)
@@ -1294,34 +1302,17 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (name == "Wild Companion")
             WildCompanion(previousLevel, currentLevel);
 
-        // Diet Talents
-        if (name == "Protein Rush")
-            ProteinRush(previousLevel, currentLevel);
-        if (name == "Tough Body")
-            ToughBody(previousLevel, currentLevel);
+        // Cooking Talents
         if (name == "Animal Feeder")
             AnimalFeeder(previousLevel, currentLevel);
-
-        if (name == "Chlorophyll Surge")
-            ChlorophyllSurge(previousLevel, currentLevel);
-        if (name == "Energy Reserves")
-            EnergyReserves(previousLevel, currentLevel);
-        if (name == "Potato Seed")
-            PotatoSeed(previousLevel, currentLevel);
-
-        if (name == "Balanced Bite")
-            BalancedBite(previousLevel, currentLevel);
-        if (name == "Energic Body")
-            EnergicBody(previousLevel, currentLevel);
+        if (name == "Cooking Unity")
+            CookingUnity(previousLevel, currentLevel);
         if (name == "Feast")
             Feast(previousLevel, currentLevel);
-        if (name == "Blood Extractor")
-            BloodExtractor(previousLevel, currentLevel);
-
         if (name.Contains("Expanded Stomach"))
             ExpandedStomach(previousLevel, currentLevel);
-        if (name.Contains("Efficient Metabolism"))
-            CmdEfficientMetabolism(previousLevel, currentLevel);
+        if (name.Contains("Gourmet"))
+            CmdGourmet(previousLevel, currentLevel);
 
         UpdateSkills();
     }
@@ -1381,34 +1372,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (name == "Wild Companion")
             WildCompanionReduce(previousLevel, currentLevel);
 
-        // Diet Talents
-        if (name == "Protein Rush")
-            ProteinRushReduce(previousLevel, currentLevel);
-        if (name == "Tough Body")
-            ToughBodyReduce(previousLevel, currentLevel);
+        // Cooking Talents
         if (name == "Animal Feeder")
             AnimalFeederReduce(previousLevel, currentLevel);
-
-        if (name == "Chlorophyll Surge")
-            ChlorophyllSurgeReduce(previousLevel, currentLevel);
-        if (name == "Energy Reserves")
-            EnergyReservesReduce(previousLevel, currentLevel);
-        if (name == "Potato Seed")
-            PotatoSeedReduce(previousLevel, currentLevel);
-
-        if (name == "Balanced Bite")
-            BalancedBiteReduce(previousLevel, currentLevel);
-        if (name == "Energic Body")
-            EnergicBodyReduce(previousLevel, currentLevel);
         if (name == "Feast")
             FeastReduce(previousLevel, currentLevel);
-        if (name == "Blood Extractor")
-            BloodExtractorReduce(previousLevel, currentLevel);
-
         if (name.Contains("Expanded Stomach"))
             ExpandedStomachReduce(previousLevel, currentLevel);
-        if (name.Contains("Efficient Metabolism"))
-            CmdEfficientMetabolism(previousLevel, currentLevel);
+        if (name.Contains("Gourmet"))
+            CmdGourmetReduce(previousLevel, currentLevel);
     }
     // Forest Protector Talents
     private void NatureAttunement(int previousLevel, int currentLevel)
@@ -1819,35 +1791,42 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             GetComponent<Lycandruid>().CmdUnlearnWildCompanion();
         }
     }
-    // Diet Talents
-    // Carnivore
-    private void ProteinRush(int previousLevel, int currentLevel)
+    // Cooking Talents
+    private void CookingUnity(int previousLevel, int currentLevel)
     {
-        for (int i = previousLevel; i < currentLevel; i++) 
-        {
-            attackComp.CmdChangeGearPower(1);
-        }
+        FindObjectOfType<GameManager>().CmdAddCookingPlayer();
     }
-    private void ProteinRushReduce(int previousLevel, int currentLevel)
+    public void CookingUnityPlayers(byte currentPlayers)
     {
-        for (int i = previousLevel; i > currentLevel; i--)
-        {
-            attackComp.CmdChangeGearPower(-1);
-        }
+        if (currentPlayers - cookingPlayers < 0)
+            for (int i = 0; i > currentPlayers - cookingPlayers; i--)
+            {
+                attackComp.CmdChangePowerMultiplier(-0.03f);
+            }
+        else
+            for (int i = 0; i < currentPlayers - cookingPlayers; i++)
+            {
+                attackComp.CmdChangePowerMultiplier(0.03f);
+            }
+        cookingPlayers = currentPlayers;
     }
-    private void ToughBody(int previousLevel, int currentLevel)
+    private void ExpandedStomach(int previousLevel, int currentLevel)
     {
         for (int i = previousLevel; i < currentLevel; i++)
         {
-            healthComp.CmdChangeGearMaxHealth(20);
+            CmdChangeMaxHunger(25);
         }
     }
-    private void ToughBodyReduce(int previousLevel, int currentLevel)
+    private void ExpandedStomachReduce(int previousLevel, int currentLevel)
     {
         for (int i = previousLevel; i > currentLevel; i--)
         {
-            healthComp.CmdChangeGearMaxHealth(-20);
+            CmdChangeMaxHunger(-25);
         }
+    }
+    private void FavouriteFish(int previousLevel, int currentLevel)
+    {
+
     }
     private void AnimalFeeder(int previousLevel, int currentLevel)
     {
@@ -1859,76 +1838,6 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (currentLevel <= 0)
             FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Animal Feeder").LockRecipe();
     }
-    // Herbivore
-    private void ChlorophyllSurge(int previousLevel, int currentLevel)
-    {
-        for (int i = previousLevel; i < currentLevel; i++)
-        {
-            manaComp.CmdChangeGearManaRegen(0.1f);
-        }
-    }
-    private void ChlorophyllSurgeReduce(int previousLevel, int currentLevel)
-    {
-        for (int i = previousLevel; i > currentLevel; i--)
-        {
-            manaComp.CmdChangeGearManaRegen(-0.1f);
-        }
-    }
-    private void EnergyReserves(int previousLevel, int currentLevel)
-    {
-        for (int i = previousLevel; i < currentLevel; i++)
-        {
-            manaComp.CmdChangeGearMaxMana(20);
-        }
-    }
-    private void EnergyReservesReduce(int previousLevel, int currentLevel)
-    {
-        for (int i = previousLevel; i > currentLevel; i--)
-        {
-            manaComp.CmdChangeGearMaxMana(-20);
-        }
-    }
-    private void PotatoSeed(int previousLevel, int currentLevel)
-    {
-        if (currentLevel >= 1)
-            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Potato Seed").UnlockRecipe();
-    }
-    private void PotatoSeedReduce(int previousLevel, int currentLevel)
-    {
-        if (currentLevel <= 0)
-            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Potato Seed").LockRecipe();
-    }
-    // Omnivore
-    private void BalancedBite(int previousLevel, int currentLevel)
-    {
-        for (int i = previousLevel; i < currentLevel; i++)
-        {
-            healthComp.CmdChangeGearMaxHealth(15);
-        }
-    }
-    private void BalancedBiteReduce(int previousLevel, int currentLevel)
-    {
-        for (int i = previousLevel; i > currentLevel; i--)
-        {
-            healthComp.CmdChangeGearMaxHealth(-15);
-        }
-    }
-    private void EnergicBody(int previousLevel, int currentLevel)
-    {
-        for (int i = previousLevel; i < currentLevel; i++)
-        {
-            healthComp.CmdChangeGearMaxHealth(10);
-            manaComp.CmdChangeGearMaxMana(10);
-        }
-    }
-    private void EnergicBodyReduce(int previousLevel, int currentLevel)
-    {
-        for (int i = previousLevel; i > currentLevel; i--)
-        {
-            healthComp.CmdChangeGearMaxHealth(-10);
-            manaComp.CmdChangeGearMaxMana(-10);
-        }
-    }
     private void Feast(int previousLevel, int currentLevel)
     {
         if (currentLevel >= 1)
@@ -1939,34 +1848,26 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (currentLevel <= 0)
             FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Feast").LockRecipe();
     }
-    private void ExpandedStomach(int previousLevel, int currentLevel)
-    {
-        for (int i = previousLevel; i < currentLevel; i++)
-        {
-            CmdChangeMaxHunger(10);
-        }
-    }
-    private void ExpandedStomachReduce(int previousLevel, int currentLevel)
-    {
-        for (int i = previousLevel; i > currentLevel; i--)
-        {
-            CmdChangeMaxHunger(-10);
-        }
-    }
+
     [Command(requiresAuthority = false)]
-    private void CmdEfficientMetabolism(int previousLevel, int currentLevel)
+    private void CmdGourmet(int previousLevel, int currentLevel)
     {
-        RpcEfficientMetabolism(previousLevel, currentLevel);
+        RpcGourmet(previousLevel, currentLevel);
     }
     [ClientRpc]
-    private void RpcEfficientMetabolism(int previousLevel, int currentLevel)
+    private void RpcGourmet(int previousLevel, int currentLevel)
     {
-        if (currentLevel == 1)
-            hungerBonus = 1.15f;
-        if (currentLevel == 2)
-            hungerBonus = 1.20f;
-        if (currentLevel == 3)
-            hungerBonus = 1.30f;
+        flatFoodBonus += 1;
+    }
+    [Command(requiresAuthority = false)]
+    private void CmdGourmetReduce(int previousLevel, int currentLevel)
+    {
+        RpcGourmetReduce(previousLevel, currentLevel);
+    }
+    [ClientRpc]
+    private void RpcGourmetReduce(int previousLevel, int currentLevel)
+    {
+        flatFoodBonus -= 1;
     }
     private void BloodExtractor(int previousLevel, int currentLevel)
     {

@@ -13,10 +13,10 @@ public class TalentTrees
     [NonSerialized] public UnityEvent<int> Combat_Talent_Points_Changed = new();
     [NonSerialized] public UnityEvent<int> Profession_Talent_Points_Changed = new();
 
-    public bool IsTalentUnlocked(TalentScriptable talent, byte level)
+    public byte IsTalentUnlocked(TalentScriptable talent, byte level)
     {
         if (talent == null)
-            return true;
+            return 0;
         foreach (var item in talentTrees)
         {
             foreach (var item2 in item.talents)
@@ -24,11 +24,28 @@ public class TalentTrees
                 if (item2.name == talent.label)
                 {
                     if (item2.currentLevel >= level)
-                        return true;
+                        return item2.currentLevel;
                 }
             }
         }
-        return false;
+        return 0;
+    }
+    public byte IsTalentUnlocked(string talent, byte level)
+    {
+        if (talent == "")
+            return 0;
+        foreach (var item in talentTrees)
+        {
+            foreach (var item2 in item.talents)
+            {
+                if (item2.name == talent)
+                {
+                    if (item2.currentLevel >= level)
+                        return item2.currentLevel;
+                }
+            }
+        }
+        return 0;
     }
     public void UnlockTalent(TalentScriptable talent, PlayerCharacter player)
     {

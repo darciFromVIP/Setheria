@@ -120,7 +120,10 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         if (localPlayer.state == PlayerState.None)
         {
             blockingUI.SetActive(true);
-            localPlayer.CmdStartWorking(currentOpenedRecipe.craftingDuration * amount);
+            float durationReduction = 0;
+            if (currentOpenedRecipe.recipeCategory == RecipeCategory.Cooking)
+                durationReduction = 0.5f * localPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Hasty Chef", 1);
+            localPlayer.CmdStartWorking((currentOpenedRecipe.craftingDuration - durationReduction) * amount);
             localPlayer.Work_Finished.AddListener(FinishCrafting);
             localPlayer.Work_Cancelled.AddListener(CraftingCancelled);
         }

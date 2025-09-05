@@ -192,7 +192,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         bool used = false;
         if (item.requiredTalentForAlternateUsage)
         {
-            if (localPlayer.talentTrees.IsTalentUnlocked(item.requiredTalentForAlternateUsage, item.requiredTalentLevel))
+            if (localPlayer.talentTrees.IsTalentUnlocked(item.requiredTalentForAlternateUsage, item.requiredTalentLevel) >= item.requiredTalentLevel)
             {
                 foreach (var item in item.alternateUsage)
                 {
