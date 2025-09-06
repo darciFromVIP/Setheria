@@ -37,6 +37,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     protected float hungerInterval;
     protected float hungerIntervalMultiplier = 0;
     protected float hungerTimer = 0;
+    protected float survivalMechanismCooldown = 0;
+    protected float survivalMechanismTimer = 0;
     [SyncVar] public int water;
     [SyncVar] public int maxWater;
     protected float waterInterval;
@@ -168,32 +170,48 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             if (healthComp.GetHealth() > 0)
             {
-                hungerTimer += Time.deltaTime;
-                if (hungerTimer >= GetHungerInterval())
+                if (hunger <= 20 && talentTrees.IsTalentUnlocked("Survival Mechanism", 1) >= 1 && survivalMechanismCooldown <= 0)
                 {
-                    hungerTimer = 0;
-                    CmdChangeHunger(-1, false, DietType.None);
-                    CmdRemoveBuff("Starving", connectionToClient);
+                    survivalMechanismCooldown = 180;
+                    survivalMechanismTimer = 60;
                 }
-                else if (hunger <= 0 && hungerTimer >= 10)
+                if (survivalMechanismCooldown > 0)
+                    survivalMechanismCooldown -= Time.deltaTime;
+                if (survivalMechanismTimer > 0)
+                    survivalMechanismTimer -= Time.deltaTime;
+                if (survivalMechanismTimer > 0)
                 {
-                    hungerTimer = 0;
-                    if (HasBuff("Starving") == 0)
-                        CmdAddBuff("Starving", connectionToClient);
+                    yield return null;
                 }
-                waterTimer += Time.deltaTime;
-                if (waterTimer >= GetWaterInterval())
+                else
                 {
-                    waterTimer = 0;
-                    CmdChangeWater(-1, false);
-                    CmdRemoveBuff("Dehydrated", connectionToClient);
-                }
-                else if (water <= 0 && waterTimer >= 4)
-                {
-                    waterTimer = 0;
-                    if (HasBuff("Dehydrated") == 0)
-                        CmdAddBuff("Dehydrated", connectionToClient);
-                    manaComp.CmdSpendMana(manaComp.GetFinalMaxMana() * 0.2f);
+                    hungerTimer += Time.deltaTime;
+                    if (hungerTimer >= GetHungerInterval())
+                    {
+                        hungerTimer = 0;
+                        CmdChangeHunger(-1, false, DietType.None);
+                        CmdRemoveBuff("Starving", connectionToClient);
+                    }
+                    else if (hunger <= 0 && hungerTimer >= 10)
+                    {
+                        hungerTimer = 0;
+                        if (HasBuff("Starving") == 0)
+                            CmdAddBuff("Starving", connectionToClient);
+                    }
+                    waterTimer += Time.deltaTime;
+                    if (waterTimer >= GetWaterInterval())
+                    {
+                        waterTimer = 0;
+                        CmdChangeWater(-1, false);
+                        CmdRemoveBuff("Dehydrated", connectionToClient);
+                    }
+                    else if (water <= 0 && waterTimer >= 4)
+                    {
+                        waterTimer = 0;
+                        if (HasBuff("Dehydrated") == 0)
+                            CmdAddBuff("Dehydrated", connectionToClient);
+                        manaComp.CmdSpendMana(manaComp.GetFinalMaxMana() * 0.2f);
+                    }
                 }
             }
             yield return null;
@@ -1313,6 +1331,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             ExpandedStomach(previousLevel, currentLevel);
         if (name.Contains("Gourmet"))
             CmdGourmet(previousLevel, currentLevel);
+        if (name.Contains("Improved Digestion"))
+            ImprovedDigestion(previousLevel, currentLevel);
+        if (name.Contains("Laxative"))
+            Laxative(previousLevel, currentLevel);
 
         UpdateSkills();
     }
@@ -1381,6 +1403,10 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             ExpandedStomachReduce(previousLevel, currentLevel);
         if (name.Contains("Gourmet"))
             CmdGourmetReduce(previousLevel, currentLevel);
+        if (name.Contains("Improved Digestion"))
+            ImprovedDigestionReduce(previousLevel, currentLevel);
+        if (name.Contains("Laxative"))
+            LaxativeReduce(previousLevel, currentLevel);
     }
     // Forest Protector Talents
     private void NatureAttunement(int previousLevel, int currentLevel)
@@ -1824,9 +1850,29 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             CmdChangeMaxHunger(-25);
         }
     }
-    private void FavouriteFish(int previousLevel, int currentLevel)
+    private void ImprovedDigestion(int previousLevel, int currentLevel)
     {
-
+        for(int i = previousLevel; i < currentLevel; i++)
+        {
+            CmdChangeHungerIntervalMultiplier(0.02f);
+        }
+    }
+    private void ImprovedDigestionReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            CmdChangeHungerIntervalMultiplier(-0.02f);
+        }
+    }
+    private void Laxative(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Laxative").UnlockRecipe();
+    }
+    private void LaxativeReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Laxative").LockRecipe();
     }
     private void AnimalFeeder(int previousLevel, int currentLevel)
     {

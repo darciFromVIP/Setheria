@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Video;
 public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
 {
     public InventoryItem inventoryItemPrefab;
@@ -219,6 +218,23 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
             }
         }
         FindObjectOfType<GameManager>().ChangeResources(-currentOpenedRecipe.resourceCost * amount);
+
+        // Ingredient Efficiency talent
+        int bonusAmount = 0;
+        if (currentOpenedRecipe.recipeCategory == RecipeCategory.Cooking)
+        {
+            float chanceForBonus = localPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Ingredient Efficiency", 1) * 0.05f;
+            for (int i = 0; i < amount; i++)
+            {
+                float random = Random.Range(0f, 1f);
+                if (random <= chanceForBonus)
+                    bonusAmount++;
+            }
+            amount += bonusAmount;
+        }
+        if (currentOpenedRecipe.resultItem.itemData.name == "Salt" && localPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Salty Business", 1) >= 1)
+            amount *= 2;
+
         var tempItem = new ItemRecipeInfo() { itemData = currentOpenedRecipe.resultItem.itemData, stacks = currentOpenedRecipe.resultItem.stacks * amount };
         if (tempItem.itemData.stackable)
             inventory.AddItem(tempItem);
@@ -230,6 +246,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
                 inventory.AddItem(tempItem);
             }
         }
+        amount -= bonusAmount;
         if (!openedInStructure)
             GetComponentInParent<ManualScreen>().UpdateCurrentCategory();
         FindObjectOfType<AudioManager>().ItemCrafted(localPlayer.transform.position);

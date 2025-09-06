@@ -25,6 +25,7 @@ MonoBehaviour:
   maxStacks: 99
   usage:
   - {fileID: 11400000, guid: 4b9717fa098cb7b4182b6bd23eee8ab4, type: 2}
+  - {fileID: 11400000, guid: a24259552b5f96e43b04528c8d82d66e, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
@@ -34,7 +35,11 @@ MonoBehaviour:
   resourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  defaultUnlocked: 1
   itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
