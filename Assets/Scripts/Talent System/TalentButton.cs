@@ -43,7 +43,7 @@ public class TalentButton : MonoBehaviour
         var localPlayer = FindObjectOfType<GameManager>().localPlayerCharacter;
         levelText.text = currentTalent.currentLevel + "/" + talent.maxLevel;
         if (currentTalent.currentLevel == 0 && (talentTree.talentPointsSpent < talent.requiredTalentPointsSpent 
-            || talentTree.talentTreeType == TalentTreeType.Special ? playerTalentTrees.combatTalentPoints <= 0 : playerTalentTrees.professionTalentPoints <= 0
+            || talentTree.talentTreeType == TalentTreeType.Combat ? playerTalentTrees.combatTalentPoints <= 0 : playerTalentTrees.professionTalentPoints <= 0
             || localPlayer.level < talent.requiredPlayerLevel) )
         {
             image.color = new Color(0.25f, 0.25f, 0.25f);

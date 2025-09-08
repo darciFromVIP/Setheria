@@ -17,7 +17,7 @@ public class AGainProfession : ActionTemplate
         var prof = FindObjectOfType<GameManager>().localPlayerCharacter.professions;
         switch (professionType)
         {
-            case TalentTreeType.Special:
+            case TalentTreeType.Combat:
                 break;
             case TalentTreeType.Gathering:
                 prof.AddGathering(amountGained);

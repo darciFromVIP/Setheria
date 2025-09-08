@@ -8,7 +8,7 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
     public TextMeshProUGUI availablePoints, spentPoints;
     private List<TalentButton> talentButtons = new();
 
-    private TalentTreeType currentOpenedTree = TalentTreeType.Special;
+    private TalentTreeType currentOpenedTree = TalentTreeType.Combat;
 
     public PlayerCharacter localPlayer;
     public void SetLocalPlayerCharacter(PlayerCharacter player)
@@ -27,7 +27,7 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
             {
                 if (item2.talentTreeType == currentOpenedTree)
                 {
-                    if (currentOpenedTree == TalentTreeType.Special)
+                    if (currentOpenedTree == TalentTreeType.Combat)
                     {
                         availablePoints.text = "Available Combat Talent Points: " + localPlayer.talentTrees.combatTalentPoints;
                         spentPoints.text = "Spent Talent Points: " + item2.talentPointsSpent;
@@ -50,6 +50,10 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
     }
     public void UnlockTalent(TalentScriptable talent)
     {
+        if ((talent.talentType == TalentType.Combat && localPlayer.talentTrees.combatTalentPoints <= 0) ||
+            (talent.talentType == TalentType.Profession && localPlayer.talentTrees.professionTalentPoints <= 0))
+            return;
+
         localPlayer.talentTrees.UnlockTalent(talent, localPlayer);
         localPlayer.UpdateSkills();
         UpdateTalents();

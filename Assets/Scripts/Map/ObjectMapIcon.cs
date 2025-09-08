@@ -19,6 +19,9 @@ public class ObjectMapIcon : NetworkBehaviour
     public string mapTooltipText;
     public IconSize iconSize;
     public bool staticObject = true;
+    public TalentTreeType professionType;
+
+    public bool fishingUnlocked, gatheringUnlocked, explorationUnlocked;
 
     private FogOfWarTeam fow;
     private GameObject iconInstance;
@@ -54,7 +57,7 @@ public class ObjectMapIcon : NetworkBehaviour
 
         if (TryGetComponent(out HideInFog fog))
         {
-            if (fow.GetFogValue(transform.position) < fog.minFogStrength * 255)
+            if (fow.GetFogValue(transform.position) < fog.minFogStrength * 255 && CanShowIcon())
                 ToggleIconOnMap(true);
             else
                 ToggleIconOnMap(false);
@@ -74,6 +77,8 @@ public class ObjectMapIcon : NetworkBehaviour
     {
         if (iconInstance != null)
         {
+            if (value && !CanShowIcon())
+                return;
             iconInstance.SetActive(value);
             if (iconInstance.activeSelf)
                 if (TryGetComponent(out Heartstone heartstone))
@@ -107,5 +112,58 @@ public class ObjectMapIcon : NetworkBehaviour
         while (iconInstance == null)
             yield return null;
         iconInstance.GetComponent<MapIconPrefab>().ToggleCheckmark();
+    }
+    private bool CanShowIcon()
+    {
+        switch (professionType)
+        {
+            case TalentTreeType.Gathering:
+                return gatheringUnlocked;
+            case TalentTreeType.Fishing:
+                return fishingUnlocked;
+            case TalentTreeType.Exploration:
+                return explorationUnlocked;
+            default:
+                break;
+        }
+        return true;
+    }
+    public void UnlockProfession(TalentTreeType professionType)
+    {
+        switch (professionType)
+        {
+            case TalentTreeType.Gathering:
+                gatheringUnlocked = true;
+                break;
+            case TalentTreeType.Fishing:
+                fishingUnlocked = true;
+                break;
+            case TalentTreeType.Exploration:
+                explorationUnlocked = true;
+                break;
+            default:
+                break;
+        }
+        if (TryGetComponent(out HideInFog fog))
+            if (fog.IsVisible())
+                ToggleIconOnMap(true);
+    }
+    public void LockProfession(TalentTreeType professionType)
+    {
+        switch (professionType)
+        {
+            case TalentTreeType.Gathering:
+                gatheringUnlocked = false;
+                break;
+            case TalentTreeType.Fishing:
+                fishingUnlocked = false;
+                break;
+            case TalentTreeType.Exploration:
+                explorationUnlocked = false;
+                break;
+            default:
+                break;
+        }
+        ToggleIconOnMap(false);
     }
 }

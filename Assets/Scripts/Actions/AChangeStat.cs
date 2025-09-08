@@ -5,7 +5,7 @@ public enum PlayerStat
 {
     Health, MaxHealth, HealthRegen, Mana, MaxMana, ManaRegen, Hunger, MaxHunger, Resources, Knowledge, 
     ActiveItemSlot, AttributePoint, Power, AttackSpeed, CriticalChance, CriticalDamage, Armor, CooldownReduction, MovementSpeed, 
-    Level, CorruptedHealthMana, Hydration, PowerMultiplier, TalentPoint
+    Level, CorruptedHealthMana, Hydration, PowerMultiplier, CombatTalentPoint, ProfessionTalentPoint
 }
 [CreateAssetMenu(menuName = "Actions/Change Stat")]
 public class AChangeStat : ActionTemplate

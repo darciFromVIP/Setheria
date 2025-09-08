@@ -143,7 +143,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         TalentTreeScriptable talentTree = null;
         foreach (var item in refTalentTrees.talentTrees)
         {
-            if (item.treeType == TalentTreeType.Special)
+            if (item.treeType == TalentTreeType.Combat)
                 talentTree = item;
         }
         if (talentTree != null)
@@ -927,8 +927,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             case PlayerStat.PowerMultiplier:
                 GetComponent<CanAttack>().ChangePowerMultiplier(modifier);
                 break;
-            case PlayerStat.TalentPoint:
+            case PlayerStat.CombatTalentPoint:
                 talentTrees.ChangeCombatTalentPoints((int)modifier);
+                break;
+            case PlayerStat.ProfessionTalentPoint:
+                talentTrees.ChangeProfessionTalentPoints((int)modifier);
                 break;
             default:
                 break;
@@ -1261,6 +1264,11 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         }
         return false;
     }
+    public void ResetDiet()
+    {
+        carnivorePercentage = 50;
+        DietPercentageChanged.Invoke(carnivorePercentage);
+    }
     // Talent Unlock and Reset
     public void UnlockTalent(string name, int previousLevel, int currentLevel)
     {
@@ -1327,14 +1335,18 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             CookingUnity(previousLevel, currentLevel);
         if (name == "Feast")
             Feast(previousLevel, currentLevel);
-        if (name.Contains("Expanded Stomach"))
+        if (name == ("Expanded Stomach"))
             ExpandedStomach(previousLevel, currentLevel);
-        if (name.Contains("Gourmet"))
+        if (name == ("Gourmet"))
             CmdGourmet(previousLevel, currentLevel);
-        if (name.Contains("Improved Digestion"))
+        if (name == ("Improved Digestion"))
             ImprovedDigestion(previousLevel, currentLevel);
-        if (name.Contains("Laxative"))
+        if (name == ("Laxative"))
             Laxative(previousLevel, currentLevel);
+
+        //Fishing Talents
+        if (name == "Fishing Navigator")
+            FishingNavigator(previousLevel, currentLevel);
 
         UpdateSkills();
     }
@@ -1399,14 +1411,18 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             AnimalFeederReduce(previousLevel, currentLevel);
         if (name == "Feast")
             FeastReduce(previousLevel, currentLevel);
-        if (name.Contains("Expanded Stomach"))
+        if (name == ("Expanded Stomach"))
             ExpandedStomachReduce(previousLevel, currentLevel);
-        if (name.Contains("Gourmet"))
+        if (name == ("Gourmet"))
             CmdGourmetReduce(previousLevel, currentLevel);
-        if (name.Contains("Improved Digestion"))
+        if (name == ("Improved Digestion"))
             ImprovedDigestionReduce(previousLevel, currentLevel);
-        if (name.Contains("Laxative"))
+        if (name == ("Laxative"))
             LaxativeReduce(previousLevel, currentLevel);
+
+        //Fishing Talents
+        if (name == "Fishing Navigator")
+            FishingNavigatorReduce(previousLevel, currentLevel);
     }
     // Forest Protector Talents
     private void NatureAttunement(int previousLevel, int currentLevel)
@@ -1929,6 +1945,27 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         {
             FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Blood").LockRecipe();
             FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Corrupted Blood").LockRecipe();
+        }
+    }
+    // Fishing Talents
+    private void FishingNavigator(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            foreach (var item in FindObjectsOfType<ObjectMapIcon>())
+            {
+                item.UnlockProfession(TalentTreeType.Fishing);
+            }
+        }
+    }
+    private void FishingNavigatorReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            foreach (var item in FindObjectsOfType<ObjectMapIcon>())
+            {
+                item.LockProfession(TalentTreeType.Fishing);
+            }
         }
     }
 }

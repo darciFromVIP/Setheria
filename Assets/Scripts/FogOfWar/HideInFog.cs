@@ -47,5 +47,9 @@ namespace FoW
             if (_canvas != null)
                 _canvas.enabled = visible;
         }
+        public bool IsVisible()
+        {
+            return visible;
+        }
     }
 }

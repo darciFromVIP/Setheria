@@ -49,8 +49,6 @@ public class TalentTrees
     }
     public void UnlockTalent(TalentScriptable talent, PlayerCharacter player)
     {
-        if (combatTalentPoints <= 0)
-            return;
         foreach (var item in talentTrees)
         {
             foreach (var item2 in item.talents)
@@ -78,7 +76,7 @@ public class TalentTrees
                     Debug.Log(item2.name);
                     item2.ResetLevel(player);
                 }
-                if (treeType == TalentTreeType.Special)
+                if (treeType == TalentTreeType.Combat)
                     combatTalentPoints += item.talentPointsSpent;
                 else
                     professionTalentPoints += item.talentPointsSpent;

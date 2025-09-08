@@ -42,7 +42,7 @@ public class RecipeDetail : MonoBehaviour, NeedsLocalPlayerCharacter
         currentOpenedRecipe = recipeData;
         resultItemNameText.text = recipeData.resultItem.itemData.name;
         structureRequirement.text = "Structure: " + (recipeData.requiredStructure == null ? "None" : recipeData.requiredStructure.name);
-        if (recipeData.requiredProfession == TalentTreeType.Special)
+        if (recipeData.requiredProfession == TalentTreeType.Combat)
             professionRequirement.text = "";
         else
         {

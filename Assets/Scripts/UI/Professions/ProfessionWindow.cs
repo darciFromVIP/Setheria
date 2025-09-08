@@ -15,7 +15,7 @@ public class ProfessionWindow : MonoBehaviour
         talentScreen.ChangeCurrentOpenedTalentTree(talentTreeType);
         switch (talentTreeType)
         {
-            case TalentTreeType.Special:
+            case TalentTreeType.Combat:
                 break;
             case TalentTreeType.Gathering:
                 if (talentScreen.localPlayer.professions.gathering == 0)

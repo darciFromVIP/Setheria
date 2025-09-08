@@ -94,7 +94,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         }
         switch (professionRequired)
         {
-            case TalentTreeType.Special:
+            case TalentTreeType.Combat:
                 break;
             case TalentTreeType.Gathering:
                 if (player.professions.gathering < professionExperienceRequired)
@@ -319,7 +319,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     {
         switch (professionRequired)
         {
-            case TalentTreeType.Special:
+            case TalentTreeType.Combat:
                 tooltip.objectName = lootableName;
                 break;
             case TalentTreeType.Gathering:

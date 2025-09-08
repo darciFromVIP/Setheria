@@ -181,7 +181,7 @@ public class Professions
     {
         switch (prof)
         {
-            case TalentTreeType.Special:
+            case TalentTreeType.Combat:
                 break;
             case TalentTreeType.Gathering:
                 AddGathering(amount);
