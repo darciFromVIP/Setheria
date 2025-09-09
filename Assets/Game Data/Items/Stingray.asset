@@ -33,8 +33,12 @@ MonoBehaviour:
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
+  defaultResourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  defaultUnlocked: 1
+  requiredTalentForDismantle: {fileID: 11400000, guid: 590ed8377cf440e4baa1c7a8939f6f79,
+    type: 2}
   itemsAfterDismantle:
   - itemDropChances:
     - item:

@@ -14,6 +14,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
 {
     public float lootDuration;
     public float refreshDuration;
+    private float refreshDurationReduction = 1;
     public int xpGranted;
     public int maxCharges;
     [SyncVar(hook = nameof(HookCharges))]private int currentCharges;
@@ -92,6 +93,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                 return;
             }
         }
+        float flatLootingReduction = 0;
         switch (professionRequired)
         {
             case TalentTreeType.Combat:
@@ -123,6 +125,8 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                     FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this.");
                     return;
                 }
+                if (player.talentTrees.IsTalentUnlocked("Hasty Fishing", 1) >= 1)
+                    flatLootingReduction += 0.5f;
                 break;
             case TalentTreeType.Exploration:
                 if (player.professions.exploration < professionExperienceRequired)
@@ -136,7 +140,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         }
         CmdSetInteractingPlayer(player.GetComponent<PlayerController>());
         interactingPlayer = player.GetComponent<PlayerController>();
-        interactingPlayer.CmdStartWorking(lootDuration);
+        interactingPlayer.CmdStartWorking(lootDuration - flatLootingReduction);
         interactingPlayer.Work_Finished.AddListener(GiveLoot);
         interactingPlayer.Work_Cancelled.AddListener(ForgetInteractingPlayer);
         if (!soundOnLooting.IsNull)
@@ -187,6 +191,26 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                 break;
             case TalentTreeType.Fishing:
                 interactingPlayer.GetComponent<PlayerCharacter>().professions.AddFishing(1);
+                // Luck of the Sea talent
+                int talentLevel = interactingPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Luck of the Sea", 1);
+                if (talentLevel >= 1)
+                {
+                    int random = Random.Range(0, 100);
+                    if (random <= talentLevel * 7)
+                        currentCharges++;
+                    FindObjectOfType<FloatingText>().CmdSpawnFloatingText("Luck of the Sea triggered!", transform.position + Vector3.up, FloatingTextType.Fishing);
+                }
+                // Treasure Hunter talent
+                talentLevel = interactingPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Treasure Hunter", 1);
+                if (talentLevel >= 1)
+                {
+                    int random = Random.Range(0, 100);
+                    if (random <= talentLevel * 2)
+                    {
+                        var inventory = FindObjectOfType<InventoryManager>(true);
+                        inventory.AddItem(inventory.itemDatabase.GetItemByName("Treasure Map"), 1);
+                    }
+                }
                 break;
             case TalentTreeType.Exploration:
                 interactingPlayer.GetComponent<PlayerCharacter>().professions.AddExploration(1);
@@ -416,5 +440,10 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         refreshTimer = newTimer;
         if (refreshTimer > 0 && !refreshProgressBar.gameObject.activeSelf)
             StartCoroutine(StartRefreshTimer(true));
+    }
+    public void ChangeRefreshDurationReduction(float amount)
+    {
+        refreshDurationReduction -= amount;
+        refreshDuration = refreshDuration * refreshDurationReduction;
     }
 }

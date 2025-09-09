@@ -24,6 +24,9 @@ public class HasHealth : NetworkBehaviour, ISaveable
     [SerializeField] private float baseArmor = 0;
     private float gearArmor = 0;
     private float finalArmor;
+    private float baseEvasion = 0;
+    private float gearEvasion;
+    private float finalEvasion;
     public EventReference soundOnDeath;
     public EventReference soundOnHit;
 
@@ -37,6 +40,8 @@ public class HasHealth : NetworkBehaviour, ISaveable
     public UnityEvent<float> Health_Regen_Changed = new();
     [System.NonSerialized]
     public UnityEvent<float> Armor_Changed = new();
+    [System.NonSerialized]
+    public UnityEvent<float> Evasion_Changed = new();
     [System.NonSerialized]
     public UnityEvent On_Death = new();
     [System.NonSerialized]
@@ -111,6 +116,12 @@ public class HasHealth : NetworkBehaviour, ISaveable
             return;
         Damage_Taken_Amount.Invoke(owner, damage);
         Damage_Taken.Invoke(owner);
+        float random = Random.Range(0f, 1f);
+        if (random <= finalEvasion)
+        {
+            FindObjectOfType<FloatingText>().ServerSpawnFloatingText("EVADE", transform.position + Vector3.up, FloatingTextType.Damage);
+            return;
+        }
         if (isInvulnerable)
             return;
         if (TryGetComponent(out PlayerController player) && interruptCrafting)
@@ -291,7 +302,6 @@ public class HasHealth : NetworkBehaviour, ISaveable
     }
     public void ChangeGearArmor(float value)
     {
-        Debug.Log("Added armor");
         gearArmor += value;
         finalArmor = baseArmor + gearArmor;
         Armor_Changed.Invoke(finalArmor);
@@ -364,6 +374,46 @@ public class HasHealth : NetworkBehaviour, ISaveable
         baseArmor = value;
         finalArmor = baseArmor + gearArmor;
         Armor_Changed.Invoke(finalArmor);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeEvasion(float amount)
+    {
+        RpcChangeEvasion(amount);
+    }
+    [ClientRpc]
+    public void RpcChangeEvasion(float amount)
+    {
+        ChangeEvasion(amount);
+    }
+    public void ChangeEvasion(float value)
+    {
+        baseEvasion += value;
+        finalEvasion = baseEvasion + gearEvasion;
+        Evasion_Changed.Invoke(finalEvasion);
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdChangeGearEvasion(float amount)
+    {
+        RpcChangeGearEvasion(amount);
+    }
+    [ClientRpc]
+    public void RpcChangeGearEvasion(float amount)
+    {
+        ChangeGearEvasion(amount);
+    }
+    public void ChangeGearEvasion(float value)
+    {
+        gearEvasion += value;
+        finalEvasion = baseEvasion + gearEvasion;
+        Evasion_Changed.Invoke(finalEvasion);
+    }
+    public float GetBaseEvasion()
+    {
+        return baseEvasion;
+    }
+    public float GetFinalEvasion()
+    {
+        return finalEvasion;
     }
     public void SetCorruptionResistance(float value)
     {

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
-  m_Name: TUltimateFishingRod
+  m_Name: TFishingJourneyman
   m_EditorClassIdentifier: 
   talentType: 1
   maxLevel: 1
-  requiredTalent: {fileID: 0}
-  requiredTalentLevel: 0
-  requiredTalentPointsSpent: 12
-  requiredPlayerLevel: 15
-  label: Ultimate Fishing Rod
-  description: Unlocks the recipe to craft Ultimate Fishing Rod.
+  requiredTalent: {fileID: 11400000, guid: 49c4dead1a1d4cd4a9bac6006c4209d2, type: 2}
+  requiredTalentLevel: 1
+  requiredTalentPointsSpent: 8
+  requiredPlayerLevel: 10
+  label: Fishing Journeyman
+  description: Grants an Journeyman's Guide to Fishing, which starts a new questline.
   excludingTalents: []
   associatedSkill: {fileID: 0}
   associatedSkill2: {fileID: 0}

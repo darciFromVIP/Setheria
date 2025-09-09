@@ -313,6 +313,16 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     public void CmdAddFishingPlayer()
     {
         fishingPlayers++;
+        RpcAddFishingPlayer();
+    }
+    [ClientRpc]
+    private void RpcAddFishingPlayer()
+    {
+        foreach (var item in FindObjectsOfType<LootableObject>())
+        {
+            if (item.name.Contains("fish"))
+                item.ChangeRefreshDurationReduction(0.15f);
+        }
     }
     [Command(requiresAuthority = false)]
     public void CmdAddAlchemyPlayer()
@@ -323,5 +333,45 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     public void CmdAddOccultismPlayer()
     {
         occultismPlayers++;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdRemoveCookingPlayer()
+    {
+        cookingPlayers--;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdRemoveExplorationPlayer()
+    {
+        explorationPlayers--;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdRemoveGatheringPlayer()
+    {
+        gatheringPlayers--;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdRemoveFishingPlayer()
+    {
+        fishingPlayers--;
+        RpcRemoveFishingPlayer();
+    }
+    [ClientRpc]
+    private void RpcRemoveFishingPlayer()
+    {
+        foreach (var item in FindObjectsOfType<LootableObject>())
+        {
+            if (item.name.Contains("fish"))
+                item.ChangeRefreshDurationReduction(-0.15f);
+        }
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdRemoveAlchemyPlayer()
+    {
+        alchemyPlayers--;
+    }
+    [Command(requiresAuthority = false)]
+    public void CmdRemoveOccultismPlayer()
+    {
+        occultismPlayers--;
     }
 }

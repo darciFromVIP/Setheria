@@ -32,10 +32,12 @@ public class ItemScriptable : ScriptableObject
     [Tooltip("Miscellaneous Value - For Tools: Level of Tool, For Items worth Resources/Knowledge: How much of them is it worth")]
     public int value;
     public bool destroyItemOnUse = false;
-    public int resourceCost;
+    [HideInInspector] public int resourceCost;
+    public int defaultResourceCost;
     public int knowledgeCost;
     public bool unlocked = true;
     public bool defaultUnlocked = true;
+    public TalentScriptable requiredTalentForDismantle;
     public List<ItemDropChances> itemsAfterDismantle = new();
     [Tooltip("This talent will change the usage of the item")]
     public TalentScriptable requiredTalentForAlternateUsage;
@@ -49,8 +51,13 @@ public class ItemScriptable : ScriptableObject
     [HideInInspector] public UnityEvent<ItemScriptable, int> Item_Stacks_Acquired = new();
     [HideInInspector] public UnityEvent<ItemScriptable, int> Item_Stacks_Lost = new();
 
+    private void OnValidate()
+    {
+        resourceCost = defaultResourceCost;
+    }
     private void OnEnable()
     {
+        resourceCost = defaultResourceCost;
         if (tutorialToShowAfterItemAcquirement != null)
             Item_Acquired.AddListener(ShowTutorial);
     }

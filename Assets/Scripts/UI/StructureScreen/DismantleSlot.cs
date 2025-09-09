@@ -14,7 +14,13 @@ public class DismantleSlot : MonoBehaviour, IDropHandler
             return;
         if (inventoryItem)
         {
-            DismantleItem(inventoryItem);
+            if (inventoryItem.item.requiredTalentForDismantle != null)
+                if (FindObjectOfType<GameManager>().localPlayerCharacter.talentTrees.IsTalentUnlocked(inventoryItem.item.requiredTalentForDismantle, 1) >= 1)
+                    DismantleItem(inventoryItem);
+                else
+                    FindObjectOfType<SystemMessages>().AddMessage("You are missing the talent " + inventoryItem.item.requiredTalentForDismantle.label + " to dismantle this item.", MsgType.Error);
+            else
+                DismantleItem(inventoryItem);
         }
     }
     public void DismantleItem(InventoryItem inventoryItem)
