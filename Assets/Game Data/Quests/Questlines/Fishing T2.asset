@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 926dd4e73341e454c8b3f18c628c191c, type: 3}
-  m_Name: Cooking Questline
+  m_Name: Fishing T2
   m_EditorClassIdentifier: 
   currentQuestIndex: 0
   synchronized: 0
   questList:
-  - {fileID: 11400000, guid: 9c9331e1b3dc2e040a52016bb64211f9, type: 2}
-  - {fileID: 11400000, guid: a646bb796ddf94646b71532408a89479, type: 2}
-  - {fileID: 11400000, guid: a5f2509f09b80eb4fb5a3a91690a1bbd, type: 2}
-  questsPath: Assets/Game Data/Quests/Cooking Q T1
+  - {fileID: 11400000, guid: 58f10a1cc4bd6a14ead4a454d2a243b2, type: 2}
+  - {fileID: 11400000, guid: 28a045fe19def764391e60e2aa2a0fd9, type: 2}
+  - {fileID: 11400000, guid: b37fcf4f3e0be074fb0bfd788656ee6a, type: 2}
+  - {fileID: 11400000, guid: c676ce67e8998d34d90be7f8c306cada, type: 2}
+  - {fileID: 11400000, guid: 1d1720c58c3be134d8877b3366e3e26e, type: 2}
+  - {fileID: 11400000, guid: eb793afb3ddf84e4ea4224af6678942e, type: 2}
+  questsPath: Assets/Game Data/Quests/Fishing Q T2
   Quest_Complete:
     m_PersistentCalls:
       m_Calls: []

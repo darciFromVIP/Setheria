@@ -22,7 +22,7 @@ MonoBehaviour:
   maxStacks: 99
   usage:
   - {fileID: 11400000, guid: 1212459578a85574b891f205856509e8, type: 2}
-  - {fileID: 11400000, guid: f91b61aec09984940b48e85d892fd332, type: 2}
+  - {fileID: 11400000, guid: 47c7052e5f65b17409144c30232fe194, type: 2}
   - {fileID: 11400000, guid: fcb2eeedf4694e84c818ed3aa38c5c24, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
@@ -30,15 +30,21 @@ MonoBehaviour:
   activeSkills: []
   value: 0
   destroyItemOnUse: 1
-  resourceCost: 5
+  resourceCost: 0
+  defaultResourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  defaultUnlocked: 1
+  requiredTalentForDismantle: {fileID: 0}
   itemsAfterDismantle:
   - itemDropChances:
     - item:
         itemData: {fileID: 11400000, guid: 66a1749273eaa82478459db8daba8acb, type: 2}
         stacks: 1
       chance: 100
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
