@@ -262,6 +262,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void DestroyItem()
     {
+        if (this == null)
+            return;
         transform.SetParent(null);                      // Destroy executes after current Update loop, too late for certain functions (with crafting)
         item.Item_Stacks_Lost.Invoke(item, stacks);
         Item_Destroyed.Invoke();

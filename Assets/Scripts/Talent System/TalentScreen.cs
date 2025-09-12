@@ -19,6 +19,10 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
             talentButtons.Add(item);
         }
     }
+    private void OnEnable()
+    {
+        UpdateTalents();
+    }
     public void UpdateTalents()
     {
         foreach (var item in talentButtons)

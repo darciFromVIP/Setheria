@@ -8,7 +8,7 @@ public class AStartQuestline : ActionTemplate
     public bool giveQuestlineToAllPlayers;
     public override void ActionFinished()
     {
-        
+        Action_Finished.Invoke();
     }
 
     public override void Execute()
@@ -17,6 +17,7 @@ public class AStartQuestline : ActionTemplate
             FindObjectOfType<QuestManager>().CmdNewQuestline(questlineStarted.name);
         else
             FindObjectOfType<QuestManager>().NewQuestline(questlineStarted.name);
+        ActionFinished();
     }
 
     public override bool TestExecute()

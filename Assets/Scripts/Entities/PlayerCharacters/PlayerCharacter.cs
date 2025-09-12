@@ -68,7 +68,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [HideInInspector] public TalentTrees talentTrees = new();
     public Professions professions;
     protected float carnivorePercentage = 50;
-    protected float flatFoodBonus = 0;
+    [ShowInInspector] protected float flatFoodBonus = 0;
 
     protected const float MaxXpMultiplier = 1.2f;
     protected const int BaseMaxXpValue = 100;
@@ -1343,13 +1343,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             ImprovedDigestion(previousLevel, currentLevel);
         if (name == ("Laxative"))
             Laxative(previousLevel, currentLevel);
-        if (name == "Cooking Apprentice")
-            CookingApprentice(previousLevel, currentLevel);
-        if (name == "Cooking Journeyman")
-            CookingJourneyman(previousLevel, currentLevel);
-        if (name == "Cooking Expert")
-            CookingExpert(previousLevel, currentLevel);
-
+        if (isLoaded)
+        {
+            if (name == "Cooking Apprentice")
+                CookingApprentice(previousLevel, currentLevel);
+            if (name == "Cooking Journeyman")
+                CookingJourneyman(previousLevel, currentLevel);
+            if (name == "Cooking Expert")
+                CookingExpert(previousLevel, currentLevel);
+        }
         //Fishing Talents
         if (name == "Fishing Navigator")
             FishingNavigator(previousLevel, currentLevel);
@@ -1367,12 +1369,15 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             Sonar(previousLevel, currentLevel);
         if (name == "Sturdy Fishing Rod")
             SturdyFishingRod(previousLevel, currentLevel);
-        if (name == "Fishing Apprentice")
-            FishingApprentice(previousLevel, currentLevel);
-        if (name == "Fishing Journeyman")
-            FishingJourneyman(previousLevel, currentLevel);
-        if (name == "Fishing Expert")
-            FishingExpert(previousLevel, currentLevel);
+        if (isLoaded)
+        {
+            if (name == "Fishing Apprentice")
+                FishingApprentice(previousLevel, currentLevel);
+            if (name == "Fishing Journeyman")
+                FishingJourneyman(previousLevel, currentLevel);
+            if (name == "Fishing Expert")
+                FishingExpert(previousLevel, currentLevel);
+        }
 
         UpdateSkills();
     }
@@ -1966,12 +1971,18 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     [Command(requiresAuthority = false)]
     private void CmdGourmet(int previousLevel, int currentLevel)
     {
-        RpcGourmet(previousLevel, currentLevel);
+        if (currentLevel >= 1)
+        {
+            RpcGourmet(previousLevel, currentLevel);
+        }
     }
     [ClientRpc]
     private void RpcGourmet(int previousLevel, int currentLevel)
     {
-        flatFoodBonus += 1;
+        if (currentLevel >= 1)
+        {
+            flatFoodBonus += 1;
+        }
     }
     [Command(requiresAuthority = false)]
     private void CmdGourmetReduce(int previousLevel, int currentLevel)
@@ -1986,17 +1997,17 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     private void CookingApprentice(int previousLevel, int currentLevel)
     {
         if (currentLevel >= 1)
-            FindObjectOfType<InventoryManager>().AddItem(new SaveDataItem { name = "Apprentice's Guide to Cooking", stacks = 1 });
+            FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Apprentice's Guide to Cooking", stacks = 1 });
     }
     private void CookingJourneyman(int previousLevel, int currentLevel)
     {
         if (currentLevel >= 1)
-            FindObjectOfType<InventoryManager>().AddItem(new SaveDataItem { name = "Journeyman's Guide to Cooking", stacks = 1 });
+            FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Journeyman's Guide to Cooking", stacks = 1 });
     }
     private void CookingExpert(int previousLevel, int currentLevel)
     {
         if (currentLevel >= 1)
-            FindObjectOfType<InventoryManager>().AddItem(new SaveDataItem { name = "Expert's Guide to Cooking", stacks = 1 });
+            FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Expert's Guide to Cooking", stacks = 1 });
     }
     private void BloodExtractor(int previousLevel, int currentLevel)
     {
@@ -2066,12 +2077,12 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     private void FreeRope(int previousLevel, int currentLevel)
     {
         if (currentLevel >= 1)
-            FindObjectOfType<InventoryManager>().itemDatabase.GetItemByName("Rope").resourceCost = 0;
+            FindObjectOfType<InventoryManager>(true).itemDatabase.GetItemByName("Rope").resourceCost = 0;
     }
     private void FreeRopeReduce(int previousLevel, int currentLevel)
     {
         if (currentLevel <= 0)
-            FindObjectOfType<InventoryManager>().itemDatabase.GetItemByName("Rope").resourceCost = 5;
+            FindObjectOfType<InventoryManager>(true).itemDatabase.GetItemByName("Rope").resourceCost = 5;
     }
     private void MarineRegeneration(int previousLevel, int currentLevel)
     {
@@ -2132,16 +2143,16 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     private void FishingApprentice(int previousLevel, int currentLevel)
     {
         if (currentLevel >= 1)
-            FindObjectOfType<InventoryManager>().AddItem(new SaveDataItem { name = "Apprentice's Guide to Fishing", stacks = 1 });
+            FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Apprentice's Guide to Fishing", stacks = 1 });
     }
     private void FishingJourneyman(int previousLevel, int currentLevel)
     {
         if (currentLevel >= 1)
-            FindObjectOfType<InventoryManager>().AddItem(new SaveDataItem { name = "Journeyman's Guide to Fishing", stacks = 1 });
+            FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Journeyman's Guide to Fishing", stacks = 1 });
     }
     private void FishingExpert(int previousLevel, int currentLevel)
     {
         if (currentLevel >= 1)
-            FindObjectOfType<InventoryManager>().AddItem(new SaveDataItem { name = "Expert's Guide to Fishing", stacks = 1 });
+            FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Expert's Guide to Fishing", stacks = 1 });
     }
 }
