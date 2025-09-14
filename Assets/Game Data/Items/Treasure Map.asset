@@ -25,18 +25,20 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 033cd79e39c941c4ba33fa4f2c257d48, type: 3}
   stackable: 0
   maxStacks: 99
-  usage: []
+  usage:
+  - {fileID: 11400000, guid: e63d920731f10de41b6f9de1fa9e2a34, type: 2}
   usageCooldown: 0
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
   value: 0
-  destroyItemOnUse: 0
+  destroyItemOnUse: 1
   resourceCost: 0
   defaultResourceCost: 0
   knowledgeCost: 0
   unlocked: 1
   defaultUnlocked: 1
+  requiredTalentForDismantle: {fileID: 0}
   itemsAfterDismantle: []
   requiredTalentForAlternateUsage: {fileID: 0}
   requiredTalentLevel: 0

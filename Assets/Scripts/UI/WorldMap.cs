@@ -9,11 +9,12 @@ public class WorldMap : MonoBehaviour, WindowedUI
     public GameObject mapWindow;
     public MapCamera mapCamera;
     public RectTransform fowMap;
-    public GameObject mapIconPrefab, mapCameraButtons, mapButtonsWindow;
+    public GameObject mapIconPrefab, mapCameraButtons, mapButtonsWindow, treasureMapArea;
     public InputEnabledScriptable inputEnabled;
 
     private SettingsManager settingsManager;
     private GameObject ownedHeroIcon;
+    private GameObject currentTreasureMap;
     private void Start()
     {
         settingsManager = FindObjectOfType<SettingsManager>();
@@ -91,4 +92,14 @@ public class WorldMap : MonoBehaviour, WindowedUI
     {
         return mapWindow.activeSelf;
     }
+    public void CreateTreasureMapArea(Vector2 positionInFog)
+    {
+        currentTreasureMap = Instantiate(treasureMapArea, fowMap);
+        UpdatePositionOfIcon(currentTreasureMap, new Vector2(positionInFog.x + Random.Range(-100, 100), positionInFog.y + Random.Range(-100, 100)));
+    }
+    public void DestroyTreasureMapArea()
+    {
+        Destroy(currentTreasureMap);
+    }
+
 }
