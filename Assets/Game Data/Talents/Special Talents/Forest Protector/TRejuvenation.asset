@@ -12,12 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
   m_Name: TRejuvenation
   m_EditorClassIdentifier: 
-  talentType: 2
+  talentType: 0
   maxLevel: 1
   requiredTalent: {fileID: 0}
   requiredTalentLevel: 0
   requiredTalentPointsSpent: 0
+  requiredPlayerLevel: 0
   label: Rejuvenation
-  description: 
+  description: '<sprite=10>11,0 <sprite=4>40
+
+    Blesses target ally with restorative
+    nature magic, increasing their <sprite=1> by <color=orange>7,5</color> (5 + 1%
+    <sprite=4>) for 10,0 seconds.'
+  excludingTalents: []
   associatedSkill: {fileID: 11400000, guid: 711704ce240caf649811c63e0a5180b1, type: 2}
   associatedSkill2: {fileID: 0}
+  Talent_Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []
