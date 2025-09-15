@@ -95,11 +95,10 @@ public class WorldMap : MonoBehaviour, WindowedUI
     public void CreateTreasureMapArea(Vector2 positionInFog)
     {
         currentTreasureMap = Instantiate(treasureMapArea, fowMap);
-        UpdatePositionOfIcon(currentTreasureMap, new Vector2(positionInFog.x + Random.Range(-100, 100), positionInFog.y + Random.Range(-100, 100)));
+        UpdatePositionOfIcon(currentTreasureMap, new Vector2(positionInFog.x + Random.Range(-5, 5), positionInFog.y + Random.Range(-5, 5)));
     }
     public void DestroyTreasureMapArea()
     {
         Destroy(currentTreasureMap);
     }
-
 }

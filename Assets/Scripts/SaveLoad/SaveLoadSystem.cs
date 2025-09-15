@@ -36,7 +36,15 @@ public class SaveLoadSystem : MonoBehaviour
         {
             FindObjectOfType<SystemMessages>().AddMessage("Unable to save while in combat.");
             return;
-        }    
+        }
+        foreach (var item in FindObjectsOfType<PlayerController>())
+        {
+            if (item.state == PlayerState.OutOfGame)
+            {
+                FindObjectOfType<SystemMessages>().AddMessage("Unable to save while incapacitated (on ship, etc).");
+                return;
+            }
+        }
         StartCoroutine(SavingCoro());
     }
     private IEnumerator SavingCoro()

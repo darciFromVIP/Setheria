@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: '__________________________________
 
+    You can fish at any spot
+    with this, but it has a 50% chance to miss the catch.
 
     __________________________________
 
@@ -29,13 +31,14 @@ MonoBehaviour:
   cooldownGroup: 0
   passiveBuffs: []
   activeSkills: []
-  value: 3
+  value: 4
   destroyItemOnUse: 0
   resourceCost: 0
   defaultResourceCost: 0
   knowledgeCost: 0
   unlocked: 1
   defaultUnlocked: 1
+  requiredTalentForDismantle: {fileID: 0}
   itemsAfterDismantle: []
   requiredTalentForAlternateUsage: {fileID: 0}
   requiredTalentLevel: 0

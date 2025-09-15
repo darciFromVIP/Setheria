@@ -47,7 +47,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
 
     public UnityEvent<LootableObject> Object_Destroyed = new();
 
-    private void Start()
+    protected virtual void Start()
     {
         tooltip = GetComponent<TooltipTriggerWorld>();
         Player_Event.playerEvent.AddListener(SetLocalPlayerCharacter);
@@ -170,14 +170,28 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         else
             interactingPlayer = null;
     }
-    private void GiveLoot()
+    protected virtual void GiveLoot()
     {
         if (!lootable)
         {
             FindObjectOfType<SystemMessages>().AddMessage("This object has already been harvested.");
             return;
         }
-        interactingPlayer.GetComponent<PlayerCharacter>().CmdAddXp(xpGranted);
+        if (professionRequired == TalentTreeType.Fishing)
+        {
+            if (FindObjectOfType<CharacterScreen>().GetNameOfEquippedFishingRod() == "Sturdy Fishing Rod")
+            {
+                int random = Random.Range(0, 100);
+                if (random < 50)
+                    FindObjectOfType<FloatingText>().CmdSpawnFloatingText("Missed...", transform.position + Vector3.up, FloatingTextType.Fishing);
+                else
+                    GiveRewards();
+            }
+            else
+                GiveRewards();
+        }
+        else
+            GiveRewards();
         switch (professionRequired)
         {
             case TalentTreeType.Gathering:
@@ -218,7 +232,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
             default:
                 break;
         }
-        GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>(true));
+
         CmdSetInteractingPlayer(null);
         currentCharges--;
         remainingChargesText.gameObject.SetActive(true);
@@ -236,13 +250,18 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                 Quest_Event.voidEvent.Invoke();
             remainingChargesText.gameObject.SetActive(false);
             CmdUpdateLootability(false);
-            if (!oneTimeLoot)
+            if (!oneTimeLoot && refreshDuration > 0)
                 CmdStartRefreshTimer();
             if (destroyOnLoot)
             {
                 CmdDestroyObject();
             }
         }
+    }
+    private void GiveRewards()
+    {
+        interactingPlayer.GetComponent<PlayerCharacter>().CmdAddXp(xpGranted);
+        GetComponent<CanDropItem>().SpawnItemsInInventory(FindObjectOfType<InventoryManager>(true));
     }
     [Command(requiresAuthority = false)]
     private void CmdDestroyObject()
@@ -269,16 +288,16 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         CmdDestroyOnServer();
     }
     [Command(requiresAuthority = false)]
-    private void CmdUpdateLootability(bool value)
+    protected void CmdUpdateLootability(bool value)
     {
         RpcUpdateLootability(value);
     }
     [ClientRpc]
-    private void RpcUpdateLootability(bool value)
+    protected void RpcUpdateLootability(bool value)
     {
         UpdateLootability(value);
     }
-    private void UpdateLootability(bool value)
+    protected void UpdateLootability(bool value)
     {
         lootable = value;
         if (effectsToHide.Count > 0)

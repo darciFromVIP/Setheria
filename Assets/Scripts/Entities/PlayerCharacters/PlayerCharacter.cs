@@ -2030,7 +2030,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         if (currentLevel >= 1)
         {
-            foreach (var item in FindObjectsOfType<ObjectMapIcon>())
+            foreach (var item in FindObjectsOfType<ObjectMapIcon>(true))
             {
                 item.UnlockProfession(TalentTreeType.Fishing);
             }
@@ -2040,7 +2040,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         if (currentLevel <= 0)
         {
-            foreach (var item in FindObjectsOfType<ObjectMapIcon>())
+            foreach (var item in FindObjectsOfType<ObjectMapIcon>(true))
             {
                 item.LockProfession(TalentTreeType.Fishing);
             }

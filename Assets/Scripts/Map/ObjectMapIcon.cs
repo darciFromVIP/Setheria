@@ -4,6 +4,7 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public enum IconSize
@@ -26,6 +27,8 @@ public class ObjectMapIcon : NetworkBehaviour
     private FogOfWarTeam fow;
     private GameObject iconInstance;
     private WorldMap map;
+
+    public UnityEvent Icon_Loaded = new();
     private void Start()
     {
         StartCoroutine(WaitForFow());
@@ -62,6 +65,7 @@ public class ObjectMapIcon : NetworkBehaviour
             else
                 ToggleIconOnMap(false);
         }
+        Icon_Loaded.Invoke();
     }
     [Command(requiresAuthority = false)]
     public void CmdToggleIconOnMap(bool value)
@@ -73,10 +77,12 @@ public class ObjectMapIcon : NetworkBehaviour
     {
         ToggleIconOnMap(value);
     }
-    private void ToggleIconOnMap(bool value)
+    public void ToggleIconOnMap(bool value)
     {
+        Debug.Log(iconInstance);
         if (iconInstance != null)
         {
+            Debug.Log(CanShowIcon());
             if (value && !CanShowIcon())
                 return;
             iconInstance.SetActive(value);

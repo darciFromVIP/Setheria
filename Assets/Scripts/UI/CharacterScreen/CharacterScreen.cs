@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using static Unity.VisualScripting.Dependencies.Sqlite.SQLite3;
 
 public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, WindowedUI
 {
@@ -248,6 +249,17 @@ public class CharacterScreen : WindowWithCategories, NeedsLocalPlayerCharacter, 
             }
         }
         return false;
+    }
+    public string GetNameOfEquippedFishingRod()
+    {
+        foreach (var item in GetComponentsInChildren<InventoryItem>(true))
+        {
+            if (item.item.itemType == ItemType.FishingTool)
+            {
+                return item.item.name;
+            }
+        }
+        return null;
     }
     public override void OpenAnotherWindow(GameObject window)
     {

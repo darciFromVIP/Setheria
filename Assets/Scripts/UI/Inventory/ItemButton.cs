@@ -39,7 +39,7 @@ public class ItemButton : Button
         if (item.item.itemType == ItemType.ArchaeologyTool || item.item.itemType == ItemType.Backpack || item.item.itemType == ItemType.Bracelet || item.item.itemType == ItemType.Chest
            || item.item.itemType == ItemType.Feet || item.item.itemType == ItemType.FishingTool || item.item.itemType == ItemType.HandicraftTool
            || item.item.itemType == ItemType.Hands || item.item.itemType == ItemType.Head || item.item.itemType == ItemType.Legs || item.item.itemType == ItemType.GatheringTool
-           || item.item.itemType == ItemType.Necklace || item.item.itemType == ItemType.Ring || item.item.itemType == ItemType.Weapon)
+           || item.item.itemType == ItemType.Necklace || item.item.itemType == ItemType.Ring || item.item.itemType == ItemType.Weapon || item.item.itemType == ItemType.Net)
         {
             if (item.transform.parent.TryGetComponent(out InventorySlot slot))
             {
@@ -80,7 +80,7 @@ public class ItemButton : Button
         }
         foreach (var item in FindObjectOfType<CharacterScreen>(true).GetComponentsInChildren<CharacterGearSlot>(true))
         {
-            if (item.itemType == this.item.item.itemType)
+            if (item.itemType == this.item.item.itemType || (item.itemType == ItemType.FishingTool && this.item.item.itemType == ItemType.Net))
             {
                 this.item.parentAfterDrag = this.item.transform.parent;
                 item.EquipItem(this.item);
