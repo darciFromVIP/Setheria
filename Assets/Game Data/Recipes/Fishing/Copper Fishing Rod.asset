@@ -29,7 +29,7 @@ MonoBehaviour:
   visible: 0
   freshlyUnlocked: 0
   requiredStructure: {fileID: 0}
-  craftingDuration: 6
+  craftingDuration: 4
   xpGranted: 20
   tier: 0
   recipeItem: {fileID: 0}
@@ -38,6 +38,8 @@ MonoBehaviour:
   requiredStructures: []
   requiredProfession: 4
   requiredProfessionExperience: 30
+  givesProfXP: 1
+  recipesInThisCategory: []
   Recipe_Unlocked:
     m_PersistentCalls:
       m_Calls: []
