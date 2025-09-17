@@ -5688,6 +5688,11 @@ MonoBehaviour:
         itemData: {fileID: 11400000, guid: e9aa19f3359b8a943a75523c1c47eb6f, type: 2}
         stacks: 1
       chance: 5
+  - itemDropChances:
+    - item:
+        itemData: {fileID: 11400000, guid: 6ed886151c91ed54d8b529f07bcaa2c3, type: 2}
+        stacks: 1
+      chance: 2
   fishingQuestEvent: {fileID: 0}
 --- !u!114 &396763906757269663
 MonoBehaviour:
@@ -5917,6 +5922,9 @@ MonoBehaviour:
   fishingUnlocked: 0
   gatheringUnlocked: 0
   explorationUnlocked: 0
+  Icon_Loaded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7463788362461560463
 MonoBehaviour:
   m_ObjectHideFlags: 0
