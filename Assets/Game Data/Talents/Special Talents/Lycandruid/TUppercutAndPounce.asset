@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
   m_Name: TUppercutAndPounce
   m_EditorClassIdentifier: 
-  talentType: 6
+  talentType: 0
   maxLevel: 1
   requiredTalent: {fileID: 0}
   requiredTalentLevel: 0
   requiredTalentPointsSpent: 0
+  requiredPlayerLevel: 0
   label: Uppercut / Pounce
-  description: 
+  description: '<sprite=10>10,0 <sprite=4>20
+
+    Performs an uppercut, which deals
+    <color=orange>11,5</color> damage (10 + 10% <sprite=3>) and applies Cripple (reduces
+    <sprite=3> by <color=orange>4,00</color> (1 + 20% <sprite=3>)) and Sunder (reduces
+    <sprite=0> by <color=orange>10,50</color> (10 + 100% <sprite=0>)). Lasts 8 seconds.'
+  excludingTalents: []
   associatedSkill: {fileID: 11400000, guid: c0bef9fb913dffc4099e4aef0f9a1044, type: 2}
   associatedSkill2: {fileID: 11400000, guid: 3431b21ace91c5541a0550cf05aca92b, type: 2}
+  Talent_Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []

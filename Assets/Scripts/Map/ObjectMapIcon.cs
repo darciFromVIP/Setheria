@@ -79,10 +79,8 @@ public class ObjectMapIcon : NetworkBehaviour
     }
     public void ToggleIconOnMap(bool value)
     {
-        Debug.Log(iconInstance);
         if (iconInstance != null)
         {
-            Debug.Log(CanShowIcon());
             if (value && !CanShowIcon())
                 return;
             iconInstance.SetActive(value);

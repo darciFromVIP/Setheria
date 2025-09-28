@@ -33,13 +33,13 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
                 {
                     if (currentOpenedTree == TalentTreeType.Combat)
                     {
-                        availablePoints.text = "Available Combat Talent Points: " + localPlayer.talentTrees.combatTalentPoints;
-                        spentPoints.text = "Spent Talent Points: " + item2.talentPointsSpent;
+                        availablePoints.text = "Available <sprite=21>: " + localPlayer.talentTrees.combatTalentPoints;
+                        spentPoints.text = "Spent <sprite=21>: " + item2.talentPointsSpent;
                     }
                     else
                     {
-                        availablePoints.text = "Available Profession Talent Points: " + localPlayer.talentTrees.professionTalentPoints;
-                        spentPoints.text = "Spent Talent Points: " + item2.talentPointsSpent;
+                        availablePoints.text = "Available <sprite=22>: " + localPlayer.talentTrees.professionTalentPoints;
+                        spentPoints.text = "Spent <sprite=22>: " + item2.talentPointsSpent;
                     }
                 }
                 foreach (var item3 in item2.talents)
@@ -59,7 +59,6 @@ public class TalentScreen : WindowWithCategories, NeedsLocalPlayerCharacter
             return;
 
         localPlayer.talentTrees.UnlockTalent(talent, localPlayer);
-        localPlayer.UpdateSkills();
         UpdateTalents();
     }
     public override void OpenAnotherWindow(GameObject window)

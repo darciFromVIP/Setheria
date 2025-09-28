@@ -12,12 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
   m_Name: TSwipeAndBite
   m_EditorClassIdentifier: 
-  talentType: 5
+  talentType: 0
   maxLevel: 1
   requiredTalent: {fileID: 0}
   requiredTalentLevel: 0
   requiredTalentPointsSpent: 0
+  requiredPlayerLevel: 0
   label: Swipe / Bite
-  description: 
+  description: '<sprite=10>8,0 <sprite=4>30
+
+    Swipes forward with both claws,
+    dealing <color=orange>32,5</color> damage (25 + 50% <sprite=3>) to all enemies
+    hit as well as applying Bleed reducing <sprite=1> by <color=orange>3,25</color>
+    (1 + 15% <sprite=3>). Lasts 4 seconds.'
+  excludingTalents: []
   associatedSkill: {fileID: 11400000, guid: 0335e267328e62e4a91096be8ca87d6f, type: 2}
   associatedSkill2: {fileID: 11400000, guid: 93376fb183bae794ea00a0423472170f, type: 2}
+  Talent_Description_Updated:
+    m_PersistentCalls:
+      m_Calls: []

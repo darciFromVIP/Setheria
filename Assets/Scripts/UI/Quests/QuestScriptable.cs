@@ -577,10 +577,10 @@ public class QuestScriptable : ScriptableObject, IComparable
                     result += "Unknown";
                     break;
                 case QuestRewardType.CombatTalentPoint:
-                    result += "Combat Talent Point x";
+                    result += "<sprite=21> x";
                     break;
                 case QuestRewardType.ProfessionTalentPoint:
-                    result += "Profession Talent Point x";
+                    result += "<sprite=22> x";
                     break;
                 default:
                     break;
