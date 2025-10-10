@@ -58,7 +58,6 @@ public class QuestManager : NetworkBehaviour
             default:
                 break;
         }
-        contentUI.gameObject.SetActive(true);
         var questInstance = Instantiate(questDescriptionPrefab, contentUI);
         questInstance.Initialize(quest);
         return quest;
@@ -432,5 +431,23 @@ public class QuestManager : NetworkBehaviour
                 return item.gameObject.activeSelf;
         }
         return false;
+    }
+    public void OpenMainCategory()
+    {
+        profQuestCategory.gameObject.SetActive(false);
+        loreQuestCategory.gameObject.SetActive(false);
+        mainQuestCategory.gameObject.SetActive(true);
+    }
+    public void OpenProfessionCategory()
+    {
+        profQuestCategory.gameObject.SetActive(true);
+        loreQuestCategory.gameObject.SetActive(false);
+        mainQuestCategory.gameObject.SetActive(false);
+    }
+    public void OpenLoreCategory()
+    {
+        loreQuestCategory.gameObject.SetActive(true);
+        profQuestCategory.gameObject.SetActive(false);
+        mainQuestCategory.gameObject.SetActive(false);
     }
 }
