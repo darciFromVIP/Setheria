@@ -147,6 +147,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7486842287260214511}
     m_Modifications:
+    - target: {fileID: 153005518291146370, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.171
+      objectReference: {fileID: 0}
     - target: {fileID: 1580122834452613331, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -155,7 +160,7 @@ PrefabInstance:
     - target: {fileID: 1580122834452613331, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 0.284
       objectReference: {fileID: 0}
     - target: {fileID: 1580122834452613331, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
         type: 3}
@@ -197,10 +202,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2869101830448805666, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.847
+      objectReference: {fileID: 0}
     - target: {fileID: 5023126159294841846, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
         type: 3}
       propertyPath: m_Name
       value: WorkshopT2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5723389818795384289, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.765
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -539,7 +554,7 @@ PrefabInstance:
     - target: {fileID: 6677551501297419170, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: rmsCount
-      value: 72
+      value: 109
       objectReference: {fileID: 0}
     - target: {fileID: 7704550234824818578, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
