@@ -40,16 +40,13 @@ MonoBehaviour:
   knowledgeCost: 0
   unlocked: 1
   defaultUnlocked: 1
+  requiredTalentForDismantle: {fileID: 0}
   itemsAfterDismantle:
   - itemDropChances:
     - item:
         itemData: {fileID: 11400000, guid: d875889d60fcee947a6acb613c9c2ace, type: 2}
-        stacks: 2
-      chance: 50
-    - item:
-        itemData: {fileID: 11400000, guid: d875889d60fcee947a6acb613c9c2ace, type: 2}
-        stacks: 3
-      chance: 50
+        stacks: 1
+      chance: 1
   requiredTalentForAlternateUsage: {fileID: 0}
   requiredTalentLevel: 0
   alternateUsage: []
