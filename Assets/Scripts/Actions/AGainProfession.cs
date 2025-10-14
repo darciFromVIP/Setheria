@@ -7,6 +7,8 @@ public class AGainProfession : ActionTemplate
 {
     public TalentTreeType professionType;
     public int amountGained;
+    [Tooltip("Check this if you want to allow levelling the profession after level 0.")]
+    public bool allowMoreUsage;
     public override void ActionFinished()
     {
        
@@ -43,9 +45,14 @@ public class AGainProfession : ActionTemplate
     public override bool TestExecute()
     {
         var prof = FindObjectOfType<GameManager>().localPlayerCharacter.professions;
-        if (prof.GetProfessionExperience(professionType) > 0)
+        if (prof.GetProfessionExperience(professionType) > 0 && !allowMoreUsage)
         {
             FindObjectOfType<SystemMessages>().AddMessage("You can't use this anymore.", MsgType.Error);
+            return false;
+        }
+        else if (allowMoreUsage && prof.GetProfessionExperience(professionType) <= 0)
+        {
+            FindObjectOfType<SystemMessages>().AddMessage("You have to learn the profession first.", MsgType.Error);
             return false;
         }
         else

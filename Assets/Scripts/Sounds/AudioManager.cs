@@ -122,7 +122,7 @@ public class AudioManager : MonoBehaviour
     }
     public void ChangeAmbienceParameter(AmbienceParameter parameter)
     {
-        if (!currentAmbienceInstance.isValid())
+        if (currentAmbienceInstance.isValid())
             StartCoroutine(DelayedChangeAmbienceParameter(parameter));
     }
     private IEnumerator DelayedChangeAmbienceParameter(AmbienceParameter parameter)
@@ -314,6 +314,8 @@ public class AudioManager : MonoBehaviour
     }
     public void TargetFound(HasHealth target)
     {
+        if (target == null)
+            return;
         targetFound = target;
         targetFound.On_Death.AddListener(TargetDead);
         PlayCombatMusic();

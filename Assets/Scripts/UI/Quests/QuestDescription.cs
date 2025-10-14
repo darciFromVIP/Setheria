@@ -25,7 +25,10 @@ public class QuestDescription : MonoBehaviour
     public void QuestCompleted()
     {
         FindObjectOfType<AudioManager>().QuestCompleted();
-        GetComponent<Animator>().SetTrigger("Completed");
+        if (gameObject.activeInHierarchy)
+            GetComponent<Animator>().SetTrigger("Completed");
+        else
+            QuestCompletedAnimationComplete();
         complete = true;
     }
     public void QuestCompletedAnimationComplete()

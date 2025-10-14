@@ -61,6 +61,7 @@ public class Professions
                     if (gatheringMilestone / item < 1)
                     {
                         gatheringMilestone = item;
+                        return;
                     }
                 }
             }
@@ -74,6 +75,8 @@ public class Professions
             Alchemy_Changed.Invoke(alchemy);
             if (amount > 0)
                 player.SpawnProfessionFloatingText(TalentTreeType.Alchemy, amount, alchemy, alchemyMilestone);
+            if (alchemy == 1)
+                player.UpdateManualCategories();
             if (alchemy / alchemyMilestone >= 1)
             {
                 player.talentTrees.ChangeProfessionTalentPoints(alchemy / alchemyMilestone);
@@ -82,11 +85,10 @@ public class Professions
                     if (alchemyMilestone / item < 1)
                     {
                         alchemyMilestone = item;
+                        return;
                     }
                 }
             }
-            if (alchemy == 1)
-                player.UpdateManualCategories();
         }
     }
     public void AddCooking(int amount)
@@ -97,6 +99,8 @@ public class Professions
             Cooking_Changed.Invoke(cooking);
             if (amount > 0)
                 player.SpawnProfessionFloatingText(TalentTreeType.Cooking, amount, cooking, cookingMilestone);
+            if (cooking == 1)
+                player.UpdateManualCategories();
             if (cooking/ cookingMilestone >= 1)
             {
                 player.talentTrees.ChangeProfessionTalentPoints(cooking / cookingMilestone);
@@ -105,11 +109,10 @@ public class Professions
                     if (cookingMilestone / item < 1)
                     {
                         cookingMilestone = item;
+                        return;
                     }
                 }
             }
-            if (cooking == 1)
-                player.UpdateManualCategories();
         }
     }
     public void AddFishing(int amount)
@@ -120,6 +123,8 @@ public class Professions
             Fishing_Changed.Invoke(fishing);
             if (amount > 0)
                 player.SpawnProfessionFloatingText(TalentTreeType.Fishing, amount, fishing, fishingMilestone);
+            if (fishing == 1)
+                player.UpdateManualCategories();
             if (fishing / fishingMilestone >= 1)
             {
                 player.talentTrees.ChangeProfessionTalentPoints(fishing / fishingMilestone);
@@ -128,11 +133,10 @@ public class Professions
                     if (fishingMilestone / item < 1)
                     {
                         fishingMilestone = item;
+                        return;
                     }
                 }
             }
-            if (fishing == 1)
-                player.UpdateManualCategories();
         }
     }
     public void AddExploration(int amount)
@@ -143,6 +147,8 @@ public class Professions
             Exploration_Changed.Invoke(exploration);
             if (amount > 0)
                 player.SpawnProfessionFloatingText(TalentTreeType.Exploration, amount, exploration, explorationMilestone);
+            if (exploration == 1)
+                player.UpdateManualCategories();
             if (exploration / explorationMilestone >= 1)
             {
                 player.talentTrees.ChangeProfessionTalentPoints(exploration / explorationMilestone);
@@ -151,11 +157,10 @@ public class Professions
                     if (explorationMilestone / item < 1)
                     {
                         explorationMilestone = item;
+                        return;
                     }
                 }
             }
-            if (exploration == 1)
-                player.UpdateManualCategories();
         }
     }
     public int GetProfessionExperience(TalentTreeType prof)

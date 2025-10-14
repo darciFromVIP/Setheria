@@ -14,10 +14,13 @@ public class ABaitSpawnerBoss : ActionTemplate
         var player = FindObjectOfType<GameManager>().localPlayerCharacter.GetComponent<PlayerController>();
         foreach (var item in player.GetColliders())
         {
-            if (item.TryGetComponent(out EnemySpawner spawner))
+            if (item != null)
             {
-                spawner.SpawnBoss();
-                ActionFinished();
+                if (item.TryGetComponent(out EnemySpawner spawner))
+                {
+                    spawner.SpawnBoss();
+                    ActionFinished();
+                }
             }
         }
     }

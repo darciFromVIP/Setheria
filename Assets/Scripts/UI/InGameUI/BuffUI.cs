@@ -53,6 +53,7 @@ public class BuffUI : MonoBehaviour
     }
     public void Initialize(string buffName, Buff buffInstance)
     {
+        image = GetComponent<Image>();          // Just to be sure cause an error occured where buff wasn't null but image was :)
         var buff = buffDatabase.GetBuffByName(buffName);
         if (buff.sprite != null)
             image.sprite = buff.sprite;

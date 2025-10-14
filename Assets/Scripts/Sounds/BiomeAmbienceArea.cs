@@ -10,7 +10,9 @@ public class BiomeAmbienceArea : MonoBehaviour
         if (other.TryGetComponent(out PlayerCharacter player))
         {
             if (player.isOwned)
+            {
                 FindObjectOfType<AudioManager>().PlayAmbience(ambienceEvent);
+            }
 
         }
     }
