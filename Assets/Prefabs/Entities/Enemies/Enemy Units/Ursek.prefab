@@ -115,9 +115,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6734150159591962957, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
+      propertyPath: enemyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6734150159591962957, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
       propertyPath: allyHelpRange
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6734150159591962957, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: BeastKilledEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: f8e9bad0d67fb034d987c9fa8b4781f3,
+        type: 2}
     - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: level
@@ -128,6 +139,16 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 7957358071692540437}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: xpGranted
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
+        type: 3}
+      propertyPath: campRadius
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: -3490918185169162281, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: nameOfEnemy
@@ -237,12 +258,12 @@ PrefabInstance:
     - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: basePower
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: attackRange
-      value: 1.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -252,7 +273,7 @@ PrefabInstance:
     - target: {fileID: 2994016765842649055, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: attackSpeedTimer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3666556037038163630, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -456,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
       propertyPath: maxHealth
-      value: 1200
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4594429800471901095, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
         type: 3}
@@ -618,6 +639,13 @@ MonoBehaviour:
   mapTooltipText: Ursek (Boss)
   iconSize: 0
   staticObject: 1
+  professionType: 0
+  fishingUnlocked: 0
+  gatheringUnlocked: 0
+  explorationUnlocked: 0
+  Icon_Loaded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7957358071692540437 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6494381524655264961, guid: 62dd6bfcf469b0545b58ab83e6ae4abb,
