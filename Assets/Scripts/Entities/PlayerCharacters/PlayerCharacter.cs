@@ -1379,6 +1379,29 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
                 FishingExpert(previousLevel, currentLevel);
         }
 
+        //Gathering Talents
+        if (name == "Gathering Navigator")
+            GatheringNavigator(previousLevel, currentLevel);
+        if (name == "Magical Sickle")
+            MagicalSickle(previousLevel, currentLevel);
+        if (name == "Gathering Unity")
+            GatheringUnity(previousLevel, currentLevel);
+        if (name == "Mining Drill")
+            MiningDrill(previousLevel, currentLevel);
+        if (name == "Trap")
+            Trap(previousLevel, currentLevel);
+        if (name == "Create Seed")
+            CreateSeed(previousLevel, currentLevel);
+        if (isLoaded)
+        {
+            if (name == "Gathering Apprentice")
+                GatheringApprentice(previousLevel, currentLevel);
+            if (name == "Gathering Journeyman")
+                GatheringJourneyman(previousLevel, currentLevel);
+            if (name == "Gathering Expert")
+                GatheringExpert(previousLevel, currentLevel);
+        }
+
         UpdateSkills();
     }
     public void ResetTalent(string name, int previousLevel, int currentLevel)
@@ -1470,6 +1493,20 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             SonarReduce(previousLevel, currentLevel);
         if (name == "Sturdy Fishing Rod")
             SturdyFishingRodReduce(previousLevel, currentLevel);
+
+        //Gathering Talents
+        if (name == "Gathering Navigator")
+            GatheringNavigatorReduce(previousLevel, currentLevel);
+        if (name == "Magical Sickle")
+            MagicalSickleReduce(previousLevel, currentLevel);
+        if (name == "Gathering Unity")
+            GatheringUnityReduce(previousLevel, currentLevel);
+        if (name == "Mining Drill")
+            MiningDrillReduce(previousLevel, currentLevel);
+        if (name == "Trap")
+            TrapReduce(previousLevel, currentLevel);
+        if (name == "Create Seed")
+            CreateSeedReduce(previousLevel, currentLevel);
     }
     // Forest Protector Talents
     private void NatureAttunement(int previousLevel, int currentLevel)
@@ -2009,22 +2046,7 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (currentLevel >= 1)
             FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Expert's Guide to Cooking", stacks = 1 });
     }
-    private void BloodExtractor(int previousLevel, int currentLevel)
-    {
-        if (currentLevel >= 1)
-        {
-            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Blood").UnlockRecipe();
-            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Corrupted Blood").UnlockRecipe();
-        }
-    }
-    private void BloodExtractorReduce(int previousLevel, int currentLevel)
-    {
-        if (currentLevel <= 0)
-        {
-            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Blood").LockRecipe();
-            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Corrupted Blood").LockRecipe();
-        }
-    }
+
     // Fishing Talents
     private void FishingNavigator(int previousLevel, int currentLevel)
     {
@@ -2177,6 +2199,76 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             }
         }
     }
+    private void GatheringUnity(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            FindObjectOfType<GameManager>().CmdAddGatheringPlayer();
+        }
+    }
+    private void GatheringUnityReduce(int previousLevel, int currentLevel)
+    {
+        for (int i = previousLevel; i > currentLevel; i--)
+        {
+            FindObjectOfType<GameManager>().CmdRemoveGatheringPlayer();
+        }
+    }
+    private void MagicalSickle(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Magical Sickle").UnlockRecipe();
+        }
+    }
+    private void MagicalSickleReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Magical Sickle").LockRecipe();
+        }
+    }
+    private void MiningDrill(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Mining Drill").UnlockRecipe();
+        }
+    }
+    private void MiningDrillReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Mining Drill").LockRecipe();
+        }
+    }
+    private void Trap(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Trap").UnlockRecipe();
+        }
+    }
+    private void TrapReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Trap").LockRecipe();
+        }
+    }
+    private void CreateSeed(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Seed").UnlockRecipe();
+        }
+    }
+    private void CreateSeedReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Seed").LockRecipe();
+        }
+    }
     private void GatheringApprentice(int previousLevel, int currentLevel)
     {
         if (currentLevel >= 1)
@@ -2191,5 +2283,22 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
     {
         if (currentLevel >= 1)
             FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Expert's Guide to Gathering", stacks = 1 });
+    }
+
+    private void BloodExtractor(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Blood").UnlockRecipe();
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Corrupted Blood").UnlockRecipe();
+        }
+    }
+    private void BloodExtractorReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Blood").LockRecipe();
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Extract Corrupted Blood").LockRecipe();
+        }
     }
 }

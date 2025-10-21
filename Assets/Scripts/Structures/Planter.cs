@@ -144,6 +144,27 @@ public class Planter : NetworkBehaviour, ISaveable
     {
         cropsModels[cropIndex].SetActive(true);
     }
+    public void Harvest()
+    {
+        var player = FindObjectOfType<GameManager>().localPlayerCharacter;
+        var talentLevel = player.talentTrees.IsTalentUnlocked("Improved Planter", 1);
+        if (talentLevel >= 1)
+        {
+            int random = Random.Range(0, 100);
+            if (random <= talentLevel * 50)
+            {
+                var inventory = FindObjectOfType<InventoryManager>(true);
+                inventory.AddItem(inventory.itemDatabase.GetItemByName("Seed"), 1);
+            }
+        }
+        foreach (var item in harvestableCrops[selectedCropIndex].harvestItems)
+        {
+            int random = Random.Range(item.minimumHarvestAmount, item.maximumHarvestAmount + 1) + fertilized;
+            FindObjectOfType<InventoryManager>().AddItem(new ItemRecipeInfo { itemData = item.harvestedItem, stacks = random });
+        }
+        player.professions.AddGathering(1);
+        CmdHarvest();
+    }
 
     [Command(requiresAuthority = false)]
     public void CmdHarvest()
@@ -153,13 +174,6 @@ public class Planter : NetworkBehaviour, ISaveable
     [ClientRpc]
     public void RpcHarvest()
     {
-        foreach (var item in harvestableCrops[selectedCropIndex].harvestItems)
-        {
-            int random = Random.Range(item.minimumHarvestAmount, item.maximumHarvestAmount + 1) + fertilized;
-            FindObjectOfType<InventoryManager>().AddItem(new ItemRecipeInfo { itemData = item.harvestedItem, stacks = random });
-        }
-       
-        FindObjectOfType<GameManager>().localPlayerCharacter.professions.AddGathering(1);
         cropsModels[selectedCropIndex].SetActive(false);
         sprout.SetActive(true);
         grown = false;

@@ -308,6 +308,16 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     public void CmdAddGatheringPlayer()
     {
         gatheringPlayers++;
+        RpcAddGatheringPlayer();
+    }
+    [ClientRpc]
+    private void RpcAddGatheringPlayer()
+    {
+        foreach (var item in FindObjectsOfType<LootableObject>())
+        {
+            if (item.professionRequired == TalentTreeType.Gathering)
+                item.ChangeRefreshDurationReduction(0.1f);
+        }
     }
     [Command(requiresAuthority = false)]
     public void CmdAddFishingPlayer()
@@ -348,6 +358,16 @@ public class GameManager : NetworkBehaviour, NeedsLocalPlayerCharacter
     public void CmdRemoveGatheringPlayer()
     {
         gatheringPlayers--;
+        RpcRemoveGatheringPlayer();
+    }
+    [ClientRpc]
+    private void RpcRemoveGatheringPlayer()
+    {
+        foreach (var item in FindObjectsOfType<LootableObject>())
+        {
+            if (item.professionRequired == TalentTreeType.Gathering)
+                item.ChangeRefreshDurationReduction(-0.1f);
+        }
     }
     [Command(requiresAuthority = false)]
     public void CmdRemoveFishingPlayer()
