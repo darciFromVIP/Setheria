@@ -18,16 +18,19 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
   questType: 1
   synchronizedQuest: 0
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: 09d0330c4cacef4498e20906c8d255d4, type: 2}
-    stacks: 3
+  requiredItems: []
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
-  customRequirements: []
+  customRequirements:
+  - requiredValue: 3
+    currentValue: 0
+    requirementText: 'Iron Piles mined:'
+    customEvents:
+    - {fileID: 11400000, guid: b6c98140550a2c943acf33f6fda7eef0, type: 2}
   rewards:
   - rewardType: 2
     rewardAmount: 30

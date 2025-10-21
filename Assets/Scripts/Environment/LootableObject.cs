@@ -10,6 +10,10 @@ using FMODUnity;
 using FMOD.Studio;
 using FMOD;
 
+public enum LootableCategory
+{
+    None, Plant, Tree, MiningPile
+}
 public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerCharacter, ISaveable
 {
     public float lootDuration;
@@ -31,6 +35,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
     public EventReference soundOnDestroy, soundOnLooting;
     public EventInstance lootSoundInstance;
     public List<Skill> skills = new();
+    public LootableCategory lootableCategory;
 
     public string lootableName;
     public string unlootableName;
@@ -104,6 +109,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                     FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this.");
                     return;
                 }
+                flatLootingReduction += 0.5f * player.talentTrees.IsTalentUnlocked("Hasty Gatherer", 1);
                 break;
             case TalentTreeType.Cooking:
                 if (player.professions.cooking < professionExperienceRequired)
@@ -125,8 +131,7 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                     FindObjectOfType<SystemMessages>().AddMessage("You need " + professionRequired.ToString() + " experience of at least " + professionExperienceRequired + " to harvest this.");
                     return;
                 }
-                if (player.talentTrees.IsTalentUnlocked("Hasty Fishing", 1) >= 1)
-                    flatLootingReduction += 0.5f;
+                flatLootingReduction += 0.5f * player.talentTrees.IsTalentUnlocked("Hasty Fishing", 1);
                 break;
             case TalentTreeType.Exploration:
                 if (player.professions.exploration < professionExperienceRequired)
@@ -192,10 +197,44 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
         }
         else
             GiveRewards();
+        int talentLevel = 0;
         switch (professionRequired)
         {
             case TalentTreeType.Gathering:
                 interactingPlayer.GetComponent<PlayerCharacter>().professions.AddGathering(1);
+
+                // Fiber Gatherer talent
+                talentLevel = interactingPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Fiber Gatherer", 1);
+                if (lootableCategory == LootableCategory.Plant && talentLevel >= 1)
+                {
+                    var inventory = FindObjectOfType<InventoryManager>(true);
+                    inventory.AddItem(inventory.itemDatabase.GetItemByName("Plant Fiber"), talentLevel);
+                }
+                // Stone Miner talent
+                talentLevel = interactingPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Stone Miner", 1);
+                if (lootableCategory == LootableCategory.MiningPile && talentLevel >= 1)
+                {
+                    var inventory = FindObjectOfType<InventoryManager>(true);
+                    inventory.AddItem(inventory.itemDatabase.GetItemByName("Stone"), talentLevel);
+                }
+                // Hardwood Gatherer talent
+                talentLevel = interactingPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Hardwood Gatherer", 1);
+                if (lootableCategory == LootableCategory.Tree && talentLevel >= 1)
+                {
+                    var inventory = FindObjectOfType<InventoryManager>(true);
+                    inventory.AddItem(inventory.itemDatabase.GetItemByName("Hardwood"), talentLevel);
+                }
+                // Careful Gathering talent
+                talentLevel = interactingPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Careful Gathering", 1);
+                if (talentLevel >= 1)
+                {
+                    int random = Random.Range(0, 100);
+                    if (random <= talentLevel * 3)
+                    {
+                        var inventory = FindObjectOfType<InventoryManager>(true);
+                        inventory.AddItem(inventory.itemDatabase.GetItemByName("Seed"), 1);
+                    }
+                }
                 break;
             case TalentTreeType.Cooking:
                 interactingPlayer.GetComponent<PlayerCharacter>().professions.AddCooking(1);
@@ -205,8 +244,9 @@ public class LootableObject : NetworkBehaviour, IInteractable, NeedsLocalPlayerC
                 break;
             case TalentTreeType.Fishing:
                 interactingPlayer.GetComponent<PlayerCharacter>().professions.AddFishing(1);
+
                 // Luck of the Sea talent
-                int talentLevel = interactingPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Luck of the Sea", 1);
+                talentLevel = interactingPlayer.GetComponent<PlayerCharacter>().talentTrees.IsTalentUnlocked("Luck of the Sea", 1);
                 if (talentLevel >= 1)
                 {
                     int random = Random.Range(0, 100);

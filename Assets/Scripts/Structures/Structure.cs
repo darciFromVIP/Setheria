@@ -157,4 +157,9 @@ public class Structure : Entity, ISaveable, IInteractable
     {
         GetComponent<HasHealth>().ChangeGearMaxHealth(50);
     }
+    protected override void OnDeath()
+    {
+        On_Death.Invoke();
+        Destroy(gameObject);
+    }
 }

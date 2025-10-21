@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
-  m_Name: TJourneymanGatherer
+  m_Name: TTrap
   m_EditorClassIdentifier: 
   talentType: 1
   maxLevel: 1
-  requiredTalent: {fileID: 11400000, guid: af5d5f421dd445043bf64725c4c7cea2, type: 2}
-  requiredTalentLevel: 1
-  requiredTalentPointsSpent: 8
-  requiredPlayerLevel: 10
-  label: Journeyman Gatherer
-  description: Grants a Journeyman's Guide to Gathering, which starts a new questline!
+  requiredTalent: {fileID: 0}
+  requiredTalentLevel: 0
+  requiredTalentPointsSpent: 12
+  requiredPlayerLevel: 15
+  label: Trap
+  description: Unlocks the recipe to craft a Trap.
   excludingTalents: []
   associatedSkill: {fileID: 0}
   associatedSkill2: {fileID: 0}

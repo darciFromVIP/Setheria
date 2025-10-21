@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
-  m_Name: TExpertGatherer
+  m_Name: TGatheringApprentice
   m_EditorClassIdentifier: 
   talentType: 1
   maxLevel: 1
-  requiredTalent: {fileID: 11400000, guid: a51bfb69cbb2c3144bd87b11e8267f59, type: 2}
-  requiredTalentLevel: 1
-  requiredTalentPointsSpent: 12
-  requiredPlayerLevel: 15
-  label: Expert Gatherer
-  description: Grants an Expert's Guide to Gathering, which starts a new questline!
+  requiredTalent: {fileID: 0}
+  requiredTalentLevel: 0
+  requiredTalentPointsSpent: 4
+  requiredPlayerLevel: 5
+  label: Gathering Apprentice
+  description: Grants an Apprentice's Guide to Gathering, which starts a new questline!
   excludingTalents: []
   associatedSkill: {fileID: 0}
   associatedSkill2: {fileID: 0}

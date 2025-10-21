@@ -62,13 +62,23 @@ public class InventoryManager : MonoBehaviour, NeedsLocalPlayerCharacter
         {
             if (slot.transform.childCount == 0 && slot.isFree)
             {
-                result = SpawnNewItem(item, stacks, slot);
-                item.Item_Acquired.Invoke(item);
-                item.Item_Stacks_Acquired.Invoke(item, stacks);
-                FindObjectOfType<AcquiredItems>().ItemAcquired(new ItemRecipeInfo { itemData = item, stacks = stacks });
-                if (stacks >= item.maxStacks)
+                int currentStacks = item.maxStacks;
+                if (stacks > item.maxStacks)
+                {
                     stacks -= item.maxStacks;
-                if (item.maxStacks < stacks)
+                    currentStacks = item.maxStacks;
+                }
+                else
+                {
+                    currentStacks = stacks;
+                    stacks = 0;
+                }
+                result = SpawnNewItem(item, currentStacks, slot);
+                item.Item_Acquired.Invoke(item);
+                item.Item_Stacks_Acquired.Invoke(item, currentStacks);
+                FindObjectOfType<AcquiredItems>().ItemAcquired(new ItemRecipeInfo { itemData = item, stacks = currentStacks });
+                
+                if (stacks > 0)
                     continue;
                 return result;
             }

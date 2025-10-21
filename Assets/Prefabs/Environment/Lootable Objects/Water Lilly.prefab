@@ -863,11 +863,13 @@ MonoBehaviour:
       Data4: -303898327
     Path: event:/World Sounds/Vocational Activities/Plant Gather
   skills: []
+  lootableCategory: 1
   lootableName: <sprite=18> Water Lilly
   unlootableName: Water Lilly (Empty)
   refreshProgressBar: {fileID: 2071052980636620062}
   remainingChargesText: {fileID: 2373316213450876285}
   Player_Event: {fileID: 11400000, guid: cd12b9089334303458b84dfa92efc12f, type: 2}
+  questToComplete: {fileID: 0}
   Quest_Event: {fileID: 0}
   Object_Destroyed:
     m_PersistentCalls:
@@ -1128,6 +1130,13 @@ MonoBehaviour:
   mapTooltipText: Water Lilly
   iconSize: 0
   staticObject: 1
+  professionType: 0
+  fishingUnlocked: 0
+  gatheringUnlocked: 0
+  explorationUnlocked: 0
+  Icon_Loaded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7463788362461560463
 MonoBehaviour:
   m_ObjectHideFlags: 0

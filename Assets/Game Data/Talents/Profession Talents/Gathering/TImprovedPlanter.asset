@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb401f639c44e464499c66290e01f020, type: 3}
-  m_Name: TApprenticeGatherer
+  m_Name: TImprovedPlanter
   m_EditorClassIdentifier: 
   talentType: 1
-  maxLevel: 1
-  requiredTalent: {fileID: 0}
-  requiredTalentLevel: 0
-  requiredTalentPointsSpent: 4
-  requiredPlayerLevel: 5
-  label: Apprentice Gatherer
-  description: Grants an Apprentice's Guide to Gathering, which starts a new questline!
+  maxLevel: 2
+  requiredTalent: {fileID: 11400000, guid: 8b46f30c93470fa4590364c6470762b2, type: 2}
+  requiredTalentLevel: 1
+  requiredTalentPointsSpent: 8
+  requiredPlayerLevel: 10
+  label: Improved Planter
+  description: Grants a 50% chance per talent level to get a seed when harvesting
+    from a Planter.
   excludingTalents: []
   associatedSkill: {fileID: 0}
   associatedSkill2: {fileID: 0}

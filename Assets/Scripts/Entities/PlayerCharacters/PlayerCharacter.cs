@@ -2155,4 +2155,41 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (currentLevel >= 1)
             FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Expert's Guide to Fishing", stacks = 1 });
     }
+
+    //Gathering Talents
+    private void GatheringNavigator(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            foreach (var item in FindObjectsOfType<ObjectMapIcon>(true))
+            {
+                item.UnlockProfession(TalentTreeType.Gathering);
+            }
+        }
+    }
+    private void GatheringNavigatorReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            foreach (var item in FindObjectsOfType<ObjectMapIcon>(true))
+            {
+                item.LockProfession(TalentTreeType.Gathering);
+            }
+        }
+    }
+    private void GatheringApprentice(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+            FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Apprentice's Guide to Gathering", stacks = 1 });
+    }
+    private void GatheringJourneyman(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+            FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Journeyman's Guide to Gathering", stacks = 1 });
+    }
+    private void GatheringExpert(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+            FindObjectOfType<InventoryManager>(true).AddItem(new SaveDataItem { name = "Expert's Guide to Gathering", stacks = 1 });
+    }
 }

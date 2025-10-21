@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IDropHandler, IPointerDownHandler
 {
@@ -264,6 +265,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (this == null)
             return;
+        DestroyTempObject();
         transform.SetParent(null);                      // Destroy executes after current Update loop, too late for certain functions (with crafting)
         item.Item_Stacks_Lost.Invoke(item, stacks);
         Item_Destroyed.Invoke();
