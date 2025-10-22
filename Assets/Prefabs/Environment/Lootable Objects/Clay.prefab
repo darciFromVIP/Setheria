@@ -21,6 +21,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
+      propertyPath: maxCharges
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
       propertyPath: Quest_Event
       value: 
       objectReference: {fileID: 11400000, guid: 2282525b0c8ed3c4b87fdfae791abf78,
@@ -37,8 +42,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
+      propertyPath: unlootableName
+      value: Destroyed
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
       propertyPath: toolRequirement
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: lootableCategory
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 635349289380901275, guid: f87e8e15654f0d1439fa30e59ccad342,
         type: 3}
@@ -317,6 +332,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Clay
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014643280106428938, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: mapIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: f192d93aba78b8f4bb7bf29d96cf7994,
+        type: 3}
+    - target: {fileID: 9014643280106428938, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: iconSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014643280106428938, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: mapTooltipText
+      value: Clay
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014643280106428938, guid: f87e8e15654f0d1439fa30e59ccad342,
+        type: 3}
+      propertyPath: professionType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
