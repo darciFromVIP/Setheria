@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Gathering Q 5
   m_EditorClassIdentifier: 
   active: 0
-  label: Copper Age.
-  description: Craft more durable copper gathering pickaxe. with a better quality
-    tool it will be possible to collect better materials.
+  label: Collector of leather.
+  description: 
   icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
   questType: 1
   synchronizedQuest: 0
   requiredItems:
-  - itemData: {fileID: 11400000, guid: e1c8734fa0e3dd24f8f90876677bfed5, type: 2}
-    stacks: 1
+  - itemData: {fileID: 11400000, guid: 77ee74d9a32ed344bbfa8696f6b1a5c3, type: 2}
+    stacks: 5
+  - itemData: {fileID: 11400000, guid: 8eb497e81706bda458d5dad3a88f88fa, type: 2}
+    stacks: 5
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
@@ -30,8 +31,8 @@ MonoBehaviour:
   currentKnowledge: 0
   customRequirements: []
   rewards:
-  - rewardType: 2
-    rewardAmount: 30
+  - rewardType: 6
+    rewardAmount: 1
     itemReward: {fileID: 0}
   recipesToUnlock: []
   tutorialToShow: {fileID: 0}

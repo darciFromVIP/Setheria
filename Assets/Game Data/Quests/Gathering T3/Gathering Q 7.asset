@@ -10,19 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
-  m_Name: Gathering Q 12
+  m_Name: Gathering Q 7
   m_EditorClassIdentifier: 
   active: 0
-  label: Explore tropical biom.
-  description: Find new tropical plants!
+  label: Iron Age!
+  description: 
   icon: {fileID: 21300000, guid: 5e9002f2c2879bb418cc80272b4d391c, type: 3}
   questType: 1
   synchronizedQuest: 0
-  requiredItems:
-  - itemData: {fileID: 11400000, guid: b64f9a4d378dd7b4195ca5923da3393a, type: 2}
-    stacks: 1
-  - itemData: {fileID: 11400000, guid: 52e9699b918745747a95b582f082e750, type: 2}
-    stacks: 1
+  requiredItems: []
   requiredItemTypes: []
   requiredStructures: []
   requiredResources: 0
@@ -30,14 +26,19 @@ MonoBehaviour:
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements:
-  - requiredValue: 1
+  - requiredValue: 5
     currentValue: 0
-    requirementText: 'Cymians collected: '
+    requirementText: 'Iron Collected:'
     customEvents:
-    - {fileID: 11400000, guid: eed0b7fa491ef79409ae54117329ec77, type: 2}
+    - {fileID: 11400000, guid: b6c98140550a2c943acf33f6fda7eef0, type: 2}
+  - requiredValue: 5
+    currentValue: 0
+    requirementText: 'Pine Trees:'
+    customEvents:
+    - {fileID: 11400000, guid: 6860a05bfae5539408b31f919ce208e5, type: 2}
   rewards:
-  - rewardType: 2
-    rewardAmount: 30
+  - rewardType: 6
+    rewardAmount: 1
     itemReward: {fileID: 0}
   recipesToUnlock: []
   tutorialToShow: {fileID: 0}
