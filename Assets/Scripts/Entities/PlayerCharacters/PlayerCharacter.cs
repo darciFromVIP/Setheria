@@ -1392,6 +1392,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             Trap(previousLevel, currentLevel);
         if (name == "Create Seed")
             CreateSeed(previousLevel, currentLevel);
+        if (name == "Planter")
+            Planter(previousLevel, currentLevel);
         if (isLoaded)
         {
             if (name == "Gathering Apprentice")
@@ -1507,6 +1509,8 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
             TrapReduce(previousLevel, currentLevel);
         if (name == "Create Seed")
             CreateSeedReduce(previousLevel, currentLevel);
+        if (name == "Planter")
+            PlanterReduce(previousLevel, currentLevel);
     }
     // Forest Protector Talents
     private void NatureAttunement(int previousLevel, int currentLevel)
@@ -2267,6 +2271,20 @@ public class PlayerCharacter : Character, LocalPlayerCharacter
         if (currentLevel <= 0)
         {
             FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Seed").LockRecipe();
+        }
+    }
+    private void Planter(int previousLevel, int currentLevel)
+    {
+        if (currentLevel >= 1)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Planter").UnlockRecipe();
+        }
+    }
+    private void PlanterReduce(int previousLevel, int currentLevel)
+    {
+        if (currentLevel <= 0)
+        {
+            FindObjectOfType<GameManager>().recipeDatabase.GetRecipeByName("Planter").LockRecipe();
         }
     }
     private void GatheringApprentice(int previousLevel, int currentLevel)
