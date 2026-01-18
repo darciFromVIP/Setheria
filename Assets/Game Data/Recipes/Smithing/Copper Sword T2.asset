@@ -29,9 +29,10 @@ MonoBehaviour:
   requiredStructure: {fileID: 0}
   craftingDuration: 6
   xpGranted: 20
-  tier: 1
-  recipeItem: {fileID: 11400000, guid: 4776d52c1938eee4ba170972b38d4b2c, type: 2}
-  requiredItems: []
+  tier: 0
+  recipeItem: {fileID: 0}
+  requiredItems:
+  - {fileID: 11400000, guid: 4776d52c1938eee4ba170972b38d4b2c, type: 2}
   requiredStructures: []
   requiredProfession: 0
   requiredProfessionExperience: 0

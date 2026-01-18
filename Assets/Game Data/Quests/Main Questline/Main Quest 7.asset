@@ -22,6 +22,7 @@ MonoBehaviour:
     Well, time to work and build a heart of the sanctuary.
     Or... hmm... a campfire should suffice.'
   icon: {fileID: 21300000, guid: 33cffd7f3edbebc4c905ff641ffd20b3, type: 3}
+  questType: 0
   synchronizedQuest: 1
   requiredItems: []
   requiredItemTypes: []
@@ -36,6 +37,10 @@ MonoBehaviour:
   - rewardType: 3
     rewardAmount: 1
     itemReward: {fileID: 11400000, guid: 5cdb4fabc5262c745ad2f45108ef81b8, type: 2}
+  - rewardType: 1
+    rewardAmount: 10
+    itemReward: {fileID: 0}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

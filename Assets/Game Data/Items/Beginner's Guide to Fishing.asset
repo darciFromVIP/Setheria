@@ -31,14 +31,20 @@ MonoBehaviour:
   value: 0
   destroyItemOnUse: 1
   resourceCost: 0
-  knowledgeCost: 5
+  defaultResourceCost: 0
+  knowledgeCost: 3
   unlocked: 1
+  defaultUnlocked: 1
+  requiredTalentForDismantle: {fileID: 0}
   itemsAfterDismantle:
   - itemDropChances:
     - item:
         itemData: {fileID: 11400000, guid: 66a1749273eaa82478459db8daba8acb, type: 2}
         stacks: 1
       chance: 100
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

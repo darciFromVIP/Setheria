@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2690109b4353f0b4390d28c0725eb7f9, type: 3}
   m_Name: Main Quest 14
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   label: Upgrade your Tent
   description: "Upgrade Tent to Cottage.\n\u25A0Extends the Stash\r\n\u25A0Unlocks
     new recipes\r\n"
   icon: {fileID: 21300000, guid: ac20673568d62794681891aa4cd77a27, type: 3}
+  questType: 0
   synchronizedQuest: 1
   requiredItems: []
   requiredItemTypes: []
@@ -31,6 +32,10 @@ MonoBehaviour:
   - rewardType: 2
     rewardAmount: 70
     itemReward: {fileID: 0}
+  - rewardType: 1
+    rewardAmount: 10
+    itemReward: {fileID: 0}
+  recipesToUnlock: []
   tutorialToShow: {fileID: 0}
   Quest_Complete:
     m_PersistentCalls:

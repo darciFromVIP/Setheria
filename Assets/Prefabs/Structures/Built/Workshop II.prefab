@@ -147,11 +147,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7486842287260214511}
     m_Modifications:
-    - target: {fileID: 153005518291146370, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.171
-      objectReference: {fileID: 0}
     - target: {fileID: 1580122834452613331, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -202,20 +197,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2869101830448805666, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.847
-      objectReference: {fileID: 0}
     - target: {fileID: 5023126159294841846, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
         type: 3}
       propertyPath: m_Name
       value: WorkshopT2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5723389818795384289, guid: 6dbda426405ad4543a2bc0e4be1a89dc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.765
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -274,7 +259,7 @@ PrefabInstance:
     - target: {fileID: 2012023165662233099, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: maxHealth
-      value: 350
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 2051560462495816291, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -554,7 +539,7 @@ PrefabInstance:
     - target: {fileID: 6677551501297419170, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
       propertyPath: rmsCount
-      value: 109
+      value: 78
       objectReference: {fileID: 0}
     - target: {fileID: 7704550234824818578, guid: cf1fd752683bedf41b6bd4eae6622612,
         type: 3}
@@ -688,19 +673,20 @@ MonoBehaviour:
       m_Calls: []
   hudCircle: {fileID: 0}
   vfxDatabase: {fileID: 11400000, guid: d8d528ba161c2824f87ae02f7724002c, type: 2}
-  structureItem: {fileID: 11400000, guid: 863d6d474adde104e888dae8031ed08b, type: 2}
+  structureItem: {fileID: 11400000, guid: bb4bfa133d377754d86ec0b8f279dbbd, type: 2}
   structureOptions:
   - {fileID: 11400000, guid: ffc09c9fe28a1044a8dd87afd5ad3cb8, type: 2}
   - {fileID: 11400000, guid: 47f1f64da8f1c2241907ff64422726b8, type: 2}
   - {fileID: 11400000, guid: 9f050df7932b8274ba7259e62054bca3, type: 2}
-  - {fileID: 11400000, guid: cadaa31e6f0fdca40b8dcfacb23b2d73, type: 2}
+  - {fileID: 11400000, guid: d6b6d8d096b2ed34b8ab73b4b7682b14, type: 2}
   - {fileID: 11400000, guid: 914a6f718d2228947a51df4f57638aae, type: 2}
   - {fileID: 11400000, guid: c60c51bea0c77c64799aa8ff424b70fb, type: 2}
   skills: []
   entityDatabase: {fileID: 11400000, guid: 0272411464c49914aa52af49104af5e1, type: 2}
   unitSpawnPoint: {fileID: 0}
   structureData: {fileID: 11400000, guid: a5abfbcd5f01d2347a2bdf6e6cc916f9, type: 2}
-  upgradePrefab: {fileID: 0}
+  upgradePrefab: {fileID: 867903199493659754, guid: 11f86a0443a493f47bc397f40f7cbce4,
+    type: 3}
   demolishCost: 30
   sounds: {fileID: 11400000, guid: 4043a4e6298e7054db0caada6f3bb6fb, type: 2}
   fortificationUpgrade: {fileID: 11400000, guid: e78201931b77f914fb2652f264f4915f,

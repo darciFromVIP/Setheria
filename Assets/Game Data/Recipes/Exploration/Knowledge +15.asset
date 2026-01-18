@@ -13,29 +13,27 @@ MonoBehaviour:
   m_Name: Knowledge +15
   m_EditorClassIdentifier: 
   recipeCategory: 6
-  priority: 12
+  priority: 11
   resultItem:
     itemData: {fileID: 11400000, guid: 5c6d20721a436a844a44f1b0971fb87a, type: 2}
     stacks: 1
   componentItems:
-  - itemData: {fileID: 11400000, guid: 6bd90ba7b5c93d04d914ec33677ebf35, type: 2}
-    stacks: 2
   - itemData: {fileID: 11400000, guid: ae8a464113dcbb04799e77ea91c0cdc8, type: 2}
-    stacks: 2
+    stacks: 4
   resourceCost: 0
   unlocked: 1
   visible: 1
-  freshlyUnlocked: 0
+  freshlyUnlocked: 1
   requiredStructure: {fileID: 0}
   craftingDuration: 5
   xpGranted: 10
   tier: 1
   recipeItem: {fileID: 0}
   requiredItems:
-  - {fileID: 11400000, guid: 6bd90ba7b5c93d04d914ec33677ebf35, type: 2}
+  - {fileID: 11400000, guid: ae8a464113dcbb04799e77ea91c0cdc8, type: 2}
   requiredStructures: []
   requiredProfession: 5
-  requiredProfessionExperience: 40
+  requiredProfessionExperience: 20
   givesProfXP: 1
   recipesInThisCategory: []
   Recipe_Unlocked:

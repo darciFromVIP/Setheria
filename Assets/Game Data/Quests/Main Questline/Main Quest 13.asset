@@ -13,32 +13,27 @@ MonoBehaviour:
   m_Name: Main Quest 13
   m_EditorClassIdentifier: 
   active: 0
-  label: Advance your technologies.
-  description: 'Is it just me or I''m living as the ancient cave men did? Come on,
-    I''m better than that! I''ll build a place where I''ll stockpile my stuff and
-    create new technologies based on the materials of this world.
-
-
-    P.S.: I hope
-    I''ll find Moonaris too.'
-  icon: {fileID: 21300000, guid: e97e50f4fad5eda45bbb99507c64dd97, type: 3}
+  label: Exploration guide.
+  description: "I need to find a way to gain knowledge about this world. Explore
+    and discover unknown places and make the most of what they have to offer. I need
+    to create some kind of guide to use to write everything down. \nWorkshop is the
+    best place where to start!"
+  icon: {fileID: 21300000, guid: 82b70194344ad754c9f45f8686d4b994, type: 3}
   questType: 0
   synchronizedQuest: 1
-  requiredItems: []
+  requiredItems:
+  - itemData: {fileID: 11400000, guid: 383b2a447d70f904db28c015bbeceab5, type: 2}
+    stacks: 1
   requiredItemTypes: []
-  requiredStructures:
-  - {fileID: 11400000, guid: 876377a5bebc0b44d909422be8c7dbe1, type: 2}
+  requiredStructures: []
   requiredResources: 0
   currentResources: 0
   requiredKnowledge: 0
   currentKnowledge: 0
   customRequirements: []
   rewards:
-  - rewardType: 0
-    rewardAmount: 10
-    itemReward: {fileID: 0}
-  - rewardType: 1
-    rewardAmount: 10
+  - rewardType: 2
+    rewardAmount: 20
     itemReward: {fileID: 0}
   recipesToUnlock: []
   tutorialToShow: {fileID: 0}

@@ -53,8 +53,8 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
         {
             item.UpdateRecipe();
         }
-        researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && !allResearchesDone;
-        researchBTN.GetComponentInChildren<TextMeshProUGUI>().text = "Research<sprite=1>" + currentTier * 20;
+        researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 10 + 10) && !allResearchesDone;
+        researchBTN.GetComponentInChildren<TextMeshProUGUI>().text = "Research<sprite=1>" + (currentTier * 10 + 10);
     }
     public void UnlockRandomRecipe()
     {  
@@ -63,8 +63,8 @@ public class ResearchScreen : MonoBehaviour, WindowedUI
         {
             result = recipes[Random.Range(0, recipes.Count)];
         } while (result.recipe.tier != currentTier || result.recipe.unlocked);
-        FindObjectOfType<GameManager>().ChangeKnowledge(-currentTier * 20);
-        researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 20) && recipes.Count > 0 && !allResearchesDone;
+        FindObjectOfType<GameManager>().ChangeKnowledge(-currentTier * 10 - 10);
+        researchBTN.interactable = FindObjectOfType<GameManager>().TestSubtractKnowledge(currentTier * 10 + 10) && recipes.Count > 0 && !allResearchesDone;
         FindObjectOfType<GameManager>().CmdUnlockRecipe(result.recipe.name);
     }
     public void CheckTier()

@@ -19,6 +19,7 @@ MonoBehaviour:
   itemType: 0
   sprite: {fileID: 21300000, guid: e97e50f4fad5eda45bbb99507c64dd97, type: 3}
   stackable: 0
+  maxStacks: 99
   usage:
   - {fileID: 11400000, guid: 05ad75b2d69cb6642bd54b772558664f, type: 2}
   usageCooldown: 0
@@ -28,8 +29,15 @@ MonoBehaviour:
   value: 0
   destroyItemOnUse: 1
   resourceCost: 0
+  defaultResourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  defaultUnlocked: 1
+  requiredTalentForDismantle: {fileID: 0}
+  itemsAfterDismantle: []
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:

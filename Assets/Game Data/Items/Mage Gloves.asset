@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: '+0,5<sprite=6>
 
-    +50<sprite=5>
+    +50<sprite=4>
 
     __________________________________
 
@@ -26,6 +26,7 @@ MonoBehaviour:
   itemType: 3
   sprite: {fileID: 21300000, guid: bd9b3d5ee63633d4fb49b05b55eae87f, type: 3}
   stackable: 0
+  maxStacks: 99
   usage: []
   usageCooldown: 0
   cooldownGroup: 0
@@ -36,8 +37,11 @@ MonoBehaviour:
   value: 0
   destroyItemOnUse: 0
   resourceCost: 0
+  defaultResourceCost: 0
   knowledgeCost: 0
   unlocked: 1
+  defaultUnlocked: 1
+  requiredTalentForDismantle: {fileID: 0}
   itemsAfterDismantle:
   - itemDropChances:
     - item:
@@ -49,6 +53,9 @@ MonoBehaviour:
         itemData: {fileID: 11400000, guid: c821758aa9a47d64585815995449a4a1, type: 2}
         stacks: 1
       chance: 100
+  requiredTalentForAlternateUsage: {fileID: 0}
+  requiredTalentLevel: 0
+  alternateUsage: []
   tutorialToShowAfterItemAcquirement: {fileID: 0}
   Item_Acquired:
     m_PersistentCalls:
